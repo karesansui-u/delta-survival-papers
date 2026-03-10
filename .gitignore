@@ -1,0 +1,21 @@
+# LaTeX build artifacts
+*.aux
+*.log
+*.out
+*.toc
+*.bbl
+*.blg
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.synctex(busy)
+
+# Python
+__pycache__/
+*.pyc
+
+# Lean (lake build cache)
+lean/.lake/
+
+# OS
+.DS_Store
