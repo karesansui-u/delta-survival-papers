@@ -10,7 +10,7 @@ for structural collapse: theory, experiments, and formal verification.
 | Component | Status |
 |---|---|
 | Paper 1 — Structural Collapse | **Accepted** |
-| Paper 2 — Existence vs Discovery | Draft |
+| Paper 2 — Existence vs Discovery | Preprint |
 | Lean 4 — Formal Verification | Complete (`sorry = 0`, `axiom = 0`) |
 
 **Key result:** Parameter-free prediction of XOR-SAT threshold ratio
@@ -131,6 +131,15 @@ Akihito Sunagawa
   year   = {2026},
   doi    = {10.5281/zenodo.18943286},
   url    = {https://zenodo.org/records/18943286}
+}
+
+@misc{sunagawa2026predicting,
+  author = {Sunagawa, Akihito},
+  title  = {Predicting Computational Cost from the Structural Parameter δ:
+            Separating Existence from Discovery in Random 3-SAT},
+  year   = {2026},
+  doi    = {10.5281/zenodo.18943573},
+  url    = {https://zenodo.org/records/18943573}
 }
 ```
 
