@@ -1,9 +1,9 @@
 # Delta-Survival Papers
 
-Cumulative information loss $\delta$ (nats) as a unified coordinate
+Cumulative information loss δ (nats) as a unified coordinate
 for structural collapse: theory, experiments, and formal verification.
 
-累積的情報損失 $\delta$（nats）を構造崩壊の統一座標とする理論・実験・形式検証。
+累積的情報損失 δ（nats）を構造崩壊の統一座標とする理論・実験・形式検証。
 
 ## Status / ステータス
 
@@ -14,27 +14,27 @@ for structural collapse: theory, experiments, and formal verification.
 | Lean 4 — Formal Verification | Complete (`sorry = 0`, `axiom = 0`) |
 
 **Key result:** Parameter-free prediction of XOR-SAT threshold ratio
-$\alpha_{\text{XOR}}/\alpha_{\text{random}} = 5.19\times$
-(observed $5.04 \pm 0.25$, CV = 5%).
+α\_XOR / α\_random = 5.19×
+(observed 5.04 ± 0.25, CV = 5%).
 
 パラメータフリー予測: XOR-SAT閾値比
-$\alpha_{\text{XOR}}/\alpha_{\text{random}} = 5.19$倍
-（実測 $5.04 \pm 0.25$、CV = 5%）。
+α\_XOR / α\_random = 5.19倍
+（実測 5.04 ± 0.25、CV = 5%）。
 
 ---
 
 ## What this is about / この研究について
 
 When independent constraints each eliminate a fixed fraction of states,
-the survival potential decays as $S = N_{\text{eff}} \cdot e^{-\delta}$.
+the survival potential decays as `S = N_eff · e^(−δ)`.
 This is a theorem (from three axioms), not a model choice.
-The unit $\delta$ (nats) makes the collapse mechanism commensurable
+The unit δ (nats) makes the collapse mechanism commensurable
 across domains: SAT, LLM reasoning, nuclear stability, percolation.
 
 独立な制約がそれぞれ固定割合の状態を除去するとき、
-存続ポテンシャルは $S = N_{\text{eff}} \cdot e^{-\delta}$ に従う。
+存続ポテンシャルは `S = N_eff · e^(−δ)` に従う。
 これは3つの公理から導かれる定理であり、モデル選択ではない。
-$\delta$（nats）という単位により、
+δ（nats）という単位により、
 SAT・LLM推論・核安定性・パーコレーションといった
 異なるドメインの崩壊メカニズムが同一座標上で比較可能になる。
 
@@ -48,12 +48,12 @@ SAT・LLM推論・核安定性・パーコレーションといった
 The Exponential Decay Mechanism under Accumulating Constraints"**
 
 Three axioms (finite state space, fractional elimination, independence)
-uniquely determine $S = N_{\text{eff}} \cdot e^{-\delta}$.
+uniquely determine `S = N_eff · e^(−δ)`.
 Validated on random 3-SAT, LLM reasoning collapse, nuclear stability,
 and 3D percolation.
 
 3つの公理（有限状態空間・割合除去・独立性）から
-$S = N_{\text{eff}} \cdot e^{-\delta}$ が一意に決まることを示し、
+`S = N_eff · e^(−δ)` が一意に決まることを示し、
 SAT・LLM・原子核・パーコレーションで検証。
 
 - English: [`paper1/paper1_main.tex`](paper1/paper1_main.tex) / [PDF](paper1/paper1_main.pdf)
@@ -61,19 +61,19 @@ SAT・LLM・原子核・パーコレーションで検証。
 
 ### Paper 2 — Existence vs Discovery / 存在と発見の分離
 
-**"Predicting Computational Cost from the Structural Parameter $\delta$:
+**"Predicting Computational Cost from the Structural Parameter δ:
 Separating Existence from Discovery in Random 3-SAT"**
 
-The same first-moment exponent $\delta$ governs both solution existence ($c = 1$)
-and computational discovery cost ($\mu_c \propto e^{c\delta}$, $c < 1$).
-The sensitivity exponent $c$ is solver-dependent
-(CDCL $\approx 0.24$, WalkSAT $\approx 0.21$, Random $= 1.0$).
+The same first-moment exponent δ governs both solution existence (c = 1)
+and computational discovery cost (μ\_c ∝ e^(cδ), c < 1).
+The sensitivity exponent c is solver-dependent
+(CDCL ≈ 0.24, WalkSAT ≈ 0.21, Random = 1.0).
 
-同じ $\delta$ が解の存在（$c = 1$）と
-計算的発見コスト（$\mu_c \propto e^{c\delta}$, $c < 1$）の
+同じ δ が解の存在（c = 1）と
+計算的発見コスト（μ\_c ∝ e^(cδ), c < 1）の
 両方を支配するが、感度が異なる。
-感度指数 $c$ はソルバー依存
-（CDCL $\approx 0.24$、WalkSAT $\approx 0.21$、ランダム $= 1.0$）。
+感度指数 c はソルバー依存
+（CDCL ≈ 0.24、WalkSAT ≈ 0.21、ランダム = 1.0）。
 
 - English: [`paper2/paper2_main.tex`](paper2/paper2_main.tex) / [PDF](paper2/paper2_main.pdf)
 - 日本語: [`paper2/paper2_main_ja.tex`](paper2/paper2_main_ja.tex) / [PDF](paper2/paper2_main_ja.pdf)
@@ -109,19 +109,9 @@ delta-survival-paper/
 
 ---
 
-## Building / ビルド
+## Building Lean 4 / Lean 4 ビルド
 
 ```bash
-# Paper 1 (English)
-cd paper1 && pdflatex paper1_main.tex && pdflatex paper1_main.tex
-
-# Paper 1 (日本語) — XeLaTeX required
-cd paper1 && xelatex paper1_main_ja.tex && xelatex paper1_main_ja.tex
-
-# Paper 2
-cd paper2 && pdflatex paper2_main.tex && pdflatex paper2_main.tex
-
-# Lean 4
 cd lean && lake exe cache get && lake build
 ```
 
@@ -134,12 +124,13 @@ Akihito Sunagawa
 ## Citation / 引用
 
 ```bibtex
-@article{sunagawa2026structural,
-  author  = {Sunagawa, Akihito},
-  title   = {Structural Collapse as Information Loss:
-             The Exponential Decay Mechanism under Accumulating Constraints},
-  year    = {2026},
-  url     = {https://codeberg.org/delta-survival/papers}
+@misc{sunagawa2026structural,
+  author = {Sunagawa, Akihito},
+  title  = {Structural Collapse as Information Loss:
+            The Exponential Decay Mechanism under Accumulating Constraints},
+  year   = {2026},
+  note   = {Preprint},
+  url    = {https://codeberg.org/delta-survival/papers}
 }
 ```
 
