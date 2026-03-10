@@ -129,8 +129,8 @@ Akihito Sunagawa
   title  = {Structural Collapse as Information Loss:
             The Exponential Decay Mechanism under Accumulating Constraints},
   year   = {2026},
-  note   = {Preprint},
-  url    = {https://codeberg.org/delta-survival/papers}
+  doi    = {10.5281/zenodo.18943286},
+  url    = {https://zenodo.org/records/18943286}
 }
 ```
 
