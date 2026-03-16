@@ -26,13 +26,13 @@ for structural collapse: theory, experiments, and formal verification.
 ## What this is about / この研究について
 
 When independent constraints each eliminate a fixed fraction of states,
-the survival potential decays as `S = N_eff · e^(−δ)`.
+the survival potential decays as `S = N_eff · (μ/μ_c) · e^(−δ)`.
 This is a theorem (from three axioms), not a model choice.
 The unit δ (nats) makes the collapse mechanism commensurable
 across domains: SAT, LLM reasoning, nuclear stability, percolation.
 
 独立な制約がそれぞれ固定割合の状態を除去するとき、
-存続ポテンシャルは `S = N_eff · e^(−δ)` に従う。
+存続ポテンシャルは `S = N_eff · (μ/μ_c) · e^(−δ)` に従う。
 これは3つの公理から導かれる定理であり、モデル選択ではない。
 δ（nats）という単位により、
 SAT・LLM推論・核安定性・パーコレーションといった
@@ -48,13 +48,13 @@ SAT・LLM推論・核安定性・パーコレーションといった
 The Exponential Decay Mechanism under Accumulating Constraints"**
 
 Three axioms (finite state space, fractional elimination, independence)
-uniquely determine `S = N_eff · e^(−δ)`.
-Validated on random 3-SAT, LLM reasoning collapse, nuclear stability,
-and 3D percolation.
+uniquely determine `S = N_eff · (μ/μ_c) · e^(−δ)`.
+Validated on random 3-SAT and LLM reasoning collapse
+(11 models, 5 vendors, 4B–70B+ parameters).
 
 3つの公理（有限状態空間・割合除去・独立性）から
-`S = N_eff · e^(−δ)` が一意に決まることを示し、
-SAT・LLM・原子核・パーコレーションで検証。
+`S = N_eff · (μ/μ_c) · e^(−δ)` が一意に決まることを示し、
+SAT および LLM 推論崩壊（11モデル・5ベンダー・4B–70B+パラメータ）で検証。
 
 - English: [`paper1/paper1_main.tex`](paper1/paper1_main.tex) / [PDF](paper1/paper1_main.pdf)
 - 日本語: [`paper1/paper1_main_ja.tex`](paper1/paper1_main_ja.tex) / [PDF](paper1/paper1_main_ja.pdf)
@@ -129,8 +129,8 @@ Akihito Sunagawa
   title  = {Structural Collapse as Information Loss:
             The Exponential Decay Mechanism under Accumulating Constraints},
   year   = {2026},
-  doi    = {10.5281/zenodo.18943286},
-  url    = {https://zenodo.org/records/18943286}
+  doi    = {10.5281/zenodo.19053901},
+  url    = {https://zenodo.org/records/19053901}
 }
 
 @misc{sunagawa2026predicting,
