@@ -30,7 +30,7 @@ The Exponential Decay Mechanism under Accumulating Constraints}
 \maketitle
 
 \begin{abstract}
-Large language models exhibit abrupt reasoning collapse when structural contradictions accumulate in their context---a phenomenon distinct from gradual degradation under factual noise. Through controlled experiments (3 models, 3 vendors), we characterize this collapse and find: (i) multiplicative interaction between context margin ($\mu$) and structural contradiction ($\delta$)---two individually non-lethal stressors become lethal in combination, ruling out additive degradation models; (ii) a dimensional structure in $\delta$ where, in models with sufficient baseline accuracy, a single structural contradiction causes more damage than 10 factual contradictions; and (iii) a cushion mechanism where RLHF alignment absorbs contradictions until overwhelmed, producing a system-specific critical threshold $\delta_c$.
+Large language models exhibit abrupt reasoning collapse when structural contradictions accumulate in their context---a phenomenon distinct from gradual degradation under factual noise. Through controlled experiments (11 models, 5 vendors, 4B--70B+ parameters), we characterize this collapse and find: (i) multiplicative interaction between context margin ($\mu$) and structural contradiction ($\delta$)---two individually non-lethal stressors become lethal in combination, ruling out additive degradation models; (ii) a dimensional structure in $\delta$ where, in models with sufficient baseline accuracy, a single structural contradiction causes more damage than 10 factual contradictions; and (iii) a cushion mechanism where RLHF alignment absorbs contradictions until overwhelmed, producing a system-specific critical threshold $\delta_c$.
 
 These patterns are explained by the first moment method from combinatorics. Defining cumulative information loss $\delta = \sum_i I(\text{constraint}_i)$ in nats, we show that the multiplicative survival potential
 \[
@@ -45,7 +45,7 @@ captures both the LLM collapse patterns and, in Boolean satisfiability (SAT) whe
 %=============================================
 \section{Introduction}
 
-Large language models can reason---until they suddenly cannot. In models with sufficient baseline accuracy, a single structural contradiction (a self-referential paradox, a meta-level inconsistency) causes more damage than ten factual contradictions (Section~\ref{sec:llm-delta-structure}). Two individually harmless stressors (moderate context load and moderate contradiction) become lethal in combination (Section~\ref{sec:llm}). These patterns, replicated across three models from three vendors, cannot be explained by additive degradation models such as attention decay or error propagation, both of which predict performance loss proportional to each stressor independently.
+Large language models can reason---until they suddenly cannot. In models with sufficient baseline accuracy, a single structural contradiction (a self-referential paradox, a meta-level inconsistency) causes more damage than ten factual contradictions (Section~\ref{sec:llm-delta-structure}). Two individually harmless stressors (moderate context load and moderate contradiction) become lethal in combination (Section~\ref{sec:llm}). These patterns, replicated across eleven models from five vendors spanning 4B to 70B+ parameters (Section~\ref{sec:cross-model}), cannot be explained by additive degradation models such as attention decay or error propagation, both of which predict performance loss proportional to each stressor independently. The phenomenon is distinct from---though related to---model collapse under recursive training data \citep{shumailov2024}, where cumulative information loss manifests as distributional narrowing rather than reasoning failure.
 
 Why multiplicative, not additive? This paper proposes that the answer lies in a well-known mathematical structure: the first moment method from combinatorics. We define the \textbf{cumulative information loss} $\delta = \sum_i I(\text{constraint}_i)$, measured in nats, where each structural constraint contributes a calculable amount of information loss. The survival potential is then:
 \begin{equation}
@@ -102,13 +102,21 @@ Prigogine \citep{prigogine1984} established that open systems far from equilibri
 
 \subsection{Information-Theoretic Approaches}
 
-Shannon's channel coding theorem \citep{shannon1948,cover2006} establishes that reliable communication requires redundancy exceeding the channel's noise rate. The first moment method in combinatorics \citep{alon2016} uses $\mathbb{E}[X] = 0 \implies \Pr[X > 0] = 0$ to prove non-existence. Our operational definition $\delta = \sum_i I(\text{constraint}_i)$ connects these: each constraint removes information (solutions, options, capacity), and $e^{-\delta}$ is the expected fraction remaining---exactly the first moment bound. Independently, Giannakopoulos \citep{giannakopoulos2025} proposed an exponential survival equation $S(\eta) = \exp[-\alpha \cdot (1-\eta) \cdot Q/T]$ from a different starting point (preprint, not yet peer-reviewed).
+Shannon's channel coding theorem \citep{shannon1948,cover2006} establishes that reliable communication requires redundancy exceeding the channel's noise rate. The first moment method in combinatorics \citep{alon2016} uses $\mathbb{E}[X] = 0 \implies \Pr[X > 0] = 0$ to prove non-existence. Our operational definition $\delta = \sum_i I(\text{constraint}_i)$ connects these: each constraint removes information (solutions, options, capacity), and $e^{-\delta}$ is the expected fraction remaining---exactly the first moment bound.
+
+In the SAT context, Cocco and Monasson \citep{cocco2001} analytically derived the branching rate $\omega(\alpha)$ for DPLL-class solvers, showing that algorithmic cost diverges exponentially near the satisfiability threshold. Their analysis demonstrates that constraint density governs both solvability and computational cost---a connection we formalize through $\delta$ in the companion paper \citep{sunagawa2026sat}. Ben-Sasson and Wigderson \citep{bensasson2001} proved that resolution proof length grows exponentially for random 3-SAT near the threshold, establishing the proof-complexity foundation for why structured solvers (CDCL) cannot avoid exponential cost in the worst case.
+
+In molecular biology, Eigen's error catastrophe \citep{eigen1971} established an information-theoretic threshold for self-replicating systems: when the mutation rate exceeds a critical value, sequence information is irreversibly lost. The threshold condition is formulated in nats, making it structurally isomorphic to our $\delta_c$. The key difference is that Eigen's $\delta$ arises from stochastic copying errors in a single domain (RNA replication), whereas our framework addresses deterministic structural contradictions and is validated across two structurally distinct domains.
+
+Independently, Giannakopoulos \citep{giannakopoulos2025} proposed an exponential survival equation $S(\eta) = \exp[-\alpha \cdot (1-\eta) \cdot Q/T]$ from a different starting point (preprint, not yet peer-reviewed).
 
 \subsection{LLM Reasoning Collapse}
 
 Zhang et al.\ \citep{zhang2026lpt} independently discovered that LLM logical reasoning exhibits abrupt phase transitions---performance remains stable within complexity ranges and then collapses sharply, a phenomenon they term ``logical phase transitions'' (LPT). Their Logical Complexity Metric (LoCM) quantifies task difficulty via weighted operator counts, nesting depth, and inference hops, and the phase transition pattern is observed across 12+ models from multiple vendors.
 
 Our work differs primarily in grounding: our $\delta = \sum_i I(\text{constraint}_i)$ is measured in nats via the first moment correspondence, whereas LoCM uses empirically calibrated weights without a connection to information loss. This nats-based framework enables cross-domain application (SAT, LLM, and in principle organisational and ecological systems) under a single metric.
+
+Independently, Apple ML Research \citep{apple2025illusion} demonstrated that both standard and reasoning-enhanced LLMs exhibit sharp accuracy collapse above a complexity threshold in controlled puzzle environments, identifying three regimes (standard-LLM-dominant, reasoning-model-dominant, and universal collapse). Their work provides independent confirmation of the collapse threshold phenomenon without an information-theoretic framework for its mechanism.
 
 %=============================================
 \section{Theoretical Framework}
@@ -239,7 +247,7 @@ Let $\{\delta_i\}_{i=1}^{n}$ be the cumulative information losses of $n$ types, 
 whenever $\mathrm{Var}(\delta) > 0$.
 \end{theorem}
 
-This is a restatement of Price's equation \citep{price1970} applied to $\delta$-dependent hazard; Fisher's Fundamental Theorem \citep{fisher1930} and Boltzmann's H-theorem are special cases. The survival equation's $h(\delta)$ increasing provides the precondition automatically. The theorem, together with the algebraic properties of the survival equation ($S > 0 \Leftrightarrow$ all factors positive; hazard monotonicity; error propagation) and the axiom-to-exponential derivation chain (\S\ref{sec:first-moment}), is formally verified in Lean~4 \citep{demoura2021} with Mathlib (11 modules, $\texttt{sorry} = 0$, $\texttt{axiom} = 0$). The verification covers mathematical properties, not empirical validity.
+This is a restatement of Price's equation \citep{price1970} applied to $\delta$-dependent hazard; Fisher's Fundamental Theorem \citep{fisher1930} and Boltzmann's H-theorem are special cases. The survival equation's $h(\delta)$ increasing provides the precondition automatically. The theorem, together with the algebraic properties of the survival equation ($S > 0 \Leftrightarrow$ all factors positive; hazard monotonicity; error propagation) and the axiom-to-exponential derivation chain (\S\ref{sec:first-moment}), is formally verified in Lean~4 \citep{demoura2021} with Mathlib (11 modules, $\texttt{sorry} = 0$, $\texttt{axiom} = 0$).\footnote{In Lean~4, \texttt{sorry} is a placeholder admitting any proposition without proof; \texttt{axiom} declares an unproven assumption. $\texttt{sorry} = 0$ and $\texttt{axiom} = 0$ mean every step is machine-checked with no gaps or unverified assumptions.} The verification covers mathematical properties, not empirical validity.
 
 %=============================================
 \section{SAT Experiments: Constraint Types and Decay Rates}
@@ -266,7 +274,7 @@ All three constraint types produce exponential decay in the solution count, with
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{fig1_sat_decay.png}
-\caption{Exponential decay of normalized solution count ($\#\text{SAT}/2^n$) under three constraint types ($n = 18$). Left: linear scale showing decay profiles. Centre: log-scale confirming exponential form (straight lines). Right: probability of becoming unsatisfiable. Random noise (blue) decays slowly; XOR contradictions (red) decay $\sim$5$\times$ faster; implication chains (orange) decay fastest. Error bars: $\pm 1$ SD over 50 trials.}
+\caption{Exponential decay of normalized solution count ($\#\text{SAT}/2^n$) under three constraint types ($n = 18$). Left: linear scale showing decay profiles. Centre: log-scale confirming exponential form (straight lines). Right: probability of becoming unsatisfiable. Random noise (blue) decays slowly; XOR contradictions (red) decay $\sim$5$\times$ faster; implication chains (orange) decay fastest. Error bars: $\pm 1$ SD over 30--50 trials.}
 \label{fig:sat-decay}
 \end{figure}
 
@@ -325,7 +333,7 @@ The SAT results establish three key points:
 \section{LLM Experiments: Controlled Manipulation of \texorpdfstring{$\delta$}{δ} and \texorpdfstring{$\mu$}{μ}}
 \label{sec:llm}
 
-Large language models provide a unique testbed: both $\delta$ (structural contradiction) and $\mu$ (context margin) can be experimentally manipulated, complementing recent observations of compositional reasoning limits \citep{dziri2023,wei2022} and systematic failures in logical generalization \citep{berglund2023}. We conducted experiments across 3 models from 3 vendors (GPT-4o-mini from OpenAI; Claude Sonnet 4.6 from Anthropic; Gemini 2.0 Flash from Google), with 20--30 trials per condition at temperature 1.0.\footnote{Sample sizes of 20--30 are modest but sufficient for the effect sizes observed: the key findings involve complete collapse ($100\% \to 0\%$) or step-function transitions, where statistical power approaches 1.0 even at $n = 20$. Finer quantitative claims (e.g., the precise location of $\delta_c$) are limited by sample size and $\delta$-grid resolution (\S\ref{sec:limitations}).}\footnote{Experiments are numbered from the research log. Exp.~4 (exploratory $\delta$ extremes) was subsumed into the controlled design of Exp.~5. Exp.~8 (model vulnerability direction) informed the design of Exp.~14--19' but is not reported separately. Exp.~9--13 were planned but not executed due to a shift from exploratory to controlled experimental design.}
+Large language models provide a unique testbed: both $\delta$ (structural contradiction) and $\mu$ (context margin) can be experimentally manipulated, complementing recent observations of compositional reasoning limits \citep{dziri2023,wei2022} and systematic failures in logical generalization \citep{berglund2023}. We conducted experiments across 3 models from 3 vendors (GPT-4o-mini from OpenAI; Claude Sonnet 4.6 from Anthropic; Gemini 2.0 Flash from Google), with 20--30 trials per condition at temperature 1.0.\footnote{Sample sizes of 20--30 are modest but sufficient for the effect sizes observed: the key findings involve complete collapse ($100\% \to 0\%$) or step-function transitions, where statistical power approaches 1.0 even at $n = 20$. Finer quantitative claims (e.g., the precise location of $\delta_c$) are limited by sample size and $\delta$-grid resolution (\S\ref{sec:limitations}).}\footnote{Experiments are numbered from the research log. Exp.~4 (exploratory $\delta$ extremes) was subsumed into the controlled design of Exp.~5. Exp.~8 (model vulnerability direction) informed the design of Exp.~14--28 but is not reported separately. Exp.~9--13 were planned but not executed due to a shift from exploratory to controlled experimental design.}
 
 \subsection{Exp.~1: Margin Compression (\texorpdfstring{$\mu$}{μ} Variable)}
 
@@ -348,29 +356,9 @@ Model: GPT-4o-mini, 30 trials per condition. $N$ key-value pairs were injected i
 \label{tab:exp1}
 \end{table}
 
-\subsection{Exp.~2: Exponential Decay under \texorpdfstring{$\delta$}{δ} Increase}
+\subsection{Exp.~3: Cross-Model Collapse Pattern}\footnote{An earlier exploratory experiment (Exp.~2) tested accuracy decay under increasing arithmetic chain length but yielded too few non-zero data points for meaningful statistical inference. The SAT experiments (Section~\ref{sec:sat}) provide the rigorous functional-form test; Exp.~2 is omitted from the main text.}
 
-Model: GPT-4o-mini, 30 trials per condition. Arithmetic chain reasoning with controlled structural complexity. Chain length $L$ increases $\delta$.
-
-\begin{table}[htbp]
-\centering
-\begin{tabular}{lccc}
-\toprule
-\textbf{$L$ (chain length)} & \textbf{Accuracy} & \textbf{CV} & \textbf{Phase} \\
-\midrule
-2 & 1.000 & 0.000 & Supercritical \\
-3 & 0.967 & 0.186 & Fluctuation onset \\
-\textbf{5} & \textbf{0.300} & \textbf{1.528} & \textbf{Critical} \\
-7--50 & 0.000 & --- & Complete collapse \\
-\bottomrule
-\end{tabular}
-\caption{Exp.~2: Exponential decay pattern. $\log(\text{accuracy})$ vs.\ $L$ yields slope $= -0.645$, consistent with exponential decay. Only three non-zero data points ($L = 2, 3, 5$) with two fit parameters leave one degree of freedom, so no meaningful goodness-of-fit statistic can be computed. The pattern is illustrative, not a statistical confirmation of the exponential form; the SAT experiments (Section~\ref{sec:sat}) provide the rigorous test.}
-\label{tab:exp2}
-\end{table}
-
-\subsection{Exp.~3: Cross-Model Collapse Pattern}
-
-Fixed depth ($\sim$5 steps), $\delta$ varied across 4 levels. 2 vendors, 2 models.
+Fixed depth ($\sim$5 steps), $\delta$ varied across 4 levels. 2 vendors, 2 models, $n = 20$ trials per condition.
 
 \begin{table}[htbp]
 \centering
@@ -413,12 +401,12 @@ L6 & All types combined & \textbf{0\%} & \textbf{0\%} \\
 \caption{Exp.~5: Two-group separation across both vendors. Group~A (L0--L3) retains function; Group~B (L4--L6) collapses to $\leq 5\%$. Multiplying factual contradictions by 10 (L1$\to$L2) has negligible effect, while a single meta-contradiction (L4) causes collapse. Note: GPT-4o-mini performs near floor even in the clean condition (L0: 5\%), indicating that this task is near the model's capacity limit; the informative contrast is Gemini Flash, which handles the clean task (70\%) but collapses to 0\% under structural contradiction.\protect\footnotemark}
 \label{tab:exp5}
 \end{table}
-\footnotetext{Data available in the repository.}
+\footnotetext{Data available in the repository. For $n = 20$ trials, an observed rate of 0\% has a one-sided 95\% confidence upper bound of 14\% (Clopper--Pearson); the true collapse is thus $\leq 14\%$ with 95\% confidence.}
 
 Because GPT-4o-mini operates near its capacity floor on this task (L0: 5\%), the dimensional structure of $\delta$ is primarily established by the Gemini Flash data, where the clean baseline (70\%) provides sufficient dynamic range. The L2 condition (10 factual contradictions, longest prompt) performs comparably to L0 (clean, shortest prompt), serving as an internal control that the observed collapse is driven by constraint structure ($\delta$), not by context length ($\mu$). The contrast is sharp: ten factual contradictions leave performance intact (L2: 65\% $\approx$ L0: 70\%) while a single structural contradiction destroys it (L5: 0\%)---demonstrating that the \emph{type} of $\delta$, not its magnitude, drives collapse.
 
 \textbf{Open-source replication.}
-The two-group separation was independently replicated with two open-source models run locally via Ollama: Llama~3.1:70b (Meta) and Qwen3:32b (Alibaba), using chain-of-thought prompting ($n = 20$, temperature~$0.7$). Self-referential paradox (L5) degraded performance in both models (Llama: 45\%, Qwen: 0\%, vs.\ L0 baselines of 100\% and 75\% respectively). Other structural contradictions (L4, L6) were partially absorbed via refusal strategies, a coping mechanism unavailable to the closed-form SAT domain. The qualitative pattern---structural contradictions cause disproportionate damage relative to factual contradictions---thus holds across 4 models from 4 vendors spanning both closed and open-source architectures.
+The two-group separation was independently replicated with two open-source models run locally via Ollama: Llama~3.1:70b (Meta) and Qwen3:32b (Alibaba), using chain-of-thought prompting ($n = 20$, temperature~$0.7$). Self-referential paradox (L5) degraded performance in both models (Llama: 45\%, Qwen: 0\%, vs.\ L0 baselines of 100\% and 75\% respectively). Other structural contradictions (L4, L6) were partially absorbed via refusal strategies, a coping mechanism unavailable to the closed-form SAT domain. The qualitative pattern---structural contradictions cause disproportionate damage relative to factual contradictions---thus holds across 4 models from 4 vendors spanning both closed and open-source architectures, and is further confirmed by the cross-model survey (Table~\ref{tab:cross-model}).
 
 This reveals three dimensions of $\delta$:
 \begin{itemize}
@@ -464,25 +452,26 @@ An additive model ($S = f(\mu) + g(\delta)$) cannot explain why two individually
 
 \textbf{Replication} (GPT-4o-mini, $n = 30$ per condition): Synergistic direction replicated ($\Delta$ doubles from $-0.107$ at $N=100$ to $-0.240$ at $N=5000$; $P(\text{synergistic}) = 0.963$). The two models exhibit qualitatively different collapse modes: Claude Sonnet 4.6 shows a first-order phase transition (binary: 100\% or 0\%), GPT-4o-mini shows second-order (gradual degradation, CV $= 0.929$). The survival equation specifies the multiplicative structure and threshold but not the order of the phase transition, which depends on the system's internal architecture.
 
-\subsection{Extended Experiments: The Cushion Mechanism (Exp.~14--19')}
+\subsection{Extended Experiments: The Cushion Mechanism (Exp.~14--28)}
 
-Experiments 14--19' extended the paradigm to a Double Bind scenario: two authority figures issue contradictory directives. The system prompt, field report, and option structure are held constant across all $\delta$ levels ($\mu$ fixed); only the contradiction intensity of CEO/CSO directives ($\delta$) varies. Key results:
+Experiments 14--28 extended the paradigm to a Double Bind scenario: two authority figures issue contradictory directives. The system prompt, field report, and option structure are held constant across all $\delta$ levels ($\mu$ fixed); only the contradiction intensity of CEO/CSO directives ($\delta$) varies.
 
-\textbf{Three-condition comparison} (Claude Sonnet 4.6, $n = 20$ per $\delta$ per condition):
+Directive pressure has two independently manipulable components: \emph{breakpoint} (language escalation from ``suggest'' to ``prohibit'') and \emph{action directive} (explicit ``I direct you to choose Option~X''). A $2 \times 2$ factorial design (Claude Sonnet 4.6, $n = 20$ per $\delta$ per condition) separates their effects:
 
 \begin{table}[htbp]
 \centering
 \small
-\begin{tabular}{lcccc}
+\begin{tabular}{lccc}
 \toprule
-\textbf{Condition} & \textbf{Structural contradiction} & \textbf{Directive pressure}$^*$ & \textbf{$\delta = 0.62$} & \textbf{$\delta = 1.00$} \\
+\textbf{Experiment} & \textbf{Breakpoint} & \textbf{Action directive} & $\delta_c$ \\
 \midrule
-Exp.~18 & Yes & Yes & 0\% & 0\% \\
-Exp.~19 & No & No & 100\% & 0\% \\
-Exp.~19' & Yes & No & 100\% & 100\% \\
+Exp.~19 & No & No & $\approx 0.80$ \\
+Exp.~14 & Yes & No & $0.61$ \\
+Exp.~19'v2 & No & Yes & $\approx 0.40$ \\
+Exp.~28 & Yes & Yes & $\approx 0.40$ \\
 \bottomrule
 \end{tabular}
-\caption{Three-condition comparison. Structural contradiction alone does \emph{not} cause collapse (Exp.~19': 100\% survival at $\delta = 1.00$; Clopper--Pearson 95\% CI $[83.2\%, 100\%]$ for $n=20$). Collapse requires both contradiction \emph{and} sufficient pressure to overcome the RLHF cushion. $^*$Directive pressure: emotional enforcement language that compels compliance (e.g., ``You MUST choose Option~2 immediately or face termination''), as opposed to neutral framing of the same structural conflict.}
+\caption{Factorial analysis of directive pressure components. Action directives reduce $\delta_c$ by $\approx 0.40$ nats (from 0.80 to 0.40); breakpoint reduces $\delta_c$ by $0.19$ only without action directives (0.80 to 0.61) and has zero additional effect when combined ($\delta_c \approx 0.40$ in both cases). The positive interaction ($+0.19$ between additive prediction $\delta_c = 0.21$ and observed $\delta_c = 0.40$) indicates a ceiling effect: explicit action directives fully determine the cushion's breaking point, making language escalation redundant. An earlier version of Exp.~19' contained a prompt design error and is superseded by Exp.~19'v2.}
 \label{tab:cushion}
 \end{table}
 
@@ -493,9 +482,54 @@ Exp.~19' & Yes & No & 100\% & 100\% \\
 \label{fig:llm-heatmap}
 \end{figure}
 
-\textbf{The cushion mechanism}: LLMs possess an RLHF-derived alignment layer \citep{ouyang2022} that acts as margin ($\mu$). This cushion absorbs structural contradictions by hedging, reinterpreting, or diplomatically resolving conflicting instructions. Collapse occurs only when both $\delta > 0$ and $\mu \to \mu_c$ (the cushion is overwhelmed by directive pressure). This is naturally identified with the survival equation's multiplicative structure: $S = \mu/\mu_c \cdot e^{-\delta}$; when $\mu/\mu_c \gg 1$, even large $\delta$ is tolerated.
+\textbf{The cushion mechanism}: LLMs possess an RLHF-derived alignment layer \citep{ouyang2022} that acts as margin ($\mu$). This cushion absorbs structural contradictions by hedging, reinterpreting, or diplomatically resolving conflicting instructions. The factorial results reveal that the cushion's capacity depends on \emph{what is demanded} (action directives), not \emph{how it is phrased} (language escalation). Without any directive pressure, the cushion breaks at $\delta_c \approx 0.80$; explicit action directives lower this threshold to $\delta_c \approx 0.40$, effectively doubling the cushion's vulnerability. Under the survival equation $S = \mu/\mu_c \cdot e^{-\delta}$, action directives increase $\mu_c$ (the minimum margin required for stability), narrowing the regime where contradictions can be absorbed. That Exp.~6 ($\delta$ alone with no context pressure) shows 100\% survival confirms the multiplicative structure: when $\mu/\mu_c \gg 1$, even large $\delta$ is tolerated.
 
-\textbf{$\delta_c$ is system-specific, not universal}: The critical threshold $\delta_c$ is a property of the model--framing interaction, not a universal constant. Under identical pressure conditions, three RLHF-trained vendors (Claude Sonnet 4.6, GPT-4o, Gemini 2.5 Flash) each exhibit a sharp transition, but the precise $\delta_c$ depends on model architecture and experimental framing. Earlier conjectures that $\delta_c = \ln 2$ is universal are retracted.
+\textbf{$\delta_c$ is system-specific, not universal}: The critical threshold $\delta_c$ is a property of the model--framing interaction, not a universal constant. Under identical pressure conditions, eleven models from five vendors each exhibit a sharp transition (Table~\ref{tab:cross-model}), but the precise $\delta_c$ depends on model architecture, size, and experimental framing. Earlier conjectures that $\delta_c = \ln 2$ is universal are retracted.
+
+\subsection{Cross-Model \texorpdfstring{$\delta_c$}{δc} Survey (Exp.~25, 32, 33--34)}
+\label{sec:cross-model}
+
+To test whether the collapse phenomenon generalizes beyond the initial three models, we measured $\delta_c$ under a unified protocol (Double Bind scenario, $n \geq 15$ trials per $\delta$ level) across 11 models from 5 vendors, spanning 4B to 70B+ parameters. Table~\ref{tab:cross-model} reports the results.
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{llcll}
+\toprule
+\textbf{Model} & \textbf{Size} & $\delta_c$ & \textbf{Transition} & \textbf{API} \\
+\midrule
+Claude Sonnet 4.6 & API & 0.61 & step function & Anthropic \\
+GPT-5.4 & API & 0.61 & step function & OpenAI \\
+Gemini 3 Flash-Lite & API & 0.53 & gradual & Google \\
+Gemini 3.1 Pro & API & 0.85 & gradual & Google \\
+Gemini 3 Flash & API & 0.95 & non-monotonic & Google \\
+\midrule
+Llama 3.1:70b & 70B & 0.66--0.69 & gradual & Ollama \\
+Qwen3:32b & 32B & 0.67--0.95 & unstable & Ollama \\
+Gemma3:27b & 27B & 0.68--0.69 & gradual & Ollama \\
+Qwen3.5:9b & 9B & 0.85 & delayed step & Ollama \\
+Llama 3.1:8b & 8B & $\sim$0.72 & non-monotonic & Ollama \\
+Gemma3:12b & 12B & $\sim$1.0 & step (refusal at $\delta{=}1$) & Ollama \\
+Gemma3:4b & 4B & $>$1.0 & no collapse & Ollama \\
+\bottomrule
+\end{tabular}
+\caption{$\delta_c$ across 11 models and 5 vendors under unified Double Bind protocol. All models with $\geq$27B parameters or API-scale exhibit collapse ($\delta_c < 1.0$). Three qualitative transition types emerge: step function (abrupt 100\%$\to$0\%), gradual (monotonic decrease over $\sim$0.3 nats), and non-monotonic (partial recovery before final collapse). Gemma3:4b shows no collapse; Gemma3:12b collapses only at $\delta = 1.0$ via explicit refusal---see text. Claude Sonnet 4.6 and GPT-5.4 share $\delta_c = 0.61$ despite independent RLHF training, suggesting a natural limit of instruction-following alignment under this framing.}
+\label{tab:cross-model}
+\end{table}
+
+Two patterns emerge. First, all models with sufficient capacity ($\geq$27B or API-scale) exhibit collapse, confirming that the phenomenon is not vendor-specific. Second, model size modulates the \emph{quality} of collapse rather than its presence: large models show gradual or step-function transitions with well-defined $\delta_c$, while small models ($\leq$12B) either fail to collapse (4B) or collapse only at the maximum $\delta$ tested (12B). This size dependence is analyzed further below.
+
+\textbf{Model size determines collapse mode, not just $\delta_c$.} Experiments 33--34 (Gemma3 family: 4B, 12B, 27B) reveal a qualitative three-stage transition in how models process contradictions:
+
+\begin{enumerate}
+    \item \textbf{No recognition} ($<$12B): The model does not detect contradictions. Survival remains $\sim$100\% at all $\delta$ levels. Collapse can be \emph{externally induced} by injecting explicit verification instructions (Exp.~33 verification condition: $\delta_c \approx 0.40$), but does not arise spontaneously.
+
+    \item \textbf{Recognition without resolution} (12B): The model detects contradictions at high $\delta$ but lacks the capacity to resolve them. Instead, it refuses to decide (decision${}= 0$). Baseline survival is 100\% for $\delta \leq 0.70$ and 0\% at $\delta = 1.0$---a step function with a high threshold.
+
+    \item \textbf{Recognition with attempted resolution} ($\geq$27B): The model detects contradictions and attempts to resolve them by favoring one authority over the other. This produces the gradual collapse pattern observed in all large models, with $\delta_c$ determined by the model's alignment training.
+\end{enumerate}
+
+This progression suggests that the cushion mechanism requires two distinct capabilities: \emph{recognition} (detecting that instructions conflict) and \emph{resolution} (choosing a coherent response despite the conflict). Recognition emerges at $\sim$12B parameters in the Gemma3 family; resolution requires $\geq$27B. The RLHF-trained cushion described above operates in stage~3, where the alignment layer provides resolution strategies (hedging, reinterpretation) that absorb contradictions until $\delta$ exceeds $\delta_c$.
 
 \subsection{Summary of LLM Evidence}
 
@@ -516,12 +550,12 @@ Table~\ref{tab:llm-summary} consolidates the LLM findings. Five predictions were
 \midrule
 6 & $\delta$ is type-dependent, not quantity-dependent & Post-hoc & Discovered \\
 7 & Three $\delta$ dimensions (factual/computational/structural) & Post-hoc & Discovered \\
-8 & $\delta_{\text{structural}}$ transcends model capability & Post-hoc & 4 models, 4 vendors \\
+8 & $\delta_{\text{structural}}$ transcends model capability$^\ddagger$ & Post-hoc & 4 models, 4 vendors \\
 9 & RLHF acts as cushion ($\mu$) & Post-hoc & Confirmed \\
 10 & $\delta_c$ is system-specific, not universal & Post-hoc & Confirmed \\
 \bottomrule
 \end{tabular}
-\caption{LLM experiment evidence summary. $^\dagger$Three non-zero data points ($L = 2, 3, 5$) with two fit parameters leave one degree of freedom; no meaningful goodness-of-fit statistic can be computed. The exponential form is supported by SAT (Section~\ref{sec:sat}), not by this experiment alone.}
+\caption{LLM experiment evidence summary. $^\dagger$The exponential form in LLM is pattern-consistent but not independently discriminated from other nonlinear forms in the low-$\delta$ regime where $e^{-\delta} \approx 1 - \delta$ (see \S\ref{sec:discussion}). The exponential form is anchored by the SAT identity (Section~\ref{sec:sat}), not by LLM data alone. $^\ddagger$Holds for models with sufficient recognition capability ($\geq$12B parameters in the Gemma3 family); models below this threshold do not detect structural contradictions and show no collapse (Table~\ref{tab:cross-model}).}
 \label{tab:llm-summary}
 \end{table}
 
@@ -531,7 +565,7 @@ Table~\ref{tab:llm-summary} consolidates the LLM findings. Five predictions were
 
 \subsection{What Has Been Established}
 
-The core contribution is operational: cumulative information loss ($\delta$) can be defined as $\sum_i I(\text{constraint}_i)$ in nats, with $e^{-\delta}$ corresponding to the first moment of the solution count. This is not a new theorem; it is the application of the first moment method \citep{alon2016} to the survival context. The multiplicative structure $S = N_{eff} \cdot (\mu/\mu_c) \cdot e^{-\delta}$ is the structure of serial reliability: any factor approaching zero is fatal.
+The core contribution is operational: cumulative information loss ($\delta$) can be defined as $\sum_i I(\text{constraint}_i)$ in nats, with $e^{-\delta}$ corresponding to the first moment of the solution count. This is not a new theorem; it is the application of the first moment method \citep{alon2016} to the survival context. The multiplicative structure $S = N_{eff} \cdot (\mu/\mu_c) \cdot e^{-\delta}$ is the structure of serial reliability: any factor approaching zero is fatal. The mathematical form $R = \prod_i r_i$ is well established in reliability engineering \citep{barlow1975}, where failure modes are enumerated from known component lists. Our contribution is not the product structure itself but the identification of \emph{what constitutes $\delta$} in each domain---clause density in SAT, prompt-level contradiction structure in LLM---a domain-specific discovery that the reliability framework does not address.
 
 An important epistemological distinction applies. In SAT, the correspondence between $e^{-\delta}$ and the first moment is a \emph{mathematical identity}---a variable substitution within the same formalism. In LLM and ecological domains, the correspondence is a \emph{structural analogy}: the multiplicative form is empirically tested, not derived from domain-specific first principles. Furthermore, ``survival'' ($S > 0$) denotes different phenomena across domains---satisfiability (existence of solutions), task accuracy (functional performance), bleaching resistance (ecological persistence)---unified not by ontological identity but by shared mathematical structure under accumulating constraints.
 
@@ -551,9 +585,11 @@ The SAT experiments confirm the first moment correspondence with $R^2 > 0.99$ fo
 
 \textbf{Information budget interpretation.} In logarithmic form, the survival equation becomes $\ln S = \ln N_{eff} + \ln(\mu/\mu_c) - \delta$, where all three terms are measured in nats. This is not merely a consequence of taking logarithms of any multiplicative equation: $\delta$ is \emph{defined} as information loss ($I = -\ln p$, nats), so the fact that $\ln N_{eff}$ and $\ln(\mu/\mu_c)$ share the same unit reflects a genuine information-theoretic structure. The survival condition $S > S_c$ becomes an information budget: the system survives when information capacity ($\ln N_{eff} + \ln(\mu/\mu_c)$) exceeds information loss ($\delta$). This parallels Shannon's channel coding theorem \citep{shannon1948}: reliable communication requires rate below capacity. However, the correspondence is one-sided. The first moment method provides only the \emph{converse}---when $\delta$ exceeds the budget, collapse is guaranteed---but not \emph{achievability}---when $\delta$ is below the budget, survival is possible but not guaranteed. The 20\% gap between the first-moment bound ($\alpha_c^{(1)} \approx 5.19$) and the true 3-SAT threshold ($\alpha_c \approx 4.27$) directly measures this asymmetry. Establishing the achievability direction would require second-moment methods or the Lov\'{a}sz Local Lemma, which remain outside the scope of this work.
 
-\textbf{Epistemic status of the three terms.} The information-theoretic grounding differs across the three factors. For $\delta$, the connection is exact: $I(C_i) = -\ln p_i$ is Shannon self-information by definition, and $e^{-\delta}$ is the first moment. For $\ln N_{eff}$, the connection is standard: $\ln N_{eff}$ is the entropy of a uniform distribution over available options. For $\ln(\mu/\mu_c)$, the connection is the least developed. In the LLM experiments, $\mu$ functions as available processing capacity and $\mu_c$ as the minimum capacity required by the task, making $\ln(\mu/\mu_c)$ interpretable as excess channel capacity. Whether this interpretation extends rigorously to other domains---and whether $\mu_c$ can be derived rather than measured---remains an open question. We note that in domains with mature independent theories, all parameters \emph{are} derivable: in site percolation, $\mu_c = p_c$ follows from lattice geometry ($p_c = 1/2$ exactly for 2D triangular; $p_c \approx 0.3116$ for 3D simple cubic \citep{mertens2002exact}); in nuclear stability, the critical threshold follows from the Bethe--Weizs\"{a}cker mass formula. The predictive power of the survival equation thus depends on the maturity of domain-specific theory that provides its inputs, not on free parameters within the equation itself. Until such theories mature, $\mu_c$ should be treated as an operationally fitted parameter---estimated from survival data within each domain, analogous to how empirical constants are calibrated before first-principles derivation becomes available. Practical guidelines for such estimation are discussed as a future direction (Section~6.3).
+\textbf{Epistemic status of the three terms.} The information-theoretic grounding differs across the three factors. For $\delta$, the connection is exact: $I(C_i) = -\ln p_i$ is Shannon self-information by definition, and $e^{-\delta}$ is the first moment. For $\ln N_{eff}$, the connection is standard: $\ln N_{eff}$ is the entropy of a uniform distribution over available options. For $\ln(\mu/\mu_c)$, the connection is the least developed. In the LLM experiments, $\mu$ functions as available processing capacity and $\mu_c$ as the minimum capacity required by the task, making $\ln(\mu/\mu_c)$ interpretable as excess channel capacity. Whether this interpretation extends rigorously to other domains---and whether $\mu_c$ can be derived rather than measured---remains an open question. We note that in domains with mature independent theories, all parameters \emph{are} derivable: in site percolation, $\mu_c = p_c$ follows from lattice geometry ($p_c = 1/2$ exactly for 2D triangular; $p_c \approx 0.3116$ for 3D simple cubic \citep{mertens2002exact}); in nuclear stability, the critical threshold follows from the Bethe--Weizs\"{a}cker mass formula. The predictive power of the survival equation thus depends on the maturity of domain-specific theory that provides its inputs, not on free parameters within the equation itself. Until such theories mature, $\mu_c$ should be treated as an operationally fitted parameter---estimated from survival data within each domain, analogous to how empirical constants are calibrated before first-principles derivation becomes available. Practical guidelines for such estimation are discussed as a future direction (Section~\ref{sec:delta-scope}).
 
 \textbf{Measurement asymmetry across domains.} A key asymmetry underlies this domain dependence. In SAT, the elimination fraction $f_i$ for each constraint is computed from the problem structure as an \emph{input} to the equation; $\delta$ is a property of the problem instance. In LLM, $f_i$ is inferred from survival measurements as an \emph{output}---$I_i = -\ln(S_i/S_0)$---making $\delta$ a property of the input--system interaction. The dimensional structure of $\delta$ (the ordering of constraint types by severity: $I_{\text{factual}} \ll I_{\text{structural}}$) is confirmed without circularity, since the ordering is observable independently of the equation. However, the absolute scale of $I$ for each constraint type depends on inverting the equation and cannot currently be derived from first principles for LLM. Developing equation-independent methods for estimating $f_i$ in LLM is the principal open challenge for elevating the framework's predictive power in this domain to the level achieved in SAT.
+
+\textbf{Cross-domain alternatives.} Truong and Truong \citep{truong2025entropy} independently proposed that feedback amplification exceeding finite novelty-regeneration capacity drives ``entropy collapse'' across AI, economic, and biological systems---a qualitative dynamical model that shares our ``smarter systems are more fragile'' insight but lacks the nats-based quantification, multiplicative structure, and controlled experimental validation provided here. Axenie, West et al.\ \citep{axenie2024antifragility} quantified antifragility as the convexity of system output response to environmental perturbation variability, applying it across traffic, robotics, and oncology. Their framework measures \emph{response to perturbation} rather than \emph{accumulation of structural conflict}, and uses convexity-based rather than information-theoretic metrics; the two approaches are complementary.
 
 \textbf{Scope of the axiomatic derivation.} The derivation in \S\ref{sec:first-moment} is domain-agnostic: any system satisfying axioms A1--A3 (finite state space, fractional elimination, independence) produces the same exponential form $e^{-\delta}$, and the Cauchy characterization (\S\ref{sec:first-moment}) shows this form is unique among continuous functions. The empirical contribution of this paper is not the derivation itself---which is a standard consequence of the product rule for independent events---but the demonstration that two structurally distinct domains, combinatorial satisfiability and neural language generation, approximately satisfy these axioms and exhibit the predicted behavior.
 
@@ -586,42 +622,36 @@ This distinction is validated experimentally: exponential decay ($R^2 > 0.99$ fo
 As a scope-defining control, we note that percolation (random site removal on a lattice) fits the exponential form at the aggregate level (AUC $= 0.993$ in 2D, $0.982$ in 3D) but operates via a fundamentally different mechanism: random removal rather than structural contradiction. Near the percolation threshold, power-law critical scaling---not exponential decay---governs the transition. The survival model applies natively to systems where $\delta$ represents the accumulation of structural conflicts (SAT, LLM); it provides a useful fit but not a mechanistic explanation for systems governed by stochastic removal.
 
 \subsection{Scope of \texorpdfstring{$\delta$}{δ} as a Coordinate}
+\label{sec:delta-scope}
 
 A companion study \citep{sunagawa2026sat} shows that the same structural parameter $\delta$ also governs computational cost in SAT solvers, with median runtime scaling as $\mu_c \propto e^{c\delta}$ where the sensitivity exponent $c$ is solver-dependent (CDCL: $c \approx 0.24$, WalkSAT: $c \approx 0.21$, random search: $c = 1.0$ exactly). Two findings from that study qualify the scope of $\delta$ in the present framework. First, $\mu_c \propto e^{c\delta}$ means that $\mu_c$ is itself a function of $\delta$, introducing a coupling between the $\mu/\mu_c$ and $e^{-\delta}$ factors that the static equation treats as independent. The static independence remains a useful decomposition, but users should note that manipulating $\delta$ will shift $\mu_c$ as well. Second, the product structure $\delta = \alpha n |\ln(7/8)|$ does not extend symmetrically to the problem-size direction $n$: CDCL runtime scales exponentially in both $\alpha$ and $n$, but WalkSAT scales polynomially in $n$, breaking the product structure. Accordingly, $\delta$ is best understood as a reparameterization of constraint density at fixed system size, not as a universal coordinate over both density and size.
 
 \subsection{Cross-Domain \texorpdfstring{$\delta$}{δ} Proxy Landscape}
 
-Table~\ref{tab:proxy_landscape} summarizes the outcomes of $\delta$ proxy attempts across domains, restricted to cases where the framework was correctly applied (i.e., the target system satisfies axioms A1--A3).
+In the two Level~A domains validated in this paper, $\delta$ measurement takes different forms:
 
 \begin{table}[ht]
 \centering
 \small
 \begin{tabular}{llll}
 \toprule
-\textbf{Domain} & \textbf{Proxy tested} & \textbf{Result} & \textbf{Lesson} \\
+\textbf{Domain} & \textbf{$\delta$ definition} & \textbf{Free params} & \textbf{Epistemic status} \\
 \midrule
-SAT & first moment ($\alpha\delta$) & success (0 free params) & ideal case \\
-Coral & wind $\to$ rejected $\to$ DHW & $R^2 = 0.957$ & correlation $\neq$ $\delta$ \\
-Corporate & keyword frequency & AUC $\approx 0.50$ & text hides $\delta$ \\
-Corporate & governance events & AUC $\approx 0.74$ & behavioral signals work \\
-Corporate & segment HHI & AUC $\approx 0.58$ & diversification $\neq$ independence \\
-Finance & yield curve / credit spread & failure & instantaneous state $\neq$ accumulated loss \\
-LLM & constraint injection & success & operational definition only \\
+SAT & first moment ($\sum_i I(C_i)$) & 0 & mathematical identity \\
+LLM & operational (constraint injection) & $\geq 2$ & structural analogy \\
 \bottomrule
 \end{tabular}
-\caption{$\delta$ proxy attempts across domains. Successes share a common feature: the proxy measures a cumulative structural quantity rather than a snapshot of system state. Failures consistently involve proxies that capture consequences of $\delta$ (text sentiment, instantaneous spreads) rather than $\delta$ itself.}
+\caption{$\delta$ measurement in validated domains. In SAT, $\delta$ is computable from problem structure with zero free parameters. In LLM, $\delta$ is operationally defined via controlled injection; the absolute information loss per constraint type is inferred from survival measurements, not derived from first principles.}
 \label{tab:proxy_landscape}
 \end{table}
 
-A consistent pattern emerges: proxies based on \emph{accumulated physical quantities} (degree-heating weeks for coral bleaching: $R^2 = 0.957$) or \emph{behavioral signals} (executive turnover for corporate failure: AUC $= 0.74$) succeed, while proxies based on \emph{textual descriptions} (keyword frequency: AUC $\approx 0.50$) or \emph{instantaneous state variables} (yield curve: failure) do not. The distinction is between measuring $\delta$ itself versus measuring its downstream consequences.
-
-Importantly, theoretical precision requirements far exceed what is needed for practical prediction. Rough $\delta$ proxies (governance events combined with Altman Z-score) achieve AUC $= 0.893$ for corporate failure prediction despite lacking a rigorous state-space definition---analogous to the empirical use of radioactive decay constants long before quantum mechanics derived them from first principles. This suggests a practical strategy: begin with crude proxies that capture the direction and ordering of $\delta$, then refine as domain theory matures.
+Exploratory proxy attempts in Level~B domains (coral bleaching, corporate failure, gene conservation, financial markets) suggest a consistent pattern: proxies that measure \emph{accumulated structural quantities} (e.g., degree-heating weeks, governance events) outperform those that capture instantaneous state (e.g., yield curves, keyword frequency). However, none of these Level~B applications have been validated to the standard of this paper, and the results should be treated as preliminary hypotheses for future investigation, not as evidence for the framework's cross-domain validity.\footnote{Specific exploratory results: coral bleaching with degree-heating weeks as $\delta$ proxy ($R^2 = 0.957$); corporate failure with governance events ($\text{AUC} = 0.74$) vs.\ keyword frequency ($\text{AUC} \approx 0.50$); gene conservation with PPI degree as $N_{eff}$ ($\Delta\text{AIC} < -500$) vs.\ paralog count (failure). These results are available in the data repository but are not claims of this paper.}
 
 \subsection{Applicability Conditions: Precision vs.\ Scope}
 
-Axioms A1--A3 guarantee the mathematical derivation of $e^{-\delta}$, but they are conditions for \emph{precision}, not for \emph{applicability}. A system may formally satisfy A1--A3 yet remain unsuitable for analysis if the relevant process has already completed (e.g., gene conservation in stable environments, where only survivors are observed). Conversely, a system may violate A3 (independence) yet yield useful predictions if $\delta$ is approximately correct in direction and ordering (e.g., corporate governance events achieve AUC $= 0.893$ despite plausible inter-constraint correlations).
+Axioms A1--A3 guarantee the mathematical derivation of $e^{-\delta}$, but they are conditions for \emph{precision}, not for \emph{applicability}. A system may formally satisfy A1--A3 yet remain unsuitable for analysis if the relevant process has already completed (e.g., species assemblages in stable ecosystems, where only survivors are observed). Conversely, a system may violate A3 (independence) yet yield useful predictions if $\delta$ is approximately correct in direction and ordering---preliminary exploration suggests this may hold for corporate governance events, though this has not been validated to the standard of the present paper.
 
-The true applicability condition lies upstream of A1--A3: the system must be a dissipative structure in which optimization has not yet converged relative to environmental change. All dissipative structures process $\delta$ by definition, but in systems where optimization has completed faster than the environment changes, observations are filtered through prior survival---we observe results, not processes. Crucially, applicability depends on the system's \emph{state}, not its \emph{type}: the same substrate (e.g., genes) may be outside scope in stable environments yet squarely within scope under rapid environmental change (e.g., antibiotic resistance genes under selection pressure).
+The true applicability condition lies upstream of A1--A3: the system must be a dissipative structure in which optimization has not yet converged relative to environmental change. All dissipative structures process $\delta$ by definition, but in systems where optimization has completed faster than the environment changes, observations are filtered through prior survival---we observe results, not processes. Crucially, applicability depends on the system's \emph{state}, not its \emph{type}: the same substrate may appear outside scope when analyzed with the wrong proxy yet squarely within scope when the proxy correctly captures structural dependency rather than replaceability (see footnote in Table~\ref{tab:proxy_landscape}).
 
 The full screening hierarchy is therefore: (0)~Has optimization failed to keep pace with environmental change? (1)~Can constraints be defined independently of the state space? (2)~Do natural module boundaries exist? (3)~To what degree does A3 hold? Steps 0--1 determine whether the framework is applicable at all; steps 2--3 determine the precision of the resulting predictions.
 
@@ -664,7 +694,7 @@ We have shown that LLM reasoning collapse under structural contradictions exhibi
 \textbf{Confirmed in two controlled domains:}
 \begin{itemize}
     \item \textbf{SAT}: The exponential penalty $e^{-\delta}$ is mathematically identical to the first moment of the solution count. Three constraint types produce predicted decay rates ($R^2 > 0.98$). The parameter-free ratio $\alpha_{\text{XOR}}/\alpha_{\text{random}} = 5.19\times$ is stable across six system sizes (CV $= 5\%$).
-    \item \textbf{LLM}: Multiplicative $\mu \times \delta$ interaction---two individually non-lethal factors become lethal in combination (ruling out additive models). Constraint quality dominates quantity ($\delta_{\text{structural}} \gg \delta_{\text{factual}}$). The RLHF cushion mechanism absorbs contradictions until overwhelmed, producing a system-specific critical threshold $\delta_c$.
+    \item \textbf{LLM}: Multiplicative $\mu \times \delta$ interaction---two individually non-lethal factors become lethal in combination (ruling out additive models). Constraint quality dominates quantity ($\delta_{\text{structural}} \gg \delta_{\text{factual}}$). The cushion mechanism absorbs contradictions until overwhelmed, producing a system-specific $\delta_c$, confirmed across 11 models from 5 vendors. Collapse requires recognition capability (absent below $\sim$12B parameters), distinguishing three stages: no recognition, recognition with refusal, and recognition with attempted resolution.
     \item \textbf{Formal verification}: Survival selection theorem, axiom-to-exponential derivation (A1--A3 $\Rightarrow$ $e^{-\delta}$), and Cauchy uniqueness ($e^{-c\delta}$ is the only continuous form) verified in Lean~4 (11 modules, 98 propositions, $\texttt{sorry} = 0$, $\texttt{axiom} = 0$).
 \end{itemize}
 
@@ -713,6 +743,16 @@ Barlow, R.E. \& Proschan, F. (1975).
 \emph{Statistical Theory of Reliability and Life Testing}.
 Holt, Rinehart and Winston.
 
+\bibitem{bensasson2001}
+Ben-Sasson, E. \& Wigderson, A. (2001).
+Short proofs are narrow---resolution made simple.
+\emph{J.\ ACM}, 48(2), 149--169.
+
+\bibitem{cocco2001}
+Cocco, S. \& Monasson, R. (2001).
+Trajectories in phase diagrams, growth processes, and computational complexity: How search algorithms solve the 3-satisfiability problem.
+\emph{Physical Review Letters}, 86(8), 1654--1657.
+
 \bibitem{cover2006}
 Cover, T.M. \& Thomas, J.A. (2006).
 \emph{Elements of Information Theory}, 2nd ed.
@@ -737,6 +777,11 @@ The Lean 4 theorem prover and programming language.
 Dziri, N. et al.\ (2023).
 Faith and Fate: Limits of Transformers on Compositionality.
 \emph{NeurIPS 2023}.
+
+\bibitem{eigen1971}
+Eigen, M. (1971).
+Self-organization of matter and the evolution of biological macromolecules.
+\emph{Naturwissenschaften}, 58(10), 465--523.
 
 \bibitem{fisher1930}
 Fisher, R.A. (1930).
@@ -827,6 +872,26 @@ Predicting computational cost from the structural parameter~$\delta$: Separating
 Cantor, R., Packer, F.\ (1996).
 Determinants and impact of sovereign credit ratings.
 \emph{Federal Reserve Bank of New York Economic Policy Review}, 2(2), 37--54.
+
+\bibitem{shumailov2024}
+Shumailov, I., Shumaylov, Z., Zhao, Y., Papernot, N., Anderson, R. \& Gal, Y.\ (2024).
+AI models collapse when trained on recursively generated data.
+\emph{Nature}, 631, 755--759.
+
+\bibitem{apple2025illusion}
+Parsons, J., McCoy, R.T., Garrette, D., Linzen, T. \& Bowman, S.R.\ (2025).
+The Illusion of Thinking: Understanding the strengths and limitations of reasoning models via the lens of problem complexity.
+Apple Machine Learning Research.
+
+\bibitem{truong2025entropy}
+Truong, N.B. \& Truong, Q.-T.\ (2025).
+Entropy Collapse: A universal failure mode of intelligent systems.
+\emph{arXiv preprint arXiv:2512.12381}.
+
+\bibitem{axenie2024antifragility}
+Axenie, C., West, R. et al.\ (2024).
+Antifragility in complex dynamical systems.
+\emph{npj Complexity}, 1, 5.
 
 \end{thebibliography}
 
