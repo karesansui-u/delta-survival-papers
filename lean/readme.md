@@ -2,7 +2,7 @@
 
 Formal verification of the mathematical framework used in Papers 1 and 2.
 
-- **11 modules**, `sorry = 0`, `axiom = 0`
+- **16 modules**, `sorry = 0`, `axiom = 0`
 - All proofs fully verified by the Lean 4 type checker
 
 ---
@@ -22,6 +22,11 @@ Formal verification of the mathematical framework used in Papers 1 and 2.
 | `ArrowOfTimeGeneral.lean` | H-theorem generalized | Paper 1 |
 | `ArrowOfTimeNGeneral.lean` | H-theorem for n-type populations | Paper 1 |
 | `SensitivityAnalysis.lean` | Error propagation bounds, multiplicative vs additive comparison | Paper 1 |
+| `SecondMomentBound.lean` | Paley–Zygmund inequality and second moment method for SAT threshold lower bound | Paper 1 |
+| `PairCorrelation.lean` | Pair correlation function g(β) = 3/4 + (1/8)(1-β)³ for random 3-SAT | Paper 1 |
+| `SATSecondMoment.lean` | SAT second moment overlap decomposition and threshold bracketing | Paper 1 |
+| `AsymptoticExponent.lean` | Asymptotic exponent φ(β, α) and gap analysis between 1st/2nd moment thresholds | Paper 1 |
+| `KLDivergence.lean` | δ = D_KL identity, Jensen inequality direction, gap-R₂ connection, structural capacity | Paper 1 |
 
 ---
 
@@ -44,6 +49,20 @@ These three axioms uniquely determine `S = N_eff * e^{-d}`.
 ### SAT first moment (Papers 1 & 2)
 
 The expected number of satisfying assignments `E[#SAT] = 2^n * (7/8)^m = exp(n ln 2 - d)` where `d = m * |ln(7/8)|`.
+
+### Second moment method and pair correlation (Paper 1)
+
+The Paley–Zygmund inequality gives threshold lower bound:
+`Pr[X > 0] >= E[X]^2 / E[X^2]`.
+
+The pair correlation function `g(β) = 3/4 + (1/8)(1-β)³` satisfies `g(1/2)/(7/8)² = 1`
+(typical overlap is neutral). The truncated second moment explains 74% of the gap
+between the first-moment bound (α ≈ 5.19) and the true threshold (α ≈ 4.27).
+
+### KL divergence and structural capacity (Paper 1)
+
+`δ = D_KL(P_SAT || P_0)` for independent constraints (identity, not approximation).
+Structural capacity theorem: `δ ≤ C_struct ⟺ survival`, isomorphic to Shannon's `R ≤ C`.
 
 ---
 

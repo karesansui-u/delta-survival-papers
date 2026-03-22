@@ -1,10 +1,10 @@
 /-
-Survival Model - Formal Verification (Paper 1 Subset)
-存続モデルの形式的検証（論文1用サブセット）
+Survival Model - Formal Verification (Paper 1 + Second Moment Extension)
+存続モデルの形式的検証（論文1 + 第二モーメント法拡張）
 
 Paper: "Structural Conflicts as Information Loss"
 
-11 modules, sorry = 0, axiom = 0.
+16 modules, sorry = 0, axiom = 0.
 
 Covers:
 - Survival equation algebraic properties (S > 0 ⟺ all factors positive)
@@ -17,6 +17,10 @@ Covers:
 - 3 axioms → e^{-δ} derivation chain (independence → exponential)
 - Error propagation bounds
 - Multiplicative vs additive model comparison
+- Second moment method: Paley-Zygmund inequality (threshold lower bound)
+- Pair correlation function g(β) for random 3-SAT
+- SAT second moment overlap decomposition and threshold bracketing
+- KL divergence: δ = D_KL identity, Jensen inequality, gap-R₂ connection
 -/
 
 -- Core definitions and survival equation
@@ -43,3 +47,18 @@ import Survival.HillNumber
 
 -- 3 axioms → e^{-δ}: the derivation chain
 import Survival.AxiomsToExp
+
+-- Second moment method: Paley-Zygmund inequality
+import Survival.SecondMomentBound
+
+-- Pair correlation function for random 3-SAT
+import Survival.PairCorrelation
+
+-- SAT second moment: overlap decomposition and threshold bracketing
+import Survival.SATSecondMoment
+
+-- Asymptotic exponent: gap analysis between first/second moment thresholds
+import Survival.AsymptoticExponent
+
+-- KL divergence: δ = D_KL identity and information-theoretic grounding
+import Survival.KLDivergence

@@ -13,13 +13,22 @@ for structural collapse: theory, experiments, and formal verification.
 | Paper 2 — Existence vs Discovery | Preprint |
 | Lean 4 — Formal Verification | Complete (`sorry = 0`, `axiom = 0`) |
 
-**Key result:** Parameter-free prediction of XOR-SAT threshold ratio
-α\_XOR / α\_random = 5.19×
-(observed 5.04 ± 0.25, CV = 5%).
+**Key results:**
+- Parameter-free prediction of XOR-SAT threshold ratio:
+  α\_XOR / α\_random = 5.19×
+  (observed 5.04 ± 0.25, CV = 5%).
+- Second moment method (Paley–Zygmund) with pair correlation
+  g(β) = 3/4 + (1/8)(1−β)³ explains 74% of the gap between
+  the first-moment upper bound (α ≈ 5.19) and the true 3-SAT
+  threshold (α ≈ 4.27).
 
 パラメータフリー予測: XOR-SAT閾値比
 α\_XOR / α\_random = 5.19倍
 （実測 5.04 ± 0.25、CV = 5%）。
+第二モーメント法（Paley–Zygmund不等式）とペア相関関数
+g(β) = 3/4 + (1/8)(1−β)³ により、
+第一モーメント上界（α ≈ 5.19）と真の3-SAT閾値（α ≈ 4.27）の
+差の74%を定量的に説明。
 
 ---
 
@@ -51,10 +60,17 @@ Three axioms (finite state space, fractional elimination, independence)
 uniquely determine `S = N_eff · (μ/μ_c) · e^(−δ)`.
 Validated on random 3-SAT and LLM reasoning collapse
 (11 models, 5 vendors, 4B–70B+ parameters).
+Extension to the second moment method with pair correlation function
+quantitatively explains the gap between first-moment bound and true threshold.
+Information-theoretic grounding established via KL divergence and
+channel coding (structural capacity theorem: δ ≤ C\_struct ⟺ survival).
 
 3つの公理（有限状態空間・割合除去・独立性）から
 `S = N_eff · (μ/μ_c) · e^(−δ)` が一意に決まることを示し、
 SAT および LLM 推論崩壊（11モデル・5ベンダー・4B–70B+パラメータ）で検証。
+第二モーメント法とペア相関関数により第一モーメント上界と真の閾値の差を定量的に説明。
+KLダイバージェンスおよびチャネルコーディングとの対応を通じた
+情報理論的基盤を確立（構造容量定理：δ ≤ C\_struct ⟺ 存続）。
 
 - English: [`paper1/paper1_main.tex`](paper1/paper1_main.tex) / [PDF](paper1/paper1_main.pdf)
 - 日本語: [`paper1/paper1_main_ja.tex`](paper1/paper1_main_ja.tex) / [PDF](paper1/paper1_main_ja.pdf)
@@ -80,15 +96,17 @@ The sensitivity exponent c is solver-dependent
 
 ### Lean 4 — Formal Verification / 形式検証
 
-11 modules, 98 verified propositions (88 theorems + 10 lemmas),
+15 modules, 152 verified propositions,
 `sorry = 0`, `axiom = 0`.
 Covers the Cauchy functional equation, 3-axiom derivation,
-Hill number bound, H-theorem, SAT first moment, and sensitivity analysis.
+Hill number bound, H-theorem, SAT first moment, sensitivity analysis,
+the Paley–Zygmund second moment inequality, and pair correlation structure.
 
-11モジュール、98個の証明済み命題（定理88 + 補題10）、
+15モジュール、152個の証明済み命題、
 `sorry = 0`、`axiom = 0`。
 Cauchy関数方程式、3公理からの導出、Hill数上界、
-H定理、SAT第一モーメント、感度解析を検証。
+H定理、SAT第一モーメント、感度解析、
+Paley–Zygmund第二モーメント不等式、ペア相関構造を検証。
 
 - Details / 詳細: [`lean/readme.md`](lean/readme.md)
 
@@ -100,9 +118,9 @@ H定理、SAT第一モーメント、感度解析を検証。
 delta-survival-paper/
   paper1/          Paper 1 tex, figures, PDF (EN/JA)
   paper2/          Paper 2 tex, figures, PDF (EN/JA)
-  lean/            Lean 4 formal verification (11 modules)
+  lean/            Lean 4 formal verification (15 modules)
   analysis/
-    sat/           SAT experiments (Papers 1 & 2)
+    sat/           SAT experiments & second moment gap analysis (Papers 1 & 2)
     llm/           LLM Double Bind experiments (Paper 1)
   README.md
 ```
