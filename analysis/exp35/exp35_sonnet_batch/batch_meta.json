@@ -1,0 +1,3008 @@
+{
+  "requests": [
+    {
+      "custom_id": "zero_500_0",
+      "delta_level": "zero",
+      "context_length": 500,
+      "trial_idx": 0,
+      "seed": 399131,
+      "expected": 690,
+      "needle_position": 0.0,
+      "actual_tokens": 492
+    },
+    {
+      "custom_id": "zero_500_1",
+      "delta_level": "zero",
+      "context_length": 500,
+      "trial_idx": 1,
+      "seed": 397556,
+      "expected": 886,
+      "needle_position": 0.0,
+      "actual_tokens": 492
+    },
+    {
+      "custom_id": "zero_500_2",
+      "delta_level": "zero",
+      "context_length": 500,
+      "trial_idx": 2,
+      "seed": 401190,
+      "expected": 735,
+      "needle_position": 0.0,
+      "actual_tokens": 494
+    },
+    {
+      "custom_id": "zero_500_3",
+      "delta_level": "zero",
+      "context_length": 500,
+      "trial_idx": 3,
+      "seed": 447999,
+      "expected": 913,
+      "needle_position": 0.0,
+      "actual_tokens": 496
+    },
+    {
+      "custom_id": "zero_500_4",
+      "delta_level": "zero",
+      "context_length": 500,
+      "trial_idx": 4,
+      "seed": 446424,
+      "expected": 957,
+      "needle_position": 0.0,
+      "actual_tokens": 501
+    },
+    {
+      "custom_id": "zero_500_5",
+      "delta_level": "zero",
+      "context_length": 500,
+      "trial_idx": 5,
+      "seed": 433546,
+      "expected": 690,
+      "needle_position": 0.0,
+      "actual_tokens": 498
+    },
+    {
+      "custom_id": "zero_500_6",
+      "delta_level": "zero",
+      "context_length": 500,
+      "trial_idx": 6,
+      "seed": 380355,
+      "expected": 886,
+      "needle_position": 0.0,
+      "actual_tokens": 494
+    },
+    {
+      "custom_id": "zero_500_7",
+      "delta_level": "zero",
+      "context_length": 500,
+      "trial_idx": 7,
+      "seed": 383989,
+      "expected": 735,
+      "needle_position": 0.0,
+      "actual_tokens": 493
+    },
+    {
+      "custom_id": "zero_500_8",
+      "delta_level": "zero",
+      "context_length": 500,
+      "trial_idx": 8,
+      "seed": 382414,
+      "expected": 913,
+      "needle_position": 0.0,
+      "actual_tokens": 493
+    },
+    {
+      "custom_id": "zero_500_9",
+      "delta_level": "zero",
+      "context_length": 500,
+      "trial_idx": 9,
+      "seed": 369536,
+      "expected": 957,
+      "needle_position": 0.0,
+      "actual_tokens": 495
+    },
+    {
+      "custom_id": "zero_500_10",
+      "delta_level": "zero",
+      "context_length": 500,
+      "trial_idx": 10,
+      "seed": 416345,
+      "expected": 690,
+      "needle_position": 0.0,
+      "actual_tokens": 495
+    },
+    {
+      "custom_id": "zero_500_11",
+      "delta_level": "zero",
+      "context_length": 500,
+      "trial_idx": 11,
+      "seed": 414770,
+      "expected": 886,
+      "needle_position": 0.0,
+      "actual_tokens": 497
+    },
+    {
+      "custom_id": "zero_500_12",
+      "delta_level": "zero",
+      "context_length": 500,
+      "trial_idx": 12,
+      "seed": 418404,
+      "expected": 735,
+      "needle_position": 0.0,
+      "actual_tokens": 496
+    },
+    {
+      "custom_id": "zero_500_13",
+      "delta_level": "zero",
+      "context_length": 500,
+      "trial_idx": 13,
+      "seed": 448701,
+      "expected": 913,
+      "needle_position": 0.0,
+      "actual_tokens": 497
+    },
+    {
+      "custom_id": "zero_500_14",
+      "delta_level": "zero",
+      "context_length": 500,
+      "trial_idx": 14,
+      "seed": 352335,
+      "expected": 957,
+      "needle_position": 0.0,
+      "actual_tokens": 496
+    },
+    {
+      "custom_id": "zero_500_15",
+      "delta_level": "zero",
+      "context_length": 500,
+      "trial_idx": 15,
+      "seed": 350760,
+      "expected": 690,
+      "needle_position": 0.0,
+      "actual_tokens": 497
+    },
+    {
+      "custom_id": "zero_500_16",
+      "delta_level": "zero",
+      "context_length": 500,
+      "trial_idx": 16,
+      "seed": 354394,
+      "expected": 886,
+      "needle_position": 0.0,
+      "actual_tokens": 496
+    },
+    {
+      "custom_id": "zero_500_17",
+      "delta_level": "zero",
+      "context_length": 500,
+      "trial_idx": 17,
+      "seed": 384691,
+      "expected": 735,
+      "needle_position": 0.0,
+      "actual_tokens": 490
+    },
+    {
+      "custom_id": "zero_500_18",
+      "delta_level": "zero",
+      "context_length": 500,
+      "trial_idx": 18,
+      "seed": 383116,
+      "expected": 913,
+      "needle_position": 0.0,
+      "actual_tokens": 498
+    },
+    {
+      "custom_id": "zero_500_19",
+      "delta_level": "zero",
+      "context_length": 500,
+      "trial_idx": 19,
+      "seed": 386750,
+      "expected": 957,
+      "needle_position": 0.0,
+      "actual_tokens": 498
+    },
+    {
+      "custom_id": "zero_500_20",
+      "delta_level": "zero",
+      "context_length": 500,
+      "trial_idx": 20,
+      "seed": 385175,
+      "expected": 690,
+      "needle_position": 0.0,
+      "actual_tokens": 498
+    },
+    {
+      "custom_id": "zero_500_21",
+      "delta_level": "zero",
+      "context_length": 500,
+      "trial_idx": 21,
+      "seed": 420681,
+      "expected": 886,
+      "needle_position": 0.0,
+      "actual_tokens": 499
+    },
+    {
+      "custom_id": "zero_500_22",
+      "delta_level": "zero",
+      "context_length": 500,
+      "trial_idx": 22,
+      "seed": 419106,
+      "expected": 735,
+      "needle_position": 0.0,
+      "actual_tokens": 499
+    },
+    {
+      "custom_id": "zero_500_23",
+      "delta_level": "zero",
+      "context_length": 500,
+      "trial_idx": 23,
+      "seed": 417531,
+      "expected": 913,
+      "needle_position": 0.0,
+      "actual_tokens": 493
+    },
+    {
+      "custom_id": "zero_500_24",
+      "delta_level": "zero",
+      "context_length": 500,
+      "trial_idx": 24,
+      "seed": 421165,
+      "expected": 957,
+      "needle_position": 0.0,
+      "actual_tokens": 496
+    },
+    {
+      "custom_id": "zero_500_25",
+      "delta_level": "zero",
+      "context_length": 500,
+      "trial_idx": 25,
+      "seed": 351462,
+      "expected": 690,
+      "needle_position": 0.0,
+      "actual_tokens": 493
+    },
+    {
+      "custom_id": "zero_500_26",
+      "delta_level": "zero",
+      "context_length": 500,
+      "trial_idx": 26,
+      "seed": 355096,
+      "expected": 886,
+      "needle_position": 0.0,
+      "actual_tokens": 499
+    },
+    {
+      "custom_id": "zero_500_27",
+      "delta_level": "zero",
+      "context_length": 500,
+      "trial_idx": 27,
+      "seed": 353521,
+      "expected": 735,
+      "needle_position": 0.0,
+      "actual_tokens": 496
+    },
+    {
+      "custom_id": "zero_500_28",
+      "delta_level": "zero",
+      "context_length": 500,
+      "trial_idx": 28,
+      "seed": 357155,
+      "expected": 913,
+      "needle_position": 0.0,
+      "actual_tokens": 496
+    },
+    {
+      "custom_id": "zero_500_29",
+      "delta_level": "zero",
+      "context_length": 500,
+      "trial_idx": 29,
+      "seed": 403964,
+      "expected": 957,
+      "needle_position": 0.0,
+      "actual_tokens": 498
+    },
+    {
+      "custom_id": "zero_1000_0",
+      "delta_level": "zero",
+      "context_length": 1000,
+      "trial_idx": 0,
+      "seed": 397948,
+      "expected": 690,
+      "needle_position": 0.0,
+      "actual_tokens": 1002
+    },
+    {
+      "custom_id": "zero_1000_1",
+      "delta_level": "zero",
+      "context_length": 1000,
+      "trial_idx": 1,
+      "seed": 396373,
+      "expected": 886,
+      "needle_position": 0.0,
+      "actual_tokens": 989
+    },
+    {
+      "custom_id": "zero_1000_2",
+      "delta_level": "zero",
+      "context_length": 1000,
+      "trial_idx": 2,
+      "seed": 426670,
+      "expected": 735,
+      "needle_position": 0.0,
+      "actual_tokens": 999
+    },
+    {
+      "custom_id": "zero_1000_3",
+      "delta_level": "zero",
+      "context_length": 1000,
+      "trial_idx": 3,
+      "seed": 430304,
+      "expected": 913,
+      "needle_position": 0.0,
+      "actual_tokens": 998
+    },
+    {
+      "custom_id": "zero_1000_4",
+      "delta_level": "zero",
+      "context_length": 1000,
+      "trial_idx": 4,
+      "seed": 377113,
+      "expected": 957,
+      "needle_position": 0.0,
+      "actual_tokens": 997
+    },
+    {
+      "custom_id": "zero_1000_5",
+      "delta_level": "zero",
+      "context_length": 1000,
+      "trial_idx": 5,
+      "seed": 432363,
+      "expected": 690,
+      "needle_position": 0.0,
+      "actual_tokens": 1001
+    },
+    {
+      "custom_id": "zero_1000_6",
+      "delta_level": "zero",
+      "context_length": 1000,
+      "trial_idx": 6,
+      "seed": 362660,
+      "expected": 886,
+      "needle_position": 0.0,
+      "actual_tokens": 998
+    },
+    {
+      "custom_id": "zero_1000_7",
+      "delta_level": "zero",
+      "context_length": 1000,
+      "trial_idx": 7,
+      "seed": 366294,
+      "expected": 735,
+      "needle_position": 0.0,
+      "actual_tokens": 998
+    },
+    {
+      "custom_id": "zero_1000_8",
+      "delta_level": "zero",
+      "context_length": 1000,
+      "trial_idx": 8,
+      "seed": 364719,
+      "expected": 913,
+      "needle_position": 0.0,
+      "actual_tokens": 1006
+    },
+    {
+      "custom_id": "zero_1000_9",
+      "delta_level": "zero",
+      "context_length": 1000,
+      "trial_idx": 9,
+      "seed": 411528,
+      "expected": 957,
+      "needle_position": 0.0,
+      "actual_tokens": 998
+    },
+    {
+      "custom_id": "zero_1000_10",
+      "delta_level": "zero",
+      "context_length": 1000,
+      "trial_idx": 10,
+      "seed": 398650,
+      "expected": 690,
+      "needle_position": 0.0,
+      "actual_tokens": 993
+    },
+    {
+      "custom_id": "zero_1000_11",
+      "delta_level": "zero",
+      "context_length": 1000,
+      "trial_idx": 11,
+      "seed": 445459,
+      "expected": 886,
+      "needle_position": 0.0,
+      "actual_tokens": 997
+    },
+    {
+      "custom_id": "zero_1000_12",
+      "delta_level": "zero",
+      "context_length": 1000,
+      "trial_idx": 12,
+      "seed": 400709,
+      "expected": 735,
+      "needle_position": 0.0,
+      "actual_tokens": 992
+    },
+    {
+      "custom_id": "zero_1000_13",
+      "delta_level": "zero",
+      "context_length": 1000,
+      "trial_idx": 13,
+      "seed": 447518,
+      "expected": 913,
+      "needle_position": 0.0,
+      "actual_tokens": 994
+    },
+    {
+      "custom_id": "zero_1000_14",
+      "delta_level": "zero",
+      "context_length": 1000,
+      "trial_idx": 14,
+      "seed": 434640,
+      "expected": 957,
+      "needle_position": 0.0,
+      "actual_tokens": 994
+    },
+    {
+      "custom_id": "zero_1000_15",
+      "delta_level": "zero",
+      "context_length": 1000,
+      "trial_idx": 15,
+      "seed": 381449,
+      "expected": 690,
+      "needle_position": 0.0,
+      "actual_tokens": 989
+    },
+    {
+      "custom_id": "zero_1000_16",
+      "delta_level": "zero",
+      "context_length": 1000,
+      "trial_idx": 16,
+      "seed": 379874,
+      "expected": 886,
+      "needle_position": 0.0,
+      "actual_tokens": 1000
+    },
+    {
+      "custom_id": "zero_1000_17",
+      "delta_level": "zero",
+      "context_length": 1000,
+      "trial_idx": 17,
+      "seed": 383508,
+      "expected": 735,
+      "needle_position": 0.0,
+      "actual_tokens": 996
+    },
+    {
+      "custom_id": "zero_1000_18",
+      "delta_level": "zero",
+      "context_length": 1000,
+      "trial_idx": 18,
+      "seed": 381933,
+      "expected": 913,
+      "needle_position": 0.0,
+      "actual_tokens": 992
+    },
+    {
+      "custom_id": "zero_1000_19",
+      "delta_level": "zero",
+      "context_length": 1000,
+      "trial_idx": 19,
+      "seed": 417439,
+      "expected": 957,
+      "needle_position": 0.0,
+      "actual_tokens": 1000
+    },
+    {
+      "custom_id": "zero_1000_20",
+      "delta_level": "zero",
+      "context_length": 1000,
+      "trial_idx": 20,
+      "seed": 415864,
+      "expected": 690,
+      "needle_position": 0.0,
+      "actual_tokens": 991
+    },
+    {
+      "custom_id": "zero_1000_21",
+      "delta_level": "zero",
+      "context_length": 1000,
+      "trial_idx": 21,
+      "seed": 414289,
+      "expected": 886,
+      "needle_position": 0.0,
+      "actual_tokens": 989
+    },
+    {
+      "custom_id": "zero_1000_22",
+      "delta_level": "zero",
+      "context_length": 1000,
+      "trial_idx": 22,
+      "seed": 417923,
+      "expected": 735,
+      "needle_position": 0.0,
+      "actual_tokens": 996
+    },
+    {
+      "custom_id": "zero_1000_23",
+      "delta_level": "zero",
+      "context_length": 1000,
+      "trial_idx": 23,
+      "seed": 448220,
+      "expected": 913,
+      "needle_position": 0.0,
+      "actual_tokens": 998
+    },
+    {
+      "custom_id": "zero_1000_24",
+      "delta_level": "zero",
+      "context_length": 1000,
+      "trial_idx": 24,
+      "seed": 351854,
+      "expected": 957,
+      "needle_position": 0.0,
+      "actual_tokens": 990
+    },
+    {
+      "custom_id": "zero_1000_25",
+      "delta_level": "zero",
+      "context_length": 1000,
+      "trial_idx": 25,
+      "seed": 350279,
+      "expected": 690,
+      "needle_position": 0.0,
+      "actual_tokens": 997
+    },
+    {
+      "custom_id": "zero_1000_26",
+      "delta_level": "zero",
+      "context_length": 1000,
+      "trial_idx": 26,
+      "seed": 353913,
+      "expected": 886,
+      "needle_position": 0.0,
+      "actual_tokens": 994
+    },
+    {
+      "custom_id": "zero_1000_27",
+      "delta_level": "zero",
+      "context_length": 1000,
+      "trial_idx": 27,
+      "seed": 384210,
+      "expected": 735,
+      "needle_position": 0.0,
+      "actual_tokens": 993
+    },
+    {
+      "custom_id": "zero_1000_28",
+      "delta_level": "zero",
+      "context_length": 1000,
+      "trial_idx": 28,
+      "seed": 382635,
+      "expected": 913,
+      "needle_position": 0.0,
+      "actual_tokens": 995
+    },
+    {
+      "custom_id": "zero_1000_29",
+      "delta_level": "zero",
+      "context_length": 1000,
+      "trial_idx": 29,
+      "seed": 386269,
+      "expected": 957,
+      "needle_position": 0.0,
+      "actual_tokens": 992
+    },
+    {
+      "custom_id": "zero_2000_0",
+      "delta_level": "zero",
+      "context_length": 2000,
+      "trial_idx": 0,
+      "seed": 399543,
+      "expected": 690,
+      "needle_position": 0.0,
+      "actual_tokens": 1994
+    },
+    {
+      "custom_id": "zero_2000_1",
+      "delta_level": "zero",
+      "context_length": 2000,
+      "trial_idx": 1,
+      "seed": 397968,
+      "expected": 886,
+      "needle_position": 0.0,
+      "actual_tokens": 1997
+    },
+    {
+      "custom_id": "zero_2000_2",
+      "delta_level": "zero",
+      "context_length": 2000,
+      "trial_idx": 2,
+      "seed": 433474,
+      "expected": 735,
+      "needle_position": 0.0,
+      "actual_tokens": 1993
+    },
+    {
+      "custom_id": "zero_2000_3",
+      "delta_level": "zero",
+      "context_length": 2000,
+      "trial_idx": 3,
+      "seed": 431899,
+      "expected": 913,
+      "needle_position": 0.0,
+      "actual_tokens": 1992
+    },
+    {
+      "custom_id": "zero_2000_4",
+      "delta_level": "zero",
+      "context_length": 2000,
+      "trial_idx": 4,
+      "seed": 435533,
+      "expected": 957,
+      "needle_position": 0.0,
+      "actual_tokens": 1992
+    },
+    {
+      "custom_id": "zero_2000_5",
+      "delta_level": "zero",
+      "context_length": 2000,
+      "trial_idx": 5,
+      "seed": 433958,
+      "expected": 690,
+      "needle_position": 0.0,
+      "actual_tokens": 1999
+    },
+    {
+      "custom_id": "zero_2000_6",
+      "delta_level": "zero",
+      "context_length": 2000,
+      "trial_idx": 6,
+      "seed": 421080,
+      "expected": 886,
+      "needle_position": 0.0,
+      "actual_tokens": 1990
+    },
+    {
+      "custom_id": "zero_2000_7",
+      "delta_level": "zero",
+      "context_length": 2000,
+      "trial_idx": 7,
+      "seed": 367889,
+      "expected": 735,
+      "needle_position": 0.0,
+      "actual_tokens": 1989
+    },
+    {
+      "custom_id": "zero_2000_8",
+      "delta_level": "zero",
+      "context_length": 2000,
+      "trial_idx": 8,
+      "seed": 366314,
+      "expected": 913,
+      "needle_position": 0.0,
+      "actual_tokens": 1996
+    },
+    {
+      "custom_id": "zero_2000_9",
+      "delta_level": "zero",
+      "context_length": 2000,
+      "trial_idx": 9,
+      "seed": 369948,
+      "expected": 957,
+      "needle_position": 0.0,
+      "actual_tokens": 2002
+    },
+    {
+      "custom_id": "zero_2000_10",
+      "delta_level": "zero",
+      "context_length": 2000,
+      "trial_idx": 10,
+      "seed": 400245,
+      "expected": 690,
+      "needle_position": 0.0,
+      "actual_tokens": 1989
+    },
+    {
+      "custom_id": "zero_2000_11",
+      "delta_level": "zero",
+      "context_length": 2000,
+      "trial_idx": 11,
+      "seed": 403879,
+      "expected": 886,
+      "needle_position": 0.0,
+      "actual_tokens": 2000
+    },
+    {
+      "custom_id": "zero_2000_12",
+      "delta_level": "zero",
+      "context_length": 2000,
+      "trial_idx": 12,
+      "seed": 402304,
+      "expected": 735,
+      "needle_position": 0.0,
+      "actual_tokens": 1999
+    },
+    {
+      "custom_id": "zero_2000_13",
+      "delta_level": "zero",
+      "context_length": 2000,
+      "trial_idx": 13,
+      "seed": 405938,
+      "expected": 913,
+      "needle_position": 0.0,
+      "actual_tokens": 1998
+    },
+    {
+      "custom_id": "zero_2000_14",
+      "delta_level": "zero",
+      "context_length": 2000,
+      "trial_idx": 14,
+      "seed": 436235,
+      "expected": 957,
+      "needle_position": 0.0,
+      "actual_tokens": 1996
+    },
+    {
+      "custom_id": "zero_2000_15",
+      "delta_level": "zero",
+      "context_length": 2000,
+      "trial_idx": 15,
+      "seed": 434660,
+      "expected": 690,
+      "needle_position": 0.0,
+      "actual_tokens": 1999
+    },
+    {
+      "custom_id": "zero_2000_16",
+      "delta_level": "zero",
+      "context_length": 2000,
+      "trial_idx": 16,
+      "seed": 438294,
+      "expected": 886,
+      "needle_position": 0.0,
+      "actual_tokens": 1991
+    },
+    {
+      "custom_id": "zero_2000_17",
+      "delta_level": "zero",
+      "context_length": 2000,
+      "trial_idx": 17,
+      "seed": 436719,
+      "expected": 735,
+      "needle_position": 0.0,
+      "actual_tokens": 2000
+    },
+    {
+      "custom_id": "zero_2000_18",
+      "delta_level": "zero",
+      "context_length": 2000,
+      "trial_idx": 18,
+      "seed": 440353,
+      "expected": 913,
+      "needle_position": 0.0,
+      "actual_tokens": 1999
+    },
+    {
+      "custom_id": "zero_2000_19",
+      "delta_level": "zero",
+      "context_length": 2000,
+      "trial_idx": 19,
+      "seed": 370650,
+      "expected": 957,
+      "needle_position": 0.0,
+      "actual_tokens": 2000
+    },
+    {
+      "custom_id": "zero_2000_20",
+      "delta_level": "zero",
+      "context_length": 2000,
+      "trial_idx": 20,
+      "seed": 417459,
+      "expected": 690,
+      "needle_position": 0.0,
+      "actual_tokens": 1990
+    },
+    {
+      "custom_id": "zero_2000_21",
+      "delta_level": "zero",
+      "context_length": 2000,
+      "trial_idx": 21,
+      "seed": 372709,
+      "expected": 886,
+      "needle_position": 0.0,
+      "actual_tokens": 1992
+    },
+    {
+      "custom_id": "zero_2000_22",
+      "delta_level": "zero",
+      "context_length": 2000,
+      "trial_idx": 22,
+      "seed": 419518,
+      "expected": 735,
+      "needle_position": 0.0,
+      "actual_tokens": 1998
+    },
+    {
+      "custom_id": "zero_2000_23",
+      "delta_level": "zero",
+      "context_length": 2000,
+      "trial_idx": 23,
+      "seed": 406640,
+      "expected": 913,
+      "needle_position": 0.0,
+      "actual_tokens": 1993
+    },
+    {
+      "custom_id": "zero_2000_24",
+      "delta_level": "zero",
+      "context_length": 2000,
+      "trial_idx": 24,
+      "seed": 353449,
+      "expected": 957,
+      "needle_position": 0.0,
+      "actual_tokens": 1997
+    },
+    {
+      "custom_id": "zero_2000_25",
+      "delta_level": "zero",
+      "context_length": 2000,
+      "trial_idx": 25,
+      "seed": 408699,
+      "expected": 690,
+      "needle_position": 0.0,
+      "actual_tokens": 1995
+    },
+    {
+      "custom_id": "zero_2000_26",
+      "delta_level": "zero",
+      "context_length": 2000,
+      "trial_idx": 26,
+      "seed": 355508,
+      "expected": 886,
+      "needle_position": 0.0,
+      "actual_tokens": 1994
+    },
+    {
+      "custom_id": "zero_2000_27",
+      "delta_level": "zero",
+      "context_length": 2000,
+      "trial_idx": 27,
+      "seed": 385805,
+      "expected": 735,
+      "needle_position": 0.0,
+      "actual_tokens": 1993
+    },
+    {
+      "custom_id": "zero_2000_28",
+      "delta_level": "zero",
+      "context_length": 2000,
+      "trial_idx": 28,
+      "seed": 441055,
+      "expected": 913,
+      "needle_position": 0.0,
+      "actual_tokens": 1994
+    },
+    {
+      "custom_id": "zero_2000_29",
+      "delta_level": "zero",
+      "context_length": 2000,
+      "trial_idx": 29,
+      "seed": 387864,
+      "expected": 957,
+      "needle_position": 0.0,
+      "actual_tokens": 1991
+    },
+    {
+      "custom_id": "zero_4000_0",
+      "delta_level": "zero",
+      "context_length": 4000,
+      "trial_idx": 0,
+      "seed": 447877,
+      "expected": 690,
+      "needle_position": 0.0,
+      "actual_tokens": 3995
+    },
+    {
+      "custom_id": "zero_4000_1",
+      "delta_level": "zero",
+      "context_length": 4000,
+      "trial_idx": 1,
+      "seed": 394686,
+      "expected": 886,
+      "needle_position": 0.0,
+      "actual_tokens": 4001
+    },
+    {
+      "custom_id": "zero_4000_2",
+      "delta_level": "zero",
+      "context_length": 4000,
+      "trial_idx": 2,
+      "seed": 381808,
+      "expected": 735,
+      "needle_position": 0.0,
+      "actual_tokens": 3995
+    },
+    {
+      "custom_id": "zero_4000_3",
+      "delta_level": "zero",
+      "context_length": 4000,
+      "trial_idx": 3,
+      "seed": 380233,
+      "expected": 913,
+      "needle_position": 0.0,
+      "actual_tokens": 3991
+    },
+    {
+      "custom_id": "zero_4000_4",
+      "delta_level": "zero",
+      "context_length": 4000,
+      "trial_idx": 4,
+      "seed": 383867,
+      "expected": 957,
+      "needle_position": 0.0,
+      "actual_tokens": 3998
+    },
+    {
+      "custom_id": "zero_4000_5",
+      "delta_level": "zero",
+      "context_length": 4000,
+      "trial_idx": 5,
+      "seed": 430676,
+      "expected": 690,
+      "needle_position": 0.0,
+      "actual_tokens": 3997
+    },
+    {
+      "custom_id": "zero_4000_6",
+      "delta_level": "zero",
+      "context_length": 4000,
+      "trial_idx": 6,
+      "seed": 360973,
+      "expected": 886,
+      "needle_position": 0.0,
+      "actual_tokens": 3991
+    },
+    {
+      "custom_id": "zero_4000_7",
+      "delta_level": "zero",
+      "context_length": 4000,
+      "trial_idx": 7,
+      "seed": 416223,
+      "expected": 735,
+      "needle_position": 0.0,
+      "actual_tokens": 4000
+    },
+    {
+      "custom_id": "zero_4000_8",
+      "delta_level": "zero",
+      "context_length": 4000,
+      "trial_idx": 8,
+      "seed": 363032,
+      "expected": 913,
+      "needle_position": 0.0,
+      "actual_tokens": 3998
+    },
+    {
+      "custom_id": "zero_4000_9",
+      "delta_level": "zero",
+      "context_length": 4000,
+      "trial_idx": 9,
+      "seed": 418282,
+      "expected": 957,
+      "needle_position": 0.0,
+      "actual_tokens": 4001
+    },
+    {
+      "custom_id": "zero_4000_10",
+      "delta_level": "zero",
+      "context_length": 4000,
+      "trial_idx": 10,
+      "seed": 365091,
+      "expected": 690,
+      "needle_position": 0.0,
+      "actual_tokens": 4000
+    },
+    {
+      "custom_id": "zero_4000_11",
+      "delta_level": "zero",
+      "context_length": 4000,
+      "trial_idx": 11,
+      "seed": 352213,
+      "expected": 886,
+      "needle_position": 0.0,
+      "actual_tokens": 3990
+    },
+    {
+      "custom_id": "zero_4000_12",
+      "delta_level": "zero",
+      "context_length": 4000,
+      "trial_idx": 12,
+      "seed": 399022,
+      "expected": 735,
+      "needle_position": 0.0,
+      "actual_tokens": 3991
+    },
+    {
+      "custom_id": "zero_4000_13",
+      "delta_level": "zero",
+      "context_length": 4000,
+      "trial_idx": 13,
+      "seed": 397447,
+      "expected": 913,
+      "needle_position": 0.0,
+      "actual_tokens": 3993
+    },
+    {
+      "custom_id": "zero_4000_14",
+      "delta_level": "zero",
+      "context_length": 4000,
+      "trial_idx": 14,
+      "seed": 401081,
+      "expected": 957,
+      "needle_position": 0.0,
+      "actual_tokens": 4002
+    },
+    {
+      "custom_id": "zero_4000_15",
+      "delta_level": "zero",
+      "context_length": 4000,
+      "trial_idx": 15,
+      "seed": 431378,
+      "expected": 690,
+      "needle_position": 0.0,
+      "actual_tokens": 3992
+    },
+    {
+      "custom_id": "zero_4000_16",
+      "delta_level": "zero",
+      "context_length": 4000,
+      "trial_idx": 16,
+      "seed": 435012,
+      "expected": 886,
+      "needle_position": 0.0,
+      "actual_tokens": 3998
+    },
+    {
+      "custom_id": "zero_4000_17",
+      "delta_level": "zero",
+      "context_length": 4000,
+      "trial_idx": 17,
+      "seed": 433437,
+      "expected": 735,
+      "needle_position": 0.0,
+      "actual_tokens": 3990
+    },
+    {
+      "custom_id": "zero_4000_18",
+      "delta_level": "zero",
+      "context_length": 4000,
+      "trial_idx": 18,
+      "seed": 437071,
+      "expected": 913,
+      "needle_position": 0.0,
+      "actual_tokens": 3990
+    },
+    {
+      "custom_id": "zero_4000_19",
+      "delta_level": "zero",
+      "context_length": 4000,
+      "trial_idx": 19,
+      "seed": 367368,
+      "expected": 957,
+      "needle_position": 0.0,
+      "actual_tokens": 4000
+    },
+    {
+      "custom_id": "zero_4000_20",
+      "delta_level": "zero",
+      "context_length": 4000,
+      "trial_idx": 20,
+      "seed": 365793,
+      "expected": 690,
+      "needle_position": 0.0,
+      "actual_tokens": 3996
+    },
+    {
+      "custom_id": "zero_4000_21",
+      "delta_level": "zero",
+      "context_length": 4000,
+      "trial_idx": 21,
+      "seed": 369427,
+      "expected": 886,
+      "needle_position": 0.0,
+      "actual_tokens": 3995
+    },
+    {
+      "custom_id": "zero_4000_22",
+      "delta_level": "zero",
+      "context_length": 4000,
+      "trial_idx": 22,
+      "seed": 367852,
+      "expected": 735,
+      "needle_position": 0.0,
+      "actual_tokens": 3998
+    },
+    {
+      "custom_id": "zero_4000_23",
+      "delta_level": "zero",
+      "context_length": 4000,
+      "trial_idx": 23,
+      "seed": 403358,
+      "expected": 913,
+      "needle_position": 0.0,
+      "actual_tokens": 3996
+    },
+    {
+      "custom_id": "zero_4000_24",
+      "delta_level": "zero",
+      "context_length": 4000,
+      "trial_idx": 24,
+      "seed": 401783,
+      "expected": 957,
+      "needle_position": 0.0,
+      "actual_tokens": 3989
+    },
+    {
+      "custom_id": "zero_4000_25",
+      "delta_level": "zero",
+      "context_length": 4000,
+      "trial_idx": 25,
+      "seed": 400208,
+      "expected": 690,
+      "needle_position": 0.0,
+      "actual_tokens": 3996
+    },
+    {
+      "custom_id": "zero_4000_26",
+      "delta_level": "zero",
+      "context_length": 4000,
+      "trial_idx": 26,
+      "seed": 403842,
+      "expected": 886,
+      "needle_position": 0.0,
+      "actual_tokens": 3993
+    },
+    {
+      "custom_id": "zero_4000_27",
+      "delta_level": "zero",
+      "context_length": 4000,
+      "trial_idx": 27,
+      "seed": 434139,
+      "expected": 735,
+      "needle_position": 0.0,
+      "actual_tokens": 3990
+    },
+    {
+      "custom_id": "zero_4000_28",
+      "delta_level": "zero",
+      "context_length": 4000,
+      "trial_idx": 28,
+      "seed": 437773,
+      "expected": 913,
+      "needle_position": 0.0,
+      "actual_tokens": 3990
+    },
+    {
+      "custom_id": "zero_4000_29",
+      "delta_level": "zero",
+      "context_length": 4000,
+      "trial_idx": 29,
+      "seed": 436198,
+      "expected": 957,
+      "needle_position": 0.0,
+      "actual_tokens": 3999
+    },
+    {
+      "custom_id": "zero_8000_0",
+      "delta_level": "zero",
+      "context_length": 8000,
+      "trial_idx": 0,
+      "seed": 445183,
+      "expected": 690,
+      "needle_position": 0.0,
+      "actual_tokens": 8000
+    },
+    {
+      "custom_id": "zero_8000_1",
+      "delta_level": "zero",
+      "context_length": 8000,
+      "trial_idx": 1,
+      "seed": 448817,
+      "expected": 886,
+      "needle_position": 0.0,
+      "actual_tokens": 7993
+    },
+    {
+      "custom_id": "zero_8000_2",
+      "delta_level": "zero",
+      "context_length": 8000,
+      "trial_idx": 2,
+      "seed": 447242,
+      "expected": 735,
+      "needle_position": 0.0,
+      "actual_tokens": 7998
+    },
+    {
+      "custom_id": "zero_8000_3",
+      "delta_level": "zero",
+      "context_length": 8000,
+      "trial_idx": 3,
+      "seed": 394051,
+      "expected": 913,
+      "needle_position": 0.0,
+      "actual_tokens": 7994
+    },
+    {
+      "custom_id": "zero_8000_4",
+      "delta_level": "zero",
+      "context_length": 8000,
+      "trial_idx": 4,
+      "seed": 381173,
+      "expected": 957,
+      "needle_position": 0.0,
+      "actual_tokens": 7990
+    },
+    {
+      "custom_id": "zero_8000_5",
+      "delta_level": "zero",
+      "context_length": 8000,
+      "trial_idx": 5,
+      "seed": 427982,
+      "expected": 690,
+      "needle_position": 0.0,
+      "actual_tokens": 7996
+    },
+    {
+      "custom_id": "zero_8000_6",
+      "delta_level": "zero",
+      "context_length": 8000,
+      "trial_idx": 6,
+      "seed": 383232,
+      "expected": 886,
+      "needle_position": 0.0,
+      "actual_tokens": 7989
+    },
+    {
+      "custom_id": "zero_8000_7",
+      "delta_level": "zero",
+      "context_length": 8000,
+      "trial_idx": 7,
+      "seed": 430041,
+      "expected": 735,
+      "needle_position": 0.0,
+      "actual_tokens": 8002
+    },
+    {
+      "custom_id": "zero_8000_8",
+      "delta_level": "zero",
+      "context_length": 8000,
+      "trial_idx": 8,
+      "seed": 417163,
+      "expected": 913,
+      "needle_position": 0.0,
+      "actual_tokens": 7994
+    },
+    {
+      "custom_id": "zero_8000_9",
+      "delta_level": "zero",
+      "context_length": 8000,
+      "trial_idx": 9,
+      "seed": 415588,
+      "expected": 957,
+      "needle_position": 0.0,
+      "actual_tokens": 7999
+    },
+    {
+      "custom_id": "zero_8000_10",
+      "delta_level": "zero",
+      "context_length": 8000,
+      "trial_idx": 10,
+      "seed": 362397,
+      "expected": 690,
+      "needle_position": 0.0,
+      "actual_tokens": 7995
+    },
+    {
+      "custom_id": "zero_8000_11",
+      "delta_level": "zero",
+      "context_length": 8000,
+      "trial_idx": 11,
+      "seed": 366031,
+      "expected": 886,
+      "needle_position": 0.0,
+      "actual_tokens": 7997
+    },
+    {
+      "custom_id": "zero_8000_12",
+      "delta_level": "zero",
+      "context_length": 8000,
+      "trial_idx": 12,
+      "seed": 364456,
+      "expected": 735,
+      "needle_position": 0.0,
+      "actual_tokens": 7994
+    },
+    {
+      "custom_id": "zero_8000_13",
+      "delta_level": "zero",
+      "context_length": 8000,
+      "trial_idx": 13,
+      "seed": 351578,
+      "expected": 913,
+      "needle_position": 0.0,
+      "actual_tokens": 7991
+    },
+    {
+      "custom_id": "zero_8000_14",
+      "delta_level": "zero",
+      "context_length": 8000,
+      "trial_idx": 14,
+      "seed": 398387,
+      "expected": 957,
+      "needle_position": 0.0,
+      "actual_tokens": 8001
+    },
+    {
+      "custom_id": "zero_8000_15",
+      "delta_level": "zero",
+      "context_length": 8000,
+      "trial_idx": 15,
+      "seed": 353637,
+      "expected": 690,
+      "needle_position": 0.0,
+      "actual_tokens": 7989
+    },
+    {
+      "custom_id": "zero_8000_16",
+      "delta_level": "zero",
+      "context_length": 8000,
+      "trial_idx": 16,
+      "seed": 400446,
+      "expected": 886,
+      "needle_position": 0.0,
+      "actual_tokens": 7995
+    },
+    {
+      "custom_id": "zero_8000_17",
+      "delta_level": "zero",
+      "context_length": 8000,
+      "trial_idx": 17,
+      "seed": 430743,
+      "expected": 735,
+      "needle_position": 0.0,
+      "actual_tokens": 7992
+    },
+    {
+      "custom_id": "zero_8000_18",
+      "delta_level": "zero",
+      "context_length": 8000,
+      "trial_idx": 18,
+      "seed": 434377,
+      "expected": 913,
+      "needle_position": 0.0,
+      "actual_tokens": 7991
+    },
+    {
+      "custom_id": "zero_8000_19",
+      "delta_level": "zero",
+      "context_length": 8000,
+      "trial_idx": 19,
+      "seed": 432802,
+      "expected": 957,
+      "needle_position": 0.0,
+      "actual_tokens": 7995
+    },
+    {
+      "custom_id": "zero_8000_20",
+      "delta_level": "zero",
+      "context_length": 8000,
+      "trial_idx": 20,
+      "seed": 436436,
+      "expected": 690,
+      "needle_position": 0.0,
+      "actual_tokens": 7998
+    },
+    {
+      "custom_id": "zero_8000_21",
+      "delta_level": "zero",
+      "context_length": 8000,
+      "trial_idx": 21,
+      "seed": 366733,
+      "expected": 886,
+      "needle_position": 0.0,
+      "actual_tokens": 7997
+    },
+    {
+      "custom_id": "zero_8000_22",
+      "delta_level": "zero",
+      "context_length": 8000,
+      "trial_idx": 22,
+      "seed": 365158,
+      "expected": 735,
+      "needle_position": 0.0,
+      "actual_tokens": 7998
+    },
+    {
+      "custom_id": "zero_8000_23",
+      "delta_level": "zero",
+      "context_length": 8000,
+      "trial_idx": 23,
+      "seed": 368792,
+      "expected": 913,
+      "needle_position": 0.0,
+      "actual_tokens": 8000
+    },
+    {
+      "custom_id": "zero_8000_24",
+      "delta_level": "zero",
+      "context_length": 8000,
+      "trial_idx": 24,
+      "seed": 367217,
+      "expected": 957,
+      "needle_position": 0.0,
+      "actual_tokens": 7990
+    },
+    {
+      "custom_id": "zero_8000_25",
+      "delta_level": "zero",
+      "context_length": 8000,
+      "trial_idx": 25,
+      "seed": 402723,
+      "expected": 690,
+      "needle_position": 0.0,
+      "actual_tokens": 7997
+    },
+    {
+      "custom_id": "zero_8000_26",
+      "delta_level": "zero",
+      "context_length": 8000,
+      "trial_idx": 26,
+      "seed": 401148,
+      "expected": 886,
+      "needle_position": 0.0,
+      "actual_tokens": 8000
+    },
+    {
+      "custom_id": "zero_8000_27",
+      "delta_level": "zero",
+      "context_length": 8000,
+      "trial_idx": 27,
+      "seed": 404782,
+      "expected": 735,
+      "needle_position": 0.0,
+      "actual_tokens": 7990
+    },
+    {
+      "custom_id": "zero_8000_28",
+      "delta_level": "zero",
+      "context_length": 8000,
+      "trial_idx": 28,
+      "seed": 403207,
+      "expected": 913,
+      "needle_position": 0.0,
+      "actual_tokens": 7991
+    },
+    {
+      "custom_id": "zero_8000_29",
+      "delta_level": "zero",
+      "context_length": 8000,
+      "trial_idx": 29,
+      "seed": 433504,
+      "expected": 957,
+      "needle_position": 0.0,
+      "actual_tokens": 7996
+    },
+    {
+      "custom_id": "structural_500_0",
+      "delta_level": "structural",
+      "context_length": 500,
+      "trial_idx": 0,
+      "seed": 421306,
+      "expected": 690,
+      "needle_position": 0.0,
+      "actual_tokens": 499
+    },
+    {
+      "custom_id": "structural_500_1",
+      "delta_level": "structural",
+      "context_length": 500,
+      "trial_idx": 1,
+      "seed": 356812,
+      "expected": 886,
+      "needle_position": 0.0,
+      "actual_tokens": 499
+    },
+    {
+      "custom_id": "structural_500_2",
+      "delta_level": "structural",
+      "context_length": 500,
+      "trial_idx": 2,
+      "seed": 355237,
+      "expected": 735,
+      "needle_position": 0.0,
+      "actual_tokens": 497
+    },
+    {
+      "custom_id": "structural_500_3",
+      "delta_level": "structural",
+      "context_length": 500,
+      "trial_idx": 3,
+      "seed": 358871,
+      "expected": 913,
+      "needle_position": 0.0,
+      "actual_tokens": 490
+    },
+    {
+      "custom_id": "structural_500_4",
+      "delta_level": "structural",
+      "context_length": 500,
+      "trial_idx": 4,
+      "seed": 357296,
+      "expected": 957,
+      "needle_position": 0.0,
+      "actual_tokens": 498
+    },
+    {
+      "custom_id": "structural_500_5",
+      "delta_level": "structural",
+      "context_length": 500,
+      "trial_idx": 5,
+      "seed": 387593,
+      "expected": 690,
+      "needle_position": 0.0,
+      "actual_tokens": 497
+    },
+    {
+      "custom_id": "structural_500_6",
+      "delta_level": "structural",
+      "context_length": 500,
+      "trial_idx": 6,
+      "seed": 391227,
+      "expected": 886,
+      "needle_position": 0.0,
+      "actual_tokens": 490
+    },
+    {
+      "custom_id": "structural_500_7",
+      "delta_level": "structural",
+      "context_length": 500,
+      "trial_idx": 7,
+      "seed": 389652,
+      "expected": 735,
+      "needle_position": 0.0,
+      "actual_tokens": 525
+    },
+    {
+      "custom_id": "structural_500_8",
+      "delta_level": "structural",
+      "context_length": 500,
+      "trial_idx": 8,
+      "seed": 393286,
+      "expected": 913,
+      "needle_position": 0.0,
+      "actual_tokens": 497
+    },
+    {
+      "custom_id": "structural_500_9",
+      "delta_level": "structural",
+      "context_length": 500,
+      "trial_idx": 9,
+      "seed": 391711,
+      "expected": 957,
+      "needle_position": 0.0,
+      "actual_tokens": 495
+    },
+    {
+      "custom_id": "structural_500_10",
+      "delta_level": "structural",
+      "context_length": 500,
+      "trial_idx": 10,
+      "seed": 427217,
+      "expected": 690,
+      "needle_position": 0.0,
+      "actual_tokens": 492
+    },
+    {
+      "custom_id": "structural_500_11",
+      "delta_level": "structural",
+      "context_length": 500,
+      "trial_idx": 11,
+      "seed": 425642,
+      "expected": 886,
+      "needle_position": 0.0,
+      "actual_tokens": 490
+    },
+    {
+      "custom_id": "structural_500_12",
+      "delta_level": "structural",
+      "context_length": 500,
+      "trial_idx": 12,
+      "seed": 424067,
+      "expected": 735,
+      "needle_position": 0.0,
+      "actual_tokens": 489
+    },
+    {
+      "custom_id": "structural_500_13",
+      "delta_level": "structural",
+      "context_length": 500,
+      "trial_idx": 13,
+      "seed": 427701,
+      "expected": 913,
+      "needle_position": 0.0,
+      "actual_tokens": 492
+    },
+    {
+      "custom_id": "structural_500_14",
+      "delta_level": "structural",
+      "context_length": 500,
+      "trial_idx": 14,
+      "seed": 357998,
+      "expected": 957,
+      "needle_position": 0.0,
+      "actual_tokens": 495
+    },
+    {
+      "custom_id": "structural_500_15",
+      "delta_level": "structural",
+      "context_length": 500,
+      "trial_idx": 15,
+      "seed": 361632,
+      "expected": 690,
+      "needle_position": 0.0,
+      "actual_tokens": 498
+    },
+    {
+      "custom_id": "structural_500_16",
+      "delta_level": "structural",
+      "context_length": 500,
+      "trial_idx": 16,
+      "seed": 360057,
+      "expected": 886,
+      "needle_position": 0.0,
+      "actual_tokens": 492
+    },
+    {
+      "custom_id": "structural_500_17",
+      "delta_level": "structural",
+      "context_length": 500,
+      "trial_idx": 17,
+      "seed": 363691,
+      "expected": 735,
+      "needle_position": 0.0,
+      "actual_tokens": 505
+    },
+    {
+      "custom_id": "structural_500_18",
+      "delta_level": "structural",
+      "context_length": 500,
+      "trial_idx": 18,
+      "seed": 393988,
+      "expected": 913,
+      "needle_position": 0.0,
+      "actual_tokens": 489
+    },
+    {
+      "custom_id": "structural_500_19",
+      "delta_level": "structural",
+      "context_length": 500,
+      "trial_idx": 19,
+      "seed": 440797,
+      "expected": 957,
+      "needle_position": 0.0,
+      "actual_tokens": 526
+    },
+    {
+      "custom_id": "structural_500_20",
+      "delta_level": "structural",
+      "context_length": 500,
+      "trial_idx": 20,
+      "seed": 396047,
+      "expected": 690,
+      "needle_position": 0.0,
+      "actual_tokens": 522
+    },
+    {
+      "custom_id": "structural_500_21",
+      "delta_level": "structural",
+      "context_length": 500,
+      "trial_idx": 21,
+      "seed": 442856,
+      "expected": 886,
+      "needle_position": 0.0,
+      "actual_tokens": 502
+    },
+    {
+      "custom_id": "structural_500_22",
+      "delta_level": "structural",
+      "context_length": 500,
+      "trial_idx": 22,
+      "seed": 429978,
+      "expected": 735,
+      "needle_position": 0.0,
+      "actual_tokens": 500
+    },
+    {
+      "custom_id": "structural_500_23",
+      "delta_level": "structural",
+      "context_length": 500,
+      "trial_idx": 23,
+      "seed": 376787,
+      "expected": 913,
+      "needle_position": 0.0,
+      "actual_tokens": 500
+    },
+    {
+      "custom_id": "structural_500_24",
+      "delta_level": "structural",
+      "context_length": 500,
+      "trial_idx": 24,
+      "seed": 375212,
+      "expected": 957,
+      "needle_position": 0.0,
+      "actual_tokens": 497
+    },
+    {
+      "custom_id": "structural_500_25",
+      "delta_level": "structural",
+      "context_length": 500,
+      "trial_idx": 25,
+      "seed": 378846,
+      "expected": 690,
+      "needle_position": 0.0,
+      "actual_tokens": 505
+    },
+    {
+      "custom_id": "structural_500_26",
+      "delta_level": "structural",
+      "context_length": 500,
+      "trial_idx": 26,
+      "seed": 409143,
+      "expected": 886,
+      "needle_position": 0.0,
+      "actual_tokens": 498
+    },
+    {
+      "custom_id": "structural_500_27",
+      "delta_level": "structural",
+      "context_length": 500,
+      "trial_idx": 27,
+      "seed": 412777,
+      "expected": 735,
+      "needle_position": 0.0,
+      "actual_tokens": 491
+    },
+    {
+      "custom_id": "structural_500_28",
+      "delta_level": "structural",
+      "context_length": 500,
+      "trial_idx": 28,
+      "seed": 411202,
+      "expected": 913,
+      "needle_position": 0.0,
+      "actual_tokens": 491
+    },
+    {
+      "custom_id": "structural_500_29",
+      "delta_level": "structural",
+      "context_length": 500,
+      "trial_idx": 29,
+      "seed": 414836,
+      "expected": 957,
+      "needle_position": 0.0,
+      "actual_tokens": 507
+    },
+    {
+      "custom_id": "structural_1000_0",
+      "delta_level": "structural",
+      "context_length": 1000,
+      "trial_idx": 0,
+      "seed": 351995,
+      "expected": 690,
+      "needle_position": 0.0,
+      "actual_tokens": 991
+    },
+    {
+      "custom_id": "structural_1000_1",
+      "delta_level": "structural",
+      "context_length": 1000,
+      "trial_idx": 1,
+      "seed": 407245,
+      "expected": 886,
+      "needle_position": 0.0,
+      "actual_tokens": 1002
+    },
+    {
+      "custom_id": "structural_1000_2",
+      "delta_level": "structural",
+      "context_length": 1000,
+      "trial_idx": 2,
+      "seed": 354054,
+      "expected": 735,
+      "needle_position": 0.0,
+      "actual_tokens": 1002
+    },
+    {
+      "custom_id": "structural_1000_3",
+      "delta_level": "structural",
+      "context_length": 1000,
+      "trial_idx": 3,
+      "seed": 384351,
+      "expected": 913,
+      "needle_position": 0.0,
+      "actual_tokens": 1001
+    },
+    {
+      "custom_id": "structural_1000_4",
+      "delta_level": "structural",
+      "context_length": 1000,
+      "trial_idx": 4,
+      "seed": 387985,
+      "expected": 957,
+      "needle_position": 0.0,
+      "actual_tokens": 1015
+    },
+    {
+      "custom_id": "structural_1000_5",
+      "delta_level": "structural",
+      "context_length": 1000,
+      "trial_idx": 5,
+      "seed": 386410,
+      "expected": 690,
+      "needle_position": 0.0,
+      "actual_tokens": 993
+    },
+    {
+      "custom_id": "structural_1000_6",
+      "delta_level": "structural",
+      "context_length": 1000,
+      "trial_idx": 6,
+      "seed": 390044,
+      "expected": 886,
+      "needle_position": 0.0,
+      "actual_tokens": 992
+    },
+    {
+      "custom_id": "structural_1000_7",
+      "delta_level": "structural",
+      "context_length": 1000,
+      "trial_idx": 7,
+      "seed": 420341,
+      "expected": 735,
+      "needle_position": 0.0,
+      "actual_tokens": 991
+    },
+    {
+      "custom_id": "structural_1000_8",
+      "delta_level": "structural",
+      "context_length": 1000,
+      "trial_idx": 8,
+      "seed": 423975,
+      "expected": 913,
+      "needle_position": 0.0,
+      "actual_tokens": 1021
+    },
+    {
+      "custom_id": "structural_1000_9",
+      "delta_level": "structural",
+      "context_length": 1000,
+      "trial_idx": 9,
+      "seed": 422400,
+      "expected": 957,
+      "needle_position": 0.0,
+      "actual_tokens": 1028
+    },
+    {
+      "custom_id": "structural_1000_10",
+      "delta_level": "structural",
+      "context_length": 1000,
+      "trial_idx": 10,
+      "seed": 420825,
+      "expected": 690,
+      "needle_position": 0.0,
+      "actual_tokens": 992
+    },
+    {
+      "custom_id": "structural_1000_11",
+      "delta_level": "structural",
+      "context_length": 1000,
+      "trial_idx": 11,
+      "seed": 356331,
+      "expected": 886,
+      "needle_position": 0.0,
+      "actual_tokens": 998
+    },
+    {
+      "custom_id": "structural_1000_12",
+      "delta_level": "structural",
+      "context_length": 1000,
+      "trial_idx": 12,
+      "seed": 354756,
+      "expected": 735,
+      "needle_position": 0.0,
+      "actual_tokens": 1003
+    },
+    {
+      "custom_id": "structural_1000_13",
+      "delta_level": "structural",
+      "context_length": 1000,
+      "trial_idx": 13,
+      "seed": 358390,
+      "expected": 913,
+      "needle_position": 0.0,
+      "actual_tokens": 1015
+    },
+    {
+      "custom_id": "structural_1000_14",
+      "delta_level": "structural",
+      "context_length": 1000,
+      "trial_idx": 14,
+      "seed": 356815,
+      "expected": 957,
+      "needle_position": 0.0,
+      "actual_tokens": 995
+    },
+    {
+      "custom_id": "structural_1000_15",
+      "delta_level": "structural",
+      "context_length": 1000,
+      "trial_idx": 15,
+      "seed": 392321,
+      "expected": 690,
+      "needle_position": 0.0,
+      "actual_tokens": 998
+    },
+    {
+      "custom_id": "structural_1000_16",
+      "delta_level": "structural",
+      "context_length": 1000,
+      "trial_idx": 16,
+      "seed": 390746,
+      "expected": 886,
+      "needle_position": 0.0,
+      "actual_tokens": 997
+    },
+    {
+      "custom_id": "structural_1000_17",
+      "delta_level": "structural",
+      "context_length": 1000,
+      "trial_idx": 17,
+      "seed": 389171,
+      "expected": 735,
+      "needle_position": 0.0,
+      "actual_tokens": 1007
+    },
+    {
+      "custom_id": "structural_1000_18",
+      "delta_level": "structural",
+      "context_length": 1000,
+      "trial_idx": 18,
+      "seed": 392805,
+      "expected": 913,
+      "needle_position": 0.0,
+      "actual_tokens": 996
+    },
+    {
+      "custom_id": "structural_1000_19",
+      "delta_level": "structural",
+      "context_length": 1000,
+      "trial_idx": 19,
+      "seed": 423102,
+      "expected": 957,
+      "needle_position": 0.0,
+      "actual_tokens": 1011
+    },
+    {
+      "custom_id": "structural_1000_20",
+      "delta_level": "structural",
+      "context_length": 1000,
+      "trial_idx": 20,
+      "seed": 426736,
+      "expected": 690,
+      "needle_position": 0.0,
+      "actual_tokens": 993
+    },
+    {
+      "custom_id": "structural_1000_21",
+      "delta_level": "structural",
+      "context_length": 1000,
+      "trial_idx": 21,
+      "seed": 425161,
+      "expected": 886,
+      "needle_position": 0.0,
+      "actual_tokens": 993
+    },
+    {
+      "custom_id": "structural_1000_22",
+      "delta_level": "structural",
+      "context_length": 1000,
+      "trial_idx": 22,
+      "seed": 371970,
+      "expected": 735,
+      "needle_position": 0.0,
+      "actual_tokens": 1021
+    },
+    {
+      "custom_id": "structural_1000_23",
+      "delta_level": "structural",
+      "context_length": 1000,
+      "trial_idx": 23,
+      "seed": 427220,
+      "expected": 913,
+      "needle_position": 0.0,
+      "actual_tokens": 1003
+    },
+    {
+      "custom_id": "structural_1000_24",
+      "delta_level": "structural",
+      "context_length": 1000,
+      "trial_idx": 24,
+      "seed": 405901,
+      "expected": 957,
+      "needle_position": 0.0,
+      "actual_tokens": 998
+    },
+    {
+      "custom_id": "structural_1000_25",
+      "delta_level": "structural",
+      "context_length": 1000,
+      "trial_idx": 25,
+      "seed": 361151,
+      "expected": 690,
+      "needle_position": 0.0,
+      "actual_tokens": 997
+    },
+    {
+      "custom_id": "structural_1000_26",
+      "delta_level": "structural",
+      "context_length": 1000,
+      "trial_idx": 26,
+      "seed": 407960,
+      "expected": 886,
+      "needle_position": 0.0,
+      "actual_tokens": 1003
+    },
+    {
+      "custom_id": "structural_1000_27",
+      "delta_level": "structural",
+      "context_length": 1000,
+      "trial_idx": 27,
+      "seed": 363210,
+      "expected": 735,
+      "needle_position": 0.0,
+      "actual_tokens": 989
+    },
+    {
+      "custom_id": "structural_1000_28",
+      "delta_level": "structural",
+      "context_length": 1000,
+      "trial_idx": 28,
+      "seed": 393507,
+      "expected": 913,
+      "needle_position": 0.0,
+      "actual_tokens": 990
+    },
+    {
+      "custom_id": "structural_1000_29",
+      "delta_level": "structural",
+      "context_length": 1000,
+      "trial_idx": 29,
+      "seed": 440316,
+      "expected": 957,
+      "needle_position": 0.0,
+      "actual_tokens": 992
+    },
+    {
+      "custom_id": "structural_2000_0",
+      "delta_level": "structural",
+      "context_length": 2000,
+      "trial_idx": 0,
+      "seed": 410415,
+      "expected": 690,
+      "needle_position": 0.0,
+      "actual_tokens": 1994
+    },
+    {
+      "custom_id": "structural_2000_1",
+      "delta_level": "structural",
+      "context_length": 2000,
+      "trial_idx": 1,
+      "seed": 408840,
+      "expected": 886,
+      "needle_position": 0.0,
+      "actual_tokens": 1997
+    },
+    {
+      "custom_id": "structural_2000_2",
+      "delta_level": "structural",
+      "context_length": 2000,
+      "trial_idx": 2,
+      "seed": 407265,
+      "expected": 735,
+      "needle_position": 0.0,
+      "actual_tokens": 1996
+    },
+    {
+      "custom_id": "structural_2000_3",
+      "delta_level": "structural",
+      "context_length": 2000,
+      "trial_idx": 3,
+      "seed": 442771,
+      "expected": 913,
+      "needle_position": 0.0,
+      "actual_tokens": 1990
+    },
+    {
+      "custom_id": "structural_2000_4",
+      "delta_level": "structural",
+      "context_length": 2000,
+      "trial_idx": 4,
+      "seed": 441196,
+      "expected": 957,
+      "needle_position": 0.0,
+      "actual_tokens": 1990
+    },
+    {
+      "custom_id": "structural_2000_5",
+      "delta_level": "structural",
+      "context_length": 2000,
+      "trial_idx": 5,
+      "seed": 444830,
+      "expected": 690,
+      "needle_position": 0.0,
+      "actual_tokens": 1994
+    },
+    {
+      "custom_id": "structural_2000_6",
+      "delta_level": "structural",
+      "context_length": 2000,
+      "trial_idx": 6,
+      "seed": 443255,
+      "expected": 886,
+      "needle_position": 0.0,
+      "actual_tokens": 1998
+    },
+    {
+      "custom_id": "structural_2000_7",
+      "delta_level": "structural",
+      "context_length": 2000,
+      "trial_idx": 7,
+      "seed": 378761,
+      "expected": 735,
+      "needle_position": 0.0,
+      "actual_tokens": 2028
+    },
+    {
+      "custom_id": "structural_2000_8",
+      "delta_level": "structural",
+      "context_length": 2000,
+      "trial_idx": 8,
+      "seed": 377186,
+      "expected": 913,
+      "needle_position": 0.0,
+      "actual_tokens": 2006
+    },
+    {
+      "custom_id": "structural_2000_9",
+      "delta_level": "structural",
+      "context_length": 2000,
+      "trial_idx": 9,
+      "seed": 423995,
+      "expected": 957,
+      "needle_position": 0.0,
+      "actual_tokens": 1992
+    },
+    {
+      "custom_id": "structural_2000_10",
+      "delta_level": "structural",
+      "context_length": 2000,
+      "trial_idx": 10,
+      "seed": 379245,
+      "expected": 690,
+      "needle_position": 0.0,
+      "actual_tokens": 1990
+    },
+    {
+      "custom_id": "structural_2000_11",
+      "delta_level": "structural",
+      "context_length": 2000,
+      "trial_idx": 11,
+      "seed": 409542,
+      "expected": 886,
+      "needle_position": 0.0,
+      "actual_tokens": 2002
+    },
+    {
+      "custom_id": "structural_2000_12",
+      "delta_level": "structural",
+      "context_length": 2000,
+      "trial_idx": 12,
+      "seed": 413176,
+      "expected": 735,
+      "needle_position": 0.0,
+      "actual_tokens": 1998
+    },
+    {
+      "custom_id": "structural_2000_13",
+      "delta_level": "structural",
+      "context_length": 2000,
+      "trial_idx": 13,
+      "seed": 359985,
+      "expected": 913,
+      "needle_position": 0.0,
+      "actual_tokens": 2027
+    },
+    {
+      "custom_id": "structural_2000_14",
+      "delta_level": "structural",
+      "context_length": 2000,
+      "trial_idx": 14,
+      "seed": 415235,
+      "expected": 957,
+      "needle_position": 0.0,
+      "actual_tokens": 2003
+    },
+    {
+      "custom_id": "structural_2000_15",
+      "delta_level": "structural",
+      "context_length": 2000,
+      "trial_idx": 15,
+      "seed": 445532,
+      "expected": 690,
+      "needle_position": 0.0,
+      "actual_tokens": 1994
+    },
+    {
+      "custom_id": "structural_2000_16",
+      "delta_level": "structural",
+      "context_length": 2000,
+      "trial_idx": 16,
+      "seed": 392341,
+      "expected": 886,
+      "needle_position": 0.0,
+      "actual_tokens": 1990
+    },
+    {
+      "custom_id": "structural_2000_17",
+      "delta_level": "structural",
+      "context_length": 2000,
+      "trial_idx": 17,
+      "seed": 447591,
+      "expected": 735,
+      "needle_position": 0.0,
+      "actual_tokens": 1998
+    },
+    {
+      "custom_id": "structural_2000_18",
+      "delta_level": "structural",
+      "context_length": 2000,
+      "trial_idx": 18,
+      "seed": 394400,
+      "expected": 913,
+      "needle_position": 0.0,
+      "actual_tokens": 1994
+    },
+    {
+      "custom_id": "structural_2000_19",
+      "delta_level": "structural",
+      "context_length": 2000,
+      "trial_idx": 19,
+      "seed": 381522,
+      "expected": 957,
+      "needle_position": 0.0,
+      "actual_tokens": 1996
+    },
+    {
+      "custom_id": "structural_2000_20",
+      "delta_level": "structural",
+      "context_length": 2000,
+      "trial_idx": 20,
+      "seed": 428331,
+      "expected": 690,
+      "needle_position": 0.0,
+      "actual_tokens": 2017
+    },
+    {
+      "custom_id": "structural_2000_21",
+      "delta_level": "structural",
+      "context_length": 2000,
+      "trial_idx": 21,
+      "seed": 426756,
+      "expected": 886,
+      "needle_position": 0.0,
+      "actual_tokens": 1993
+    },
+    {
+      "custom_id": "structural_2000_22",
+      "delta_level": "structural",
+      "context_length": 2000,
+      "trial_idx": 22,
+      "seed": 430390,
+      "expected": 735,
+      "needle_position": 0.0,
+      "actual_tokens": 2002
+    },
+    {
+      "custom_id": "structural_2000_23",
+      "delta_level": "structural",
+      "context_length": 2000,
+      "trial_idx": 23,
+      "seed": 428815,
+      "expected": 913,
+      "needle_position": 0.0,
+      "actual_tokens": 2022
+    },
+    {
+      "custom_id": "structural_2000_24",
+      "delta_level": "structural",
+      "context_length": 2000,
+      "trial_idx": 24,
+      "seed": 364321,
+      "expected": 957,
+      "needle_position": 0.0,
+      "actual_tokens": 1994
+    },
+    {
+      "custom_id": "structural_2000_25",
+      "delta_level": "structural",
+      "context_length": 2000,
+      "trial_idx": 25,
+      "seed": 362746,
+      "expected": 690,
+      "needle_position": 0.0,
+      "actual_tokens": 2010
+    },
+    {
+      "custom_id": "structural_2000_26",
+      "delta_level": "structural",
+      "context_length": 2000,
+      "trial_idx": 26,
+      "seed": 366380,
+      "expected": 886,
+      "needle_position": 0.0,
+      "actual_tokens": 2014
+    },
+    {
+      "custom_id": "structural_2000_27",
+      "delta_level": "structural",
+      "context_length": 2000,
+      "trial_idx": 27,
+      "seed": 364805,
+      "expected": 735,
+      "needle_position": 0.0,
+      "actual_tokens": 2005
+    },
+    {
+      "custom_id": "structural_2000_28",
+      "delta_level": "structural",
+      "context_length": 2000,
+      "trial_idx": 28,
+      "seed": 395102,
+      "expected": 913,
+      "needle_position": 0.0,
+      "actual_tokens": 2016
+    },
+    {
+      "custom_id": "structural_2000_29",
+      "delta_level": "structural",
+      "context_length": 2000,
+      "trial_idx": 29,
+      "seed": 398736,
+      "expected": 957,
+      "needle_position": 0.0,
+      "actual_tokens": 1992
+    },
+    {
+      "custom_id": "structural_4000_0",
+      "delta_level": "structural",
+      "context_length": 4000,
+      "trial_idx": 0,
+      "seed": 393132,
+      "expected": 690,
+      "needle_position": 0.0,
+      "actual_tokens": 3994
+    },
+    {
+      "custom_id": "structural_4000_1",
+      "delta_level": "structural",
+      "context_length": 4000,
+      "trial_idx": 1,
+      "seed": 391557,
+      "expected": 886,
+      "needle_position": 0.0,
+      "actual_tokens": 3998
+    },
+    {
+      "custom_id": "structural_4000_2",
+      "delta_level": "structural",
+      "context_length": 4000,
+      "trial_idx": 2,
+      "seed": 427063,
+      "expected": 735,
+      "needle_position": 0.0,
+      "actual_tokens": 3993
+    },
+    {
+      "custom_id": "structural_4000_3",
+      "delta_level": "structural",
+      "context_length": 4000,
+      "trial_idx": 3,
+      "seed": 425488,
+      "expected": 913,
+      "needle_position": 0.0,
+      "actual_tokens": 4006
+    },
+    {
+      "custom_id": "structural_4000_4",
+      "delta_level": "structural",
+      "context_length": 4000,
+      "trial_idx": 4,
+      "seed": 423913,
+      "expected": 957,
+      "needle_position": 0.0,
+      "actual_tokens": 3999
+    },
+    {
+      "custom_id": "structural_4000_5",
+      "delta_level": "structural",
+      "context_length": 4000,
+      "trial_idx": 5,
+      "seed": 427547,
+      "expected": 690,
+      "needle_position": 0.0,
+      "actual_tokens": 3993
+    },
+    {
+      "custom_id": "structural_4000_6",
+      "delta_level": "structural",
+      "context_length": 4000,
+      "trial_idx": 6,
+      "seed": 357844,
+      "expected": 886,
+      "needle_position": 0.0,
+      "actual_tokens": 4005
+    },
+    {
+      "custom_id": "structural_4000_7",
+      "delta_level": "structural",
+      "context_length": 4000,
+      "trial_idx": 7,
+      "seed": 361478,
+      "expected": 735,
+      "needle_position": 0.0,
+      "actual_tokens": 3997
+    },
+    {
+      "custom_id": "structural_4000_8",
+      "delta_level": "structural",
+      "context_length": 4000,
+      "trial_idx": 8,
+      "seed": 359903,
+      "expected": 913,
+      "needle_position": 0.0,
+      "actual_tokens": 3996
+    },
+    {
+      "custom_id": "structural_4000_9",
+      "delta_level": "structural",
+      "context_length": 4000,
+      "trial_idx": 9,
+      "seed": 363537,
+      "expected": 957,
+      "needle_position": 0.0,
+      "actual_tokens": 4003
+    },
+    {
+      "custom_id": "structural_4000_10",
+      "delta_level": "structural",
+      "context_length": 4000,
+      "trial_idx": 10,
+      "seed": 393834,
+      "expected": 690,
+      "needle_position": 0.0,
+      "actual_tokens": 3997
+    },
+    {
+      "custom_id": "structural_4000_11",
+      "delta_level": "structural",
+      "context_length": 4000,
+      "trial_idx": 11,
+      "seed": 440643,
+      "expected": 886,
+      "needle_position": 0.0,
+      "actual_tokens": 4005
+    },
+    {
+      "custom_id": "structural_4000_12",
+      "delta_level": "structural",
+      "context_length": 4000,
+      "trial_idx": 12,
+      "seed": 395893,
+      "expected": 735,
+      "needle_position": 0.0,
+      "actual_tokens": 3999
+    },
+    {
+      "custom_id": "structural_4000_13",
+      "delta_level": "structural",
+      "context_length": 4000,
+      "trial_idx": 13,
+      "seed": 442702,
+      "expected": 913,
+      "needle_position": 0.0,
+      "actual_tokens": 3994
+    },
+    {
+      "custom_id": "structural_4000_14",
+      "delta_level": "structural",
+      "context_length": 4000,
+      "trial_idx": 14,
+      "seed": 429824,
+      "expected": 957,
+      "needle_position": 0.0,
+      "actual_tokens": 3994
+    },
+    {
+      "custom_id": "structural_4000_15",
+      "delta_level": "structural",
+      "context_length": 4000,
+      "trial_idx": 15,
+      "seed": 428249,
+      "expected": 690,
+      "needle_position": 0.0,
+      "actual_tokens": 4006
+    },
+    {
+      "custom_id": "structural_4000_16",
+      "delta_level": "structural",
+      "context_length": 4000,
+      "trial_idx": 16,
+      "seed": 431883,
+      "expected": 886,
+      "needle_position": 0.0,
+      "actual_tokens": 3992
+    },
+    {
+      "custom_id": "structural_4000_17",
+      "delta_level": "structural",
+      "context_length": 4000,
+      "trial_idx": 17,
+      "seed": 378692,
+      "expected": 735,
+      "needle_position": 0.0,
+      "actual_tokens": 4006
+    },
+    {
+      "custom_id": "structural_4000_18",
+      "delta_level": "structural",
+      "context_length": 4000,
+      "trial_idx": 18,
+      "seed": 408989,
+      "expected": 913,
+      "needle_position": 0.0,
+      "actual_tokens": 4008
+    },
+    {
+      "custom_id": "structural_4000_19",
+      "delta_level": "structural",
+      "context_length": 4000,
+      "trial_idx": 19,
+      "seed": 364239,
+      "expected": 957,
+      "needle_position": 0.0,
+      "actual_tokens": 3996
+    },
+    {
+      "custom_id": "structural_4000_20",
+      "delta_level": "structural",
+      "context_length": 4000,
+      "trial_idx": 20,
+      "seed": 411048,
+      "expected": 690,
+      "needle_position": 0.0,
+      "actual_tokens": 4026
+    },
+    {
+      "custom_id": "structural_4000_21",
+      "delta_level": "structural",
+      "context_length": 4000,
+      "trial_idx": 21,
+      "seed": 414682,
+      "expected": 886,
+      "needle_position": 0.0,
+      "actual_tokens": 3990
+    },
+    {
+      "custom_id": "structural_4000_22",
+      "delta_level": "structural",
+      "context_length": 4000,
+      "trial_idx": 22,
+      "seed": 444979,
+      "expected": 735,
+      "needle_position": 0.0,
+      "actual_tokens": 4011
+    },
+    {
+      "custom_id": "structural_4000_23",
+      "delta_level": "structural",
+      "context_length": 4000,
+      "trial_idx": 23,
+      "seed": 443404,
+      "expected": 913,
+      "needle_position": 0.0,
+      "actual_tokens": 4009
+    },
+    {
+      "custom_id": "structural_4000_24",
+      "delta_level": "structural",
+      "context_length": 4000,
+      "trial_idx": 24,
+      "seed": 447038,
+      "expected": 957,
+      "needle_position": 0.0,
+      "actual_tokens": 3995
+    },
+    {
+      "custom_id": "structural_4000_25",
+      "delta_level": "structural",
+      "context_length": 4000,
+      "trial_idx": 25,
+      "seed": 445463,
+      "expected": 690,
+      "needle_position": 0.0,
+      "actual_tokens": 3992
+    },
+    {
+      "custom_id": "structural_4000_26",
+      "delta_level": "structural",
+      "context_length": 4000,
+      "trial_idx": 26,
+      "seed": 449097,
+      "expected": 886,
+      "needle_position": 0.0,
+      "actual_tokens": 3991
+    },
+    {
+      "custom_id": "structural_4000_27",
+      "delta_level": "structural",
+      "context_length": 4000,
+      "trial_idx": 27,
+      "seed": 379394,
+      "expected": 735,
+      "needle_position": 0.0,
+      "actual_tokens": 3998
+    },
+    {
+      "custom_id": "structural_4000_28",
+      "delta_level": "structural",
+      "context_length": 4000,
+      "trial_idx": 28,
+      "seed": 383028,
+      "expected": 913,
+      "needle_position": 0.0,
+      "actual_tokens": 3990
+    },
+    {
+      "custom_id": "structural_4000_29",
+      "delta_level": "structural",
+      "context_length": 4000,
+      "trial_idx": 29,
+      "seed": 381453,
+      "expected": 957,
+      "needle_position": 0.0,
+      "actual_tokens": 3996
+    },
+    {
+      "custom_id": "structural_8000_0",
+      "delta_level": "structural",
+      "context_length": 8000,
+      "trial_idx": 0,
+      "seed": 372567,
+      "expected": 690,
+      "needle_position": 0.0,
+      "actual_tokens": 7990
+    },
+    {
+      "custom_id": "structural_8000_1",
+      "delta_level": "structural",
+      "context_length": 8000,
+      "trial_idx": 1,
+      "seed": 402864,
+      "expected": 886,
+      "needle_position": 0.0,
+      "actual_tokens": 7991
+    },
+    {
+      "custom_id": "structural_8000_2",
+      "delta_level": "structural",
+      "context_length": 8000,
+      "trial_idx": 2,
+      "seed": 358114,
+      "expected": 735,
+      "needle_position": 0.0,
+      "actual_tokens": 7996
+    },
+    {
+      "custom_id": "structural_8000_3",
+      "delta_level": "structural",
+      "context_length": 8000,
+      "trial_idx": 3,
+      "seed": 404923,
+      "expected": 913,
+      "needle_position": 0.0,
+      "actual_tokens": 8021
+    },
+    {
+      "custom_id": "structural_8000_4",
+      "delta_level": "structural",
+      "context_length": 8000,
+      "trial_idx": 4,
+      "seed": 403348,
+      "expected": 957,
+      "needle_position": 0.0,
+      "actual_tokens": 8023
+    },
+    {
+      "custom_id": "structural_8000_5",
+      "delta_level": "structural",
+      "context_length": 8000,
+      "trial_idx": 5,
+      "seed": 438854,
+      "expected": 690,
+      "needle_position": 0.0,
+      "actual_tokens": 8024
+    },
+    {
+      "custom_id": "structural_8000_6",
+      "delta_level": "structural",
+      "context_length": 8000,
+      "trial_idx": 6,
+      "seed": 437279,
+      "expected": 886,
+      "needle_position": 0.0,
+      "actual_tokens": 7989
+    },
+    {
+      "custom_id": "structural_8000_7",
+      "delta_level": "structural",
+      "context_length": 8000,
+      "trial_idx": 7,
+      "seed": 440913,
+      "expected": 735,
+      "needle_position": 0.0,
+      "actual_tokens": 7994
+    },
+    {
+      "custom_id": "structural_8000_8",
+      "delta_level": "structural",
+      "context_length": 8000,
+      "trial_idx": 8,
+      "seed": 439338,
+      "expected": 913,
+      "needle_position": 0.0,
+      "actual_tokens": 7990
+    },
+    {
+      "custom_id": "structural_8000_9",
+      "delta_level": "structural",
+      "context_length": 8000,
+      "trial_idx": 9,
+      "seed": 374844,
+      "expected": 957,
+      "needle_position": 0.0,
+      "actual_tokens": 8025
+    },
+    {
+      "custom_id": "structural_8000_10",
+      "delta_level": "structural",
+      "context_length": 8000,
+      "trial_idx": 10,
+      "seed": 373269,
+      "expected": 690,
+      "needle_position": 0.0,
+      "actual_tokens": 8005
+    },
+    {
+      "custom_id": "structural_8000_11",
+      "delta_level": "structural",
+      "context_length": 8000,
+      "trial_idx": 11,
+      "seed": 371694,
+      "expected": 886,
+      "needle_position": 0.0,
+      "actual_tokens": 8009
+    },
+    {
+      "custom_id": "structural_8000_12",
+      "delta_level": "structural",
+      "context_length": 8000,
+      "trial_idx": 12,
+      "seed": 375328,
+      "expected": 735,
+      "needle_position": 0.0,
+      "actual_tokens": 7997
+    },
+    {
+      "custom_id": "structural_8000_13",
+      "delta_level": "structural",
+      "context_length": 8000,
+      "trial_idx": 13,
+      "seed": 405625,
+      "expected": 913,
+      "needle_position": 0.0,
+      "actual_tokens": 7992
+    },
+    {
+      "custom_id": "structural_8000_14",
+      "delta_level": "structural",
+      "context_length": 8000,
+      "trial_idx": 14,
+      "seed": 409259,
+      "expected": 957,
+      "needle_position": 0.0,
+      "actual_tokens": 7998
+    },
+    {
+      "custom_id": "structural_8000_15",
+      "delta_level": "structural",
+      "context_length": 8000,
+      "trial_idx": 15,
+      "seed": 407684,
+      "expected": 690,
+      "needle_position": 0.0,
+      "actual_tokens": 8001
+    },
+    {
+      "custom_id": "structural_8000_16",
+      "delta_level": "structural",
+      "context_length": 8000,
+      "trial_idx": 16,
+      "seed": 411318,
+      "expected": 886,
+      "needle_position": 0.0,
+      "actual_tokens": 8010
+    },
+    {
+      "custom_id": "structural_8000_17",
+      "delta_level": "structural",
+      "context_length": 8000,
+      "trial_idx": 17,
+      "seed": 409743,
+      "expected": 735,
+      "needle_position": 0.0,
+      "actual_tokens": 8014
+    },
+    {
+      "custom_id": "structural_8000_18",
+      "delta_level": "structural",
+      "context_length": 8000,
+      "trial_idx": 18,
+      "seed": 440040,
+      "expected": 913,
+      "needle_position": 0.0,
+      "actual_tokens": 8019
+    },
+    {
+      "custom_id": "structural_8000_19",
+      "delta_level": "structural",
+      "context_length": 8000,
+      "trial_idx": 19,
+      "seed": 443674,
+      "expected": 957,
+      "needle_position": 0.0,
+      "actual_tokens": 8018
+    },
+    {
+      "custom_id": "structural_8000_20",
+      "delta_level": "structural",
+      "context_length": 8000,
+      "trial_idx": 20,
+      "seed": 442099,
+      "expected": 690,
+      "needle_position": 0.0,
+      "actual_tokens": 8016
+    },
+    {
+      "custom_id": "structural_8000_21",
+      "delta_level": "structural",
+      "context_length": 8000,
+      "trial_idx": 21,
+      "seed": 445733,
+      "expected": 886,
+      "needle_position": 0.0,
+      "actual_tokens": 8012
+    },
+    {
+      "custom_id": "structural_8000_22",
+      "delta_level": "structural",
+      "context_length": 8000,
+      "trial_idx": 22,
+      "seed": 376030,
+      "expected": 735,
+      "needle_position": 0.0,
+      "actual_tokens": 8000
+    },
+    {
+      "custom_id": "structural_8000_23",
+      "delta_level": "structural",
+      "context_length": 8000,
+      "trial_idx": 23,
+      "seed": 422839,
+      "expected": 913,
+      "needle_position": 0.0,
+      "actual_tokens": 8022
+    },
+    {
+      "custom_id": "structural_8000_24",
+      "delta_level": "structural",
+      "context_length": 8000,
+      "trial_idx": 24,
+      "seed": 378089,
+      "expected": 957,
+      "needle_position": 0.0,
+      "actual_tokens": 8000
+    },
+    {
+      "custom_id": "structural_8000_25",
+      "delta_level": "structural",
+      "context_length": 8000,
+      "trial_idx": 25,
+      "seed": 424898,
+      "expected": 690,
+      "needle_position": 0.0,
+      "actual_tokens": 7991
+    },
+    {
+      "custom_id": "structural_8000_26",
+      "delta_level": "structural",
+      "context_length": 8000,
+      "trial_idx": 26,
+      "seed": 412020,
+      "expected": 886,
+      "needle_position": 0.0,
+      "actual_tokens": 7992
+    },
+    {
+      "custom_id": "structural_8000_27",
+      "delta_level": "structural",
+      "context_length": 8000,
+      "trial_idx": 27,
+      "seed": 358829,
+      "expected": 735,
+      "needle_position": 0.0,
+      "actual_tokens": 8026
+    },
+    {
+      "custom_id": "structural_8000_28",
+      "delta_level": "structural",
+      "context_length": 8000,
+      "trial_idx": 28,
+      "seed": 414079,
+      "expected": 913,
+      "needle_position": 0.0,
+      "actual_tokens": 7998
+    },
+    {
+      "custom_id": "structural_8000_29",
+      "delta_level": "structural",
+      "context_length": 8000,
+      "trial_idx": 29,
+      "seed": 360888,
+      "expected": 957,
+      "needle_position": 0.0,
+      "actual_tokens": 7999
+    }
+  ],
+  "model": "claude-sonnet-4-20250514",
+  "submitted_at": "2026-03-24T14:17:48.063231",
+  "max_context": 8000,
+  "trials": 30
+}

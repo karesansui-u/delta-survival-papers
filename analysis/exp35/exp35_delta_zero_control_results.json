@@ -1,0 +1,209 @@
+{
+  "experiment": "exp35_delta_zero_control",
+  "version": "1.0.0",
+  "description": "δ=0 Control: phase transition requires δ>0",
+  "model": "gemini-3.1-flash-lite-preview",
+  "backend": "gemini",
+  "timestamp": "2026-03-24T18:22:17.765555",
+  "config": {
+    "n_trials": 30,
+    "temperature": 1.0,
+    "context_lengths": [
+      500,
+      1000,
+      2000,
+      4000,
+      8000
+    ],
+    "delta_levels": [
+      "zero",
+      "structural"
+    ],
+    "seed_base": 350000
+  },
+  "predictions": {
+    "H1": "δ=0: accuracy decline is logarithmic/linear, no step-function collapse",
+    "H2": "δ>0: step-function collapse at some critical context length",
+    "H3": "AIC(linear) < AIC(sigmoid) for δ=0; AIC(sigmoid) < AIC(linear) for δ>0",
+    "registered_at": "2026-03-24T17:59:24.412577"
+  },
+  "by_delta_zero": [
+    {
+      "context_length": 500,
+      "stats": {
+        "mean": 1.0,
+        "std": 0.0,
+        "cv": 0.0,
+        "n": 30,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "mean_needle_position": 0.0
+    },
+    {
+      "context_length": 1000,
+      "stats": {
+        "mean": 1.0,
+        "std": 0.0,
+        "cv": 0.0,
+        "n": 30,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "mean_needle_position": 0.0
+    },
+    {
+      "context_length": 2000,
+      "stats": {
+        "mean": 1.0,
+        "std": 0.0,
+        "cv": 0.0,
+        "n": 30,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "mean_needle_position": 0.0
+    },
+    {
+      "context_length": 4000,
+      "stats": {
+        "mean": 1.0,
+        "std": 0.0,
+        "cv": 0.0,
+        "n": 30,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "mean_needle_position": 0.0
+    },
+    {
+      "context_length": 8000,
+      "stats": {
+        "mean": 1.0,
+        "std": 0.0,
+        "cv": 0.0,
+        "n": 30,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "mean_needle_position": 0.0
+    }
+  ],
+  "by_delta_structural": [
+    {
+      "context_length": 500,
+      "stats": {
+        "mean": 0.5333,
+        "std": 0.4989,
+        "cv": 0.9354,
+        "n": 30,
+        "min": 0.0,
+        "max": 1.0
+      },
+      "mean_needle_position": 0.0
+    },
+    {
+      "context_length": 1000,
+      "stats": {
+        "mean": 0.4,
+        "std": 0.4899,
+        "cv": 1.2247,
+        "n": 30,
+        "min": 0.0,
+        "max": 1.0
+      },
+      "mean_needle_position": 0.0
+    },
+    {
+      "context_length": 2000,
+      "stats": {
+        "mean": 0.4,
+        "std": 0.4899,
+        "cv": 1.2247,
+        "n": 30,
+        "min": 0.0,
+        "max": 1.0
+      },
+      "mean_needle_position": 0.0
+    },
+    {
+      "context_length": 4000,
+      "stats": {
+        "mean": 1.0,
+        "std": 0.0,
+        "cv": 0.0,
+        "n": 30,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "mean_needle_position": 0.0
+    },
+    {
+      "context_length": 8000,
+      "stats": {
+        "mean": 0.8667,
+        "std": 0.3399,
+        "cv": 0.3922,
+        "n": 30,
+        "min": 0.0,
+        "max": 1.0
+      },
+      "mean_needle_position": 0.0
+    }
+  ],
+  "model_fit_zero": {
+    "log_linear": {
+      "coeffs": [
+        0.9999999999999997,
+        7.83865073852349e-17
+      ],
+      "rss": 0.0,
+      "aic": -111.1293,
+      "r_squared": 1.0
+    },
+    "sigmoid": {
+      "params": {
+        "k": 5.6746,
+        "L_c": 56237.0
+      },
+      "rss": 0.0,
+      "aic": -109.1389,
+      "r_squared": -1.4448
+    },
+    "aic_comparison": {
+      "delta_aic_sigmoid_minus_linear": 1.9904,
+      "preferred": "log_linear",
+      "interpretation": "Graceful degradation (supports H₁)"
+    }
+  },
+  "model_fit_structural": {
+    "log_linear": {
+      "coeffs": [
+        -0.7491455531809915,
+        0.1827606077798137
+      ],
+      "rss": 0.1471,
+      "aic": -13.6304,
+      "r_squared": 0.5217
+    },
+    "sigmoid": {
+      "params": {
+        "k": 0.0886,
+        "L_c": 200000.0
+      },
+      "rss": 0.354979,
+      "aic": -9.2257,
+      "r_squared": -0.1541
+    },
+    "aic_comparison": {
+      "delta_aic_sigmoid_minus_linear": 4.4047,
+      "preferred": "log_linear",
+      "interpretation": "Graceful degradation (supports H₁)"
+    }
+  },
+  "hypothesis_evaluation": {
+    "H1_supported": true,
+    "H2_supported": false,
+    "H3_supported": false
+  }
+}
