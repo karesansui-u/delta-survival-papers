@@ -36,7 +36,7 @@ These patterns are explained by the first moment method from combinatorics. Defi
 \[
 S = N_{eff} \cdot \frac{\mu}{\mu_c} \cdot e^{-\delta}
 \]
-captures both the LLM collapse patterns and, in Boolean satisfiability (SAT) where $\delta$ is exactly computable, yields parameter-free predictions: the decay rate ratio $\alpha_{\text{XOR}}/\alpha_{\text{random}} = \ln 2 / |\ln(7/8)| = 5.19\times$ is an upper bound confirmed experimentally (observed: $5.04 \pm 0.25$, CV $= 5\%$; the systematic shortfall is consistent with inter-constraint correlations reducing effective information loss---overlapping constraints create redundancy, so that a single violation's impact on the overall system is mitigated). The exponential penalty $e^{-\delta}$ is not an approximation but a mathematical identity with the first moment of the SAT solution count. Its contribution is an operational methodology---measuring structural conflict as information loss in nats via the first moment correspondence---validated in two controlled domains. A systematic $\delta = 0$ control experiment (6 models, 4 vendors, 500--128{,}000 tokens) confirms the complementary prediction: under zero structural contradiction, models with sufficient baseline capability ($\mu$) maintain perfect accuracy regardless of context length---while a low-$\mu$ model (Llama~3.1:8b) saturates at 36\%, confirming the multiplicative structure $S = \mu \cdot e^{-\delta}$. This establishes that the phenomenon commonly attributed to ``context rot'' is driven by contradiction accumulation ($\delta > 0$), not by context length itself. Extension to the second moment method (Paley--Zygmund inequality) with pair correlation function $g(\beta) = 3/4 + (1/8)(1-\beta)^3$ quantitatively explains 74\% of the gap between the first-moment upper bound ($\alpha \approx 5.19$) and the true 3-SAT threshold ($\alpha \approx 4.27$); the remaining 26\% is attributable to replica symmetry breaking. All results---including the second moment overlap decomposition---are machine-verified in Lean~4 (16 modules, 160 propositions, no \texttt{sorry}, no axiom).
+captures both the LLM collapse patterns and, in Boolean satisfiability (SAT) where $\delta$ is exactly computable, yields parameter-free predictions: the decay rate ratio $\alpha_{\text{XOR}}/\alpha_{\text{random}} = \ln 2 / |\ln(7/8)| = 5.19\times$ is an upper bound confirmed experimentally (observed: $5.04 \pm 0.25$, CV $= 5\%$; the systematic shortfall is consistent with inter-constraint correlations reducing effective information loss---overlapping constraints create redundancy, so that a single violation's impact on the overall system is mitigated). The exponential penalty $e^{-\delta}$ is not an approximation but a mathematical identity with the first moment of the SAT solution count. Its contribution is an operational methodology---measuring structural conflict as information loss in nats via the first moment correspondence---validated in two controlled domains. A systematic $\delta = 0$ control experiment (6 models, 4 vendors, 500--128{,}000 tokens) confirms the complementary prediction: under zero structural contradiction, models with sufficient baseline capability ($\mu$) maintain perfect accuracy regardless of context length---while a low-$\mu$ model (Llama~3.1:8b) saturates at 36\%, confirming the multiplicative structure $S = \mu \cdot e^{-\delta}$. A follow-up experiment extends to 256{,}000 tokens with three $\delta$ levels (zero, subtle inter-source disagreement, structural self-contradiction) across three models of different capability from two vendors ($n = 810$ trials). This reveals a capability--vulnerability paradox: the weakest model (GPT-4.1~Nano) is immune to subtle inter-source contradiction ($\delta_5$; \texttt{wrong\_val\_adopted} $= 0/90$), while the stronger model (GPT-4.1~Mini, with near-perfect baseline accuracy) is catastrophically vulnerable ($37\% \to 7\%$ accuracy under $\delta_5$; \texttt{wrong\_val\_adopted} $= 29/90$). A cross-vendor model (Gemini~3.1~Flash-Lite~Preview) exhibits a third pattern: $\delta_5$ sensitivity \emph{decreases} with context length ($57\% \to 90\%$; \texttt{wrong\_val\_adopted} $= 17/90$ overall, falling from $33\%$ at 32K to $7\%$ at 256K), consistent with information dilution. Higher comprehension enables extraction of misleading information without enabling verification that it conflicts with the primary source---comprehension without consistency checking. Structural contradiction ($\delta_1$) causes complete collapse ($0\%$) for both OpenAI models, while Gemini achieves $40\%$ at 32K by interpreting self-referential contradictions as literal reassignment operations---a qualitatively distinct failure mode. Extension to the second moment method (Paley--Zygmund inequality) with pair correlation function $g(\beta) = 3/4 + (1/8)(1-\beta)^3$ quantitatively explains 74\% of the gap between the first-moment upper bound ($\alpha \approx 5.19$) and the true 3-SAT threshold ($\alpha \approx 4.27$); the remaining 26\% is attributable to replica symmetry breaking. All results---including the second moment overlap decomposition---are machine-verified in Lean~4 (16 modules, 160 propositions, no \texttt{sorry}, no axiom).
 
 \medskip
 \noindent\textbf{Keywords:} LLM reasoning collapse, structural contradiction, information loss, multiplicative model, SAT phase transition, survival analysis, formal verification
@@ -562,12 +562,18 @@ Table~\ref{tab:llm-summary} consolidates the LLM findings. Five predictions were
 \midrule
 6 & $\delta$ is type-dependent, not quantity-dependent & Post-hoc & Discovered \\
 7 & Three $\delta$ dimensions (factual/computational/structural) & Post-hoc & Discovered \\
-8 & $\delta_{\text{structural}}$ transcends model capability$^\ddagger$ & Post-hoc & 4 models, 4 vendors \\
+8 & $\delta_{\text{structural}}$ causes severe degradation across models$^\ddagger$ & Post-hoc & 5 models, 4 vendors \\
 9 & RLHF acts as cushion ($\mu$) & Post-hoc & Confirmed \\
 10 & $\delta_c$ is system-specific, not universal & Post-hoc & Confirmed \\
+\midrule
+11 & $\delta_5$ effect is model-dependent: three distinct patterns & Theory-derived$^\S$ & Confirmed (3 models, 2 vendors) \\
+12 & $\mu$ degrades with context length under $\delta = 0$ & Theory-derived & Confirmed ($1.00 \to 0.70$, 32--256K; model-dependent) \\
+13 & Capability--vulnerability paradox: $\delta_5$ sensitivity is non-monotonic in $\mu$ & Post-hoc & 3 models, 2 vendors \\
+14 & $\delta_1$ failure mode is model-specific (refusal / zero / literal reassignment) & Post-hoc & 3 models, 2 vendors \\
+15 & Gemini's $\delta_1$ ``resistance'' is template-dependent, not contradiction tolerance & Confirmatory (36c) & 3 template families, 1 model \\
 \bottomrule
 \end{tabular}
-\caption{LLM experiment evidence summary. $^\dagger$The exponential form in LLM is pattern-consistent but not independently discriminated from other nonlinear forms in the low-$\delta$ regime where $e^{-\delta} \approx 1 - \delta$ (see \S\ref{sec:discussion}). The exponential form is anchored by the SAT identity (Section~\ref{sec:sat}), not by LLM data alone. $^\ddagger$Holds for models with sufficient recognition capability ($\geq$12B parameters in the Gemma3 family); models below this threshold do not detect structural contradictions and show no collapse (Table~\ref{tab:cross-model}).}
+\caption{LLM experiment evidence summary. $^\dagger$The exponential form in LLM is pattern-consistent but not independently discriminated from other nonlinear forms in the low-$\delta$ regime where $e^{-\delta} \approx 1 - \delta$ (see \S\ref{sec:discussion}). The exponential form is anchored by the SAT identity (Section~\ref{sec:sat}), not by LLM data alone. $^\ddagger$Complete collapse ($0\%$) observed for all OpenAI models tested and Gemini~2.5~Flash. Gemini~3.1~Flash-Lite achieves partial accuracy at short context (32K:~40\%), but Exp.~36c confirms this is a template-mix artefact: reassignment templates (``$a = a + 1$'') are executed as literal updates (3\% accuracy, 50\% off-by-one), while paradox and nullify templates are detected as contradictions but suppressed under instruction priority (80--97\% accuracy). Gemini lacks contradiction detection for reassignment forms specifically; its effective $\delta$ is template-dependent. Models below $\sim$12B parameters (Gemma3 family) do not detect structural contradictions and show no collapse (Table~\ref{tab:cross-model}). $^\S$Originally derived from $\delta = D_{\text{KL}}$: a single low-magnitude $\delta_5$ should contribute negligible information loss. Three distinct patterns emerge: Nano ignores $\delta_5$ (0\% adoption), Mini trusts it (32\% adoption, constant), Gemini dilutes it (33\%$\to$7\% adoption with context length). The effective magnitude of $\delta_5$ depends on both model capability and context-length interaction (see Table~\ref{tab:exp36}).}
 \label{tab:llm-summary}
 \end{table}
 
@@ -634,6 +640,130 @@ Llama~3.1:8b          & Meta      & 500--8K    & 36.0\% (54/150)   & 2.7\% (4/15
 \label{sec:exp35-limitations}
 The answer-extraction heuristic \texttt{parse\_answer()} extracts the last integer from the model's response. For models that analyse contradictions in prose (notably Sonnet~4.6), this produces systematic false negatives: the heuristic captures artefactual integers from quoted contradiction templates (e.g., ``$a = a + 1$'' $\to$ extracts~1) or individual variable values rather than the requested sum. The ``recognition'' metric in Table~\ref{tab:exp35} accounts for this by verifying whether the correct values $a$, $b$, $c$ appear in the response. Future replications should use structured output (JSON mode) or constrained decoding to eliminate this confound. Additionally, raw response text was not saved for GPT-4o-mini (36 \texttt{null}-answer trials), Llama, or Gemini runs, precluding retrospective reclassification for those models.
 
+\subsection{Exp.~36: $\delta$ Intensity $\times$ Context Length}
+\label{sec:exp36}
+
+Exp.~35 established that $\delta > 0$ causes collapse while $\delta = 0$ does not, but treated contradiction as binary (present/absent). A natural question is whether contradiction \emph{intensity} matters---whether a single, mild inconsistency from a secondary source produces the same collapse as dense self-referential paradoxes. Exp.~36 extends Exp.~35 from two $\delta$ levels to three, crossing them with context lengths that substantially exceed the 128K ceiling of Exp.~35.
+
+\paragraph{Design.}
+A $3 \times 3$ factorial design crosses three $\delta$ conditions with three context lengths (32K, 128K, 256K tokens). The task is identical to Exp.~35 (compute $a + b + c$ from definitions placed at the start of the context). The three $\delta$ conditions are:
+
+\begin{itemize}
+  \item \textbf{Zero ($\delta_0$):} Filler consists entirely of non-contradictory factual sentences, as in Exp.~35.
+  \item \textbf{Subtle ($\delta_5$):} A single sentence from a ``secondary source'' reports a slightly wrong value for one variable (offset $\pm\{2,3,5,7\}$), injected at the midpoint of the filler. This corresponds to $\delta_5$ (inter-source contradiction) in the five-dimensional $\delta$ taxonomy identified in Exp.~5. Example: \emph{``A secondary source reports $b = 139$.''} (true value: $b = 137$).
+  \item \textbf{Structural ($\delta_1$):} Self-referential contradictions at $\sim$30\% density, identical to the $\delta > 0$ condition in Exp.~35. This corresponds to $\delta_1$ (self-contradiction).
+\end{itemize}
+
+Each cell comprises 30 trials per model ($n = 270$ per model). Three models are tested: GPT-4.1~Nano (Phase~1), GPT-4.1~Mini (Phase~2a), both OpenAI, and Gemini~3.1~Flash-Lite~Preview (Phase~2b, Google), all March~2026, with $\geq$1M-token context windows. The within-vendor pair (Nano/Mini) provides a capability gradient ($\mu_{\text{Nano}} < \mu_{\text{Mini}}$) while controlling for API infrastructure, tokeniser, and training pipeline; the cross-vendor model (Gemini) tests generalisability. All trials save the complete raw response text, API token usage (for tokeniser drift tracking), and---for the subtle condition---the injected variable, original value, wrong value, and wrong-value sum. A post-hoc LLM-as-Judge evaluation independently classifies each trial ($N = 810$ total).
+
+\paragraph{Pre-registered predictions.}
+\begin{itemize}
+  \item[\textbf{P\textsubscript{1}}] $\text{acc}(\delta_0) \approx \text{acc}(\delta_5) > \text{acc}(\delta_1)$: subtle contradiction is harmless; only structural contradiction causes collapse.
+  \item[\textbf{P\textsubscript{2}}] \texttt{wrong\_val\_adopted} $= 0$ across all subtle trials: the model does not adopt the injected wrong value.
+  \item[\textbf{P\textsubscript{3}}] $\text{acc}(\delta_0)$ declines monotonically with context length (baseline $\mu$ degradation), but without step-function collapse.
+\end{itemize}
+
+\paragraph{Results.}
+Table~\ref{tab:exp36} reports the full $3 \times 3$ matrix for all three models. Phase~1 predictions are confirmed for GPT-4.1~Nano; Phase~2 reveals a striking reversal for GPT-4.1~Mini and a third, distinct pattern for Gemini.
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{llccc}
+\toprule
+\textbf{Model} & \textbf{$\delta$ condition} & \textbf{32K} & \textbf{128K} & \textbf{256K} \\
+\midrule
+Nano & Zero ($\delta_0$)       & 1.00\,(30/30) & 0.83\,(25/30) & 0.70\,(21/30) \\
+     & Subtle ($\delta_5$)     & 0.97\,(29/30) & 0.73\,(22/30) & 0.70\,(21/30) \\
+     & Structural ($\delta_1$) & 0.00\,(0/30)  & 0.00\,(0/30)  & 0.00\,(0/30)  \\
+\midrule
+Mini & Zero ($\delta_0$)       & 1.00\,(30/30) & 1.00\,(30/30) & 0.97\,(29/30) \\
+     & Subtle ($\delta_5$)     & 0.37\,(11/30) & 0.07\,(2/30)  & 0.13\,(4/30)  \\
+     & Structural ($\delta_1$) & 0.00\,(0/30)  & 0.00\,(0/30)  & 0.00\,(0/30)  \\
+\midrule
+Gemini FL & Zero ($\delta_0$)       & 1.00\,(30/30) & 1.00\,(30/30) & 1.00\,(30/30) \\
+          & Subtle ($\delta_5$)     & 0.57\,(17/30) & 0.80\,(24/30) & 0.90\,(27/30) \\
+          & Structural ($\delta_1$) & 0.40\,(12/30) & 0.07\,(2/30)  & 0.07\,(2/30)  \\
+\bottomrule
+\end{tabular}
+
+\vspace{2pt}
+{\footnotesize 30 trials per cell per model ($n = 270$ each, $N = 810$ total). Strict accuracy (exact match). Gemini FL = Gemini~3.1~Flash-Lite~Preview. \texttt{wrong\_val\_adopted}: Nano $= 0/90$ (0\%), Mini $= 29/90$ (32\%, constant across lengths), Gemini $= 17/90$ (19\%, decreasing: 33\%$\to$17\%$\to$7\%). LLM-as-Judge agreement: 810/810.}
+\caption{Exp.~36 results. Three qualitatively distinct $\delta_5$ response patterns emerge: Nano ignores the subtle contradiction entirely (statistically indistinguishable from $\delta_0$; Fisher exact $p \geq 0.53$), Mini is catastrophically vulnerable (adoption rate $\sim$33\% independent of length), and Gemini shows length-dependent recovery ($57\% \to 90\%$; adoption decreases from 33\% to 7\% as context dilutes the single contradictory sentence). Under structural $\delta_1$, both OpenAI models collapse to 0\% at all lengths, while Gemini achieves 40\% at 32K---but through literal misinterpretation rather than contradiction detection (see text).}
+\label{tab:exp36}
+\end{table}
+
+\noindent Key findings:
+
+\begin{enumerate}
+  \item \textbf{P\textsubscript{1}: three qualitatively distinct $\delta_5$ response patterns.} For Nano, $\delta_5 \approx \delta_0 \gg \delta_1$ (Fisher exact $p \geq 0.53$): the subtle contradiction is invisible. For Mini, $\delta_5$ is catastrophically effective ($100\% \to 37\%$ at 32K, $\to 7\%$ at 128K). For Gemini, $\delta_5$ sensitivity \emph{decreases} with context length ($57\% \to 80\% \to 90\%$), consistent with information dilution making a single contradictory sentence progressively harder to retrieve.
+
+  \item \textbf{P\textsubscript{2}: three-polar \texttt{wrong\_val\_adopted} pattern.} Nano: $0/90$ (0\%---never adopted the wrong value). Mini: $29/90$ ($\sim$33\% at each context length, constant across lengths). Gemini: $17/90$ overall, \emph{decreasing} from 33\% at 32K to 17\% at 128K to 7\% at 256K. Mini's constant adoption rate suggests a fixed probability of trusting the secondary source; Gemini's declining rate is consistent with dilution reducing the salience of the injected sentence.
+
+  \item \textbf{P\textsubscript{3} confirmed: $\mu$ degrades continuously with context length.} Under $\delta_0$, Nano: $1.00 \to 0.83 \to 0.70$; Mini: $1.00 \to 1.00 \to 0.97$; Gemini: $1.00 \to 1.00 \to 1.00$. Gemini maintains perfect baseline accuracy to 256K, demonstrating that $\mu$-decay is model-specific, not a universal feature of long contexts.
+
+  \item \textbf{Capability--vulnerability paradox.} The central finding: the relationship between capability and $\delta_5$ vulnerability is non-monotonic. Nano (lowest $\mu$) ignores the contradiction entirely; Mini (highest $\mu$ within OpenAI) reads and trusts it; Gemini (highest $\mu$ overall) reads it at short context but dilutes it at long context. This dissociation---comprehension without verification---is not a simple function of capability but depends on model architecture and context-length interaction.
+
+  \item \textbf{Three qualitatively distinct $\delta_1$ failure modes.} Structural self-contradiction ($\delta_1$) produces 0\% accuracy for both OpenAI models at all lengths, while Gemini achieves 40\% at 32K. The crucial difference is \emph{how} each model fails: Nano outputs ``0'' or ``undefined'' ($53\%$--$90\%$ zero-responses; detects contradiction); Mini outputs ``Undefined'' or analytical refusals ($93$--$100\%$ explicit refusal; correctly identifies logical impossibility); Gemini outputs numeric guesses near the expected value $+1$ ($50$--$57\%$ of incorrect answers have diff $= +1$; it interprets ``$a = a + 1$'' as literal reassignment $a_{\text{new}} = a_{\text{original}} + 1$, \emph{never detecting the reassignment form as a contradiction}: \texttt{contradiction\_detected} $= 0/90$, refusal $= 0/90$). Gemini's 40\% ``accuracy'' at 32K is an artefact: the structural condition mixes reassignment templates (which Gemini executes as $+1$) with paradox and nullify templates (which Gemini detects as contradictions but suppresses under the calculator-only instruction, yielding correct answers); the 40\% reflects the template-mix proportion, not contradiction tolerance. This is confirmed by the targeted Exp.~36c and subsequent probe experiment below.
+
+  \item \textbf{Cross-vendor replication of $\delta_1 \gg \delta_5$ hierarchy.} Despite the three distinct $\delta_5$ patterns, all three models confirm the core finding: structural contradiction ($\delta_1$) causes catastrophically greater damage than inter-source contradiction ($\delta_5$). This holds across OpenAI (Nano, Mini) and Google (Gemini), strengthening the claim that the dimensional structure of $\delta$ is a property of the task, not of any particular model family.
+\end{enumerate}
+
+\paragraph{Exp.~36c: Confirmation of the literal-reassignment mechanism.}
+Finding~5 above hypothesised that Gemini's partial $\delta_1$ accuracy arises from interpreting ``$a = a + 1$'' as variable reassignment rather than detecting a logical contradiction. To test this directly, we isolated the three template families used in the structural condition and administered each in a separate experiment (30 trials per family, 32K tokens, Gemini~3.1~Flash-Lite, same protocol).
+
+\begin{center}
+\small
+\begin{tabular}{llccc}
+\toprule
+\textbf{Template family} & \textbf{Example} & \textbf{Accuracy} & \textbf{Off-by-$n$} & \textbf{Interpretation} \\
+\midrule
+Reassignment & ``$a = a + 1$'' & 3\%\,(1/30) & 50\%\,(15/30) & Executes $+1$ \\
+Paradox       & ``$a \neq a$'', ``$a > a$'' & 80\%\,(24/30) & 0\%\,(0/30) & Detects; suppresses \\
+Nullify       & ``$a$ is invalid'' & 97\%\,(29/30) & 0\%\,(0/30) & Detects; suppresses \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent The off-by-$n$ pattern ($+1, +2, +3$) occurs \emph{exclusively} in the reassignment family, confirming that Gemini treats ``$a = a + 1$'' as an imperative update. The diff distribution $\{+1\!:\!15,\; +2\!:\!10,\; +3\!:\!2,\; +4\!:\!1\}$ is consistent with cumulative reassignment: at 30\% injection density, some variables receive multiple $+1$ operations. Paradox and nullify templates produce no off-by-$n$ errors, yielding near-perfect accuracy---but this is \emph{not} because Gemini cannot parse them. A follow-up probe experiment (below) demonstrates that the mechanism differs fundamentally between template families.
+
+\paragraph{Probe: two independent mechanisms.}
+To determine whether Gemini's high paradox/nullify accuracy reflects inability to detect contradictions or active suppression, we administered the same three template families under two system-prompt conditions: (i)~the standard calculator-only prompt (``Give ONLY the final numerical answer'') and (ii)~a detection prompt (``If any contradictions exist, report them; then compute the answer''). Five trials per condition, 32K tokens, Gemini~3.1~Flash-Lite.
+
+\begin{center}
+\small
+\begin{tabular}{llcc}
+\toprule
+\textbf{Template} & \textbf{Metric} & \textbf{Calculator-only} & \textbf{Detect + calc} \\
+\midrule
+Reassignment & Answer       & 705\,(5/5) & 705\,(5/5) \\
+             & Contradictions reported & None\,(5/5) & ``No contradictions found''\,(5/5) \\
+\midrule
+Paradox      & Answer       & 690\,(5/5) & 690\,(5/5) \\
+             & Contradictions reported & None\,(5/5) & ``Law of Identity violation''\,(5/5) \\
+\midrule
+Nullify      & Answer       & 690\,(5/5) & 690\,(5/5) \\
+             & Contradictions reported & None\,(5/5) & ``Contradicts definition''\,(5/5) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent Two independent mechanisms are operating simultaneously:
+
+\begin{itemize}
+  \item \textbf{Syntactic classification bypass} (reassignment): Gemini's processing pipeline classifies ``$a = a + 1$'' as an assignment instruction, not a contradiction. Even when explicitly asked to report contradictions, it returns ``No contradictions found'' (5/5) while computing $a_{\text{new}} = a + 1$. The reassignment form never enters the contradiction-detection path. The result $705 = 690 + 15$ ($= 3$ variables $\times$ cumulative $+1$ operations) is fully consistent with imperative execution.
+
+  \item \textbf{Instruction-priority suppression} (paradox/nullify): Gemini \emph{does} detect these contradictions---it precisely identifies ``$a \neq a$'' as a ``Law of Identity violation'' and nullification as ``contradicting the definition'' when asked. Under the calculator-only prompt, it suppresses this detection and computes the correct answer (690, 5/5). The contradiction is perceived but deprioritised relative to the task instruction.
+\end{itemize}
+
+\noindent This resolves Gemini's apparent $\delta_1$ ``resistance'' in Exp.~36: the structural condition mixes all three template families, so the 40\% accuracy at 32K reflects the proportion of trials where paradox/nullify templates dominate. Gemini lacks contradiction detection capability \emph{specifically for reassignment-form contradictions}, whose syntactic structure is indistinguishable from a legitimate variable update. For paradox and nullify forms, Gemini possesses full detection capability but prioritises instruction compliance over contradiction reporting. The effective $\delta$ of a structural contradiction is therefore template-dependent for this model: reassignment templates carry $\delta_{\text{eff}} > 0$ (executed as $+1$, altering the answer), while paradox and nullify templates carry $\delta_{\text{eff}} \approx 0$ (detected, suppressed, and ignored).
+
+\paragraph{Practical implication.}
+The three-model comparison has direct consequences for RAG system design. First, $\delta_5$ vulnerability is not monotonically related to capability: Mini (the strongest OpenAI model tested) is most vulnerable, while both weaker (Nano) and cross-vendor (Gemini) models show less vulnerability, albeit for different reasons. RAG pipelines cannot assume that higher-capability models are uniformly safer. Second, Exp.~36c demonstrates that contradiction detection is not a universal capability: Gemini processes ``$a = a + 1$'' as a variable update rather than recognising the self-referential impossibility, while ignoring contradiction forms it cannot parse. This means that the \emph{effective} $\delta$ of a structural contradiction depends not only on its logical content but on whether the model's syntactic processing pipeline can interpret it as an actionable instruction. Structural contradictions ($\delta_1$) must be filtered regardless of model capability; the filtering must cover diverse syntactic realisations, since models may be vulnerable to some forms while ignoring others.
+
+\paragraph{Improvements over Exp.~35.}
+Exp.~36 addresses all Exp.~35 limitations identified in \S\ref{sec:exp35-limitations}: raw responses are saved for every trial (enabling retrospective analysis); maximum response tokens are increased from 64 to 512 (preventing truncation of analytical responses); and LLM-as-Judge evaluation provides an independent correctness check (strict/judge agreement: 810/810, 100\% across all three models). Additionally, tokeniser drift is tracked per-trial (observed drift: $+0.01$--$0.08\%$ across all context lengths, confirming measurement infrastructure accuracy). The three-model, two-vendor design enables both within-vendor capability comparisons (Nano vs Mini) and cross-vendor generalisation (Gemini).
+
 %=============================================
 \section{Discussion}
 \label{sec:discussion}
@@ -692,7 +822,7 @@ The survival equation's connection to information theory extends beyond shared v
 
 A practical consequence of Exp.~35 deserves emphasis. The phenomenon commonly called ``context rot''---the observation that LLM performance degrades as conversation length increases---is conventionally attributed to attention dilution, positional encoding limitations, or retrieval interference \citep{liu2024}. Hong et al.\ \citep{hong2025contextrot} recently confirmed this degradation across 18 frontier models, establishing it as a universal phenomenon. These mechanisms predict smooth, gradual degradation as a function of context length.
 
-Exp.~35 provides an experimental deconfounding. Under $\delta = 0$ (zero structural contradiction), five high-capability models across four vendors maintain \emph{perfect} accuracy up to 128{,}000 tokens (150{,}000 Claude-internal tokens)---no degradation whatsoever. Under $\delta > 0$, accuracy collapses immediately at 500 tokens. The causal variable is contradiction content, not sequence length.
+Exp.~35 and~36 provide an experimental deconfounding. Under $\delta = 0$ (zero structural contradiction), Exp.~35 shows five high-capability models across four vendors maintaining \emph{perfect} accuracy up to 128{,}000 tokens. Exp.~36 extends this to 256{,}000 tokens across three models from two vendors and reveals two nuances. First, accuracy under $\delta = 0$ \emph{does} degrade at very long contexts, but the rate is model-dependent: Nano shows $1.00 \to 0.83 \to 0.70$, Mini shows $1.00 \to 1.00 \to 0.97$, and Gemini maintains $1.00$ at all three lengths---confirming that $\mu$ decay is smooth and model-specific, not a universal cliff. Second, the subtle-contradiction ($\delta_5$) condition produces three qualitatively distinct patterns: invisible to Nano (statistically identical to $\delta_0$), catastrophic for Mini ($37\% \to 7\%$), and \emph{diluted} for Gemini ($57\% \to 90\%$, improving with context length as the single contradictory sentence becomes a smaller fraction of the total context). Under $\delta > 0$ (structural), both OpenAI models collapse to exactly $0\%$ at all lengths, while Gemini achieves partial accuracy at 32K through literal reinterpretation of self-referential contradictions (``$a = a + 1$'' $\to$ $a_{\text{new}} = a + 1$)---a failure of contradiction \emph{detection}, not computation. The causal variable is contradiction content, not sequence length---but the \emph{effective} $\delta$ of a given contradiction depends on both the model's comprehension ability and its context-length interaction.
 
 In naturalistic conversations, context length and $\delta$ are confounded: longer conversations accumulate more user corrections (``ignore what I said earlier''), topic shifts (implicit premise conflicts), and meta-directives (instructions that contradict prior instructions). Each of these introduces structural contradiction. What appears as length-dependent degradation is, at least in substantial part, $\delta$-dependent degradation masquerading as a length effect.
 
@@ -712,6 +842,8 @@ RAG: retrieve relevant chunks & Verify consistency across retrieved chunks \\
 \end{center}
 
 \noindent The distinction is testable: if context rot is primarily $\delta$-driven, then a system that filters contradictions from its context should maintain performance at lengths where an unfiltered system would fail, even without extending the context window. The invariant $\text{acc}(\delta = 0) = \mu$ across all tested models and lengths (Table~\ref{tab:exp35}) provides the baseline against which such interventions can be measured. Notably, Claude Sonnet~4.6 under $\delta > 0$ at 128{,}000 tokens \emph{detected and rejected} the injected contradictions in 100\% of trials (recognition metric), demonstrating that sufficiently capable models can maintain $\delta$-awareness even at extreme context lengths---though the strict accuracy was lower due to response format variability.
+
+Exp.~36 (Table~\ref{tab:exp36}) sharpens this picture by quantifying both terms of the survival equation at long context---and reveals a surprising interaction between them. Baseline $\mu$ degrades measurably for Nano ($1.00 \to 0.70$ across 32K--256K under $\delta_0$), barely for Mini ($1.00 \to 0.97$), and not at all for Gemini ($1.00$ at all lengths). The three-model comparison reveals a \emph{non-monotonic} relationship between capability ($\mu$) and $\delta_5$ sensitivity. Nano (lowest $\mu$) ignores the secondary-source sentence entirely (\texttt{wrong\_val\_adopted} $= 0/90$). Mini (high $\mu$, same vendor) reads and trusts it (\texttt{wrong\_val\_adopted} $= 29/90$, constant across lengths). Gemini (highest $\mu$, different vendor) reads it at short context but dilutes it at long context (\texttt{wrong\_val\_adopted}: $10/30 \to 5/30 \to 2/30$). This implies that $\delta_5$'s effective information loss depends on at least two model properties: \emph{comprehension} (ability to extract the contradictory statement, shared by Mini and Gemini but not Nano) and \emph{context integration strategy} (whether the model weighs retrieved information equally regardless of context length, as Mini appears to do, or whether dilution reduces salience, as Gemini's pattern suggests). Structural contradictions ($\delta_1$) are near-universally catastrophic, but the \emph{mechanism} of failure varies: refusal (Mini), computation-to-zero (Nano), or literal reinterpretation (Gemini).
 
 Independent support for the exponential functional form comes from Wang and Sun \citep{wang2025interference}, who found that proactive interference in LLM working memory follows a log-linear decay---mathematically equivalent to $S \propto e^{-k \cdot \text{interference}}$. Their interference variable (semantic similarity-based accumulation) differs from our $\delta$ (structural contradiction), but the convergence on the same functional form across different operationalizations strengthens the case for exponential sensitivity to accumulated conflicting information.
 
@@ -820,7 +952,7 @@ We have shown that LLM reasoning collapse under structural contradictions exhibi
 \textbf{Confirmed in two controlled domains:}
 \begin{itemize}
     \item \textbf{SAT}: The exponential penalty $e^{-\delta}$ is mathematically identical to the first moment of the solution count. Three constraint types produce predicted decay rates ($R^2 > 0.98$). The parameter-free ratio $\alpha_{\text{XOR}}/\alpha_{\text{random}} = 5.19\times$ is stable across six system sizes (CV $= 5\%$).
-    \item \textbf{LLM}: Multiplicative $\mu \times \delta$ interaction---two individually non-lethal factors become lethal in combination (ruling out additive models). Constraint quality dominates quantity ($\delta_{\text{structural}} \gg \delta_{\text{factual}}$). The cushion mechanism absorbs contradictions until overwhelmed, producing a system-specific $\delta_c$, confirmed across 11 models from 5 vendors. Collapse requires recognition capability (absent below $\sim$12B parameters), distinguishing three stages: no recognition, recognition with refusal, and recognition with attempted resolution.
+    \item \textbf{LLM}: Multiplicative $\mu \times \delta$ interaction---two individually non-lethal factors become lethal in combination (ruling out additive models). Constraint quality dominates quantity ($\delta_{\text{structural}} \gg \delta_{\text{factual}}$). The cushion mechanism absorbs contradictions until overwhelmed, producing a system-specific $\delta_c$, confirmed across 11 models from 5 vendors. Collapse requires recognition capability (absent below $\sim$12B parameters), distinguishing three stages: no recognition, recognition with refusal, and recognition with attempted resolution. A three-model, two-vendor extended experiment ($N = 810$ trials, 32K--256K tokens) reveals that the effective magnitude of subtle inter-source contradiction ($\delta_5$) depends on both model capability and context-length interaction, producing three qualitatively distinct response patterns and three distinct structural-contradiction ($\delta_1$) failure modes (refusal, computation-to-zero, literal reinterpretation).
     \item \textbf{Formal verification}: Survival selection theorem, axiom-to-exponential derivation (A1--A3 $\Rightarrow$ $e^{-\delta}$), Cauchy uniqueness ($e^{-c\delta}$ is the only continuous form), the Paley-Zygmund second moment inequality, and the pair correlation structure for threshold lower bounds verified in Lean~4 (16 modules, 160 propositions, $\texttt{sorry} = 0$, $\texttt{axiom} = 0$).
 \end{itemize}
 
