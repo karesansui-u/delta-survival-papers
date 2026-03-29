@@ -9,10 +9,13 @@ for structural collapse: theory, experiments, and formal verification.
 
 | Component | Status |
 |---|---|
-| Paper 1 — Structural Collapse | **Preprint v1.5** ([Zenodo](https://zenodo.org/records/19228441)) |
-| Paper 2 — Existence vs Discovery | Preprint |
+| Component | Status |
+|---|---|
+| Paper 1 — Structural Collapse | **Preprint v1.7** ([Zenodo](https://zenodo.org/records/19254667)) |
+| Paper 2 — Existence vs Discovery | Preprint ([Zenodo](https://zenodo.org/records/18943573)) |
 | Paper 3 — Cognitive Sleep for LLMs | **Preprint v1** ([Zenodo](https://zenodo.org/records/19322371)) |
 | Lean 4 — Formal Verification | Complete (`sorry = 0`, `axiom = 0`) |
+| OSF Project | [osf.io/mdh7b](https://osf.io/mdh7b/) |
 
 **Key results:**
 - Parameter-free prediction of XOR-SAT threshold ratio:
