@@ -11,6 +11,7 @@ for structural collapse: theory, experiments, and formal verification.
 |---|---|
 | Paper 1 — Structural Collapse | **Preprint v1.5** ([Zenodo](https://zenodo.org/records/19228441)) |
 | Paper 2 — Existence vs Discovery | Preprint |
+| Paper 3 — Cognitive Sleep for LLMs | **Preprint v1** |
 | Lean 4 — Formal Verification | Complete (`sorry = 0`, `axiom = 0`) |
 
 **Key results:**
@@ -115,6 +116,32 @@ The sensitivity exponent c is solver-dependent
 - English: [`paper2/paper2_main.tex`](paper2/paper2_main.tex) / [PDF](paper2/paper2_main.pdf)
 - 日本語: [`paper2/paper2_main_ja.tex`](paper2/paper2_main_ja.tex) / [PDF](paper2/paper2_main_ja.pdf)
 
+### Paper 3 — Cognitive Sleep for LLMs / LLMの認知的睡眠
+
+**"Cognitive Sleep for LLMs:
+How Contradiction Metabolism Prevents Context Rot"**
+
+Context rot is caused by contradiction accumulation, not context length.
+Even Google's 1M-token context window drops 47.8pp under contradictions.
+We propose an external metabolism architecture inspired by human sleep
+that processes knowledge during idle time.
+Validated across 8 models (8B–27B), 11 paired comparisons (sign test p = 0.0107),
+and a three-condition experiment (n = 3; ON 73.3% vs OFF 21.1%, Kruskal-Wallis p = 0.027).
+Unexpected finding: metabolized systems exceed the contradiction-free baseline
+(73.3% vs 56.7%), suggesting knowledge anchoring via contradiction pair preservation.
+
+コンテキストロットの原因はコンテキスト長ではなく矛盾の蓄積。
+Googleの100万トークン窓でも矛盾下では47.8pp劣化する。
+人間の睡眠中の記憶整理に着想した外付け代謝アーキテクチャを提案。
+8モデル（8B–27B）・11ペア比較（符号検定 p = 0.0107）、
+三条件実験（n = 3; ON 73.3% vs OFF 21.1%、Kruskal-Wallis p = 0.027）で検証。
+予期しない発見：代謝システムが矛盾ゼロの基準値を超える
+（73.3% vs 56.7%）。矛盾ペア保持による知識アンカリング効果を示唆。
+
+- English: [`paper3/metabolic_architecture.tex`](paper3/metabolic_architecture.tex) / [PDF](paper3/metabolic_architecture.pdf)
+- 日本語: [`paper3/metabolic_architecture_ja.tex`](paper3/metabolic_architecture_ja.tex) / [PDF](paper3/metabolic_architecture_ja.pdf)
+- Implementation: [DeltaZero](https://github.com/karesansui-u/delta-zero) / [delta-prune](https://github.com/karesansui-u/delta-prune)
+
 ### Lean 4 — Formal Verification / 形式検証
 
 16 modules, 160 verified propositions,
@@ -141,6 +168,7 @@ Paley–Zygmund第二モーメント不等式、ペア相関構造、
 delta-survival-paper/
   paper1/          Paper 1 tex, figures, PDF (EN/JA)
   paper2/          Paper 2 tex, figures, PDF (EN/JA)
+  paper3/          Paper 3 tex, figures, PDF (EN/JA)
   lean/            Lean 4 formal verification (16 modules)
   analysis/
     sat/           SAT experiments & second moment gap analysis (Papers 1 & 2)
@@ -183,9 +211,16 @@ Akihito Sunagawa
   doi    = {10.5281/zenodo.18943573},
   url    = {https://zenodo.org/records/18943573}
 }
+
+@misc{sunagawa2026cognitive,
+  author = {Sunagawa, Akihito},
+  title  = {Cognitive Sleep for LLMs:
+            How Contradiction Metabolism Prevents Context Rot},
+  year   = {2026}
+}
 ```
 
 ## License
 
-- Papers (`paper1/`, `paper2/`): [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+- Papers (`paper1/`, `paper2/`, `paper3/`): [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 - Code (`lean/`, `analysis/`): [Apache 2.0](LICENSE)
