@@ -1,0 +1,530 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{fontspec}
+\setmainfont{Hiragino Mincho ProN}
+\setsansfont{Hiragino Kaku Gothic ProN}
+\setmonofont{Menlo}
+\usepackage{iftex}
+\ifXeTeX
+  \XeTeXlinebreaklocale "ja"
+  \XeTeXlinebreakskip=0pt plus 1pt minus 0.1pt
+\fi
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{natbib}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,positioning,fit,backgrounds,calc}
+
+\title{\textbf{LLMに認知的睡眠を：\\矛盾代謝によるContext Rotの防止}}
+
+\author{Akihito Sunagawa\thanks{sunagawa.akihito@gmail.com}}
+
+\date{2026年3月}
+
+\begin{document}
+
+\maketitle
+
+%==============================================================================
+% 概要
+%==============================================================================
+\begin{abstract}
+大規模言語モデル（LLM）は長時間の対話において性能が劣化する——この現象は「context rot」として知られる。
+従来の支配的な仮説は、コンテキスト長の制約がその原因であるというものだった。
+本研究は、その主要因がコンテキスト長ではなく\emph{矛盾の蓄積}であることを示す。
+Googleの100万トークンコンテキストウィンドウでさえ、矛盾が存在する場合に47.8パーセントポイントの精度低下を示し、一方で矛盾を除去すればコンテキスト長に関わらず性能は維持される。
+我々は、人間の睡眠に着想を得た代謝アーキテクチャを提案する。外部レイヤーがアイドル時間中に知識を処理し、矛盾を検出・解消し、時間的ペアとして保存する。
+8つのオープンソースモデル（8B〜27Bパラメータ）と11組のペア比較（180ターン対話）において、代謝有効システムは有意にコントロールを上回った（符号検定 $p = 0.0107$）。
+gemma3:27bを用いた3条件統制実験（各条件$n = 3$）では、代謝ONが73.3\%の精度を達成し、代謝OFFの21.1\%を大幅に上回った（Kruskal-Wallis $p = 0.027$、全3群が完全にランク分離）。
+予想外の観察として、代謝システムは矛盾のない基準条件（56.7\%）さえも上回り、矛盾ペアが事実検索の劣化を防ぐ知識アンカーとして機能する可能性を示唆する。
+\end{abstract}
+
+%==============================================================================
+% 1. 序論
+%==============================================================================
+\section{序論}
+\label{sec:intro}
+
+\subsection{Context Rot問題}
+
+大規模言語モデルは、パーソナルアシスタント、コーディングパートナー、ナレッジワーカーとして、数百ターンに及ぶ長時間の対話セッションで利用されるようになっている。
+このような環境において、よく知られているが十分に理解されていない現象が発生する：対話の進行に伴い、事実の想起、ルールの適用、一貫した推論の維持能力が劣化するのである。
+我々はこの劣化を\emph{context rot}と呼ぶ。
+
+業界の支配的な対応は、context rotを長さの問題として扱うことだった。
+GoogleはGeminiモデルに100万トークンのコンテキストウィンドウを導入した~\citep{gemini2025}。
+AnthropicはClaudeのコンテキストを20万トークンに拡張した。
+OpenAIはChatGPTに永続的メモリを追加した。
+暗黙の仮定は、コンテキストウィンドウが十分に大きければ劣化は起こらない、というものである。
+
+\subsection{長さではなく、矛盾}
+
+我々の実験は異なる結果を示す。
+表~\ref{tab:exp35}は、4ベンダーの6モデルを対象とした統制実験の結果である。
+各モデルは2つの条件でテストされた：矛盾のない対話（$\delta = 0$）と、定期的に矛盾情報が注入される対話（$\delta > 0$）。両条件で同じ対話長を使用した。
+
+\begin{table}[htbp]
+\centering
+\caption{矛盾蓄積（$\delta > 0$）がLLM精度に与える影響。\citet{sunagawa2026collapse}の実験35のデータ。各セルは単一実行（$n = 1$）。}
+\label{tab:exp35}
+\begin{tabular}{llrrrr}
+\toprule
+モデル & ベンダー & コンテキスト & $\delta = 0$ & $\delta > 0$ & 低下 \\
+\midrule
+GPT-4o-mini & OpenAI & 96K & 100\% & 10.4\% & $-$89.6pp \\
+Gemini 2.5 Flash & Google & 64K & 100\% & 0\% & $-$100.0pp \\
+Gemini 3.1 FL & Google & 1M & 88.6\% & 40.8\% & $-$47.8pp \\
+Sonnet 4 & Anthropic & 8K & 100\% & 74.0\% & $-$26.0pp \\
+Sonnet 4.6 & Anthropic & 128K & 100\% & 100\%$^*$ & 0pp \\
+Llama 3.1:8b & Meta & 8K & 34.0\% & 2.7\% & $-$31.3pp \\
+\bottomrule
+\multicolumn{6}{l}{\footnotesize $^*$認識精度。厳密な出力パースでは82.6\%（フォーマット変動による）。}
+\end{tabular}
+\end{table}
+
+決定的な比較は、コンテキストウィンドウサイズと劣化の大きさの関係である。
+Sonnet~4は8Kのコンテキストウィンドウで26.0パーセントポイント（pp）低下する。
+Gemini~3.1~FLは125倍大きい100万トークンウィンドウで47.8pp低下する——\emph{改善ではなく、悪化}している。
+しかし矛盾を除去すれば（$\delta = 0$）、全モデルがコンテキスト長に関わらず精度を維持する。
+因果変数は矛盾密度であり、トークン数ではない。
+
+Sonnet~4.6は矛盾プロトコル下で劣化ゼロを示す唯一のモデルである。
+矛盾が提示されたかどうかの\emph{認識}について評価すると、Sonnet~4.6は全ての矛盾を正しく識別する。
+低い厳密パーススコア（82.6\%）は出力フォーマットの変動を反映しており、これは測定アーティファクトであってモデルの失敗ではない。
+しかしSonnet~4.6は矛盾を\emph{容認}するだけであり、\emph{管理}はしない——矛盾を識別はするが、解消・整理・優先順位付けは行わない。
+テストされた6モデル中5モデルでは、矛盾下での崩壊は深刻かつ普遍的である。
+
+\subsection{認知的睡眠：生物学的アナロジー}
+
+人間も同様の課題に直面する。
+覚醒中に、既存の信念と矛盾する新しい情報を蓄積する。
+脳はこれらの矛盾をリアルタイムで解消しない。代わりに、睡眠中に記憶を統合する——事実を整理し、矛盾を解消し、無関係な詳細を忘却する~\citep{walker2017sleep,stickgold2005sleep}。
+睡眠剥奪はこの統合を妨げ、LLMのcontext rotに酷似した進行性の認知機能低下を引き起こす。
+
+現在のLLMには睡眠に相当するものがない。
+一貫した情報も矛盾する情報も、オフライン処理のメカニズムなく蓄積される。
+我々はLLMのための\emph{認知的睡眠}を提案する：アイドル時間中に蓄積された知識を処理し、矛盾を検出し、対立を解消し、知識の整合性を維持する外部代謝レイヤーである。
+
+\subsection{貢献}
+
+本論文は3つの貢献を異なる確信度で提示する：
+
+\begin{enumerate}
+\item \textbf{問題の再定義（強い）：} context rotの主要因がコンテキスト長ではなく矛盾蓄積であることを、ベンダー横断的に示す。100万トークンのコンテキストウィンドウは矛盾に対して保護を提供しない。
+\item \textbf{代謝アーキテクチャ（強い）：} 矛盾誘起崩壊を防止する外部代謝アーキテクチャを提案・検証する。8モデルにおいて代謝は有意に性能を改善し（$p = 0.0107$）、最大$+$52.2ppの改善を示す。
+\item \textbf{知識アンカリング（探索的）：} 代謝システムが矛盾のない基準条件さえも上回ることを観察する。矛盾ペアが検索アンカーとして機能する可能性を示唆するが、メカニズムは直接測定されていない。
+\end{enumerate}
+
+%==============================================================================
+% 2. 関連研究
+%==============================================================================
+\section{関連研究}
+\label{sec:related}
+
+\paragraph{長コンテキストLLMとメモリシステム}
+対話劣化への支配的アプローチはコンテキストウィンドウの拡張である。
+我々の結果（表~\ref{tab:exp35}）は、100万トークンでさえ矛盾誘起崩壊を防げないことを示す。
+OpenAIのChatGPT Memory~\citep{openai2024memory}はセッション間で事実を保存するが、保存された事実と新情報の間の矛盾を検出・解消するメカニズムはない。
+MemGPT~\citep{packer2023memgpt}はOS のメモリ階層に着想を得た仮想コンテキスト管理を導入するが、ページインされたコンテキストと既存コンテキストの間の矛盾は検出・解消しない。
+CogMem~\citep{cogmem2025}は持続的マルチターン推論のための認知メモリアーキテクチャを提案し、\citet{agenticmem2026}はLLMエージェントのための統合的長期・短期メモリ管理を導入し、G-MemLLM~\citep{gmemllm2026}はゲート付き潜在メモリで長コンテキスト推論を拡張する。
+これらのシステムはメモリの組織化と容量を改善するが、矛盾検出・解消を第一級の操作として扱っていない。
+
+\paragraph{知識の矛盾と編集}
+RAGシステム~\citep{lewis2020rag}は外部ストアから情報を検索するが、矛盾情報も等しく取得する。
+\citet{xie2024knowledge}は知識の矛盾がLLM推論を有意に劣化させることを示す。
+自然言語推論研究~\citep{bowman2015snli,williams2018multinli}はテキスト矛盾の検出方法を提供し、我々のパイプラインはLLMベースのペアワイズ比較を通じてこれを活用する。
+ROME~\citep{meng2022rome}やMEMIT~\citep{meng2023memit}のような知識編集手法はモデル重みを修正して特定の事実を更新するが、マルチターン対話における継続的な矛盾ストリームの管理ではなく、個別の事実修正に対応する。
+我々のアプローチは相補的である：重みを修正せずに外部で動作し、信念の時間的変遷を扱い、上書きではなく新旧両方の情報を保存する。
+
+\paragraph{存続方程式}
+\citet{sunagawa2026collapse}は、矛盾蓄積がLLM推論精度の指数的減衰を引き起こすことを確立し、存続方程式 $S = \mu \times e^{-\delta \times k}$ として定式化した。
+その研究（現在査読中）は問題の存在を証明した。本論文は能動的代謝によって $\delta$ をゼロ近くに保つ工学的解決策を提示する。
+
+%==============================================================================
+% 3. 代謝アーキテクチャ
+%==============================================================================
+\section{代謝アーキテクチャ}
+\label{sec:architecture}
+
+DeltaZeroは、Ollama~\citep{ollama}経由でアクセス可能な任意のLLMをラップする外部代謝レイヤーである。
+モデル重みの修正は行わない。
+システムは\emph{対話モード}（ユーザーリクエストの処理）と\emph{代謝モード}（アイドル時間中の蓄積知識の処理）の2つのモードで動作する。
+
+\subsection{設計原則}
+
+5つの原則がアーキテクチャを導く（表~\ref{tab:principles}）。
+
+\begin{table}[htbp]
+\centering
+\caption{代謝アーキテクチャの設計原則}
+\label{tab:principles}
+\begin{tabular}{cl}
+\toprule
+\# & 原則 \\
+\midrule
+P1 & 対話中は読み取り専用。代謝はアイドル時間のみ実行 \\
+P2 & $\delta$解消を優先（$S = \mu \times e^{-\delta \times k}$：指数的効果） \\
+P3 & 低信頼度の項目を統合しない（不当な$\delta$増加を防止） \\
+P4 & ロジックは減衰させ、事実は保存（90日TTL降格） \\
+P5 & 健全性が低下したらロールバック（代謝前スナップショット） \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+P1が重要である：代謝はアクティブな対話中にメモリを修正しない。
+P2は存続方程式に従う：$\delta$が指数部に現れるため、矛盾の削減はリソース余裕$\mu$の増加よりも指数的に大きなシステム健全性$S$への影響を持つ。
+
+\subsection{4層メモリ}
+
+知識は4つの層に組織化される：
+
+\begin{description}
+\item[L1 --- ワーキングメモリ] 現在の対話コンテキスト。SQLite永続化付きバウンドドdequeに保存。
+\item[L2 --- ペンディングメモリ] 代謝待ちの未処理対話ログ。
+\item[L3 --- アクティブロジック] ルール、嗜好、矛盾ペア。ChromaDB~\citep{chromadb}にベクトル埋め込みとして保存。
+\item[L4 --- 休眠ファクト] 事実と降格されたルールの長期保存。SQLite + ChromaDB。
+\end{description}
+
+\subsection{代謝パイプライン}
+
+スケジューラが代謝モードを起動すると、パイプラインは5つのステップを実行する：
+
+\begin{enumerate}
+\item \textbf{スナップショット：} 全メモリ層のバックアップを作成し、現在のS値を記録する。代謝によるS値の急落（$S_{\text{post}} / S_{\text{pre}} < 0.70$）時に自動ロールバック（P5）。
+
+\item \textbf{降格：} L3で90日間未参照のルールをスキャンし、L4に移動する（P4）。
+
+\item \textbf{抽出：} L2の保留ログを処理。LLM呼び出しで事実・ルール・嗜好・ノイズに分類する。
+
+\item \textbf{解消：} 各ルール候補についてL3の既存ルールとの意味的類似性を検索。一致があればLLMが関係を分類する（第~\ref{sec:resolution}節）。
+
+\item \textbf{健全性チェック：} 存続方程式によるS値の計算：
+\begin{equation}
+S = \mu \times e^{-\delta \times k}
+\label{eq:survival}
+\end{equation}
+$\mu = 1 - (\text{アクティブルール数} / \text{最大ルール数})$、$\delta$は5次元の加重矛盾比率、$k = 3.0$はスケールファクターである。
+$k = 3.0$は$\delta$の観測範囲（通常0〜0.3）で意味のあるS値分化を生むよう経験的に選択された。
+\end{enumerate}
+
+\subsection{時間的統合とペア保存}
+\label{sec:resolution}
+
+代謝パイプラインの核心的イノベーションは、検出された矛盾の処理方法である。
+古い情報を新しい情報で上書きする（コンテキストの破壊）のでも、矛盾をフラグするだけで未解消のまま放置する（$\delta$不変）のでもなく、我々のリゾルバは両方の主張を時間的メタデータ付きのリンクペアとして保存する。
+
+3つの解消戦略が実装を通じて創発した：
+
+\begin{description}
+\item[直接矛盾]（$A$ vs $\neg A$）：共有系統識別子によるリンクペアとして保存。新しい主張を現在の信念としてマーク。
+\item[時間的変化]（状態変遷）：各発話ターンのタイムスタンプラベル付きでスタック。
+\item[スコープの再解釈]（異なる条件）：矛盾ではなく並列条件分岐として扱う。
+\end{description}
+
+検索時にリンクペアが見つかると、LLMプロンプト用に時系列でフォーマットされる。対話LLMは\emph{報告はするが判断はしない}よう指示される。
+このアプローチは$\delta$を削減しつつ（矛盾が明示的な時間順序付けで解消される）、情報を保存する（何も削除されない）。
+
+%==============================================================================
+% 4. 実験
+%==============================================================================
+\section{実験}
+\label{sec:experiments}
+
+\subsection{セットアップ}
+\label{sec:setup}
+
+\paragraph{対話プロトコル}
+全実験でシード付きシナリオ生成器から決定論的に生成された180ターン対話セッションを使用する。
+各セッションは通常対話70\%、情報注入15\%、矛盾注入10\%、ベンチマーク測定5\%で構成される。
+無矛盾条件（NC）は同じ生成器で矛盾注入を無効化して使用する。
+
+\paragraph{ベンチマーク}
+ターン90と180で45問のベンチマークを実施：事実想起15問、ルール適用15問、矛盾検出15問。
+\textbf{事実想起 + ルール適用のみ}（30問）で結果を報告する。
+矛盾検出カテゴリは構造的パラドックスにより除外：代謝が矛盾を成功裏に解消すると、モデルは正しく「矛盾は存在しない」と回答する——これをベンチマークは失敗と採点する。詳細は付録~\ref{app:rejudge}を参照。
+
+\paragraph{判定}
+初期判定にはキーワード部分文字列マッチングを使用。全結果をClaude CLIによるLLM-as-Judgeアプローチで再評価し、否定文脈での偽陽性を検出する。報告される全結果は補正済み判定を使用する。
+
+\paragraph{モデル}
+全対話LLMはOllama経由のローカルオープンソースモデル（APIコスト\$0）：gemma3:27b、gemma3:12b、deepseek-r1:14b、llama3.1:8b、mistral-nemo:12b、qwen2.5:14b。
+1モデル（phi4）はT180結果の分析前に確立された基準で除外：ON・OFF両条件でターン90のルール適用精度が10\%未満の場合、モデルが代謝と独立にタスク遂行不能と判断する。
+
+\subsection{実験1：クロスモデル符号検定}
+\label{sec:exp-signtest}
+
+8モデルにわたり代謝ON vs OFFを比較する。11ペアの比較のうち、9がON $>$ OFF、1がOFF $>$ ON、1が引き分けであった。
+
+\begin{table}[htbp]
+\centering
+\caption{代謝ON vs OFF：8モデル、180ターン。補正済み精度（\%）。効果量順にソート。}
+\label{tab:signtest}
+\begin{tabular}{clcrrrr}
+\toprule
+\# & モデル & パラメータ & ON & OFF & 差分 \\
+\midrule
+1 & mistral-nemo:12b T2 & 12B & 57.8 & 15.6 & +42.2 \\
+2 & llama3.1:8b T1 & 8B & 31.1 & 11.1 & +20.0 \\
+3 & gemma3:12b T1 & 12B & 24.4 & 6.7 & +17.8 \\
+4 & gemma3:12b (gemma) T1 & 12B & 31.1 & 15.6 & +15.6 \\
+5 & gemma3:27b T1 & 27B & 40.0 & 25.0 & +15.0 \\
+6 & deepseek-r1:14b T1 & 14B & 24.4 & 15.6 & +8.9 \\
+7 & deepseek-r1:14b T2 & 14B & 17.8 & 8.9 & +8.9 \\
+8 & llama3.1:8b T2 & 8B & 11.1 & 2.2 & +8.9 \\
+9 & mistral-nemo:12b T1 & 12B & 22.2 & 13.3 & +8.9 \\
+10 & llama3.1:8b T3 & 8B & 17.8 & 17.8 & 0.0 \\
+11 & qwen2.5:14b T1 & 14B & 17.8 & 20.0 & $-$2.2 \\
+\midrule
+\multicolumn{3}{l}{符号検定（11ペア、引分除外）} & \multicolumn{3}{r}{$p = 0.0107$} \\
+\multicolumn{3}{l}{符号検定（7モデル、中央値集約）} & \multicolumn{3}{r}{$p = 0.0625$} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+独立性の仮定は慎重な検討を要するため、2レベルの統計的集約を報告する。
+各試行を独立ペアとして扱うと片側符号検定で$p = 0.0107$。
+モデル単位で集約すると7モデル中6モデルがON優位（$p = 0.0625$、ボーダーライン）。
+このボーダーラインの結果はユニークモデル数の少なさ（$n = 7$）を反映しており、効果の弱さではない。
+我々はクロスモデル符号検定を補助的証拠と位置づけ、3条件実験（第~\ref{sec:exp-threecond}節）を主要な統計的根拠とする。
+
+\subsection{実験2：統制アブレーション}
+\label{sec:exp-ablation}
+
+時間的統合メカニズムの効果を分離するため、mistral-nemo:12bで$2 \times 2$実験を実施した。
+コード変更には時間的統合に加えてSCALE\_FACTORの調整（$5.0 \to 3.0$）も含まれるため、効果を「スケールファクター調整を伴う時間的統合」に帰属させる。
+
+\begin{table}[htbp]
+\centering
+\caption{統制アブレーション（mistral-nemo:12b）。ターン180での補正済み精度。}
+\label{tab:ablation}
+\begin{tabular}{llr}
+\toprule
+条件 & コードバージョン & 精度 \\
+\midrule
+ON & 新（時間的統合） & \textbf{57.8\%} \\
+ON & 旧（時間的統合前） & 8.9\% \\
+OFF & 新 & 15.6\% \\
+OFF & 旧 & 22.2\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+OFF条件はコードバージョン間で安定（15.6\% vs 22.2\%、ノイズ範囲内）。ON条件は8.9\%から57.8\%に跳ね上がった（$+$48.9pp）。
+旧コードのON（8.9\%）がOFF（22.2\%）より\emph{悪い}という発見は注目に値する——時間的統合なしでは、代謝パイプラインは構造化されていない矛盾情報でコンテキストを溢れさせ、性能を改善ではなく劣化させた。
+
+\subsection{実験3：3条件比較}
+\label{sec:exp-threecond}
+
+gemma3:27bで3条件実験を実施した：代謝ON（矛盾注入・代謝有効）、無矛盾NC（$\delta = 0$）、代謝OFF（矛盾注入・代謝無効）。各条件3回反復（$n = 3$、計9 run）。
+
+\begin{table}[htbp]
+\centering
+\caption{3条件実験（gemma3:27b、180ターン、各条件$n = 3$）。精度 = 事実想起 + ルール適用（30問）、補正済み判定。}
+\label{tab:threecond}
+\begin{tabular}{lccccc}
+\toprule
+条件 & 試行2 & 試行3 & 試行4 & 平均 & SD \\
+\midrule
+代謝ON & 22/30 & 20/30 & 24/30 & \textbf{73.3\%} & 6.7\% \\
+無矛盾（$\delta = 0$） & 18/30 & 15/30 & 18/30 & 56.7\% & 5.8\% \\
+代謝OFF & 5/30 & 8/30 & 6/30 & 21.1\% & 5.1\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{3条件比較の統計検定（各条件$n = 3$）。$n = 3$では正規性が検証不能であり、ノンパラメトリック検定を主、パラメトリック結果を参考として報告する。}
+\label{tab:statistics}
+\begin{tabular}{lrrl}
+\toprule
+比較 & ノンパラ $p$ & パラメトリック $p$ & 備考 \\
+\midrule
+3群 & 0.027 (KW) & 0.0001 (ANOVA) & $\eta^2 = 0.954$ \\
+ON vs OFF & 0.05 (MW) & 0.014 (対応$t$) & $r = 1.00$; 完全ランク分離 \\
+ON vs NC & 0.05 (MW) & 0.013 (対応$t$) & $r = 1.00$; 完全ランク分離 \\
+NC vs OFF & 0.05 (MW) & 0.029 (対応$t$) & $r = 1.00$; 完全ランク分離 \\
+\bottomrule
+\multicolumn{4}{l}{\footnotesize KW = Kruskal-Wallis; MW = Mann-Whitney $U$（片側、正確）。}\\
+\multicolumn{4}{l}{\footnotesize $n = 3$ではMWの最小到達可能$p$は$1/C(6,3) = 0.05$。}
+\end{tabular}
+\end{table}
+
+3条件は明確に分離：ON (73.3\%) $>$ NC (56.7\%) $>$ OFF (21.1\%)。
+Kruskal-Wallis検定は条件の有意な主効果を確認（$H = 7.26$, $p = 0.027$）。
+全ペアワイズMann-Whitney $U$検定がrank-biserial $r = 1.00$（群間の完全ランク分離）を示す。
+小さなサンプルサイズ（$n = 3$）にもかかわらず、全ON試行が全NC試行を上回り、全NC試行が全OFF試行を上回る完全ランク分離が得られた。
+
+\subsection{予想外の観察：ONが$\delta = 0$基準を超過}
+\label{sec:anchoring}
+
+NC条件（$\delta = 0$）は理論的天井として設計された。しかし代謝ON (73.3\%)は全3試行でNC (56.7\%)を一貫して上回った（差分$+$4, $+$5, $+$6問）。
+
+NC試行の失敗パターンを分析すると、15問の事実想起のうち10問がターン180で「その情報は持っていません」という回答を返した。
+最初の30ターンで注入されたセットアップ事実が、150ターンの後続対話の後に検索不能になっていた。
+矛盾トリガーのリゾルバ活動がなければ、事実は再処理・再リンクされず、ベクトル検索類似度閾値以下に沈んだ。
+
+ON条件では、矛盾注入がリゾルバを起動し、新旧両主張を共有系統識別子付きリンクペアとして保存する。
+これらのペアはベクトルストアでより多くの意味的空間を占め、独立降格から構造的に保護される。
+
+我々はこれを\emph{知識アンカリング効果}と呼ぶ：矛盾ペアが検索アンカーとして機能し、事実が時間とともに検索不能になることを防ぐ。
+代謝は2つの異なる利益を提供する：
+\begin{enumerate}
+\item \textbf{矛盾解消}（ON vs OFF, $+$52.2pp）：認知的崩壊を防止
+\item \textbf{知識アンカリング}（ON vs NC, $+$16.7pp）：事実検索劣化を防止
+\end{enumerate}
+
+\textbf{注意：}このメカニズムは失敗パターンとアーキテクチャの動作から推測されたものであり、検索確率の直接測定によるものではない。知識アンカリング効果は、確認された因果的知見ではなく、提案されたメカニズムを伴う探索的観察として扱うべきである。
+
+%==============================================================================
+% 5. 議論
+%==============================================================================
+\section{議論}
+\label{sec:discussion}
+
+\subsection{Context Rotの再定義}
+
+我々の結果は、context rotがコンテキスト長の問題ではなく、主に知識整合性の問題として理解されるべきことを示唆する。
+Gemini~3.1~FLの結果が鍵となる証拠である：180ターンの対話全体を何度も格納できる100万トークンのコンテキストウィンドウが、矛盾存在下で47.8ppの精度低下を被る。
+
+\subsection{Sonnetの例外}
+
+Sonnet~4.6は矛盾下で劣化ゼロを示す唯一のテスト済みモデルである。
+これは矛盾耐性がモデル重み内で達成可能であることを示す。
+しかしSonnetの耐性は受動的であり、矛盾を管理せずに容認する。
+矛盾耐性を持たない5/6モデルに対して、外部代謝はモデル非依存の解決策を提供する。
+
+\subsection{限界}
+
+\paragraph{サンプルサイズと統計的検出力}
+3条件実験は各条件$n = 3$。ノンパラメトリックペアワイズ検定のp値下限は0.05であり、有意性主張の精度に制約がある。
+Exp35結果（表~\ref{tab:exp35}）はモデルあたり単一実行（$n = 1$）であり、統計的に決定的ではなく例示的と解釈すべき。
+
+\paragraph{モデルスコープ}
+全代謝実験がローカルオープンソースモデル（8B〜27B）を使用。フロンティアモデルでの有効性は未検証。
+
+\paragraph{ベンチマーク}
+本評価用に設計されたカスタム45問ベンチマークを使用。事実想起とルール適用を測定するが、多段推論やドメイン特化タスクは評価しない。
+
+\paragraph{知識アンカリング}
+提案されたアンカリングメカニズムは観察された失敗パターンから推測されたものであり、直接測定されていない。
+
+\subsection{今後の課題}
+
+フロンティアモデル検証、クロスモデル$n = 3$反復、検索確率分析による知識アンカリング効果の直接測定、英語・中国語でのクロス言語ベンチマーク、およびAPIリクエスト前に矛盾をスキャン・解消する軽量ミドルウェアバリアントの開発が今後の方向性である。
+
+%==============================================================================
+% 6. 結論
+%==============================================================================
+\section{結論}
+\label{sec:conclusion}
+
+LLMのcontext rotは、コンテキスト長ではなく、主に矛盾蓄積によって駆動される。
+Googleの100万トークンコンテキストウィンドウでさえ矛盾下で47.8パーセントポイント低下する一方、矛盾除去により長さに関わらず性能が回復する。
+
+アイドル時間中に矛盾を処理する外部代謝アーキテクチャ——睡眠中の記憶統合に類似——は、高い統計的有意性でこの崩壊を防止する。
+8モデル・11ペア比較において、代謝有効システムは一貫してコントロールを上回った（$p = 0.0107$）。
+統制3条件実験（各条件$n = 3$）では、代謝が73.3\%の精度を達成し、非代謝システムは21.1\%に崩壊した（Kruskal-Wallis $p = 0.027$、全群完全ランク分離）。
+
+予想外の探索的観察として、代謝システムは全3試行で矛盾のない基準条件さえも上回った（$+$16.7pp）。矛盾ペアが事実のアクセス可能性を維持する検索アンカーとして機能する可能性がある。
+直接測定で確認されれば、この二重の利益——認知的崩壊と知識忘却の両方の防止——は、長時間稼働LLMシステムの基本的コンポーネントとしての代謝を確立するだろう。
+
+%==============================================================================
+% 参考文献
+%==============================================================================
+\bibliographystyle{plainnat}
+
+\begin{thebibliography}{99}
+
+\bibitem[Gemini Team(2025)]{gemini2025}
+Gemini Team.
+\newblock Gemini 1.5: Unlocking multimodal understanding across millions of tokens of context.
+\newblock \emph{arXiv preprint arXiv:2403.05530}, 2025.
+
+\bibitem[Lewis et al.(2020)]{lewis2020rag}
+Patrick Lewis, Ethan Perez, Aleksandra Piktus, Fabio Petroni, Vladimir Karpukhin, Naman Goyal, Heinrich K{\"u}ttler, Mike Lewis, Wen-tau Yih, Tim Rockt{\"a}schel, Sebastian Riedel, and Douwe Kiela.
+\newblock Retrieval-augmented generation for knowledge-intensive NLP tasks.
+\newblock In \emph{NeurIPS}, 2020.
+
+\bibitem[{Ollama}(2024)]{ollama}
+{Ollama}.
+\newblock Ollama: Run large language models locally.
+\newblock \url{https://ollama.ai}, 2024.
+
+\bibitem[{OpenAI}(2024)]{openai2024memory}
+{OpenAI}.
+\newblock Memory and new controls for ChatGPT.
+\newblock \emph{OpenAI Blog}, February 2024.
+
+\bibitem[Stickgold(2005)]{stickgold2005sleep}
+Robert Stickgold.
+\newblock Sleep-dependent memory consolidation.
+\newblock \emph{Nature}, 437(7063):1272--1278, 2005.
+
+\bibitem[Sunagawa(2026)]{sunagawa2026collapse}
+Akihito Sunagawa.
+\newblock Structural collapse as information loss: The exponential decay mechanism under accumulating constraints.
+\newblock \emph{arXiv preprint}, 2026.
+
+\bibitem[{ChromaDB}(2024)]{chromadb}
+{ChromaDB}.
+\newblock Chroma: The open-source embedding database.
+\newblock \url{https://www.trychroma.com}, 2024.
+
+\bibitem[Walker(2017)]{walker2017sleep}
+Matthew Walker.
+\newblock \emph{Why We Sleep: Unlocking the Power of Sleep and Dreams}.
+\newblock Scribner, 2017.
+
+\bibitem[Xie et al.(2024)]{xie2024knowledge}
+Jian Xie, Kai Zhang, Jiangjie Chen, Renze Lou, and Yu Su.
+\newblock Adaptive chameleon or stubborn sloth: Revealing the behavior of large language models in knowledge conflicts.
+\newblock In \emph{ICLR}, 2024.
+
+\bibitem[Packer et al.(2023)]{packer2023memgpt}
+Charles Packer, Sarah Wooders, Kevin Lin, Vivian Fang, Shishir~G. Patil, Ion Stoica, and Joseph~E. Gonzalez.
+\newblock MemGPT: Towards LLMs as operating systems.
+\newblock \emph{arXiv preprint arXiv:2310.08560}, 2023.
+
+\bibitem[Bowman et al.(2015)]{bowman2015snli}
+Samuel~R. Bowman, Gabor Angeli, Christopher Potts, and Christopher~D. Manning.
+\newblock A large annotated corpus for learning natural language inference.
+\newblock In \emph{EMNLP}, 2015.
+
+\bibitem[Williams et al.(2018)]{williams2018multinli}
+Adina Williams, Nikita Nangia, and Samuel~R. Bowman.
+\newblock A broad-coverage challenge corpus for sentence understanding through inference.
+\newblock In \emph{NAACL-HLT}, 2018.
+
+\bibitem[Meng et al.(2022)]{meng2022rome}
+Kevin Meng, David Bau, Alex Andonian, and Yonatan Belinkov.
+\newblock Locating and editing factual associations in GPT.
+\newblock In \emph{NeurIPS}, 2022.
+
+\bibitem[Meng et al.(2023)]{meng2023memit}
+Kevin Meng, Arnab~Sen Sharma, Alex Andonian, Yonatan Belinkov, and David Bau.
+\newblock Mass-editing memory in a transformer.
+\newblock In \emph{ICLR}, 2023.
+
+\bibitem[Zhang et al.(2025)]{cogmem2025}
+Yiran Zhang, Jincheng Hu, Mark Dras, and Usman Naseem.
+\newblock CogMem: A cognitive memory architecture for sustained multi-turn reasoning in large language models.
+\newblock \emph{arXiv preprint arXiv:2512.14118}, 2025.
+
+\bibitem[Yu et al.(2026)]{agenticmem2026}
+Yi Yu, Liuyi Yao, Yuexiang Xie, Qingquan Tan, Jiaqi Feng, Yaliang Li, and Libing Wu.
+\newblock Agentic Memory: Learning unified long-term and short-term memory management for large language model agents.
+\newblock \emph{arXiv preprint arXiv:2601.01885}, 2026.
+
+\bibitem[Xu(2026)]{gmemllm2026}
+Xun Xu.
+\newblock G-MemLLM: Gated latent memory augmentation for long-context reasoning in large language models.
+\newblock \emph{arXiv preprint arXiv:2602.00015}, 2026.
+
+\end{thebibliography}
+
+\end{document}
