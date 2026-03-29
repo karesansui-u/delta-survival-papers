@@ -11,7 +11,7 @@ for structural collapse: theory, experiments, and formal verification.
 |---|---|
 | Paper 1 — Structural Collapse | **Preprint v1.5** ([Zenodo](https://zenodo.org/records/19228441)) |
 | Paper 2 — Existence vs Discovery | Preprint |
-| Paper 3 — Cognitive Sleep for LLMs | **Preprint v1** |
+| Paper 3 — Cognitive Sleep for LLMs | **Preprint v1** ([Zenodo](https://zenodo.org/records/19322371)) |
 | Lean 4 — Formal Verification | Complete (`sorry = 0`, `axiom = 0`) |
 
 **Key results:**
@@ -216,7 +216,9 @@ Akihito Sunagawa
   author = {Sunagawa, Akihito},
   title  = {Cognitive Sleep for LLMs:
             How Contradiction Metabolism Prevents Context Rot},
-  year   = {2026}
+  year   = {2026},
+  doi    = {10.5281/zenodo.19322371},
+  url    = {https://zenodo.org/records/19322371}
 }
 ```
 
