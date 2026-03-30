@@ -259,7 +259,37 @@ Let $\{\delta_i\}_{i=1}^{n}$ be the cumulative information losses of $n$ types, 
 whenever $\mathrm{Var}(\delta) > 0$.
 \end{theorem}
 
-This is a restatement of Price's equation \citep{price1970} applied to $\delta$-dependent hazard; Fisher's Fundamental Theorem \citep{fisher1930} and Boltzmann's H-theorem are special cases. The survival equation's $h(\delta)$ increasing provides the precondition automatically. The theorem, together with the algebraic properties of the survival equation ($S > 0 \Leftrightarrow$ all factors positive; hazard monotonicity; error propagation) and the axiom-to-exponential derivation chain (\S\ref{sec:first-moment}), is formally verified in Lean~4 \citep{demoura2021} with Mathlib (16 modules, $\texttt{sorry} = 0$, $\texttt{axiom} = 0$).\footnote{In Lean~4, \texttt{sorry} is a placeholder admitting any proposition without proof; \texttt{axiom} declares an unproven assumption. $\texttt{sorry} = 0$ and $\texttt{axiom} = 0$ mean every step is machine-checked with no gaps or unverified assumptions.} The verification covers mathematical properties, not empirical validity.
+This is a restatement of Price's equation \citep{price1970} applied to $\delta$-dependent hazard; Fisher's Fundamental Theorem \citep{fisher1930} and Boltzmann's H-theorem are special cases. The survival equation's $h(\delta)$ increasing provides the precondition automatically. The theorem, together with the algebraic properties of the survival equation ($S > 0 \Leftrightarrow$ all factors positive; hazard monotonicity; error propagation), the axiom-to-exponential derivation chain (\S\ref{sec:first-moment}), and the weak dependence extension (\S\ref{sec:weak-dependence}), is formally verified in Lean~4 \citep{demoura2021} with Mathlib (19 modules, 286 propositions, $\texttt{sorry} = 0$, $\texttt{axiom} = 0$).\footnote{In Lean~4, \texttt{sorry} is a placeholder admitting any proposition without proof; \texttt{axiom} declares an unproven assumption. $\texttt{sorry} = 0$ and $\texttt{axiom} = 0$ mean every step is machine-checked with no gaps or unverified assumptions.} The verification covers mathematical properties, not empirical validity.
+
+\subsection{Robustness Under Weak Dependence}
+\label{sec:weak-dependence}
+
+The derivation of $e^{-\delta}$ relies on Axiom~A3 (independence of constraints). In SAT, random clause generation ensures exact independence; in LLM conversations, successive contradictions may be correlated. A natural question is: how robust is the exponential form when A3 holds only approximately?
+
+We formalize this by introducing a \emph{correlation parameter} $\rho \geq 0$ that measures the maximum pairwise dependence between constraints. For a system with joint survival probability $P$ under cumulative information loss $\delta$, we define the \emph{weak dependence sandwich}:
+\begin{equation}
+e^{-\delta(1+\rho)} \leq P \leq e^{-\delta(1-\rho)}
+\label{eq:sandwich}
+\end{equation}
+where the lower bound is the \emph{conservative} estimate (positive correlation amplifies loss) and the upper bound is \emph{optimistic} (negative correlation dampens loss). Three properties are verified in Lean~4:
+
+\begin{enumerate}
+\item \textbf{Reduction to independence}: At $\rho = 0$, both bounds collapse to $e^{-\delta}$, recovering the exact result from A1--A3. The independent-case survival $\prod_i e^{-\delta_i} = e^{-\delta}$ satisfies the sandwich at $\rho = 0$.
+
+\item \textbf{Monotonicity}: As $\rho$ increases, the conservative bound weakens (decreases) and the optimistic bound strengthens (increases), widening the interval. The independent value $e^{-\delta}$ always lies within the sandwich for $\rho \geq 0$.
+
+\item \textbf{Bounded error}: The robust survival potential $S_{\text{robust}} = \mu \cdot e^{-\delta(1+\rho)}$ satisfies $S_{\text{robust}} \leq S_{\text{indep}} = \mu \cdot e^{-\delta}$. The multiplicative error is $e^{-\delta\rho}$, which vanishes as $\rho \to 0$.
+\end{enumerate}
+
+For the second moment method, we additionally prove that the mesh-based second moment sum admits upper and lower bounds using only the pair correlation kernel's range $[g_{\min}, g_{\max}]$, without requiring independence between clauses. Specifically, for $n$ variables and $m$ clauses with pair kernel $g: [0,1] \to [\tfrac{3}{4}, \tfrac{7}{8}]$:
+\[
+2^n \cdot (3/4)^m \leq \sum_{d=0}^{n} \binom{n}{d} \cdot g(d/n)^m \leq 2^n \cdot (7/8)^m
+\]
+This means the Paley-Zygmund lower bound on $\Pr[\#\text{SAT} > 0]$ can be applied without clause independence.
+
+The practical consequence is that the independence assumption (A3) transforms from a binary requirement (satisfied or not) into a \emph{measurable parameter} ($\rho$): given an empirical estimate of constraint correlation, the framework provides a guaranteed conservative bound on survival. This is analogous to Shannon's channel capacity theorem: the theorem holds for any channel satisfying the model; whether a specific channel satisfies it is an empirical question, but the bound remains valid to the degree that $\rho$ is correctly estimated.
+
+The full formalization comprises three Lean~4 modules: \texttt{WeakDependence} (sandwich definition, reduction, monotonicity), \texttt{CorrelatedSecondMoment} (mesh bounds without independence), and \texttt{RobustSurvival} (robust potential, error bounds, LLM bridge via $\delta$ interval estimation from per-constraint loss ranges).
 
 %=============================================
 \section{SAT Experiments: Constraint Types and Decay Rates}
@@ -907,7 +937,7 @@ Axioms A1--A3 guarantee the mathematical derivation of $e^{-\delta}$, but they a
 
 The true applicability condition lies upstream of A1--A3: the system must be a dissipative structure in which optimization has not yet converged relative to environmental change. All dissipative structures process $\delta$ by definition, but in systems where optimization has completed faster than the environment changes, observations are filtered through prior survival---we observe results, not processes. Crucially, applicability depends on the system's \emph{state}, not its \emph{type}: the same substrate may appear outside scope when analyzed with the wrong proxy yet squarely within scope when the proxy correctly captures structural dependency rather than replaceability (see footnote in Table~\ref{tab:proxy_landscape}).
 
-The full screening hierarchy is therefore: (0)~Has optimization failed to keep pace with environmental change? (1)~Can constraints be defined independently of the state space? (2)~Do natural module boundaries exist? (3)~To what degree does A3 hold? Steps 0--1 determine whether the framework is applicable at all; steps 2--3 determine the precision of the resulting predictions.
+The full screening hierarchy is therefore: (0)~Has optimization failed to keep pace with environmental change? (1)~Can constraints be defined independently of the state space? (2)~Do natural module boundaries exist? (3)~To what degree does A3 hold? Steps 0--1 determine whether the framework is applicable at all; steps 2--3 determine the precision of the resulting predictions. The weak dependence extension (\S\ref{sec:weak-dependence}) makes step~3 quantitative: given an empirical estimate of constraint correlation $\rho$, the conservative survival bound $\mu \cdot e^{-\delta(1+\rho)}$ holds regardless of the specific dependence structure. A3 is no longer a binary gate but a continuous parameter that modulates precision.
 
 \subsection{Future Directions}
 
@@ -936,7 +966,7 @@ The full screening hierarchy is therefore: (0)~Has optimization failed to keep p
 
     \item \textbf{Three factors may not be exhaustive}: The decomposition into $N_{eff}$, $\mu/\mu_c$, and $\delta$ may omit relevant factors. For example, the rate of $\delta$ accumulation (not just its current value) may matter for systems with adaptive capacity.
 
-    \item \textbf{Formal verification scope}: Lean~4 verification covers mathematical properties (algebraic consistency, theorem validity, the derivation chain from axioms A1--A3 to $e^{-\delta}$, the Paley-Zygmund second moment inequality, and the pair correlation structure) across 16 modules, not empirical correctness. A formally verified equation can still be empirically wrong if the axioms do not hold in the target domain.
+    \item \textbf{Formal verification scope}: Lean~4 verification covers mathematical properties (algebraic consistency, theorem validity, the derivation chain from axioms A1--A3 to $e^{-\delta}$, the Paley-Zygmund second moment inequality, the pair correlation structure, and the weak dependence sandwich with robust survival bounds) across 19 modules and 286 propositions, not empirical correctness. The weak dependence extension (\S\ref{sec:weak-dependence}) reduces the gap between formal verification and empirical applicability: rather than requiring axioms to hold exactly, it provides guaranteed bounds parameterized by the measurable correlation $\rho$. However, a formally verified equation can still be empirically wrong if $\rho$ is underestimated.
 
     \item \textbf{$\delta = 0$ invariance is task-dependent}: Du et al.\ \citep{du2025contextlength} showed that context length alone degrades LLM performance by 13.9--85\% on math, QA, and coding tasks, even with perfect retrieval and no contradictions. Our Exp.~35 finds stable $\delta = 0$ accuracy up to 128{,}000 tokens, but the task (three-variable arithmetic with contradiction detection) may be less sensitive to length-induced $\mu$ decay than multi-step reasoning tasks. The survival equation accommodates this via $\mu = \mu(L)$: for tasks where baseline capability degrades with length, $\delta = 0$ no longer guarantees perfect accuracy but still sets the ceiling. The claim that $\delta$-driven degradation is separable from and additive to length-driven degradation remains to be tested across diverse task types.
 
@@ -953,7 +983,7 @@ We have shown that LLM reasoning collapse under structural contradictions exhibi
 \begin{itemize}
     \item \textbf{SAT}: The exponential penalty $e^{-\delta}$ is mathematically identical to the first moment of the solution count. Three constraint types produce predicted decay rates ($R^2 > 0.98$). The parameter-free ratio $\alpha_{\text{XOR}}/\alpha_{\text{random}} = 5.19\times$ is stable across six system sizes (CV $= 5\%$).
     \item \textbf{LLM}: Multiplicative $\mu \times \delta$ interaction---two individually non-lethal factors become lethal in combination (ruling out additive models). Constraint quality dominates quantity ($\delta_{\text{structural}} \gg \delta_{\text{factual}}$). The cushion mechanism absorbs contradictions until overwhelmed, producing a system-specific $\delta_c$, confirmed across 11 models from 5 vendors. Collapse requires recognition capability (absent below $\sim$12B parameters), distinguishing three stages: no recognition, recognition with refusal, and recognition with attempted resolution. A three-model, two-vendor extended experiment ($N = 810$ trials, 32K--256K tokens) reveals that the effective magnitude of subtle inter-source contradiction ($\delta_5$) depends on both model capability and context-length interaction, producing three qualitatively distinct response patterns and three distinct structural-contradiction ($\delta_1$) failure modes (refusal, computation-to-zero, literal reinterpretation).
-    \item \textbf{Formal verification}: Survival selection theorem, axiom-to-exponential derivation (A1--A3 $\Rightarrow$ $e^{-\delta}$), Cauchy uniqueness ($e^{-c\delta}$ is the only continuous form), the Paley-Zygmund second moment inequality, and the pair correlation structure for threshold lower bounds verified in Lean~4 (16 modules, 160 propositions, $\texttt{sorry} = 0$, $\texttt{axiom} = 0$).
+    \item \textbf{Formal verification}: Survival selection theorem, axiom-to-exponential derivation (A1--A3 $\Rightarrow$ $e^{-\delta}$), Cauchy uniqueness ($e^{-c\delta}$ is the only continuous form), the Paley-Zygmund second moment inequality, pair correlation structure for threshold lower bounds, and the weak dependence sandwich ($e^{-\delta(1+\rho)} \leq P \leq e^{-\delta(1-\rho)}$ with robust survival potential) verified in Lean~4 (19 modules, 286 propositions, $\texttt{sorry} = 0$, $\texttt{axiom} = 0$). The weak dependence extension transforms the independence assumption (A3) from a binary requirement into a measurable parameter $\rho$.
 \end{itemize}
 
 \textbf{Not confirmed:}
@@ -963,7 +993,7 @@ We have shown that LLM reasoning collapse under structural contradictions exhibi
     \item $e^{-\delta}$ vs.\ $(1-\delta)$ discrimination in the low-$\delta$ regime (where these forms converge)
 \end{itemize}
 
-The framework introduces no novel mathematical results. Its contribution is an operational methodology: measuring structural conflict as information loss in nats, grounded in the first moment correspondence. The two domains are complementary---SAT validates the mathematical identity, LLM validates the multiplicative interaction and reveals that constraint quality, not quantity, governs collapse. The challenge ahead is extending this methodology to Level~B domains where $\delta$ requires proxy measurement.
+The framework introduces no novel mathematical results; its contribution is an operational methodology: measuring structural conflict as information loss in nats, grounded in the first moment correspondence. The weak dependence extension addresses the principal theoretical concern---that real-world constraints are not independent---by providing guaranteed survival bounds parameterized by the measurable correlation $\rho$, with exact reduction to $e^{-\delta}$ at $\rho = 0$. The two domains are complementary---SAT validates the mathematical identity, LLM validates the multiplicative interaction and reveals that constraint quality, not quantity, governs collapse. The challenge ahead is extending this methodology to Level~B domains where $\delta$ requires proxy measurement, and empirically estimating $\rho$ in LLM conversations to tighten the robust survival bounds.
 
 %=============================================
 \section*{Data and Code Availability}
