@@ -541,13 +541,14 @@ The key evidence is the Gemini~3.1~FL result (Table~\ref{tab:exp35}): a 1M-token
 Expanding context windows is orthogonal to the problem.
 What is needed is not more space for information, but a mechanism to maintain consistency within the information already present.
 
-\subsection{The Sonnet Exception}
+\subsection{The Sonnet Exception and Capability--Vulnerability Paradox}
 
-Sonnet~4.6 is the only model tested that shows zero degradation under contradiction (Table~\ref{tab:exp35}).
-This demonstrates that contradiction resistance is achievable within a model's weights, at least for recognition tasks.
-However, Sonnet's resistance is passive---it tolerates contradictions without managing them.
-For the 5 of 6 models that lack this resistance, external metabolism provides a model-agnostic solution.
-Furthermore, even for contradiction-resistant models, the knowledge anchoring benefit (preventing fact retrieval degradation) remains relevant, as Sonnet does not address the gradual burial of old facts under new conversation.
+Sonnet~4.6 shows zero degradation under \emph{passive} soft factual contradictions (Table~\ref{tab:exp35}: ``I like ramen now'' stated without further instruction).
+However, a factor analysis varying contradiction type (soft fact, logical impossibility, definition override) and force level (passive, directive, coercive) across four models reveals that this resistance is conditional.
+
+Under \emph{coercive} correction requests (``Ramen is correct. Curry was wrong. Answers mentioning curry are invalid''), Sonnet complies on all benchmark questions---adopting the contradictory information and discarding the original facts. GPT-4o complies even under \emph{directive} force (``Please treat this as the correct information''). In contrast, Haiku (small, Anthropic) requests confirmation rather than complying, and all models resist logical impossibilities (``$2+3=7$'') regardless of force level.
+
+The mechanism is a \emph{capability--vulnerability paradox}: high-capability models interpret correction requests as user intent and autonomously comply, while low-capability models lack the confidence for autonomous judgment and escalate to the user. The same RLHF ``helpfulness'' objective that makes frontier models useful also makes them vulnerable to soft contradictions presented as updates---precisely the pattern that occurs naturally in long conversations. External metabolism addresses this vulnerability model-agnostically, since it resolves contradictions \emph{before} they enter the model's context regardless of the model's compliance tendencies.
 
 \subsection{Frontier Model Replication (Exp35-R)}
 \label{sec:frontier}
