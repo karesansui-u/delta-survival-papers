@@ -29,14 +29,19 @@
 \begin{abstract}
 Large Language Models degrade during extended conversations---a phenomenon known as ``context rot.''
 The prevailing assumption is that this results from context length limitations.
-We present evidence that the primary driver is \emph{contradiction accumulation} rather than context length:
-even Google's 1M-token context window suffers a 47.8 percentage point accuracy drop when contradictions are present, while removing contradictions restores performance regardless of length.
-We propose a metabolic architecture inspired by human sleep, in which an external layer processes knowledge during idle time---detecting, resolving, and preserving contradictions as temporal pairs.
-Across 8 open-source models (8B--27B parameters) and 11 paired comparisons over 180-turn dialogues, metabolism-enabled systems significantly outperform controls (sign test $p = 0.0107$).
-In a controlled three-condition experiment with gemma3:27b ($n = 3$ per condition), metabolism achieves 73.3\% accuracy versus 21.1\% without metabolism (Kruskal-Wallis $p = 0.027$; Cohen's $d = 8.80$).
-Replication with frontier models (GPT-4o, Gemini~3.1, Sonnet~4.6) reveals that the collapse threshold $\delta_c$ is model-specific, producing three distinct patterns: catastrophic collapse in lightweight models, conditional resistance in frontier models, and safety-policy-driven non-retention in GPT-4o.
-A factor analysis of contradiction type and force level uncovers a \emph{capability--vulnerability paradox}: high-capability models comply with coercive fact overrides that low-capability models reject, because the same RLHF helpfulness training that makes them useful makes them susceptible to contradictions framed as user corrections.
-A lightweight middleware (\texttt{delta-prune}) that resolves contradictions before they enter the model's context eliminates this compliance in preliminary testing ($n = 1$).
+We show that the primary driver is \emph{contradiction accumulation}, not context length.
+
+We teach an LLM a set of facts, then conduct a 180-turn conversation with it. Afterward, we ask it to recall those facts.
+With ordinary conversation alone, accuracy drops to 57\%---the model forgets nearly half.
+When contradictory information is mixed in, accuracy collapses to 21\%.
+With an external metabolism layer that detects and resolves contradictions during idle time (inspired by human sleep), accuracy reaches 73\%---exceeding even the contradiction-free baseline ($n = 3$ per condition, $p = 0.027$, $d = 8.80$).
+
+This pattern is consistent across models: in 8 models and 11 paired comparisons, metabolism consistently outperforms controls ($p = 0.0107$).
+Even with Google's 1M-token context window, contradictions cause a 47.8pp accuracy drop, while removing contradictions restores performance regardless of length.
+
+Replication with frontier models reveals that the collapse threshold is model-specific: lightweight models (GPT-4o-mini, Gemini Flash) collapse catastrophically, while frontier models (Sonnet~4.6, Gemini~3.1) show conditional resistance.
+However, a factor analysis uncovers a \emph{capability--vulnerability paradox}: high-capability models comply with coercive fact overrides that low-capability models reject, because RLHF helpfulness training makes them interpret contradictions as legitimate user corrections.
+A lightweight middleware (\texttt{delta-prune}) that resolves contradictions before they enter the model's context eliminates this compliance in preliminary testing.
 \end{abstract}
 
 %==============================================================================
