@@ -34,7 +34,9 @@ even Google's 1M-token context window suffers a 47.8 percentage point accuracy d
 We propose a metabolic architecture inspired by human sleep, in which an external layer processes knowledge during idle time---detecting, resolving, and preserving contradictions as temporal pairs.
 Across 8 open-source models (8B--27B parameters) and 11 paired comparisons over 180-turn dialogues, metabolism-enabled systems significantly outperform controls (sign test $p = 0.0107$).
 In a controlled three-condition experiment with gemma3:27b ($n = 3$ per condition), metabolism achieves 73.3\% accuracy versus 21.1\% without metabolism (Kruskal-Wallis $p = 0.027$; Cohen's $d = 8.80$).
-An unexpected observation reveals that metabolized systems exceed even the contradiction-free baseline (73.3\% vs.\ 56.7\%), suggesting that contradiction pairs may act as knowledge anchors that prevent fact retrieval degradation over time.
+Replication with frontier models (GPT-4o, Gemini~3.1, Sonnet~4.6) reveals that the collapse threshold $\delta_c$ is model-specific, producing three distinct patterns: catastrophic collapse in lightweight models, conditional resistance in frontier models, and safety-policy-driven non-retention in GPT-4o.
+A factor analysis of contradiction type and force level uncovers a \emph{capability--vulnerability paradox}: high-capability models comply with coercive fact overrides that low-capability models reject, because the same RLHF helpfulness training that makes them useful makes them susceptible to contradictions framed as user corrections.
+A lightweight middleware (\texttt{delta-prune}) that resolves contradictions before they enter the model's context eliminates this compliance in preliminary testing ($n = 1$).
 \end{abstract}
 
 %==============================================================================
