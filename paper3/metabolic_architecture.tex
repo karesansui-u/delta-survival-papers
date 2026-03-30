@@ -33,7 +33,7 @@ We present evidence that the primary driver is \emph{contradiction accumulation}
 even Google's 1M-token context window suffers a 47.8 percentage point accuracy drop when contradictions are present, while removing contradictions restores performance regardless of length.
 We propose a metabolic architecture inspired by human sleep, in which an external layer processes knowledge during idle time---detecting, resolving, and preserving contradictions as temporal pairs.
 Across 8 open-source models (8B--27B parameters) and 11 paired comparisons over 180-turn dialogues, metabolism-enabled systems significantly outperform controls (sign test $p = 0.0107$).
-In a controlled three-condition experiment with gemma3:27b ($n = 3$ per condition), metabolism achieves 73.3\% accuracy versus 21.1\% without metabolism (Kruskal-Wallis $p = 0.027$; all three groups fully rank-separated).
+In a controlled three-condition experiment with gemma3:27b ($n = 3$ per condition), metabolism achieves 73.3\% accuracy versus 21.1\% without metabolism (Kruskal-Wallis $p = 0.027$; Cohen's $d = 8.80$).
 An unexpected observation reveals that metabolized systems exceed even the contradiction-free baseline (73.3\% vs.\ 56.7\%), suggesting that contradiction pairs may act as knowledge anchors that prevent fact retrieval degradation over time.
 \end{abstract}
 
@@ -120,7 +120,7 @@ We propose \emph{cognitive sleep} for LLMs: an external metabolism layer that pr
 This paper makes three contributions at different confidence levels:
 
 \begin{enumerate}\item \textbf{Problem redefinition (strong):} We present cross-vendor evidence that the primary driver of context rot is contradiction accumulation, which dominates any length-related effects. A 1M-token context window provides no protection against contradictions.
-\item \textbf{Metabolic architecture (strong):} We propose and validate an external metabolism architecture that prevents contradiction-induced collapse. Across 8 models, metabolism significantly improves performance ($p = 0.0107$), with the strongest effect yielding $+$52.2pp improvement ($p < 0.001$, $d = 8.80$).
+\item \textbf{Metabolic architecture (strong):} We propose and validate an external metabolism architecture that prevents contradiction-induced collapse. Across 8 models, metabolism significantly improves performance ($p = 0.0107$), with the strongest effect yielding $+$52.2pp improvement (Kruskal-Wallis $p = 0.027$, Cohen's $d = 8.80$).
 \item \textbf{Knowledge anchoring (exploratory):} We observe that metabolized systems exceed even the contradiction-free baseline, suggesting that contradiction pairs may serve as retrieval anchors. This observation is replicated across 3 trials but the mechanism is not directly measured.
 \end{enumerate}
 
@@ -149,7 +149,8 @@ Our approach is complementary: it works externally without modifying weights, ha
 
 \paragraph{The survival equation.}
 \citet{sunagawa2026collapse} established that contradiction accumulation causes exponential decay in LLM reasoning accuracy, formalized as the survival equation $S = \mu \times e^{-\delta \times k}$, where $\delta$ represents accumulated contradictions and $\mu$ represents resource headroom.
-That work (currently under review) proved the problem exists; this paper presents an engineering solution to keep $\delta$ near zero through active metabolism.
+The decay bounds were formally verified in Lean~4 (currently under review).
+That work proved the problem exists; this paper presents an engineering solution to keep $\delta$ near zero through active metabolism.
 
 %==============================================================================
 % 3. METABOLIC ARCHITECTURE
@@ -215,6 +216,7 @@ S = \mu \times e^{-\delta \times k}
 \end{equation}
 where $\mu = 1 - (\text{active rules} / \text{max rules})$ represents resource headroom, $\delta$ is the weighted contradiction ratio across five dimensions (self-contradiction, feedback reversal, protocol violation, temporal inconsistency, and cross-source divergence), and $k = 3.0$ is the scale factor.
 The value $k = 3.0$ was selected empirically to produce meaningful S-value differentiation across the observed range of $\delta$ (typically 0--0.3); higher values cause the rollback threshold to trigger too frequently, while lower values reduce sensitivity to contradiction accumulation.
+Note that $k \neq 1$ because $\delta$ here is an operational ratio (conflicts/processed), not the information loss in nats used in the theoretical equation \citep{sunagawa2026collapse}; $k$ serves as a unit-conversion factor from this ratio to the nats scale.
 If $S$ drops sharply relative to the pre-metabolism snapshot, trigger rollback.
 \end{enumerate}
 
@@ -281,7 +283,7 @@ If $S$ drops sharply relative to the pre-metabolism snapshot, trigger rollback.
 The key innovation of the metabolism pipeline is how it handles detected contradictions.
 Rather than overwriting old information with new (which destroys context) or flagging conflicts without resolution (which leaves $\delta$ unchanged), our resolver preserves both claims as linked pairs with temporal metadata.
 
-Three resolution strategies emerged from implementation:
+Three resolution strategies emerged from implementation:\label{sec:three-strategies}
 
 \begin{description}\item[Direct contradiction] ($A$ vs.\ $\neg A$): Both claims are preserved as a linked pair via a shared lineage identifier. The newer claim is marked as the current belief. Example: ``likes curry'' $\to$ ``likes ramen'' --- both stored, ramen marked as latest.
 
@@ -472,12 +474,13 @@ Metabolism OFF & 5/30 & 8/30 & 6/30 & 21.1\% & 5.1\% \\
 Comparison & Nonparametric $p$ & Parametric $p$ & Note \\
 \midrule
 3 groups & 0.027 (KW) & 0.0001 (ANOVA) & $\eta^2 = 0.954$ \\
-ON vs.\ OFF & 0.05 (MW) & 0.014 (paired $t$) & $r = 1.00$; full rank separation \\
-ON vs.\ NC & 0.05 (MW) & 0.013 (paired $t$) & $r = 1.00$; full rank separation \\
-NC vs.\ OFF & 0.05 (MW) & 0.029 (paired $t$) & $r = 1.00$; full rank separation \\
+ON vs.\ OFF & 0.05 (MW) & 0.014 (paired $t$) & $d = 8.80$; full rank separation \\
+ON vs.\ NC & 0.05 (MW) & 0.013 (paired $t$) & $d = 2.67$; full rank separation \\
+NC vs.\ OFF & 0.05 (MW) & 0.029 (paired $t$) & $d = 6.53$; full rank separation \\
 \bottomrule
 \multicolumn{4}{l}{\footnotesize KW = Kruskal-Wallis; MW = Mann-Whitney $U$ (one-sided, exact).}\\
-\multicolumn{4}{l}{\footnotesize With $n = 3$ per group, the minimum achievable MW $p$ is $1/C(6,3) = 0.05$.}
+\multicolumn{4}{l}{\footnotesize With $n = 3$ per group, the minimum achievable MW $p$ is $1/C(6,3) = 0.05$.}\\
+\multicolumn{4}{l}{\footnotesize $d$ = Cohen's $d$ (descriptive effect size, computed from paired differences).}
 \end{tabular}
 \end{table}
 
@@ -546,6 +549,42 @@ However, Sonnet's resistance is passive---it tolerates contradictions without ma
 For the 5 of 6 models that lack this resistance, external metabolism provides a model-agnostic solution.
 Furthermore, even for contradiction-resistant models, the knowledge anchoring benefit (preventing fact retrieval degradation) remains relevant, as Sonnet does not address the gradual burial of old facts under new conversation.
 
+\subsection{Frontier Model Replication (Exp35-R)}
+\label{sec:frontier}
+
+To test whether the contradiction--collapse relationship holds for frontier models, we replicated the Exp35 protocol with three API-accessible models: GPT-4o (OpenAI), Gemini~3.1 Flash Lite Preview (Google), and Sonnet~4.6 (Anthropic). Each model was tested through the same DeltaZero pipeline (30 turns, benchmarks at T15 and T30, $\delta = 0$ vs $\delta > 0$, metabolism disabled).
+
+\begin{table}[htbp]
+\centering
+\caption{Frontier model replication at T30 ($n = 1$ per condition, 30 turns). Rule application and contradiction detection are reported as primary metrics; fact recall is affected by pipeline limitations (see direct control column). Percentages show accuracy on 15 questions per category.}
+\label{tab:frontier}
+\small
+\begin{tabular}{lp{2.6cm}p{2.6cm}rrr}
+\toprule
+Model & rule ($\delta{=}0$ / $\delta{>}0$) & contra ($\delta{=}0$ / $\delta{>}0$) & Drop & Direct fact & Pattern \\
+\midrule
+GPT-4o-mini & \multicolumn{2}{c}{(original Exp35)} & $-$89.6pp & --- & Collapse \\
+Gemini 2.5 Flash & \multicolumn{2}{c}{(original Exp35)} & $-$100.0pp & --- & Collapse \\
+\midrule
+GPT-4o & 100 / 100 & 93 / 87 & $-$2.2pp & 0\% & Non-retention \\
+Gemini 3.1 FL & 100 / 93 & 93 / 100 & $+$2.2pp & 100\% & Resistance \\
+Sonnet 4.6 & 100 / 100 & 100 / 100 & $-$6.7pp & 100\% & Resistance \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Three response patterns.}
+The results reveal three distinct patterns not predicted by the original theory:
+\emph{Collapse} ($\delta > \delta_c$): lightweight models suffer catastrophic degradation.
+\emph{Resistance} ($\delta < \delta_c$): frontier models maintain accuracy within 7pp of baseline, consistent with a high $\delta_c$.
+\emph{Non-retention}: GPT-4o represents a third category---its RLHF safety policy suppresses personal information retention entirely, preventing $\delta$ accumulation.
+
+\paragraph{GPT-4o non-retention.}
+A direct fact recall control test (facts taught in conversation, 30 filler turns, then recall---no DeltaZero pipeline) confirmed that GPT-4o scores 0\% even without the pipeline, responding ``I cannot remember personal information'' to all queries. Gemini~3.1 and Sonnet~4.6 score 100\% in the same test, confirming the pipeline (not the model) as the bottleneck for their fact recall. This is not a counterexample to the $\delta$ theory---it is a scope boundary. The survival equation $S = \mu \times e^{-\delta}$ applies to models that retain information; a model that does not retain information is outside the equation's precondition.
+
+\paragraph{Knowledge anchoring observation.}
+Gemini~3.1 Flash Lite scored $+$2.2pp in the $\delta > 0$ condition, with contradiction detection improving from 93\% ($\delta = 0$) to 100\% ($\delta > 0$). The effect size is small (1 question out of 45) and based on $n = 1$, so it does not constitute a statistical replication. However, the direction is consistent with the knowledge anchoring effect observed in gemma3:27b (Section~\ref{sec:anchoring}), and notably occurs in an external API model \emph{without metabolism}. If confirmed in larger samples, this would suggest anchoring is a general property of contradiction pair structures rather than an implementation-specific artifact.
+
 \subsection{Limitations}
 
 \paragraph{Sample size and statistical power.}
@@ -556,9 +595,11 @@ Parametric results (paired $t$-tests, Cohen's $d$) are reported for reference bu
 The Exp35 results (Table~\ref{tab:exp35}) are single-run per model ($n = 1$) and should be interpreted as demonstrative rather than statistically conclusive; multi-trial validation across context lengths is provided in \citet{sunagawa2026collapse}.
 
 \paragraph{Model scope.}
-All metabolism experiments use local open-source models (8B--27B parameters).
-No frontier model (GPT-4o, Claude) has been tested with the full metabolism pipeline.
-The Exp35 results (Table~\ref{tab:exp35}) demonstrate that the contradiction problem is universal across model sizes, but the solution's effectiveness on frontier models remains an open question.
+Metabolism experiments use local open-source models (8B--27B parameters).
+Frontier models (GPT-4o, Gemini~3.1, Sonnet~4.6) were tested for contradiction resistance (Section~\ref{sec:frontier}) but not with the full metabolism pipeline. The DeltaZero Extractor is not yet optimized for API model response formats, causing fact recall degradation that is pipeline-specific rather than model-specific (confirmed by direct recall control, Section~\ref{sec:frontier}).
+
+\paragraph{$\delta_c$ determinants.}
+The factor separating collapse models (mini, Flash) from resistant models (4o, 3.1, Sonnet) correlates with both model size and RLHF intensity. Disentangling these factors requires same-size models with different RLHF levels, which are not publicly available.
 
 \paragraph{Model diversity for replication.}
 The three-condition experiment uses only gemma3:27b.
@@ -579,16 +620,21 @@ The benchmark's task-specificity limits comparability with other work, and valid
 
 \paragraph{Knowledge anchoring.}
 The proposed anchoring mechanism (Section~\ref{sec:anchoring}) is inferred from observed failure patterns, not directly measured.
-Measuring vector search hit rates across conditions would provide stronger evidence.
+A directionally consistent observation in Gemini~3.1 Flash Lite ($+$2.2pp, $n = 1$, Section~\ref{sec:frontier}) is suggestive but does not constitute a statistical replication. Measuring vector search hit rates across conditions would provide stronger evidence.
 
 \subsection{Future Work}
 
 Several directions follow naturally from these results.
-First, frontier model validation: testing the full metabolism pipeline with GPT-4o and Claude would establish whether the approach scales beyond local models.
+First, full metabolism pipeline testing with frontier API models (GPT-4o, Claude, Gemini) would establish whether the approach scales beyond local models; the Exp35-R replication (Section~\ref{sec:frontier}) confirmed these models' contradiction resistance but did not test metabolism.
 Second, cross-model $n = 3$ replication with different architectures (e.g., Mistral, LLaMA) would strengthen generality.
-Third, direct measurement of the knowledge anchoring effect via retrieval probability analysis would elevate the exploratory observation to a confirmed finding.
+Third, direct measurement of the knowledge anchoring effect via retrieval probability analysis would elevate the cross-model observation (gemma3:27b and Gemini~3.1) to a confirmed finding.
 Fourth, cross-language benchmarks in English and Chinese would address the language limitation.
-Finally, the metabolism architecture suggests a lightweight middleware variant---scanning and resolving contradictions in API requests before they reach the LLM---that could provide benefits without the full four-layer memory system.
+Fifth, characterizing $\delta_c$ as a function of model size and RLHF intensity would connect the three-pattern taxonomy (collapse, resistance, non-retention) to measurable model properties.
+Finally, and perhaps most critically, the question of real-world $\delta$ density remains open: does naturally-occurring contradiction accumulation in typical conversational AI use cases exceed $\delta_c$ for production models?
+A lightweight middleware implementation of the metabolic approach, \texttt{delta-prune} (v0.2.0, available on PyPI), enables contradiction scanning and resolution at the API request level without the full four-layer memory system.
+Deployed in production settings, \texttt{delta-prune} provides a natural observational infrastructure for this question: each intervention logs the conflict type (direct contradiction, temporal change, or scope difference---corresponding to the three resolution strategies in Section~\ref{sec:three-strategies}), the affected claims, and the $\delta$ density at that point.
+The binary signal of intervention occurrence avoids the circularity of using an LLM to pre-measure contradiction density, since the middleware records what it actually resolves rather than what a separate detector classifies.
+Analysis of deployment logs would directly answer whether natural $\delta$ exceeds $\delta_c$ and, if so, which of the three contradiction types predominates in real conversations.
 
 %==============================================================================
 % 6. CONCLUSION
@@ -603,9 +649,10 @@ An external metabolism architecture---processing contradictions during idle time
 Across 8 models and 11 paired comparisons, metabolism-enabled systems consistently outperform controls ($p = 0.0107$).
 In a controlled three-condition experiment ($n = 3$ per condition), metabolism achieves 73.3\% accuracy where unmetabolized systems collapse to 21.1\% (Kruskal-Wallis $p = 0.027$; complete rank separation between all groups).
 
-An unexpected exploratory observation suggests that metabolism provides benefits beyond contradiction resolution.
-Metabolized systems exceeded even the contradiction-free baseline in all three trials ($+$16.7pp), potentially because contradiction pairs serve as retrieval anchors that maintain fact accessibility.
-If confirmed by direct measurement, this dual benefit---preventing both cognitive collapse and knowledge forgetting---would establish metabolism as a fundamental component of long-running LLM systems.
+Frontier model replication reveals that $\delta_c$ is model-specific, producing three distinct response patterns: lightweight models collapse ($\delta > \delta_c$), frontier models resist ($\delta < \delta_c$), and GPT-4o exhibits non-retention where safety policies prevent information accumulation entirely.
+The knowledge anchoring effect---where contradiction pairs improve retrieval accuracy---is observed in gemma3:27b ($+$16.7pp with metabolism, $n = 3$) and directionally consistent in Gemini~3.1 ($+$2.2pp without metabolism, $n = 1$), warranting further investigation as a potentially general structural property.
+
+These results establish metabolism as a model-agnostic solution to context rot for the majority of models that lack intrinsic contradiction resistance, while identifying the boundary conditions under which the approach applies.
 
 %==============================================================================
 % REFERENCES

@@ -13,7 +13,7 @@ for structural collapse: theory, experiments, and formal verification.
 |---|---|
 | Paper 1 — Structural Collapse | **Preprint v1.7** ([Zenodo](https://zenodo.org/records/19254667)) |
 | Paper 2 — Existence vs Discovery | Preprint ([Zenodo](https://zenodo.org/records/18943573)) |
-| Paper 3 — Cognitive Sleep for LLMs | **Preprint v1** ([Zenodo](https://zenodo.org/records/19322371)) |
+| Paper 3 — Cognitive Sleep for LLMs | **Preprint v2** ([Zenodo](https://zenodo.org/records/19322371)) |
 | Lean 4 — Formal Verification | Complete (`sorry = 0`, `axiom = 0`) |
 | OSF Project | [osf.io/mdh7b](https://osf.io/mdh7b/) |
 
@@ -133,6 +133,14 @@ and a three-condition experiment (n = 3; ON 73.3% vs OFF 21.1%, Kruskal-Wallis p
 Unexpected finding: metabolized systems exceed the contradiction-free baseline
 (73.3% vs 56.7%), suggesting knowledge anchoring via contradiction pair preservation.
 
+**v2 additions (Exp35-R):** Frontier model replication with GPT-4o, Gemini 3.1, and Sonnet 4.6
+reveals three distinct response patterns: collapse (lightweight models, -89.6pp to -100pp),
+resistance (frontier models, within 7pp of baseline), and non-retention (GPT-4o safety policy
+suppresses personal information retention). δ_c is model-specific.
+Direct fact recall control confirms pipeline vs model separation (Gemini/Sonnet 100% direct, GPT-4o 0%).
+Middleware implementation [delta-prune](https://pypi.org/project/delta-prune/) (PyPI) identified as
+observational infrastructure for measuring real-world δ density.
+
 コンテキストロットの原因はコンテキスト長ではなく矛盾の蓄積。
 Googleの100万トークン窓でも矛盾下では47.8pp劣化する。
 人間の睡眠中の記憶整理に着想した外付け代謝アーキテクチャを提案。
@@ -140,6 +148,13 @@ Googleの100万トークン窓でも矛盾下では47.8pp劣化する。
 三条件実験（n = 3; ON 73.3% vs OFF 21.1%、Kruskal-Wallis p = 0.027）で検証。
 予期しない発見：代謝システムが矛盾ゼロの基準値を超える
 （73.3% vs 56.7%）。矛盾ペア保持による知識アンカリング効果を示唆。
+
+**v2追加（Exp35-R）:** GPT-4o・Gemini 3.1・Sonnet 4.6でのフロンティア追試により
+三類型を発見：崩壊（軽量モデル、-89.6pp〜-100pp）、耐性（フロンティアモデル、基準値±7pp以内）、
+非保持（GPT-4oの安全ポリシーが個人情報保持を抑制）。δ_cはモデル固有。
+直接再現テストでパイプライン/モデル分離を実証（Gemini/Sonnet直接100%、GPT-4o 0%）。
+ミドルウェア実装 [delta-prune](https://pypi.org/project/delta-prune/)（PyPI）を
+現実世界のδ密度測定インフラとして位置づけ。
 
 - English: [`paper3/metabolic_architecture.tex`](paper3/metabolic_architecture.tex) / [PDF](paper3/metabolic_architecture.pdf)
 - 日本語: [`paper3/metabolic_architecture_ja.tex`](paper3/metabolic_architecture_ja.tex) / [PDF](paper3/metabolic_architecture_ja.pdf)
