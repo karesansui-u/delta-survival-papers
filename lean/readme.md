@@ -2,7 +2,7 @@
 
 Formal verification of the mathematical framework used in Papers 1 and 2.
 
-- **16 modules**, `sorry = 0`, `axiom = 0`
+- **19 modules**, `sorry = 0`, `axiom = 0`
 - All proofs fully verified by the Lean 4 type checker
 
 ---
@@ -27,6 +27,9 @@ Formal verification of the mathematical framework used in Papers 1 and 2.
 | `SATSecondMoment.lean` | SAT second moment overlap decomposition and threshold bracketing | Paper 1 |
 | `AsymptoticExponent.lean` | Asymptotic exponent φ(β, α) and gap analysis between 1st/2nd moment thresholds | Paper 1 |
 | `KLDivergence.lean` | δ = D_KL identity, Jensen inequality direction, gap-R₂ connection, structural capacity | Paper 1 |
+| `WeakDependence.lean` | ρ-bracket `exp(-δ(1±ρ))` around joint survival; collapse to independence at ρ=0 | Paper 1 (A3 relaxation) |
+| `CorrelatedSecondMoment.lean` | Meshwise `2^n·(3/4)^m ≤ E[X²] ≤ 2^n·(7/8)^m` without clause independence; Paley–Zygmund reuse | Paper 1 |
+| `RobustSurvival.lean` | `μ·exp(-δ(1+ρ))` robust potential; δ interval from bounded pass-through rates | Paper 1 |
 
 ---
 

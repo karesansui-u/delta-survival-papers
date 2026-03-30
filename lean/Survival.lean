@@ -4,7 +4,7 @@ Survival Model - Formal Verification (Paper 1 + Second Moment Extension)
 
 Paper: "Structural Conflicts as Information Loss"
 
-16 modules, sorry = 0, axiom = 0.
+19 modules, sorry = 0, axiom = 0.
 
 Covers:
 - Survival equation algebraic properties (S > 0 ⟺ all factors positive)
@@ -21,6 +21,9 @@ Covers:
 - Pair correlation function g(β) for random 3-SAT
 - SAT second moment overlap decomposition and threshold bracketing
 - KL divergence: δ = D_KL identity, Jensen inequality, gap-R₂ connection
+- Weak dependence: ρ-bracket around joint survival; robust survival potential
+- Correlated second moment: meshwise bounds without clause independence
+- Robust survival: conservative μ·exp(-δ(1+ρ)) and δ interval from bounded rates
 -/
 
 -- Core definitions and survival equation
@@ -62,3 +65,8 @@ import Survival.AsymptoticExponent
 
 -- KL divergence: δ = D_KL identity and information-theoretic grounding
 import Survival.KLDivergence
+
+-- Weak dependence / robust exponential survival (relaxation of axiom A3)
+import Survival.WeakDependence
+import Survival.CorrelatedSecondMoment
+import Survival.RobustSurvival
