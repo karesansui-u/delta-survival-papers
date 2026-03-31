@@ -13,7 +13,7 @@
 \usepackage{tikz}
 \usetikzlibrary{shapes,arrows,positioning,fit,backgrounds,calc}
 
-\title{\textbf{Cognitive Sleep for LLMs:\\How Contradiction Metabolism Prevents Context Rot}}
+\title{\textbf{Contradiction Metabolism for LLMs:\\Preliminary Evidence that Context Rot is a Knowledge Integrity Problem}}
 
 \author{Akihito Sunagawa\thanks{sunagawa.akihito@gmail.com}}
 
@@ -29,19 +29,19 @@
 \begin{abstract}
 Large Language Models degrade during extended conversations---a phenomenon known as ``context rot.''
 The prevailing assumption is that this results from context length limitations.
-We show that the primary driver is \emph{contradiction accumulation}, not context length.
+We present preliminary evidence suggesting that \emph{contradiction accumulation}, not context length, is a primary driver of this degradation.
 
-We teach an LLM a set of facts, then conduct a 180-turn conversation with it. Afterward, we ask it to recall those facts.
-With ordinary conversation alone, accuracy drops to 57\%---the model forgets nearly half.
-When contradictory information is mixed in, accuracy collapses to 21\%.
-With an external metabolism layer that detects and resolves contradictions during idle time (inspired by human sleep), accuracy reaches 73\%---exceeding even the contradiction-free baseline ($n = 3$ per condition, $p = 0.027$, $d = 8.80$).
+In a controlled three-condition experiment with gemma3:27b ($n = 3$ per condition, 180 turns), accuracy under contradiction injection was 21.1\%, compared with 73.3\% when an external metabolism layer resolved contradictions during idle time, and 56.7\% in a contradiction-free baseline.
+All pairwise differences reach the minimum achievable Mann-Whitney $p = 0.05$ with $n = 3$; Kruskal-Wallis $p = 0.027$.
+A cross-model sign test across 8 open-source models (11 trial pairs) shows 9 of 10 non-tied pairs favoring metabolism ON ($p = 0.0107$); a more conservative by-model analysis (6 of 7 models, $p = 0.0625$) is consistent but borderline.
 
-This pattern is consistent across models: in 8 models and 11 paired comparisons, metabolism consistently outperforms controls ($p = 0.0107$).
-Even with Google's 1M-token context window, contradictions cause a 47.8pp accuracy drop, while removing contradictions restores performance regardless of length.
+Separately, single-run experiments across 6 models from 4 vendors suggest that contradiction accumulation impairs accuracy regardless of context window size (8K--1M tokens), with each model tested once ($n = 1$).
+Frontier model replication suggests a model-specific collapse threshold ($\delta_c$): lightweight models collapse catastrophically, while frontier models show conditional resistance.
+A factor analysis ($n = 1$ per condition) further suggests a capability--vulnerability paradox in which high-capability models comply with coercive contradiction injections that lower-capability models reject.
+A lightweight middleware (\texttt{delta-prune}) reduced this compliance in a single preliminary test ($n = 1$).
 
-Replication with frontier models reveals that the collapse threshold is model-specific: lightweight models (GPT-4o-mini, Gemini Flash) collapse catastrophically, while frontier models (Sonnet~4.6, Gemini~3.1) show conditional resistance.
-However, a factor analysis uncovers a \emph{capability--vulnerability paradox}: high-capability models comply with coercive fact overrides that low-capability models reject, because RLHF helpfulness training makes them interpret contradictions as legitimate user corrections.
-A lightweight middleware (\texttt{delta-prune}) that resolves contradictions before they enter the model's context eliminates this compliance in preliminary testing.
+All metabolism experiments use open-source models (8B--27B parameters).
+Larger samples, frontier model metabolism testing, and cross-language validation are needed to establish generality.
 \end{abstract}
 
 %==============================================================================
@@ -120,14 +120,14 @@ Sleep deprivation, which prevents this consolidation, leads to progressive cogni
 
 Current LLMs have no equivalent of sleep.
 They accumulate all information---consistent and contradictory alike---without any mechanism for offline processing.
-We propose \emph{cognitive sleep} for LLMs: an external metabolism layer that processes accumulated knowledge during idle time, detecting contradictions, resolving conflicts, and maintaining knowledge integrity.
+We draw an analogy to \emph{cognitive sleep} for LLMs: an external metabolism layer that processes accumulated knowledge during idle time, detecting contradictions, resolving conflicts, and maintaining knowledge integrity.
 
 \subsection{Contributions}
 
 This paper makes three contributions at different confidence levels:
 
 \begin{enumerate}\item \textbf{Problem redefinition (strong):} We present cross-vendor evidence that the primary driver of context rot is contradiction accumulation, which dominates any length-related effects. A 1M-token context window provides no protection against contradictions.
-\item \textbf{Metabolic architecture (strong):} We propose and validate an external metabolism architecture that prevents contradiction-induced collapse. Across 8 models, metabolism significantly improves performance ($p = 0.0107$), with the strongest effect yielding $+$52.2pp improvement (Kruskal-Wallis $p = 0.027$, Cohen's $d = 8.80$).
+\item \textbf{Metabolic architecture (preliminary):} We propose an external metabolism architecture and present preliminary evidence that it reduces contradiction-induced collapse. In a controlled three-condition experiment ($n = 3$, gemma3:27b), metabolism achieves 73.3\% vs.\ 21.1\% ($+$52.2pp; Kruskal-Wallis $p = 0.027$; complete rank separation). A cross-model sign test (8 models, 11 trial pairs) yields $p = 0.0107$; a conservative by-model analysis yields $p = 0.0625$ (6 of 7 models). Cohen's $d = 8.80$ is reported descriptively and assumes normality that cannot be verified with $n = 3$.
 \item \textbf{Knowledge anchoring (exploratory):} We observe that metabolized systems exceed even the contradiction-free baseline, suggesting that contradiction pairs may serve as retrieval anchors. This observation is replicated across 3 trials but the mechanism is not directly measured.
 \end{enumerate}
 
@@ -501,7 +501,7 @@ The effect of metabolism (ON vs.\ OFF) is $+$52.2pp; parametric analysis yields 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.85\linewidth]{fig5_three_condition.pdf}
-\caption{Three-condition comparison ($n = 3$). Error bars show $\pm 1$ SD. Metabolism ON significantly exceeds both OFF and the contradiction-free baseline (NC). Brackets indicate statistically significant pairwise differences.}
+\caption{Three-condition comparison ($n = 3$, gemma3:27b). Error bars show $\pm 1$ SD. Metabolism ON exceeds both OFF and the contradiction-free baseline (NC); all pairwise Mann-Whitney tests reach the minimum achievable $p = 0.05$ for this sample size. Brackets indicate pairwise differences reaching this significance floor.}
 \label{fig:threecond}
 \end{figure}
 
@@ -557,7 +557,7 @@ Under \emph{coercive} correction requests (``Ramen is correct. Curry was wrong. 
 
 The mechanism is a \emph{capability--vulnerability paradox}: high-capability models interpret correction requests as user intent and autonomously comply, while low-capability models lack the confidence for autonomous judgment and escalate to the user. The same RLHF ``helpfulness'' objective that makes frontier models useful also makes them vulnerable to soft contradictions presented as updates---precisely the pattern that occurs naturally in long conversations.
 
-A preliminary defense test confirms that \texttt{delta-prune} middleware can mitigate this vulnerability. Under T1$\times$F3 conditions (coercive soft fact override), Sonnet without middleware showed 0\% correct retention on benchmark questions. With \texttt{delta-prune} applied as a reverse-prune filter (detecting contradictions via claim extraction and removing the newer contradictory messages before they enter the model's context), Sonnet retained the correct answer on 2 of 3 benchmark questions (67\% correct, 0\% compliance). The middleware made 16 intervention decisions across 22 turns, consistently identifying and removing the three injected contradiction messages. This is $n = 1$ and does not constitute a statistical result, but demonstrates that the metabolic approach---resolving contradictions before they reach the model---can prevent the capability--vulnerability collapse even in frontier models that would otherwise comply with coercive overrides.
+A preliminary single-run test ($n = 1$) suggests that \texttt{delta-prune} middleware may mitigate this vulnerability. Under T1$\times$F3 conditions (coercive soft fact override), Sonnet without middleware showed 0\% correct retention on benchmark questions. With \texttt{delta-prune} applied as a reverse-prune filter (detecting contradictions via claim extraction and removing the newer contradictory messages before they enter the model's context), Sonnet retained the correct answer on 2 of 3 benchmark questions (67\% correct, 0\% compliance). The middleware made 16 intervention decisions across 22 turns, consistently identifying and removing the three injected contradiction messages. This is $n = 1$ and does not constitute a statistical result, but demonstrates that the metabolic approach---resolving contradictions before they reach the model---can prevent the capability--vulnerability collapse even in frontier models that would otherwise comply with coercive overrides.
 
 \subsection{Frontier Model Replication (Exp35-R)}
 \label{sec:frontier}
@@ -652,17 +652,17 @@ Analysis of deployment logs would directly answer whether natural $\delta$ excee
 \section{Conclusion}
 \label{sec:conclusion}
 
-Context rot in LLMs is driven primarily by contradiction accumulation rather than context length.
-This pattern is consistent across vendors: even Google's 1M-token context window drops 47.8 percentage points under contradiction, while removing contradictions restores performance regardless of length.
+Preliminary evidence suggests that context rot in LLMs is driven primarily by contradiction accumulation rather than context length.
+Across 6 models from 4 vendors ($n = 1$ per condition), even Google's 1M-token context window drops 47.8 percentage points under contradiction, while removing contradictions restores performance regardless of length.
 
-An external metabolism architecture---processing contradictions during idle time, analogous to memory consolidation during sleep---prevents this collapse with high statistical significance.
-Across 8 models and 11 paired comparisons, metabolism-enabled systems consistently outperform controls ($p = 0.0107$).
-In a controlled three-condition experiment ($n = 3$ per condition), metabolism achieves 73.3\% accuracy where unmetabolized systems collapse to 21.1\% (Kruskal-Wallis $p = 0.027$; complete rank separation between all groups).
+Preliminary experiments suggest that an external metabolism architecture---processing contradictions during idle time, analogous to memory consolidation during sleep---can reduce this collapse.
+In a controlled three-condition experiment ($n = 3$ per condition, gemma3:27b), metabolism achieves 73.3\% accuracy vs.\ 21.1\% for unmetabolized systems (Kruskal-Wallis $p = 0.027$; complete rank separation between all groups).
+A cross-model sign test (8 models, 11 trial pairs) is consistent with this direction ($p = 0.0107$), though a by-model conservative analysis yields $p = 0.0625$, and all metabolism experiments use open-source models of 8B--27B parameters.
 
-Frontier model replication reveals that $\delta_c$ is model-specific, producing three distinct response patterns: lightweight models collapse ($\delta > \delta_c$), frontier models resist ($\delta < \delta_c$), and GPT-4o exhibits non-retention where safety policies prevent information accumulation entirely.
+Frontier model replication ($n = 1$ per condition) suggests that $\delta_c$ is model-specific, producing three distinct response patterns: lightweight models collapse ($\delta > \delta_c$), frontier models resist ($\delta < \delta_c$), and GPT-4o exhibits non-retention where safety policies prevent information accumulation entirely.
 The knowledge anchoring effect---where contradiction pairs improve retrieval accuracy---is observed in gemma3:27b ($+$16.7pp with metabolism, $n = 3$) and directionally consistent in Gemini~3.1 ($+$2.2pp without metabolism, $n = 1$), warranting further investigation as a potentially general structural property.
 
-These results establish metabolism as a model-agnostic solution to context rot for the majority of models that lack intrinsic contradiction resistance, while identifying the boundary conditions under which the approach applies.
+These results suggest that metabolism is a promising approach to context rot for open-source models that lack intrinsic contradiction resistance, while identifying boundary conditions under which further investigation---including larger samples, frontier model metabolism testing, and cross-language validation---is warranted.
 
 %==============================================================================
 % REFERENCES
