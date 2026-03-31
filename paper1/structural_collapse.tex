@@ -805,7 +805,22 @@ The three qualitatively distinct response patterns in Exp.~36 under subtle contr
 
 \paragraph{Gemini (information dilution).} \texttt{wrong\_val\_adopted}: 33\% (32K), 17\% (128K), 7\% (256K)---monotonically decreasing. The model $P(\text{correct}) = 1 - P(\text{wrong\_val})$ at each context length is $0.67$, $0.83$, $0.93$. Fitting $P = 1/(1 + K/L)$ yields $K \approx 16$, $26$, $18$ respectively ($K \approx 20 \pm 5$, same order of magnitude given $n = 30$ per condition). This is consistent with context length serving as the margin ($\mu \propto L$) for the correct-answer basin only: longer contexts dilute the contradictory information, increasing $S_A$ relative to $S_B$.
 
-\paragraph{Testable prediction.} The $P = 1/(1 + K/L)$ model with $K \approx 20$ (in units of thousands of tokens) predicts: at $L = 512\text{K}$, $P(\text{correct}) \approx 0.96$; at $L = 1\text{M}$, $P(\text{correct}) \approx 0.98$. These are directly verifiable in future context-length extension experiments.
+\paragraph{Pre-registered prediction and confirmation.} The $P = 1/(1 + K/L)$ model with $K \approx 20$ (in units of thousands of tokens) was derived from Exp.~36 data at $L = 32\text{K}$, $128\text{K}$, $256\text{K}$ and used to generate a prediction \emph{before} running the 512K experiment: $P(512\text{K}) \approx 0.96$. The subsequent experiment ($n = 30$, identical protocol) yielded $P = 29/30 = 0.97$, within 1\% of the prediction (binomial 95\% CI: $[0.82, 1.00]$). The $\delta_0$ control confirmed $30/30$ correct at 512K. The full trajectory:
+
+\begin{center}
+\begin{tabular}{lcccc}
+\toprule
+Context & wrong\_val adopted & $P(\text{correct})$ & Predicted $P$ & $K$ (fitted) \\
+\midrule
+32K  & 10/30 & 0.67 & 0.62 & 16 \\
+128K &  5/30 & 0.83 & 0.86 & 26 \\
+256K &  2/30 & 0.93 & 0.93 & 18 \\
+512K &  1/30 & 0.97 & 0.96 & 17 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent The 512K data point is a genuine out-of-sample prediction: the model $P = 1/(1 + K/L)$ with $K \approx 20$ was fixed before the experiment. The monotonic decrease in \texttt{wrong\_val} adoptions ($10 \to 5 \to 2 \to 1$) across four context lengths spanning a 16$\times$ range is consistent with context length serving as the margin variable ($\mu \propto L$) in the multi-attractor framework. The fitted $K$ at 512K ($K = 17$) remains within the range observed at shorter lengths ($K = 16$--$26$), supporting the constant-$K$ assumption.
 
 %=============================================
 \section{Discussion}
