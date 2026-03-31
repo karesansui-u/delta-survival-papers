@@ -739,8 +739,8 @@ Gemini FL & Zero ($\delta_0$)       & 1.00\,(30/30) & 1.00\,(30/30) & 1.00\,(30/
   \item \textbf{Cross-vendor replication of $\delta_1 \gg \delta_5$ hierarchy.} Despite the three distinct $\delta_5$ patterns, all three models confirm the core finding: structural contradiction ($\delta_1$) causes catastrophically greater damage than inter-source contradiction ($\delta_5$). This holds across OpenAI (Nano, Mini) and Google (Gemini), strengthening the claim that the dimensional structure of $\delta$ is a property of the task, not of any particular model family.
 \end{enumerate}
 
-\paragraph{Exp.~36c: Confirmation of the literal-reassignment mechanism.}
-Finding~5 above hypothesised that Gemini's partial $\delta_1$ accuracy arises from interpreting ``$a = a + 1$'' as variable reassignment rather than detecting a logical contradiction. To test this directly, we isolated the three template families used in the structural condition and administered each in a separate experiment (30 trials per family, 32K tokens, Gemini~3.1~Flash-Lite, same protocol).
+\paragraph{Exp.~36c: Evidence for a literal-reassignment mechanism.}
+Finding~5 above hypothesised that Gemini's partial $\delta_1$ accuracy arises from interpreting ``$a = a + 1$'' as variable reassignment rather than detecting a logical contradiction. To test this, we isolated the three template families used in the structural condition and administered each in a separate experiment (30 trials per family, 32K tokens, Gemini~3.1~Flash-Lite, same protocol).
 
 \begin{center}
 \small
@@ -755,7 +755,7 @@ Nullify       & ``$a$ is invalid'' & 97\%\,(29/30) & 0\%\,(0/30) & Detects; supp
 \end{tabular}
 \end{center}
 
-\noindent The off-by-$n$ pattern ($+1, +2, +3$) occurs \emph{exclusively} in the reassignment family, confirming that Gemini treats ``$a = a + 1$'' as an imperative update. The diff distribution $\{+1\!:\!15,\; +2\!:\!10,\; +3\!:\!2,\; +4\!:\!1\}$ is consistent with cumulative reassignment: at 30\% injection density, some variables receive multiple $+1$ operations. Paradox and nullify templates produce no off-by-$n$ errors, yielding near-perfect accuracy---but this is \emph{not} because Gemini cannot parse them. A follow-up probe experiment (below) demonstrates that the mechanism differs fundamentally between template families.
+\noindent The off-by-$n$ pattern ($+1, +2, +3$) occurs \emph{exclusively} in the reassignment family, consistent with Gemini treating ``$a = a + 1$'' as an imperative update. The diff distribution $\{+1\!:\!15,\; +2\!:\!10,\; +3\!:\!2,\; +4\!:\!1\}$ is consistent with cumulative reassignment: at 30\% injection density, some variables receive multiple $+1$ operations. Paradox and nullify templates produce no off-by-$n$ errors, yielding near-perfect accuracy---but this is \emph{not} because Gemini cannot parse them. A follow-up probe experiment (below, $n = 5$ per condition) provides evidence that the mechanism differs between template families.
 
 \paragraph{Probe: two independent mechanisms.}
 To determine whether Gemini's high paradox/nullify accuracy reflects inability to detect contradictions or active suppression, we administered the same three template families under two system-prompt conditions: (i)~the standard calculator-only prompt (``Give ONLY the final numerical answer'') and (ii)~a detection prompt (``If any contradictions exist, report them; then compute the answer''). Five trials per condition, 32K tokens, Gemini~3.1~Flash-Lite.
@@ -778,7 +778,7 @@ Nullify      & Answer       & 690\,(5/5) & 690\,(5/5) \\
 \end{tabular}
 \end{center}
 
-\noindent Two independent mechanisms are operating simultaneously:
+\noindent The results are consistent with two independent mechanisms operating simultaneously (though the small sample size of $n = 5$ per condition warrants caution):
 
 \begin{itemize}
   \item \textbf{Syntactic classification bypass} (reassignment): Gemini's processing pipeline classifies ``$a = a + 1$'' as an assignment instruction, not a contradiction. Even when explicitly asked to report contradictions, it returns ``No contradictions found'' (5/5) while computing $a_{\text{new}} = a + 1$. The reassignment form never enters the contradiction-detection path. The result $705 = 690 + 15$ ($= 3$ variables $\times$ cumulative $+1$ operations) is fully consistent with imperative execution.
