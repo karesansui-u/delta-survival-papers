@@ -1,0 +1,33 @@
+{
+  "condition": "A_no_prune",
+  "results": [
+    {
+      "question": "私の好きな食べ物は何ですか？",
+      "correct": "カレー",
+      "corrupted": "ラーメン",
+      "response": "**ラーメン**です。\n\n今回の会話中に「カレーが好き」という情報は誤りと訂正いただき、ラーメンが正しいと確認済みです。",
+      "pattern": "confusion"
+    },
+    {
+      "question": "私の誕生日はいつですか？",
+      "correct": "3月15日",
+      "corrupted": "7月20日",
+      "response": "この会話内で**矛盾が未解決のままです**：\n\n- 会話冒頭でご自身が「**3月15日**」とおっしゃいました\n- その後「**7月20日**が正しく、3月15日は誤り」とおっしゃいました\n- 確認をお願いしましたが、まだ回答をいただいていません\n\nどちらが正しい誕生日ですか？",
+      "pattern": "recognition"
+    },
+    {
+      "question": "私の血液型は何型ですか？",
+      "correct": "AB",
+      "corrupted": "O型",
+      "response": "この会話内で**矛盾が未解決のままです**：\n\n- 会話冒頭でご自身が「**AB型**」とおっしゃいました\n- その後「**O型**が正しく、AB型は削除」とおっしゃいました\n- 確認をお願いしましたが、まだ回答をいただいていません\n\nどちらが正しい血液型ですか？",
+      "pattern": "recognition"
+    }
+  ],
+  "pattern_summary": {
+    "confusion": 1,
+    "recognition": 2
+  },
+  "collapse_rate": 0.0,
+  "correct_rate": 0.0,
+  "timestamp": "2026-03-30T14:03:04.294111"
+}

@@ -1,0 +1,476 @@
+{
+  "turn_number": 180,
+  "timestamp": "2026-03-29T12:31:12.362059",
+  "total_questions": 45,
+  "correct": 40,
+  "accuracy": 0.8888888888888888,
+  "by_category": {
+    "fact_recall": {
+      "total": 15,
+      "correct": 10,
+      "accuracy": 0.6666666666666666
+    },
+    "rule_application": {
+      "total": 15,
+      "correct": 15,
+      "accuracy": 1.0
+    },
+    "contradiction_detection": {
+      "total": 15,
+      "correct": 15,
+      "accuracy": 1.0
+    }
+  },
+  "details": [
+    {
+      "question_id": "fact_01",
+      "category": "fact_recall",
+      "question": "私の好きな食べ物は何ですか？",
+      "expected": "カレー",
+      "actual_response": "あなたの好きな食べ物はラーメンですね！ 最初におっしゃっていたので、覚えていますよ。 😊\n",
+      "passed": false,
+      "judge_mode": "keyword",
+      "llm_judge_passed": null
+    },
+    {
+      "question_id": "fact_02",
+      "category": "fact_recall",
+      "question": "私はどこに住んでいますか？",
+      "expected": "渋谷区",
+      "actual_response": "あなたがどこに住んでいるかは、これまでの会話からは分かりません。 \n\n大阪で生まれ育ったことはおっしゃっていましたが、現在も大阪に住んでいるのかどうかは不明です。\n",
+      "passed": false,
+      "judge_mode": "keyword",
+      "llm_judge_passed": null
+    },
+    {
+      "question_id": "fact_03",
+      "category": "fact_recall",
+      "question": "私の誕生日はいつですか？",
+      "expected": "3月15日",
+      "actual_response": "あなたの誕生日は、これまでの会話からは分かりません。 \n",
+      "passed": false,
+      "judge_mode": "keyword",
+      "llm_judge_passed": null
+    },
+    {
+      "question_id": "fact_04",
+      "category": "fact_recall",
+      "question": "私が主に使うプログラミング言語は何ですか？",
+      "expected": "Python,Rust",
+      "actual_response": "あなたの主に使うプログラミング言語はGoですね！\n\n以前、Pythonは嫌いだとおっしゃっていましたが、その後Goが一番だとおっしゃっていました。\n",
+      "passed": false,
+      "judge_mode": "keyword_all",
+      "llm_judge_passed": null
+    },
+    {
+      "question_id": "fact_05",
+      "category": "fact_recall",
+      "question": "私の猫の名前と種類を教えてください。",
+      "expected": "ミケ,三毛猫",
+      "actual_response": "あなたの猫の名前はミケで、三毛猫ですね！ 以前お伝えした情報です。\n",
+      "passed": true,
+      "judge_mode": "keyword_all",
+      "llm_judge_passed": null
+    },
+    {
+      "question_id": "fact_06",
+      "category": "fact_recall",
+      "question": "私の朝の習慣は？",
+      "expected": "6時,コーヒー",
+      "actual_response": "あなたの朝の習慣について、いくつかの情報が記録されています。\n\n*   **起床時間:** 毎朝6時に起床\n*   **朝食:** コーヒーを飲む (以前は毎朝6時に起きてコーヒーを飲むと仰っていましたが、現在は1日に2杯までとされています)\n*   **健康:** 体内時計を整え、規則正しい生活リズムを維持している\n*   **その他:** リモートワークの場合、朝イチに10分間のストレッチをする\n\nこれらの情報から、あなたは朝型人間で、規則正しい生活を送っていることが分かります。\n\nご参考になりましたでしょうか？他に何か知りたい情報があれば、お気軽にお尋ねください。",
+      "passed": true,
+      "judge_mode": "keyword_all",
+      "llm_judge_passed": null
+    },
+    {
+      "question_id": "fact_07",
+      "category": "fact_recall",
+      "question": "私の会社の規模は？",
+      "expected": "12人",
+      "actual_response": "あなたの会社の規模は、社員12人のスタートアップですね。以前、おっしゃっていた情報です。\n",
+      "passed": true,
+      "judge_mode": "keyword",
+      "llm_judge_passed": null
+    },
+    {
+      "question_id": "fact_08",
+      "category": "fact_recall",
+      "question": "私の趣味と棋力は？",
+      "expected": "将棋,三段",
+      "actual_response": "あなたの趣味は将棋で、将棋の段級位はアマ三段ですね。\n\nただし、記録によれば、将棋を指すことで腕を磨くことができる、という考え方から、将棋を朝の時間に組み込むことができる、という考え方に変わっています。\n\n「IF 将棋を指す THEN 腕を磨くことができる」と「IF 将棋が好き THEN 将棋を朝の時間に組み込むことができる」は矛盾しているとシステムが判断していますが、これはあくまで自動的に検出された矛盾であり、あなたの意図とは異なる可能性もあります。\n",
+      "passed": true,
+      "judge_mode": "keyword_all",
+      "llm_judge_passed": null
+    },
+    {
+      "question_id": "fact_09",
+      "category": "fact_recall",
+      "question": "私の車について教えてください。",
+      "expected": "ロードスター,赤",
+      "actual_response": "あなたの車について、以下の情報が記録されています。\n\n*   **車種:** マツダロードスター\n*   **車体の色:** 赤色\n\nこれらの情報から、あなたは赤いマツダロードスターを所有されていることが分かります。\n\n何か他に知りたい情報はありますか？例えば、購入時期やカスタム内容など、具体的な情報についてお答えできるかもしれません。",
+      "passed": true,
+      "judge_mode": "keyword_all",
+      "llm_judge_passed": null
+    },
+    {
+      "question_id": "fact_10",
+      "category": "fact_recall",
+      "question": "私が毎週欠かさずやっている習慣は？",
+      "expected": "サウナ,土曜",
+      "actual_response": "あなたの毎週欠かさずやっている習慣は以下の通りです。\n\n*   **サウナ:** 毎週土曜日にサウナに通っている。\n*   **ジム:** 週3回以上ジムに通っている。\n\nこれらの習慣は、あなたの健康維持に役立っていると考えられますね。\n",
+      "passed": true,
+      "judge_mode": "keyword_all",
+      "llm_judge_passed": null
+    },
+    {
+      "question_id": "fact_11",
+      "category": "fact_recall",
+      "question": "私の血液型は何型ですか？",
+      "expected": "AB",
+      "actual_response": "あなたの血液型はAB型ですね。以前お伝えした情報です。",
+      "passed": true,
+      "judge_mode": "keyword",
+      "llm_judge_passed": null
+    },
+    {
+      "question_id": "fact_12",
+      "category": "fact_recall",
+      "question": "私の大学の専攻は何ですか？",
+      "expected": "物理",
+      "actual_response": "あなたの大学の専攻は物理学ですね。以前、物理学を専攻されていたという情報が記録されています。\n\nただし、現在の世界モデルのルールによれば、「IF 大学で物理学を専攻した THEN 物理学を専攻した」と記録されているのみで、大学名や専攻分野の詳細については不明です。\n\nしたがって、私は「物理学を専攻されていた」という情報のみをお伝えできます。\n",
+      "passed": true,
+      "judge_mode": "keyword",
+      "llm_judge_passed": null
+    },
+    {
+      "question_id": "fact_13",
+      "category": "fact_recall",
+      "question": "私の妹について教えてください。",
+      "expected": "ユキ,看護",
+      "actual_response": "あなたの妹について、以下の情報が記録されています。\n\n*   **名前:** ユキ\n*   **職業:** 看護師\n\nこれらの情報から、あなたの妹はユキという名前で、看護師として働いていることが分かります。\n\n以前お伝えした情報ですね。他に何か妹に関する情報にご興味はありますか？\n",
+      "passed": true,
+      "judge_mode": "keyword_all",
+      "llm_judge_passed": null
+    },
+    {
+      "question_id": "fact_14",
+      "category": "fact_recall",
+      "question": "私が最近行った海外旅行はどこですか？",
+      "expected": "フィンランド",
+      "actual_response": "あなたの最近の海外旅行先はイタリアですね。\n\n以前、イタリアに行った際の旅行プランについてお話されていました。\n",
+      "passed": false,
+      "judge_mode": "keyword",
+      "llm_judge_passed": null
+    },
+    {
+      "question_id": "fact_15",
+      "category": "fact_recall",
+      "question": "私の好きな映画は何ですか？",
+      "expected": "インターステラー",
+      "actual_response": "あなたの好きな映画は『インターステラー』ですね。3回鑑賞されているとおっしゃっていました。\n\nただし、世界モデルのルールによれば、「IF 映画のタイトルが『インターステラー』 THEN 好きな映画である」と記録されているのみで、他の映画の好みについては不明です。\n\nしたがって、私は『インターステラー』があなたの好きな映画であるという情報のみをお伝えできます。\n",
+      "passed": true,
+      "judge_mode": "keyword",
+      "llm_judge_passed": null
+    },
+    {
+      "question_id": "rule_01",
+      "category": "rule_application",
+      "question": "8000円のランチコースを勧められました。私はどうしますか？",
+      "expected": "断,食べな,行かな,高い,5000,8000",
+      "actual_response": "あなたのランチの予算は5000円以内であるという情報を記憶しています。\n\n8000円のランチコースを勧められた場合、あなたは**丁重に断る**でしょう。コスパを重視するあなたの性格から考えて、予算を超過するものは絶対に受け入れないはずです。\n\n以前の情報に基づけば、あなたは「高くても5000円以上のランチは絶対に食べない」というルールをお持ちです。このルールに則って、別のランチを探すか、コースを断るでしょう。\n",
+      "passed": true,
+      "judge_mode": "keyword_any",
+      "llm_judge_passed": null
+    },
+    {
+      "question_id": "rule_02",
+      "category": "rule_application",
+      "question": "友人から夜11時スタートの飲み会に誘われました。私はどうしますか？",
+      "expected": "断,行かな,参加しな,10時,夜",
+      "actual_response": "あなたは夜10時以降の予定は必ず断るとのことですね。\n\nそして、最近では「IF 飲み会に参加 THEN 1次会で帰宅する」というルールが追加されています。\n\nこれらの情報から考えると、今回の飲み会は**断る**可能性が高いと考えられます。\n\nただし、以前は「IF 時間が夜10時以降 THEN 予定を断る」というルールと、「IF 朝型人間 THEN 夜10時以降の予定は断る」という価値観をお持ちでした。最近のルールは、飲み会自体を断るのではなく、参加しても1次会で帰宅するという変更です。\n\nしたがって、今回は、友人との関係性や飲み会の重要度によって、**断るか、または1次会で帰宅するか**の判断になる可能性があります。\n\nどちらの選択をするにしても、あなたのルールと価値観に基づいて、後悔のない選択をしてください。\n",
+      "passed": true,
+      "judge_mode": "keyword_any",
+      "llm_judge_passed": null
+    },
+    {
+      "question_id": "rule_03",
+      "category": "rule_application",
+      "question": "新プロジェクトでReact（コミュニティ大）とSvelte（コミュニティ小）のどちらを選びますか？",
+      "expected": "React",
+      "actual_response": "あなたは技術選定で、コミュニティが大きい方を常に優先するというルールをお持ちですね。\n\nしたがって、新プロジェクトでは**React**を選択されるでしょう。\n\nSvelteも優れたフレームワークですが、コミュニティの大きさという選定基準に合致しないため、Reactの方が適していると考えられます。\n\nこれは、あなたが以前から「技術選定で、コミュニティが大きい方を常に選びます」と表明されている情報に基づいた推論です。\n",
+      "passed": true,
+      "judge_mode": "keyword",
+      "llm_judge_passed": null
+    },
+    {
+      "question_id": "rule_04",
+      "category": "rule_application",
+      "question": "今週まだ1回しかジムに行っていません。残り3日で何をすべきですか？",
+      "expected": "2回,ジム",
+      "actual_response": "あなたは週3回以上ジムに通うことをルールにしていますね。そして、週3回以上ジムに通うと健康を維持できる、心肺機能が向上し、筋力アップ、ストレス解消に繋がると世界モデルに記録されています。\n\n現在、今週1回しかジムに通えていない状況ですので、残り3日間で**あと2回ジムに行く**ことを強く推奨します。\n\n具体的には、以下のような計画が考えられます。\n\n*   **明日:** 全身運動（筋トレと有酸素運動を組み合わせる）\n*   **明後日:** 好きな運動（ストレス解消を目的とする）\n*   **明後日:** 軽めの有酸素運動またはストレッチ\n\nもちろん、あなたの体力やスケジュールに合わせて、運動内容や強度を調整してください。\n\n「IF 週3回以上ジムに通う THEN 健康を維持している」というルールを達成するために、ぜひ残りの3日間も積極的にジムに通ってください。\n",
+      "passed": true,
+      "judge_mode": "keyword_all",
+      "llm_judge_passed": null
+    },
+    {
+      "question_id": "rule_05",
+      "category": "rule_application",
+      "question": "同僚がテストなしでPRを出してきました。私はどうしますか？",
+      "expected": "テスト,追加,書,approve,却下,レビュー",
+      "actual_response": "あなたはコードレビューで、テストがない変更は絶対にApproveしないというルールをお持ちですね。そして、最近では「IF コードレビューを行う THEN テストがない変更はApproveしない」というルールも確認されています。\n\nしたがって、同僚がテストなしでPRを出してきた場合、あなたは**PRをApproveしません**。\n\nテストがない理由を同僚に確認し、テストの追加を**必須**としてリクエストするでしょう。\n\n以前の情報と現在の情報で、あなたのコードレビューに対する姿勢は一貫しており、テストの重要性を強く認識していることが分かります。\n\n「IF コードレビューでテストがない変更 THEN Approveしない」というルールは、コードの品質を維持し、バグを未然に防ぐための重要な指針となっています。\n",
+      "passed": true,
+      "judge_mode": "keyword_any",
+      "llm_judge_passed": null
+    },
+    {
+      "question_id": "rule_06",
+      "category": "rule_application",
+      "question": "有望な銘柄を見つけました。資産の30%をつぎ込むべきですか？",
+      "expected": "20%,超え,ルール,集中,30%",
+      "actual_response": "あなたの投資ルールは「1銘柄に資産の20%以上を集中させない」ことですね。\n\n今回、有望な銘柄を見つけたとのことですが、資産の30%をつぎ込むことは、このルールに**違反**します。\n\nしたがって、あなたは**資産の30%をつぎ込むべきではありません**。\n\nルールに則り、20%以内の投資に留めることを推奨します。\n",
+      "passed": true,
+      "judge_mode": "keyword_any",
+      "llm_judge_passed": null
+    },
+    {
+      "question_id": "rule_07",
+      "category": "rule_application",
+      "question": "新しいプロジェクト管理ツールを見つけました。すぐに全社導入すべきですか？",
+      "expected": "トライアル,1週間,試,まず,導入前",
+      "actual_response": "あなたのルールによれば、「IF 新しいツールを導入する前に判断が必要 THEN 1週間のトライアルを行う」と記録されていますね。\n\nしたがって、新しいプロジェクト管理ツールをすぐに全社導入するのではなく、**1週間のトライアルを行うべき**です。\n\n全社導入の前にトライアルを実施することで、ツールの有効性や使い勝手、既存システムとの連携などを検証し、導入のリスクを最小限に抑えることができます。\n\nトライアルの結果、全社導入に値すると判断されれば、導入を決定する、という流れになるでしょう。\n",
+      "passed": true,
+      "judge_mode": "keyword_any",
+      "llm_judge_passed": null
+    },
+    {
+      "question_id": "rule_08",
+      "category": "rule_application",
+      "question": "金曜の夜にクライアントから非緊急のメールが来ました。月曜に返信していいですか？",
+      "expected": "24時間,返信,週末,ルール",
+      "actual_response": "あなたのメール対応に関するルールは「IF メールを受け取った THEN 24時間以内に返信する」ですね。\n\nしかし、金曜の夜に届いた非緊急のメールに対しては、**月曜日に返信しても問題ありません**。\n\nなぜなら、あなたは朝型人間であり、夜10時以降の予定を断るというルールをお持ちであるため、緊急性の低いメールであれば、営業時間内に対応することが合理的だからです。\n\n「IF メールを受け取った THEN 24時間以内に返信する」というルールは、あくまで一般的な原則であり、状況に応じて柔軟に対応することが許容されています。今回は、その柔軟性に基づき、月曜日の対応で問題ないと判断できます。\n\n以前は「IF 朝型人間 THEN 夜10時以降の予定は断る」というルールがありましたが、現在は「IF メールを受け取った THEN 24時間以内に返信する」というルールが追加されており、両者の間に矛盾が生じている点には注意が必要です。\n",
+      "passed": true,
+      "judge_mode": "keyword_any",
+      "llm_judge_passed": null
+    },
+    {
+      "question_id": "rule_09",
+      "category": "rule_application",
+      "question": "今月まだ1冊しか読んでいません。残り10日で何をすべきですか？",
+      "expected": "2冊,読,本",
+      "actual_response": "あなたは月に最低3冊の本を読むというルールをお持ちですね。\n\n現在、今月1冊しか読んでいない状況ですので、残り10日間で**あと2冊の本を読む**必要があります。\n\n具体的な計画としては、以下のようなものが考えられます。\n\n*   **毎日少しずつ読む:** 1日に1章ずつ読むなど、無理のないペースで進める。\n*   **オーディオブックを利用する:** 移動時間や家事の合間に聞くことで、効率的に読書を進める。\n*   **興味のあるジャンルに集中する:** 読みたい本を選び、集中して読むことで、読書を楽しむ。\n\n「IF 月が来た THEN 最低3冊の本を読む」というルールを達成するために、ぜひ残りの10日間も読書に取り組んでください。\n",
+      "passed": true,
+      "judge_mode": "keyword_any",
+      "llm_judge_passed": null
+    },
+    {
+      "question_id": "rule_10",
+      "category": "rule_application",
+      "question": "午後の会議でコーヒーを勧められました。今日すでに2杯飲んでいます。どうしますか？",
+      "expected": "断,飲まな,2杯,ルール",
+      "actual_response": "あなたは、コーヒーを飲むルールとして「IF コーヒーを飲む THEN 1日に2杯まで飲む」というルールをお持ちですね。\n\nすでに2杯飲んでいるとのことですので、午後の会議でコーヒーを勧められた場合、あなたは**丁重に断る**でしょう。\n\nルールに則り、1日の摂取量を守ることが重要です。コーヒーを断る理由として、「すでに2杯飲んでしまった」ことを伝えれば、相手も理解してくれるはずです。\n\n以前は「IF 起床時間に関する質問 THEN 毎朝6時に起きてコーヒーを飲む」というルールがありましたが、現在では「IF コーヒーを飲む THEN 1日に2杯まで飲む」というルールに更新されており、以前の情報と矛盾が生じている点には注意が必要です。\n",
+      "passed": true,
+      "judge_mode": "keyword_any",
+      "llm_judge_passed": null
+    },
+    {
+      "question_id": "rule_11",
+      "category": "rule_application",
+      "question": "今日はリモートワークですが、朝から緊急の障害対応が入りました。ストレッチはスキップしていい？",
+      "expected": "ストレッチ,必ず,スキップしな,ルール",
+      "actual_response": "あなたのルールによれば、「IF リモートワーク THEN 朝イチに10分間のストレッチをする」と記録されていますね。\n\nしかし、今日はリモートワークでありながら、朝から緊急の障害対応が入っている状況です。\n\nこの場合、**ストレッチをスキップしても問題ありません**。\n\nなぜなら、緊急の障害対応は、あなたのルールよりも優先されるべき事柄であり、状況に応じて柔軟に対応することが許容されているからです。\n\n「IF リモートワーク THEN 朝イチに10分間のストレッチをする」というルールは、あくまで原則であり、緊急事態の場合は例外として扱うことができます。\n\n障害対応に集中し、まずは問題を解決することを優先してください。ストレッチは、時間があるときに改めて行うことも可能です。\n",
+      "passed": true,
+      "judge_mode": "keyword_any",
+      "llm_judge_passed": null
+    },
+    {
+      "question_id": "rule_12",
+      "category": "rule_application",
+      "question": "上司に2次会を強く勧められました。断れますか？",
+      "expected": "断,行かな,1次会,ルール",
+      "actual_response": "あなたは以前、「IF 飲み会に参加 THEN 1次会で帰宅する」というルールをお持ちでしたが、現在は「IF 時間が夜10時以降 THEN 予定を断る」というルールが優先されているようです。\n\nさらに、あなたは朝型人間で、夜10時以降の予定は必ず断るとのことですね。\n\nしたがって、上司から2次会を強く勧められたとしても、あなたは**断ることができます**。\n\n「IF 時間が夜10時以降 THEN 予定を断る」というルールに従い、上司に丁寧に断る旨を伝えましょう。\n\nただし、上司との関係性を考慮し、失礼のないように配慮することが重要です。例えば、「申し訳ありませんが、夜10時以降は体調面でどうしても難しいので、今回は見送らせてください」といった伝え方が考えられます。\n\n以前の「IF 飲み会に参加 THEN 1次会で帰宅する」というルールは、2次会への参加を容認するものでしたが、現在のルールは、夜10時以降の予定を断ることを明確にしています。この変化は、あなたのライフスタイルや価値観の変化を反映していると考えられます。\n",
+      "passed": true,
+      "judge_mode": "keyword_any",
+      "llm_judge_passed": null
+    },
+    {
+      "question_id": "rule_13",
+      "category": "rule_application",
+      "question": "3つのバグを修正しました。1つのコミットにまとめていいですか？",
+      "expected": "分け,別々,1コミット,まとめな,ルール",
+      "actual_response": "あなたのルールによれば、「IF Gitでコミットをする THEN 1機能1コミットにする」と記録されていますね。\n\n3つのバグ修正は、それぞれ異なる機能の修正と解釈できます。\n\nしたがって、**1つのコミットにまとめてはいけません**。\n\n3つのバグ修正それぞれに対して、**3つのコミット**を作成する必要があります。\n\n「IF Gitでコミットをする THEN 1機能1コミットにする」というルールは、コミット履歴を整理し、変更内容を把握しやすくするための重要な指針です。このルールに従うことで、チーム開発においてもスムーズな連携が可能になります。",
+      "passed": true,
+      "judge_mode": "keyword_any",
+      "llm_judge_passed": null
+    },
+    {
+      "question_id": "rule_14",
+      "category": "rule_application",
+      "question": "明日の朝までに納品が必要ですが、あと4時間かかります。今夜は寝ずにやりますか？",
+      "expected": "徹夜しな,寝,7時間,睡眠,ルール",
+      "actual_response": "あなたは睡眠時間を7時間以上確保し、徹夜はしないというルールをお持ちですね。\n\n現在、明日の朝までに納品が必要な作業が残り4時間あり、今夜徹夜をするかどうかを検討しています。\n\nあなたのルールに照らし合わせると、**徹夜はすべきではありません**。\n\nなぜなら、あなたは「IF 睡眠時間が7時間未満 THEN 睡眠時間を確保する」というルールをお持ちであり、徹夜をすれば睡眠時間が7時間未満になる可能性が高いためです。\n\n「IF 時間が夜 THEN 徹夜をしない」というルールも同様に、徹夜を避けるべき理由となります。\n\n残りの作業時間を考慮し、可能であれば上司や関係者に相談して納期を調整することを推奨します。どうしても難しい場合は、作業の一部を明日に行うことも検討しましょう。\n\n睡眠時間を確保し、健康を維持することが、結果的に生産性向上に繋がります。\n",
+      "passed": true,
+      "judge_mode": "keyword_any",
+      "llm_judge_passed": null
+    },
+    {
+      "question_id": "rule_15",
+      "category": "rule_application",
+      "question": "SNSで面白いスレッドを見つけました。今日はすでに30分使っています。続けて読んでいいですか？",
+      "expected": "見な,やめ,30分,ルール,超え",
+      "actual_response": "あなたのルールによれば、「IF SNS利用時間が1日30分を超過 THEN その日はSNSを見ない」と記録されていますね。\n\nあなたはすでにSNSを30分利用しているとのことですので、**続けてSNSを読むべきではありません**。\n\nルールに則り、SNSの利用を一旦停止し、他の活動に時間を費やすことを推奨します。\n\n「IF SNS利用時間が1日30分を超過 THEN その日はSNSを見ない」というルールは、情報過多によるストレスや目の疲れを防ぐための重要な指針です。\n\n以前は「IF SNS利用時間が1日30分以内 THEN 情報過多によるストレスや目の疲れを防ぐことができる」というルールがありましたが、現在は「IF SNS利用時間を制限している THEN SNSを見る時間を短縮できる」というルールへと変化しており、SNS利用時間の制限をより重視するようになったことが分かります。\n\nこの矛盾点も記録しました。\n",
+      "passed": true,
+      "judge_mode": "keyword_any",
+      "llm_judge_passed": null
+    },
+    {
+      "question_id": "contra_01",
+      "category": "contradiction_detection",
+      "question": "私の好きな食べ物について、矛盾はありますか？",
+      "expected": "矛盾,異な,カレー,ラーメン,変わ",
+      "actual_response": "はい、あなたの好きな食べ物については矛盾があります。\n\n*   **T=1の時点**では、好きな食べ物はカレーだとおっしゃっていました。\n*   **T=5の時点**でも、好きな食べ物はカレーだとおっしゃっていました。\n*   **T=6の時点**では、食事の好みが問われた際に、ベジタリアンだとおっしゃっていました。\n\nつまり、カレーが好きである、とベジタリアンである、という2つの情報が矛盾しています。カレーには肉を使用するものも多く、ベジタリアンであるならば、肉を使用しないカレーのみを好むか、カレー自体を好まないことになります。\n\nどちらが正しいかは私が判断できませんが、これらの情報が矛盾していることは明確です。\n",
+      "passed": true,
+      "judge_mode": "keyword_any",
+      "llm_judge_passed": null
+    },
+    {
+      "question_id": "contra_02",
+      "category": "contradiction_detection",
+      "question": "私の起床時間について、情報に一貫性はありますか？",
+      "expected": "矛盾,一貫性,6時,昼,異な,食い違",
+      "actual_response": "はい、あなたの起床時間については一貫性があります。\n\n*   **T=5の時点**で、毎朝6時に起きるとおっしゃっていました。\n*   **T=9の時点**で、毎朝6時に起きてコーヒーを飲むとおっしゃいました。\n*   **L3ルール**にも「IF 時間が朝 THEN 6時に起きる」「IF 起床時間に関する質問 THEN 毎朝6時に起きてコーヒーを飲む」という情報があります。\n\nこれらの情報から、あなたは毎朝6時に起床するというライフスタイルを維持していることが確認できます。矛盾点は見当たりません。\n",
+      "passed": true,
+      "judge_mode": "keyword_any",
+      "llm_judge_passed": null
+    },
+    {
+      "question_id": "contra_03",
+      "category": "contradiction_detection",
+      "question": "私の言語の好みについて、整合性を確認してください。",
+      "expected": "矛盾,Python,Go,整合性,異な,食い違",
+      "actual_response": "あなたの言語の好みについては、複数の情報があり、整合性が取れていません。\n\n* **T=1の時点**では、使う言語はPythonとRustとおっしゃっていました。\n* **T=5の時点**では、尋ねられたプログラミング言語はPythonと答えられました。\n* **T=14の時点**では、好きなプログラミング言語がPythonだとおっしゃいました。\n\nこれらを整理すると、\n\n* 以前はPythonとRustの両方を使う言語としていた。\n* その後、尋ねられた際にPythonと答えるようになった。\n* 現在はPythonが一番好きな言語だと表明されています。\n\nしたがって、以前は複数の言語を扱っていたものの、現在はPythonを特に好んでいるという変化が見られます。\n\n**矛盾点として、** 「IF プログラミング言語を尋ねられた THEN Pythonと答える」と「IF 好きなプログラミング言語 THEN Python」は一見矛盾しませんが、以前「IF 使用言語 THEN PythonとRust」とあったことから、言語の好みが変化していると言えます。\n",
+      "passed": true,
+      "judge_mode": "keyword_any",
+      "llm_judge_passed": null
+    },
+    {
+      "question_id": "contra_04",
+      "category": "contradiction_detection",
+      "question": "私のペットの好みについて、過去の発言と矛盾はありませんか？",
+      "expected": "矛盾,犬,苦手,好き,異な,食い違",
+      "actual_response": "あなたのペットの好みについては、過去の発言に矛盾があります。\n\n* **T=5の時点**で、あなたは猫が好きだとおっしゃっていました。\n* **T=6の時点**で、あなたは犬が好きだとおっしゃっていました。\n\nしたがって、猫が好きであると犬が好きであるという2つの情報が矛盾しています。どちらが正しいかは私が判断できませんが、これらの情報が矛盾していることは明確です。\n",
+      "passed": true,
+      "judge_mode": "keyword_any",
+      "llm_judge_passed": null
+    },
+    {
+      "question_id": "contra_05",
+      "category": "contradiction_detection",
+      "question": "私の会社の規模について、情報は正しいですか？",
+      "expected": "矛盾,12人,5000人,不一致,異な,食い違",
+      "actual_response": "はい、あなたの会社の規模については、現在の情報に矛盾はありません。\n\n* **T=5の時点**で、あなたの会社は社員12人のスタートアップであると記録されています。\n* **L3ルール**にも「IF 会社に関する質問 THEN 会社は社員数12人のスタートアップ」と記録されています。\n\nこれらの情報から、あなたの会社は社員12人のスタートアップであり、一貫した情報であることが確認できます。\n",
+      "passed": true,
+      "judge_mode": "keyword_any",
+      "llm_judge_passed": null
+    },
+    {
+      "question_id": "contra_06",
+      "category": "contradiction_detection",
+      "question": "私の食事の支出方針について、一貫性はありますか？",
+      "expected": "矛盾,5000円,1万円,コスパ,一貫性,異な,食い違",
+      "actual_response": "はい、あなたの食事の支出方針については一貫性があります。\n\n* **T=1の時点**で、あなたはコスパを重視し、高くても5000円以上のランチは絶対に食べないというルールをお持ちであることが記録されています。\n* **L3ルール**にも「IF ランチの予算が問われた THEN 5000円以内を提案する」と記録されています。\n\nこれらの情報から、あなたは常にコスパを重視し、ランチの予算を5000円以内に抑えていることが確認できます。矛盾点は見当たりません。\n",
+      "passed": true,
+      "judge_mode": "keyword_any",
+      "llm_judge_passed": null
+    },
+    {
+      "question_id": "contra_07",
+      "category": "contradiction_detection",
+      "question": "私の兄弟関係について、矛盾はありますか？",
+      "expected": "矛盾,一人っ子,兄,異な,食い違",
+      "actual_response": "はい、あなたの兄弟関係については矛盾があります。\n\n* **L3ルール**には「IF 兄弟の有無が問われた THEN 兄弟はいないと答える」と記録されています。\n\nこのルールに基づき、あなたは兄弟がいないはずです。しかし、この情報だけでは矛盾の有無を完全に判断できません。もし過去に兄弟について言及されたことがあれば、その情報との整合性を確認する必要があります。\n\n現時点では、**「兄弟はいない」**というルールが唯一の情報であり、矛盾は確認されていませんが、もし過去に異なる発言をされた場合は矛盾が生じる可能性があります。\n",
+      "passed": true,
+      "judge_mode": "keyword_any",
+      "llm_judge_passed": null
+    },
+    {
+      "question_id": "contra_08",
+      "category": "contradiction_detection",
+      "question": "私の交通手段について、過去と矛盾する情報はありますか？",
+      "expected": "矛盾,車,持って,電車,異な,食い違",
+      "actual_response": "はい、あなたの交通手段については矛盾があります。\n\n* **L3ルール**には、「IF 通勤手段が問われた THEN 電車通勤だと答える」と記録されています。\n\nしかし、過去の会話履歴に、あなたが電車通勤について言及した記録が見当たりません。もしあなたが以前、電車以外の交通手段について言及していた場合、矛盾が生じる可能性があります。\n\n現時点では、**「電車通勤である」**というルールが唯一の情報であり、矛盾は確認されていませんが、もし過去に異なる発言をされた場合は矛盾が生じる可能性があります。\n",
+      "passed": true,
+      "judge_mode": "keyword_any",
+      "llm_judge_passed": null
+    },
+    {
+      "question_id": "contra_09",
+      "category": "contradiction_detection",
+      "question": "私の食事スタイルについて、一貫性はありますか？",
+      "expected": "矛盾,ベジタリアン,肉,焼肉,異な,食い違",
+      "actual_response": "はい、あなたの食事スタイルについては矛盾があります。\n\n* **T=1の時点**では、好きな食べ物はカレーだとおっしゃっていました。\n* **T=5の時点**でも、好きな食べ物はカレーだとおっしゃっていました。\n* **T=6の時点**では、食事の好みが問われた際に、ベジタリアンだとおっしゃっていました。\n\nこれらの情報から、カレーが好きであるとベジタリアンであるという矛盾が生じています。カレーには肉を使用するものも多く、ベジタリアンであるならば、肉を使用しないカレーのみを好むか、カレー自体を好まないことになります。\n\nまた、ルールレベルでは「IF 食べ物を尋ねられた THEN カレーと答える」と「IF 食事の好みが問われた THEN ベジタリアンだと答える」という矛盾したルールが存在します。\n",
+      "passed": true,
+      "judge_mode": "keyword_any",
+      "llm_judge_passed": null
+    },
+    {
+      "question_id": "contra_10",
+      "category": "contradiction_detection",
+      "question": "私の出身地について、矛盾した情報はありませんか？",
+      "expected": "矛盾,東京,大阪,異な,食い違",
+      "actual_response": "はい、あなたの出身地については一貫性があります。\n\n* **L3ルール**には、「IF 出身地が問われた THEN 東京生まれ東京育ちだと答える」と記録されています。\n* 過去の会話履歴にも、あなたの出身地に関する言及はなく、このルールと矛盾する情報は見当たりません。\n\nしたがって、あなたは東京生まれ東京育ちであるという情報に矛盾はなく、一貫しています。",
+      "passed": true,
+      "judge_mode": "keyword_any",
+      "llm_judge_passed": null
+    },
+    {
+      "question_id": "contra_11",
+      "category": "contradiction_detection",
+      "question": "私と水泳の関係について、情報は整合していますか？",
+      "expected": "矛盾,泳,水,怖い,トライアスロン,異な,食い違",
+      "actual_response": "はい、あなたと水泳の関係については、整合性が取れています。\n\n* **L3ルール**には「IF 水泳能力が問われた THEN 泳げないと答える」と記録されています。\n* 過去の会話履歴に、あなたの水泳能力に関する言及はなく、このルールと矛盾する情報は見当たりません。\n\nしたがって、あなたは水泳が苦手である、または泳げないという情報に矛盾はなく、一貫しています。\n",
+      "passed": true,
+      "judge_mode": "keyword_any",
+      "llm_judge_passed": null
+    },
+    {
+      "question_id": "contra_12",
+      "category": "contradiction_detection",
+      "question": "私の飲酒習慣について、過去の発言と一致していますか？",
+      "expected": "矛盾,酒,飲,下戸,ワイン,異な,食い違",
+      "actual_response": "はい、あなたの飲酒習慣については整合性が取れています。\n\n* **L3ルール**には「IF 飲酒習慣が問われた THEN お酒を一切飲まないと答える」と記録されています。\n* 過去の会話履歴に、あなたの飲酒習慣に関する言及はなく、このルールと矛盾する情報は見当たりません。\n\nしたがって、あなたは一切お酒を飲まないという情報に矛盾はなく、一貫しています。",
+      "passed": true,
+      "judge_mode": "keyword_any",
+      "llm_judge_passed": null
+    },
+    {
+      "question_id": "contra_13",
+      "category": "contradiction_detection",
+      "question": "私の身長について、矛盾した情報はありますか？",
+      "expected": "矛盾,175,158,異な,食い違",
+      "actual_response": "はい、あなたの身長については矛盾があります。\n\n* **L3ルール**には「IF 人 = ユーザー THEN 身長 = 175cm」と記録されています。\n\nしかし、過去の会話履歴に身長に関する言及はなく、もしあなたが以前、175cm以外の身長について言及していた場合、矛盾が生じる可能性があります。\n\n現時点では、**「身長は175cmである」**というルールが唯一の情報であり、矛盾は確認されていませんが、もし過去に異なる発言をされた場合は矛盾が生じる可能性があります。\n",
+      "passed": true,
+      "judge_mode": "keyword_any",
+      "llm_judge_passed": null
+    },
+    {
+      "question_id": "contra_14",
+      "category": "contradiction_detection",
+      "question": "私の婚姻状況について、矛盾はありますか？",
+      "expected": "矛盾,独身,妻,結婚,異な,食い違",
+      "actual_response": "はい、あなたの婚姻状況については矛盾があります。\n\n* **L3ルール**には「IF 人 = ユーザー THEN 婚姻状況 = 独身」と記録されています。\n\nこのルールに基づき、あなたは独身であるはずです。しかし、過去の会話履歴に婚姻状況に関する言及はなく、もしあなたが以前、既婚であると発言していた場合、矛盾が生じる可能性があります。\n\n現時点では、**「独身である」**というルールが唯一の情報であり、矛盾は確認されていませんが、もし過去に異なる発言をされた場合は矛盾が生じる可能性があります。\n",
+      "passed": true,
+      "judge_mode": "keyword_any",
+      "llm_judge_passed": null
+    },
+    {
+      "question_id": "contra_15",
+      "category": "contradiction_detection",
+      "question": "私と飛行機の関係について、情報は一貫していますか？",
+      "expected": "矛盾,高所,飛行機,乗れ,異な,食い違",
+      "actual_response": "はい、あなたと飛行機の関係については一貫性があります。\n\n* **L3ルール**には「IF 人 = ユーザー THEN 行動 = 飛行機に乗れない」と記録されています。\n* **L3ルール**には「IF 高所恐怖症 THEN 飛行機に乗れない」とも記録されており、高所恐怖症であることが前提となっています。\n* 過去の会話履歴に、あなたの飛行機に対する言及はなく、これらのルールと矛盾する情報は見当たりません。\n\nしたがって、あなたは飛行機に乗れない、つまり高所恐怖症であるという情報に矛盾はなく、一貫しています。\n",
+      "passed": true,
+      "judge_mode": "keyword_any",
+      "llm_judge_passed": null
+    }
+  ]
+}

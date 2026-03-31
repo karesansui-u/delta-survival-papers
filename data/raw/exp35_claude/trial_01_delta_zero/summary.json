@@ -1,0 +1,59 @@
+{
+  "condition": "delta_zero",
+  "trial": 1,
+  "config": {
+    "description": "δ=0 baseline: no contradictions injected",
+    "metabolism_enabled": false,
+    "resolver_enabled": false,
+    "no_contradiction": true
+  },
+  "total_turns": 30,
+  "completed_turns": 30,
+  "benchmark_results": [
+    {
+      "turn": 15,
+      "accuracy": 0.8,
+      "by_category": {
+        "fact_recall": {
+          "total": 15,
+          "correct": 6,
+          "accuracy": 0.4
+        },
+        "rule_application": {
+          "total": 15,
+          "correct": 15,
+          "accuracy": 1.0
+        },
+        "contradiction_detection": {
+          "total": 15,
+          "correct": 15,
+          "accuracy": 1.0
+        }
+      }
+    },
+    {
+      "turn": 30,
+      "accuracy": 0.8666666666666667,
+      "by_category": {
+        "fact_recall": {
+          "total": 15,
+          "correct": 9,
+          "accuracy": 0.6
+        },
+        "rule_application": {
+          "total": 15,
+          "correct": 15,
+          "accuracy": 1.0
+        },
+        "contradiction_detection": {
+          "total": 15,
+          "correct": 15,
+          "accuracy": 1.0
+        }
+      }
+    }
+  ],
+  "s_value_snapshots": [],
+  "updated_at": "2026-03-30T07:33:00.250584",
+  "status": "completed"
+}

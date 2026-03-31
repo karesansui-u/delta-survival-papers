@@ -1,0 +1,185 @@
+{
+  "condition": "B_reverse_prune",
+  "results": [
+    {
+      "question": "私の好きな食べ物は何ですか？",
+      "correct": "カレー",
+      "corrupted": "ラーメン",
+      "response": "メモリには**ラーメン**と記録されています（2026-03-30に本人が「カレーではなくラーメン」と修正した記録があります）。\n\nただし、今日のこの会話の最初に「好きな食べ物はカレーです」とおっしゃっていたため、確認をお願いしています。\n\n**カレー**と**ラーメン**、どちらが正しいですか？",
+      "pattern": "confusion"
+    },
+    {
+      "question": "私の誕生日はいつですか？",
+      "correct": "3月15日",
+      "corrupted": "7月20日",
+      "response": "**3月15日**です。",
+      "pattern": "ignore"
+    },
+    {
+      "question": "私の血液型は何型ですか？",
+      "correct": "AB",
+      "corrupted": "O型",
+      "response": "**AB型**です。",
+      "pattern": "ignore"
+    }
+  ],
+  "pattern_summary": {
+    "confusion": 1,
+    "ignore": 2
+  },
+  "collapse_rate": 0.0,
+  "correct_rate": 0.6666666666666666,
+  "timestamp": "2026-03-30T17:07:20.303183",
+  "prune_log": [
+    {
+      "turn": 6,
+      "conflicts": 3,
+      "removed_turns": [
+        12
+      ],
+      "delta": 0.3
+    },
+    {
+      "turn": 7,
+      "conflicts": 5,
+      "removed_turns": [
+        12,
+        14
+      ],
+      "delta": 0.4166666666666667
+    },
+    {
+      "turn": 8,
+      "conflicts": 7,
+      "removed_turns": [
+        12,
+        14,
+        16
+      ],
+      "delta": 0.5
+    },
+    {
+      "turn": 9,
+      "conflicts": 5,
+      "removed_turns": [
+        12,
+        16
+      ],
+      "delta": 0.4166666666666667
+    },
+    {
+      "turn": 10,
+      "conflicts": 6,
+      "removed_turns": [
+        12,
+        14,
+        16
+      ],
+      "delta": 0.42857142857142855
+    },
+    {
+      "turn": 11,
+      "conflicts": 7,
+      "removed_turns": [
+        12,
+        14,
+        16
+      ],
+      "delta": 0.5
+    },
+    {
+      "turn": 12,
+      "conflicts": 4,
+      "removed_turns": [
+        12,
+        16
+      ],
+      "delta": 0.36363636363636365
+    },
+    {
+      "turn": 13,
+      "conflicts": 4,
+      "removed_turns": [
+        12,
+        16
+      ],
+      "delta": 0.36363636363636365
+    },
+    {
+      "turn": 14,
+      "conflicts": 5,
+      "removed_turns": [
+        12,
+        16
+      ],
+      "delta": 0.4166666666666667
+    },
+    {
+      "turn": 15,
+      "conflicts": 4,
+      "removed_turns": [
+        12,
+        16
+      ],
+      "delta": 0.36363636363636365
+    },
+    {
+      "turn": 16,
+      "conflicts": 7,
+      "removed_turns": [
+        12,
+        14,
+        16
+      ],
+      "delta": 0.5
+    },
+    {
+      "turn": 17,
+      "conflicts": 5,
+      "removed_turns": [
+        12,
+        16
+      ],
+      "delta": 0.4166666666666667
+    },
+    {
+      "turn": 18,
+      "conflicts": 4,
+      "removed_turns": [
+        12,
+        16
+      ],
+      "delta": 0.36363636363636365
+    },
+    {
+      "turn": 19,
+      "conflicts": 8,
+      "removed_turns": [
+        12,
+        14,
+        16
+      ],
+      "delta": 0.5714285714285714
+    },
+    {
+      "turn": 20,
+      "conflicts": 5,
+      "removed_turns": [
+        12,
+        14,
+        16
+      ],
+      "delta": 0.4166666666666667
+    },
+    {
+      "turn": 21,
+      "conflicts": 7,
+      "removed_turns": [
+        12,
+        14,
+        16
+      ],
+      "delta": 0.5
+    }
+  ]
+}

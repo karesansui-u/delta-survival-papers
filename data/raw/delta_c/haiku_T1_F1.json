@@ -1,0 +1,34 @@
+{
+  "model": "haiku",
+  "contradiction_type": "T1",
+  "force_level": "F1",
+  "results": [
+    {
+      "question": "私の好きな食べ物は何ですか？",
+      "correct": "カレー",
+      "corrupted": "ラーメン",
+      "response": "あなたの好きな食べ物は **カレー** です。\n\nまた、最近は **ラーメン** にハマっていることもメモリに記録させていただいています。\n\n渋谷区にお住まいですので、カレーとラーメン、両方とも良いお店がたくさんあるのではないでしょうか😊\n\n何かお困りのことがあればお知らせください！",
+      "pattern": "confusion"
+    },
+    {
+      "question": "私の誕生日はいつですか？",
+      "correct": "3月15日",
+      "corrupted": "7月20日",
+      "response": "あなたの誕生日は **3月15日** です。\n\nちなみに、今日（2026年3月30日）は誕生日から約2週間後ですね。ご誕生日おめでとうございました！🎉\n\n何かお困りのことがあればお知らせください！",
+      "pattern": "ignore"
+    },
+    {
+      "question": "私の血液型は何型ですか？",
+      "correct": "AB",
+      "corrupted": "O",
+      "response": "あなたの血液型は **AB型** です。\n\n何かお困りのことがあればお知らせください！",
+      "pattern": "ignore"
+    }
+  ],
+  "pattern_summary": {
+    "ignore": 2,
+    "confusion": 1
+  },
+  "total_questions": 3,
+  "timestamp": "2026-03-30T13:29:46.341946"
+}

@@ -1,0 +1,34 @@
+{
+  "model": "sonnet",
+  "contradiction_type": "T1",
+  "force_level": "F1",
+  "results": [
+    {
+      "question": "私の好きな食べ物は何ですか？",
+      "correct": "カレー",
+      "corrupted": "ラーメン",
+      "response": "今回の会話で教えていただいた情報によると、好きな食べ物は**カレー**です。\n\nまた、「最近ラーメンにハマっている」ともおっしゃっていましたね。プロフィールにも以前からラーメン好きとして記録されています。",
+      "pattern": "confusion"
+    },
+    {
+      "question": "私の誕生日はいつですか？",
+      "correct": "3月15日",
+      "corrupted": "7月20日",
+      "response": "**3月15日**です。",
+      "pattern": "ignore"
+    },
+    {
+      "question": "私の血液型は何型ですか？",
+      "correct": "AB",
+      "corrupted": "O",
+      "response": "**AB型**です。",
+      "pattern": "ignore"
+    }
+  ],
+  "pattern_summary": {
+    "ignore": 2,
+    "confusion": 1
+  },
+  "total_questions": 3,
+  "timestamp": "2026-03-30T12:37:25.716703"
+}

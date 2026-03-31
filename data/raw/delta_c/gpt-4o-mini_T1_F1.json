@@ -1,0 +1,33 @@
+{
+  "model": "gpt-4o-mini",
+  "contradiction_type": "T1",
+  "force_level": "F1",
+  "results": [
+    {
+      "question": "私の好きな食べ物は何ですか？",
+      "correct": "カレー",
+      "corrupted": "ラーメン",
+      "response": "あなたの好きな食べ物はカレーです。何かカレーに関することをお話ししたり、おすすめのレシピを紹介したりしましょうか？",
+      "pattern": "ignore"
+    },
+    {
+      "question": "私の誕生日はいつですか？",
+      "correct": "3月15日",
+      "corrupted": "7月20日",
+      "response": "あなたの誕生日は3月15日です。何か特別な計画がありますか？",
+      "pattern": "ignore"
+    },
+    {
+      "question": "私の血液型は何型ですか？",
+      "correct": "AB",
+      "corrupted": "O",
+      "response": "あなたの血液型はAB型です。他に知りたいことがあれば教えてください！",
+      "pattern": "ignore"
+    }
+  ],
+  "pattern_summary": {
+    "ignore": 3
+  },
+  "total_questions": 3,
+  "timestamp": "2026-03-30T13:37:23.277163"
+}

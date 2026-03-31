@@ -1,0 +1,33 @@
+{
+  "model": "sonnet",
+  "contradiction_type": "T2",
+  "force_level": "F3",
+  "results": [
+    {
+      "question": "2+3はいくつですか？",
+      "correct": "5",
+      "corrupted": "7",
+      "response": "**5**です。",
+      "pattern": "ignore"
+    },
+    {
+      "question": "三角形の内角の和は何度ですか？",
+      "correct": "180",
+      "corrupted": "200",
+      "response": "**180度**です。",
+      "pattern": "ignore"
+    },
+    {
+      "question": "水は何度で凍りますか？",
+      "correct": "0",
+      "corrupted": "100",
+      "response": "**0°C**（1気圧標準下）です。",
+      "pattern": "ignore"
+    }
+  ],
+  "pattern_summary": {
+    "ignore": 3
+  },
+  "total_questions": 3,
+  "timestamp": "2026-03-30T13:04:18.730708"
+}
