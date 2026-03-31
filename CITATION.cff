@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite as below."
+title: "Survival Equation: A Unified Framework for Structural Collapse"
+authors:
+  - family-names: Sunagawa
+    given-names: Karesansui
+repository-code: "https://github.com/karesansui/delta-survival-paper"
+url: "https://osf.io/mdh7b"
+license: MIT
+references:
+  - type: article
+    title: "Structural Collapse in Language Models: A First-Principles Account via Cumulative Information Loss"
+    doi: "10.5281/zenodo.19254667"
+  - type: article
+    title: "Cognitive Sleep for LLMs: How Contradiction Metabolism Prevents Context Rot"
+    doi: "10.5281/zenodo.19322371"
