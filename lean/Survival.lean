@@ -4,7 +4,7 @@ Survival Model - Formal Verification (Paper 1 + Second Moment Extension)
 
 Paper: "Structural Conflicts as Information Loss"
 
-19 modules, sorry = 0, axiom = 0.
+23 modules, sorry = 0, axiom = 0.
 
 Covers:
 - Survival equation algebraic properties (S > 0 ⟺ all factors positive)
@@ -70,3 +70,9 @@ import Survival.KLDivergence
 import Survival.WeakDependence
 import Survival.CorrelatedSecondMoment
 import Survival.RobustSurvival
+
+-- Multi-attractor extension: basin partition, transition theorem, free energy
+import Survival.MultiAttractor
+import Survival.TransitionTheorem
+import Survival.FreeEnergy
+import Survival.ScaleInvariance
