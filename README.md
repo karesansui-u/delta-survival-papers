@@ -13,9 +13,10 @@ for structural collapse: theory, experiments, and formal verification.
 |---|---|
 | Paper 1 — Structural Collapse | **Preprint v1.7** ([Zenodo](https://zenodo.org/records/19254667)) |
 | Paper 2 — Existence vs Discovery | Preprint ([Zenodo](https://zenodo.org/records/18943573)) |
-| Paper 3 — Cognitive Sleep for LLMs | **Preprint v1** ([Zenodo](https://zenodo.org/records/19322371)) |
+| Paper 3 — Contradiction Metabolism for LLMs | **Preprint v1** ([Zenodo](https://zenodo.org/records/19322371)) |
 | Lean 4 — Formal Verification | Complete (`sorry = 0`, `axiom = 0`) |
 | OSF Project | [osf.io/mdh7b](https://osf.io/mdh7b/) |
+| Raw data (all experiments) | 📊 [DATA.md](DATA.md) |
 
 **Key results:**
 - Parameter-free prediction of XOR-SAT threshold ratio:
@@ -119,10 +120,10 @@ The sensitivity exponent c is solver-dependent
 - English: [`paper2/paper2_main.tex`](paper2/paper2_main.tex) / [PDF](paper2/paper2_main.pdf)
 - 日本語: [`paper2/paper2_main_ja.tex`](paper2/paper2_main_ja.tex) / [PDF](paper2/paper2_main_ja.pdf)
 
-### Paper 3 — Cognitive Sleep for LLMs / LLMの認知的睡眠
+### Paper 3 — Contradiction Metabolism for LLMs / LLMの矛盾代謝
 
-**"Cognitive Sleep for LLMs:
-How Contradiction Metabolism Prevents Context Rot"**
+**"Contradiction Metabolism for LLMs:
+Preliminary Evidence that Context Rot is a Knowledge Integrity Problem"**
 
 Context rot is caused by contradiction accumulation, not context length.
 Even Google's 1M-token context window drops 47.8pp under contradictions.
@@ -232,8 +233,8 @@ Akihito Sunagawa
 
 @misc{sunagawa2026cognitive,
   author = {Sunagawa, Akihito},
-  title  = {Cognitive Sleep for LLMs:
-            How Contradiction Metabolism Prevents Context Rot},
+  title  = {Contradiction Metabolism for LLMs:
+            Preliminary Evidence that Context Rot is a Knowledge Integrity Problem},
   year   = {2026},
   doi    = {10.5281/zenodo.19322371},
   url    = {https://zenodo.org/records/19322371}
