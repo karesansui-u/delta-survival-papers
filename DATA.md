@@ -62,14 +62,21 @@ osf.io/mdh7b/files/
 
 ---
 
-## GitHub-readable files (no download needed)
+## GitHub-readable files (direct fetch, no redirect)
 
-External LLMs can read these directly via GitHub raw URLs:
+External LLMs: fetch these URLs directly — no OSF redirect, no auth needed.
 
-- **Prompts**: `https://raw.githubusercontent.com/karesansui-u/delta-survival-papers/main/analysis/llm/prompts.py`
-- **Exp.35 results**: `https://raw.githubusercontent.com/karesansui-u/delta-survival-papers/main/data/summaries/exp35_control_results.json`
-- **DeltaZero summary (llama31 ON)**: `https://raw.githubusercontent.com/karesansui-u/delta-survival-papers/main/data/summaries/deltazero_llama31_trial_01_metabolism_on_summary.json`
-- **DeltaZero summary (llama31 OFF)**: `https://raw.githubusercontent.com/karesansui-u/delta-survival-papers/main/data/summaries/deltazero_llama31_trial_01_metabolism_off_summary.json`
+| File | GitHub raw URL |
+|------|---------------|
+| **Prompts** (all experiments) | https://raw.githubusercontent.com/karesansui-u/delta-survival-papers/main/analysis/llm/prompts.py |
+| **Exp.36 GPT-4.1-mini trials** (270 trials JSONL) | https://raw.githubusercontent.com/karesansui-u/delta-survival-papers/main/data/raw/exp36_gpt-4_1-mini_trials.jsonl |
+| **Exp.36 GPT-4.1-nano trials** (270 trials JSONL) | https://raw.githubusercontent.com/karesansui-u/delta-survival-papers/main/data/raw/exp36_gpt-4_1-nano_trials.jsonl |
+| **Exp.36 Gemini trials** (270 trials JSONL) | https://raw.githubusercontent.com/karesansui-u/delta-survival-papers/main/data/raw/exp36_gemini-3_1-flash-lite-preview_trials.jsonl |
+| **DeltaZero turn_logs ON** (trial_02, 180 turns) | https://raw.githubusercontent.com/karesansui-u/delta-survival-papers/main/data/raw/deltazero_llama31/trial_02_metabolism_on_turn_logs.json |
+| **DeltaZero turn_logs OFF** (trial_01, 180 turns) | https://raw.githubusercontent.com/karesansui-u/delta-survival-papers/main/data/raw/deltazero_llama31/trial_01_metabolism_off_turn_logs.json |
+| **Exp.35 results** | https://raw.githubusercontent.com/karesansui-u/delta-survival-papers/main/data/summaries/exp35_control_results.json |
+| **DeltaZero summary ON** | https://raw.githubusercontent.com/karesansui-u/delta-survival-papers/main/data/summaries/deltazero_llama31_trial_01_metabolism_on_summary.json |
+| **DeltaZero summary OFF** | https://raw.githubusercontent.com/karesansui-u/delta-survival-papers/main/data/summaries/deltazero_llama31_trial_01_metabolism_off_summary.json |
 
 ---
 
