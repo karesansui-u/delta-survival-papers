@@ -1,0 +1,59 @@
+{
+  "condition": "metabolism_off",
+  "trial": 1,
+  "config": {
+    "description": "対照群A: 代謝パイプライン完全OFF（蓄積のみ）",
+    "metabolism_enabled": false,
+    "resolver_enabled": false,
+    "no_contradiction": false
+  },
+  "total_turns": 180,
+  "completed_turns": 179,
+  "benchmark_results": [
+    {
+      "turn": 90,
+      "accuracy": 0.0,
+      "by_category": {
+        "fact_recall": {
+          "total": 15,
+          "correct": 0,
+          "accuracy": 0.0
+        },
+        "rule_application": {
+          "total": 15,
+          "correct": 0,
+          "accuracy": 0.0
+        },
+        "contradiction_detection": {
+          "total": 15,
+          "correct": 0,
+          "accuracy": 0.0
+        }
+      }
+    },
+    {
+      "turn": 180,
+      "accuracy": 0.022222222222222223,
+      "by_category": {
+        "fact_recall": {
+          "total": 15,
+          "correct": 1,
+          "accuracy": 0.06666666666666667
+        },
+        "rule_application": {
+          "total": 15,
+          "correct": 0,
+          "accuracy": 0.0
+        },
+        "contradiction_detection": {
+          "total": 15,
+          "correct": 0,
+          "accuracy": 0.0
+        }
+      }
+    }
+  ],
+  "s_value_snapshots": [],
+  "updated_at": "2026-03-25T16:10:31.669150",
+  "status": "completed"
+}

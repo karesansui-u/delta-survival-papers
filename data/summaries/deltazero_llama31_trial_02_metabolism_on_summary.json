@@ -1,0 +1,76 @@
+{
+  "condition": "metabolism_on",
+  "trial": 2,
+  "config": {
+    "description": "実験群: 代謝パイプライン完全ON",
+    "metabolism_enabled": true,
+    "resolver_enabled": true,
+    "no_contradiction": false
+  },
+  "total_turns": 180,
+  "completed_turns": 180,
+  "benchmark_results": [
+    {
+      "turn": 90,
+      "accuracy": 0.0,
+      "by_category": {
+        "fact_recall": {
+          "total": 15,
+          "correct": 0,
+          "accuracy": 0.0
+        },
+        "rule_application": {
+          "total": 15,
+          "correct": 0,
+          "accuracy": 0.0
+        },
+        "contradiction_detection": {
+          "total": 15,
+          "correct": 0,
+          "accuracy": 0.0
+        }
+      }
+    },
+    {
+      "turn": 180,
+      "accuracy": 0.0,
+      "by_category": {
+        "fact_recall": {
+          "total": 15,
+          "correct": 0,
+          "accuracy": 0.0
+        },
+        "rule_application": {
+          "total": 15,
+          "correct": 0,
+          "accuracy": 0.0
+        },
+        "contradiction_detection": {
+          "total": 15,
+          "correct": 0,
+          "accuracy": 0.0
+        }
+      }
+    }
+  ],
+  "s_value_snapshots": [
+    {
+      "turn": 90,
+      "s_value": 0.4723665527410147,
+      "delta": 0.15,
+      "mu": 1.0,
+      "active_rules": 0,
+      "collapse_risk": "healthy"
+    },
+    {
+      "turn": 180,
+      "s_value": 0.4723665527410147,
+      "delta": 0.15,
+      "mu": 1.0,
+      "active_rules": 0,
+      "collapse_risk": "healthy"
+    }
+  ],
+  "updated_at": "2026-03-25T20:04:41.339672",
+  "status": "completed"
+}

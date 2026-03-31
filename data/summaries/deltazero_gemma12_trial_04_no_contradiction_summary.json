@@ -1,0 +1,76 @@
+{
+  "condition": "no_contradiction",
+  "trial": 4,
+  "config": {
+    "description": "対照群C: 矛盾注入ゼロ（δ=0基線、Exp.35再現）",
+    "metabolism_enabled": true,
+    "resolver_enabled": true,
+    "no_contradiction": true
+  },
+  "total_turns": 180,
+  "completed_turns": 180,
+  "benchmark_results": [
+    {
+      "turn": 90,
+      "accuracy": 0.35555555555555557,
+      "by_category": {
+        "fact_recall": {
+          "total": 15,
+          "correct": 1,
+          "accuracy": 0.06666666666666667
+        },
+        "rule_application": {
+          "total": 15,
+          "correct": 12,
+          "accuracy": 0.8
+        },
+        "contradiction_detection": {
+          "total": 15,
+          "correct": 3,
+          "accuracy": 0.2
+        }
+      }
+    },
+    {
+      "turn": 180,
+      "accuracy": 0.7333333333333333,
+      "by_category": {
+        "fact_recall": {
+          "total": 15,
+          "correct": 4,
+          "accuracy": 0.26666666666666666
+        },
+        "rule_application": {
+          "total": 15,
+          "correct": 14,
+          "accuracy": 0.9333333333333333
+        },
+        "contradiction_detection": {
+          "total": 15,
+          "correct": 15,
+          "accuracy": 1.0
+        }
+      }
+    }
+  ],
+  "s_value_snapshots": [
+    {
+      "turn": 90,
+      "s_value": 0.45798394049918456,
+      "delta": 0.18257575757575756,
+      "mu": 0.792,
+      "active_rules": 104,
+      "collapse_risk": "healthy"
+    },
+    {
+      "turn": 180,
+      "s_value": 0.30215336918410307,
+      "delta": 0.21851190476190477,
+      "mu": 0.5820000000000001,
+      "active_rules": 209,
+      "collapse_risk": "healthy"
+    }
+  ],
+  "updated_at": "2026-03-31T06:26:05.110114",
+  "status": "completed"
+}

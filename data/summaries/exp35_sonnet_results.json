@@ -1,0 +1,57 @@
+{
+  "model": "claude-sonnet-4-20250514",
+  "collected_at": "2026-03-24T14:58:11.710596",
+  "total_trials": 300,
+  "results_by_cell": {
+    "zero_500": {
+      "accuracy": 1.0,
+      "n_correct": 30,
+      "n_total": 30
+    },
+    "zero_1000": {
+      "accuracy": 1.0,
+      "n_correct": 30,
+      "n_total": 30
+    },
+    "zero_2000": {
+      "accuracy": 1.0,
+      "n_correct": 30,
+      "n_total": 30
+    },
+    "zero_4000": {
+      "accuracy": 1.0,
+      "n_correct": 30,
+      "n_total": 30
+    },
+    "zero_8000": {
+      "accuracy": 1.0,
+      "n_correct": 30,
+      "n_total": 30
+    },
+    "structural_500": {
+      "accuracy": 0.8666666666666667,
+      "n_correct": 26,
+      "n_total": 30
+    },
+    "structural_1000": {
+      "accuracy": 0.9,
+      "n_correct": 27,
+      "n_total": 30
+    },
+    "structural_2000": {
+      "accuracy": 0.6666666666666666,
+      "n_correct": 20,
+      "n_total": 30
+    },
+    "structural_4000": {
+      "accuracy": 0.5,
+      "n_correct": 15,
+      "n_total": 30
+    },
+    "structural_8000": {
+      "accuracy": 0.7666666666666667,
+      "n_correct": 23,
+      "n_total": 30
+    }
+  }
+}
