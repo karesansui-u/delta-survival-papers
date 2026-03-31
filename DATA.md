@@ -37,9 +37,11 @@ OSF folders are collapsed by default. Use these direct links:
 
 | File | Direct download |
 |------|----------------|
+| trial_02 ON turn_logs.json (180 turns) | https://osf.io/download/69cc2be98cafab72d7460d3b/ |
+| trial_01 OFF turn_logs.json (180 turns) | https://osf.io/download/69cc2b25fedfb5839e51e659/ |
+| experiment_runner.py | https://osf.io/download/7wa8s/ |
 | trial_01 ON summary | https://osf.io/download/69c9e009217286e65b73fa96/ |
 | trial_01 OFF summary | https://osf.io/download/69c9e009217286e65b73fa93/ |
-| experiment_runner.py | https://osf.io/download/69cc2f0ad9fd2082f051e179/ |
 
 ### Full OSF structure
 
