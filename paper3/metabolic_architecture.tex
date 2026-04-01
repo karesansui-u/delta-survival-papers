@@ -222,8 +222,8 @@ S = \mu \times e^{-\delta \times k}
 \label{eq:survival}
 \end{equation}
 where $\mu = 1 - (\text{active rules} / \text{max rules})$ represents resource headroom, $\delta$ is the weighted contradiction ratio across five dimensions (self-contradiction, feedback reversal, protocol violation, temporal inconsistency, and cross-source divergence), and $k = 3.0$ is the scale factor.
-The value $k = 3.0$ was selected empirically to produce meaningful S-value differentiation across the observed range of $\delta$ (typically 0--0.3); higher values cause the rollback threshold to trigger too frequently, while lower values reduce sensitivity to contradiction accumulation.
-Note that $k \neq 1$ because $\delta$ here is an operational ratio (conflicts/processed), not the information loss in nats used in the theoretical equation \citep{sunagawa2026collapse}; $k$ serves as a unit-conversion factor from this ratio to the nats scale.
+The value $k = 3.0$ was selected empirically to produce meaningful S-value differentiation across the observed range of operational $\delta$ (typically 0--0.3); higher values cause the rollback threshold to trigger too frequently, while lower values reduce sensitivity to contradiction accumulation.
+Note that $k \neq 1$ because $\delta$ here is an operational ratio (conflicts/processed), not the information loss in nats used in the theoretical equation \citep{sunagawa2026collapse}. Accordingly, $k$ should be interpreted as an empirically calibrated sensitivity coefficient for the health check, not as a first-principles unit conversion from contradiction ratio to nats. The present architecture instantiates the same exponential functional form with an operational proxy; deriving or validating the mapping from this proxy to the theoretical $\delta$ remains future work.
 If $S$ drops sharply relative to the pre-metabolism snapshot, trigger rollback.
 \end{enumerate}
 
@@ -623,6 +623,12 @@ Cross-language validation is needed to confirm that the effects are not language
 The controlled ablation (Section~\ref{sec:exp-ablation}) conflates temporal integration with a scale factor adjustment.
 A cleaner ablation isolating each variable independently would strengthen the causal claim.
 
+\paragraph{$\delta$ calibration.}
+The health check uses a weighted contradiction ratio and an empirically calibrated scale factor ($k = 3.0$), not a first-principles derivation of information loss in nats.
+This is sufficient for engineering control and rollback triggering, but it leaves the bridge to the theoretical $\delta$ of \citet{sunagawa2026collapse} incomplete.
+In the terminology of that paper, this is a proxy-measurement regime rather than a validated quantitative derivation.
+Establishing a principled mapping from contradiction proxies to nats, or estimating $k$ from independent measurements rather than operational tuning, remains open.
+
 \paragraph{Benchmark.}
 We use a custom 45-question benchmark designed for this evaluation rather than a standardized benchmark (e.g., SQuAD, MMLU).
 The questions test fact recall and rule application---fundamental capabilities that underpin more complex reasoning---but do not assess performance on multi-step inference or domain-specific tasks.
@@ -636,10 +642,11 @@ A directionally consistent observation in Gemini~3.1 Flash Lite ($+$2.2pp, $n = 
 
 Several directions follow naturally from these results.
 First, full metabolism pipeline testing with frontier API models (GPT-4o, Claude, Gemini) would establish whether the approach scales beyond local models; the Exp35-R replication (Section~\ref{sec:frontier}) confirmed these models' contradiction resistance but did not test metabolism.
-Second, cross-model $n = 3$ replication with different architectures (e.g., Mistral, LLaMA) would strengthen generality.
-Third, direct measurement of the knowledge anchoring effect via retrieval probability analysis would elevate the cross-model observation (gemma3:27b and Gemini~3.1) to a confirmed finding.
-Fourth, cross-language benchmarks in English and Chinese would address the language limitation.
-Fifth, characterizing $\delta_c$ as a function of model size and RLHF intensity would connect the three-pattern taxonomy (collapse, resistance, non-retention) to measurable model properties.
+Second, calibrating the operational contradiction ratio used in the health check to the theoretical $\delta$ in nats would strengthen the connection to \citet{sunagawa2026collapse} and clarify the role of $k$ as a fitted sensitivity coefficient rather than a derived constant.
+Third, cross-model $n = 3$ replication with different architectures (e.g., Mistral, LLaMA) would strengthen generality.
+Fourth, direct measurement of the knowledge anchoring effect via retrieval probability analysis would elevate the cross-model observation (gemma3:27b and Gemini~3.1) to a confirmed finding.
+Fifth, cross-language benchmarks in English and Chinese would address the language limitation.
+Sixth, characterizing $\delta_c$ as a function of model size and RLHF intensity would connect the three-pattern taxonomy (collapse, resistance, non-retention) to measurable model properties.
 Finally, and perhaps most critically, the question of real-world $\delta$ density remains open: does naturally-occurring contradiction accumulation in typical conversational AI use cases exceed $\delta_c$ for production models?
 A lightweight middleware implementation of the metabolic approach, \texttt{delta-prune} (v0.2.0, available on PyPI), enables contradiction scanning and resolution at the API request level without the full four-layer memory system.
 Deployed in production settings, \texttt{delta-prune} provides a natural observational infrastructure for this question: each intervention logs the conflict type (direct contradiction, temporal change, or scope difference---corresponding to the three resolution strategies in Section~\ref{sec:three-strategies}), the affected claims, and the $\delta$ density at that point.
