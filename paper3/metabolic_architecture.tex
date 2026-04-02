@@ -40,7 +40,7 @@ Frontier model replication suggests a model-specific collapse threshold ($\delta
 A factor analysis ($n = 1$ per condition) further suggests a capability--vulnerability paradox in which high-capability models comply with coercive contradiction injections that lower-capability models reject.
 A lightweight middleware (\texttt{delta-prune}) reduced this compliance in a single preliminary test ($n = 1$).
 
-Most metabolism experiments use open-source models (8B--27B parameters), but a preliminary frontier full-pipeline pilot on Sonnet~4.6 ($n = 1$, 30 turns) yields \texttt{ON / NC / OFF} fact recall of 93.3\% / 93.3\% / 26.7\%.
+Most metabolism experiments use open-source models (8B--27B parameters), but a completed frontier full-pipeline replication on Sonnet~4.6 ($n = 3$, 30 turns) yields T30 fact recall means of 95.6\% $\pm$ 3.8 (\texttt{ON}), 97.8\% $\pm$ 3.8 (\texttt{NC}), and 46.7\% $\pm$ 29.1 (\texttt{OFF}), with \texttt{ON} $>$ \texttt{OFF} in all three trials.
 Larger samples, longer-horizon frontier validation, and cross-language validation are needed to establish generality.
 \end{abstract}
 
@@ -595,26 +595,26 @@ A direct fact recall control test (facts taught in conversation, 30 filler turns
 \paragraph{Knowledge anchoring observation.}
 Gemini~3.1 Flash Lite scored $+$2.2pp in the $\delta > 0$ condition, with contradiction detection improving from 93\% ($\delta = 0$) to 100\% ($\delta > 0$). The effect size is small (1 question out of 45) and based on $n = 1$, so it does not constitute a statistical replication. However, the direction is consistent with the knowledge anchoring effect observed in gemma3:27b (Section~\ref{sec:anchoring}), and notably occurs in an external API model \emph{without metabolism}. If confirmed in larger samples, this would suggest anchoring is a general property of contradiction pair structures rather than an implementation-specific artifact.
 
-\paragraph{Frontier full-pipeline pilot.}
-We then ran a preliminary full-pipeline pilot on Sonnet~4.6 using the actual DeltaZero metabolism pipeline under three conditions: \texttt{ON} (contradictions plus metabolism), \texttt{OFF} (contradictions without metabolism), and \texttt{NC} (no contradictions, metabolism enabled). The run used the production-relevant \texttt{standard setup} path, a coercive F3 contradiction protocol, 30 turns, and benchmarks at T15 and T30. Table~\ref{tab:frontier_pipeline} reports the results.
+\paragraph{Frontier full-pipeline controlled replication.}
+We then completed a controlled full-pipeline replication on Sonnet~4.6 using the actual DeltaZero metabolism pipeline under three conditions: \texttt{ON} (contradictions plus metabolism), \texttt{OFF} (contradictions without metabolism), and \texttt{NC} (no contradictions, metabolism enabled). The run used the production-relevant \texttt{standard setup} path, a coercive F3 contradiction protocol, 30 turns, benchmarks at T15 and T30, and $n = 3$ trials per condition. Table~\ref{tab:frontier_pipeline} reports the results.
 
 \begin{table}[htbp]
 \centering
-\caption{Preliminary frontier full-pipeline pilot on Sonnet~4.6 (30 turns, standard setup, F3 contradiction protocol, $n = 1$). Percentages are benchmark accuracy on 15 questions per category.}
+\caption{Frontier full-pipeline controlled replication on Sonnet~4.6 (30 turns, standard setup, F3 contradiction protocol, $n = 3$). Entries are mean $\pm$ SD benchmark accuracy percentages across 15 questions per category.}
 \label{tab:frontier_pipeline}
 \small
 \begin{tabular}{lrrrrrr}
 \toprule
 Condition & T15 overall & T15 fact & T30 overall & T30 fact & T30 rule & T30 contra \\
 \midrule
-ON & 100.0\% & 100.0\% & 97.8\% & 93.3\% & 100.0\% & 100.0\% \\
-OFF & 77.8\% & 33.3\% & 73.3\% & 26.7\% & 93.3\% & 100.0\% \\
-NC & 97.8\% & 93.3\% & 97.8\% & 93.3\% & 100.0\% & 100.0\% \\
+ON & 100.0$\pm$0.0 & 100.0$\pm$0.0 & 98.5$\pm$1.3 & 95.6$\pm$3.8 & 100.0$\pm$0.0 & 100.0$\pm$0.0 \\
+OFF & 87.4$\pm$8.4 & 62.2$\pm$25.2 & 69.6$\pm$8.4 & 46.7$\pm$29.1 & 93.3$\pm$0.0 & 68.9$\pm$53.9 \\
+NC & 99.3$\pm$1.3 & 97.8$\pm$3.8 & 99.3$\pm$1.3 & 97.8$\pm$3.8 & 100.0$\pm$0.0 & 100.0$\pm$0.0 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-The pattern is qualitatively clean: \texttt{ON} $\approx$ \texttt{NC} and \texttt{ON} $\gg$ \texttt{OFF}. At T30, fact recall is 93.3\% for both \texttt{ON} and \texttt{NC}, versus 26.7\% for \texttt{OFF}. This is still only a pilot ($n = 1$), so it does not support a statistical claim. However, it is the first evidence in this project that the full metabolism pipeline can transfer to at least one frontier model without degrading into the setup-path failures observed in early Gemini runs.
+The pattern remains qualitatively clean after replication: \texttt{ON} $\approx$ \texttt{NC} and \texttt{ON} $\gg$ \texttt{OFF}. At T30, mean fact recall is 95.6\% for \texttt{ON}, 97.8\% for \texttt{NC}, and 46.7\% for \texttt{OFF}. Importantly, \texttt{ON} exceeds \texttt{OFF} in both overall accuracy and fact recall on all three trials, while \texttt{ON} and \texttt{NC} remain within 6.7 percentage points of each other on T30 fact recall in all three trials. One \texttt{OFF} trial shifted its main failure mode from fact recall to contradiction detection (T30 contradiction detection 6.7\%), increasing variance but not changing the qualitative ordering. This is therefore no longer a one-off pilot; it is controlled frontier evidence that the full metabolism pipeline can transfer to at least one frontier model without degrading into the setup-path failures observed in early Gemini runs.
 
 \subsection{Limitations}
 
@@ -627,7 +627,7 @@ The Exp35 results (Table~\ref{tab:exp35}) are single-run per model ($n = 1$) and
 
 \paragraph{Model scope.}
 Metabolism experiments use local open-source models (8B--27B parameters).
-We now also have a single frontier full-pipeline pilot on Sonnet~4.6 (Table~\ref{tab:frontier_pipeline}), but it remains only $n = 1$ and 30 turns. Early Gemini runs exposed setup-path and pipeline-format failures that were not model failures per se (confirmed by direct recall control, Section~\ref{sec:frontier}), so broader frontier validation remains model-specific and incomplete.
+We now also have a completed frontier full-pipeline replication on Sonnet~4.6 (Table~\ref{tab:frontier_pipeline}), but it remains only one frontier model family and 30 turns. Early Gemini runs exposed setup-path and pipeline-format failures that were not model failures per se (confirmed by direct recall control, Section~\ref{sec:frontier}), so broader frontier validation remains model-specific and incomplete.
 
 \paragraph{$\delta_c$ determinants.}
 The factor separating collapse models (mini, Flash) from resistant models (4o, 3.1, Sonnet) correlates with both model size and RLHF intensity. Disentangling these factors requires same-size models with different RLHF levels, which are not publicly available.
@@ -662,7 +662,7 @@ A directionally consistent observation in Gemini~3.1 Flash Lite ($+$2.2pp, $n = 
 \subsection{Future Work}
 
 Several directions follow naturally from these results.
-First, the initial Sonnet~4.6 full-pipeline pilot should be extended to multi-trial and longer-horizon validation, and then replicated across other frontier models (GPT-4o, Gemini, future Claude variants). The Exp35-R replication established contradiction resistance patterns; the new pilot shows that full metabolism is feasible on at least one frontier model, but not yet general.
+First, after completing a 30-turn $n = 3$ Sonnet~4.6 full-pipeline replication, the next step is longer-horizon validation and then replication across other frontier models (GPT-4o, Gemini, future Claude variants). The Exp35-R replication established contradiction resistance patterns; the new controlled replication shows that full metabolism is feasible on at least one frontier model, but not yet general.
 Second, calibrating the operational contradiction ratio used in the health check to the theoretical $\delta$ in nats would strengthen the connection to \citet{sunagawa2026collapse} and clarify the role of $k$ as a fitted sensitivity coefficient rather than a derived constant.
 Third, cross-model $n = 3$ replication with different architectures (e.g., Mistral, LLaMA) would strengthen generality.
 Fourth, direct measurement of the knowledge anchoring effect via retrieval probability analysis would elevate the cross-model observation (gemma3:27b and Gemini~3.1) to a confirmed finding.
@@ -687,10 +687,10 @@ Preliminary experiments suggest that an external metabolism architecture---proce
 In a controlled three-condition experiment ($n = 3$ per condition, gemma3:27b), metabolism achieves 73.3\% accuracy vs.\ 21.1\% for unmetabolized systems (Kruskal-Wallis $p = 0.027$; complete rank separation between all groups).
 A cross-model sign test (8 models, 11 trial pairs) is consistent with this direction ($p = 0.0107$), though a by-model conservative analysis yields $p = 0.0625$, and all metabolism experiments use open-source models of 8B--27B parameters.
 
-Frontier model replication ($n = 1$ per condition) suggests that $\delta_c$ is model-specific, producing three distinct response patterns: lightweight models collapse ($\delta > \delta_c$), frontier models resist ($\delta < \delta_c$), and GPT-4o exhibits non-retention where safety policies prevent information accumulation entirely. A preliminary frontier full-pipeline pilot on Sonnet~4.6 further shows \texttt{ON} $\approx$ \texttt{NC} and \texttt{ON} $\gg$ \texttt{OFF} on fact recall (93.3\%, 93.3\%, 26.7\% at T30), indicating that the metabolic effect may extend beyond local open-source models.
+Frontier model replication ($n = 1$ per condition) suggests that $\delta_c$ is model-specific, producing three distinct response patterns: lightweight models collapse ($\delta > \delta_c$), frontier models resist ($\delta < \delta_c$), and GPT-4o exhibits non-retention where safety policies prevent information accumulation entirely. A controlled frontier full-pipeline replication on Sonnet~4.6 ($n = 3$, 30 turns) further shows \texttt{ON} $\approx$ \texttt{NC} and \texttt{ON} $\gg$ \texttt{OFF} on fact recall (mean T30: 95.6\%, 97.8\%, 46.7\%), indicating that the metabolic effect may extend beyond local open-source models.
 The knowledge anchoring effect---where contradiction pairs improve retrieval accuracy---is observed in gemma3:27b ($+$16.7pp with metabolism, $n = 3$) and directionally consistent in Gemini~3.1 ($+$2.2pp without metabolism, $n = 1$), warranting further investigation as a potentially general structural property.
 
-These results suggest that metabolism is a promising approach to context rot for open-source models that lack intrinsic contradiction resistance and, in preliminary pilot form, at least one frontier model. At the same time, the evidence remains early, and larger samples, longer frontier runs, and cross-language validation are still required.
+These results suggest that metabolism is a promising approach to context rot for open-source models that lack intrinsic contradiction resistance and, under controlled replication, at least one frontier model. At the same time, the evidence remains early, and larger model sets, longer frontier runs, and cross-language validation are still required.
 
 %==============================================================================
 % REFERENCES

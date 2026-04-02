@@ -142,10 +142,11 @@ Direct fact recall control confirms pipeline vs model separation (Gemini/Sonnet 
 Middleware implementation [delta-prune](https://pypi.org/project/delta-prune/) (PyPI) identified as
 observational infrastructure for measuring real-world δ density.
 
-**Frontier full-pipeline pilot (2026-04-02):** A 30-turn three-condition Sonnet 4.6 pilot
-with the actual DeltaZero metabolism pipeline produces `ON ≈ NC` and `ON >> OFF` on fact recall
-(`93.3%`, `93.3%`, `26.7%` at T30; `n = 1`). This is still preliminary, but it shows that the
-full metabolism pipeline can transfer to at least one frontier model.
+**Frontier full-pipeline controlled replication (2026-04-02):** A 30-turn three-condition Sonnet 4.6
+replication with the actual DeltaZero metabolism pipeline (`n = 3`) yields T30 fact recall means of
+`ON = 95.6 ± 3.8%`, `NC = 97.8 ± 3.8%`, and `OFF = 46.7 ± 29.1%`. `ON > OFF` holds in all three trials,
+while `ON` remains close to `NC`, showing that the full metabolism pipeline can transfer to at least one
+frontier model under controlled replication.
 
 コンテキストロットの原因はコンテキスト長ではなく矛盾の蓄積。
 Googleの100万トークン窓でも矛盾下では47.8pp劣化する。
@@ -162,11 +163,11 @@ Googleの100万トークン窓でも矛盾下では47.8pp劣化する。
 ミドルウェア実装 [delta-prune](https://pypi.org/project/delta-prune/)（PyPI）を
 現実世界のδ密度測定インフラとして位置づけ。
 
-**フロンティア full-pipeline pilot（2026-04-02）:** Sonnet 4.6 を用いた
-30ターン三条件パイロットで、実際の DeltaZero 代謝パイプラインを有効化したところ、
-`fact_recall` は `T30` で `ON = 93.3%`, `NC = 93.3%`, `OFF = 26.7%` を示した（`n = 1`）。
-まだ予備結果だが、full metabolism pipeline が少なくとも1つのフロンティアモデルへ
-移植可能であることを示す。
+**フロンティア full-pipeline controlled replication（2026-04-02）:** Sonnet 4.6 を用いた
+30ターン三条件の controlled replication（`n = 3`）で、実際の DeltaZero 代謝パイプラインを有効化したところ、
+`T30 fact_recall` の平均は `ON = 95.6 ± 3.8%`, `NC = 97.8 ± 3.8%`, `OFF = 46.7 ± 29.1%` を示した。
+`ON > OFF` は 3 trial すべてで維持され、`ON` は `NC` に近い。これにより、full metabolism pipeline が
+少なくとも1つのフロンティアモデルへ controlled に移植可能であることが示された。
 
 - English: [`paper3/metabolic_architecture.tex`](paper3/metabolic_architecture.tex) / [PDF](paper3/metabolic_architecture.pdf)
 - 日本語: [`paper3/metabolic_architecture_ja.tex`](paper3/metabolic_architecture_ja.tex) / [PDF](paper3/metabolic_architecture_ja.pdf)
