@@ -142,6 +142,11 @@ Direct fact recall control confirms pipeline vs model separation (Gemini/Sonnet 
 Middleware implementation [delta-prune](https://pypi.org/project/delta-prune/) (PyPI) identified as
 observational infrastructure for measuring real-world δ density.
 
+**Frontier full-pipeline pilot (2026-04-02):** A 30-turn three-condition Sonnet 4.6 pilot
+with the actual DeltaZero metabolism pipeline produces `ON ≈ NC` and `ON >> OFF` on fact recall
+(`93.3%`, `93.3%`, `26.7%` at T30; `n = 1`). This is still preliminary, but it shows that the
+full metabolism pipeline can transfer to at least one frontier model.
+
 コンテキストロットの原因はコンテキスト長ではなく矛盾の蓄積。
 Googleの100万トークン窓でも矛盾下では47.8pp劣化する。
 人間の睡眠中の記憶整理に着想した外付け代謝アーキテクチャを提案。
@@ -156,6 +161,12 @@ Googleの100万トークン窓でも矛盾下では47.8pp劣化する。
 直接再現テストでパイプライン/モデル分離を実証（Gemini/Sonnet直接100%、GPT-4o 0%）。
 ミドルウェア実装 [delta-prune](https://pypi.org/project/delta-prune/)（PyPI）を
 現実世界のδ密度測定インフラとして位置づけ。
+
+**フロンティア full-pipeline pilot（2026-04-02）:** Sonnet 4.6 を用いた
+30ターン三条件パイロットで、実際の DeltaZero 代謝パイプラインを有効化したところ、
+`fact_recall` は `T30` で `ON = 93.3%`, `NC = 93.3%`, `OFF = 26.7%` を示した（`n = 1`）。
+まだ予備結果だが、full metabolism pipeline が少なくとも1つのフロンティアモデルへ
+移植可能であることを示す。
 
 - English: [`paper3/metabolic_architecture.tex`](paper3/metabolic_architecture.tex) / [PDF](paper3/metabolic_architecture.pdf)
 - 日本語: [`paper3/metabolic_architecture_ja.tex`](paper3/metabolic_architecture_ja.tex) / [PDF](paper3/metabolic_architecture_ja.pdf)

@@ -92,6 +92,10 @@ Covered by `deltazero_gemma` (old code) and `deltazero_mistral` (new code) above
 
 [data/raw/fact_recall_direct/](data/raw/fact_recall_direct/) — summary.json
 
+### Paper 3 — Frontier full-pipeline pilot (Sonnet 4.6, n=1)
+
+[paper3/frontier_full_pipeline_pilot.md](paper3/frontier_full_pipeline_pilot.md) — summarized three-condition pilot (`ON / OFF / NC`) and workspace raw-log locations
+
 ---
 
 ## OSF backup — osf.io/mdh7b
