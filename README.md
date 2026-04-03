@@ -175,14 +175,14 @@ Googleの100万トークン窓でも矛盾下では47.8pp劣化する。
 
 ### Lean 4 — Formal Verification / 形式検証
 
-16 modules, 160 verified propositions,
+Current Lean formalization is fully machine-checked:
 `sorry = 0`, `axiom = 0`.
 Covers the Cauchy functional equation, 3-axiom derivation,
 Hill number bound, H-theorem, SAT first moment, sensitivity analysis,
 the Paley–Zygmund second moment inequality, pair correlation structure,
 and δ = D\_KL identity (KLDivergence module).
 
-16モジュール、160個の証明済み命題、
+現行の Lean 形式化は完全に機械検証済みであり、
 `sorry = 0`、`axiom = 0`。
 Cauchy関数方程式、3公理からの導出、Hill数上界、
 H定理、SAT第一モーメント、感度解析、
@@ -200,7 +200,7 @@ delta-survival-paper/
   paper1/          Paper 1 tex, figures, PDF (EN/JA)
   paper2/          Paper 2 tex, figures, PDF (EN/JA)
   paper3/          Paper 3 tex, figures, PDF (EN/JA)
-  lean/            Lean 4 formal verification (16 modules)
+  lean/            Lean 4 formal verification
   analysis/
     sat/           SAT experiments & second moment gap analysis (Papers 1 & 2)
     llm/           LLM Double Bind experiments (Paper 1)
