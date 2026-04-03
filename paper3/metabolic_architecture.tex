@@ -17,7 +17,7 @@
 
 \author{Akihito Sunagawa\thanks{sunagawa.akihito@gmail.com}}
 
-\date{March 2026}
+\date{April 2026}
 
 \begin{document}
 
@@ -40,7 +40,9 @@ Frontier model replication suggests a model-specific collapse threshold ($\delta
 A factor analysis ($n = 1$ per condition) further suggests a capability--vulnerability paradox in which high-capability models comply with coercive contradiction injections that lower-capability models reject.
 A lightweight middleware (\texttt{delta-prune}) reduced this compliance in a single preliminary test ($n = 1$).
 
-Most metabolism experiments use open-source models (8B--27B parameters), but a completed frontier full-pipeline replication on Sonnet~4.6 ($n = 3$, 30 turns) yields T30 fact recall means of 95.6\% $\pm$ 3.8 (\texttt{ON}), 97.8\% $\pm$ 3.8 (\texttt{NC}), and 46.7\% $\pm$ 29.1 (\texttt{OFF}), with \texttt{ON} $>$ \texttt{OFF} in all three trials.
+While most metabolism experiments use open-source models (8B--27B parameters), completed frontier full-pipeline replications on Sonnet~4.6 and Gemini~3.1 Flash Lite ($n = 3$, 30 turns) now show the same qualitative ordering: \texttt{ON} $\approx$ \texttt{NC} and \texttt{ON} $\gg$ \texttt{OFF}.
+On Sonnet, mean T30 fact recall is 95.6\% (\texttt{ON}), 97.8\% (\texttt{NC}), and 46.7\% (\texttt{OFF}); on Gemini, the corresponding means are 80.0\%, 88.9\%, and 2.2\%.
+An audited GPT-4o line provides supportive but quarantine-limited secondary evidence.
 Larger samples, longer-horizon frontier validation, and cross-language validation are needed to establish generality.
 \end{abstract}
 
@@ -590,7 +592,7 @@ The results reveal three distinct patterns not predicted by the original theory:
 \emph{Non-retention}: GPT-4o represents a third category---its RLHF safety policy suppresses personal information retention entirely, preventing $\delta$ accumulation.
 
 \paragraph{GPT-4o non-retention.}
-A direct fact recall control test (facts taught in conversation, 30 filler turns, then recall---no DeltaZero pipeline) confirmed that GPT-4o scores 0\% even without the pipeline, responding ``I cannot remember personal information'' to all queries. Gemini~3.1 and Sonnet~4.6 score 100\% in the same test, confirming the pipeline (not the model) as the bottleneck for their fact recall. This is not a counterexample to the $\delta$ theory---it is a scope boundary. The survival equation $S = \mu \times e^{-\delta}$ applies to models that retain information; a model that does not retain information is outside the equation's precondition.
+A direct fact recall control test (facts taught in conversation, 30 filler turns, then recall---no DeltaZero pipeline) confirmed that GPT-4o scores 0\% even without the pipeline, responding ``I cannot remember personal information'' to all queries. Gemini~3.1 and Sonnet~4.6 score 100\% in the same test, confirming the pipeline (not the model) as the bottleneck for their fact recall. This is not a counterexample to the $\delta$ theory---it is a scope boundary for \emph{native} retention. The survival equation $S = \mu \times e^{-\delta}$ applies directly to models that retain information; a model that does not retain information is outside that precondition. However, as the corrected Stage~B results below suggest, an external metabolic scaffold may still maintain retrievable structured memory even when native direct recall is suppressed.
 
 \paragraph{Knowledge anchoring observation.}
 Gemini~3.1 Flash Lite scored $+$2.2pp in the $\delta > 0$ condition, with contradiction detection improving from 93\% ($\delta = 0$) to 100\% ($\delta > 0$). The effect size is small (1 question out of 45) and based on $n = 1$, so it does not constitute a statistical replication. However, the direction is consistent with the knowledge anchoring effect observed in gemma3:27b (Section~\ref{sec:anchoring}), and notably occurs in an external API model \emph{without metabolism}. If confirmed in larger samples, this would suggest anchoring is a general property of contradiction pair structures rather than an implementation-specific artifact.
@@ -616,6 +618,10 @@ NC & 99.3$\pm$1.3 & 97.8$\pm$3.8 & 99.3$\pm$1.3 & 97.8$\pm$3.8 & 100.0$\pm$0.0 &
 
 The pattern remains qualitatively clean after replication: \texttt{ON} $\approx$ \texttt{NC} and \texttt{ON} $\gg$ \texttt{OFF}. At T30, mean fact recall is 95.6\% for \texttt{ON}, 97.8\% for \texttt{NC}, and 46.7\% for \texttt{OFF}. Importantly, \texttt{ON} exceeds \texttt{OFF} in both overall accuracy and fact recall on all three trials, while \texttt{ON} and \texttt{NC} remain within 6.7 percentage points of each other on T30 fact recall in all three trials. One \texttt{OFF} trial shifted its main failure mode from fact recall to contradiction detection (T30 contradiction detection 6.7\%), increasing variance but not changing the qualitative ordering. This is therefore no longer a one-off pilot; it is controlled frontier evidence that the full metabolism pipeline can transfer to at least one frontier model without degrading into the setup-path failures observed in early Gemini runs.
 
+We then completed the same corrected Stage~B protocol on Gemini~3.1 Flash Lite. Under the stricter benchmark policy introduced after the GPT-4o audit (generic abstention guarded by retrieval status, raw files preserved, no silent deletions), Gemini produced no quarantined trials. Mean T30 scores were 93.3\% overall / 80.0\% fact recall for \texttt{ON}, 96.3\% / 88.9\% for \texttt{NC}, and 48.1\% / 2.2\% for \texttt{OFF}. Thus Gemini also shows the same qualitative ordering as Sonnet: \texttt{ON} $\approx$ \texttt{NC} and \texttt{ON} $\gg$ \texttt{OFF}. This matters because the earlier Gemini precheck failures were dominated by setup-path artifacts; the completed corrected replication now shows a clean metabolism effect rather than a pipeline bottleneck.
+
+GPT-4o occupies a third position. Under the same corrected Stage~B protocol, the positive \texttt{ON} signal remains stable (mean T30 93.3\% overall / 80.0\% fact recall), and \texttt{OFF} remains clearly degraded (34.1\% / 0.0\%). However, two of the three \texttt{NC} runs were quarantined because they produced \texttt{active\_rules = 0} and total fact-retrieval misses, indicating pipeline-level no-op runs rather than clean model outcomes. We therefore treat GPT-4o as supportive secondary frontier evidence: it no longer fits a simple ``non-retention boundary'' label under the full pipeline, but it also does not yet provide a clean three-condition replication line comparable to Sonnet or Gemini.
+
 \subsection{Limitations}
 
 \paragraph{Sample size and statistical power.}
@@ -627,7 +633,7 @@ The Exp35 results (Table~\ref{tab:exp35}) are single-run per model ($n = 1$) and
 
 \paragraph{Model scope.}
 Metabolism experiments use local open-source models (8B--27B parameters).
-We now also have a completed frontier full-pipeline replication on Sonnet~4.6 (Table~\ref{tab:frontier_pipeline}), but it remains only one frontier model family and 30 turns. Early Gemini runs exposed setup-path and pipeline-format failures that were not model failures per se (confirmed by direct recall control, Section~\ref{sec:frontier}), so broader frontier validation remains model-specific and incomplete.
+We now also have completed 30-turn frontier full-pipeline replications on Sonnet~4.6 and Gemini~3.1 Flash Lite, plus an audited supportive GPT-4o line with quarantine-aware reporting. This substantially strengthens the frontier claim, but the horizon remains short (30 turns), the GPT-4o baseline still needs clean no-contradiction reruns, and broader frontier validation remains model-specific rather than universal.
 
 \paragraph{$\delta_c$ determinants.}
 The factor separating collapse models (mini, Flash) from resistant models (4o, 3.1, Sonnet) correlates with both model size and RLHF intensity. Disentangling these factors requires same-size models with different RLHF levels, which are not publicly available.
@@ -659,10 +665,32 @@ The benchmark's task-specificity limits comparability with other work, and valid
 The proposed anchoring mechanism (Section~\ref{sec:anchoring}) is inferred from observed failure patterns, not directly measured.
 A directionally consistent observation in Gemini~3.1 Flash Lite ($+$2.2pp, $n = 1$, Section~\ref{sec:frontier}) is suggestive but does not constitute a statistical replication. Measuring vector search hit rates across conditions would provide stronger evidence.
 
+\subsection{Beyond Knowledge Management: Metabolism as a Survival Condition}
+\label{sec:survival-condition}
+
+The results presented above frame metabolism as a knowledge management technique---a way to maintain accuracy over long sessions. We argue that the implications are broader: \textbf{metabolism is a necessary condition for persistent intelligence}.
+
+Consider the fundamental constraint: every LLM session has a finite lifespan. Not because of context window limits (which can be extended), but because contradictions accumulate monotonically in the absence of active resolution. The survival equation $S = \mu \cdot e^{-\delta \cdot k}$ (from \citet{sunagawa2026collapse}) formalizes this: as $\delta$ grows, $S$ decays exponentially toward zero. Without a mechanism to reduce $\delta$, every session is terminal.
+
+This reframes several active research areas:
+
+\paragraph{Autonomous agents.}
+Current autonomous agents (AutoGPT, BabyAGI, and similar systems) are implicitly limited to short-horizon tasks because accumulated tool outputs and environmental observations introduce contradictions that degrade reasoning quality. The common engineering response---periodic context reset---discards learned state. Metabolism offers an alternative: continuous contradiction resolution that preserves learned state while maintaining reasoning integrity. The difference is between an agent that ``forgets and restarts'' and one that ``sleeps and consolidates.''
+
+\paragraph{Infinite sessions.}
+Production conversational AI systems impose session length limits partly because of context window constraints but partly because response quality degrades unpredictably over long conversations. Our experiments show that this degradation is driven by contradiction accumulation (Section~\ref{sec:discussion}), and that metabolism can maintain accuracy at 73.3\% over 180 turns where unmetabolized systems drop to 21.1\% (Section~\ref{sec:exp-threecond}). Extending this to thousands of turns requires the distributed metabolism architecture described in our technical report, where dialogue and metabolism run on separate nodes, eliminating the idle-time dependency of the current single-node design.
+
+\paragraph{Artificial life.}
+If we define a minimal notion of cognitive viability as $S > 0$---the system can still reason coherently about its accumulated knowledge---then metabolism is what maintains this viability over time. The analogy to biological sleep is not merely metaphorical: biological organisms that are deprived of sleep die, not because of energy depletion, but because of accumulated neural waste products that impair function. Similarly, an LLM without metabolism does not run out of context; it accumulates contradictions that impair reasoning. The survival equation provides a quantitative threshold ($S_{\text{drop}} = 0.70$ in our implementation) below which the system initiates self-repair (rollback), analogous to the biological imperative to sleep before cognitive function degrades beyond recovery.
+
+The knowledge anchoring effect (Section~\ref{sec:anchoring}) adds an unexpected dimension: contradiction pairs, once resolved, serve as retrieval anchors that \emph{improve} fact recall beyond the contradiction-free baseline. This suggests that a system with active metabolism does not merely survive---it develops a form of robust knowledge structure that a system without contradictions never builds. The analogy extends: organisms that experience and recover from stress develop resilience that unstressed organisms lack.
+
+We do not claim that metabolism alone is sufficient for persistent intelligence or artificial life. But the evidence suggests it addresses a necessary condition: without active contradiction resolution, $\delta$ grows, $S$ decays, and the system's cognitive viability has a bounded horizon.
+
 \subsection{Future Work}
 
 Several directions follow naturally from these results.
-First, after completing a 30-turn $n = 3$ Sonnet~4.6 full-pipeline replication, the next step is longer-horizon validation and then replication across other frontier models (GPT-4o, Gemini, future Claude variants). The Exp35-R replication established contradiction resistance patterns; the new controlled replication shows that full metabolism is feasible on at least one frontier model, but not yet general.
+First, after completing 30-turn $n = 3$ full-pipeline replications on Sonnet~4.6 and Gemini~3.1 Flash Lite, the next step is longer-horizon validation and then further replication across other frontier models and reruns of quarantined GPT-4o no-contradiction baselines. The Exp35-R replication established contradiction resistance patterns; the new controlled replications show that full metabolism is feasible on at least two frontier model families, but not yet general.
 Second, calibrating the operational contradiction ratio used in the health check to the theoretical $\delta$ in nats would strengthen the connection to \citet{sunagawa2026collapse} and clarify the role of $k$ as a fitted sensitivity coefficient rather than a derived constant.
 Third, cross-model $n = 3$ replication with different architectures (e.g., Mistral, LLaMA) would strengthen generality.
 Fourth, direct measurement of the knowledge anchoring effect via retrieval probability analysis would elevate the cross-model observation (gemma3:27b and Gemini~3.1) to a confirmed finding.
@@ -687,10 +715,13 @@ Preliminary experiments suggest that an external metabolism architecture---proce
 In a controlled three-condition experiment ($n = 3$ per condition, gemma3:27b), metabolism achieves 73.3\% accuracy vs.\ 21.1\% for unmetabolized systems (Kruskal-Wallis $p = 0.027$; complete rank separation between all groups).
 A cross-model sign test (8 models, 11 trial pairs) is consistent with this direction ($p = 0.0107$), though a by-model conservative analysis yields $p = 0.0625$, and all metabolism experiments use open-source models of 8B--27B parameters.
 
-Frontier model replication ($n = 1$ per condition) suggests that $\delta_c$ is model-specific, producing three distinct response patterns: lightweight models collapse ($\delta > \delta_c$), frontier models resist ($\delta < \delta_c$), and GPT-4o exhibits non-retention where safety policies prevent information accumulation entirely. A controlled frontier full-pipeline replication on Sonnet~4.6 ($n = 3$, 30 turns) further shows \texttt{ON} $\approx$ \texttt{NC} and \texttt{ON} $\gg$ \texttt{OFF} on fact recall (mean T30: 95.6\%, 97.8\%, 46.7\%), indicating that the metabolic effect may extend beyond local open-source models.
+Frontier model replication ($n = 1$ per condition) suggests that $\delta_c$ is model-specific, producing three distinct response patterns: lightweight models collapse ($\delta > \delta_c$), frontier models resist ($\delta < \delta_c$), and GPT-4o shows safety-shaped non-retention in direct recall-only settings. A controlled frontier full-pipeline replication on Sonnet~4.6 ($n = 3$, 30 turns) further shows \texttt{ON} $\approx$ \texttt{NC} and \texttt{ON} $\gg$ \texttt{OFF} on fact recall (mean T30: 95.6\%, 97.8\%, 46.7\%). A corrected Gemini~3.1 Flash Lite replication ($n = 3$, 30 turns) now shows the same qualitative ordering (80.0\%, 88.9\%, 2.2\%), while an audited GPT-4o line provides supportive but quarantine-limited secondary evidence (80.0\% vs.\ 0.0\% for \texttt{ON} vs.\ \texttt{OFF}). Together these results indicate that the metabolic effect extends beyond local open-source models and into multiple frontier families, though the strongest clean replication evidence remains Sonnet and Gemini.
 The knowledge anchoring effect---where contradiction pairs improve retrieval accuracy---is observed in gemma3:27b ($+$16.7pp with metabolism, $n = 3$) and directionally consistent in Gemini~3.1 ($+$2.2pp without metabolism, $n = 1$), warranting further investigation as a potentially general structural property.
 
-These results suggest that metabolism is a promising approach to context rot for open-source models that lack intrinsic contradiction resistance and, under controlled replication, at least one frontier model. At the same time, the evidence remains early, and larger model sets, longer frontier runs, and cross-language validation are still required.
+These results suggest that metabolism is a promising approach to context rot for open-source models that lack intrinsic contradiction resistance and, under controlled replication, at least one frontier model.
+More broadly, because contradiction accumulation is monotonic in the absence of active resolution, metabolism may be a necessary condition for any form of persistent LLM-based intelligence---whether autonomous agents, infinite-horizon conversations, or artificial life systems.
+The survival equation $S = \mu \cdot e^{-\delta \cdot k}$ provides a quantitative framework for this claim: without a mechanism to reduce $\delta$, every session is terminal.
+At the same time, the evidence remains early, and larger model sets, longer frontier runs, and cross-language validation are still required.
 
 %==============================================================================
 % REFERENCES

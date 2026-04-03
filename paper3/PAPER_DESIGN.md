@@ -215,7 +215,7 @@ Original keyword matching → Claude CLI rejudge ($0 via subscription). All repo
 - **Model-aggregated sign test is borderline** (p=0.0625). Report both aggregation levels.
 
 ### Scope
-- **Local models only (8B-27B)**. No frontier model tested with full metabolism pipeline.
+- **Core evidence is still local-model-heavy (8B-27B)**, but we now have 30-turn full-pipeline frontier replications on Sonnet 4.6 and Gemini 3.1 Flash Lite.
 - **Single model for n=3**. Three-condition experiment uses gemma3:27b only.
 - **Japanese prompts and benchmarks**. Cross-language validation needed.
 
@@ -225,7 +225,7 @@ Original keyword matching → Claude CLI rejudge ($0 via subscription). All repo
 - **Knowledge anchoring not directly measured**. Mechanism is inferred from failure patterns.
 
 ### What This Paper Does NOT Claim
-- That this approach works for frontier models (untested)
+- That this approach is universal across frontier models
 - That 73.3% is production-ready
 - That the sleep metaphor is more than a useful analogy
 - That knowledge anchoring is a confirmed causal mechanism
@@ -242,9 +242,11 @@ Original keyword matching → Claude CLI rejudge ($0 via subscription). All repo
 
 4. **We built it.** DeltaZero: external metabolism during idle time. No model modification.
 
-5. **It works.** ON vs OFF: +52.2pp, p<0.001, d=8.80. Across 8 models. Effect grows over time.
+5. **It works.** Three-condition gemma3:27b gives ON vs OFF: +52.2pp, Kruskal-Wallis p=0.027, with complete rank separation. Across 8 models, the sign test still points the same way. Effect grows over time.
 
 6. **Unexpected observation.** ON exceeds the δ=0 baseline. Contradiction pairs may act as knowledge anchors. Exploratory finding, mechanism proposed but not directly measured.
+
+7. **Frontier transfer is now real, but narrow.** Sonnet 4.6 and Gemini 3.1 Flash Lite both show ON ≈ NC and ON >> OFF on 30-turn full-pipeline runs. GPT-4o is supportive but quarantine-limited secondary evidence.
 
 ---
 
