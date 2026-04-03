@@ -129,6 +129,49 @@ SD is computed over the 3 trial proportions (e.g., ON trials: 73.3%, 66.7%, 80.0
 
 **How to present**: As an "unexpected observation" in the results, with proposed explanation. NOT as a main claim in the abstract or conclusion. Future work should directly measure retrieval probabilities.
 
+### Two-Tier Claim Strategy for Distributed Metabolism (v3 addition, 2026-04-03)
+
+The paper's central evidence comes from **coupled mode** (dialogue_llm == metabolism_llm). This is deliberate:
+
+**Tier 1 — Main evidence (coupled mode):**
+- dialogue_llm == metabolism_llm (same model for both)
+- All Claim 1–3 experiments use this configuration
+- **Why this is strongest**: proves the *architecture* is effective, not a specific model's capability
+- "The LLM fixes its own contradictions during sleep" is the cleanest narrative
+- Sonnet 4.6, gemma3:27b, mistral-nemo:12b all demonstrate this
+
+**Tier 2 — Supplementary evidence (decoupled mode):**
+- dialogue_llm != metabolism_llm (e.g., local model for dialogue, Sonnet for metabolism)
+- Demonstrates the architecture's **modularity**: resolver can be independently upgraded
+- **What it shows**:
+  - The metabolism engine is a separable module, not welded to a specific model
+  - When a local model's resolver is weak, a stronger external resolver can compensate
+  - The failure mode of weak local resolvers (pending_review flood) is diagnosable
+- **What it does NOT show**: that the architecture "only works with strong models"
+
+**How to present in the paper:**
+- §4 Experiments: all results from coupled mode (Tier 1)
+- §5.4 Future Work or Appendix: "In distributed configurations, the metabolism resolver can be replaced independently. Preliminary evidence suggests stronger resolvers improve resolution quality (fewer pending_review transitions). See delta-wake implementation (GitHub)."
+- Do NOT present decoupled results as primary evidence — it weakens the "architecture works" narrative
+
+**For patent (L79/L80) — different framing:**
+- Patent emphasizes the **structural separation** as the invention
+- "The resolver is independently replaceable" is an explicit claim (L79 §0004)
+- Patent実施例 includes both coupled and decoupled configurations
+- This is correct: patent protects the structure, paper proves the effect
+
+**Summary:**
+```
+Paper:  "The same LLM can fix its own contradictions during sleep"     → coupled = main proof
+Patent: "The metabolism resolver is an independently replaceable module" → structure = main claim
+Both:   "Stronger resolvers make it better, but the architecture is the contribution"
+```
+
+**Data status (2026-04-03):**
+- Coupled mode: 8 models × 180 turns (existing), Sonnet 4.6 × 30 turns (frontier pilot)
+- Decoupled mode: PostgreSQL E2E confirmed (gemma3 dialogue + Sonnet resolver tested), formal experiment not yet run
+- Proxy simulation: 4 models × 180 turns, FIFO vs δ-priority, average +14.8% S-value improvement
+
 ---
 
 ## 3. Architecture (What Was Built)
@@ -282,8 +325,12 @@ Abstract (150 words)
 5. Discussion (1 page)
    5.1 Redefining Context Rot
    5.2 The Sonnet Exception
-   5.3 Limitations
-   5.4 Future Work
+   5.3 Distributed Metabolism: Decoupling Dialogue and Resolution (0.5 page, new)
+       — Coupled mode is the main evidence; decoupled mode shows modularity
+       — Resolver can be independently upgraded without changing dialogue path
+       — Priority ordering (δ-based) improves S-value by ~15% across 4 models
+   5.4 Limitations
+   5.5 Future Work
 
 6. Conclusion (0.5 page)
 
