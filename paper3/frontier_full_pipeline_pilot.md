@@ -75,6 +75,22 @@ Recommended wording for the paper:
 > Stage B protocol. We therefore treat GPT-4o as a corroborative frontier
 > family, not as the primary replication line.
 
+### Follow-up audit: Sonnet judge, `n = 3`
+
+We then ran a stricter audit variant that kept `GPT-4o` as the dialogue and
+metabolism model but replaced only the benchmark judge with `Sonnet` for all
+three Stage B trials.
+
+This follow-up sharpened the interpretation:
+
+- `ON` remained strong across all three trials
+- `OFF` remained low
+- but `NC` still showed large instability across trials
+
+So the remaining `GPT-4o` weakness is not reducible to benchmark judging alone.
+The Sonnet-judge audit is useful as supporting evidence, but it still does not
+elevate `GPT-4o` to the primary frontier replication line.
+
 ## Supplementary Frontier Note: Gemini 3.1 Flash Lite
 
 Gemini 3.1 Flash Lite has now also completed the same three-condition Stage B

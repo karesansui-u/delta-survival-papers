@@ -147,6 +147,65 @@ Implementation note:
 - These runs use `Anthropic API` for the metabolism path, not `claude-cli`
 - This is intentional so AWS runs only need `ANTHROPIC_API_KEY`
 
+## 5.5 Completed local decoupled result: deepseek dialogue + Sonnet metabolism
+
+The first completed decoupled local run is now available for `deepseek-r1:14b`
+with `Sonnet` used only in the metabolism path.
+
+Result (`n = 1`, Stage B, 30 turns):
+
+- `ON`:
+  - `T30 overall = 73.3%`
+  - `T30 fact = 26.7%`
+  - `T30 rule = 93.3%`
+  - `T30 contra = 100.0%`
+- `OFF`:
+  - `T30 overall = 35.6%`
+  - `T30 fact = 0.0%`
+  - `T30 rule = 80.0%`
+  - `T30 contra = 26.7%`
+- `NC`:
+  - `T30 overall = 73.3%`
+  - `T30 fact = 20.0%`
+  - `T30 rule = 100.0%`
+  - `T30 contra = 100.0%`
+
+Sources:
+
+- `../delta-zero/data/experiments/stageb_deepseek_sonnet_metabolism/trial_01_metabolism_on/summary.json`
+- `../delta-zero/data/experiments/stageb_deepseek_sonnet_metabolism/trial_01_metabolism_off/summary.json`
+- `../delta-zero/data/experiments/stageb_deepseek_sonnet_metabolism/trial_01_no_contradiction/summary.json`
+- `../delta-zero/data/experiments/stageb_deepseek_sonnet_metabolism/aggregate_summary.json`
+
+Interpretation:
+
+- This is not a publication-grade local replication yet because `n = 1`
+- But it does show a meaningful qualitative shift relative to the weak corrected
+  local-only `deepseek ON` line
+- In particular, `rule_application` and `contradiction_detection` improve
+  strongly when the metabolism path is upgraded to `Sonnet`
+- `fact_recall` remains modest, so the bottleneck is not fully solved
+
+This is therefore evidence that the local story is **not** simply “deepseek
+cannot do Stage B.” A stronger metabolism / resolver path appears to help, even
+though the local dialogue model still limits the ceiling.
+
+## 5.6 qwen status
+
+`qwen3:32b + Sonnet metabolism` should currently be treated as **deferred**,
+not as a clean negative result.
+
+Reason:
+
+- repeated remote execution failures mixed model behavior with infrastructure
+  faults (`wrong-model pull`, dependency miss, missing remote secrets file)
+- because of that, the latest `qwen` line is not clean enough to interpret
+  scientifically
+
+Operationally, `qwen` should be re-attempted only under the hardened remote
+guardrails and smoke-check protocol recorded in
+`../delta-zero/REMOTE_STAGEB_GUARDRAILS.md`.
+
 ## 6. Practical reading rule from now on
 
 Until the ablation above is complete:
