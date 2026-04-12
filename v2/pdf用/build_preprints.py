@@ -18,6 +18,7 @@ TARGET_FILES = [
     V2_DIR / "2_構造持続の条件つき導出.md",
     V2_DIR / "3_構造持続と推論性能の劣化.md",
     V2_DIR / "4_構造持続と継続学習における破滅的忘却.md",
+    V2_DIR / "補論_計算コストの構造的予測.md",
 ]
 
 CJK = "一-龯ぁ-んァ-ヶ々ー"
@@ -46,6 +47,8 @@ def convert_math(expr: str) -> str:
     expr = expr.replace("μ", r"\mu")
     expr = expr.replace("δ", r"\delta")
     expr = expr.replace("ρ", r"\rho")
+    expr = expr.replace("α", r"\alpha")
+    expr = expr.replace("γ", r"\gamma")
     expr = expr.replace("L̃", r"\tilde{L}")
     expr = re.sub(r"([A-Za-z])\^\(([^)]+)\)", r"\1^{(\2)}", expr)
     expr = re.sub(r"([A-Za-z])_\(([^\)]+)\)", r"\1_{(\2)}", expr)
@@ -58,26 +61,26 @@ def convert_math(expr: str) -> str:
 
 INLINE_OPERATOR_RE = re.compile(
     rf"(?:^|(?<=\s)|(?<=[{CJK}(（。、，,:;]))"
-    r"([A-Za-z0-9μδρL̃ΠΣ∏][A-Za-z0-9μδρL̃ΠΣ∏\(\)\^\{\}_/\-\+\.\s]*"
-    r"(?:(?::=|=|≤|≥|<|>|⊇|×)\s*[-+]?[A-Za-z0-9μδρL̃ΠΣ∏][A-Za-z0-9μδρL̃ΠΣ∏\(\)\^\{\}_/\-\+\.\s]*)+)"
+    r"([A-Za-z0-9μδρL̃ΠΣ∏αγ][A-Za-z0-9μδρL̃ΠΣ∏αγ\(\)\^\{\}_/\-\+\.\s]*"
+    r"(?:(?::=|=|≤|≥|<|>|⊇|×|≈)\s*[-+]?[A-Za-z0-9μδρL̃ΠΣ∏αγ][A-Za-z0-9μδρL̃ΠΣ∏αγ\(\)\^\{\}_/\-\+\.\s]*)+)"
     rf"(?=(?:\s|$|[{CJK}。、，,:;)\]）]))"
 )
 
 INLINE_FUNC_RE = re.compile(
     rf"(?:^|(?<=\s)|(?<=[{CJK}(（。、，,:;]))"
-    r"([A-Za-z]+\([A-Za-z0-9μδρL̃ΠΣ∏\(\)\^\{\}_/\-\+\.\s]+\))"
+    r"([A-Za-z]+\([A-Za-z0-9μδρL̃ΠΣ∏αγ\(\)\^\{\}_/\-\+\.\s]+\))"
     rf"(?=(?:\s|$|[{CJK}。、，,:;)\]）]))"
 )
 
 INLINE_TOKEN_RE = re.compile(
     rf"(?:^|(?<=\s)|(?<=[{CJK}(（。、，,:;]))"
-    r"(([A-Za-z]\^\([^)]+\))|([A-Za-z]_(?:\{[^}]+\}|ref|n|i|c|k|j|[A-Za-z0-9]+)))"
+    r"(([A-Za-zμδρL̃ΠΣ∏αγ]\^\([^)]+\))|([A-Za-zμδρL̃ΠΣ∏αγ]_(?:\{[^}]+\}|ref|n|i|c|k|j|[A-Za-z0-9]+)))"
     rf"(?=(?:\s|$|[{CJK}。、，,:;)\]）]))"
 )
 
 INLINE_PAREN_RE = re.compile(
     rf"(?:^|(?<=\s)|(?<=[{CJK}(（。、，,:;]))"
-    r"(\([A-Za-z0-9μδρL̃ΠΣ∏,\.\s_\-\+\^\{\}]+\))"
+    r"(\([A-Za-z0-9μδρL̃ΠΣ∏αγ,\.\s_\-\+\^\{\}]+\))"
     rf"(?=(?:\s|$|[{CJK}。、，,:;)\]）]))"
 )
 
