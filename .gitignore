@@ -19,3 +19,5 @@ lean/.lake/
 
 # OS
 .DS_Store
+
+.CLAUDE.md
