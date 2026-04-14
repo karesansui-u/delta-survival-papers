@@ -1,16 +1,45 @@
 cff-version: 1.2.0
-message: "If you use this work, please cite as below."
-title: "Survival Equation: A Unified Framework for Structural Collapse"
+message: "If you use this repository, please cite the relevant v2 preprint(s) below."
+title: "Delta-Survival Papers"
 authors:
   - family-names: Sunagawa
-    given-names: Karesansui
-repository-code: "https://github.com/karesansui/delta-survival-paper"
+    given-names: Akihito
+repository-code: "https://codeberg.org/delta-survival/papers"
 url: "https://osf.io/mdh7b"
-license: MIT
+preferred-citation:
+  type: report
+  title: "Delta-Survival Papers (v2 preprints)"
+  authors:
+    - family-names: Sunagawa
+      given-names: Akihito
+  year: 2026
+  url: "https://codeberg.org/delta-survival/papers"
 references:
-  - type: article
-    title: "Structural Collapse in Language Models: A First-Principles Account via Cumulative Information Loss"
-    doi: "10.5281/zenodo.19254667"
-  - type: article
-    title: "Cognitive Sleep for LLMs: How Contradiction Metabolism Prevents Context Rot"
-    doi: "10.5281/zenodo.19322371"
+  - type: report
+    title: "構造持続の最小形式"
+    authors:
+      - family-names: Sunagawa
+        given-names: Akihito
+    year: 2026
+    url: "https://osf.io/mdh7b/files/osfstorage/69dde399e43067989d1187e1"
+  - type: report
+    title: "構造持続の条件つき導出"
+    authors:
+      - family-names: Sunagawa
+        given-names: Akihito
+    year: 2026
+    url: "https://osf.io/mdh7b/files/osfstorage/69dde4faa17296e9bb3e7a3b"
+  - type: report
+    title: "構造持続と推論性能の劣化"
+    authors:
+      - family-names: Sunagawa
+        given-names: Akihito
+    year: 2026
+    url: "https://osf.io/mdh7b/files/osfstorage/69dde3bde1158f542e3e7aec"
+  - type: report
+    title: "構造持続と継続学習における破滅的忘却"
+    authors:
+      - family-names: Sunagawa
+        given-names: Akihito
+    year: 2026
+    url: "https://osf.io/mdh7b/files/osfstorage/69dde3c0cc45911aa117d84c"
