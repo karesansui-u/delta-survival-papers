@@ -62,7 +62,7 @@ PDF は [`v2/pdf用/0_構造持続理論の統合版.pdf`](v2/pdf%E7%94%A8/0_%E6
 | v2 Paper 3 | Main preprint |
 | v2 Paper 4 | Main preprint |
 | Lean 4 formalization | Complete (`sorry = 0`, `axiom = 0`) |
-| OSF project | [osf.io/mdh7b](https://osf.io/mdh7b/) |
+| OSF project | [osf.io/mdh7b/overview](https://osf.io/mdh7b/overview) |
 | Raw data and summaries | [DATA.md](DATA.md) |
 
 ## Patent Notice / 特許関連

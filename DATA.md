@@ -98,9 +98,9 @@ Covered by `deltazero_gemma` (old code) and `deltazero_mistral` (new code) above
 
 ---
 
-## OSF backup — osf.io/mdh7b
+## OSF backup — https://osf.io/mdh7b/overview
 
-Large files and additional supplements are also archived at OSF.
+Large files and additional supplements are also archived at OSF. Start from the project overview page if you want the landing entry rather than direct file downloads.
 Direct download links (no redirect):
 
 | File | Direct download |
