@@ -14,6 +14,7 @@ ROOT = Path(__file__).resolve().parent
 V2_DIR = ROOT.parent
 DEFAULT_DATE = "2026年4月12日"
 TARGET_FILES = [
+    V2_DIR / "0_構造持続理論の統合版.md",
     V2_DIR / "1_構造持続の最小形式.md",
     V2_DIR / "2_構造持続の条件つき導出.md",
     V2_DIR / "3_構造持続と推論性能の劣化.md",
