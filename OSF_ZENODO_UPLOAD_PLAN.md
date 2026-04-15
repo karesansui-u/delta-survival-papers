@@ -141,3 +141,48 @@ OSF / Zenodo への反映後は、必要に応じて以下を更新する。
 - `DATA.md`
 
 特に OSF / Zenodo の恒久リンクを公開導線に追加する場合は、主プレプリントの導線を壊さない範囲で最小限にとどめる。
+
+## OSF Upload Sequence
+
+OSF には、次の順で作業する。
+
+1. Project title を設定する  
+   `Structural Persistence Theory: Reasoning Degradation, Catastrophic Forgetting, and Long-Horizon AI Coherence`
+2. Description / abstract を `Canonical Metadata Packet` の内容で入力する
+3. Tags / keywords を入力する
+4. License を設定する  
+   - Papers and prose: CC BY 4.0  
+   - Code and formalization: Apache 2.0
+5. Contributors / creator 情報を確認する
+6. bundle 一式を upload する  
+   ローカル: `/Users/sunagawa/Project/delta-survival-export/osf_zenodo_latest_2026-04-16/`
+7. 最上位で見せたいファイルを確認する  
+   - `00_structural_persistence_integrated_overview_ja_2026-04-16.pdf`
+   - `98_structural_persistence_english_abstract_2026-04-16.pdf`
+   - `99_structural_persistence_english_overview_2026-04-16.md`
+8. `PATENT_NOTICE_2026-04-16.md` が閲覧可能であることを確認する
+9. 公開後に恒久リンクを控える
+
+## OSF Post-Upload Checklist
+
+- Project title が正しい
+- Description / abstract が反映されている
+- Keywords が反映されている
+- 先頭で見せたい 3 ファイルが閲覧できる
+- `PATENT_NOTICE_2026-04-16.md` が見える
+- `LICENSE_2026-04-16.txt` が見える
+- OSF project URL を控えた
+
+## README / DATA への差し戻し
+
+OSF 反映後に、必要なら次の更新を行う。
+
+- `README.md`
+  - integrated overview の OSF mirror を追加するか判断
+  - English abstract / English overview の OSF 導線を追加するか判断
+- `OVERVIEW.md`
+  - 旧 OSF mirror 群を bundle 方針に合わせて更新するか判断
+- `DATA.md`
+  - bundle の zip や追加補助資料の導線を追記するか判断
+
+公開導線は増やしすぎると読みにくくなるため、まずは OSF project 全体リンクを 1 本追加するだけでも十分。
