@@ -2,6 +2,7 @@
 
 This note is a short English entry point to the `delta-survival-paper` repository.
 It is not a full translation of the Japanese preprints. Its purpose is to explain the main claim, the supporting evidence, and the architectural implications in a compact form.
+For a one-page version, see [`v2/pdf用/ENGLISH_ABSTRACT.pdf`](v2/pdf%E7%94%A8/ENGLISH_ABSTRACT.pdf).
 
 ## Core Claim
 

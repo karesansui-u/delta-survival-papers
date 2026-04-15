@@ -10,6 +10,7 @@
 英語で短く全体像を掴みたい場合:
 
 - [`ENGLISH_OVERVIEW.md`](ENGLISH_OVERVIEW.md)
+- [`v2/pdf用/ENGLISH_ABSTRACT.pdf`](v2/pdf%E7%94%A8/ENGLISH_ABSTRACT.pdf)
 
 ## Main Track
 
