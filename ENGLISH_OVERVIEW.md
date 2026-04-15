@@ -6,7 +6,7 @@ For a one-page version, see [`v2/pdf用/ENGLISH_ABSTRACT.pdf`](v2/pdf%E7%94%A8/E
 
 ## Core Claim
 
-The central claim is simple: reasoning degradation in long conversations and catastrophic forgetting under continual learning may be two expressions of the same structural problem in language-model systems. In both cases, unresolved contradictions and premise-changing updates reduce the set of states that can still preserve coherent behavior.
+The central claim is simple: reasoning degradation in long conversations and catastrophic forgetting under continual learning may be two expressions of the same structural problem in language-model systems. In both cases, unresolved contradictions and premise-changing updates reduce the set of states that can still preserve coherent behavior. Here, “structure” does not mean generic form, but the relations, functions, and identity whose persistence is at issue in the system under study.
 
 ## Minimal Theory
 
@@ -25,7 +25,7 @@ then the remaining survivable region takes the exponential form
 m(V^{(n)}) = m(V^{(0)}) e^{-L}, \qquad L = \sum_i l_i.
 \]
 
-In this framework, the exponential form is not an extra empirical assumption. It follows directly from representing cumulative structural loss as successive multiplicative shrinkage measured in log-ratio form.
+In this framework, the exponential form is not an extra empirical assumption. It follows directly from representing cumulative structural loss as successive multiplicative shrinkage measured in log-ratio form. In that sense, collapse here means loss of persistence as that structure, not necessarily annihilation of the underlying substrate.
 
 ## Two Experimental Regimes
 
