@@ -54,6 +54,7 @@
 
 - Repository overview: `README.md`
 - Patent notice: `PATENTS.md`
+- Lean formalization note: `LEAN_FORMALIZATION_README.md`
 - Citation metadata: `CITATION.cff`
 
 ## 推奨アップロード単位
@@ -82,6 +83,7 @@
 - `PUBLICATION_DATA_INDEX_2026-04-16.md`
 - `CITATION.cff`
 - `PATENT_NOTICE_2026-04-16.md`
+- `LEAN_FORMALIZATION_NOTE_2026-04-16.md`
 - `LICENSE_2026-04-16.txt`
 - `PACKAGE_MANIFEST_2026-04-16.md`
 
@@ -96,6 +98,7 @@ OSF には、上記 bundle 一式をそのまま上げる。
 - アーカイブ用 overview
 - データ索引
 - 特許 notice
+- Lean formalization note
 - license note
 
 を一度に揃えられるため。
@@ -110,6 +113,7 @@ Zenodo には、論文本体と英語入口を中心にした trimmed public bun
 - `ARCHIVE_README_2026-04-16.md`
 - `CITATION.cff`
 - `PATENT_NOTICE_2026-04-16.md`
+- `LEAN_FORMALIZATION_NOTE_2026-04-16.md`
 - `LICENSE_2026-04-16.txt`
 
 `PUBLICATION_DATA_INDEX_2026-04-16.md` と `PACKAGE_MANIFEST_2026-04-16.md` は OSF 側の補助導線として扱う。
@@ -129,6 +133,7 @@ Zenodo には、論文本体と英語入口を中心にした trimmed public bun
 | `ARCHIVE_README_2026-04-16.md` | `README.md` |
 | `PUBLICATION_DATA_INDEX_2026-04-16.md` | `DATA.md` |
 | `PATENT_NOTICE_2026-04-16.md` | `PATENTS.md` |
+| `LEAN_FORMALIZATION_NOTE_2026-04-16.md` | `LEAN_FORMALIZATION_README.md` |
 | `LICENSE_2026-04-16.txt` | `LICENSE` |
 | `PACKAGE_MANIFEST_2026-04-16.md` | generated during bundle assembly |
 
@@ -160,7 +165,7 @@ OSF には、次の順で作業する。
    - `00_structural_persistence_integrated_overview_ja_2026-04-16.pdf`
    - `98_structural_persistence_english_abstract_2026-04-16.pdf`
    - `99_structural_persistence_english_overview_2026-04-16.md`
-8. `PATENT_NOTICE_2026-04-16.md` が閲覧可能であることを確認する
+8. `PATENT_NOTICE_2026-04-16.md` と `LEAN_FORMALIZATION_NOTE_2026-04-16.md` が閲覧可能であることを確認する
 9. 公開後に恒久リンクを控える
 
 ## OSF Post-Upload Checklist
@@ -170,6 +175,7 @@ OSF には、次の順で作業する。
 - Keywords が反映されている
 - 先頭で見せたい 3 ファイルが閲覧できる
 - `PATENT_NOTICE_2026-04-16.md` が見える
+- `LEAN_FORMALIZATION_NOTE_2026-04-16.md` が見える
 - `LICENSE_2026-04-16.txt` が見える
 - OSF project URL を控えた
 

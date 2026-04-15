@@ -103,6 +103,8 @@ delta-survival-paper/
 Lean formalization is in [`lean/`](lean/). Current status:
 `sorry = 0`, `axiom = 0`.
 
+For external readers and archive visitors, see [`LEAN_FORMALIZATION_README.md`](LEAN_FORMALIZATION_README.md).
+
 ```bash
 cd lean && lake exe cache get && lake build
 ```
