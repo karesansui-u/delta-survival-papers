@@ -56,6 +56,11 @@ theory, experiments, and formal verification.
 | OSF project | [osf.io/mdh7b](https://osf.io/mdh7b/) |
 | Raw data and summaries | [DATA.md](DATA.md) |
 
+## Patent Notice / 特許関連
+
+Related structure-preservation mechanisms have already been filed in Japan.
+See [`PATENTS.md`](PATENTS.md) for a brief scope note.
+
 ## Recommended Reading Order / 推奨読書順
 
 1. [`v2/1_構造持続の最小形式.md`](v2/1_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%AE%E6%9C%80%E5%B0%8F%E5%BD%A2%E5%BC%8F.md)
