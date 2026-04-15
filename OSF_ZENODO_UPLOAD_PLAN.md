@@ -10,6 +10,52 @@
 - OSF: 未反映
 - Zenodo: 未反映
 
+## Canonical Metadata Packet
+
+以下を OSF / Zenodo の metadata 入力時の基準とする。
+
+### Title
+
+`Structural Persistence Theory: Reasoning Degradation, Catastrophic Forgetting, and Long-Horizon AI Coherence`
+
+### Short Description
+
+`This project collects preprints, data, and formalization for Structural Persistence Theory, a framework for describing long-horizon failure in language-model systems. The central hypothesis is that reasoning degradation in long conversations and catastrophic forgetting under continual learning may share the same structural mechanism: unresolved contradictions and premise-changing updates shrink the set of states that can still preserve coherent behavior.`
+
+### Abstract
+
+`Structural Persistence Theory is a framework for describing long-horizon failure in language-model systems. The central hypothesis is that reasoning degradation in long conversations and catastrophic forgetting under continual learning may share the same structural mechanism. In both cases, the set of states that can still preserve a target structure shrinks as unresolved contradictions or premise-changing updates accumulate. At the theoretical core, structural loss is defined by the log-ratio of successive shrinkage in the set of states that can still sustain the structure. Under this representation, the remaining survivable region takes an exponential form. The project develops this idea theoretically, tests it empirically in inference-time and continual-learning settings, and explores its architectural implications. On the inference side, the experiments suggest that long-context degradation is not mainly a context-length problem, but a contradiction-management problem: externally organizing contradictory updates preserves coherence better than leaving the same contradictions unresolved. On the continual-learning side, the experiments suggest that LoRA-style sequential updating behaves more like overwrite than clean accumulation when dependency-linked knowledge must be reorganized after premise changes. The broader implication is that long-horizon intelligence may require more than prompt engineering or more training alone. This project therefore also explores external contradiction metabolism, multi-layer memory, premise-dependent reorganization, rollbackable state management, and persistent internal-model maintenance as design principles for durable AI systems and long-term AI partners.`
+
+### Keywords
+
+- structural persistence
+- reasoning degradation
+- catastrophic forgetting
+- contradiction accumulation
+- long-horizon coherence
+- continual learning
+- external contradiction metabolism
+- rollbackable memory
+- persistent intelligence
+- LLM memory
+- contradiction handling
+- long-term AI partner
+
+### Creator
+
+- Akihito Sunagawa
+
+### License
+
+- Papers and prose: CC BY 4.0
+- Code and formalization: Apache 2.0
+
+### Related public references
+
+- Repository overview: `README.md`
+- Patent notice: `PATENTS.md`
+- Citation metadata: `CITATION.cff`
+
 ## 推奨アップロード単位
 
 最新の最小公開単位は、次の bundle です。
@@ -32,10 +78,12 @@
 ### Supporting indexes
 
 - `99_structural_persistence_english_overview_2026-04-16.md`
-- `README_repository_overview_2026-04-16.md`
-- `DATA_index_2026-04-16.md`
+- `ARCHIVE_README_2026-04-16.md`
+- `PUBLICATION_DATA_INDEX_2026-04-16.md`
 - `CITATION.cff`
-- `BUNDLE_MANIFEST.md`
+- `PATENT_NOTICE_2026-04-16.md`
+- `LICENSE_2026-04-16.txt`
+- `PACKAGE_MANIFEST_2026-04-16.md`
 
 ## OSF に上げる推奨範囲
 
@@ -45,21 +93,26 @@ OSF には、上記 bundle 一式をそのまま上げる。
 
 - PDF 本体
 - 英語入口
-- リポジトリ overview
+- アーカイブ用 overview
 - データ索引
+- 特許 notice
+- license note
 
 を一度に揃えられるため。
 
 ## Zenodo に上げる推奨範囲
 
-Zenodo には、まず次の最小セットを上げる。
+Zenodo には、論文本体と英語入口を中心にした trimmed public bundle を上げる。OSF と同一の完全 mirror にはしない。
 
 - Core PDFs 一式
 - `98_structural_persistence_english_abstract_2026-04-16.pdf`
 - `99_structural_persistence_english_overview_2026-04-16.md`
+- `ARCHIVE_README_2026-04-16.md`
 - `CITATION.cff`
+- `PATENT_NOTICE_2026-04-16.md`
+- `LICENSE_2026-04-16.txt`
 
-`DATA_index_2026-04-16.md` は添えてもよいが、Zenodo の主役は本文群と英語入口に置く。
+`PUBLICATION_DATA_INDEX_2026-04-16.md` と `PACKAGE_MANIFEST_2026-04-16.md` は OSF 側の補助導線として扱う。
 
 ## ソース対応表
 
@@ -73,8 +126,11 @@ Zenodo には、まず次の最小セットを上げる。
 | `90_structural_prediction_of_computational_cost_ja_2026-04-16.pdf` | `v2/pdf用/補論_計算コストの構造的予測.pdf` |
 | `98_structural_persistence_english_abstract_2026-04-16.pdf` | `v2/pdf用/ENGLISH_ABSTRACT.pdf` |
 | `99_structural_persistence_english_overview_2026-04-16.md` | `ENGLISH_OVERVIEW.md` |
-| `README_repository_overview_2026-04-16.md` | `README.md` |
-| `DATA_index_2026-04-16.md` | `DATA.md` |
+| `ARCHIVE_README_2026-04-16.md` | `README.md` |
+| `PUBLICATION_DATA_INDEX_2026-04-16.md` | `DATA.md` |
+| `PATENT_NOTICE_2026-04-16.md` | `PATENTS.md` |
+| `LICENSE_2026-04-16.txt` | `LICENSE` |
+| `PACKAGE_MANIFEST_2026-04-16.md` | generated during bundle assembly |
 
 ## 反映後に更新する場所
 

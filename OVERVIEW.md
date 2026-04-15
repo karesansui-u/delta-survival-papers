@@ -1,16 +1,18 @@
 # Overview
 
-このリポジトリは、`v2` の 4 本のプレプリントを中心に読むための構成です。
+このリポジトリは、構造持続理論に関する `v2` の 4 本のプレプリントを中心に読むための構成です。
+
+## English Entry Points
+
+- Start here: [`v2/pdf用/ENGLISH_ABSTRACT.pdf`](v2/pdf%E7%94%A8/ENGLISH_ABSTRACT.pdf)
+- Longer English note: [`ENGLISH_OVERVIEW.md`](ENGLISH_OVERVIEW.md)
+
+## Japanese Entry Point
 
 全体像を先に掴むための統合版:
 
 - [`v2/0_構造持続理論の統合版.md`](v2/0_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E7%90%86%E8%AB%96%E3%81%AE%E7%B5%B1%E5%90%88%E7%89%88.md)
 - [`v2/pdf用/0_構造持続理論の統合版.pdf`](v2/pdf%E7%94%A8/0_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E7%90%86%E8%AB%96%E3%81%AE%E7%B5%B1%E5%90%88%E7%89%88.pdf)
-
-英語で短く全体像を掴みたい場合:
-
-- [`ENGLISH_OVERVIEW.md`](ENGLISH_OVERVIEW.md)
-- [`v2/pdf用/ENGLISH_ABSTRACT.pdf`](v2/pdf%E7%94%A8/ENGLISH_ABSTRACT.pdf)
 
 ## Main Track
 

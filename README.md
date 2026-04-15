@@ -1,19 +1,23 @@
 # Delta-Survival Papers
 
-Cumulative information loss `δ` as a unified coordinate for structural collapse:
-theory, experiments, and formal verification.
+Structural Persistence Theory for LLM reasoning degradation, catastrophic forgetting, and long-horizon coherence.
 
-累積的情報損失 `δ` を構造崩壊の統一座標とする理論・実験・形式検証。
+大規模言語モデルの推論劣化・破滅的忘却・長期一貫性を統一的に扱う構造持続理論の理論・実験・形式検証。
 
 ## Current Focus / 現在の主対象
 
 このリポジトリの主対象は、`v2` にある 4 本のプレプリントです。  
 まずは `v2/1` から `v2/4` を読む前提で構成しています。`v1/` は旧版アーカイブ、補論は補助資料です。
 
+### English Entry Points
+
+英語で最短に入りたい場合は、まず [`v2/pdf用/ENGLISH_ABSTRACT.pdf`](v2/pdf%E7%94%A8/ENGLISH_ABSTRACT.pdf) を読んでください。  
+もう少し説明が必要なら [`ENGLISH_OVERVIEW.md`](ENGLISH_OVERVIEW.md) を参照してください。
+
+### Japanese Main Track
+
 全体像だけを先に掴みたい場合は、統合版 [`v2/0_構造持続理論の統合版.md`](v2/0_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E7%90%86%E8%AB%96%E3%81%AE%E7%B5%B1%E5%90%88%E7%89%88.md) から読むこともできます。
 PDF は [`v2/pdf用/0_構造持続理論の統合版.pdf`](v2/pdf%E7%94%A8/0_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E7%90%86%E8%AB%96%E3%81%AE%E7%B5%B1%E5%90%88%E7%89%88.pdf) を参照してください。
-英語で短く全体像を掴みたい場合は [`ENGLISH_OVERVIEW.md`](ENGLISH_OVERVIEW.md) を参照してください。
-1ページの英語要旨は [`v2/pdf用/ENGLISH_ABSTRACT.pdf`](v2/pdf%E7%94%A8/ENGLISH_ABSTRACT.pdf) です。
 
 ## Main Preprints (v2) / メインプレプリント
 

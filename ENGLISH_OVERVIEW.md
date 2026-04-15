@@ -1,17 +1,12 @@
-# Structural Persistence Theory — English Overview
+# Structural Persistence Theory for Language-Model Systems — English Overview
 
 This note is a short English entry point to the `delta-survival-paper` repository.
-It is not a full translation of the Japanese preprints. Its purpose is to explain the main claim, the supporting evidence, and the architectural implications in a compact form.
+It explains the main claim, the supporting evidence, and the architectural implications without requiring the Japanese preprints first.
 For a one-page version, see [`v2/pdf用/ENGLISH_ABSTRACT.pdf`](v2/pdf%E7%94%A8/ENGLISH_ABSTRACT.pdf).
 
 ## Core Claim
 
-The central hypothesis is that two problems usually discussed separately may share the same structural mechanism:
-
-- reasoning degradation in long conversations
-- catastrophic forgetting under continual learning
-
-The proposed view is that both can be read as cases where the set of states that can still preserve a target structure gradually shrinks as unresolved contradictions or premise-changing updates accumulate.
+The central claim is simple: reasoning degradation in long conversations and catastrophic forgetting under continual learning may be two expressions of the same structural problem in language-model systems. In both cases, unresolved contradictions and premise-changing updates reduce the set of states that can still preserve coherent behavior.
 
 ## Minimal Theory
 
@@ -36,27 +31,23 @@ In this framework, the exponential form is not an extra empirical assumption. It
 
 ### 1. Inference-time reasoning degradation
 
-The inference-side experiments study what happens when contradictory or unresolved updates accumulate inside a conversation.
-
-The main empirical observation is narrow but important:
+The inference-side experiments study what happens when contradictory or unresolved updates accumulate inside a conversation. The key observation is:
 
 - long context by itself does not explain the full degradation
 - unresolved contradiction accumulation degrades logical consistency much more sharply
 - externally organizing contradictions into old/new state relations preserves coherence better than leaving the same contradictions unresolved
 
-In other words, the problem looks less like a pure context-length issue and more like a contradiction-management issue.
+That points to contradiction management rather than sheer context length as the main issue in these settings.
 
 ### 2. Continual-learning structural forgetting
 
-The continual-learning experiments study premise-changing updates under LoRA-based sequential training.
+The continual-learning experiments study premise-changing updates under LoRA-based sequential training. Not all forgetting looks the same. When an upstream premise changes, many dependency-linked pieces of knowledge must be reorganized together. If that reorganization fails, the system does not merely miss one fact; it falls into an internally inconsistent state.
 
-The main observation is that not all forgetting looks the same. When an upstream premise changes, many dependency-linked pieces of knowledge have to be reorganized together. If that reorganization fails, the system does not merely lose one fact; it enters an internally inconsistent state.
-
-Across the tested settings, LoRA-style sequential updating behaved more like overwrite than clean accumulation. Dependency-aware replay improved dependency consistency, and multi-adapter separation partially reduced interference, but neither fully solved high-fidelity long-term retention.
+Across the tested settings, LoRA-style sequential updating often overwrote old organization instead of adding cleanly to it. Dependency-aware replay improved consistency, and multi-adapter separation reduced some interference, but neither fully kept older knowledge intact.
 
 ## Architectural Implication
 
-The broader implication is that long-horizon intelligence may require more than better prompt engineering or more training alone.
+The target here is a system that can stay coherent through revision, not just answer well in isolated sessions. That likely requires more than better prompting or more training alone.
 
 The work points toward an architecture with:
 
@@ -64,7 +55,7 @@ The work points toward an architecture with:
 - multi-layer memory rather than a single undifferentiated memory store
 - premise-dependent reorganization of knowledge
 - rollbackable state management
-- persistent internal-model maintenance across time
+- maintenance of an internal model across time
 
 The intended target is not just a stronger stateless chatbot, but a system that can remain coherent across updates, revisions, and long-running interaction.
 
