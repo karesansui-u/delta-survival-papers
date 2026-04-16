@@ -20,6 +20,8 @@
 This note is the shortest public English entry point to the project.
 The project studies whether reasoning degradation in long conversations and catastrophic forgetting under continual learning reflect the same structural problem in language-model systems. The core claim is that unresolved contradictions and premise-changing updates shrink the set of states that can still preserve coherent behavior. Here, ``structure'' does not mean generic form, but the relations, functions, and identity whose persistence is at issue in the system being studied.
 
+This is not only a recipe for giving long-horizon systems a persistent state. Durable state is the substrate, but the stronger claim is that coherence is preserved by explicitly reducing contradiction load and maintaining structural consistency over time.
+
 Empirically, the inference experiments suggest that long-context degradation is not mainly a length problem, but a contradiction-management problem: externally organizing contradictory updates preserves coherence better than leaving the same contradictions unresolved. The continual-learning experiments suggest that LoRA-style sequential updating often overwrites old organization instead of adding cleanly to it when dependency-linked knowledge must be reorganized after premise changes. Dependency-aware replay and adapter separation help, but do not fully keep older knowledge intact.
 
 At the theoretical core, structural loss is defined by the log-ratio of successive shrinkage in the set of states that can still sustain the structure. If a system starts with a structure-preserving state set

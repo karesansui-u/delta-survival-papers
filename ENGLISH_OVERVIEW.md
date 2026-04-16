@@ -8,6 +8,8 @@ For a one-page version, see [`v2/pdf用/ENGLISH_ABSTRACT.pdf`](v2/pdf%E7%94%A8/E
 
 The central claim is simple: reasoning degradation in long conversations and catastrophic forgetting under continual learning may be two expressions of the same structural problem in language-model systems. In both cases, unresolved contradictions and premise-changing updates reduce the set of states that can still preserve coherent behavior. Here, “structure” does not mean generic form, but the relations, functions, and identity whose persistence is at issue in the system under study.
 
+This means the project is not only about giving long-horizon systems a persistent state. Durable state is the substrate, but the stronger claim is that persistence as that structure depends on explicitly reducing contradiction load and maintaining coherence through revision.
+
 ## Minimal Theory
 
 At the theoretical core, structural loss is defined by the log-ratio of successive shrinkage in the set of states that can still sustain the structure.
