@@ -2,7 +2,7 @@
 
 Formal verification of the mathematical framework used in Papers 1 and 2.
 
-- **19 modules**, `sorry = 0`, `axiom = 0`
+- **20 modules**, `sorry = 0`, `axiom = 0`
 - All proofs fully verified by the Lean 4 type checker
 
 ---
@@ -15,6 +15,7 @@ Formal verification of the mathematical framework used in Papers 1 and 2.
 | `Penalty.lean` | Penalty function behavior (subcritical/supercritical) | Paper 1 |
 | `FullFormula.lean` | Full multiplicative formula properties | Paper 1 |
 | `CauchyExponential.lean` | Cauchy functional equation: `e^{cd}` is the unique continuous solution | Papers 1 & 2 |
+| `LogUniqueness.lean` | Log-ratio uniqueness: B1–B4 on ratio-space loss `f: (0,1] → ℝ≥0` imply `f(r) = -k·log r` | Paper 1 §3 (A2 characterization) |
 | `AxiomsToExp.lean` | 3 axioms (finite states, fractional elimination, independence) imply `e^{-d}` | Paper 1 |
 | `SATFirstMoment.lean` | SAT first moment correspondence and decay rate ratio prediction | Papers 1 & 2 |
 | `HillNumber.lean` | Hill number upper bound: N_eff <= N (Jensen's inequality) | Paper 1 |
@@ -40,6 +41,20 @@ Formal verification of the mathematical framework used in Papers 1 and 2.
 If constraints contribute independently to cost, i.e.,
 `mu_c(d1 + d2) = mu_c(d1) * mu_c(d2) / A`,
 then the unique continuous monotone solution is `mu_c(d) = A * e^{cd}`.
+
+### Log-ratio uniqueness (Paper 1 §3, A2 characterization)
+
+Any ratio-space loss `f : (0,1] → ℝ≥0` satisfying
+  (B2) `f(1) = 0`,
+  (B3) `f(r₁·r₂) = f(r₁) + f(r₂)`,
+  (B4) continuity,
+  (B5) `f(r) ≥ 0`,
+is uniquely of the form `f(r) = -k · log r` for some `k ≥ 0`. This elevates
+A2 of Paper 2 from a definition to a theorem, following the Shannon/Hartley
+axiomatic characterization lineage. Proof reduces to the Cauchy additive
+equation via the substitution `g(t) = f(exp(-t))` with odd extension.
+Independent of A3 (probabilistic independence), so this module stands
+alongside `AxiomsToExp.lean` rather than depending on it.
 
 ### Three axioms to exponential decay (Paper 1, Section 3)
 

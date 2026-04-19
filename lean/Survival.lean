@@ -42,6 +42,9 @@ import Survival.SATFirstMoment
 -- Cauchy functional equation: uniqueness of e^{-cδ}
 import Survival.CauchyExponential
 
+-- Log-ratio uniqueness: f(r) = -k·log r from B1–B4 (Paper 1 §3)
+import Survival.LogUniqueness
+
 -- Error propagation and sensitivity analysis
 import Survival.SensitivityAnalysis
 
