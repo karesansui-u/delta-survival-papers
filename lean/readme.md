@@ -45,16 +45,20 @@ then the unique continuous monotone solution is `mu_c(d) = A * e^{cd}`.
 ### Log-ratio uniqueness (Paper 1 §3, A2 characterization)
 
 Any ratio-space loss `f : (0,1] → ℝ≥0` satisfying
-  (B2) `f(1) = 0`,
-  (B3) `f(r₁·r₂) = f(r₁) + f(r₂)`,
-  (B4) continuity,
-  (B5) `f(r) ≥ 0`,
+  (B2)       `f(1) = 0`,
+  (B3)       `f(r₁·r₂) = f(r₁) + f(r₂)`,
+  (B4)       continuity,
+  (codomain) `f(r) ≥ 0`   (paper's codomain `[0, ∞)` on B1),
 is uniquely of the form `f(r) = -k · log r` for some `k ≥ 0`. This elevates
 A2 of Paper 2 from a definition to a theorem, following the Shannon/Hartley
 axiomatic characterization lineage. Proof reduces to the Cauchy additive
 equation via the substitution `g(t) = f(exp(-t))` with odd extension.
 Independent of A3 (probabilistic independence), so this module stands
 alongside `AxiomsToExp.lean` rather than depending on it.
+
+Note on axiom labels: the paper's B5 is *monotonicity*, not the
+non-negativity hypothesis assumed here. Monotonicity follows as a consequence
+once `k ≥ 0` is established, so it is not needed as a separate hypothesis.
 
 ### Three axioms to exponential decay (Paper 1, Section 3)
 

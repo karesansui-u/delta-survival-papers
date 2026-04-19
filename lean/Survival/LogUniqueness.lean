@@ -3,13 +3,22 @@ Survival Model — Log-Ratio Uniqueness (Paper 1 §3)
 対数比損失の一意性定理
 
 Theorem: If f : ℝ → ℝ satisfies, on the ratio space (0, 1]:
-  (B1) f is a function on (0, 1]         — representation (implicit)
-  (B2) f(1) = 0                            — normalization
-  (B3) ∀ r₁, r₂ ∈ (0, 1], f(r₁ · r₂) = f(r₁) + f(r₂)   — additivity
-  (B4) f is continuous                     — regularity
-  (B5) ∀ r ∈ (0, 1], 0 ≤ f(r)              — non-negativity (direction of loss)
+  (B1)       f is a function on (0, 1]       — representation (implicit)
+  (B2)       f(1) = 0                          — normalization
+  (B3)       ∀ r₁, r₂ ∈ (0, 1], f(r₁ · r₂) = f(r₁) + f(r₂)   — additivity
+  (B4)       f is continuous                   — regularity
+  (codomain) ∀ r ∈ (0, 1], 0 ≤ f(r)            — corresponds to the paper's
+                                                 codomain restriction
+                                                 f : (0, 1] → [0, ∞)
 then there exists a unique k ≥ 0 such that for all r ∈ (0, 1],
   f(r) = -k · Real.log r.
+
+Naming note: In the paper (Paper 1 §3.1), axiom B5 is *monotonicity*
+(f non-increasing on (0, 1]), and non-negativity is built into the codomain
+of B1. In Lean we work with f : ℝ → ℝ, so the codomain restriction becomes
+an explicit hypothesis here. The paper's B5 (monotonicity) is not assumed
+separately: it follows as a consequence of the theorem, since k ≥ 0 forces
+r ↦ -k · log r to be non-increasing on (0, 1].
 
 This is the Shannon/Hartley-type axiomatic characterization that elevates
 the log-ratio form of loss (A2 in Paper 2) from a definition to a theorem.
@@ -193,16 +202,21 @@ theorem logSubstitute_continuous {f : ℝ → ℝ} (hf_cont : Continuous f)
 /-- **Log-Ratio Uniqueness Theorem** (Paper 1 §3).
 
 If f : ℝ → ℝ satisfies, on the ratio space (0, 1]:
-  (B2) f(1) = 0
-  (B3) f(r₁ · r₂) = f(r₁) + f(r₂)  for all r₁, r₂ ∈ (0, 1]
-  (B4) f is continuous
-  (B5) f(r) ≥ 0 for r ∈ (0, 1]
+  (B2)       f(1) = 0
+  (B3)       f(r₁ · r₂) = f(r₁) + f(r₂)  for all r₁, r₂ ∈ (0, 1]
+  (B4)       f is continuous
+  (codomain) f(r) ≥ 0 for r ∈ (0, 1]   — the paper's codomain [0, ∞)
 then there exists k ≥ 0 such that
   ∀ r ∈ (0, 1], f(r) = -k · Real.log r.
 
 This elevates A2 (log-ratio loss) of Paper 2 from a definition to a theorem,
 and provides the axiomatic justification sought in Paper 1 §3. The derivation
-is independent of A3 (probabilistic independence of stage losses). -/
+is independent of A3 (probabilistic independence of stage losses).
+
+Naming note: The paper's axiom B5 is monotonicity, which is *not* assumed
+here and instead follows as a consequence of k ≥ 0. The non-negativity
+hypothesis `hf_nonneg` corresponds to the paper's codomain restriction on B1,
+not to B5. -/
 theorem log_ratio_uniqueness (f : ℝ → ℝ)
     (hf_nonneg : ∀ r, 0 < r → r ≤ 1 → 0 ≤ f r)
     (hf_one : f 1 = 0)
