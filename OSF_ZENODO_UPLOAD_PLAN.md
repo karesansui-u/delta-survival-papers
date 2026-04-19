@@ -1,8 +1,9 @@
 # OSF / Zenodo Upload Plan
 
-最終更新: 2026-04-16
+最終更新: 2026-04-19
 
-このメモは、`delta-survival-paper` の公開物を OSF / Zenodo に反映するときの最小セットを固定するためのものです。
+このメモは、`delta-survival-paper` の公開物を OSF / Zenodo に反映するときの最小セットを固定するためのものです。2026-04-19 の更新では、Paper 1 §3 の対数比の一意性定理（A2 の特徴づけ）と Lean 側の `LogUniqueness.lean` の反映に伴い、bundle を `2026-04-19` に差し替えています。2026-04-16 版は `osf_zenodo_latest_2026-04-16/` としてローカルには残しています。
+
 現在の公開反映状況は次のとおりです。
 
 - GitHub: 反映済み
@@ -61,31 +62,31 @@
 
 最新の最小公開単位は、次の bundle です。
 
-- ローカル bundle: `/Users/sunagawa/Project/delta-survival-export/osf_zenodo_latest_2026-04-16/`
-- zip: `/Users/sunagawa/Project/delta-survival-export/osf_zenodo_latest_2026-04-16.zip`
+- ローカル bundle: `/Users/sunagawa/Project/delta-survival-export/osf_zenodo_latest_2026-04-19/`
+- zip: `/Users/sunagawa/Project/delta-survival-export/osf_zenodo_latest_2026-04-19.zip`
 
 ## 推奨ファイル構成
 
 ### Core PDFs
 
-- `00_structural_persistence_integrated_overview_ja_2026-04-16.pdf`
-- `01_structural_persistence_minimal_form_ja_2026-04-16.pdf`
-- `02_structural_persistence_conditional_derivation_ja_2026-04-16.pdf`
-- `03_structural_persistence_reasoning_degradation_ja_2026-04-16.pdf`
-- `04_structural_persistence_catastrophic_forgetting_ja_2026-04-16.pdf`
-- `90_structural_prediction_of_computational_cost_ja_2026-04-16.pdf`
-- `98_structural_persistence_english_abstract_2026-04-16.pdf`
+- `00_structural_persistence_integrated_overview_ja_2026-04-19.pdf`
+- `01_structural_persistence_minimal_form_ja_2026-04-19.pdf`
+- `02_structural_persistence_conditional_derivation_ja_2026-04-19.pdf`
+- `03_structural_persistence_reasoning_degradation_ja_2026-04-19.pdf`
+- `04_structural_persistence_catastrophic_forgetting_ja_2026-04-19.pdf`
+- `90_structural_prediction_of_computational_cost_ja_2026-04-19.pdf`
+- `98_structural_persistence_english_abstract_2026-04-19.pdf`
 
 ### Supporting indexes
 
-- `99_structural_persistence_english_overview_2026-04-16.md`
-- `ARCHIVE_README_2026-04-16.md`
-- `PUBLICATION_DATA_INDEX_2026-04-16.md`
+- `99_structural_persistence_english_overview_2026-04-19.md`
+- `ARCHIVE_README_2026-04-19.md`
+- `PUBLICATION_DATA_INDEX_2026-04-19.md`
 - `CITATION.cff`
-- `PATENT_NOTICE_2026-04-16.md`
-- `LEAN_FORMALIZATION_NOTE_2026-04-16.md`
-- `LICENSE_2026-04-16.txt`
-- `PACKAGE_MANIFEST_2026-04-16.md`
+- `PATENT_NOTICE_2026-04-19.md`
+- `LEAN_FORMALIZATION_NOTE_2026-04-19.md`
+- `LICENSE_2026-04-19.txt`
+- `PACKAGE_MANIFEST_2026-04-19.md`
 
 ## OSF に上げる推奨範囲
 
@@ -108,34 +109,34 @@ OSF には、上記 bundle 一式をそのまま上げる。
 Zenodo には、論文本体と英語入口を中心にした trimmed public bundle を上げる。OSF と同一の完全 mirror にはしない。
 
 - Core PDFs 一式
-- `98_structural_persistence_english_abstract_2026-04-16.pdf`
-- `99_structural_persistence_english_overview_2026-04-16.md`
-- `ARCHIVE_README_2026-04-16.md`
+- `98_structural_persistence_english_abstract_2026-04-19.pdf`
+- `99_structural_persistence_english_overview_2026-04-19.md`
+- `ARCHIVE_README_2026-04-19.md`
 - `CITATION.cff`
-- `PATENT_NOTICE_2026-04-16.md`
-- `LEAN_FORMALIZATION_NOTE_2026-04-16.md`
-- `LICENSE_2026-04-16.txt`
+- `PATENT_NOTICE_2026-04-19.md`
+- `LEAN_FORMALIZATION_NOTE_2026-04-19.md`
+- `LICENSE_2026-04-19.txt`
 
-`PUBLICATION_DATA_INDEX_2026-04-16.md` と `PACKAGE_MANIFEST_2026-04-16.md` は OSF 側の補助導線として扱う。
+`PUBLICATION_DATA_INDEX_2026-04-19.md` と `PACKAGE_MANIFEST_2026-04-19.md` は OSF 側の補助導線として扱う。
 
 ## ソース対応表
 
 | Bundle file | Source |
 |---|---|
-| `00_structural_persistence_integrated_overview_ja_2026-04-16.pdf` | `v2/pdf用/0_構造持続理論の統合版.pdf` |
-| `01_structural_persistence_minimal_form_ja_2026-04-16.pdf` | `v2/pdf用/1_構造持続の最小形式.pdf` |
-| `02_structural_persistence_conditional_derivation_ja_2026-04-16.pdf` | `v2/pdf用/2_構造持続の条件つき導出.pdf` |
-| `03_structural_persistence_reasoning_degradation_ja_2026-04-16.pdf` | `v2/pdf用/3_構造持続と推論性能の劣化.pdf` |
-| `04_structural_persistence_catastrophic_forgetting_ja_2026-04-16.pdf` | `v2/pdf用/4_構造持続と継続学習における破滅的忘却.pdf` |
-| `90_structural_prediction_of_computational_cost_ja_2026-04-16.pdf` | `v2/pdf用/補論_計算コストの構造的予測.pdf` |
-| `98_structural_persistence_english_abstract_2026-04-16.pdf` | `v2/pdf用/ENGLISH_ABSTRACT.pdf` |
-| `99_structural_persistence_english_overview_2026-04-16.md` | `ENGLISH_OVERVIEW.md` |
-| `ARCHIVE_README_2026-04-16.md` | `README.md` |
-| `PUBLICATION_DATA_INDEX_2026-04-16.md` | `DATA.md` |
-| `PATENT_NOTICE_2026-04-16.md` | `PATENTS.md` |
-| `LEAN_FORMALIZATION_NOTE_2026-04-16.md` | `LEAN_FORMALIZATION_README.md` |
-| `LICENSE_2026-04-16.txt` | `LICENSE` |
-| `PACKAGE_MANIFEST_2026-04-16.md` | generated during bundle assembly |
+| `00_structural_persistence_integrated_overview_ja_2026-04-19.pdf` | `v2/pdf用/0_構造持続理論の統合版.pdf` |
+| `01_structural_persistence_minimal_form_ja_2026-04-19.pdf` | `v2/pdf用/1_構造持続の最小形式.pdf` |
+| `02_structural_persistence_conditional_derivation_ja_2026-04-19.pdf` | `v2/pdf用/2_構造持続の条件つき導出.pdf` |
+| `03_structural_persistence_reasoning_degradation_ja_2026-04-19.pdf` | `v2/pdf用/3_構造持続と推論性能の劣化.pdf` |
+| `04_structural_persistence_catastrophic_forgetting_ja_2026-04-19.pdf` | `v2/pdf用/4_構造持続と継続学習における破滅的忘却.pdf` |
+| `90_structural_prediction_of_computational_cost_ja_2026-04-19.pdf` | `v2/pdf用/補論_計算コストの構造的予測.pdf` |
+| `98_structural_persistence_english_abstract_2026-04-19.pdf` | `v2/pdf用/ENGLISH_ABSTRACT.pdf` |
+| `99_structural_persistence_english_overview_2026-04-19.md` | `ENGLISH_OVERVIEW.md` |
+| `ARCHIVE_README_2026-04-19.md` | `README.md` |
+| `PUBLICATION_DATA_INDEX_2026-04-19.md` | `DATA.md` |
+| `PATENT_NOTICE_2026-04-19.md` | `PATENTS.md` |
+| `LEAN_FORMALIZATION_NOTE_2026-04-19.md` | `LEAN_FORMALIZATION_README.md` |
+| `LICENSE_2026-04-19.txt` | `LICENSE` |
+| `PACKAGE_MANIFEST_2026-04-19.md` | generated during bundle assembly |
 
 ## 反映後に更新する場所
 
@@ -160,12 +161,12 @@ OSF には、次の順で作業する。
    - Code and formalization: Apache 2.0
 5. Contributors / creator 情報を確認する
 6. bundle 一式を upload する  
-   ローカル: `/Users/sunagawa/Project/delta-survival-export/osf_zenodo_latest_2026-04-16/`
+   ローカル: `/Users/sunagawa/Project/delta-survival-export/osf_zenodo_latest_2026-04-19/`
 7. 最上位で見せたいファイルを確認する  
-   - `00_structural_persistence_integrated_overview_ja_2026-04-16.pdf`
-   - `98_structural_persistence_english_abstract_2026-04-16.pdf`
-   - `99_structural_persistence_english_overview_2026-04-16.md`
-8. `PATENT_NOTICE_2026-04-16.md` と `LEAN_FORMALIZATION_NOTE_2026-04-16.md` が閲覧可能であることを確認する
+   - `00_structural_persistence_integrated_overview_ja_2026-04-19.pdf`
+   - `98_structural_persistence_english_abstract_2026-04-19.pdf`
+   - `99_structural_persistence_english_overview_2026-04-19.md`
+8. `PATENT_NOTICE_2026-04-19.md` と `LEAN_FORMALIZATION_NOTE_2026-04-19.md` が閲覧可能であることを確認する
 9. 公開後に恒久リンクを控える
 
 ## OSF Post-Upload Checklist
@@ -174,9 +175,9 @@ OSF には、次の順で作業する。
 - Description / abstract が反映されている
 - Keywords が反映されている
 - 先頭で見せたい 3 ファイルが閲覧できる
-- `PATENT_NOTICE_2026-04-16.md` が見える
-- `LEAN_FORMALIZATION_NOTE_2026-04-16.md` が見える
-- `LICENSE_2026-04-16.txt` が見える
+- `PATENT_NOTICE_2026-04-19.md` が見える
+- `LEAN_FORMALIZATION_NOTE_2026-04-19.md` が見える
+- `LICENSE_2026-04-19.txt` が見える
 - OSF project URL を控えた
 
 ## README / DATA への差し戻し
