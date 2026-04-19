@@ -2,7 +2,7 @@
 
 Formal verification of the mathematical framework used in Papers 1 and 2.
 
-- **20 modules**, `sorry = 0`, `axiom = 0`
+- **21 modules**, `sorry = 0`, `axiom = 0`
 - All proofs fully verified by the Lean 4 type checker
 
 ---
@@ -16,6 +16,7 @@ Formal verification of the mathematical framework used in Papers 1 and 2.
 | `FullFormula.lean` | Full multiplicative formula properties | Paper 1 |
 | `CauchyExponential.lean` | Cauchy functional equation: `e^{cd}` is the unique continuous solution | Papers 1 & 2 |
 | `LogUniqueness.lean` | Log-ratio uniqueness: B1–B4 on ratio-space loss `f: (0,1] → ℝ≥0` imply `f(r) = -k·log r` | Paper 1 §3 (A2 characterization) |
+| `TelescopingExp.lean` | Purely algebraic A1–A2 telescoping identity `m_n = m_0 * exp(-Σ l_i)` from ratio-defined stage loss | Paper 2 §3 |
 | `AxiomsToExp.lean` | 3 axioms (finite states, fractional elimination, independence) imply `e^{-d}` | Paper 1 |
 | `SATFirstMoment.lean` | SAT first moment correspondence and decay rate ratio prediction | Papers 1 & 2 |
 | `HillNumber.lean` | Hill number upper bound: N_eff <= N (Jensen's inequality) | Paper 1 |

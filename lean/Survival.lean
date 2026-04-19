@@ -4,7 +4,7 @@ Survival Model - Formal Verification (Paper 1 + Second Moment Extension)
 
 Paper: "Structural Conflicts as Information Loss"
 
-23 modules, sorry = 0, axiom = 0.
+25 modules, sorry = 0, axiom = 0.
 
 Covers:
 - Survival equation algebraic properties (S > 0 ⟺ all factors positive)
@@ -44,6 +44,9 @@ import Survival.CauchyExponential
 
 -- Log-ratio uniqueness: f(r) = -k·log r from B1–B4 (Paper 1 §3)
 import Survival.LogUniqueness
+
+-- A1–A2-only telescoping identity: m_n = m_0 * exp(-Σ l_i)
+import Survival.TelescopingExp
 
 -- Error propagation and sensitivity analysis
 import Survival.SensitivityAnalysis
