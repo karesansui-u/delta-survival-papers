@@ -13,6 +13,7 @@ This means the project is not only about giving long-horizon systems a persisten
 ## Minimal Theory
 
 At the theoretical core, structural loss is defined by the log-ratio of successive shrinkage in the set of states that can still sustain the structure.
+The intended reading is that of a representation theorem for a pre-fixed structure-maintenance problem, not a license to redefine the target structure after seeing the outcome.
 
 If a system starts with a structure-preserving state set
 \[
@@ -27,7 +28,7 @@ then the remaining survivable region takes the exponential form
 m(V^{(n)}) = m(V^{(0)}) e^{-L}, \qquad L = \sum_i l_i.
 \]
 
-In this framework, the exponential form is not an extra empirical assumption. It follows directly from representing cumulative structural loss as successive multiplicative shrinkage measured in log-ratio form. In that sense, collapse here means loss of persistence as that structure, not necessarily annihilation of the underlying substrate.
+In the current v2 core, the log-ratio form itself is no longer treated as a mere definition. Paper 1 characterizes it axiomatically on ratio space, in explicit analogy with the Hartley/Shannon style of uniqueness arguments. The exponential form is therefore not an extra empirical assumption; it follows from cumulative multiplicative shrinkage once the loss scale is fixed in that way. In that sense, collapse here means loss of persistence as that structure, not necessarily annihilation of the underlying substrate.
 
 ## Two Experimental Regimes
 
@@ -89,8 +90,8 @@ This project does **not** claim that all long-horizon failure in AI has already 
 The stronger claim is intentionally avoided.
 The current claim is narrower:
 
-- the minimal exponential form is a consequence of the chosen representation of structural loss
+- the minimal exponential form is a consequence of a pre-fixed representation of structural loss
 - the contradiction-related reasoning results are empirical and directional
 - the continual-learning results show limits of a specific update regime rather than all possible training regimes
 
-The value of the framework, at this stage, is that it offers a common language connecting theory, experiments, and architecture.
+The framework only has empirical bite when the target structure, measure, stage boundaries, and time horizon are fixed in advance in a non-trivial and representationally stable way. If those are allowed to vary post hoc, the same mathematics can be made to fit arbitrary finite monotone sequences and the theory becomes vacuous. The value of the framework, at this stage, is that it offers a common language connecting theory, experiments, and architecture without hiding that scope condition.

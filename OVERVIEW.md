@@ -17,9 +17,9 @@
 ## Main Track
 
 1. [`v2/1_構造持続の最小形式.md`](v2/1_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%AE%E6%9C%80%E5%B0%8F%E5%BD%A2%E5%BC%8F.md)
-   最小形式。構造を維持できる状態集合の縮小から指数型が現れることを与える。
+   最小形式。事前固定された構造維持問題に対する表現定理として、構造を維持できる状態集合の縮小から指数型が現れることを与える。現行版では A2 の対数比形を公理的に特徴づけ、適用可能性条件と事後的表現選択による空虚化回避を明示している。
 2. [`v2/2_構造持続の条件つき導出.md`](v2/2_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%AE%E6%9D%A1%E4%BB%B6%E3%81%A4%E3%81%8D%E5%B0%8E%E5%87%BA.md)
-   条件つき導出と数理的位置づけ。
+   条件つき導出と数理的位置づけ。A1–A2 の純粋代数的恒等式と、A3 を加えた弱依存下の境界を分けて与える。
 3. [`v2/3_構造持続と推論性能の劣化.md`](v2/3_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%A8%E6%8E%A8%E8%AB%96%E6%80%A7%E8%83%BD%E3%81%AE%E5%8A%A3%E5%8C%96.md)
    推論時の未整理矛盾と外部代謝。
 4. [`v2/4_構造持続と継続学習における破滅的忘却.md`](v2/4_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%A8%E7%B6%99%E7%B6%9A%E5%AD%A6%E7%BF%92%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E7%A0%B4%E6%BB%85%E7%9A%84%E5%BF%98%E5%8D%B4.md)
@@ -53,3 +53,5 @@ Latest OSF mirror:
 - Data: [`DATA.md`](DATA.md)
 - Reproduction: [`REPRODUCE.md`](REPRODUCE.md)
 - Lean formalization: [`lean/readme.md`](lean/readme.md)
+
+現在の Lean 側の核は、`LogUniqueness.lean`、`TelescopingExp.lean`、`AxiomsToExp.lean`、`WeakDependence.lean` に分かれている。

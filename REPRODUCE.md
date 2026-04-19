@@ -96,6 +96,13 @@ python run_exp18_neff_measurement.py
 
 Requires [Lean 4](https://leanprover.github.io/) and Mathlib.
 
+The current core covers four layers separately:
+
+- `LogUniqueness.lean`: axiomatic uniqueness of the log-ratio loss scale
+- `TelescopingExp.lean`: purely algebraic A1–A2 telescoping identity
+- `AxiomsToExp.lean`: exponential form under the independent-constraint model
+- `WeakDependence.lean`: weak-dependence brackets around the independent case
+
 ```bash
 cd lean
 lake exe cache get

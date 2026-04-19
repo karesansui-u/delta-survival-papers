@@ -23,7 +23,7 @@ PDF は [`v2/pdf用/0_構造持続理論の統合版.pdf`](v2/pdf%E7%94%A8/0_%E6
 
 ### Paper 1 — 構造持続の最小形式
 
-最小形式そのもの。構造を維持できる状態集合の縮小から、残存可能性が指数型で現れることを与える。
+最小形式そのもの。事前固定された構造維持問題に対する表現定理として、構造を維持できる状態集合の縮小から残存可能性の指数形を導く。現行版では、A2 は対数比の公理的特徴づけ定理として与えられ、適用可能性条件と事後的表現選択による空虚化回避も明示している。
 
 - Markdown: [`v2/1_構造持続の最小形式.md`](v2/1_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%AE%E6%9C%80%E5%B0%8F%E5%BD%A2%E5%BC%8F.md)
 - PDF: [`v2/pdf用/1_構造持続の最小形式.pdf`](v2/pdf%E7%94%A8/1_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%AE%E6%9C%80%E5%B0%8F%E5%BD%A2%E5%BC%8F.pdf)
@@ -31,7 +31,7 @@ PDF は [`v2/pdf用/0_構造持続理論の統合版.pdf`](v2/pdf%E7%94%A8/0_%E6
 
 ### Paper 2 — 構造持続の条件つき導出
 
-最小形式の条件つき導出と、その数学的な位置づけ。
+最小形式の条件つき導出と、その数学的な位置づけ。A1–A2 の純粋代数的恒等式と、A3 を加えた弱依存下の境界を分離し、Lean では `LogUniqueness.lean`・`TelescopingExp.lean`・`AxiomsToExp.lean`・`WeakDependence.lean` が対応する。
 
 - Markdown: [`v2/2_構造持続の条件つき導出.md`](v2/2_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%AE%E6%9D%A1%E4%BB%B6%E3%81%A4%E3%81%8D%E5%B0%8E%E5%87%BA.md)
 - PDF: [`v2/pdf用/2_構造持続の条件つき導出.pdf`](v2/pdf%E7%94%A8/2_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%AE%E6%9D%A1%E4%BB%B6%E3%81%A4%E3%81%8D%E5%B0%8E%E5%87%BA.pdf)
@@ -61,7 +61,7 @@ PDF は [`v2/pdf用/0_構造持続理論の統合版.pdf`](v2/pdf%E7%94%A8/0_%E6
 | v2 Paper 2 | Main preprint |
 | v2 Paper 3 | Main preprint |
 | v2 Paper 4 | Main preprint |
-| Lean 4 formalization | Complete (`sorry = 0`, `axiom = 0`) |
+| Lean 4 formalization | Complete (`21 modules`, `sorry = 0`, `axiom = 0`) |
 | OSF project | [osf.io/mdh7b/overview](https://osf.io/mdh7b/overview) |
 | Raw data and summaries | [DATA.md](DATA.md) |
 
@@ -82,7 +82,7 @@ See [`PATENTS.md`](PATENTS.md) for a brief scope note.
 補論は主張の中心ではなく、補助的な位置づけです。
 
 - [`v2/補論_計算コストの構造的予測.md`](v2/%E8%A3%9C%E8%AB%96_%E8%A8%88%E7%AE%97%E3%82%B3%E3%82%B9%E3%83%88%E3%81%AE%E6%A7%8B%E9%80%A0%E7%9A%84%E4%BA%88%E6%B8%AC.md)
-- [`v2/補論_構造持続写像フレーム.md`](v2/%E8%A3%9C%E8%AB%96_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E5%86%99%E5%83%8F%E3%83%95%E3%83%AC%E3%83%BC%E3%83%A0.md)
+- [`v2/補論_構造持続写像の標準手順.md`](v2/%E8%A3%9C%E8%AB%96_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E5%86%99%E5%83%8F%E3%81%AE%E6%A8%99%E6%BA%96%E6%89%8B%E9%A0%86.md)
 - [`v2/補論_持続的支援知能の設計原理.md`](v2/%E8%A3%9C%E8%AB%96_%E6%8C%81%E7%B6%9A%E7%9A%84%E6%94%AF%E6%8F%B4%E7%9F%A5%E8%83%BD%E3%81%AE%E8%A8%AD%E8%A8%88%E5%8E%9F%E7%90%86.md)
 
 ## Repository Structure / リポジトリ構成
@@ -101,7 +101,14 @@ delta-survival-paper/
 ## Formal Verification / 形式検証
 
 Lean formalization is in [`lean/`](lean/). Current status:
-`sorry = 0`, `axiom = 0`.
+`21 modules`, `sorry = 0`, `axiom = 0`.
+
+The current core layering includes:
+
+- `LogUniqueness.lean`: Paper 1 §3 の対数比一意性
+- `TelescopingExp.lean`: Paper 2 §3 の A1–A2 望遠鏡積恒等式
+- `AxiomsToExp.lean`: 独立制約モデルからの指数形
+- `WeakDependence.lean`: 弱依存下の境界
 
 For external readers and archive visitors, see [`LEAN_FORMALIZATION_README.md`](LEAN_FORMALIZATION_README.md).
 
