@@ -47,6 +47,38 @@ import Survival.LogUniqueness
 
 -- A1–A2-only telescoping identity: m_n = m_0 * exp(-Σ l_i)
 import Survival.TelescopingExp
+import Survival.GeneralStateDynamics
+import Survival.CoarseGraining
+import Survival.ResourceBudget
+import Survival.TotalProduction
+import Survival.CoarseTotalProduction
+import Survival.TypicalNondecrease
+import Survival.ResourceBoundedDynamics
+import Survival.ProbabilityConnection
+import Survival.StochasticTotalProduction
+import Survival.CoarseStochasticTotalProduction
+import Survival.MinimumRepairRate
+import Survival.StochasticMinimumRepairRate
+import Survival.CoarseMinimumRepairRate
+import Survival.CollapseTimeBound
+import Survival.StochasticCollapseTimeBound
+import Survival.CliffWarning
+import Survival.HighProbabilityCollapse
+import Survival.StochasticCliffWarning
+import Survival.MartingaleDrift
+import Survival.ConcentrationInterface
+import Survival.ConditionalMartingale
+import Survival.AzumaHoeffding
+import Survival.BoundedAzumaConstruction
+import Survival.StoppingTimeCliffWarning
+import Survival.StoppingTimeHighProbabilityCollapse
+import Survival.StoppingTimeCollapseEvent
+import Survival.StoppingTimeSharpDecomposition
+import Survival.CoarseStochasticStoppingTimeCollapse
+import Survival.StochasticTotalProductionAzuma
+import Survival.ResourceBoundedStochasticCollapse
+import Survival.ResourceBoundedConditionalAzuma
+import Survival.ConstantDriftExample
 
 -- Error propagation and sensitivity analysis
 import Survival.SensitivityAnalysis
@@ -74,6 +106,7 @@ import Survival.KLDivergence
 
 -- Weak dependence / robust exponential survival (relaxation of axiom A3)
 import Survival.WeakDependence
+import Survival.SignedWeakDependence
 import Survival.CorrelatedSecondMoment
 import Survival.RobustSurvival
 
