@@ -4,7 +4,7 @@ Survival Model - Formal Verification (Paper 1 + Second Moment Extension)
 
 Paper: "Structural Conflicts as Information Loss"
 
-25 modules, sorry = 0, axiom = 0.
+Core + extension modules, sorry = 0, axiom = 0.
 
 Covers:
 - Survival equation algebraic properties (S > 0 ⟺ all factors positive)
@@ -54,9 +54,12 @@ import Survival.TotalProduction
 import Survival.CoarseTotalProduction
 import Survival.TypicalNondecrease
 import Survival.ResourceBoundedDynamics
+import Survival.ResourceBudgetToTotalProductionDrift
+import Survival.ResourceBudgetToSigmaDrift
 import Survival.ProbabilityConnection
 import Survival.StochasticTotalProduction
 import Survival.CoarseStochasticTotalProduction
+import Survival.CoarseTypicalNondecrease
 import Survival.MinimumRepairRate
 import Survival.StochasticMinimumRepairRate
 import Survival.CoarseMinimumRepairRate
@@ -78,6 +81,21 @@ import Survival.CoarseStochasticStoppingTimeCollapse
 import Survival.StochasticTotalProductionAzuma
 import Survival.ResourceBoundedStochasticCollapse
 import Survival.ResourceBoundedConditionalAzuma
+import Survival.ToyRandomWalk
+import Survival.MarkovRepairFailureExample
+import Survival.FiniteStateMarkovRepairChain
+import Survival.FiniteStateMarkovStationaryProduction
+import Survival.FiniteStateMarkovMeanBridge
+import Survival.FiniteStateMarkovErgodicProduction
+import Survival.FiniteStateMarkovPositiveDriftCollapse
+import Survival.FiniteStateMarkovStationaryMeanCollapse
+import Survival.FiniteStateMarkovStationaryLongTimeConcentration
+import Survival.FiniteStateMarkovCollapse
+import Survival.FiniteStateMarkovDeterministicWitness
+import Survival.FiniteStateMarkovFlatWitness
+import Survival.FiniteStateMarkovConditionalAzuma
+import Survival.ThreeStateTransitionExample
+import Survival.ThreeStateStateDependentExample
 import Survival.ConstantDriftExample
 
 -- Error propagation and sensitivity analysis
@@ -97,6 +115,27 @@ import Survival.PairCorrelation
 
 -- SAT second moment: overlap decomposition and threshold bracketing
 import Survival.SATSecondMoment
+import Survival.SATDriftLowerBound
+import Survival.SATClauseExposureProcess
+import Survival.SATStateDependentClauseExposure
+import Survival.SATStateDependentUnconditionalTendency
+import Survival.SATStateDependentExactConcentration
+import Survival.SATStateDependentAzuma
+import Survival.SATStateDependentTailUpperBound
+import Survival.SATStateDependentCountReduction
+import Survival.SATStateDependentCountThreshold
+import Survival.SATStateDependentCountSupportBound
+import Survival.SATStateDependentCountTailUpperBound
+import Survival.SATStateDependentCountSupportClippedUpperBound
+import Survival.SATStateDependentCountMarkovUpperBound
+import Survival.SATStateDependentCountChernoffUpperBound
+import Survival.SATStateDependentCountChernoffMGF
+import Survival.SATStateDependentCountMGFProduct
+import Survival.SATStateDependentClosedMGFChernoff
+import Survival.SATStateDependentCountChernoffKL
+import Survival.SATStateDependentCountChernoffKLAlgebra
+import Survival.SATPositiveDriftCollapse
+import Survival.SATUnconditionalTendency
 
 -- Asymptotic exponent: gap analysis between first/second moment thresholds
 import Survival.AsymptoticExponent
