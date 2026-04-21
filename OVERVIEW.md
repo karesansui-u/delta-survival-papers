@@ -35,6 +35,8 @@
 Latest OSF mirror:
 
 - [Project overview](https://osf.io/mdh7b/overview)
+- [SAT chain v1.0 theorem map](https://osf.io/mdh7b/files/osfstorage/69e7007ce808d300ca9230f2)
+- [SAT chain v1.0 update bundle (zip)](https://osf.io/mdh7b/files/osfstorage/69e7007e01466b7c85fd83fb)
 - [Paper 1](https://osf.io/mdh7b/files/osfstorage/69dde399e43067989d1187e1)
 - [Paper 2](https://osf.io/mdh7b/files/osfstorage/69dde4faa17296e9bb3e7a3b)
 - [Paper 3](https://osf.io/mdh7b/files/osfstorage/69dde3bde1158f542e3e7aec)

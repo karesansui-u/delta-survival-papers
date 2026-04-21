@@ -1,6 +1,6 @@
 # OSF / Zenodo Upload Plan
 
-最終更新: 2026-04-19
+最終更新: 2026-04-21
 
 このメモは、`delta-survival-paper` の公開物を OSF / Zenodo に反映するときの最小セットを固定するためのものです。2026-04-19 の更新では、Paper 1 §3 の対数比の一意性定理（A2 の特徴づけ）と Lean 側の `LogUniqueness.lean` の反映に伴い、bundle を `2026-04-19` に差し替えています。2026-04-16 版は `osf_zenodo_latest_2026-04-16/` としてローカルには残しています。
 
@@ -8,8 +8,15 @@
 
 - GitHub: 反映済み
 - Codeberg: 反映済み
-- OSF: 未反映
+- OSF: 2026-04-21 SAT chain v1.0 update bundle 反映済み
 - Zenodo: 未反映
+
+2026-04-21 反映:
+
+- OSF folder: `sat_chain_v1_2026-04-21`
+- theorem map: https://osf.io/mdh7b/files/osfstorage/69e7007ce808d300ca9230f2
+- update bundle zip: https://osf.io/mdh7b/files/osfstorage/69e7007e01466b7c85fd83fb
+- uploaded commit: `cb5a252` (`Freeze SAT/k-SAT Chernoff collapse chain`)
 
 ## Canonical Metadata Packet
 
