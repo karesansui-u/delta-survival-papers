@@ -143,6 +143,35 @@ an attribution-as-repair interpretation. OSF addendum:
 | [Exp.42 row-level summary](analysis/exp42/exp42_gpt-4_1-mini_row_analysis.md) | Human-readable row-level analysis |
 | [Exp.42 row-level JSON](analysis/exp42/exp42_gpt-4_1-mini_row_analysis.json) | Machine-readable row-level analysis |
 
+### Paper 3 — Exp.41 cross-model width replication
+
+Exp.41 tests whether the Exp.40 scope-vs-structural direction survives beyond
+`gpt-4.1-mini`. The preregistered primary decision is deliberately narrow:
+`accuracy(scoped) > accuracy(structural)` in both primary models. `subtle` is
+reported as a secondary, model-sensitive diagnostic rather than as the primary
+width criterion.
+
+Result: primary width support passed in 2/2 primary models. `gpt-4.1-nano`:
+`scoped = 27/30`, `subtle = 30/30`, `structural = 1/30`, `zero_sanity = 10/10`.
+`gemini-3.1-flash-lite-preview`: `scoped = 30/30`, `subtle = 12/30`,
+`structural = 14/30`, `zero_sanity = 10/10`. Descriptive leave-one-(model,target)-out
+log loss: `structure_aware_ordered = 0.4715`, `structure_aware_categorical = 0.5016`,
+`quality_blind = 0.6588`. OSF addendum:
+[zip](https://files.us.osf.io/v1/resources/mdh7b/providers/osfstorage/69e7bebe273a040976affc88),
+[manifest](https://files.us.osf.io/v1/resources/mdh7b/providers/osfstorage/69e7bec1760e3d5118fd836a).
+
+| File | Description |
+|------|-------------|
+| [Exp.41 README](analysis/exp41/README.md) | Design summary and commands |
+| [Exp.41 preregistration](analysis/exp41/exp41_preregistration.md) | Frozen width prediction, exclusions, and reporting plan |
+| [Exp.41 runner](analysis/exp41/exp41_width_replication.py) | Append-safe API runner; refuses paid calls without `--execute` |
+| [Exp.41 results summary](analysis/exp41/exp41_results_summary.md) | Human-readable result table and Fisher exact tests |
+| [Exp.41 nano raw trials](analysis/exp41/exp41_gpt-4_1-nano_trials.jsonl) | 100 raw trial records |
+| [Exp.41 Gemini raw trials](analysis/exp41/exp41_gemini-3_1-flash-lite-preview_trials.jsonl) | 100 raw trial records |
+| [Exp.41 summary JSON](analysis/exp41/exp41_summary.json) | Machine-readable counts and preregistered flags |
+| [Exp.41 model comparison](analysis/exp41/exp41_model_comparison.md) | Human-readable descriptive baseline-model comparison |
+| [Exp.41 model comparison JSON](analysis/exp41/exp41_model_comparison.json) | Machine-readable leave-one-(model,target)-out metrics |
+
 ### Paper 3 — Experiment 3: Three-condition (gemma3:27b, n=3, 180 turns each)
 
 Trials 2–4 are the three replicates reported in the paper (Table 3).
