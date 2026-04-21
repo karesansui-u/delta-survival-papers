@@ -1,9 +1,16 @@
 # Bernoulli-CSP Universality Map
 
+Freeze snapshot: **Bernoulli CSP universality v1.1**
+
 Freeze date: 2026-04-21
 
 This map records the common theorem stack now shared by the Bernoulli bad-event
 CSP instances in the Lean development.
+
+Version v1.1 freezes the finite-horizon iid Bernoulli bad-event pipeline after
+the SAT/k-SAT core and the first horizontal expansions to NAE-SAT, XOR-SAT,
+q-coloring, generic finite-alphabet forbidden-pattern CSPs, and hypergraph
+coloring.
 
 The scope is deliberately narrow:
 
@@ -99,8 +106,12 @@ Good next targets are domains that can expose a clean Bernoulli bad-event rate:
 
 ## Build Check
 
+Snapshot v1.1 is intended to be checked as the top-level imported development:
+
 ```bash
 cd lean
 lake build Survival.BernoulliCSPUniversality
 lake build Survival
 ```
+
+At freeze time the top-level import contains `120` `Survival/*` modules.

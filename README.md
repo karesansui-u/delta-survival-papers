@@ -118,6 +118,11 @@ The current core layering includes:
 - `HypergraphColoringChernoffCollapse.lean`: fixed-coloring hypergraph coloring exposure の forbidden-pattern specialization
 - `BernoulliCSPUniversality.lean`: k-SAT / NAE-SAT / XOR-SAT / q-coloring / forbidden-pattern / hypergraph-coloring CSP を同一 Bernoulli-CSP interface に束ねる wrapper
 
+The cross-domain Bernoulli-CSP layer is frozen as **Bernoulli CSP universality
+v1.1**: finite-horizon, iid bad-event exposure with fixed assignment/coloring
+semantics, Chernoff-KL failure profiles, and operational collapse / hitting-time
+wrappers.
+
 The SAT/k-SAT finite-horizon chain is frozen as **SAT chain v1.0**. Its theorem
 index is [`lean/SAT_CHAIN_THEOREM_MAP.md`](lean/SAT_CHAIN_THEOREM_MAP.md).
 The cross-domain Bernoulli-CSP map is

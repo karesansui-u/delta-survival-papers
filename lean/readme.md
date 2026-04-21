@@ -121,6 +121,10 @@ The hypergraph-coloring layer specializes forbidden-pattern exposure to fixed
 hyperedge, so there are `q` forbidden local patterns among `q^k` patterns and
 the drift is `log (q^k / (q^k - q))` for `q > 1` and `k > 1`.
 
+Together these instances are frozen as **Bernoulli CSP universality v1.1**:
+finite-horizon, iid bad-event exposure with fixed assignment/coloring semantics,
+Chernoff-KL failure profiles, and operational collapse / hitting-time wrappers.
+
 ---
 
 ## Building
