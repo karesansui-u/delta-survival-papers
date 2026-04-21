@@ -61,7 +61,7 @@ PDF は [`v2/pdf用/0_構造持続理論の統合版.pdf`](v2/pdf%E7%94%A8/0_%E6
 | v2 Paper 2 | Main preprint |
 | v2 Paper 3 | Main preprint |
 | v2 Paper 4 | Main preprint |
-| Lean 4 formalization | Complete (`129 Survival modules`, `sorry = 0`, `axiom = 0`) |
+| Lean 4 formalization | Complete (`130 Survival modules`, `sorry = 0`, `axiom = 0`) |
 | OSF project | [osf.io/mdh7b/overview](https://osf.io/mdh7b/overview) |
 | Raw data and summaries | [DATA.md](DATA.md) |
 
@@ -101,7 +101,7 @@ delta-survival-paper/
 ## Formal Verification / 形式検証
 
 Lean formalization is in [`lean/`](lean/). Current status:
-`129 Survival modules`, `sorry = 0`, `axiom = 0`.
+`130 Survival modules`, `sorry = 0`, `axiom = 0`.
 
 The current core layering includes:
 
@@ -126,6 +126,7 @@ The current core layering includes:
 - `BranchingProcessExtinction.lean`: 分岐過程の平均子孫数 `m ≤ 1` による expectation-level 絶滅 skeleton `m^n = exp(-n(-log m))` を形式化
 - `QueueStability.lean`: 到着率が処理率を超えると backlog が線形に蓄積し閾値を超える fluid overload skeleton を形式化
 - `BinarySymmetricChannel.lean`: 独立 binary channel の block success `(1-p)^n = exp(-n(-log(1-p)))` と failure 閾値を形式化
+- `FatigueDamage.lean`: 応力サイクル損傷の累積 `D_n = Σ d_i` と `D_n ≥ capacity` による疲労破断閾値を形式化
 
 The cross-domain Bernoulli-CSP layer is frozen locally as **Bernoulli CSP
 universality v1.2**: finite-horizon, iid bad-event exposure with fixed
