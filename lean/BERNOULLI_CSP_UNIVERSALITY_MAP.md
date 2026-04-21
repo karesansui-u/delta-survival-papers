@@ -1,16 +1,17 @@
 # Bernoulli-CSP Universality Map
 
-Freeze snapshot: **Bernoulli CSP universality v1.1**
+Freeze snapshot: **Bernoulli CSP universality v1.2**
 
 Freeze date: 2026-04-21
 
 This map records the common theorem stack now shared by the Bernoulli bad-event
 CSP instances in the Lean development.
 
-Version v1.1 freezes the finite-horizon iid Bernoulli bad-event pipeline after
-the SAT/k-SAT core and the first horizontal expansions to NAE-SAT, XOR-SAT,
-q-coloring, generic finite-alphabet forbidden-pattern CSPs, and hypergraph
-coloring.
+Version v1.2 freezes the finite-horizon iid Bernoulli bad-event pipeline after
+the SAT/k-SAT core, the horizontal expansions to NAE-SAT, XOR-SAT, q-coloring,
+generic finite-alphabet forbidden-pattern CSPs, hypergraph coloring, the
+multi-forbidden-pattern witness bridge, exactly-one-SAT, exactly-`r`
+cardinality-SAT, and at-most / at-least threshold cardinality-SAT.
 
 The scope is deliberately narrow:
 
@@ -44,9 +45,9 @@ domain-specific bad-event probability p in (0,1)
 | Chernoff/KL | [`Survival/BernoulliCSPPathChernoff.lean`](Survival/BernoulliCSPPathChernoff.lean) | Count-tail and cumulative-production lower-tail bounds |
 | Operational collapse | [`Survival/BernoulliCSPPathCollapse.lean`](Survival/BernoulliCSPPathCollapse.lean) | Threshold crossing, collapse, stopped-collapse, hitting-time wrappers |
 | Universality wrapper | [`Survival/BernoulliCSPUniversality.lean`](Survival/BernoulliCSPUniversality.lean) | Common interface over all currently instantiated Bernoulli-CSP domains |
-| Post-v1.1 witness bridge | [`Survival/MultiForbiddenPatternCSP.lean`](Survival/MultiForbiddenPatternCSP.lean) | Domain witness `forbiddenCount < alphabet^arity` to forbidden-pattern exposure |
-| Post-v1.1 cardinality family | [`Survival/CardinalitySATChernoffCollapse.lean`](Survival/CardinalitySATChernoffCollapse.lean) | Exactly-`r`-of-`k` constraints as multi-forbidden-pattern witnesses |
-| Post-v1.1 threshold cardinality family | [`Survival/ThresholdCardinalitySATChernoffCollapse.lean`](Survival/ThresholdCardinalitySATChernoffCollapse.lean) | At-most-`r` and at-least-`r` constraints as partial-binomial-sum witnesses |
+| Multi-forbidden witness bridge | [`Survival/MultiForbiddenPatternCSP.lean`](Survival/MultiForbiddenPatternCSP.lean) | Domain witness `forbiddenCount < alphabet^arity` to forbidden-pattern exposure |
+| Cardinality-SAT family | [`Survival/CardinalitySATChernoffCollapse.lean`](Survival/CardinalitySATChernoffCollapse.lean) | Exactly-`r`-of-`k` constraints as multi-forbidden-pattern witnesses |
+| Threshold cardinality-SAT family | [`Survival/ThresholdCardinalitySATChernoffCollapse.lean`](Survival/ThresholdCardinalitySATChernoffCollapse.lean) | At-most-`r` and at-least-`r` constraints as partial-binomial-sum witnesses |
 
 ## Current Instances
 
@@ -127,7 +128,7 @@ Good next targets are domains that can expose a clean Bernoulli bad-event rate:
 
 ## Build Check
 
-Snapshot v1.1 is intended to be checked as the top-level imported development:
+Snapshot v1.2 is intended to be checked as the top-level imported development:
 
 ```bash
 cd lean
@@ -135,11 +136,10 @@ lake build Survival.BernoulliCSPUniversality
 lake build Survival
 ```
 
-At freeze time the top-level import contains `120` `Survival/*` modules.
+At freeze time the top-level import contains `124` `Survival/*` modules.
 
-Current post-v1.1 development adds `MultiForbiddenPatternCSP` and
-`ExactlyOneSATChernoffCollapse`, then lifts exactly-one to the
-`CardinalitySATChernoffCollapse` exactly-`r` family and the
-`ThresholdCardinalitySATChernoffCollapse` at-most / at-least family; the
-top-level import contains `124`
-`Survival/*` modules.
+The previous OSF mirror records the v1.1 snapshot, which froze the first
+horizontal Bernoulli-CSP expansion through hypergraph coloring.  This v1.2
+local snapshot extends that map through the multi-forbidden-pattern witness
+bridge, exactly-one-SAT, exactly-`r` cardinality-SAT, and at-most / at-least
+threshold cardinality-SAT.

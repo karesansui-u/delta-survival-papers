@@ -114,7 +114,7 @@ exposure with bad probability `forbidden / alphabet^arity`.  Its drift is
 `log (alphabet^arity / (alphabet^arity - forbidden))`, under the interior
 condition `0 < forbidden < alphabet^arity`.
 
-`MultiForbiddenPatternCSP` adds the post-v1.1 witness bridge: a domain supplies
+`MultiForbiddenPatternCSP` adds the reusable witness bridge: a domain supplies
 `alphabet`, `arity`, `forbiddenCount`, and the proof
 `0 < forbiddenCount < alphabet^arity`; the existing path measure,
 Chernoff/KL profile, collapse, stopped-collapse, and hitting-time wrappers are
@@ -142,7 +142,7 @@ The hypergraph-coloring layer specializes forbidden-pattern exposure to fixed
 hyperedge, so there are `q` forbidden local patterns among `q^k` patterns and
 the drift is `log (q^k / (q^k - q))` for `q > 1` and `k > 1`.
 
-Together these instances are frozen as **Bernoulli CSP universality v1.1**:
+Together these instances are frozen as **Bernoulli CSP universality v1.2**:
 finite-horizon, iid bad-event exposure with fixed assignment/coloring semantics,
 Chernoff-KL failure profiles, and operational collapse / hitting-time wrappers.
 

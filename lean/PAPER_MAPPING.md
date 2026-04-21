@@ -14,7 +14,7 @@
   4. **有限状態マルコフ修復チェーン**（3 ファイル）— Paper 4 §7 「条件 (i) 矛盾解消代謝」の最小形式モデル
   5. **SAT/k-SAT Chernoff-KL chain**（20+ ファイル）— actual path measure, non-flat additive functional, MGF product, KL/Chernoff profile, collapse/hitting-time wrapper までを finite-horizon で閉じる
 - 補論 SAT（Route A）は Lean 側で **相当部分が明示的に形式化**されており、論文の引用以上に深い（例: `AsymptoticExponent.lean` の β=1/2 neutrality、`CorrelatedSecondMoment.lean` の相関 sandwich）。
-- SAT/k-SAT の finite-horizon / iid Bernoulli bad-event chain は **SAT chain v1.0** として凍結可能な段階に達した。さらに固定割当 \(k\)-NAE-SAT / \(k\)-XOR-SAT exposure、固定 coloring の q-coloring edge exposure、finite-alphabet forbidden-pattern CSP、hypergraph-coloring specialization への水平展開も追加され、横断層は **Bernoulli CSP universality v1.1** として凍結した。詳細な claim-to-theorem index は [`SAT_CHAIN_THEOREM_MAP.md`](SAT_CHAIN_THEOREM_MAP.md) に、横断的な Bernoulli-CSP template の対応表は [`BERNOULLI_CSP_UNIVERSALITY_MAP.md`](BERNOULLI_CSP_UNIVERSALITY_MAP.md) に分離した。
+- SAT/k-SAT の finite-horizon / iid Bernoulli bad-event chain は **SAT chain v1.0** として凍結可能な段階に達した。さらに固定割当 \(k\)-NAE-SAT / \(k\)-XOR-SAT exposure、固定 coloring の q-coloring edge exposure、finite-alphabet forbidden-pattern CSP、hypergraph-coloring specialization、multi-forbidden-pattern witness bridge、exactly-one-SAT、exactly-\(r\) cardinality-SAT、at-most / at-least threshold cardinality-SAT への水平展開も追加され、横断層は **Bernoulli CSP universality v1.2** としてローカルに凍結した。詳細な claim-to-theorem index は [`SAT_CHAIN_THEOREM_MAP.md`](SAT_CHAIN_THEOREM_MAP.md) に、横断的な Bernoulli-CSP template の対応表は [`BERNOULLI_CSP_UNIVERSALITY_MAP.md`](BERNOULLI_CSP_UNIVERSALITY_MAP.md) に分離した。
 - Paper 2 §5 の形式検証リストは 5 ファイルから **100 ファイル超のモジュール群**へアップデートしうる。ただし本文では主張ごとに圧縮し、詳細は theorem map / mapping に逃がすのが望ましい。
 
 ---
@@ -36,7 +36,7 @@ random SAT/k-SAT problem data
 
 水平展開として、固定割当のもとでの `k`-NAE-SAT / `k`-XOR-SAT bad-event exposure、固定 coloring のもとでの q-coloring edge exposure、generic finite-alphabet forbidden-pattern exposure、さらに hypergraph-coloring specialization を追加した。これは Bernoulli-CSP template の再利用性を検証するための対象であり、solver dynamics、XOR-SAT rank/nullity dynamics、random graph / random hypergraph の依存構造、overlapping constraint dependence は別段階の研究対象として扱う。
 
-v1.1 freeze 後の拡張として、`MultiForbiddenPatternCSP` を追加した。これは個別 domain が
+v1.2 では `MultiForbiddenPatternCSP` を横断 bridge として含めた。これは個別 domain が
 `alphabet`, `arity`, `forbiddenCount`, および `0 < forbiddenCount < alphabet^arity` の witness を
 与えれば、既存の forbidden-pattern path measure / Chernoff-KL / collapse wrapper を生成できる bridge
 である。Hypergraph coloring は `forbiddenCount = q` の witness 経由でも同じ parameters に戻る。

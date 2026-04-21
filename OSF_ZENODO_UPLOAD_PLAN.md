@@ -11,6 +11,11 @@
 - OSF: 2026-04-21 SAT chain v1.0 / Bernoulli CSP universality v1.1 update bundle 反映済み
 - Zenodo: 未反映
 
+ローカルでは、Bernoulli CSP universality v1.2 として、multi-forbidden-pattern witness bridge、
+exactly-one-SAT、exactly-\(r\) cardinality-SAT、at-most / at-least threshold cardinality-SAT までを含む
+theorem map を凍結済み。OSF v1.2 bundle は未反映であり、現行の OSF 公開リンクは v1.1 archive snapshot
+を指す。
+
 2026-04-21 反映:
 
 - OSF folder: `sat_chain_v1_2026-04-21`

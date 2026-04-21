@@ -122,16 +122,17 @@ The current core layering includes:
 - `ExactlyOneSATChernoffCollapse.lean`: exactly-one-SAT を multi-forbidden-pattern witness として表現する specialization
 - `BernoulliCSPUniversality.lean`: k-SAT / NAE-SAT / XOR-SAT / q-coloring / forbidden-pattern / hypergraph-coloring / cardinality-SAT / threshold-cardinality-SAT CSP を同一 Bernoulli-CSP interface に束ねる wrapper
 
-The cross-domain Bernoulli-CSP layer is frozen as **Bernoulli CSP universality
-v1.1**: finite-horizon, iid bad-event exposure with fixed assignment/coloring
-semantics, Chernoff-KL failure profiles, and operational collapse / hitting-time
-wrappers.
+The cross-domain Bernoulli-CSP layer is frozen locally as **Bernoulli CSP
+universality v1.2**: finite-horizon, iid bad-event exposure with fixed
+assignment/coloring semantics, Chernoff-KL failure profiles, and operational
+collapse / hitting-time wrappers, now including multi-forbidden witnesses,
+cardinality-SAT, and threshold-cardinality-SAT.
 
 The SAT/k-SAT finite-horizon chain is frozen as **SAT chain v1.0**. Its theorem
 index is [`lean/SAT_CHAIN_THEOREM_MAP.md`](lean/SAT_CHAIN_THEOREM_MAP.md).
 The cross-domain Bernoulli-CSP map is
 [`lean/BERNOULLI_CSP_UNIVERSALITY_MAP.md`](lean/BERNOULLI_CSP_UNIVERSALITY_MAP.md).
-OSF mirrors:
+OSF mirrors for the previous v1.1 archive snapshot:
 [`Bernoulli CSP v1.1 theorem map`](https://osf.io/mdh7b/files/osfstorage/69e71062e808d300ca9236c9),
 [`Bernoulli CSP v1.1 update bundle`](https://osf.io/mdh7b/files/osfstorage/69e71087f4653a8fbfb0001a).
 
