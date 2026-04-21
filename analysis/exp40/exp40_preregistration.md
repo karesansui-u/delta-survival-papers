@@ -152,6 +152,21 @@ structure_aware log loss < quality_blind log loss
 
 on the primary contradiction conditions `scoped`, `subtle`, and `structural`.
 
+## 9.1 Statistical Reporting
+
+The primary decision rule is the preregistered ordering and margin criteria
+above, not a p-value threshold. For transparency, the summary will also report
+Fisher exact tests:
+
+| Comparison | Alternative |
+|---|---|
+| `scoped` vs `subtle` | `scoped` accuracy greater than `subtle` |
+| `subtle` vs `structural` | `subtle` accuracy greater than `structural` |
+| `zero_sanity` vs `scoped` | two-sided diagnostic difference |
+
+The Fisher tests are reported as descriptive support for the ordered pattern.
+They do not replace the strong-support criteria in §7 and §10.
+
 ## 10. Falsification Rules
 
 The primary prediction is not supported if either:

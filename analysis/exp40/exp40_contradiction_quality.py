@@ -19,6 +19,14 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any
 
+try:
+    from scipy.stats import fisher_exact
+
+    HAS_SCIPY = True
+except Exception:
+    fisher_exact = None
+    HAS_SCIPY = False
+
 EXP40_DIR = Path(__file__).resolve().parent
 EXP36_DIR = EXP40_DIR.parent / "exp36"
 sys.path.insert(0, str(EXP36_DIR))
@@ -403,6 +411,32 @@ def summarize(model_name: str) -> dict[str, Any]:
         and (acc["scoped"] - acc["subtle"]) >= 0.20
         and (acc["subtle"] - acc["structural"]) >= 0.20
     )
+    fisher_tests = {
+        "available": HAS_SCIPY,
+        "tests": {},
+    }
+    if HAS_SCIPY:
+        comparisons = [
+            ("scoped_vs_subtle", "scoped", "subtle", "greater"),
+            ("subtle_vs_structural", "subtle", "structural", "greater"),
+            ("zero_sanity_vs_scoped", "zero_sanity", "scoped", "two-sided"),
+        ]
+        for name, a, b, alternative in comparisons:
+            a_cell = by_condition[a]
+            b_cell = by_condition[b]
+            table = [
+                [a_cell["correct"], a_cell["n"] - a_cell["correct"]],
+                [b_cell["correct"], b_cell["n"] - b_cell["correct"]],
+            ]
+            odds_ratio, p_value = fisher_exact(table, alternative=alternative)
+            fisher_tests["tests"][name] = {
+                "condition_a": a,
+                "condition_b": b,
+                "alternative": alternative,
+                "table": table,
+                "odds_ratio": odds_ratio,
+                "p_value": p_value,
+            }
 
     summary = {
         "experiment": EXPERIMENT_ID,
@@ -414,6 +448,7 @@ def summarize(model_name: str) -> dict[str, Any]:
         "zero_sanity_passed": zero_sanity_passed,
         "scoped_zero_gap": scoped_zero_gap,
         "scoped_within_10pt_of_zero_sanity": scoped_near_zero,
+        "fisher_exact": fisher_tests,
         "generated_at": datetime.now().isoformat(),
     }
     summary_path(model_name).write_text(
