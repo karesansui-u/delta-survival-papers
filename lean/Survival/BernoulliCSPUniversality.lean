@@ -3,6 +3,7 @@ import Survival.NAESATChernoffCollapse
 import Survival.XORSATChernoffCollapse
 import Survival.QColoringChernoffCollapse
 import Survival.ForbiddenPatternCSPChernoffCollapse
+import Survival.HypergraphColoringChernoffCollapse
 
 /-!
 # Bernoulli CSP Universality Interface
@@ -13,8 +14,9 @@ instances currently formalized in the development:
 * random `k`-SAT fixed-assignment clause exposure;
 * random `k`-NAE-SAT fixed-assignment clause exposure;
 * random `k`-XOR-SAT fixed-assignment equation exposure;
-* fixed-coloring `q`-coloring edge exposure.
-* generic finite-alphabet forbidden-pattern exposure.
+* fixed-coloring `q`-coloring edge exposure;
+* generic finite-alphabet forbidden-pattern exposure;
+* fixed-coloring `q`-coloring `k`-uniform hyperedge exposure.
 
 The point is not to add a new concentration proof.  The point is to make the
 common template explicit: once a domain supplies a Bernoulli bad-event
@@ -215,6 +217,15 @@ def forbiddenPattern
     Survival.ForbiddenPatternCSPTemplate.forbiddenPatternParameters
       alphabet forbidden arity ha hf hforb
 
+/-- Fixed-coloring `q`-coloring exposure of `k`-uniform hyperedges as a
+Bernoulli bad-event CSP exposure model. -/
+def hypergraphColoring
+    (q : ℝ) (arity : ℕ) (hq : 1 < q) (harity : 1 < arity) :
+    ExposureModel where
+  parameters :=
+    Survival.HypergraphColoringChernoffCollapse.hypergraphColoringParameters
+      q arity hq harity
+
 theorem kSAT_badProb (k : ℕ) (hk : 0 < k) :
     (kSAT k hk).badProb =
       Survival.KSATBernoulliTemplate.kSATBadProb k :=
@@ -244,6 +255,13 @@ theorem forbiddenPattern_badProb
         alphabet forbidden arity :=
   rfl
 
+theorem hypergraphColoring_badProb
+    (q : ℝ) (arity : ℕ) (hq : 1 < q) (harity : 1 < arity) :
+    (hypergraphColoring q arity hq harity).badProb =
+      Survival.HypergraphColoringChernoffCollapse.hypergraphColoringBadProb
+        q arity :=
+  rfl
+
 theorem kSAT_drift_eq (k : ℕ) (hk : 0 < k) :
     (kSAT k hk).drift =
       Survival.KSATBernoulliTemplate.kSATDrift k hk :=
@@ -271,6 +289,14 @@ theorem forbiddenPattern_drift_eq_log_ratio
   exact
     Survival.ForbiddenPatternCSPTemplate.forbiddenPatternDrift_eq_log_ratio
       ha hf hforb
+
+theorem hypergraphColoring_drift_eq_log_ratio
+    {q : ℝ} {arity : ℕ} (hq : 1 < q) (harity : 1 < arity) :
+    (hypergraphColoring q arity hq harity).drift =
+      Real.log (q ^ arity / (q ^ arity - q)) := by
+  exact
+    Survival.HypergraphColoringChernoffCollapse.hypergraphColoringDrift_eq_log_ratio
+      hq harity
 
 end
 
