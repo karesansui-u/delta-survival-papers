@@ -60,6 +60,7 @@ import Survival.SerialReliability
 import Survival.ConstantFractionDecay
 import Survival.BranchingProcessExtinction
 import Survival.QueueStability
+import Survival.BinarySymmetricChannel
 import Survival.ProbabilityConnection
 import Survival.StochasticTotalProduction
 import Survival.CoarseStochasticTotalProduction
