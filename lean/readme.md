@@ -3,7 +3,7 @@
 Formal verification of the mathematical framework used across the structural
 persistence papers and supplements.
 
-- **106 imported `Survival/*` modules**
+- **112 imported `Survival/*` modules**
 - `sorry = 0`, `axiom = 0` for the imported development
 - Top-level target: `Survival`
 - SAT/k-SAT finite-horizon chain: frozen as **SAT chain v1.0**
@@ -25,7 +25,7 @@ For the SAT/k-SAT proof index, see
 | Stopping-time collapse layer | `StoppingTimeCollapseEvent`, `StoppingTimeHighProbabilityCollapse`, `StoppingTimeSharpDecomposition`, `StoppingTimeCliffWarning` | Hitting-time, stopped-collapse, and sharp finite-horizon decompositions |
 | Finite-state Markov microfoundations | `FiniteStateMarkovRepairChain`, `FiniteStateMarkovStationaryProduction`, `FiniteStateMarkovStationaryLongTimeConcentration`, `ThreeStateStateDependentExample` | Finite path measures, stationary mean production, long-time prefix concentration, concrete examples |
 | SAT actual clause-exposure chain | `SATClauseExposureProcess`, `SATStateDependentClauseExposure`, `SATStateDependentCountMGFProduct`, `SATStateDependentCountChernoffKLAlgebra` | Actual path measure, non-flat outcome-dependent emission, derived MGF product, Chernoff/KL collapse |
-| Bernoulli CSP / k-SAT template | `BernoulliCSPTemplate`, `BernoulliCSPPathMeasure`, `BernoulliCSPPathChernoff`, `BernoulliCSPPathCollapse`, `KSATBernoulliTemplate`, `KSATChernoffCollapse`, `KSATToSATChernoffBridge` | Reusable Bernoulli bad-event CSP template, k-SAT instance, and k=3 bridge to the SAT chain |
+| Bernoulli CSP / k-SAT / XOR-SAT / q-coloring template | `BernoulliCSPTemplate`, `BernoulliCSPPathMeasure`, `BernoulliCSPPathChernoff`, `BernoulliCSPPathCollapse`, `KSATBernoulliTemplate`, `KSATChernoffCollapse`, `XORSATBernoulliTemplate`, `XORSATChernoffCollapse`, `QColoringBernoulliTemplate`, `QColoringChernoffCollapse` | Reusable Bernoulli bad-event CSP template, k-SAT instance, fixed-assignment XOR-SAT and q-coloring exposure instances, and k=3 bridge to the SAT chain |
 | SAT second-moment and information theory | `SATFirstMoment`, `SATSecondMoment`, `SecondMomentBound`, `PairCorrelation`, `AsymptoticExponent`, `KLDivergence`, `CorrelatedSecondMoment` | First/second moment SAT facts, overlap decomposition, KL identities, correlated sandwich bounds |
 | Multi-attractor / phase-transition layer | `MultiAttractor`, `TransitionTheorem`, `FreeEnergy` | Basin survival, transition points, free-energy formulation |
 
@@ -84,6 +84,21 @@ For random 3-SAT and random k-SAT finite clause exposure, the development
 derives actual path measures, non-flat emission, MGF products, KL/Chernoff
 failure profiles, and operational collapse/hitting-time bounds.
 
+### XOR-SAT horizontal expansion
+
+The first horizontal expansion instantiates the same Bernoulli bad-event
+template for fixed-assignment `k`-XOR-SAT exposure, where each random XOR
+equation is bad with probability `1 / 2`.  This validates template reuse without
+claiming full rank/nullity dynamics.
+
+### q-Coloring horizontal expansion
+
+The second horizontal expansion instantiates the same template for fixed-coloring
+edge exposure in `q`-coloring.  Each exposed edge is bad with probability
+`1 / q`, giving drift `log (q / (q - 1))` for `q > 1`.  This validates reuse on a
+multi-valued CSP without claiming full random graph or coloring-algorithm
+dynamics.
+
 ---
 
 ## Building
@@ -103,6 +118,8 @@ lake build Survival.SATStateDependentCountChernoffKLAlgebra
 lake build Survival.BernoulliCSPPathCollapse
 lake build Survival.KSATChernoffCollapse
 lake build Survival.KSATToSATChernoffBridge
+lake build Survival.XORSATChernoffCollapse
+lake build Survival.QColoringChernoffCollapse
 ```
 
 ---

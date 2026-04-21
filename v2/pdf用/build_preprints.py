@@ -90,6 +90,12 @@ def wrap_inline_math(text: str) -> str:
     if not text or text.lstrip().startswith("|"):
         return text
 
+    text = re.sub(
+        r"\\\((.+?)\\\)",
+        lambda m: f"${convert_math(m.group(1))}$",
+        text,
+    )
+
     parts = text.split('$')
     for i in range(0, len(parts), 2):
         part = parts[i]
@@ -159,7 +165,7 @@ def render_math_block(lines: list[str]) -> list[str]:
             rendered.append(re.sub(r"=", r"&=", line, count=1) + r" \\")
         else:
             rendered.append(line + r" \\")
-    rendered[-1] = rendered[-1][:-2]
+    rendered[-1] = rendered[-1].removesuffix(r" \\").rstrip()
     rendered.append(r"\end{aligned}")
     rendered.append("$$")
     rendered.append("")
@@ -231,6 +237,19 @@ def normalize_markdown(md_path: Path) -> tuple[str, str, str, str]:
             if not line.strip():
                 normalized.append("")
                 i += 1
+                continue
+
+            if line.strip() == r"\[":
+                block: list[str] = []
+                i += 1
+                while i < len(lines_to_process) and lines_to_process[i].strip() != r"\]":
+                    block.append(lines_to_process[i])
+                    i += 1
+                if i < len(lines_to_process) and lines_to_process[i].strip() == r"\]":
+                    i += 1
+                if normalized and normalized[-1] != "":
+                    normalized.append("")
+                normalized.extend(render_math_block(block))
                 continue
 
             if is_body:

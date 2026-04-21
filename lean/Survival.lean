@@ -143,6 +143,12 @@ import Survival.KSATClauseExposureProcess
 import Survival.KSATChernoffCollapse
 import Survival.KSATToSATChernoffBridge
 import Survival.BernoulliCSPToSATBridge
+import Survival.XORSATBernoulliTemplate
+import Survival.XORSATClauseExposureProcess
+import Survival.XORSATChernoffCollapse
+import Survival.QColoringBernoulliTemplate
+import Survival.QColoringEdgeExposureProcess
+import Survival.QColoringChernoffCollapse
 import Survival.SATPositiveDriftCollapse
 import Survival.SATUnconditionalTendency
 

@@ -34,7 +34,7 @@ Chernoff/KL profile are derived inside the Lean development.
 | Layer | Claim | Key Lean object | File | Status |
 |---|---|---|---|---|
 | 1 | Random 3-SAT first-moment drift is fixed by the problem definition | `random3ClauseDrift_eq_log` / drift corollaries | [`Survival/SATDriftLowerBound.lean`](Survival/SATDriftLowerBound.lean) | Derived |
-| 2 | Resource/contraction lower bounds lift to expected Sigma drift | `expectedStepSigma_ge_of_typicalContractionLowerBound` and cumulative variants | [`Survival/ResourceBudgetToSigmaDrift.lean`](Survival/ResourceBudgetToSigmaDrift.lean) | Derived |
+| 2 | Resource/contraction lower bounds lift to expected Sigma drift | `expectedIncrement_lowerBound_of_stepLoss_lowerBound` and cumulative variants | [`Survival/ResourceBudgetToSigmaDrift.lean`](Survival/ResourceBudgetToSigmaDrift.lean) | Derived |
 | 3 | SAT has an unconditional expectation-level tendency law | `expectedCumulative_monotone_random3ClauseStepModel` | [`Survival/SATUnconditionalTendency.lean`](Survival/SATUnconditionalTendency.lean) | Derived |
 | 4 | Actual finite path measure for 3-SAT clause exposure exists | `pathPMF`, `pathMeasure` | [`Survival/SATClauseExposureProcess.lean`](Survival/SATClauseExposureProcess.lean) | Derived |
 | 5 | The observable can be non-flat and outcome-dependent | `oneSidedUnsatEmission` | [`Survival/SATStateDependentClauseExposure.lean`](Survival/SATStateDependentClauseExposure.lean) | Derived |
@@ -45,7 +45,7 @@ Chernoff/KL profile are derived inside the Lean development.
 | 10 | Closed MGF Chernoff bounds apply to SAT count tails | `hasCountFailureUpperBound_closedMGF_pathPMF` and wrappers | [`Survival/SATStateDependentClosedMGFChernoff.lean`](Survival/SATStateDependentClosedMGFChernoff.lean) | Derived |
 | 11 | Optimized Chernoff profile is the Bernoulli KL lower-tail rate in the interior | KL algebra / optimized MGF theorems | [`Survival/SATStateDependentCountChernoffKL.lean`](Survival/SATStateDependentCountChernoffKL.lean), [`Survival/SATStateDependentCountChernoffKLAlgebra.lean`](Survival/SATStateDependentCountChernoffKLAlgebra.lean) | Derived |
 | 12 | SAT high-probability collapse follows from the derived Chernoff/KL profile | `collapseWithNonnegativeMarginChernoffBound_pathPMF` and stopped/hitting variants | [`Survival/SATStateDependentCountChernoffKLAlgebra.lean`](Survival/SATStateDependentCountChernoffKLAlgebra.lean) | Derived |
-| 13 | Bernoulli bad-event CSPs have a reusable parameter template | `BernoulliCSPParameters`, `chernoffFailureBound` | [`Survival/BernoulliCSPTemplate.lean`](Survival/BernoulliCSPTemplate.lean) | Derived |
+| 13 | Bernoulli bad-event CSPs have a reusable parameter template | `Parameters`, `chernoffFailureBound` | [`Survival/BernoulliCSPTemplate.lean`](Survival/BernoulliCSPTemplate.lean) | Derived |
 | 14 | Bernoulli CSP finite path measures generate their own MGF witnesses | `pathPMF`, `mgf_badCountRV_eq_bernoulliBadMGF_pow` | [`Survival/BernoulliCSPPathMeasure.lean`](Survival/BernoulliCSPPathMeasure.lean) | Derived |
 | 15 | Generic Bernoulli CSP path tails satisfy the KL/Chernoff profile | `exactCountFailureBound_le_chernoffFailureBound_of_interior` | [`Survival/BernoulliCSPPathChernoff.lean`](Survival/BernoulliCSPPathChernoff.lean) | Derived |
 | 16 | Generic Bernoulli CSP path tails imply operational collapse/hitting bounds | `thresholdCrossingWithChernoffBound_of_linearMargin` and wrappers | [`Survival/BernoulliCSPPathCollapse.lean`](Survival/BernoulliCSPPathCollapse.lean) | Derived |
@@ -91,7 +91,30 @@ To instantiate a new domain in the same style, provide:
 4. A bridge from the domain-facing count/additive functional to the generic bad-count tail.
 5. Optional operational wrappers to expose collapse, stopped-collapse, and hitting-time bounds.
 
-The recommended next target is fixed-assignment `k`-XOR-SAT as a Bernoulli bad-event exposure model. Full rank dynamics should be treated as a later, separate extension.
+The first horizontal-expansion pilot is now present:
+
+- [`Survival/XORSATBernoulliTemplate.lean`](Survival/XORSATBernoulliTemplate.lean)
+  instantiates the Bernoulli template with bad-event probability `1 / 2`.
+- [`Survival/XORSATClauseExposureProcess.lean`](Survival/XORSATClauseExposureProcess.lean)
+  supplies the finite-horizon path PMF and MGF product.
+- [`Survival/XORSATChernoffCollapse.lean`](Survival/XORSATChernoffCollapse.lean)
+  exposes the same collapse, stopped-collapse, and hitting-time wrappers.
+
+This is fixed-assignment `k`-XOR-SAT as a Bernoulli bad-event exposure model.
+Full rank dynamics should be treated as a later, separate extension.
+
+The second horizontal-expansion pilot is also present:
+
+- [`Survival/QColoringBernoulliTemplate.lean`](Survival/QColoringBernoulliTemplate.lean)
+  instantiates the Bernoulli template with bad-event probability `1 / q`.
+- [`Survival/QColoringEdgeExposureProcess.lean`](Survival/QColoringEdgeExposureProcess.lean)
+  supplies the finite-horizon edge-exposure path PMF and MGF product.
+- [`Survival/QColoringChernoffCollapse.lean`](Survival/QColoringChernoffCollapse.lean)
+  exposes the same collapse, stopped-collapse, and hitting-time wrappers.
+
+This is fixed-coloring `q`-coloring edge exposure.  Random graph dependencies,
+degree correlations, and coloring-algorithm dynamics should be treated as later,
+separate extensions.
 
 ## Build Check
 
