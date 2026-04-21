@@ -56,5 +56,6 @@ Latest OSF mirror:
 - Reproduction: [`REPRODUCE.md`](REPRODUCE.md)
 - Lean formalization: [`lean/readme.md`](lean/readme.md)
 - SAT/k-SAT theorem map: [`lean/SAT_CHAIN_THEOREM_MAP.md`](lean/SAT_CHAIN_THEOREM_MAP.md)
+- Bernoulli-CSP universality map: [`lean/BERNOULLI_CSP_UNIVERSALITY_MAP.md`](lean/BERNOULLI_CSP_UNIVERSALITY_MAP.md)
 
-現在の Lean 側は `112 Survival modules`、`sorry = 0`、`axiom = 0` の状態で、最小形式、弱依存、粗視化、停止時刻崩壊、有限状態 Markov 例、SAT/k-SAT Chernoff-KL chain、固定割当 XOR-SAT exposure instance、固定 coloring の q-coloring edge exposure instance までを含む。SAT/k-SAT の finite-horizon / iid Bernoulli bad-event exposure は **SAT chain v1.0** として凍結している。
+現在の Lean 側は `113 Survival modules`、`sorry = 0`、`axiom = 0` の状態で、最小形式、弱依存、粗視化、停止時刻崩壊、有限状態 Markov 例、SAT/k-SAT Chernoff-KL chain、固定割当 XOR-SAT exposure instance、固定 coloring の q-coloring edge exposure instance までを含む。SAT/k-SAT の finite-horizon / iid Bernoulli bad-event exposure は **SAT chain v1.0** として凍結している。

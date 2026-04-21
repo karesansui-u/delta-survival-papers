@@ -12,6 +12,9 @@ This map fixes what is already closed in Lean and what is intentionally outside
 the current scope. It is meant to be the reader-facing index before horizontal
 expansion to XOR-SAT, coloring, or other CSPs.
 
+For the cross-domain template after the XOR-SAT and q-coloring expansions, see
+[`BERNOULLI_CSP_UNIVERSALITY_MAP.md`](BERNOULLI_CSP_UNIVERSALITY_MAP.md).
+
 ## Executive Claim
 
 For the SAT/k-SAT branch, the Lean stack now verifies the following pipeline:

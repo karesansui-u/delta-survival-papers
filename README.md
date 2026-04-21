@@ -61,7 +61,7 @@ PDF は [`v2/pdf用/0_構造持続理論の統合版.pdf`](v2/pdf%E7%94%A8/0_%E6
 | v2 Paper 2 | Main preprint |
 | v2 Paper 3 | Main preprint |
 | v2 Paper 4 | Main preprint |
-| Lean 4 formalization | Complete (`112 Survival modules`, `sorry = 0`, `axiom = 0`) |
+| Lean 4 formalization | Complete (`113 Survival modules`, `sorry = 0`, `axiom = 0`) |
 | OSF project | [osf.io/mdh7b/overview](https://osf.io/mdh7b/overview) |
 | Raw data and summaries | [DATA.md](DATA.md) |
 
@@ -101,7 +101,7 @@ delta-survival-paper/
 ## Formal Verification / 形式検証
 
 Lean formalization is in [`lean/`](lean/). Current status:
-`112 Survival modules`, `sorry = 0`, `axiom = 0`.
+`113 Survival modules`, `sorry = 0`, `axiom = 0`.
 
 The current core layering includes:
 
@@ -113,9 +113,12 @@ The current core layering includes:
 - `BernoulliCSPPathCollapse.lean` / `KSATChernoffCollapse.lean`: Bernoulli bad-event CSP と random k-SAT への operational collapse wrapper
 - `XORSATChernoffCollapse.lean`: fixed-assignment XOR-SAT bad-event exposure への horizontal expansion
 - `QColoringChernoffCollapse.lean`: fixed-coloring q-coloring edge exposure への horizontal expansion
+- `BernoulliCSPUniversality.lean`: k-SAT / XOR-SAT / q-coloring を同一 Bernoulli-CSP interface に束ねる wrapper
 
 The SAT/k-SAT finite-horizon chain is frozen as **SAT chain v1.0**. Its theorem
 index is [`lean/SAT_CHAIN_THEOREM_MAP.md`](lean/SAT_CHAIN_THEOREM_MAP.md).
+The cross-domain Bernoulli-CSP map is
+[`lean/BERNOULLI_CSP_UNIVERSALITY_MAP.md`](lean/BERNOULLI_CSP_UNIVERSALITY_MAP.md).
 
 For external readers and archive visitors, see [`LEAN_FORMALIZATION_README.md`](LEAN_FORMALIZATION_README.md).
 

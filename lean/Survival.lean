@@ -149,6 +149,7 @@ import Survival.XORSATChernoffCollapse
 import Survival.QColoringBernoulliTemplate
 import Survival.QColoringEdgeExposureProcess
 import Survival.QColoringChernoffCollapse
+import Survival.BernoulliCSPUniversality
 import Survival.SATPositiveDriftCollapse
 import Survival.SATUnconditionalTendency
 
