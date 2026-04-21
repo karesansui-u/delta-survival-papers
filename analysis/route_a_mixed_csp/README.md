@@ -31,6 +31,7 @@ Implemented files:
 | `mixed_csp_solvers.py` | PySAT / MiniSat wrapper with wall-clock timeout |
 | `run_mixed_csp.py` | Append-safe smoke / pilot / primary runner |
 | `analyze_mixed_csp.py` | Leave-one-mixture-out model-comparison analysis |
+| `debug_mixed_csp_encoding.py` | Pre-primary CNF / semantic agreement diagnostics |
 | `mixed_csp_trials.jsonl` | Future raw solver records |
 | `mixed_csp_results_summary.md` | Future human-readable results |
 | `mixed_csp_results.json` | Future machine-readable results |
@@ -54,6 +55,24 @@ Smoke execution:
 ```bash
 python3 analysis/route_a_mixed_csp/run_mixed_csp.py smoke run --execute
 ```
+
+Encoding diagnostics before any official primary run:
+
+```bash
+python3 analysis/route_a_mixed_csp/debug_mixed_csp_encoding.py regression
+python3 analysis/route_a_mixed_csp/debug_mixed_csp_encoding.py agreement --instances 1000
+python3 analysis/route_a_mixed_csp/debug_mixed_csp_encoding.py agreement --instances 500 --n 80 --density 2.0
+python3 analysis/route_a_mixed_csp/debug_mixed_csp_encoding.py agreement --instances 500 --n 160 --density 2.0
+```
+
+The regression diagnostic replays the archived aborted attempt rows that were
+initially labeled `malformed_encoding`. The root cause was verifier-side: PySAT
+may omit unconstrained variables from a returned model, while the first verifier
+required assignments for every variable `1..n`. The fixed verifier requires only
+variables that appear in semantic constraints. The additional `density = 2.0`
+agreement checks stress the primary-grid cells where unconstrained variables are
+most likely. The aborted rows are archived and excluded from any official
+primary analysis.
 
 Primary dry-run:
 

@@ -105,7 +105,8 @@ class MixedCSPInstance:
 
     def assignment_satisfies_semantics(self, model: list[int]) -> bool:
         assignment = {abs(lit): lit > 0 for lit in model if lit != 0}
-        if any(var not in assignment for var in range(1, self.n + 1)):
+        used_vars = {abs(lit) for constraint in self.constraints for lit in constraint.literals}
+        if any(var not in assignment for var in used_vars):
             return False
         return all(constraint.is_satisfied(assignment) for constraint in self.constraints)
 

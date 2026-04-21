@@ -1,0 +1,48 @@
+{
+  "archived_at": "2026-04-22T03:44:04.520585",
+  "source_file": "analysis/route_a_mixed_csp/mixed_csp_trials.jsonl",
+  "archive_file": "analysis/route_a_mixed_csp/mixed_csp_aborted_primary_attempt_2026-04-22_0338.jsonl",
+  "reason": "Primary run was started before review and aborted after malformed_encoding appeared.",
+  "official_primary_analysis_excluded": true,
+  "diagnosis": "The two malformed_encoding rows were verifier-side false positives: PySAT omitted unconstrained variable 80 from the returned model, while the original semantic verifier required assignments for every variable 1..n. Direct CNF evaluation and semantic constraint evaluation both pass after requiring only variables used in constraints.",
+  "post_fix_checks": {
+    "archived_malformed_regression_passed": true,
+    "sat_nae_agreement_instances": 1000,
+    "sat_nae_agreement_ok": 912,
+    "sat_nae_unsat": 88,
+    "sat_nae_agreement_failures": 0,
+    "primary_grid_stress_n80_d2_instances": 500,
+    "primary_grid_stress_n80_d2_agreement_failures": 0,
+    "primary_grid_stress_n160_d2_instances": 500,
+    "primary_grid_stress_n160_d2_agreement_failures": 0
+  },
+  "smoke_rows_retained": 20,
+  "primary_rows_archived": 563,
+  "primary_status_counts": {
+    "succeeded": 561,
+    "malformed_encoding": 2
+  },
+  "primary_cells": {
+    "n=80|d=2.0|sat_0.50__nae_0.50__exact1_0.00": {
+      "rows": 163,
+      "valid": 161,
+      "sat_rate": 1.0,
+      "malformed_encoding": 2,
+      "timeout": 0
+    },
+    "n=80|d=2.0|sat_0.75__nae_0.25__exact1_0.00": {
+      "rows": 200,
+      "valid": 200,
+      "sat_rate": 1.0,
+      "malformed_encoding": 0,
+      "timeout": 0
+    },
+    "n=80|d=2.0|sat_1.00__nae_0.00__exact1_0.00": {
+      "rows": 200,
+      "valid": 200,
+      "sat_rate": 1.0,
+      "malformed_encoding": 0,
+      "timeout": 0
+    }
+  }
+}
