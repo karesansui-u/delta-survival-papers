@@ -4,19 +4,47 @@
 対象: `lean/Survival/` 配下 134 ファイル
 対応論文: `delta-survival-paper/v2/` 配下 8 本（Paper 0–4 + 補論 3 本）
 
-## TL;DR
+## 現在の結論
 
-- 論文本文（Paper 2 §5）が形式検証対象として列挙しているのは **5 ファイル**（`AxiomsToExp` / `WeakDependence` / `RobustSurvival` / `TelescopingExp` / `LogUniqueness`）だが、`lean/Survival/` には実際には **134 ファイル**ある。
-- 残り 100 ファイル超のうち、相当部分は **論文本文に反映されていない数学的資産**。特に以下の 6 系統は論文主張を実質的に格上げできる候補:
-  1. **Azuma-Hoeffding / Martingale 系**（11 ファイル）— Paper 2 §4 の抽象的 ρ-境界を真の martingale concentration に厳密化
-  2. **停止時刻・崩壊事象系**（8 ファイル）— Paper 1 §5 の崩壊閾値 S_c を確率的崩壊時刻 τ^θ として定理化
-  3. **粗視化系**（5 ファイル）— Paper 1 §2 P5（表現安定性）の集合論的形式化
-  4. **有限状態マルコフ修復チェーン**（3 ファイル）— Paper 4 §7 「条件 (i) 矛盾解消代謝」の最小形式モデル
-  5. **SAT/k-SAT Chernoff-KL chain**（20+ ファイル）— actual path measure, non-flat additive functional, MGF product, KL/Chernoff profile, collapse/hitting-time wrapper までを finite-horizon で閉じる
-  6. **Route A 非CSP skeletons**（10 ファイル）— 指数型、線形過負荷型、累積容量型、臨界パラメータ型の有限 prefix skeleton を形式化
-- 補論 SAT（Route A）は Lean 側で **相当部分が明示的に形式化**されており、論文の引用以上に深い（例: `AsymptoticExponent.lean` の β=1/2 neutrality、`CorrelatedSecondMoment.lean` の相関 sandwich）。
-- SAT/k-SAT の finite-horizon / iid Bernoulli bad-event chain は **SAT chain v1.0** として凍結可能な段階に達した。さらに固定割当 \(k\)-NAE-SAT / \(k\)-XOR-SAT exposure、固定 coloring の q-coloring edge exposure、finite-alphabet forbidden-pattern CSP、hypergraph-coloring specialization、multi-forbidden-pattern witness bridge、exactly-one-SAT、exactly-\(r\) cardinality-SAT、at-most / at-least threshold cardinality-SAT への水平展開も追加され、横断層は **Bernoulli CSP universality v1.2** としてローカルに凍結した。現行の claim-to-theorem index は本ファイルへ統合し、旧 SAT/CSP map は git history / OSF snapshot 側に残す。
-- Paper 2 §5 の形式検証リストは 5 ファイルから **100 ファイル超のモジュール群**へアップデートしうる。ただし本文では主張ごとに圧縮し、詳細は本 mapping に逃がすのが望ましい。
+このファイルを、Lean 形式化と論文本文を結ぶ唯一の reader-facing theorem map とする。
+旧 SAT/CSP 専用 map は現行ツリーから外し、git history / OSF snapshot 側の archive として扱う。
+
+現時点の Lean 側は **134 Survival modules / sorry = 0 / axiom = 0** で閉じている。Paper 2 §5 が
+明示している 5 ファイルを超えて、停止時刻崩壊、martingale concentration、粗視化、有限状態 Markov
+microfoundation、SAT/k-SAT Chernoff-KL chain、Bernoulli-CSP 水平展開、Route A 非CSP skeletons まで
+含む。
+
+## Lean で閉じている範囲
+
+| 範囲 | 状態 | 読み方 |
+|---|---|---|
+| Paper 1/2 の最小指数核 | 完了 | `LogUniqueness`, `TelescopingExp`, `AxiomsToExp`, `WeakDependence` が主軸 |
+| 確率的崩壊・停止時刻 | 完了 | Paper 1 §5 の崩壊閾値を finite-horizon hitting-time / stopped-collapse に拡張 |
+| Martingale / Azuma concentration | 完了 | Paper 2 §4 の抽象 ρ 境界を bounded-increment concentration に格上げ可能 |
+| 粗視化・表現安定性 | 完了 | Paper 1 §2 P5 を集合論・total production・stochastic layer で形式化 |
+| SAT chain v1.0 | 完了 | actual path measure → non-flat emission → MGF product → Chernoff/KL → collapse |
+| Bernoulli CSP universality v1.2 | 完了 | k-SAT / NAE-SAT / XOR-SAT / coloring / forbidden-pattern / cardinality families |
+| Route A 非CSP skeletons | 完了 | 指数型、線形過負荷型、累積容量型、臨界パラメータ型の有限 prefix examples |
+
+## 意図的に未着手の範囲
+
+以下は未完成ではなく、現行 freeze の外に置いた範囲である。
+
+- infinite-horizon construction / Ionescu-Tulcea
+- almost-sure ergodic theorem / Birkhoff 型主張
+- adaptive clause selection / solver dynamics
+- XOR-SAT rank/nullity dynamics
+- random graph / random hypergraph の依存構造そのもの
+- 各非CSP領域の本命定理（Shannon 容量定理、Euler 座屈公式、percolation 極限定理、Byzantine agreement 定理など）
+
+## 論文本文へ反映すべき最重要差分
+
+1. Paper 2 §5 の形式検証リストを 5 ファイルから現在の主要層へ更新する。
+2. Paper 2 §4 に martingale / Azuma concentration による厳密化を追加する。
+3. Paper 1 §5 に stopping-time collapse / cliff warning / high-probability collapse を反映する。
+4. Paper 1 §2 P5 に coarse-graining の形式化を反映する。
+5. 補論 SAT / Route A では、SAT chain v1.0 と Bernoulli CSP universality v1.2 を本文の主導線にする。
+6. Route A 非CSP examples は、個別列挙ではなく四型分類（指数型、線形過負荷型、累積容量型、臨界パラメータ型）で扱う。
 
 ---
 

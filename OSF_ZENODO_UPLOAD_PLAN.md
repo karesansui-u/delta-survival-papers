@@ -11,10 +11,12 @@
 - OSF: 2026-04-21 SAT chain v1.0 / Bernoulli CSP universality v1.1 update bundle 反映済み
 - Zenodo: 未反映
 
-ローカルでは、Bernoulli CSP universality v1.2 として、multi-forbidden-pattern witness bridge、
-exactly-one-SAT、exactly-\(r\) cardinality-SAT、at-most / at-least threshold cardinality-SAT までを含む
-theorem map を凍結済み。OSF v1.2 bundle は未反映であり、現行の OSF 公開リンクは v1.1 archive snapshot
-を指す。
+ローカルでは、reader-facing theorem map を `lean/PAPER_MAPPING.md` に統合済み。Bernoulli CSP
+universality v1.2 は multi-forbidden-pattern witness bridge、exactly-one-SAT、exactly-\(r\)
+cardinality-SAT、at-most / at-least threshold cardinality-SAT までを含む。さらに Route A 非CSP
+skeletons は、指数型、線形過負荷型、累積容量型、臨界パラメータ型の四型分類に圧縮した。
+OSF の現行公開リンクは v1.1 archive snapshot を指すため、次回 bundle では `PAPER_MAPPING.md` を
+canonical map として反映する。
 
 2026-04-21 反映:
 
@@ -78,9 +80,18 @@ theorem map を凍結済み。OSF v1.2 bundle は未反映であり、現行の 
 - Lean formalization note: `LEAN_FORMALIZATION_README.md`
 - Citation metadata: `CITATION.cff`
 
-## 推奨アップロード単位
+## 次回アップロード候補
 
-最新の最小公開単位は、次の bundle です。
+最新のローカル公開候補は、次の内容を含む bundle とする。
+
+- `lean/PAPER_MAPPING.md` を唯一の reader-facing theorem map として同梱
+- `README.md`, `OVERVIEW.md`, `LEAN_FORMALIZATION_README.md` の導線を `PAPER_MAPPING.md` に一本化
+- Route A 非CSP skeletons は四型分類で説明し、個別ファイル一覧は `PAPER_MAPPING.md` に集約
+- 旧 SAT/CSP map は現行 tree から外し、git history / OSF archive snapshot の扱いにする
+
+## 既存アップロード単位
+
+直近の公開済み最小単位は、次の bundle です。
 
 - ローカル bundle: `/Users/sunagawa/Project/delta-survival-export/osf_zenodo_latest_2026-04-19/`
 - zip: `/Users/sunagawa/Project/delta-survival-export/osf_zenodo_latest_2026-04-19.zip`
@@ -102,6 +113,7 @@ theorem map を凍結済み。OSF v1.2 bundle は未反映であり、現行の 
 - `99_structural_persistence_english_overview_2026-04-19.md`
 - `ARCHIVE_README_2026-04-19.md`
 - `PUBLICATION_DATA_INDEX_2026-04-19.md`
+- `LEAN_PAPER_MAPPING.md`（次回 bundle から追加。source: `lean/PAPER_MAPPING.md`）
 - `CITATION.cff`
 - `PATENT_NOTICE_2026-04-19.md`
 - `LEAN_FORMALIZATION_NOTE_2026-04-19.md`
@@ -135,6 +147,7 @@ Zenodo には、論文本体と英語入口を中心にした trimmed public bun
 - `CITATION.cff`
 - `PATENT_NOTICE_2026-04-19.md`
 - `LEAN_FORMALIZATION_NOTE_2026-04-19.md`
+- `LEAN_PAPER_MAPPING.md`
 - `LICENSE_2026-04-19.txt`
 
 `PUBLICATION_DATA_INDEX_2026-04-19.md` と `PACKAGE_MANIFEST_2026-04-19.md` は OSF 側の補助導線として扱う。
@@ -155,6 +168,7 @@ Zenodo には、論文本体と英語入口を中心にした trimmed public bun
 | `PUBLICATION_DATA_INDEX_2026-04-19.md` | `DATA.md` |
 | `PATENT_NOTICE_2026-04-19.md` | `PATENTS.md` |
 | `LEAN_FORMALIZATION_NOTE_2026-04-19.md` | `LEAN_FORMALIZATION_README.md` |
+| `LEAN_PAPER_MAPPING.md` | `lean/PAPER_MAPPING.md` |
 | `LICENSE_2026-04-19.txt` | `LICENSE` |
 | `PACKAGE_MANIFEST_2026-04-19.md` | generated during bundle assembly |
 
