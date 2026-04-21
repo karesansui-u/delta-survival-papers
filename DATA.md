@@ -83,6 +83,19 @@ and structure-aware contradiction type.
 | [Baseline comparison summary](analysis/baseline_comparison/baseline_comparison_results_summary.md) | Human-readable table: structure-aware model has the best log loss on Exp.36 CV and Exp.39 |
 | [Baseline comparison JSON](analysis/baseline_comparison/baseline_comparison_results.json) | Machine-readable metrics, coefficients, and Exp.39 predicted cell probabilities |
 
+### Paper 3 — Exp.40 planned prospective contradiction-quality test
+
+Exp.40 is designed to test the strongest remaining baseline from the Exp.36/39
+reanalysis: contradiction presence without contradiction quality. It fixes
+context length at 32K and compares `scoped`, `subtle`, and `structural`
+contradiction-like conditions.
+
+| File | Description |
+|------|-------------|
+| [Exp.40 README](analysis/exp40/README.md) | Design summary and commands |
+| [Exp.40 preregistration](analysis/exp40/exp40_preregistration.md) | Frozen prediction, exclusions, and falsification rules |
+| [Exp.40 runner](analysis/exp40/exp40_contradiction_quality.py) | Append-safe API runner; refuses paid calls without `--execute` |
+
 ### Paper 3 — Experiment 3: Three-condition (gemma3:27b, n=3, 180 turns each)
 
 Trials 2–4 are the three replicates reported in the paper (Table 3).

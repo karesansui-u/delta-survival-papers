@@ -27,6 +27,8 @@ PDF は [`v2/pdf用/0_構造持続理論の統合版.pdf`](v2/pdf%E7%94%A8/0_%E6
 
 既存 Exp.36/39 の trial-level 再解析では、token-only、quality-blind、structure-aware の三つの予測モデルを比較しています。Exp.36 の leave-one-model/context-out と Exp.39 外挿のいずれでも structure-aware model が最良の log loss を示しました。ただし quality-blind baseline も強いため、次の前向き実験では「矛盾の有無」ではなく「矛盾の質」の差を固定比較する必要があります。
 
+この次段階として Exp.40 の preregistration と実行スクリプトを追加しています。Exp.40 は 32K に固定し、`scoped / subtle / structural` を比較して、quality-blind baseline を直接叩く設計です。API 実行は `--execute` を明示しない限り走りません。
+
 Route A の非CSP skeletons は、信頼性・減衰・待ち行列・疲労・合意・臨界閾値などの古典例を同じ最小語彙で歪めず表せるかを見る sanity / coverage benchmark です。これらは各分野の新しい本命定理を主張するものではなく、今後の operational theorem がどこへ波及しうるかを示すための射程確認として扱います。
 
 ## Main Preprints (v2) / メインプレプリント
