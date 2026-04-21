@@ -58,6 +58,7 @@ import Survival.ResourceBudgetToTotalProductionDrift
 import Survival.ResourceBudgetToSigmaDrift
 import Survival.SerialReliability
 import Survival.ConstantFractionDecay
+import Survival.BranchingProcessExtinction
 import Survival.ProbabilityConnection
 import Survival.StochasticTotalProduction
 import Survival.CoarseStochasticTotalProduction
