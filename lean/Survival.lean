@@ -65,6 +65,7 @@ import Survival.FatigueDamage
 import Survival.ConsensusFaultThreshold
 import Survival.MemoryThrashing
 import Survival.BucklingThreshold
+import Survival.PercolationThreshold
 import Survival.ProbabilityConnection
 import Survival.StochasticTotalProduction
 import Survival.CoarseStochasticTotalProduction

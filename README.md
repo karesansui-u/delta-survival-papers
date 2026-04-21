@@ -61,7 +61,7 @@ PDF は [`v2/pdf用/0_構造持続理論の統合版.pdf`](v2/pdf%E7%94%A8/0_%E6
 | v2 Paper 2 | Main preprint |
 | v2 Paper 3 | Main preprint |
 | v2 Paper 4 | Main preprint |
-| Lean 4 formalization | Complete (`133 Survival modules`, `sorry = 0`, `axiom = 0`) |
+| Lean 4 formalization | Complete (`134 Survival modules`, `sorry = 0`, `axiom = 0`) |
 | OSF project | [osf.io/mdh7b/overview](https://osf.io/mdh7b/overview) |
 | Raw data and summaries | [DATA.md](DATA.md) |
 
@@ -101,7 +101,7 @@ delta-survival-paper/
 ## Formal Verification / 形式検証
 
 Lean formalization is in [`lean/`](lean/). Current status:
-`133 Survival modules`, `sorry = 0`, `axiom = 0`.
+`134 Survival modules`, `sorry = 0`, `axiom = 0`.
 
 The current core layering includes:
 
@@ -130,6 +130,7 @@ The current core layering includes:
 - `ConsensusFaultThreshold.lean`: 分散合意の累積故障数が fault budget を超えると合意不能になる閾値 skeleton を形式化
 - `MemoryThrashing.lean`: working set が physical memory を超えると fault pressure が線形蓄積する閾値 skeleton を形式化
 - `BucklingThreshold.lean`: load ramp が critical load に到達/超過すると座屈閾値に達する skeleton を形式化
+- `PercolationThreshold.lean`: occupation ramp が critical occupation に到達/超過すると percolation threshold に達する skeleton を形式化
 
 The cross-domain Bernoulli-CSP layer is frozen locally as **Bernoulli CSP
 universality v1.2**: finite-horizon, iid bad-event exposure with fixed
