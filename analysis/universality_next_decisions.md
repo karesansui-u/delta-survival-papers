@@ -103,6 +103,15 @@ Interpretation:
   Paper 3 becomes substantially more defensible as a model-width claim.
   The invariant is scoped protection, not a fixed subtle/structural ordering.
 
+Unexpected secondary finding:
+  `gemini-3.1-flash-lite-preview` inverted the preregistered secondary
+  `subtle >= structural` direction (`subtle = 0.40`, `structural = 0.47`).
+  Row-level inspection shows Gemini took the injected wrong value on 14/18
+  subtle failures but on 0/16 structural failures. This does not affect the
+  primary decision, because `scoped > structural` passed on both primary
+  models, but it should remain recorded as evidence that self-referential
+  paradox resistance and alternate-source uptake are model-dependent.
+
 ### Gate 3: Formal Target Theorem 4
 
 Purpose:

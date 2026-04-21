@@ -51,6 +51,12 @@ These are reasonable next candidates after Mixed-CSP.
 | Cardinality-SAT family | Drift varies by binomial count, e.g. `log(2^k / C(k,r))`; one family can scan multiple drift levels | Present via exactly-`r`, at-most, at-least wrappers | Good post-Mixed-CSP robustness / dose-response test |
 | Forbidden-pattern CSP | Direct Bernoulli bad-event semantics; drift is specified by number of forbidden patterns | Present in Bernoulli CSP interface | Good generalization if SAT/NAE passes |
 
+For `q`-coloring, the intended empirical extension is a fixed-coloring
+edge-exposure protocol. It measures whether a pre-fixed coloring survives
+random edge exposure. It is not a graph-coloring search experiment and should
+not be implemented by calling a coloring solver such as DSATUR as the primary
+endpoint.
+
 For these candidates, the preferred empirical claim is not an absolute
 prediction of a universal `c`. The preferred claim is:
 
