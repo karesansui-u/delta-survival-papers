@@ -2,6 +2,7 @@ import Survival.KSATChernoffCollapse
 import Survival.NAESATChernoffCollapse
 import Survival.XORSATChernoffCollapse
 import Survival.QColoringChernoffCollapse
+import Survival.ForbiddenPatternCSPChernoffCollapse
 
 /-!
 # Bernoulli CSP Universality Interface
@@ -13,6 +14,7 @@ instances currently formalized in the development:
 * random `k`-NAE-SAT fixed-assignment clause exposure;
 * random `k`-XOR-SAT fixed-assignment equation exposure;
 * fixed-coloring `q`-coloring edge exposure.
+* generic finite-alphabet forbidden-pattern exposure.
 
 The point is not to add a new concentration proof.  The point is to make the
 common template explicit: once a domain supplies a Bernoulli bad-event
@@ -204,6 +206,15 @@ exposure model. -/
 def qColoring (q : ℝ) (hq : 1 < q) : ExposureModel where
   parameters := Survival.QColoringBernoulliTemplate.qColoringParameters q hq
 
+/-- Generic finite-alphabet forbidden-pattern CSP exposure model. -/
+def forbiddenPattern
+    (alphabet forbidden : ℝ) (arity : ℕ)
+    (ha : 0 < alphabet) (hf : 0 < forbidden)
+    (hforb : forbidden < alphabet ^ arity) : ExposureModel where
+  parameters :=
+    Survival.ForbiddenPatternCSPTemplate.forbiddenPatternParameters
+      alphabet forbidden arity ha hf hforb
+
 theorem kSAT_badProb (k : ℕ) (hk : 0 < k) :
     (kSAT k hk).badProb =
       Survival.KSATBernoulliTemplate.kSATBadProb k :=
@@ -224,6 +235,15 @@ theorem qColoring_badProb (q : ℝ) (hq : 1 < q) :
       Survival.QColoringBernoulliTemplate.qColoringBadProb q :=
   rfl
 
+theorem forbiddenPattern_badProb
+    (alphabet forbidden : ℝ) (arity : ℕ)
+    (ha : 0 < alphabet) (hf : 0 < forbidden)
+    (hforb : forbidden < alphabet ^ arity) :
+    (forbiddenPattern alphabet forbidden arity ha hf hforb).badProb =
+      Survival.ForbiddenPatternCSPTemplate.forbiddenPatternBadProb
+        alphabet forbidden arity :=
+  rfl
+
 theorem kSAT_drift_eq (k : ℕ) (hk : 0 < k) :
     (kSAT k hk).drift =
       Survival.KSATBernoulliTemplate.kSATDrift k hk :=
@@ -241,6 +261,16 @@ theorem xorSAT_drift_eq_log_two (k : ℕ) :
 theorem qColoring_drift_eq_log_ratio {q : ℝ} (hq : 1 < q) :
     (qColoring q hq).drift = Real.log (q / (q - 1)) := by
   exact Survival.QColoringBernoulliTemplate.qColoringDrift_eq_log_ratio hq
+
+theorem forbiddenPattern_drift_eq_log_ratio
+    {alphabet forbidden : ℝ} {arity : ℕ}
+    (ha : 0 < alphabet) (hf : 0 < forbidden)
+    (hforb : forbidden < alphabet ^ arity) :
+    (forbiddenPattern alphabet forbidden arity ha hf hforb).drift =
+      Real.log (alphabet ^ arity / (alphabet ^ arity - forbidden)) := by
+  exact
+    Survival.ForbiddenPatternCSPTemplate.forbiddenPatternDrift_eq_log_ratio
+      ha hf hforb
 
 end
 

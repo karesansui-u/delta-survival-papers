@@ -46,6 +46,7 @@ domain-specific bad-event probability p in (0,1)
 | Random `k`-NAE-SAT fixed-assignment clause exposure | `(1/2)^(k - 1)` for `k >= 2` | `log (1 / (1 - (1/2)^(k - 1)))` | `NAESATBernoulliTemplate`, `NAESATClauseExposureProcess`, `NAESATChernoffCollapse` | Derived |
 | Random `k`-XOR-SAT fixed-assignment equation exposure | `1/2` | `log 2` | `XORSATBernoulliTemplate`, `XORSATClauseExposureProcess`, `XORSATChernoffCollapse` | Derived |
 | Fixed-coloring `q`-coloring edge exposure | `1/q` | `log (q / (q - 1))` for `q > 1` | `QColoringBernoulliTemplate`, `QColoringEdgeExposureProcess`, `QColoringChernoffCollapse` | Derived |
+| Finite-alphabet forbidden-pattern exposure | `forbidden / alphabet^arity` | `log (alphabet^arity / (alphabet^arity - forbidden))` | `ForbiddenPatternCSPTemplate`, `ForbiddenPatternCSPExposureProcess`, `ForbiddenPatternCSPChernoffCollapse` | Derived |
 
 ## Shared Output Theorems
 
@@ -65,6 +66,7 @@ The instance constructors are:
 - `BernoulliCSPUniversality.naeSAT`
 - `BernoulliCSPUniversality.xorSAT`
 - `BernoulliCSPUniversality.qColoring`
+- `BernoulliCSPUniversality.forbiddenPattern`
 
 ## Scope Boundaries
 
@@ -75,6 +77,8 @@ These boundaries are intentional:
 - XOR-SAT is fixed-assignment bad-equation exposure, not rank/nullity dynamics.
 - q-coloring is fixed-coloring edge exposure, not full random graph dependence
   or coloring-algorithm dynamics.
+- Forbidden-pattern CSP is iid local-pattern exposure, not overlapping
+  constraint dependence or adaptive sampling.
 - All results are finite-prefix / high-probability statements, not almost-sure
   infinite-horizon ergodic theorems.
 
@@ -82,8 +86,9 @@ These boundaries are intentional:
 
 Good next targets are domains that can expose a clean Bernoulli bad-event rate:
 
-- hypergraph coloring;
-- random CSP templates with finite alphabet and one forbidden local pattern;
+- hypergraph coloring as a direct finite-alphabet specialization;
+- finite alphabet CSPs with multiple forbidden patterns and domain-specific
+  combinatorial witnesses;
 - eventually, dependent or adaptive versions after the iid template is fully
   documented.
 
