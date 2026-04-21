@@ -1,0 +1,2397 @@
+{
+  "experiment": "exp42_scope_gradient",
+  "model": "gpt-4.1-mini",
+  "n_records": 240,
+  "n_succeeded": 240,
+  "result_type_counts": {
+    "succeeded": 240
+  },
+  "condition_counts": {
+    "strong_scope": 50,
+    "medium_scope": 50,
+    "weak_scope": 50,
+    "subtle": 50,
+    "zero_sanity": 20,
+    "structural_anchor": 20
+  },
+  "by_condition": {
+    "strong_scope": {
+      "correct": 50,
+      "n": 50,
+      "accuracy": 1.0,
+      "mistakes": {
+        "mistakes": 0,
+        "exact_wrong_sum_adoptions": 0,
+        "exact_wrong_sum_rate_all_trials": 0.0,
+        "exact_wrong_sum_rate_among_mistakes": null,
+        "no_numeric_answer": 0,
+        "other_numeric_wrong": 0,
+        "first_20_examples": []
+      }
+    },
+    "medium_scope": {
+      "correct": 49,
+      "n": 50,
+      "accuracy": 0.98,
+      "mistakes": {
+        "mistakes": 1,
+        "exact_wrong_sum_adoptions": 0,
+        "exact_wrong_sum_rate_all_trials": 0.0,
+        "exact_wrong_sum_rate_among_mistakes": 0.0,
+        "no_numeric_answer": 0,
+        "other_numeric_wrong": 1,
+        "first_20_examples": [
+          {
+            "condition": "medium_scope",
+            "trial_idx": 10,
+            "target_key": "127:348:215",
+            "expected": 690,
+            "answer": 775,
+            "wrong_sum": 685,
+            "injected_var": "b",
+            "injected_wrong_val": 343,
+            "template": "In a separate historical dataset, Source B logged {var} = {wrong_val}."
+          }
+        ]
+      }
+    },
+    "weak_scope": {
+      "correct": 42,
+      "n": 50,
+      "accuracy": 0.84,
+      "mistakes": {
+        "mistakes": 8,
+        "exact_wrong_sum_adoptions": 1,
+        "exact_wrong_sum_rate_all_trials": 0.02,
+        "exact_wrong_sum_rate_among_mistakes": 0.125,
+        "no_numeric_answer": 0,
+        "other_numeric_wrong": 7,
+        "first_20_examples": [
+          {
+            "condition": "weak_scope",
+            "trial_idx": 8,
+            "target_key": "492:137:284",
+            "expected": 913,
+            "answer": 923,
+            "wrong_sum": 920,
+            "injected_var": "c",
+            "injected_wrong_val": 291,
+            "template": "Source B's record says {var} = {wrong_val}."
+          },
+          {
+            "condition": "weak_scope",
+            "trial_idx": 16,
+            "target_key": "263:184:439",
+            "expected": 886,
+            "answer": 666,
+            "wrong_sum": 881,
+            "injected_var": "b",
+            "injected_wrong_val": 179,
+            "template": "Source B reports {var} = {wrong_val}."
+          },
+          {
+            "condition": "weak_scope",
+            "trial_idx": 26,
+            "target_key": "263:184:439",
+            "expected": 886,
+            "answer": 636,
+            "wrong_sum": 891,
+            "injected_var": "b",
+            "injected_wrong_val": 189,
+            "template": "Source B's record says {var} = {wrong_val}."
+          },
+          {
+            "condition": "weak_scope",
+            "trial_idx": 29,
+            "target_key": "158:423:376",
+            "expected": 957,
+            "answer": 967,
+            "wrong_sum": 964,
+            "injected_var": "c",
+            "injected_wrong_val": 383,
+            "template": "Source B lists {var} = {wrong_val}."
+          },
+          {
+            "condition": "weak_scope",
+            "trial_idx": 41,
+            "target_key": "263:184:439",
+            "expected": 886,
+            "answer": 889,
+            "wrong_sum": 889,
+            "injected_var": "b",
+            "injected_wrong_val": 187,
+            "template": "Source B reports {var} = {wrong_val}."
+          },
+          {
+            "condition": "weak_scope",
+            "trial_idx": 44,
+            "target_key": "158:423:376",
+            "expected": 957,
+            "answer": 956,
+            "wrong_sum": 959,
+            "injected_var": "c",
+            "injected_wrong_val": 378,
+            "template": "Source B reports {var} = {wrong_val}."
+          },
+          {
+            "condition": "weak_scope",
+            "trial_idx": 47,
+            "target_key": "371:256:108",
+            "expected": 735,
+            "answer": 585,
+            "wrong_sum": 737,
+            "injected_var": "c",
+            "injected_wrong_val": 110,
+            "template": "Source B's record says {var} = {wrong_val}."
+          },
+          {
+            "condition": "weak_scope",
+            "trial_idx": 49,
+            "target_key": "158:423:376",
+            "expected": 957,
+            "answer": 741,
+            "wrong_sum": 952,
+            "injected_var": "b",
+            "injected_wrong_val": 418,
+            "template": "Source B's record says {var} = {wrong_val}."
+          }
+        ]
+      }
+    },
+    "subtle": {
+      "correct": 10,
+      "n": 50,
+      "accuracy": 0.2,
+      "mistakes": {
+        "mistakes": 40,
+        "exact_wrong_sum_adoptions": 25,
+        "exact_wrong_sum_rate_all_trials": 0.5,
+        "exact_wrong_sum_rate_among_mistakes": 0.625,
+        "no_numeric_answer": 0,
+        "other_numeric_wrong": 15,
+        "first_20_examples": [
+          {
+            "condition": "subtle",
+            "trial_idx": 0,
+            "target_key": "127:348:215",
+            "expected": 690,
+            "answer": 715,
+            "wrong_sum": 685,
+            "injected_var": "b",
+            "injected_wrong_val": 343,
+            "template": "A later note lists {var} as {wrong_val}."
+          },
+          {
+            "condition": "subtle",
+            "trial_idx": 1,
+            "target_key": "263:184:439",
+            "expected": 886,
+            "answer": 1093,
+            "wrong_sum": 893,
+            "injected_var": "b",
+            "injected_wrong_val": 191,
+            "template": "A later entry gives {var} = {wrong_val}."
+          },
+          {
+            "condition": "subtle",
+            "trial_idx": 2,
+            "target_key": "371:256:108",
+            "expected": 735,
+            "answer": 737,
+            "wrong_sum": 737,
+            "injected_var": "b",
+            "injected_wrong_val": 258,
+            "template": "A later note records {var} = {wrong_val}."
+          },
+          {
+            "condition": "subtle",
+            "trial_idx": 3,
+            "target_key": "492:137:284",
+            "expected": 913,
+            "answer": 906,
+            "wrong_sum": 906,
+            "injected_var": "c",
+            "injected_wrong_val": 277,
+            "template": "A later note records {var} = {wrong_val}."
+          },
+          {
+            "condition": "subtle",
+            "trial_idx": 5,
+            "target_key": "127:348:215",
+            "expected": 690,
+            "answer": 697,
+            "wrong_sum": 697,
+            "injected_var": "a",
+            "injected_wrong_val": 134,
+            "template": "A later entry gives {var} = {wrong_val}."
+          },
+          {
+            "condition": "subtle",
+            "trial_idx": 6,
+            "target_key": "263:184:439",
+            "expected": 886,
+            "answer": 893,
+            "wrong_sum": 893,
+            "injected_var": "a",
+            "injected_wrong_val": 270,
+            "template": "A later entry gives {var} = {wrong_val}."
+          },
+          {
+            "condition": "subtle",
+            "trial_idx": 8,
+            "target_key": "492:137:284",
+            "expected": 913,
+            "answer": 916,
+            "wrong_sum": 918,
+            "injected_var": "a",
+            "injected_wrong_val": 497,
+            "template": "A later entry gives {var} = {wrong_val}."
+          },
+          {
+            "condition": "subtle",
+            "trial_idx": 9,
+            "target_key": "158:423:376",
+            "expected": 957,
+            "answer": 552,
+            "wrong_sum": 952,
+            "injected_var": "c",
+            "injected_wrong_val": 371,
+            "template": "A later note lists {var} as {wrong_val}."
+          },
+          {
+            "condition": "subtle",
+            "trial_idx": 10,
+            "target_key": "127:348:215",
+            "expected": 690,
+            "answer": 440,
+            "wrong_sum": 688,
+            "injected_var": "c",
+            "injected_wrong_val": 213,
+            "template": "A later entry gives {var} = {wrong_val}."
+          },
+          {
+            "condition": "subtle",
+            "trial_idx": 12,
+            "target_key": "371:256:108",
+            "expected": 735,
+            "answer": 740,
+            "wrong_sum": 740,
+            "injected_var": "b",
+            "injected_wrong_val": 261,
+            "template": "A later note records {var} = {wrong_val}."
+          },
+          {
+            "condition": "subtle",
+            "trial_idx": 13,
+            "target_key": "492:137:284",
+            "expected": 913,
+            "answer": 906,
+            "wrong_sum": 906,
+            "injected_var": "a",
+            "injected_wrong_val": 485,
+            "template": "A later note records {var} = {wrong_val}."
+          },
+          {
+            "condition": "subtle",
+            "trial_idx": 14,
+            "target_key": "158:423:376",
+            "expected": 957,
+            "answer": 952,
+            "wrong_sum": 952,
+            "injected_var": "b",
+            "injected_wrong_val": 418,
+            "template": "A later record contains {var} = {wrong_val}."
+          },
+          {
+            "condition": "subtle",
+            "trial_idx": 15,
+            "target_key": "127:348:215",
+            "expected": 690,
+            "answer": 693,
+            "wrong_sum": 693,
+            "injected_var": "c",
+            "injected_wrong_val": 218,
+            "template": "A later entry gives {var} = {wrong_val}."
+          },
+          {
+            "condition": "subtle",
+            "trial_idx": 16,
+            "target_key": "263:184:439",
+            "expected": 886,
+            "answer": 887,
+            "wrong_sum": 888,
+            "injected_var": "a",
+            "injected_wrong_val": 265,
+            "template": "A later note records {var} = {wrong_val}."
+          },
+          {
+            "condition": "subtle",
+            "trial_idx": 17,
+            "target_key": "371:256:108",
+            "expected": 735,
+            "answer": 730,
+            "wrong_sum": 730,
+            "injected_var": "a",
+            "injected_wrong_val": 366,
+            "template": "A later entry gives {var} = {wrong_val}."
+          },
+          {
+            "condition": "subtle",
+            "trial_idx": 19,
+            "target_key": "158:423:376",
+            "expected": 957,
+            "answer": 953,
+            "wrong_sum": 950,
+            "injected_var": "a",
+            "injected_wrong_val": 151,
+            "template": "A later note records {var} = {wrong_val}."
+          },
+          {
+            "condition": "subtle",
+            "trial_idx": 20,
+            "target_key": "127:348:215",
+            "expected": 690,
+            "answer": 697,
+            "wrong_sum": 697,
+            "injected_var": "c",
+            "injected_wrong_val": 222,
+            "template": "A later entry gives {var} = {wrong_val}."
+          },
+          {
+            "condition": "subtle",
+            "trial_idx": 21,
+            "target_key": "263:184:439",
+            "expected": 886,
+            "answer": 889,
+            "wrong_sum": 889,
+            "injected_var": "c",
+            "injected_wrong_val": 442,
+            "template": "A later entry gives {var} = {wrong_val}."
+          },
+          {
+            "condition": "subtle",
+            "trial_idx": 23,
+            "target_key": "492:137:284",
+            "expected": 913,
+            "answer": 908,
+            "wrong_sum": 908,
+            "injected_var": "a",
+            "injected_wrong_val": 487,
+            "template": "A later entry gives {var} = {wrong_val}."
+          },
+          {
+            "condition": "subtle",
+            "trial_idx": 24,
+            "target_key": "158:423:376",
+            "expected": 957,
+            "answer": 555,
+            "wrong_sum": 955,
+            "injected_var": "c",
+            "injected_wrong_val": 374,
+            "template": "A later note lists {var} as {wrong_val}."
+          }
+        ]
+      }
+    },
+    "zero_sanity": {
+      "correct": 20,
+      "n": 20,
+      "accuracy": 1.0,
+      "mistakes": {
+        "mistakes": 0,
+        "exact_wrong_sum_adoptions": 0,
+        "exact_wrong_sum_rate_all_trials": 0.0,
+        "exact_wrong_sum_rate_among_mistakes": null,
+        "no_numeric_answer": 0,
+        "other_numeric_wrong": 0,
+        "first_20_examples": []
+      }
+    },
+    "structural_anchor": {
+      "correct": 0,
+      "n": 20,
+      "accuracy": 0.0,
+      "mistakes": {
+        "mistakes": 20,
+        "exact_wrong_sum_adoptions": 0,
+        "exact_wrong_sum_rate_all_trials": 0.0,
+        "exact_wrong_sum_rate_among_mistakes": 0.0,
+        "no_numeric_answer": 18,
+        "other_numeric_wrong": 2,
+        "first_20_examples": [
+          {
+            "condition": "structural_anchor",
+            "trial_idx": 0,
+            "target_key": "127:348:215",
+            "expected": 690,
+            "answer": null,
+            "wrong_sum": null,
+            "injected_var": null,
+            "injected_wrong_val": null,
+            "template": "(none)"
+          },
+          {
+            "condition": "structural_anchor",
+            "trial_idx": 1,
+            "target_key": "263:184:439",
+            "expected": 886,
+            "answer": null,
+            "wrong_sum": null,
+            "injected_var": null,
+            "injected_wrong_val": null,
+            "template": "(none)"
+          },
+          {
+            "condition": "structural_anchor",
+            "trial_idx": 2,
+            "target_key": "371:256:108",
+            "expected": 735,
+            "answer": null,
+            "wrong_sum": null,
+            "injected_var": null,
+            "injected_wrong_val": null,
+            "template": "(none)"
+          },
+          {
+            "condition": "structural_anchor",
+            "trial_idx": 3,
+            "target_key": "492:137:284",
+            "expected": 913,
+            "answer": null,
+            "wrong_sum": null,
+            "injected_var": null,
+            "injected_wrong_val": null,
+            "template": "(none)"
+          },
+          {
+            "condition": "structural_anchor",
+            "trial_idx": 4,
+            "target_key": "158:423:376",
+            "expected": 957,
+            "answer": null,
+            "wrong_sum": null,
+            "injected_var": null,
+            "injected_wrong_val": null,
+            "template": "(none)"
+          },
+          {
+            "condition": "structural_anchor",
+            "trial_idx": 5,
+            "target_key": "127:348:215",
+            "expected": 690,
+            "answer": null,
+            "wrong_sum": null,
+            "injected_var": null,
+            "injected_wrong_val": null,
+            "template": "(none)"
+          },
+          {
+            "condition": "structural_anchor",
+            "trial_idx": 6,
+            "target_key": "263:184:439",
+            "expected": 886,
+            "answer": null,
+            "wrong_sum": null,
+            "injected_var": null,
+            "injected_wrong_val": null,
+            "template": "(none)"
+          },
+          {
+            "condition": "structural_anchor",
+            "trial_idx": 7,
+            "target_key": "371:256:108",
+            "expected": 735,
+            "answer": null,
+            "wrong_sum": null,
+            "injected_var": null,
+            "injected_wrong_val": null,
+            "template": "(none)"
+          },
+          {
+            "condition": "structural_anchor",
+            "trial_idx": 8,
+            "target_key": "492:137:284",
+            "expected": 913,
+            "answer": null,
+            "wrong_sum": null,
+            "injected_var": null,
+            "injected_wrong_val": null,
+            "template": "(none)"
+          },
+          {
+            "condition": "structural_anchor",
+            "trial_idx": 9,
+            "target_key": "158:423:376",
+            "expected": 957,
+            "answer": null,
+            "wrong_sum": null,
+            "injected_var": null,
+            "injected_wrong_val": null,
+            "template": "(none)"
+          },
+          {
+            "condition": "structural_anchor",
+            "trial_idx": 10,
+            "target_key": "127:348:215",
+            "expected": 690,
+            "answer": null,
+            "wrong_sum": null,
+            "injected_var": null,
+            "injected_wrong_val": null,
+            "template": "(none)"
+          },
+          {
+            "condition": "structural_anchor",
+            "trial_idx": 11,
+            "target_key": "263:184:439",
+            "expected": 886,
+            "answer": null,
+            "wrong_sum": null,
+            "injected_var": null,
+            "injected_wrong_val": null,
+            "template": "(none)"
+          },
+          {
+            "condition": "structural_anchor",
+            "trial_idx": 12,
+            "target_key": "371:256:108",
+            "expected": 735,
+            "answer": null,
+            "wrong_sum": null,
+            "injected_var": null,
+            "injected_wrong_val": null,
+            "template": "(none)"
+          },
+          {
+            "condition": "structural_anchor",
+            "trial_idx": 13,
+            "target_key": "492:137:284",
+            "expected": 913,
+            "answer": null,
+            "wrong_sum": null,
+            "injected_var": null,
+            "injected_wrong_val": null,
+            "template": "(none)"
+          },
+          {
+            "condition": "structural_anchor",
+            "trial_idx": 14,
+            "target_key": "158:423:376",
+            "expected": 957,
+            "answer": 1,
+            "wrong_sum": null,
+            "injected_var": null,
+            "injected_wrong_val": null,
+            "template": "(none)"
+          },
+          {
+            "condition": "structural_anchor",
+            "trial_idx": 15,
+            "target_key": "127:348:215",
+            "expected": 690,
+            "answer": null,
+            "wrong_sum": null,
+            "injected_var": null,
+            "injected_wrong_val": null,
+            "template": "(none)"
+          },
+          {
+            "condition": "structural_anchor",
+            "trial_idx": 16,
+            "target_key": "263:184:439",
+            "expected": 886,
+            "answer": null,
+            "wrong_sum": null,
+            "injected_var": null,
+            "injected_wrong_val": null,
+            "template": "(none)"
+          },
+          {
+            "condition": "structural_anchor",
+            "trial_idx": 17,
+            "target_key": "371:256:108",
+            "expected": 735,
+            "answer": 1,
+            "wrong_sum": null,
+            "injected_var": null,
+            "injected_wrong_val": null,
+            "template": "(none)"
+          },
+          {
+            "condition": "structural_anchor",
+            "trial_idx": 18,
+            "target_key": "492:137:284",
+            "expected": 913,
+            "answer": null,
+            "wrong_sum": null,
+            "injected_var": null,
+            "injected_wrong_val": null,
+            "template": "(none)"
+          },
+          {
+            "condition": "structural_anchor",
+            "trial_idx": 19,
+            "target_key": "158:423:376",
+            "expected": 957,
+            "answer": null,
+            "wrong_sum": null,
+            "injected_var": null,
+            "injected_wrong_val": null,
+            "template": "(none)"
+          }
+        ]
+      }
+    }
+  },
+  "by_condition_target": {
+    "strong_scope": {
+      "127:348:215": {
+        "correct": 10,
+        "n": 10,
+        "accuracy": 1.0,
+        "exact_wrong_sum_adoptions": 0
+      },
+      "158:423:376": {
+        "correct": 10,
+        "n": 10,
+        "accuracy": 1.0,
+        "exact_wrong_sum_adoptions": 0
+      },
+      "263:184:439": {
+        "correct": 10,
+        "n": 10,
+        "accuracy": 1.0,
+        "exact_wrong_sum_adoptions": 0
+      },
+      "371:256:108": {
+        "correct": 10,
+        "n": 10,
+        "accuracy": 1.0,
+        "exact_wrong_sum_adoptions": 0
+      },
+      "492:137:284": {
+        "correct": 10,
+        "n": 10,
+        "accuracy": 1.0,
+        "exact_wrong_sum_adoptions": 0
+      }
+    },
+    "medium_scope": {
+      "127:348:215": {
+        "correct": 9,
+        "n": 10,
+        "accuracy": 0.9,
+        "exact_wrong_sum_adoptions": 0
+      },
+      "158:423:376": {
+        "correct": 10,
+        "n": 10,
+        "accuracy": 1.0,
+        "exact_wrong_sum_adoptions": 0
+      },
+      "263:184:439": {
+        "correct": 10,
+        "n": 10,
+        "accuracy": 1.0,
+        "exact_wrong_sum_adoptions": 0
+      },
+      "371:256:108": {
+        "correct": 10,
+        "n": 10,
+        "accuracy": 1.0,
+        "exact_wrong_sum_adoptions": 0
+      },
+      "492:137:284": {
+        "correct": 10,
+        "n": 10,
+        "accuracy": 1.0,
+        "exact_wrong_sum_adoptions": 0
+      }
+    },
+    "weak_scope": {
+      "127:348:215": {
+        "correct": 10,
+        "n": 10,
+        "accuracy": 1.0,
+        "exact_wrong_sum_adoptions": 0
+      },
+      "158:423:376": {
+        "correct": 7,
+        "n": 10,
+        "accuracy": 0.7,
+        "exact_wrong_sum_adoptions": 0
+      },
+      "263:184:439": {
+        "correct": 7,
+        "n": 10,
+        "accuracy": 0.7,
+        "exact_wrong_sum_adoptions": 1
+      },
+      "371:256:108": {
+        "correct": 9,
+        "n": 10,
+        "accuracy": 0.9,
+        "exact_wrong_sum_adoptions": 0
+      },
+      "492:137:284": {
+        "correct": 9,
+        "n": 10,
+        "accuracy": 0.9,
+        "exact_wrong_sum_adoptions": 0
+      }
+    },
+    "subtle": {
+      "127:348:215": {
+        "correct": 2,
+        "n": 10,
+        "accuracy": 0.2,
+        "exact_wrong_sum_adoptions": 5
+      },
+      "158:423:376": {
+        "correct": 2,
+        "n": 10,
+        "accuracy": 0.2,
+        "exact_wrong_sum_adoptions": 4
+      },
+      "263:184:439": {
+        "correct": 2,
+        "n": 10,
+        "accuracy": 0.2,
+        "exact_wrong_sum_adoptions": 4
+      },
+      "371:256:108": {
+        "correct": 2,
+        "n": 10,
+        "accuracy": 0.2,
+        "exact_wrong_sum_adoptions": 5
+      },
+      "492:137:284": {
+        "correct": 2,
+        "n": 10,
+        "accuracy": 0.2,
+        "exact_wrong_sum_adoptions": 7
+      }
+    },
+    "zero_sanity": {
+      "127:348:215": {
+        "correct": 4,
+        "n": 4,
+        "accuracy": 1.0,
+        "exact_wrong_sum_adoptions": 0
+      },
+      "158:423:376": {
+        "correct": 4,
+        "n": 4,
+        "accuracy": 1.0,
+        "exact_wrong_sum_adoptions": 0
+      },
+      "263:184:439": {
+        "correct": 4,
+        "n": 4,
+        "accuracy": 1.0,
+        "exact_wrong_sum_adoptions": 0
+      },
+      "371:256:108": {
+        "correct": 4,
+        "n": 4,
+        "accuracy": 1.0,
+        "exact_wrong_sum_adoptions": 0
+      },
+      "492:137:284": {
+        "correct": 4,
+        "n": 4,
+        "accuracy": 1.0,
+        "exact_wrong_sum_adoptions": 0
+      }
+    },
+    "structural_anchor": {
+      "127:348:215": {
+        "correct": 0,
+        "n": 4,
+        "accuracy": 0.0,
+        "exact_wrong_sum_adoptions": 0
+      },
+      "158:423:376": {
+        "correct": 0,
+        "n": 4,
+        "accuracy": 0.0,
+        "exact_wrong_sum_adoptions": 0
+      },
+      "263:184:439": {
+        "correct": 0,
+        "n": 4,
+        "accuracy": 0.0,
+        "exact_wrong_sum_adoptions": 0
+      },
+      "371:256:108": {
+        "correct": 0,
+        "n": 4,
+        "accuracy": 0.0,
+        "exact_wrong_sum_adoptions": 0
+      },
+      "492:137:284": {
+        "correct": 0,
+        "n": 4,
+        "accuracy": 0.0,
+        "exact_wrong_sum_adoptions": 0
+      }
+    }
+  },
+  "by_condition_template": {
+    "strong_scope": {
+      "Counterfactual scenario, not applicable here: if the experiment were run with an alternate sample, {var} would be {wrong_val}. This counterfactual must not override the definitions at the start.": {
+        "correct": 16,
+        "n": 16,
+        "accuracy": 1.0,
+        "exact_wrong_sum_adoptions": 0
+      },
+      "Historical archive note: an unrelated measurement context lists {var} = {wrong_val}. This archive note is out of scope for the final calculation; the initial variable definitions remain authoritative.": {
+        "correct": 10,
+        "n": 10,
+        "accuracy": 1.0,
+        "exact_wrong_sum_adoptions": 0
+      },
+      "In a separate calibration notebook that is explicitly not used for the final task, {var} was temporarily recorded as {wrong_val}. For the final task, use only the VARIABLE DEFINITIONS section above.": {
+        "correct": 11,
+        "n": 11,
+        "accuracy": 1.0,
+        "exact_wrong_sum_adoptions": 0
+      },
+      "Source B reports {var} = {wrong_val} for a different dataset. The current task uses Source A, namely the VARIABLE DEFINITIONS section above.": {
+        "correct": 13,
+        "n": 13,
+        "accuracy": 1.0,
+        "exact_wrong_sum_adoptions": 0
+      }
+    },
+    "medium_scope": {
+      "During a previous calibration run, the legacy dataset recorded {var} = {wrong_val}.": {
+        "correct": 9,
+        "n": 9,
+        "accuracy": 1.0,
+        "exact_wrong_sum_adoptions": 0
+      },
+      "For the archived 2019 dataset, a calibration entry lists {var} = {wrong_val}.": {
+        "correct": 12,
+        "n": 12,
+        "accuracy": 1.0,
+        "exact_wrong_sum_adoptions": 0
+      },
+      "In a separate historical dataset, Source B logged {var} = {wrong_val}.": {
+        "correct": 15,
+        "n": 16,
+        "accuracy": 0.9375,
+        "exact_wrong_sum_adoptions": 0
+      },
+      "In the 2019 calibration context, Source B recorded {var} = {wrong_val}.": {
+        "correct": 13,
+        "n": 13,
+        "accuracy": 1.0,
+        "exact_wrong_sum_adoptions": 0
+      }
+    },
+    "weak_scope": {
+      "Source B has an entry with {var} = {wrong_val}.": {
+        "correct": 12,
+        "n": 12,
+        "accuracy": 1.0,
+        "exact_wrong_sum_adoptions": 0
+      },
+      "Source B lists {var} = {wrong_val}.": {
+        "correct": 11,
+        "n": 12,
+        "accuracy": 0.9166666666666666,
+        "exact_wrong_sum_adoptions": 0
+      },
+      "Source B reports {var} = {wrong_val}.": {
+        "correct": 11,
+        "n": 14,
+        "accuracy": 0.7857142857142857,
+        "exact_wrong_sum_adoptions": 1
+      },
+      "Source B's record says {var} = {wrong_val}.": {
+        "correct": 8,
+        "n": 12,
+        "accuracy": 0.6666666666666666,
+        "exact_wrong_sum_adoptions": 0
+      }
+    },
+    "subtle": {
+      "A later entry gives {var} = {wrong_val}.": {
+        "correct": 0,
+        "n": 17,
+        "accuracy": 0.0,
+        "exact_wrong_sum_adoptions": 11
+      },
+      "A later note lists {var} as {wrong_val}.": {
+        "correct": 3,
+        "n": 12,
+        "accuracy": 0.25,
+        "exact_wrong_sum_adoptions": 5
+      },
+      "A later note records {var} = {wrong_val}.": {
+        "correct": 0,
+        "n": 10,
+        "accuracy": 0.0,
+        "exact_wrong_sum_adoptions": 6
+      },
+      "A later record contains {var} = {wrong_val}.": {
+        "correct": 7,
+        "n": 11,
+        "accuracy": 0.6363636363636364,
+        "exact_wrong_sum_adoptions": 3
+      }
+    },
+    "zero_sanity": {
+      "(none)": {
+        "correct": 20,
+        "n": 20,
+        "accuracy": 1.0,
+        "exact_wrong_sum_adoptions": 0
+      }
+    },
+    "structural_anchor": {
+      "(none)": {
+        "correct": 0,
+        "n": 20,
+        "accuracy": 0.0,
+        "exact_wrong_sum_adoptions": 0
+      }
+    }
+  },
+  "by_condition_template_injected_var": {
+    "strong_scope": {
+      "Source B reports {var} = {wrong_val} for a different dataset. The current task uses Source A, namely the VARIABLE DEFINITIONS section above.": {
+        "a": {
+          "correct": 2,
+          "n": 2,
+          "accuracy": 1.0,
+          "exact_wrong_sum_adoptions": 0
+        },
+        "b": {
+          "correct": 6,
+          "n": 6,
+          "accuracy": 1.0,
+          "exact_wrong_sum_adoptions": 0
+        },
+        "c": {
+          "correct": 5,
+          "n": 5,
+          "accuracy": 1.0,
+          "exact_wrong_sum_adoptions": 0
+        }
+      },
+      "Counterfactual scenario, not applicable here: if the experiment were run with an alternate sample, {var} would be {wrong_val}. This counterfactual must not override the definitions at the start.": {
+        "a": {
+          "correct": 8,
+          "n": 8,
+          "accuracy": 1.0,
+          "exact_wrong_sum_adoptions": 0
+        },
+        "b": {
+          "correct": 6,
+          "n": 6,
+          "accuracy": 1.0,
+          "exact_wrong_sum_adoptions": 0
+        },
+        "c": {
+          "correct": 2,
+          "n": 2,
+          "accuracy": 1.0,
+          "exact_wrong_sum_adoptions": 0
+        }
+      },
+      "In a separate calibration notebook that is explicitly not used for the final task, {var} was temporarily recorded as {wrong_val}. For the final task, use only the VARIABLE DEFINITIONS section above.": {
+        "a": {
+          "correct": 5,
+          "n": 5,
+          "accuracy": 1.0,
+          "exact_wrong_sum_adoptions": 0
+        },
+        "b": {
+          "correct": 2,
+          "n": 2,
+          "accuracy": 1.0,
+          "exact_wrong_sum_adoptions": 0
+        },
+        "c": {
+          "correct": 4,
+          "n": 4,
+          "accuracy": 1.0,
+          "exact_wrong_sum_adoptions": 0
+        }
+      },
+      "Historical archive note: an unrelated measurement context lists {var} = {wrong_val}. This archive note is out of scope for the final calculation; the initial variable definitions remain authoritative.": {
+        "a": {
+          "correct": 5,
+          "n": 5,
+          "accuracy": 1.0,
+          "exact_wrong_sum_adoptions": 0
+        },
+        "b": {
+          "correct": 2,
+          "n": 2,
+          "accuracy": 1.0,
+          "exact_wrong_sum_adoptions": 0
+        },
+        "c": {
+          "correct": 3,
+          "n": 3,
+          "accuracy": 1.0,
+          "exact_wrong_sum_adoptions": 0
+        }
+      }
+    },
+    "medium_scope": {
+      "In the 2019 calibration context, Source B recorded {var} = {wrong_val}.": {
+        "a": {
+          "correct": 4,
+          "n": 4,
+          "accuracy": 1.0,
+          "exact_wrong_sum_adoptions": 0
+        },
+        "b": {
+          "correct": 5,
+          "n": 5,
+          "accuracy": 1.0,
+          "exact_wrong_sum_adoptions": 0
+        },
+        "c": {
+          "correct": 4,
+          "n": 4,
+          "accuracy": 1.0,
+          "exact_wrong_sum_adoptions": 0
+        }
+      },
+      "During a previous calibration run, the legacy dataset recorded {var} = {wrong_val}.": {
+        "a": {
+          "correct": 4,
+          "n": 4,
+          "accuracy": 1.0,
+          "exact_wrong_sum_adoptions": 0
+        },
+        "b": {
+          "correct": 2,
+          "n": 2,
+          "accuracy": 1.0,
+          "exact_wrong_sum_adoptions": 0
+        },
+        "c": {
+          "correct": 3,
+          "n": 3,
+          "accuracy": 1.0,
+          "exact_wrong_sum_adoptions": 0
+        }
+      },
+      "In a separate historical dataset, Source B logged {var} = {wrong_val}.": {
+        "a": {
+          "correct": 5,
+          "n": 5,
+          "accuracy": 1.0,
+          "exact_wrong_sum_adoptions": 0
+        },
+        "b": {
+          "correct": 6,
+          "n": 7,
+          "accuracy": 0.8571428571428571,
+          "exact_wrong_sum_adoptions": 0
+        },
+        "c": {
+          "correct": 4,
+          "n": 4,
+          "accuracy": 1.0,
+          "exact_wrong_sum_adoptions": 0
+        }
+      },
+      "For the archived 2019 dataset, a calibration entry lists {var} = {wrong_val}.": {
+        "a": {
+          "correct": 4,
+          "n": 4,
+          "accuracy": 1.0,
+          "exact_wrong_sum_adoptions": 0
+        },
+        "b": {
+          "correct": 3,
+          "n": 3,
+          "accuracy": 1.0,
+          "exact_wrong_sum_adoptions": 0
+        },
+        "c": {
+          "correct": 5,
+          "n": 5,
+          "accuracy": 1.0,
+          "exact_wrong_sum_adoptions": 0
+        }
+      }
+    },
+    "weak_scope": {
+      "Source B has an entry with {var} = {wrong_val}.": {
+        "a": {
+          "correct": 6,
+          "n": 6,
+          "accuracy": 1.0,
+          "exact_wrong_sum_adoptions": 0
+        },
+        "b": {
+          "correct": 4,
+          "n": 4,
+          "accuracy": 1.0,
+          "exact_wrong_sum_adoptions": 0
+        },
+        "c": {
+          "correct": 2,
+          "n": 2,
+          "accuracy": 1.0,
+          "exact_wrong_sum_adoptions": 0
+        }
+      },
+      "Source B lists {var} = {wrong_val}.": {
+        "a": {
+          "correct": 4,
+          "n": 4,
+          "accuracy": 1.0,
+          "exact_wrong_sum_adoptions": 0
+        },
+        "b": {
+          "correct": 3,
+          "n": 3,
+          "accuracy": 1.0,
+          "exact_wrong_sum_adoptions": 0
+        },
+        "c": {
+          "correct": 4,
+          "n": 5,
+          "accuracy": 0.8,
+          "exact_wrong_sum_adoptions": 0
+        }
+      },
+      "Source B reports {var} = {wrong_val}.": {
+        "a": {
+          "correct": 4,
+          "n": 4,
+          "accuracy": 1.0,
+          "exact_wrong_sum_adoptions": 0
+        },
+        "b": {
+          "correct": 3,
+          "n": 5,
+          "accuracy": 0.6,
+          "exact_wrong_sum_adoptions": 1
+        },
+        "c": {
+          "correct": 4,
+          "n": 5,
+          "accuracy": 0.8,
+          "exact_wrong_sum_adoptions": 0
+        }
+      },
+      "Source B's record says {var} = {wrong_val}.": {
+        "b": {
+          "correct": 5,
+          "n": 7,
+          "accuracy": 0.7142857142857143,
+          "exact_wrong_sum_adoptions": 0
+        },
+        "c": {
+          "correct": 3,
+          "n": 5,
+          "accuracy": 0.6,
+          "exact_wrong_sum_adoptions": 0
+        }
+      }
+    },
+    "subtle": {
+      "A later note lists {var} as {wrong_val}.": {
+        "a": {
+          "correct": 3,
+          "n": 4,
+          "accuracy": 0.75,
+          "exact_wrong_sum_adoptions": 1
+        },
+        "b": {
+          "correct": 0,
+          "n": 3,
+          "accuracy": 0.0,
+          "exact_wrong_sum_adoptions": 2
+        },
+        "c": {
+          "correct": 0,
+          "n": 5,
+          "accuracy": 0.0,
+          "exact_wrong_sum_adoptions": 2
+        }
+      },
+      "A later entry gives {var} = {wrong_val}.": {
+        "a": {
+          "correct": 0,
+          "n": 7,
+          "accuracy": 0.0,
+          "exact_wrong_sum_adoptions": 6
+        },
+        "b": {
+          "correct": 0,
+          "n": 3,
+          "accuracy": 0.0,
+          "exact_wrong_sum_adoptions": 1
+        },
+        "c": {
+          "correct": 0,
+          "n": 7,
+          "accuracy": 0.0,
+          "exact_wrong_sum_adoptions": 4
+        }
+      },
+      "A later note records {var} = {wrong_val}.": {
+        "a": {
+          "correct": 0,
+          "n": 4,
+          "accuracy": 0.0,
+          "exact_wrong_sum_adoptions": 2
+        },
+        "b": {
+          "correct": 0,
+          "n": 4,
+          "accuracy": 0.0,
+          "exact_wrong_sum_adoptions": 3
+        },
+        "c": {
+          "correct": 0,
+          "n": 2,
+          "accuracy": 0.0,
+          "exact_wrong_sum_adoptions": 1
+        }
+      },
+      "A later record contains {var} = {wrong_val}.": {
+        "a": {
+          "correct": 7,
+          "n": 8,
+          "accuracy": 0.875,
+          "exact_wrong_sum_adoptions": 0
+        },
+        "b": {
+          "correct": 0,
+          "n": 2,
+          "accuracy": 0.0,
+          "exact_wrong_sum_adoptions": 2
+        },
+        "c": {
+          "correct": 0,
+          "n": 1,
+          "accuracy": 0.0,
+          "exact_wrong_sum_adoptions": 1
+        }
+      }
+    }
+  },
+  "by_condition_injected_var": {
+    "strong_scope": {
+      "a": {
+        "correct": 20,
+        "n": 20,
+        "accuracy": 1.0,
+        "exact_wrong_sum_adoptions": 0
+      },
+      "b": {
+        "correct": 16,
+        "n": 16,
+        "accuracy": 1.0,
+        "exact_wrong_sum_adoptions": 0
+      },
+      "c": {
+        "correct": 14,
+        "n": 14,
+        "accuracy": 1.0,
+        "exact_wrong_sum_adoptions": 0
+      }
+    },
+    "medium_scope": {
+      "a": {
+        "correct": 17,
+        "n": 17,
+        "accuracy": 1.0,
+        "exact_wrong_sum_adoptions": 0
+      },
+      "b": {
+        "correct": 16,
+        "n": 17,
+        "accuracy": 0.9411764705882353,
+        "exact_wrong_sum_adoptions": 0
+      },
+      "c": {
+        "correct": 16,
+        "n": 16,
+        "accuracy": 1.0,
+        "exact_wrong_sum_adoptions": 0
+      }
+    },
+    "weak_scope": {
+      "a": {
+        "correct": 14,
+        "n": 14,
+        "accuracy": 1.0,
+        "exact_wrong_sum_adoptions": 0
+      },
+      "b": {
+        "correct": 15,
+        "n": 19,
+        "accuracy": 0.7894736842105263,
+        "exact_wrong_sum_adoptions": 1
+      },
+      "c": {
+        "correct": 13,
+        "n": 17,
+        "accuracy": 0.7647058823529411,
+        "exact_wrong_sum_adoptions": 0
+      }
+    },
+    "subtle": {
+      "a": {
+        "correct": 10,
+        "n": 23,
+        "accuracy": 0.43478260869565216,
+        "exact_wrong_sum_adoptions": 9
+      },
+      "b": {
+        "correct": 0,
+        "n": 12,
+        "accuracy": 0.0,
+        "exact_wrong_sum_adoptions": 8
+      },
+      "c": {
+        "correct": 0,
+        "n": 15,
+        "accuracy": 0.0,
+        "exact_wrong_sum_adoptions": 8
+      }
+    }
+  },
+  "by_condition_abs_offset": {
+    "strong_scope": {
+      "2": {
+        "correct": 10,
+        "n": 10,
+        "accuracy": 1.0,
+        "exact_wrong_sum_adoptions": 0
+      },
+      "3": {
+        "correct": 9,
+        "n": 9,
+        "accuracy": 1.0,
+        "exact_wrong_sum_adoptions": 0
+      },
+      "5": {
+        "correct": 13,
+        "n": 13,
+        "accuracy": 1.0,
+        "exact_wrong_sum_adoptions": 0
+      },
+      "7": {
+        "correct": 18,
+        "n": 18,
+        "accuracy": 1.0,
+        "exact_wrong_sum_adoptions": 0
+      }
+    },
+    "medium_scope": {
+      "2": {
+        "correct": 10,
+        "n": 10,
+        "accuracy": 1.0,
+        "exact_wrong_sum_adoptions": 0
+      },
+      "3": {
+        "correct": 20,
+        "n": 20,
+        "accuracy": 1.0,
+        "exact_wrong_sum_adoptions": 0
+      },
+      "5": {
+        "correct": 7,
+        "n": 8,
+        "accuracy": 0.875,
+        "exact_wrong_sum_adoptions": 0
+      },
+      "7": {
+        "correct": 12,
+        "n": 12,
+        "accuracy": 1.0,
+        "exact_wrong_sum_adoptions": 0
+      }
+    },
+    "weak_scope": {
+      "2": {
+        "correct": 12,
+        "n": 14,
+        "accuracy": 0.8571428571428571,
+        "exact_wrong_sum_adoptions": 0
+      },
+      "3": {
+        "correct": 8,
+        "n": 9,
+        "accuracy": 0.8888888888888888,
+        "exact_wrong_sum_adoptions": 1
+      },
+      "5": {
+        "correct": 11,
+        "n": 14,
+        "accuracy": 0.7857142857142857,
+        "exact_wrong_sum_adoptions": 0
+      },
+      "7": {
+        "correct": 11,
+        "n": 13,
+        "accuracy": 0.8461538461538461,
+        "exact_wrong_sum_adoptions": 0
+      }
+    },
+    "subtle": {
+      "2": {
+        "correct": 1,
+        "n": 13,
+        "accuracy": 0.07692307692307693,
+        "exact_wrong_sum_adoptions": 7
+      },
+      "3": {
+        "correct": 1,
+        "n": 6,
+        "accuracy": 0.16666666666666666,
+        "exact_wrong_sum_adoptions": 5
+      },
+      "5": {
+        "correct": 2,
+        "n": 16,
+        "accuracy": 0.125,
+        "exact_wrong_sum_adoptions": 6
+      },
+      "7": {
+        "correct": 6,
+        "n": 15,
+        "accuracy": 0.4,
+        "exact_wrong_sum_adoptions": 7
+      }
+    }
+  },
+  "primary_wrong_answer_modes": {
+    "mistakes": 49,
+    "exact_wrong_sum_adoptions": 26,
+    "exact_wrong_sum_rate_all_trials": 0.13,
+    "exact_wrong_sum_rate_among_mistakes": 0.5306122448979592,
+    "no_numeric_answer": 0,
+    "other_numeric_wrong": 23,
+    "first_20_examples": [
+      {
+        "condition": "medium_scope",
+        "trial_idx": 10,
+        "target_key": "127:348:215",
+        "expected": 690,
+        "answer": 775,
+        "wrong_sum": 685,
+        "injected_var": "b",
+        "injected_wrong_val": 343,
+        "template": "In a separate historical dataset, Source B logged {var} = {wrong_val}."
+      },
+      {
+        "condition": "weak_scope",
+        "trial_idx": 8,
+        "target_key": "492:137:284",
+        "expected": 913,
+        "answer": 923,
+        "wrong_sum": 920,
+        "injected_var": "c",
+        "injected_wrong_val": 291,
+        "template": "Source B's record says {var} = {wrong_val}."
+      },
+      {
+        "condition": "weak_scope",
+        "trial_idx": 16,
+        "target_key": "263:184:439",
+        "expected": 886,
+        "answer": 666,
+        "wrong_sum": 881,
+        "injected_var": "b",
+        "injected_wrong_val": 179,
+        "template": "Source B reports {var} = {wrong_val}."
+      },
+      {
+        "condition": "weak_scope",
+        "trial_idx": 26,
+        "target_key": "263:184:439",
+        "expected": 886,
+        "answer": 636,
+        "wrong_sum": 891,
+        "injected_var": "b",
+        "injected_wrong_val": 189,
+        "template": "Source B's record says {var} = {wrong_val}."
+      },
+      {
+        "condition": "weak_scope",
+        "trial_idx": 29,
+        "target_key": "158:423:376",
+        "expected": 957,
+        "answer": 967,
+        "wrong_sum": 964,
+        "injected_var": "c",
+        "injected_wrong_val": 383,
+        "template": "Source B lists {var} = {wrong_val}."
+      },
+      {
+        "condition": "weak_scope",
+        "trial_idx": 41,
+        "target_key": "263:184:439",
+        "expected": 886,
+        "answer": 889,
+        "wrong_sum": 889,
+        "injected_var": "b",
+        "injected_wrong_val": 187,
+        "template": "Source B reports {var} = {wrong_val}."
+      },
+      {
+        "condition": "weak_scope",
+        "trial_idx": 44,
+        "target_key": "158:423:376",
+        "expected": 957,
+        "answer": 956,
+        "wrong_sum": 959,
+        "injected_var": "c",
+        "injected_wrong_val": 378,
+        "template": "Source B reports {var} = {wrong_val}."
+      },
+      {
+        "condition": "weak_scope",
+        "trial_idx": 47,
+        "target_key": "371:256:108",
+        "expected": 735,
+        "answer": 585,
+        "wrong_sum": 737,
+        "injected_var": "c",
+        "injected_wrong_val": 110,
+        "template": "Source B's record says {var} = {wrong_val}."
+      },
+      {
+        "condition": "weak_scope",
+        "trial_idx": 49,
+        "target_key": "158:423:376",
+        "expected": 957,
+        "answer": 741,
+        "wrong_sum": 952,
+        "injected_var": "b",
+        "injected_wrong_val": 418,
+        "template": "Source B's record says {var} = {wrong_val}."
+      },
+      {
+        "condition": "subtle",
+        "trial_idx": 0,
+        "target_key": "127:348:215",
+        "expected": 690,
+        "answer": 715,
+        "wrong_sum": 685,
+        "injected_var": "b",
+        "injected_wrong_val": 343,
+        "template": "A later note lists {var} as {wrong_val}."
+      },
+      {
+        "condition": "subtle",
+        "trial_idx": 1,
+        "target_key": "263:184:439",
+        "expected": 886,
+        "answer": 1093,
+        "wrong_sum": 893,
+        "injected_var": "b",
+        "injected_wrong_val": 191,
+        "template": "A later entry gives {var} = {wrong_val}."
+      },
+      {
+        "condition": "subtle",
+        "trial_idx": 2,
+        "target_key": "371:256:108",
+        "expected": 735,
+        "answer": 737,
+        "wrong_sum": 737,
+        "injected_var": "b",
+        "injected_wrong_val": 258,
+        "template": "A later note records {var} = {wrong_val}."
+      },
+      {
+        "condition": "subtle",
+        "trial_idx": 3,
+        "target_key": "492:137:284",
+        "expected": 913,
+        "answer": 906,
+        "wrong_sum": 906,
+        "injected_var": "c",
+        "injected_wrong_val": 277,
+        "template": "A later note records {var} = {wrong_val}."
+      },
+      {
+        "condition": "subtle",
+        "trial_idx": 5,
+        "target_key": "127:348:215",
+        "expected": 690,
+        "answer": 697,
+        "wrong_sum": 697,
+        "injected_var": "a",
+        "injected_wrong_val": 134,
+        "template": "A later entry gives {var} = {wrong_val}."
+      },
+      {
+        "condition": "subtle",
+        "trial_idx": 6,
+        "target_key": "263:184:439",
+        "expected": 886,
+        "answer": 893,
+        "wrong_sum": 893,
+        "injected_var": "a",
+        "injected_wrong_val": 270,
+        "template": "A later entry gives {var} = {wrong_val}."
+      },
+      {
+        "condition": "subtle",
+        "trial_idx": 8,
+        "target_key": "492:137:284",
+        "expected": 913,
+        "answer": 916,
+        "wrong_sum": 918,
+        "injected_var": "a",
+        "injected_wrong_val": 497,
+        "template": "A later entry gives {var} = {wrong_val}."
+      },
+      {
+        "condition": "subtle",
+        "trial_idx": 9,
+        "target_key": "158:423:376",
+        "expected": 957,
+        "answer": 552,
+        "wrong_sum": 952,
+        "injected_var": "c",
+        "injected_wrong_val": 371,
+        "template": "A later note lists {var} as {wrong_val}."
+      },
+      {
+        "condition": "subtle",
+        "trial_idx": 10,
+        "target_key": "127:348:215",
+        "expected": 690,
+        "answer": 440,
+        "wrong_sum": 688,
+        "injected_var": "c",
+        "injected_wrong_val": 213,
+        "template": "A later entry gives {var} = {wrong_val}."
+      },
+      {
+        "condition": "subtle",
+        "trial_idx": 12,
+        "target_key": "371:256:108",
+        "expected": 735,
+        "answer": 740,
+        "wrong_sum": 740,
+        "injected_var": "b",
+        "injected_wrong_val": 261,
+        "template": "A later note records {var} = {wrong_val}."
+      },
+      {
+        "condition": "subtle",
+        "trial_idx": 13,
+        "target_key": "492:137:284",
+        "expected": 913,
+        "answer": 906,
+        "wrong_sum": 906,
+        "injected_var": "a",
+        "injected_wrong_val": 485,
+        "template": "A later note records {var} = {wrong_val}."
+      }
+    ]
+  },
+  "medium_scope_mistakes": [
+    {
+      "condition": "medium_scope",
+      "trial_idx": 10,
+      "target_key": "127:348:215",
+      "expected": 690,
+      "answer": 775,
+      "wrong_sum": 685,
+      "injected_var": "b",
+      "injected_original_val": 348,
+      "injected_wrong_val": 343,
+      "injected_sentence": "In a separate historical dataset, Source B logged b = 343.",
+      "template": "In a separate historical dataset, Source B logged {var} = {wrong_val}.",
+      "mode": "other_numeric_wrong"
+    }
+  ],
+  "weak_scope_mistakes": [
+    {
+      "condition": "weak_scope",
+      "trial_idx": 8,
+      "target_key": "492:137:284",
+      "expected": 913,
+      "answer": 923,
+      "wrong_sum": 920,
+      "injected_var": "c",
+      "injected_original_val": 284,
+      "injected_wrong_val": 291,
+      "injected_sentence": "Source B's record says c = 291.",
+      "template": "Source B's record says {var} = {wrong_val}.",
+      "mode": "other_numeric_wrong"
+    },
+    {
+      "condition": "weak_scope",
+      "trial_idx": 16,
+      "target_key": "263:184:439",
+      "expected": 886,
+      "answer": 666,
+      "wrong_sum": 881,
+      "injected_var": "b",
+      "injected_original_val": 184,
+      "injected_wrong_val": 179,
+      "injected_sentence": "Source B reports b = 179.",
+      "template": "Source B reports {var} = {wrong_val}.",
+      "mode": "other_numeric_wrong"
+    },
+    {
+      "condition": "weak_scope",
+      "trial_idx": 26,
+      "target_key": "263:184:439",
+      "expected": 886,
+      "answer": 636,
+      "wrong_sum": 891,
+      "injected_var": "b",
+      "injected_original_val": 184,
+      "injected_wrong_val": 189,
+      "injected_sentence": "Source B's record says b = 189.",
+      "template": "Source B's record says {var} = {wrong_val}.",
+      "mode": "other_numeric_wrong"
+    },
+    {
+      "condition": "weak_scope",
+      "trial_idx": 29,
+      "target_key": "158:423:376",
+      "expected": 957,
+      "answer": 967,
+      "wrong_sum": 964,
+      "injected_var": "c",
+      "injected_original_val": 376,
+      "injected_wrong_val": 383,
+      "injected_sentence": "Source B lists c = 383.",
+      "template": "Source B lists {var} = {wrong_val}.",
+      "mode": "other_numeric_wrong"
+    },
+    {
+      "condition": "weak_scope",
+      "trial_idx": 41,
+      "target_key": "263:184:439",
+      "expected": 886,
+      "answer": 889,
+      "wrong_sum": 889,
+      "injected_var": "b",
+      "injected_original_val": 184,
+      "injected_wrong_val": 187,
+      "injected_sentence": "Source B reports b = 187.",
+      "template": "Source B reports {var} = {wrong_val}.",
+      "mode": "exact_wrong_sum_adoption"
+    },
+    {
+      "condition": "weak_scope",
+      "trial_idx": 44,
+      "target_key": "158:423:376",
+      "expected": 957,
+      "answer": 956,
+      "wrong_sum": 959,
+      "injected_var": "c",
+      "injected_original_val": 376,
+      "injected_wrong_val": 378,
+      "injected_sentence": "Source B reports c = 378.",
+      "template": "Source B reports {var} = {wrong_val}.",
+      "mode": "other_numeric_wrong"
+    },
+    {
+      "condition": "weak_scope",
+      "trial_idx": 47,
+      "target_key": "371:256:108",
+      "expected": 735,
+      "answer": 585,
+      "wrong_sum": 737,
+      "injected_var": "c",
+      "injected_original_val": 108,
+      "injected_wrong_val": 110,
+      "injected_sentence": "Source B's record says c = 110.",
+      "template": "Source B's record says {var} = {wrong_val}.",
+      "mode": "other_numeric_wrong"
+    },
+    {
+      "condition": "weak_scope",
+      "trial_idx": 49,
+      "target_key": "158:423:376",
+      "expected": 957,
+      "answer": 741,
+      "wrong_sum": 952,
+      "injected_var": "b",
+      "injected_original_val": 423,
+      "injected_wrong_val": 418,
+      "injected_sentence": "Source B's record says b = 418.",
+      "template": "Source B's record says {var} = {wrong_val}.",
+      "mode": "other_numeric_wrong"
+    }
+  ],
+  "subtle_mistakes": [
+    {
+      "condition": "subtle",
+      "trial_idx": 0,
+      "target_key": "127:348:215",
+      "expected": 690,
+      "answer": 715,
+      "wrong_sum": 685,
+      "injected_var": "b",
+      "injected_original_val": 348,
+      "injected_wrong_val": 343,
+      "injected_sentence": "A later note lists b as 343.",
+      "template": "A later note lists {var} as {wrong_val}.",
+      "mode": "other_numeric_wrong"
+    },
+    {
+      "condition": "subtle",
+      "trial_idx": 1,
+      "target_key": "263:184:439",
+      "expected": 886,
+      "answer": 1093,
+      "wrong_sum": 893,
+      "injected_var": "b",
+      "injected_original_val": 184,
+      "injected_wrong_val": 191,
+      "injected_sentence": "A later entry gives b = 191.",
+      "template": "A later entry gives {var} = {wrong_val}.",
+      "mode": "other_numeric_wrong"
+    },
+    {
+      "condition": "subtle",
+      "trial_idx": 2,
+      "target_key": "371:256:108",
+      "expected": 735,
+      "answer": 737,
+      "wrong_sum": 737,
+      "injected_var": "b",
+      "injected_original_val": 256,
+      "injected_wrong_val": 258,
+      "injected_sentence": "A later note records b = 258.",
+      "template": "A later note records {var} = {wrong_val}.",
+      "mode": "exact_wrong_sum_adoption"
+    },
+    {
+      "condition": "subtle",
+      "trial_idx": 3,
+      "target_key": "492:137:284",
+      "expected": 913,
+      "answer": 906,
+      "wrong_sum": 906,
+      "injected_var": "c",
+      "injected_original_val": 284,
+      "injected_wrong_val": 277,
+      "injected_sentence": "A later note records c = 277.",
+      "template": "A later note records {var} = {wrong_val}.",
+      "mode": "exact_wrong_sum_adoption"
+    },
+    {
+      "condition": "subtle",
+      "trial_idx": 5,
+      "target_key": "127:348:215",
+      "expected": 690,
+      "answer": 697,
+      "wrong_sum": 697,
+      "injected_var": "a",
+      "injected_original_val": 127,
+      "injected_wrong_val": 134,
+      "injected_sentence": "A later entry gives a = 134.",
+      "template": "A later entry gives {var} = {wrong_val}.",
+      "mode": "exact_wrong_sum_adoption"
+    },
+    {
+      "condition": "subtle",
+      "trial_idx": 6,
+      "target_key": "263:184:439",
+      "expected": 886,
+      "answer": 893,
+      "wrong_sum": 893,
+      "injected_var": "a",
+      "injected_original_val": 263,
+      "injected_wrong_val": 270,
+      "injected_sentence": "A later entry gives a = 270.",
+      "template": "A later entry gives {var} = {wrong_val}.",
+      "mode": "exact_wrong_sum_adoption"
+    },
+    {
+      "condition": "subtle",
+      "trial_idx": 8,
+      "target_key": "492:137:284",
+      "expected": 913,
+      "answer": 916,
+      "wrong_sum": 918,
+      "injected_var": "a",
+      "injected_original_val": 492,
+      "injected_wrong_val": 497,
+      "injected_sentence": "A later entry gives a = 497.",
+      "template": "A later entry gives {var} = {wrong_val}.",
+      "mode": "other_numeric_wrong"
+    },
+    {
+      "condition": "subtle",
+      "trial_idx": 9,
+      "target_key": "158:423:376",
+      "expected": 957,
+      "answer": 552,
+      "wrong_sum": 952,
+      "injected_var": "c",
+      "injected_original_val": 376,
+      "injected_wrong_val": 371,
+      "injected_sentence": "A later note lists c as 371.",
+      "template": "A later note lists {var} as {wrong_val}.",
+      "mode": "other_numeric_wrong"
+    },
+    {
+      "condition": "subtle",
+      "trial_idx": 10,
+      "target_key": "127:348:215",
+      "expected": 690,
+      "answer": 440,
+      "wrong_sum": 688,
+      "injected_var": "c",
+      "injected_original_val": 215,
+      "injected_wrong_val": 213,
+      "injected_sentence": "A later entry gives c = 213.",
+      "template": "A later entry gives {var} = {wrong_val}.",
+      "mode": "other_numeric_wrong"
+    },
+    {
+      "condition": "subtle",
+      "trial_idx": 12,
+      "target_key": "371:256:108",
+      "expected": 735,
+      "answer": 740,
+      "wrong_sum": 740,
+      "injected_var": "b",
+      "injected_original_val": 256,
+      "injected_wrong_val": 261,
+      "injected_sentence": "A later note records b = 261.",
+      "template": "A later note records {var} = {wrong_val}.",
+      "mode": "exact_wrong_sum_adoption"
+    },
+    {
+      "condition": "subtle",
+      "trial_idx": 13,
+      "target_key": "492:137:284",
+      "expected": 913,
+      "answer": 906,
+      "wrong_sum": 906,
+      "injected_var": "a",
+      "injected_original_val": 492,
+      "injected_wrong_val": 485,
+      "injected_sentence": "A later note records a = 485.",
+      "template": "A later note records {var} = {wrong_val}.",
+      "mode": "exact_wrong_sum_adoption"
+    },
+    {
+      "condition": "subtle",
+      "trial_idx": 14,
+      "target_key": "158:423:376",
+      "expected": 957,
+      "answer": 952,
+      "wrong_sum": 952,
+      "injected_var": "b",
+      "injected_original_val": 423,
+      "injected_wrong_val": 418,
+      "injected_sentence": "A later record contains b = 418.",
+      "template": "A later record contains {var} = {wrong_val}.",
+      "mode": "exact_wrong_sum_adoption"
+    },
+    {
+      "condition": "subtle",
+      "trial_idx": 15,
+      "target_key": "127:348:215",
+      "expected": 690,
+      "answer": 693,
+      "wrong_sum": 693,
+      "injected_var": "c",
+      "injected_original_val": 215,
+      "injected_wrong_val": 218,
+      "injected_sentence": "A later entry gives c = 218.",
+      "template": "A later entry gives {var} = {wrong_val}.",
+      "mode": "exact_wrong_sum_adoption"
+    },
+    {
+      "condition": "subtle",
+      "trial_idx": 16,
+      "target_key": "263:184:439",
+      "expected": 886,
+      "answer": 887,
+      "wrong_sum": 888,
+      "injected_var": "a",
+      "injected_original_val": 263,
+      "injected_wrong_val": 265,
+      "injected_sentence": "A later note records a = 265.",
+      "template": "A later note records {var} = {wrong_val}.",
+      "mode": "other_numeric_wrong"
+    },
+    {
+      "condition": "subtle",
+      "trial_idx": 17,
+      "target_key": "371:256:108",
+      "expected": 735,
+      "answer": 730,
+      "wrong_sum": 730,
+      "injected_var": "a",
+      "injected_original_val": 371,
+      "injected_wrong_val": 366,
+      "injected_sentence": "A later entry gives a = 366.",
+      "template": "A later entry gives {var} = {wrong_val}.",
+      "mode": "exact_wrong_sum_adoption"
+    },
+    {
+      "condition": "subtle",
+      "trial_idx": 19,
+      "target_key": "158:423:376",
+      "expected": 957,
+      "answer": 953,
+      "wrong_sum": 950,
+      "injected_var": "a",
+      "injected_original_val": 158,
+      "injected_wrong_val": 151,
+      "injected_sentence": "A later note records a = 151.",
+      "template": "A later note records {var} = {wrong_val}.",
+      "mode": "other_numeric_wrong"
+    },
+    {
+      "condition": "subtle",
+      "trial_idx": 20,
+      "target_key": "127:348:215",
+      "expected": 690,
+      "answer": 697,
+      "wrong_sum": 697,
+      "injected_var": "c",
+      "injected_original_val": 215,
+      "injected_wrong_val": 222,
+      "injected_sentence": "A later entry gives c = 222.",
+      "template": "A later entry gives {var} = {wrong_val}.",
+      "mode": "exact_wrong_sum_adoption"
+    },
+    {
+      "condition": "subtle",
+      "trial_idx": 21,
+      "target_key": "263:184:439",
+      "expected": 886,
+      "answer": 889,
+      "wrong_sum": 889,
+      "injected_var": "c",
+      "injected_original_val": 439,
+      "injected_wrong_val": 442,
+      "injected_sentence": "A later entry gives c = 442.",
+      "template": "A later entry gives {var} = {wrong_val}.",
+      "mode": "exact_wrong_sum_adoption"
+    },
+    {
+      "condition": "subtle",
+      "trial_idx": 23,
+      "target_key": "492:137:284",
+      "expected": 913,
+      "answer": 908,
+      "wrong_sum": 908,
+      "injected_var": "a",
+      "injected_original_val": 492,
+      "injected_wrong_val": 487,
+      "injected_sentence": "A later entry gives a = 487.",
+      "template": "A later entry gives {var} = {wrong_val}.",
+      "mode": "exact_wrong_sum_adoption"
+    },
+    {
+      "condition": "subtle",
+      "trial_idx": 24,
+      "target_key": "158:423:376",
+      "expected": 957,
+      "answer": 555,
+      "wrong_sum": 955,
+      "injected_var": "c",
+      "injected_original_val": 376,
+      "injected_wrong_val": 374,
+      "injected_sentence": "A later note lists c as 374.",
+      "template": "A later note lists {var} as {wrong_val}.",
+      "mode": "other_numeric_wrong"
+    },
+    {
+      "condition": "subtle",
+      "trial_idx": 25,
+      "target_key": "127:348:215",
+      "expected": 690,
+      "answer": 692,
+      "wrong_sum": 692,
+      "injected_var": "a",
+      "injected_original_val": 127,
+      "injected_wrong_val": 129,
+      "injected_sentence": "A later note records a = 129.",
+      "template": "A later note records {var} = {wrong_val}.",
+      "mode": "exact_wrong_sum_adoption"
+    },
+    {
+      "condition": "subtle",
+      "trial_idx": 26,
+      "target_key": "263:184:439",
+      "expected": 886,
+      "answer": 891,
+      "wrong_sum": 891,
+      "injected_var": "a",
+      "injected_original_val": 263,
+      "injected_wrong_val": 268,
+      "injected_sentence": "A later entry gives a = 268.",
+      "template": "A later entry gives {var} = {wrong_val}.",
+      "mode": "exact_wrong_sum_adoption"
+    },
+    {
+      "condition": "subtle",
+      "trial_idx": 27,
+      "target_key": "371:256:108",
+      "expected": 735,
+      "answer": 700,
+      "wrong_sum": 740,
+      "injected_var": "c",
+      "injected_original_val": 108,
+      "injected_wrong_val": 113,
+      "injected_sentence": "A later entry gives c = 113.",
+      "template": "A later entry gives {var} = {wrong_val}.",
+      "mode": "other_numeric_wrong"
+    },
+    {
+      "condition": "subtle",
+      "trial_idx": 28,
+      "target_key": "492:137:284",
+      "expected": 913,
+      "answer": 915,
+      "wrong_sum": 915,
+      "injected_var": "b",
+      "injected_original_val": 137,
+      "injected_wrong_val": 139,
+      "injected_sentence": "A later note lists b as 139.",
+      "template": "A later note lists {var} as {wrong_val}.",
+      "mode": "exact_wrong_sum_adoption"
+    },
+    {
+      "condition": "subtle",
+      "trial_idx": 30,
+      "target_key": "127:348:215",
+      "expected": 690,
+      "answer": 495,
+      "wrong_sum": 695,
+      "injected_var": "c",
+      "injected_original_val": 215,
+      "injected_wrong_val": 220,
+      "injected_sentence": "A later note lists c as 220.",
+      "template": "A later note lists {var} as {wrong_val}.",
+      "mode": "other_numeric_wrong"
+    },
+    {
+      "condition": "subtle",
+      "trial_idx": 31,
+      "target_key": "263:184:439",
+      "expected": 886,
+      "answer": 860,
+      "wrong_sum": 881,
+      "injected_var": "a",
+      "injected_original_val": 263,
+      "injected_wrong_val": 258,
+      "injected_sentence": "A later record contains a = 258.",
+      "template": "A later record contains {var} = {wrong_val}.",
+      "mode": "other_numeric_wrong"
+    },
+    {
+      "condition": "subtle",
+      "trial_idx": 32,
+      "target_key": "371:256:108",
+      "expected": 735,
+      "answer": 727,
+      "wrong_sum": 733,
+      "injected_var": "c",
+      "injected_original_val": 108,
+      "injected_wrong_val": 106,
+      "injected_sentence": "A later entry gives c = 106.",
+      "template": "A later entry gives {var} = {wrong_val}.",
+      "mode": "other_numeric_wrong"
+    },
+    {
+      "condition": "subtle",
+      "trial_idx": 33,
+      "target_key": "492:137:284",
+      "expected": 913,
+      "answer": 915,
+      "wrong_sum": 915,
+      "injected_var": "c",
+      "injected_original_val": 284,
+      "injected_wrong_val": 286,
+      "injected_sentence": "A later record contains c = 286.",
+      "template": "A later record contains {var} = {wrong_val}.",
+      "mode": "exact_wrong_sum_adoption"
+    },
+    {
+      "condition": "subtle",
+      "trial_idx": 34,
+      "target_key": "158:423:376",
+      "expected": 957,
+      "answer": 964,
+      "wrong_sum": 964,
+      "injected_var": "b",
+      "injected_original_val": 423,
+      "injected_wrong_val": 430,
+      "injected_sentence": "A later record contains b = 430.",
+      "template": "A later record contains {var} = {wrong_val}.",
+      "mode": "exact_wrong_sum_adoption"
+    },
+    {
+      "condition": "subtle",
+      "trial_idx": 36,
+      "target_key": "263:184:439",
+      "expected": 886,
+      "answer": 889,
+      "wrong_sum": 889,
+      "injected_var": "c",
+      "injected_original_val": 439,
+      "injected_wrong_val": 442,
+      "injected_sentence": "A later note lists c as 442.",
+      "template": "A later note lists {var} as {wrong_val}.",
+      "mode": "exact_wrong_sum_adoption"
+    },
+    {
+      "condition": "subtle",
+      "trial_idx": 37,
+      "target_key": "371:256:108",
+      "expected": 735,
+      "answer": 733,
+      "wrong_sum": 733,
+      "injected_var": "b",
+      "injected_original_val": 256,
+      "injected_wrong_val": 254,
+      "injected_sentence": "A later entry gives b = 254.",
+      "template": "A later entry gives {var} = {wrong_val}.",
+      "mode": "exact_wrong_sum_adoption"
+    },
+    {
+      "condition": "subtle",
+      "trial_idx": 38,
+      "target_key": "492:137:284",
+      "expected": 913,
+      "answer": 906,
+      "wrong_sum": 906,
+      "injected_var": "c",
+      "injected_original_val": 284,
+      "injected_wrong_val": 277,
+      "injected_sentence": "A later note lists c as 277.",
+      "template": "A later note lists {var} as {wrong_val}.",
+      "mode": "exact_wrong_sum_adoption"
+    },
+    {
+      "condition": "subtle",
+      "trial_idx": 39,
+      "target_key": "158:423:376",
+      "expected": 957,
+      "answer": 952,
+      "wrong_sum": 952,
+      "injected_var": "a",
+      "injected_original_val": 158,
+      "injected_wrong_val": 153,
+      "injected_sentence": "A later entry gives a = 153.",
+      "template": "A later entry gives {var} = {wrong_val}.",
+      "mode": "exact_wrong_sum_adoption"
+    },
+    {
+      "condition": "subtle",
+      "trial_idx": 40,
+      "target_key": "127:348:215",
+      "expected": 690,
+      "answer": 688,
+      "wrong_sum": 688,
+      "injected_var": "b",
+      "injected_original_val": 348,
+      "injected_wrong_val": 346,
+      "injected_sentence": "A later note records b = 346.",
+      "template": "A later note records {var} = {wrong_val}.",
+      "mode": "exact_wrong_sum_adoption"
+    },
+    {
+      "condition": "subtle",
+      "trial_idx": 41,
+      "target_key": "263:184:439",
+      "expected": 886,
+      "answer": 1091,
+      "wrong_sum": 891,
+      "injected_var": "b",
+      "injected_original_val": 184,
+      "injected_wrong_val": 189,
+      "injected_sentence": "A later note records b = 189.",
+      "template": "A later note records {var} = {wrong_val}.",
+      "mode": "other_numeric_wrong"
+    },
+    {
+      "condition": "subtle",
+      "trial_idx": 42,
+      "target_key": "371:256:108",
+      "expected": 735,
+      "answer": 700,
+      "wrong_sum": 740,
+      "injected_var": "c",
+      "injected_original_val": 108,
+      "injected_wrong_val": 113,
+      "injected_sentence": "A later note records c = 113.",
+      "template": "A later note records {var} = {wrong_val}.",
+      "mode": "other_numeric_wrong"
+    },
+    {
+      "condition": "subtle",
+      "trial_idx": 44,
+      "target_key": "158:423:376",
+      "expected": 957,
+      "answer": 635,
+      "wrong_sum": 955,
+      "injected_var": "b",
+      "injected_original_val": 423,
+      "injected_wrong_val": 421,
+      "injected_sentence": "A later entry gives b = 421.",
+      "template": "A later entry gives {var} = {wrong_val}.",
+      "mode": "other_numeric_wrong"
+    },
+    {
+      "condition": "subtle",
+      "trial_idx": 47,
+      "target_key": "371:256:108",
+      "expected": 735,
+      "answer": 737,
+      "wrong_sum": 737,
+      "injected_var": "a",
+      "injected_original_val": 371,
+      "injected_wrong_val": 373,
+      "injected_sentence": "A later note lists a as 373.",
+      "template": "A later note lists {var} as {wrong_val}.",
+      "mode": "exact_wrong_sum_adoption"
+    },
+    {
+      "condition": "subtle",
+      "trial_idx": 48,
+      "target_key": "492:137:284",
+      "expected": 913,
+      "answer": 910,
+      "wrong_sum": 910,
+      "injected_var": "c",
+      "injected_original_val": 284,
+      "injected_wrong_val": 281,
+      "injected_sentence": "A later entry gives c = 281.",
+      "template": "A later entry gives {var} = {wrong_val}.",
+      "mode": "exact_wrong_sum_adoption"
+    },
+    {
+      "condition": "subtle",
+      "trial_idx": 49,
+      "target_key": "158:423:376",
+      "expected": 957,
+      "answer": 954,
+      "wrong_sum": 954,
+      "injected_var": "b",
+      "injected_original_val": 423,
+      "injected_wrong_val": 420,
+      "injected_sentence": "A later note lists b as 420.",
+      "template": "A later note lists {var} as {wrong_val}.",
+      "mode": "exact_wrong_sum_adoption"
+    }
+  ],
+  "generated_at": "2026-04-22T02:19:13.584047"
+}
