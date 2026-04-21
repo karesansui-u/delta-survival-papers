@@ -62,6 +62,7 @@ import Survival.BranchingProcessExtinction
 import Survival.QueueStability
 import Survival.BinarySymmetricChannel
 import Survival.FatigueDamage
+import Survival.ConsensusFaultThreshold
 import Survival.ProbabilityConnection
 import Survival.StochasticTotalProduction
 import Survival.CoarseStochasticTotalProduction
