@@ -3,6 +3,7 @@ import Survival.NAESATChernoffCollapse
 import Survival.XORSATChernoffCollapse
 import Survival.QColoringChernoffCollapse
 import Survival.ForbiddenPatternCSPChernoffCollapse
+import Survival.MultiForbiddenPatternCSP
 import Survival.HypergraphColoringChernoffCollapse
 
 /-!
@@ -16,6 +17,7 @@ instances currently formalized in the development:
 * random `k`-XOR-SAT fixed-assignment equation exposure;
 * fixed-coloring `q`-coloring edge exposure;
 * generic finite-alphabet forbidden-pattern exposure;
+* multi-forbidden-pattern witness exposure;
 * fixed-coloring `q`-coloring `k`-uniform hyperedge exposure.
 
 The point is not to add a new concentration proof.  The point is to make the
@@ -217,6 +219,12 @@ def forbiddenPattern
     Survival.ForbiddenPatternCSPTemplate.forbiddenPatternParameters
       alphabet forbidden arity ha hf hforb
 
+/-- A multi-forbidden-pattern domain witness as a Bernoulli bad-event CSP
+exposure model. -/
+def multiForbiddenPattern
+    (W : Survival.MultiForbiddenPatternCSP.Witness) : ExposureModel where
+  parameters := W.parameters
+
 /-- Fixed-coloring `q`-coloring exposure of `k`-uniform hyperedges as a
 Bernoulli bad-event CSP exposure model. -/
 def hypergraphColoring
@@ -255,6 +263,11 @@ theorem forbiddenPattern_badProb
         alphabet forbidden arity :=
   rfl
 
+theorem multiForbiddenPattern_badProb
+    (W : Survival.MultiForbiddenPatternCSP.Witness) :
+    (multiForbiddenPattern W).badProb = W.badProb :=
+  rfl
+
 theorem hypergraphColoring_badProb
     (q : ℝ) (arity : ℕ) (hq : 1 < q) (harity : 1 < arity) :
     (hypergraphColoring q arity hq harity).badProb =
@@ -290,6 +303,12 @@ theorem forbiddenPattern_drift_eq_log_ratio
     Survival.ForbiddenPatternCSPTemplate.forbiddenPatternDrift_eq_log_ratio
       ha hf hforb
 
+theorem multiForbiddenPattern_drift_eq_log_ratio
+    (W : Survival.MultiForbiddenPatternCSP.Witness) :
+    (multiForbiddenPattern W).drift =
+      Real.log (W.totalPatternCount / (W.totalPatternCount - W.forbiddenCount)) := by
+  exact W.drift_eq_log_ratio
+
 theorem hypergraphColoring_drift_eq_log_ratio
     {q : ℝ} {arity : ℕ} (hq : 1 < q) (harity : 1 < arity) :
     (hypergraphColoring q arity hq harity).drift =
@@ -297,6 +316,13 @@ theorem hypergraphColoring_drift_eq_log_ratio
   exact
     Survival.HypergraphColoringChernoffCollapse.hypergraphColoringDrift_eq_log_ratio
       hq harity
+
+theorem hypergraphColoring_eq_multiForbiddenPattern
+    (q : ℝ) (arity : ℕ) (hq : 1 < q) (harity : 1 < arity) :
+    hypergraphColoring q arity hq harity =
+      multiForbiddenPattern
+        (Survival.HypergraphColoringChernoffCollapse.hypergraphColoringWitness
+          q arity hq harity) := rfl
 
 end
 

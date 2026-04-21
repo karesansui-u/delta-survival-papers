@@ -155,6 +155,7 @@ import Survival.QColoringChernoffCollapse
 import Survival.ForbiddenPatternCSPTemplate
 import Survival.ForbiddenPatternCSPExposureProcess
 import Survival.ForbiddenPatternCSPChernoffCollapse
+import Survival.MultiForbiddenPatternCSP
 import Survival.HypergraphColoringChernoffCollapse
 import Survival.BernoulliCSPUniversality
 import Survival.SATPositiveDriftCollapse

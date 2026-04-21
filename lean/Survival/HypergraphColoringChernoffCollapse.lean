@@ -1,4 +1,4 @@
-import Survival.ForbiddenPatternCSPChernoffCollapse
+import Survival.MultiForbiddenPatternCSP
 
 /-!
 # Hypergraph Coloring Chernoff Collapse Bound
@@ -25,6 +25,7 @@ open Survival.BernoulliCSPPathCollapse
 open Survival.ForbiddenPatternCSPTemplate
 open Survival.ForbiddenPatternCSPExposureProcess
 open Survival.ForbiddenPatternCSPChernoffCollapse
+open Survival.MultiForbiddenPatternCSP
 open Survival.HighProbabilityCollapse
 open Survival.StoppingTimeHighProbabilityCollapse
 open Survival.StoppingTimeCollapseEvent
@@ -56,10 +57,33 @@ def hypergraphColoringParameters
     (colorCount_pos hq)
     (monochromaticPatterns_lt_totalPatterns hq harity)
 
+/-- Domain-combinatorial witness for fixed-coloring hypergraph-coloring
+exposure.  The `q` monochromatic local color patterns are the forbidden
+patterns among `q^arity` possible local color patterns. -/
+def hypergraphColoringWitness
+    (q : ℝ) (arity : ℕ) (hq : 1 < q) (harity : 1 < arity) :
+    Witness where
+  alphabet := q
+  arity := arity
+  forbiddenCount := q
+  alphabet_pos := colorCount_pos hq
+  forbiddenCount_pos := colorCount_pos hq
+  forbiddenCount_lt_total := monochromaticPatterns_lt_totalPatterns hq harity
+
+theorem hypergraphColoringParameters_eq_witnessParameters
+    (q : ℝ) (arity : ℕ) (hq : 1 < q) (harity : 1 < arity) :
+    hypergraphColoringParameters q arity hq harity =
+      (hypergraphColoringWitness q arity hq harity).parameters := rfl
+
 theorem hypergraphColoringParameters_badProb
     (q : ℝ) (arity : ℕ) (hq : 1 < q) (harity : 1 < arity) :
     (hypergraphColoringParameters q arity hq harity).badProb =
       hypergraphColoringBadProb q arity := rfl
+
+theorem hypergraphColoring_badProb_eq_witness_badProb
+    (q : ℝ) (arity : ℕ) (hq : 1 < q) (harity : 1 < arity) :
+    hypergraphColoringBadProb q arity =
+      (hypergraphColoringWitness q arity hq harity).badProb := rfl
 
 /-- Mean one-step information-production drift for hypergraph coloring. -/
 def hypergraphColoringDrift
@@ -80,6 +104,11 @@ theorem hypergraphColoringDrift_pos
     (q : ℝ) (arity : ℕ) (hq : 1 < q) (harity : 1 < arity) :
     0 < hypergraphColoringDrift q arity hq harity :=
   (hypergraphColoringParameters q arity hq harity).drift_pos
+
+theorem hypergraphColoringDrift_eq_witnessDrift
+    (q : ℝ) (arity : ℕ) (hq : 1 < q) (harity : 1 < arity) :
+    hypergraphColoringDrift q arity hq harity =
+      (hypergraphColoringWitness q arity hq harity).drift := rfl
 
 /-- Hypergraph-coloring Chernoff/KL count failure profile. -/
 def countChernoffFailureBound

@@ -44,6 +44,7 @@ domain-specific bad-event probability p in (0,1)
 | Chernoff/KL | [`Survival/BernoulliCSPPathChernoff.lean`](Survival/BernoulliCSPPathChernoff.lean) | Count-tail and cumulative-production lower-tail bounds |
 | Operational collapse | [`Survival/BernoulliCSPPathCollapse.lean`](Survival/BernoulliCSPPathCollapse.lean) | Threshold crossing, collapse, stopped-collapse, hitting-time wrappers |
 | Universality wrapper | [`Survival/BernoulliCSPUniversality.lean`](Survival/BernoulliCSPUniversality.lean) | Common interface over all currently instantiated Bernoulli-CSP domains |
+| Post-v1.1 witness bridge | [`Survival/MultiForbiddenPatternCSP.lean`](Survival/MultiForbiddenPatternCSP.lean) | Domain witness `forbiddenCount < alphabet^arity` to forbidden-pattern exposure |
 
 ## Current Instances
 
@@ -55,6 +56,7 @@ domain-specific bad-event probability p in (0,1)
 | Fixed-coloring `q`-coloring edge exposure | `1/q` | `log (q / (q - 1))` for `q > 1` | `QColoringBernoulliTemplate`, `QColoringEdgeExposureProcess`, `QColoringChernoffCollapse` | Derived |
 | Finite-alphabet forbidden-pattern exposure | `forbidden / alphabet^arity` | `log (alphabet^arity / (alphabet^arity - forbidden))` | `ForbiddenPatternCSPTemplate`, `ForbiddenPatternCSPExposureProcess`, `ForbiddenPatternCSPChernoffCollapse` | Derived |
 | Fixed-coloring `q`-coloring `k`-uniform hyperedge exposure | `q / q^k` | `log (q^k / (q^k - q))` for `q > 1`, `k > 1` | `HypergraphColoringChernoffCollapse` | Derived |
+| Multi-forbidden-pattern witness exposure | `forbiddenCount / alphabet^arity` | `log (alphabet^arity / (alphabet^arity - forbiddenCount))` | `MultiForbiddenPatternCSP` | Derived |
 
 ## Shared Output Theorems
 
@@ -75,6 +77,7 @@ The instance constructors are:
 - `BernoulliCSPUniversality.xorSAT`
 - `BernoulliCSPUniversality.qColoring`
 - `BernoulliCSPUniversality.forbiddenPattern`
+- `BernoulliCSPUniversality.multiForbiddenPattern`
 - `BernoulliCSPUniversality.hypergraphColoring`
 
 ## Scope Boundaries
@@ -115,3 +118,6 @@ lake build Survival
 ```
 
 At freeze time the top-level import contains `120` `Survival/*` modules.
+
+Current post-v1.1 development adds `MultiForbiddenPatternCSP`; the top-level
+import contains `121` `Survival/*` modules.
