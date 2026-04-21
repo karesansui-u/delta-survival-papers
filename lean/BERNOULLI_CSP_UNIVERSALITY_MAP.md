@@ -43,6 +43,7 @@ domain-specific bad-event probability p in (0,1)
 | Domain instance | Bad probability | Drift | Instance modules | Status |
 |---|---:|---:|---|---|
 | Random `k`-SAT fixed-assignment clause exposure | `(1/2)^k` | `log (1 / (1 - (1/2)^k))` | `KSATBernoulliTemplate`, `KSATClauseExposureProcess`, `KSATChernoffCollapse` | Derived |
+| Random `k`-NAE-SAT fixed-assignment clause exposure | `(1/2)^(k - 1)` for `k >= 2` | `log (1 / (1 - (1/2)^(k - 1)))` | `NAESATBernoulliTemplate`, `NAESATClauseExposureProcess`, `NAESATChernoffCollapse` | Derived |
 | Random `k`-XOR-SAT fixed-assignment equation exposure | `1/2` | `log 2` | `XORSATBernoulliTemplate`, `XORSATClauseExposureProcess`, `XORSATChernoffCollapse` | Derived |
 | Fixed-coloring `q`-coloring edge exposure | `1/q` | `log (q / (q - 1))` for `q > 1` | `QColoringBernoulliTemplate`, `QColoringEdgeExposureProcess`, `QColoringChernoffCollapse` | Derived |
 
@@ -61,6 +62,7 @@ inherits the same theorem shapes:
 The instance constructors are:
 
 - `BernoulliCSPUniversality.kSAT`
+- `BernoulliCSPUniversality.naeSAT`
 - `BernoulliCSPUniversality.xorSAT`
 - `BernoulliCSPUniversality.qColoring`
 
@@ -69,6 +71,7 @@ The instance constructors are:
 These boundaries are intentional:
 
 - `k`-SAT is fixed-assignment clause exposure, not solver dynamics.
+- NAE-SAT is fixed-assignment clause exposure, not solver dynamics.
 - XOR-SAT is fixed-assignment bad-equation exposure, not rank/nullity dynamics.
 - q-coloring is fixed-coloring edge exposure, not full random graph dependence
   or coloring-algorithm dynamics.
@@ -80,7 +83,6 @@ These boundaries are intentional:
 Good next targets are domains that can expose a clean Bernoulli bad-event rate:
 
 - hypergraph coloring;
-- NAE-SAT;
 - random CSP templates with finite alphabet and one forbidden local pattern;
 - eventually, dependent or adaptive versions after the iid template is fully
   documented.

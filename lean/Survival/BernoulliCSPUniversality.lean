@@ -1,4 +1,5 @@
 import Survival.KSATChernoffCollapse
+import Survival.NAESATChernoffCollapse
 import Survival.XORSATChernoffCollapse
 import Survival.QColoringChernoffCollapse
 
@@ -9,6 +10,7 @@ This module freezes the common interface shared by the Bernoulli bad-event CSP
 instances currently formalized in the development:
 
 * random `k`-SAT fixed-assignment clause exposure;
+* random `k`-NAE-SAT fixed-assignment clause exposure;
 * random `k`-XOR-SAT fixed-assignment equation exposure;
 * fixed-coloring `q`-coloring edge exposure.
 
@@ -188,6 +190,10 @@ end ExposureModel
 def kSAT (k : ℕ) (hk : 0 < k) : ExposureModel where
   parameters := Survival.KSATBernoulliTemplate.kSATParameters k hk
 
+/-- Random `k`-NAE-SAT as a Bernoulli bad-event CSP exposure model. -/
+def naeSAT (k : ℕ) (hk : 1 < k) : ExposureModel where
+  parameters := Survival.NAESATBernoulliTemplate.naeSATParameters k hk
+
 /-- Fixed-assignment random `k`-XOR-SAT as a Bernoulli bad-event CSP exposure
 model. -/
 def xorSAT (k : ℕ) : ExposureModel where
@@ -203,6 +209,11 @@ theorem kSAT_badProb (k : ℕ) (hk : 0 < k) :
       Survival.KSATBernoulliTemplate.kSATBadProb k :=
   rfl
 
+theorem naeSAT_badProb (k : ℕ) (hk : 1 < k) :
+    (naeSAT k hk).badProb =
+      Survival.NAESATBernoulliTemplate.naeSATBadProb k :=
+  rfl
+
 theorem xorSAT_badProb (k : ℕ) :
     (xorSAT k).badProb =
       Survival.XORSATBernoulliTemplate.xorSATBadProb k :=
@@ -216,6 +227,11 @@ theorem qColoring_badProb (q : ℝ) (hq : 1 < q) :
 theorem kSAT_drift_eq (k : ℕ) (hk : 0 < k) :
     (kSAT k hk).drift =
       Survival.KSATBernoulliTemplate.kSATDrift k hk :=
+  rfl
+
+theorem naeSAT_drift_eq (k : ℕ) (hk : 1 < k) :
+    (naeSAT k hk).drift =
+      Survival.NAESATBernoulliTemplate.naeSATDrift k hk :=
   rfl
 
 theorem xorSAT_drift_eq_log_two (k : ℕ) :

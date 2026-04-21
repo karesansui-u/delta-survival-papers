@@ -143,6 +143,9 @@ import Survival.KSATClauseExposureProcess
 import Survival.KSATChernoffCollapse
 import Survival.KSATToSATChernoffBridge
 import Survival.BernoulliCSPToSATBridge
+import Survival.NAESATBernoulliTemplate
+import Survival.NAESATClauseExposureProcess
+import Survival.NAESATChernoffCollapse
 import Survival.XORSATBernoulliTemplate
 import Survival.XORSATClauseExposureProcess
 import Survival.XORSATChernoffCollapse

@@ -3,7 +3,7 @@
 Formal verification of the mathematical framework used across the structural
 persistence papers and supplements.
 
-- **113 imported `Survival/*` modules**
+- **116 imported `Survival/*` modules**
 - `sorry = 0`, `axiom = 0` for the imported development
 - Top-level target: `Survival`
 - SAT/k-SAT finite-horizon chain: frozen as **SAT chain v1.0**
@@ -27,7 +27,7 @@ For the cross-domain Bernoulli-CSP template index, see
 | Stopping-time collapse layer | `StoppingTimeCollapseEvent`, `StoppingTimeHighProbabilityCollapse`, `StoppingTimeSharpDecomposition`, `StoppingTimeCliffWarning` | Hitting-time, stopped-collapse, and sharp finite-horizon decompositions |
 | Finite-state Markov microfoundations | `FiniteStateMarkovRepairChain`, `FiniteStateMarkovStationaryProduction`, `FiniteStateMarkovStationaryLongTimeConcentration`, `ThreeStateStateDependentExample` | Finite path measures, stationary mean production, long-time prefix concentration, concrete examples |
 | SAT actual clause-exposure chain | `SATClauseExposureProcess`, `SATStateDependentClauseExposure`, `SATStateDependentCountMGFProduct`, `SATStateDependentCountChernoffKLAlgebra` | Actual path measure, non-flat outcome-dependent emission, derived MGF product, Chernoff/KL collapse |
-| Bernoulli CSP universality template | `BernoulliCSPTemplate`, `BernoulliCSPPathMeasure`, `BernoulliCSPPathChernoff`, `BernoulliCSPPathCollapse`, `BernoulliCSPUniversality`, `KSATChernoffCollapse`, `XORSATChernoffCollapse`, `QColoringChernoffCollapse` | Reusable Bernoulli bad-event CSP template, k-SAT instance, fixed-assignment XOR-SAT and q-coloring exposure instances, and a common universality interface |
+| Bernoulli CSP universality template | `BernoulliCSPTemplate`, `BernoulliCSPPathMeasure`, `BernoulliCSPPathChernoff`, `BernoulliCSPPathCollapse`, `BernoulliCSPUniversality`, `KSATChernoffCollapse`, `NAESATChernoffCollapse`, `XORSATChernoffCollapse`, `QColoringChernoffCollapse` | Reusable Bernoulli bad-event CSP template, k-SAT / NAE-SAT instances, fixed-assignment XOR-SAT and q-coloring exposure instances, and a common universality interface |
 | SAT second-moment and information theory | `SATFirstMoment`, `SATSecondMoment`, `SecondMomentBound`, `PairCorrelation`, `AsymptoticExponent`, `KLDivergence`, `CorrelatedSecondMoment` | First/second moment SAT facts, overlap decomposition, KL identities, correlated sandwich bounds |
 | Multi-attractor / phase-transition layer | `MultiAttractor`, `TransitionTheorem`, `FreeEnergy` | Basin survival, transition points, free-energy formulation |
 
@@ -101,6 +101,12 @@ edge exposure in `q`-coloring.  Each exposed edge is bad with probability
 multi-valued CSP without claiming full random graph or coloring-algorithm
 dynamics.
 
+### NAE-SAT horizontal expansion
+
+The next Boolean-CSP expansion instantiates the template for fixed-assignment
+`k`-NAE-SAT exposure.  A random signed NAE clause is bad with probability
+`(1 / 2)^(k - 1)` for `k >= 2`, giving the `k=3` drift `log (4 / 3)`.
+
 ---
 
 ## Building
@@ -122,6 +128,7 @@ lake build Survival.KSATChernoffCollapse
 lake build Survival.KSATToSATChernoffBridge
 lake build Survival.XORSATChernoffCollapse
 lake build Survival.QColoringChernoffCollapse
+lake build Survival.NAESATChernoffCollapse
 lake build Survival.BernoulliCSPUniversality
 ```
 
