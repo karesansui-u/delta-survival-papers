@@ -41,7 +41,7 @@ SEED_BASE = 400000
 CONDITIONS = ["zero_sanity", "scoped", "subtle", "structural"]
 PRIMARY_CONDITIONS = ["scoped", "subtle", "structural"]
 CONTEXT_LENGTH = 32_000
-N_TRIALS = 30
+N_TRIALS = 50
 MAX_TOKENS = 512
 
 DEFAULT_MODEL = "gpt-4.1-mini"
@@ -270,7 +270,7 @@ def print_plan(model_name: str, n_trials: int) -> None:
     print(f"Output:         {trials_path(model_name)}")
     print()
     print("Primary prediction:")
-    print("  accuracy(scoped) > accuracy(subtle) > accuracy(structural)")
+    print("  accuracy(zero_sanity) ≈ accuracy(scoped) > accuracy(subtle) > accuracy(structural)")
 
 
 def dry_run(model_name: str, n_trials: int) -> None:
@@ -391,12 +391,18 @@ def summarize(model_name: str) -> dict[str, Any]:
         and acc.get("structural") is not None
         and acc["scoped"] > acc["subtle"] > acc["structural"]
     )
+    zero_sanity_passed = acc.get("zero_sanity") is not None and acc["zero_sanity"] >= 0.80
+    scoped_zero_gap = None
+    scoped_near_zero = None
+    if acc.get("zero_sanity") is not None and acc.get("scoped") is not None:
+        scoped_zero_gap = acc["zero_sanity"] - acc["scoped"]
+        scoped_near_zero = scoped_zero_gap <= 0.10
     strong_support = (
         primary_supported
+        and scoped_near_zero is True
         and (acc["scoped"] - acc["subtle"]) >= 0.20
         and (acc["subtle"] - acc["structural"]) >= 0.20
     )
-    zero_sanity_passed = acc.get("zero_sanity") is not None and acc["zero_sanity"] >= 0.80
 
     summary = {
         "experiment": EXPERIMENT_ID,
@@ -406,6 +412,8 @@ def summarize(model_name: str) -> dict[str, Any]:
         "primary_prediction_supported": primary_supported,
         "strong_support": strong_support,
         "zero_sanity_passed": zero_sanity_passed,
+        "scoped_zero_gap": scoped_zero_gap,
+        "scoped_within_10pt_of_zero_sanity": scoped_near_zero,
         "generated_at": datetime.now().isoformat(),
     }
     summary_path(model_name).write_text(

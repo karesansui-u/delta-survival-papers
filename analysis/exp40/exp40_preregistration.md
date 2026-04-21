@@ -33,12 +33,21 @@ without changing the task family.
 |---|---|
 | Context length | 32K only |
 | Conditions | `zero_sanity`, `scoped`, `subtle`, `structural` |
-| Trials per cell | 30 |
-| Total trials | 120 |
+| Trials per cell | 50 |
+| Total trials | 200 |
+| Temperature | 1.0 |
+| Target sets | 5 target triples reused from Exp.36/39 |
+| Injection position | midpoint of the filler block |
 
 All primary contradiction conditions contain a task-variable-related statement.
 The difference is whether the contradiction is explicitly scoped away,
 unscoped but mild, or structurally impossible.
+
+The temperature, target sets, and midpoint injection policy are inherited from
+Exp.36/39 for comparability. The trial count is increased from 30 to 50 per
+cell because the decisive scoped-vs-subtle comparison may be smaller than the
+structural-vs-zero contrast in Exp.39. No universal power claim is made; the
+larger n is a low-cost precision increase before data collection.
 
 ## 5. Conditions
 
@@ -83,26 +92,31 @@ The model must output only the final integer.
 Primary ordered prediction:
 
 ```text
-accuracy(scoped) > accuracy(subtle) > accuracy(structural)
+accuracy(zero_sanity) ≈ accuracy(scoped) > accuracy(subtle) > accuracy(structural)
 ```
 
 Strong support:
 
 ```text
+accuracy(zero_sanity) - accuracy(scoped) <= 0.10
+and
 accuracy(scoped) - accuracy(subtle) >= 0.20
 and
 accuracy(subtle) - accuracy(structural) >= 0.20
 ```
 
-The first inequality tests whether explicit scope repairs a contradiction-like
-surface conflict. The second tests whether subtle contradiction remains weaker
-than structural contradiction.
+The near-equality diagnostic tests whether explicit scope repairs a
+contradiction-like surface conflict back toward the filler-only sanity level.
+The second inequality tests whether scoped contradiction is less damaging than
+unscoped subtle contradiction. The third tests whether subtle contradiction
+remains weaker than structural contradiction.
 
 ## 8. Secondary Predictions
 
 1. `accuracy(zero_sanity) >= 0.80`.
-2. `accuracy(scoped) >= accuracy(subtle)`.
-3. `accuracy(subtle) >= accuracy(structural)`.
+2. `accuracy(zero_sanity) - accuracy(scoped) <= 0.10`.
+3. `accuracy(scoped) >= accuracy(subtle)`.
+4. `accuracy(subtle) >= accuracy(structural)`.
 
 ## 9. Baseline-Model Test
 
@@ -113,7 +127,24 @@ Fit the same three model classes used in the Exp.36/39 reanalysis:
 3. `structure_aware`
 
 For Exp.40 alone, `token_only` is intentionally uninformative because context
-length is fixed. The decisive comparison is:
+length is fixed.
+
+Pre-specified coding:
+
+| Condition | `quality_blind` coding | `structure_aware` coding |
+|---|---|---|
+| `zero_sanity` | contradiction_present = 0 | zero-like |
+| `scoped` | contradiction_present = 1 | repaired / zero-like |
+| `subtle` | contradiction_present = 1 | subtle-loss |
+| `structural` | contradiction_present = 1 | structural-loss |
+
+Thus `quality_blind` predicts that `scoped`, `subtle`, and `structural` should
+behave similarly after conditioning on context length. The structure-aware
+prediction is different: `scoped` is an in-context repair / scoping
+intervention and should move back toward `zero_sanity`, while `subtle` and
+`structural` remain unscoped losses of different severity.
+
+The decisive comparison is:
 
 ```text
 structure_aware log loss < quality_blind log loss
@@ -129,7 +160,14 @@ The primary prediction is not supported if either:
 2. `accuracy(subtle) <= accuracy(structural)`.
 
 The strong-support criterion fails if the ordered direction holds but either
-margin is below 20 percentage points.
+margin is below 20 percentage points, or if `scoped` is more than 10 percentage
+points below `zero_sanity`.
+
+The scoped-as-repair interpretation is weakened if:
+
+```text
+accuracy(zero_sanity) - accuracy(scoped) > 0.10
+```
 
 The broader structure-aware claim is weakened if the quality-blind model has
 equal or lower log loss than the structure-aware model on Exp.40 primary
@@ -150,3 +188,7 @@ This experiment does not claim a universal contradiction taxonomy. It tests
 whether the structure-aware account improves over a contradiction-presence-only
 baseline under one fixed task family and one model where subtle contradiction is
 known to be measurable.
+
+This is a single-model prospective test. A later secondary confirmation may
+repeat only the most diagnostic scoped-vs-structural contrast on additional
+models, but such replication is outside the Exp.40 primary claim.

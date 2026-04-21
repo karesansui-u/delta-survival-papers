@@ -88,7 +88,9 @@ and structure-aware contradiction type.
 Exp.40 is designed to test the strongest remaining baseline from the Exp.36/39
 reanalysis: contradiction presence without contradiction quality. It fixes
 context length at 32K and compares `scoped`, `subtle`, and `structural`
-contradiction-like conditions.
+contradiction-like conditions with 50 trials per cell. In the preregistered
+coding, `quality_blind` treats all three primary conditions as contradiction
+present, while `structure_aware` treats `scoped` as repaired / zero-like.
 
 | File | Description |
 |------|-------------|

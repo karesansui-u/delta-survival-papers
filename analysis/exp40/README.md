@@ -13,14 +13,18 @@ conditions all contain task-variable-related conflict-like information.
 | Primary model | `gpt-4.1-mini` |
 | Context length | 32K |
 | Conditions | `zero_sanity`, `scoped`, `subtle`, `structural` |
-| Trials per cell | 30 |
-| Total trials | 120 |
+| Trials per cell | 50 |
+| Total trials | 200 |
+| Temperature | 1.0 |
 
 Primary prediction:
 
 ```text
-accuracy(scoped) > accuracy(subtle) > accuracy(structural)
+accuracy(zero_sanity) ≈ accuracy(scoped) > accuracy(subtle) > accuracy(structural)
 ```
+
+The key baseline comparison is quality-blind contradiction presence versus a
+structure-aware coding in which `scoped` is treated as repaired / zero-like.
 
 ## Files
 
