@@ -121,16 +121,7 @@ The current core layering includes:
 - `ThresholdCardinalitySATChernoffCollapse.lean`: at-most / at-least threshold cardinality-SAT を同じ witness bridge に載せる family-level specialization
 - `ExactlyOneSATChernoffCollapse.lean`: exactly-one-SAT を multi-forbidden-pattern witness として表現する specialization
 - `BernoulliCSPUniversality.lean`: k-SAT / NAE-SAT / XOR-SAT / q-coloring / forbidden-pattern / hypergraph-coloring / cardinality-SAT / threshold-cardinality-SAT CSP を同一 Bernoulli-CSP interface に束ねる wrapper
-- `SerialReliability.lean`: Route A の非CSP core example として、直列信頼性の積 `R` と加法的 log-loss `L` の同型 `R = exp(-L)` を形式化
-- `ConstantFractionDecay.lean`: 放射性崩壊・Beer-Lambert・一次反応・一次薬物動態に共通する一定割合減衰 `q^n = exp(-n(-log q))` を形式化
-- `BranchingProcessExtinction.lean`: 分岐過程の平均子孫数 `m ≤ 1` による expectation-level 絶滅 skeleton `m^n = exp(-n(-log m))` を形式化
-- `QueueStability.lean`: 到着率が処理率を超えると backlog が線形に蓄積し閾値を超える fluid overload skeleton を形式化
-- `BinarySymmetricChannel.lean`: 独立 binary channel の block success `(1-p)^n = exp(-n(-log(1-p)))` と failure 閾値を形式化
-- `FatigueDamage.lean`: 応力サイクル損傷の累積 `D_n = Σ d_i` と `D_n ≥ capacity` による疲労破断閾値を形式化
-- `ConsensusFaultThreshold.lean`: 分散合意の累積故障数が fault budget を超えると合意不能になる閾値 skeleton を形式化
-- `MemoryThrashing.lean`: working set が physical memory を超えると fault pressure が線形蓄積する閾値 skeleton を形式化
-- `BucklingThreshold.lean`: load ramp が critical load に到達/超過すると座屈閾値に達する skeleton を形式化
-- `PercolationThreshold.lean`: occupation ramp が critical occupation に到達/超過すると percolation threshold に達する skeleton を形式化
+- Route A non-CSP skeletons: 10 small Lean modules grouped into four finite-prefix forms: multiplicative/exponential survival, linear overload, cumulative-capacity thresholds, and critical-parameter thresholds. Detailed module-to-claim mapping is kept in [`lean/PAPER_MAPPING.md`](lean/PAPER_MAPPING.md).
 
 The cross-domain Bernoulli-CSP layer is frozen locally as **Bernoulli CSP
 universality v1.2**: finite-horizon, iid bad-event exposure with fixed
@@ -138,10 +129,10 @@ assignment/coloring semantics, Chernoff-KL failure profiles, and operational
 collapse / hitting-time wrappers, now including multi-forbidden witnesses,
 cardinality-SAT, and threshold-cardinality-SAT.
 
-The SAT/k-SAT finite-horizon chain is frozen as **SAT chain v1.0**. Its theorem
-index is [`lean/SAT_CHAIN_THEOREM_MAP.md`](lean/SAT_CHAIN_THEOREM_MAP.md).
-The cross-domain Bernoulli-CSP map is
-[`lean/BERNOULLI_CSP_UNIVERSALITY_MAP.md`](lean/BERNOULLI_CSP_UNIVERSALITY_MAP.md).
+The SAT/k-SAT finite-horizon chain is frozen as **SAT chain v1.0**. The primary
+reader-facing proof index is [`lean/PAPER_MAPPING.md`](lean/PAPER_MAPPING.md);
+the older SAT/CSP theorem maps are retained as local archive snapshots, not as
+the main reading path.
 OSF mirrors for the previous v1.1 archive snapshot:
 [`Bernoulli CSP v1.1 theorem map`](https://osf.io/mdh7b/files/osfstorage/69e71062e808d300ca9236c9),
 [`Bernoulli CSP v1.1 update bundle`](https://osf.io/mdh7b/files/osfstorage/69e71087f4653a8fbfb0001a).

@@ -8,10 +8,9 @@ persistence papers and supplements.
 - Top-level target: `Survival`
 - SAT/k-SAT finite-horizon chain: frozen as **SAT chain v1.0**
 
-For the SAT/k-SAT proof index, see
-[`SAT_CHAIN_THEOREM_MAP.md`](SAT_CHAIN_THEOREM_MAP.md).
-For the cross-domain Bernoulli-CSP template index, see
-[`BERNOULLI_CSP_UNIVERSALITY_MAP.md`](BERNOULLI_CSP_UNIVERSALITY_MAP.md).
+Reader-facing theorem map: [`PAPER_MAPPING.md`](PAPER_MAPPING.md).
+Older SAT/CSP map files are retained as local archive snapshots, but the
+intended entry point is the single paper mapping.
 
 ---
 
@@ -28,7 +27,7 @@ For the cross-domain Bernoulli-CSP template index, see
 | Finite-state Markov microfoundations | `FiniteStateMarkovRepairChain`, `FiniteStateMarkovStationaryProduction`, `FiniteStateMarkovStationaryLongTimeConcentration`, `ThreeStateStateDependentExample` | Finite path measures, stationary mean production, long-time prefix concentration, concrete examples |
 | SAT actual clause-exposure chain | `SATClauseExposureProcess`, `SATStateDependentClauseExposure`, `SATStateDependentCountMGFProduct`, `SATStateDependentCountChernoffKLAlgebra` | Actual path measure, non-flat outcome-dependent emission, derived MGF product, Chernoff/KL collapse |
 | Bernoulli CSP universality template | `BernoulliCSPTemplate`, `BernoulliCSPPathMeasure`, `BernoulliCSPPathChernoff`, `BernoulliCSPPathCollapse`, `BernoulliCSPUniversality`, `KSATChernoffCollapse`, `NAESATChernoffCollapse`, `XORSATChernoffCollapse`, `QColoringChernoffCollapse`, `ForbiddenPatternCSPChernoffCollapse`, `MultiForbiddenPatternCSP`, `HypergraphColoringChernoffCollapse`, `CardinalitySATChernoffCollapse`, `ThresholdCardinalitySATChernoffCollapse`, `ExactlyOneSATChernoffCollapse` | Reusable Bernoulli bad-event CSP template, k-SAT / NAE-SAT instances, fixed-assignment XOR-SAT, q-coloring, generic forbidden-pattern exposure, multi-forbidden-pattern witnesses, hypergraph-coloring, cardinality-SAT, threshold-cardinality-SAT, and exactly-one-SAT specializations, and a common universality interface |
-| Route A non-CSP core examples | `SerialReliability`, `ConstantFractionDecay`, `BranchingProcessExtinction`, `QueueStability`, `BinarySymmetricChannel`, `FatigueDamage`, `ConsensusFaultThreshold`, `MemoryThrashing`, `BucklingThreshold`, `PercolationThreshold` | Serial reliability block diagrams, constant-fraction decay, branching-process expectation skeletons, queue/load overload, binary-channel reliability, fatigue damage, distributed fault thresholds, memory thrashing, buckling thresholds, percolation thresholds, additive log loss, and threshold crossing |
+| Route A non-CSP skeletons | 10 modules grouped as exponential survival, linear overload, cumulative-capacity thresholds, and critical-parameter thresholds | Finite-prefix non-CSP Route A examples; detailed module list is kept in `PAPER_MAPPING.md` |
 | SAT second-moment and information theory | `SATFirstMoment`, `SATSecondMoment`, `SecondMomentBound`, `PairCorrelation`, `AsymptoticExponent`, `KLDivergence`, `CorrelatedSecondMoment` | First/second moment SAT facts, overlap decomposition, KL identities, correlated sandwich bounds |
 | Multi-attractor / phase-transition layer | `MultiAttractor`, `TransitionTheorem`, `FreeEnergy` | Basin survival, transition points, free-energy formulation |
 
@@ -47,8 +46,8 @@ random SAT/k-SAT problem data
   -> collapse / stopped-collapse / hitting-time bounds
 ```
 
-The detailed claim-to-theorem index is in
-[`SAT_CHAIN_THEOREM_MAP.md`](SAT_CHAIN_THEOREM_MAP.md).
+The detailed claim-to-theorem index is consolidated in
+[`PAPER_MAPPING.md`](PAPER_MAPPING.md).
 
 Current scope boundaries:
 
