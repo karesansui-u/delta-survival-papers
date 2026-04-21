@@ -1,0 +1,122 @@
+{
+  "experiment": "exp41_width_replication",
+  "version": "1.0.0",
+  "primary_models": [
+    "gpt-4.1-nano",
+    "gemini-3.1-flash-lite-preview"
+  ],
+  "positive_control_models": [
+    "gpt-4.1-mini"
+  ],
+  "models_analyzed": [
+    "gpt-4.1-nano",
+    "gemini-3.1-flash-lite-preview"
+  ],
+  "by_model": {
+    "gpt-4.1-nano": {
+      "role": "primary",
+      "conditions": {
+        "scoped": {
+          "correct": 27,
+          "n": 30,
+          "errors": 0,
+          "accuracy": 0.9
+        },
+        "subtle": {
+          "correct": 30,
+          "n": 30,
+          "errors": 0,
+          "accuracy": 1.0
+        },
+        "structural": {
+          "correct": 1,
+          "n": 30,
+          "errors": 0,
+          "accuracy": 0.03333333333333333
+        },
+        "zero_sanity": {
+          "correct": 10,
+          "n": 10,
+          "errors": 0,
+          "accuracy": 1.0
+        }
+      },
+      "primary_supported": true,
+      "secondary_order_supported": false,
+      "scoped_structural_margin": 0.8666666666666667,
+      "zero_sanity_passed": true,
+      "fisher_scoped_vs_structural": {
+        "alternative": "greater",
+        "table": [
+          [
+            27,
+            3
+          ],
+          [
+            1,
+            29
+          ]
+        ],
+        "odds_ratio": 261.0,
+        "p_value": 1.1785100674757822e-12
+      }
+    },
+    "gemini-3.1-flash-lite-preview": {
+      "role": "primary",
+      "conditions": {
+        "scoped": {
+          "correct": 30,
+          "n": 30,
+          "errors": 0,
+          "accuracy": 1.0
+        },
+        "subtle": {
+          "correct": 12,
+          "n": 30,
+          "errors": 0,
+          "accuracy": 0.4
+        },
+        "structural": {
+          "correct": 14,
+          "n": 30,
+          "errors": 0,
+          "accuracy": 0.4666666666666667
+        },
+        "zero_sanity": {
+          "correct": 10,
+          "n": 10,
+          "errors": 0,
+          "accuracy": 1.0
+        }
+      },
+      "primary_supported": true,
+      "secondary_order_supported": false,
+      "scoped_structural_margin": 0.5333333333333333,
+      "zero_sanity_passed": true,
+      "fisher_scoped_vs_structural": {
+        "alternative": "greater",
+        "table": [
+          [
+            30,
+            0
+          ],
+          [
+            14,
+            16
+          ]
+        ],
+        "odds_ratio": null,
+        "p_value": 9.720222826388074e-07
+      }
+    }
+  },
+  "primary_models_with_data": [
+    "gpt-4.1-nano",
+    "gemini-3.1-flash-lite-preview"
+  ],
+  "primary_support_count": 2,
+  "primary_width_supported": true,
+  "sign_test_p_one_sided": 0.25,
+  "positive_control_reported_separately": true,
+  "generated_at": "2026-04-22T03:14:08.885295"
+}

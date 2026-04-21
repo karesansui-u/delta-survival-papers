@@ -1,0 +1,453 @@
+{
+  "experiment": "exp41_width_replication",
+  "version": "1.0.0",
+  "models": [
+    "gpt-4.1-nano",
+    "gemini-3.1-flash-lite-preview"
+  ],
+  "n": 180,
+  "leave_one_model_target_out": {
+    "quality_blind": {
+      "folds": [
+        {
+          "heldout_model": "gemini-3.1-flash-lite-preview",
+          "heldout_target": "127:348:215",
+          "beta": [
+            0.5306282510621666
+          ],
+          "metrics": {
+            "n": 18,
+            "log_loss": 0.6394996056355031,
+            "brier": 0.22359396433470513,
+            "accuracy_at_0_5": 0.6666666666666666
+          }
+        },
+        {
+          "heldout_model": "gemini-3.1-flash-lite-preview",
+          "heldout_target": "158:423:376",
+          "beta": [
+            0.5306282510621667
+          ],
+          "metrics": {
+            "n": 18,
+            "log_loss": 0.6394996056355031,
+            "brier": 0.22359396433470513,
+            "accuracy_at_0_5": 0.6666666666666666
+          }
+        },
+        {
+          "heldout_model": "gemini-3.1-flash-lite-preview",
+          "heldout_target": "263:184:439",
+          "beta": [
+            0.5306282510621666
+          ],
+          "metrics": {
+            "n": 18,
+            "log_loss": 0.6394996056355033,
+            "brier": 0.22359396433470513,
+            "accuracy_at_0_5": 0.6666666666666666
+          }
+        },
+        {
+          "heldout_model": "gemini-3.1-flash-lite-preview",
+          "heldout_target": "371:256:108",
+          "beta": [
+            0.5839478885949491
+          ],
+          "metrics": {
+            "n": 18,
+            "log_loss": 0.7027378310221013,
+            "brier": 0.25438195397043123,
+            "accuracy_at_0_5": 0.5555555555555556
+          }
+        },
+        {
+          "heldout_model": "gemini-3.1-flash-lite-preview",
+          "heldout_target": "492:137:284",
+          "beta": [
+            0.5839478885949491
+          ],
+          "metrics": {
+            "n": 18,
+            "log_loss": 0.7027378310221013,
+            "brier": 0.2543819539704312,
+            "accuracy_at_0_5": 0.5555555555555556
+          }
+        },
+        {
+          "heldout_model": "gpt-4.1-nano",
+          "heldout_target": "127:348:215",
+          "beta": [
+            0.5571915443239119
+          ],
+          "metrics": {
+            "n": 18,
+            "log_loss": 0.66955294757316,
+            "brier": 0.2382639841487578,
+            "accuracy_at_0_5": 0.6111111111111112
+          }
+        },
+        {
+          "heldout_model": "gpt-4.1-nano",
+          "heldout_target": "158:423:376",
+          "beta": [
+            0.5306282510621664
+          ],
+          "metrics": {
+            "n": 18,
+            "log_loss": 0.6394996056355032,
+            "brier": 0.22359396433470513,
+            "accuracy_at_0_5": 0.6666666666666666
+          }
+        },
+        {
+          "heldout_model": "gpt-4.1-nano",
+          "heldout_target": "263:184:439",
+          "beta": [
+            0.5306282510621668
+          ],
+          "metrics": {
+            "n": 18,
+            "log_loss": 0.6394996056355031,
+            "brier": 0.22359396433470513,
+            "accuracy_at_0_5": 0.6666666666666666
+          }
+        },
+        {
+          "heldout_model": "gpt-4.1-nano",
+          "heldout_target": "371:256:108",
+          "beta": [
+            0.583947888594949
+          ],
+          "metrics": {
+            "n": 18,
+            "log_loss": 0.7027378310221013,
+            "brier": 0.2543819539704312,
+            "accuracy_at_0_5": 0.5555555555555556
+          }
+        },
+        {
+          "heldout_model": "gpt-4.1-nano",
+          "heldout_target": "492:137:284",
+          "beta": [
+            0.5042466526679446
+          ],
+          "metrics": {
+            "n": 18,
+            "log_loss": 0.6125443330211104,
+            "brier": 0.2103718945282733,
+            "accuracy_at_0_5": 0.7222222222222222
+          }
+        }
+      ],
+      "weighted_log_loss": 0.6587808801838091,
+      "weighted_brier": 0.23297515622618503,
+      "weighted_accuracy_at_0_5": 0.6333333333333333
+    },
+    "structure_aware_ordered": {
+      "folds": [
+        {
+          "heldout_model": "gemini-3.1-flash-lite-preview",
+          "heldout_target": "127:348:215",
+          "beta": [
+            2.8532435227168946,
+            -1.998134974661219
+          ],
+          "metrics": {
+            "n": 18,
+            "log_loss": 0.5620746038506421,
+            "brier": 0.2034382538784952,
+            "accuracy_at_0_5": 0.6666666666666666
+          }
+        },
+        {
+          "heldout_model": "gemini-3.1-flash-lite-preview",
+          "heldout_target": "158:423:376",
+          "beta": [
+            2.974352661964067,
+            -2.091262140028002
+          ],
+          "metrics": {
+            "n": 18,
+            "log_loss": 0.6838204402625474,
+            "brier": 0.2591449489385955,
+            "accuracy_at_0_5": 0.5555555555555556
+          }
+        },
+        {
+          "heldout_model": "gemini-3.1-flash-lite-preview",
+          "heldout_target": "263:184:439",
+          "beta": [
+            2.7398181737260185,
+            -1.9103982843307892
+          ],
+          "metrics": {
+            "n": 18,
+            "log_loss": 0.4511911679523799,
+            "brier": 0.1518002364470538,
+            "accuracy_at_0_5": 0.7777777777777778
+          }
+        },
+        {
+          "heldout_model": "gemini-3.1-flash-lite-preview",
+          "heldout_target": "371:256:108",
+          "beta": [
+            3.1455826111775544,
+            -2.1547802380974392
+          ],
+          "metrics": {
+            "n": 18,
+            "log_loss": 0.7988031349512431,
+            "brier": 0.31317580701206676,
+            "accuracy_at_0_5": 0.4444444444444444
+          }
+        },
+        {
+          "heldout_model": "gemini-3.1-flash-lite-preview",
+          "heldout_target": "492:137:284",
+          "beta": [
+            2.7765139315935943,
+            -1.8765156346735412
+          ],
+          "metrics": {
+            "n": 18,
+            "log_loss": 0.4446440371187356,
+            "brier": 0.14941811575198574,
+            "accuracy_at_0_5": 0.7777777777777778
+          }
+        },
+        {
+          "heldout_model": "gpt-4.1-nano",
+          "heldout_target": "127:348:215",
+          "beta": [
+            2.7031964815897105,
+            -1.8510199338586786
+          ],
+          "metrics": {
+            "n": 18,
+            "log_loss": 0.39472067747174755,
+            "brier": 0.1038397039415348,
+            "accuracy_at_0_5": 0.9444444444444444
+          }
+        },
+        {
+          "heldout_model": "gpt-4.1-nano",
+          "heldout_target": "158:423:376",
+          "beta": [
+            2.5327782170785915,
+            -1.7487508892356416
+          ],
+          "metrics": {
+            "n": 18,
+            "log_loss": 0.2584641584868838,
+            "brier": 0.05993585362379615,
+            "accuracy_at_0_5": 1.0
+          }
+        },
+        {
+          "heldout_model": "gpt-4.1-nano",
+          "heldout_target": "263:184:439",
+          "beta": [
+            2.5327782170785924,
+            -1.7487508892356418
+          ],
+          "metrics": {
+            "n": 18,
+            "log_loss": 0.2584641584868837,
+            "brier": 0.0599358536237961,
+            "accuracy_at_0_5": 1.0
+          }
+        },
+        {
+          "heldout_model": "gpt-4.1-nano",
+          "heldout_target": "371:256:108",
+          "beta": [
+            2.89144854633205,
+            -1.9637786293185449
+          ],
+          "metrics": {
+            "n": 18,
+            "log_loss": 0.5515796701010266,
+            "brier": 0.14998415860269607,
+            "accuracy_at_0_5": 0.8888888888888888
+          }
+        },
+        {
+          "heldout_model": "gpt-4.1-nano",
+          "heldout_target": "492:137:284",
+          "beta": [
+            2.5663544456894627,
+            -1.8056462166890785
+          ],
+          "metrics": {
+            "n": 18,
+            "log_loss": 0.31099506756367273,
+            "brier": 0.08472109713184801,
+            "accuracy_at_0_5": 0.9444444444444444
+          }
+        }
+      ],
+      "weighted_log_loss": 0.47147571162457624,
+      "weighted_brier": 0.15353940289518683,
+      "weighted_accuracy_at_0_5": 0.8
+    },
+    "structure_aware_categorical": {
+      "folds": [
+        {
+          "heldout_model": "gemini-3.1-flash-lite-preview",
+          "heldout_target": "127:348:215",
+          "beta": [
+            2.226032013589698,
+            -1.2137785686325888,
+            -3.3094220790230877
+          ],
+          "metrics": {
+            "n": 18,
+            "log_loss": 0.58394298445971,
+            "brier": 0.20835789311703787,
+            "accuracy_at_0_5": 0.6666666666666666
+          }
+        },
+        {
+          "heldout_model": "gemini-3.1-flash-lite-preview",
+          "heldout_target": "158:423:376",
+          "beta": [
+            2.2257471870422467,
+            -1.1211435138755808,
+            -3.4047625571565576
+          ],
+          "metrics": {
+            "n": 18,
+            "log_loss": 0.7264413582983011,
+            "brier": 0.27154288048169084,
+            "accuracy_at_0_5": 0.5555555555555556
+          }
+        },
+        {
+          "heldout_model": "gemini-3.1-flash-lite-preview",
+          "heldout_target": "263:184:439",
+          "beta": [
+            2.2262755758116564,
+            -1.3027203674639243,
+            -3.21816737212423
+          ],
+          "metrics": {
+            "n": 18,
+            "log_loss": 0.46360875918368766,
+            "brier": 0.15342938982244447,
+            "accuracy_at_0_5": 0.7777777777777778
+          }
+        },
+        {
+          "heldout_model": "gemini-3.1-flash-lite-preview",
+          "heldout_target": "371:256:108",
+          "beta": [
+            2.243245739090831,
+            -0.9394314670236261,
+            -3.4214047265503513
+          ],
+          "metrics": {
+            "n": 18,
+            "log_loss": 0.8995598841723691,
+            "brier": 0.3453252033456956,
+            "accuracy_at_0_5": 0.4444444444444444
+          }
+        },
+        {
+          "heldout_model": "gemini-3.1-flash-lite-preview",
+          "heldout_target": "492:137:284",
+          "beta": [
+            2.241843373498405,
+            -1.2288747184369961,
+            -3.1451054923609503
+          ],
+          "metrics": {
+            "n": 18,
+            "log_loss": 0.46933920292733294,
+            "brier": 0.15583303235711507,
+            "accuracy_at_0_5": 0.7777777777777778
+          }
+        },
+        {
+          "heldout_model": "gpt-4.1-nano",
+          "heldout_target": "127:348:215",
+          "beta": [
+            2.413167605430329,
+            -1.6504272234999817,
+            -3.2243757643656226
+          ],
+          "metrics": {
+            "n": 18,
+            "log_loss": 0.4127942330827217,
+            "brier": 0.11394094251612136,
+            "accuracy_at_0_5": 0.9444444444444444
+          }
+        },
+        {
+          "heldout_model": "gpt-4.1-nano",
+          "heldout_target": "158:423:376",
+          "beta": [
+            2.2266637717065922,
+            -1.4715491644799907,
+            -3.045652975288192
+          ],
+          "metrics": {
+            "n": 18,
+            "log_loss": 0.28431342424830996,
+            "brier": 0.06843966042641902,
+            "accuracy_at_0_5": 1.0
+          }
+        },
+        {
+          "heldout_model": "gpt-4.1-nano",
+          "heldout_target": "263:184:439",
+          "beta": [
+            2.2266637717065927,
+            -1.4715491644799916,
+            -3.0456529752881925
+          ],
+          "metrics": {
+            "n": 18,
+            "log_loss": 0.28431342424831,
+            "brier": 0.06843966042641905,
+            "accuracy_at_0_5": 1.0
+          }
+        },
+        {
+          "heldout_model": "gpt-4.1-nano",
+          "heldout_target": "371:256:108",
+          "beta": [
+            2.626614779514266,
+            -1.855121970399511,
+            -3.42894510232522
+          ],
+          "metrics": {
+            "n": 18,
+            "log_loss": 0.5652567027430031,
+            "brier": 0.16289357013307929,
+            "accuracy_at_0_5": 0.8888888888888888
+          }
+        },
+        {
+          "heldout_model": "gpt-4.1-nano",
+          "heldout_target": "492:137:284",
+          "beta": [
+            2.2192383562356808,
+            -1.464426895925743,
+            -3.1234765569547407
+          ],
+          "metrics": {
+            "n": 18,
+            "log_loss": 0.3263825857776105,
+            "brier": 0.08850694420249207,
+            "accuracy_at_0_5": 0.9444444444444444
+          }
+        }
+      ],
+      "weighted_log_loss": 0.5015952559141356,
+      "weighted_brier": 0.16367091768285147,
+      "weighted_accuracy_at_0_5": 0.8
+    }
+  },
+  "generated_at": "2026-04-22T03:14:08.902597"
+}
