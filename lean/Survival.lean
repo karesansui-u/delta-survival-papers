@@ -158,6 +158,7 @@ import Survival.ForbiddenPatternCSPChernoffCollapse
 import Survival.MultiForbiddenPatternCSP
 import Survival.HypergraphColoringChernoffCollapse
 import Survival.CardinalitySATChernoffCollapse
+import Survival.ThresholdCardinalitySATChernoffCollapse
 import Survival.ExactlyOneSATChernoffCollapse
 import Survival.BernoulliCSPUniversality
 import Survival.SATPositiveDriftCollapse

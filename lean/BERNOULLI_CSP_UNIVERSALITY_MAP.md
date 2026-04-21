@@ -46,6 +46,7 @@ domain-specific bad-event probability p in (0,1)
 | Universality wrapper | [`Survival/BernoulliCSPUniversality.lean`](Survival/BernoulliCSPUniversality.lean) | Common interface over all currently instantiated Bernoulli-CSP domains |
 | Post-v1.1 witness bridge | [`Survival/MultiForbiddenPatternCSP.lean`](Survival/MultiForbiddenPatternCSP.lean) | Domain witness `forbiddenCount < alphabet^arity` to forbidden-pattern exposure |
 | Post-v1.1 cardinality family | [`Survival/CardinalitySATChernoffCollapse.lean`](Survival/CardinalitySATChernoffCollapse.lean) | Exactly-`r`-of-`k` constraints as multi-forbidden-pattern witnesses |
+| Post-v1.1 threshold cardinality family | [`Survival/ThresholdCardinalitySATChernoffCollapse.lean`](Survival/ThresholdCardinalitySATChernoffCollapse.lean) | At-most-`r` and at-least-`r` constraints as partial-binomial-sum witnesses |
 
 ## Current Instances
 
@@ -59,6 +60,8 @@ domain-specific bad-event probability p in (0,1)
 | Fixed-coloring `q`-coloring `k`-uniform hyperedge exposure | `q / q^k` | `log (q^k / (q^k - q))` for `q > 1`, `k > 1` | `HypergraphColoringChernoffCollapse` | Derived |
 | Multi-forbidden-pattern witness exposure | `forbiddenCount / alphabet^arity` | `log (alphabet^arity / (alphabet^arity - forbiddenCount))` | `MultiForbiddenPatternCSP` | Derived |
 | Fixed-assignment exactly-`r`-of-`k` cardinality-SAT clause exposure | `(2^k - choose k r) / 2^k` | `log (2^k / choose k r)` for `0 < k`, `r <= k` | `CardinalitySATChernoffCollapse` | Derived |
+| Fixed-assignment at-most-`r`-of-`k` threshold cardinality-SAT clause exposure | `(2^k - sum_{i <= r} choose k i) / 2^k` | `log (2^k / sum_{i <= r} choose k i)` for `r < k` | `ThresholdCardinalitySATChernoffCollapse` | Derived |
+| Fixed-assignment at-least-`r`-of-`k` threshold cardinality-SAT clause exposure | `(2^k - sum_{r <= i <= k} choose k i) / 2^k` | `log (2^k / sum_{r <= i <= k} choose k i)` for `0 < r <= k` | `ThresholdCardinalitySATChernoffCollapse` | Derived |
 | Fixed-assignment exactly-one-SAT clause exposure | `(2^k - k) / 2^k` | `log (2^k / k)` for `k > 0` | `ExactlyOneSATChernoffCollapse` | Derived |
 
 ## Shared Output Theorems
@@ -82,6 +85,8 @@ The instance constructors are:
 - `BernoulliCSPUniversality.forbiddenPattern`
 - `BernoulliCSPUniversality.multiForbiddenPattern`
 - `BernoulliCSPUniversality.exactRSAT`
+- `BernoulliCSPUniversality.atMostRSAT`
+- `BernoulliCSPUniversality.atLeastRSAT`
 - `BernoulliCSPUniversality.exactlyOneSAT`
 - `BernoulliCSPUniversality.hypergraphColoring`
 
@@ -100,6 +105,9 @@ These boundaries are intentional:
   hypergraph dependence or coloring-algorithm dynamics.
 - Cardinality-SAT is fixed-assignment signed-clause exposure, not solver
   dynamics or overlapping-clause dependence.
+- Threshold cardinality-SAT is fixed-assignment signed-clause exposure with
+  partial-binomial-sum local pattern counts; it is not solver dynamics or
+  overlapping-clause dependence.
 - Exactly-one-SAT is fixed-assignment signed-clause exposure, not solver
   dynamics or overlapping-clause dependence; it is the `r = 1` specialization
   of the cardinality-SAT family.
@@ -131,5 +139,7 @@ At freeze time the top-level import contains `120` `Survival/*` modules.
 
 Current post-v1.1 development adds `MultiForbiddenPatternCSP` and
 `ExactlyOneSATChernoffCollapse`, then lifts exactly-one to the
-`CardinalitySATChernoffCollapse` exactly-`r` family; the top-level import contains `123`
+`CardinalitySATChernoffCollapse` exactly-`r` family and the
+`ThresholdCardinalitySATChernoffCollapse` at-most / at-least family; the
+top-level import contains `124`
 `Survival/*` modules.

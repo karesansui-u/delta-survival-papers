@@ -6,6 +6,7 @@ import Survival.ForbiddenPatternCSPChernoffCollapse
 import Survival.MultiForbiddenPatternCSP
 import Survival.HypergraphColoringChernoffCollapse
 import Survival.CardinalitySATChernoffCollapse
+import Survival.ThresholdCardinalitySATChernoffCollapse
 import Survival.ExactlyOneSATChernoffCollapse
 
 /-!
@@ -23,6 +24,8 @@ instances currently formalized in the development:
 * fixed-coloring `q`-coloring `k`-uniform hyperedge exposure.
 * fixed-assignment exactly-`r`-of-`k` cardinality-SAT exposure via a
   multi-forbidden witness;
+* fixed-assignment at-most-`r` and at-least-`r` threshold cardinality-SAT
+  exposure via multi-forbidden witnesses;
 * fixed-assignment exactly-one-SAT exposure via a multi-forbidden witness.
 
 The point is not to add a new concentration proof.  The point is to make the
@@ -242,6 +245,21 @@ def exactRSAT (k r : ℕ) (hk : 0 < k) (hrk : r ≤ k) : ExposureModel where
   parameters :=
     Survival.CardinalitySATChernoffCollapse.exactRSATParameters k r hk hrk
 
+/-- Fixed-assignment random at-most-`r`-of-`k` threshold cardinality-SAT clause
+exposure as a Bernoulli bad-event CSP exposure model. -/
+def atMostRSAT (k r : ℕ) (hrk : r < k) : ExposureModel where
+  parameters :=
+    Survival.ThresholdCardinalitySATChernoffCollapse.atMostRSATParameters
+      k r hrk
+
+/-- Fixed-assignment random at-least-`r`-of-`k` threshold cardinality-SAT clause
+exposure as a Bernoulli bad-event CSP exposure model. -/
+def atLeastRSAT (k r : ℕ) (hrpos : 0 < r) (hrk : r ≤ k) :
+    ExposureModel where
+  parameters :=
+    Survival.ThresholdCardinalitySATChernoffCollapse.atLeastRSATParameters
+      k r hrpos hrk
+
 /-- Fixed-coloring `q`-coloring exposure of `k`-uniform hyperedges as a
 Bernoulli bad-event CSP exposure model. -/
 def hypergraphColoring
@@ -293,6 +311,18 @@ theorem exactlyOneSAT_badProb (k : ℕ) (hk : 0 < k) :
 theorem exactRSAT_badProb (k r : ℕ) (hk : 0 < k) (hrk : r ≤ k) :
     (exactRSAT k r hk hrk).badProb =
       Survival.CardinalitySATChernoffCollapse.exactRSATBadProb k r :=
+  rfl
+
+theorem atMostRSAT_badProb (k r : ℕ) (hrk : r < k) :
+    (atMostRSAT k r hrk).badProb =
+      Survival.ThresholdCardinalitySATChernoffCollapse.atMostRSATBadProb k r :=
+  rfl
+
+theorem atLeastRSAT_badProb
+    (k r : ℕ) (hrpos : 0 < r) (hrk : r ≤ k) :
+    (atLeastRSAT k r hrpos hrk).badProb =
+      Survival.ThresholdCardinalitySATChernoffCollapse.atLeastRSATBadProb
+        k r :=
   rfl
 
 theorem hypergraphColoring_badProb
@@ -356,6 +386,28 @@ theorem exactRSAT_drift_eq_log_ratio
     Survival.CardinalitySATChernoffCollapse.exactRSATDrift_eq_log_ratio
       k r hk hrk
 
+theorem atMostRSAT_drift_eq_log_ratio
+    (k r : ℕ) (hrk : r < k) :
+    (atMostRSAT k r hrk).drift =
+      Real.log
+        (Survival.ThresholdCardinalitySATChernoffCollapse.totalPatternCount k /
+          Survival.ThresholdCardinalitySATChernoffCollapse.atMostAllowedPatternCount
+            k r) := by
+  exact
+    Survival.ThresholdCardinalitySATChernoffCollapse.atMostRSATDrift_eq_log_ratio
+      k r hrk
+
+theorem atLeastRSAT_drift_eq_log_ratio
+    (k r : ℕ) (hrpos : 0 < r) (hrk : r ≤ k) :
+    (atLeastRSAT k r hrpos hrk).drift =
+      Real.log
+        (Survival.ThresholdCardinalitySATChernoffCollapse.totalPatternCount k /
+          Survival.ThresholdCardinalitySATChernoffCollapse.atLeastAllowedPatternCount
+            k r) := by
+  exact
+    Survival.ThresholdCardinalitySATChernoffCollapse.atLeastRSATDrift_eq_log_ratio
+      k r hrpos hrk
+
 theorem hypergraphColoring_drift_eq_log_ratio
     {q : ℝ} {arity : ℕ} (hq : 1 < q) (harity : 1 < arity) :
     (hypergraphColoring q arity hq harity).drift =
@@ -383,6 +435,20 @@ theorem exactRSAT_eq_multiForbiddenPattern
       multiForbiddenPattern
         (Survival.CardinalitySATChernoffCollapse.exactRSATWitness
           k r hk hrk) := rfl
+
+theorem atMostRSAT_eq_multiForbiddenPattern
+    (k r : ℕ) (hrk : r < k) :
+    atMostRSAT k r hrk =
+      multiForbiddenPattern
+        (Survival.ThresholdCardinalitySATChernoffCollapse.atMostRSATWitness
+          k r hrk) := rfl
+
+theorem atLeastRSAT_eq_multiForbiddenPattern
+    (k r : ℕ) (hrpos : 0 < r) (hrk : r ≤ k) :
+    atLeastRSAT k r hrpos hrk =
+      multiForbiddenPattern
+        (Survival.ThresholdCardinalitySATChernoffCollapse.atLeastRSATWitness
+          k r hrpos hrk) := rfl
 
 theorem exactlyOneSAT_eq_exactRSAT
     (k : ℕ) (hk : 0 < k) :

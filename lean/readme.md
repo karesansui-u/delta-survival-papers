@@ -3,7 +3,7 @@
 Formal verification of the mathematical framework used across the structural
 persistence papers and supplements.
 
-- **123 imported `Survival/*` modules**
+- **124 imported `Survival/*` modules**
 - `sorry = 0`, `axiom = 0` for the imported development
 - Top-level target: `Survival`
 - SAT/k-SAT finite-horizon chain: frozen as **SAT chain v1.0**
@@ -27,7 +27,7 @@ For the cross-domain Bernoulli-CSP template index, see
 | Stopping-time collapse layer | `StoppingTimeCollapseEvent`, `StoppingTimeHighProbabilityCollapse`, `StoppingTimeSharpDecomposition`, `StoppingTimeCliffWarning` | Hitting-time, stopped-collapse, and sharp finite-horizon decompositions |
 | Finite-state Markov microfoundations | `FiniteStateMarkovRepairChain`, `FiniteStateMarkovStationaryProduction`, `FiniteStateMarkovStationaryLongTimeConcentration`, `ThreeStateStateDependentExample` | Finite path measures, stationary mean production, long-time prefix concentration, concrete examples |
 | SAT actual clause-exposure chain | `SATClauseExposureProcess`, `SATStateDependentClauseExposure`, `SATStateDependentCountMGFProduct`, `SATStateDependentCountChernoffKLAlgebra` | Actual path measure, non-flat outcome-dependent emission, derived MGF product, Chernoff/KL collapse |
-| Bernoulli CSP universality template | `BernoulliCSPTemplate`, `BernoulliCSPPathMeasure`, `BernoulliCSPPathChernoff`, `BernoulliCSPPathCollapse`, `BernoulliCSPUniversality`, `KSATChernoffCollapse`, `NAESATChernoffCollapse`, `XORSATChernoffCollapse`, `QColoringChernoffCollapse`, `ForbiddenPatternCSPChernoffCollapse`, `MultiForbiddenPatternCSP`, `HypergraphColoringChernoffCollapse`, `CardinalitySATChernoffCollapse`, `ExactlyOneSATChernoffCollapse` | Reusable Bernoulli bad-event CSP template, k-SAT / NAE-SAT instances, fixed-assignment XOR-SAT, q-coloring, generic forbidden-pattern exposure, multi-forbidden-pattern witnesses, hypergraph-coloring, cardinality-SAT, and exactly-one-SAT specializations, and a common universality interface |
+| Bernoulli CSP universality template | `BernoulliCSPTemplate`, `BernoulliCSPPathMeasure`, `BernoulliCSPPathChernoff`, `BernoulliCSPPathCollapse`, `BernoulliCSPUniversality`, `KSATChernoffCollapse`, `NAESATChernoffCollapse`, `XORSATChernoffCollapse`, `QColoringChernoffCollapse`, `ForbiddenPatternCSPChernoffCollapse`, `MultiForbiddenPatternCSP`, `HypergraphColoringChernoffCollapse`, `CardinalitySATChernoffCollapse`, `ThresholdCardinalitySATChernoffCollapse`, `ExactlyOneSATChernoffCollapse` | Reusable Bernoulli bad-event CSP template, k-SAT / NAE-SAT instances, fixed-assignment XOR-SAT, q-coloring, generic forbidden-pattern exposure, multi-forbidden-pattern witnesses, hypergraph-coloring, cardinality-SAT, threshold-cardinality-SAT, and exactly-one-SAT specializations, and a common universality interface |
 | SAT second-moment and information theory | `SATFirstMoment`, `SATSecondMoment`, `SecondMomentBound`, `PairCorrelation`, `AsymptoticExponent`, `KLDivergence`, `CorrelatedSecondMoment` | First/second moment SAT facts, overlap decomposition, KL identities, correlated sandwich bounds |
 | Multi-attractor / phase-transition layer | `MultiAttractor`, `TransitionTheorem`, `FreeEnergy` | Basin survival, transition points, free-energy formulation |
 
@@ -130,6 +130,11 @@ family: the allowed local patterns are `choose k r`, the bad probability is
 `(2^k - choose k r) / 2^k`, and the drift is `log (2^k / choose k r)`.
 The universality wrapper records exactly-one-SAT as the `r = 1` specialization.
 
+`ThresholdCardinalitySATChernoffCollapse` further adds at-most-`r` and
+at-least-`r` cardinality constraints.  The allowed local patterns are partial
+binomial sums, and the drift is `log (2^k / allowed)`.  The same witness bridge
+then generates the path measure, Chernoff/KL profile, and operational wrappers.
+
 ### Hypergraph-coloring specialization
 
 The hypergraph-coloring layer specializes forbidden-pattern exposure to fixed
@@ -167,6 +172,7 @@ lake build Survival.ForbiddenPatternCSPChernoffCollapse
 lake build Survival.MultiForbiddenPatternCSP
 lake build Survival.HypergraphColoringChernoffCollapse
 lake build Survival.CardinalitySATChernoffCollapse
+lake build Survival.ThresholdCardinalitySATChernoffCollapse
 lake build Survival.ExactlyOneSATChernoffCollapse
 lake build Survival.BernoulliCSPUniversality
 ```
