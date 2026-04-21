@@ -1,0 +1,112 @@
+{
+  "experiment": "exp42_scope_gradient",
+  "version": "1.0.0",
+  "model": "gpt-4.1-mini",
+  "conditions": {
+    "strong_scope": {
+      "correct": 50,
+      "n": 50,
+      "errors": 0,
+      "accuracy": 1.0
+    },
+    "medium_scope": {
+      "correct": 49,
+      "n": 50,
+      "errors": 0,
+      "accuracy": 0.98
+    },
+    "weak_scope": {
+      "correct": 42,
+      "n": 50,
+      "errors": 0,
+      "accuracy": 0.84
+    },
+    "subtle": {
+      "correct": 10,
+      "n": 50,
+      "errors": 0,
+      "accuracy": 0.2
+    },
+    "zero_sanity": {
+      "correct": 20,
+      "n": 20,
+      "errors": 0,
+      "accuracy": 1.0
+    },
+    "structural_anchor": {
+      "correct": 0,
+      "n": 20,
+      "errors": 0,
+      "accuracy": 0.0
+    }
+  },
+  "primary_prediction_supported": true,
+  "strong_support": false,
+  "weak_subtle_gap": 0.6399999999999999,
+  "weak_source_diagnostic_passed": false,
+  "secondary_checks": {
+    "strong_above_0_80": true,
+    "weak_above_or_equal_subtle": true,
+    "strong_above_subtle": true,
+    "medium_above_subtle": true
+  },
+  "zero_sanity_passed": true,
+  "structural_anchor_confirmed": true,
+  "fisher_exact": {
+    "available": true,
+    "tests": {
+      "strong_vs_medium": {
+        "condition_a": "strong_scope",
+        "condition_b": "medium_scope",
+        "alternative": "greater",
+        "table": [
+          [
+            50,
+            0
+          ],
+          [
+            49,
+            1
+          ]
+        ],
+        "odds_ratio": null,
+        "p_value": 0.5
+      },
+      "medium_vs_weak": {
+        "condition_a": "medium_scope",
+        "condition_b": "weak_scope",
+        "alternative": "greater",
+        "table": [
+          [
+            49,
+            1
+          ],
+          [
+            42,
+            8
+          ]
+        ],
+        "odds_ratio": 9.333333333333334,
+        "p_value": 0.015428911487231543
+      },
+      "weak_vs_subtle": {
+        "condition_a": "weak_scope",
+        "condition_b": "subtle",
+        "alternative": "greater",
+        "table": [
+          [
+            42,
+            8
+          ],
+          [
+            10,
+            40
+          ]
+        ],
+        "odds_ratio": 21.0,
+        "p_value": 6.194807916911378e-11
+      }
+    }
+  },
+  "generated_at": "2026-04-22T01:24:43.049741"
+}
