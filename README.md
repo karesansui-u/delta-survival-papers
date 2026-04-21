@@ -61,7 +61,7 @@ PDF は [`v2/pdf用/0_構造持続理論の統合版.pdf`](v2/pdf%E7%94%A8/0_%E6
 | v2 Paper 2 | Main preprint |
 | v2 Paper 3 | Main preprint |
 | v2 Paper 4 | Main preprint |
-| Lean 4 formalization | Complete (`121 Survival modules`, `sorry = 0`, `axiom = 0`) |
+| Lean 4 formalization | Complete (`122 Survival modules`, `sorry = 0`, `axiom = 0`) |
 | OSF project | [osf.io/mdh7b/overview](https://osf.io/mdh7b/overview) |
 | Raw data and summaries | [DATA.md](DATA.md) |
 
@@ -101,7 +101,7 @@ delta-survival-paper/
 ## Formal Verification / 形式検証
 
 Lean formalization is in [`lean/`](lean/). Current status:
-`121 Survival modules`, `sorry = 0`, `axiom = 0`.
+`122 Survival modules`, `sorry = 0`, `axiom = 0`.
 
 The current core layering includes:
 
@@ -117,6 +117,7 @@ The current core layering includes:
 - `ForbiddenPatternCSPChernoffCollapse.lean`: finite-alphabet forbidden-pattern exposure への generic expansion
 - `MultiForbiddenPatternCSP.lean`: domain combinatorial witness から forbidden-pattern exposure を生成する bridge
 - `HypergraphColoringChernoffCollapse.lean`: fixed-coloring hypergraph coloring exposure の forbidden-pattern specialization
+- `ExactlyOneSATChernoffCollapse.lean`: exactly-one-SAT を multi-forbidden-pattern witness として表現する specialization
 - `BernoulliCSPUniversality.lean`: k-SAT / NAE-SAT / XOR-SAT / q-coloring / forbidden-pattern / hypergraph-coloring CSP を同一 Bernoulli-CSP interface に束ねる wrapper
 
 The cross-domain Bernoulli-CSP layer is frozen as **Bernoulli CSP universality

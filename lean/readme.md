@@ -3,7 +3,7 @@
 Formal verification of the mathematical framework used across the structural
 persistence papers and supplements.
 
-- **121 imported `Survival/*` modules**
+- **122 imported `Survival/*` modules**
 - `sorry = 0`, `axiom = 0` for the imported development
 - Top-level target: `Survival`
 - SAT/k-SAT finite-horizon chain: frozen as **SAT chain v1.0**
@@ -27,7 +27,7 @@ For the cross-domain Bernoulli-CSP template index, see
 | Stopping-time collapse layer | `StoppingTimeCollapseEvent`, `StoppingTimeHighProbabilityCollapse`, `StoppingTimeSharpDecomposition`, `StoppingTimeCliffWarning` | Hitting-time, stopped-collapse, and sharp finite-horizon decompositions |
 | Finite-state Markov microfoundations | `FiniteStateMarkovRepairChain`, `FiniteStateMarkovStationaryProduction`, `FiniteStateMarkovStationaryLongTimeConcentration`, `ThreeStateStateDependentExample` | Finite path measures, stationary mean production, long-time prefix concentration, concrete examples |
 | SAT actual clause-exposure chain | `SATClauseExposureProcess`, `SATStateDependentClauseExposure`, `SATStateDependentCountMGFProduct`, `SATStateDependentCountChernoffKLAlgebra` | Actual path measure, non-flat outcome-dependent emission, derived MGF product, Chernoff/KL collapse |
-| Bernoulli CSP universality template | `BernoulliCSPTemplate`, `BernoulliCSPPathMeasure`, `BernoulliCSPPathChernoff`, `BernoulliCSPPathCollapse`, `BernoulliCSPUniversality`, `KSATChernoffCollapse`, `NAESATChernoffCollapse`, `XORSATChernoffCollapse`, `QColoringChernoffCollapse`, `ForbiddenPatternCSPChernoffCollapse`, `MultiForbiddenPatternCSP`, `HypergraphColoringChernoffCollapse` | Reusable Bernoulli bad-event CSP template, k-SAT / NAE-SAT instances, fixed-assignment XOR-SAT, q-coloring, generic forbidden-pattern exposure, multi-forbidden-pattern witnesses, hypergraph-coloring specialization, and a common universality interface |
+| Bernoulli CSP universality template | `BernoulliCSPTemplate`, `BernoulliCSPPathMeasure`, `BernoulliCSPPathChernoff`, `BernoulliCSPPathCollapse`, `BernoulliCSPUniversality`, `KSATChernoffCollapse`, `NAESATChernoffCollapse`, `XORSATChernoffCollapse`, `QColoringChernoffCollapse`, `ForbiddenPatternCSPChernoffCollapse`, `MultiForbiddenPatternCSP`, `HypergraphColoringChernoffCollapse`, `ExactlyOneSATChernoffCollapse` | Reusable Bernoulli bad-event CSP template, k-SAT / NAE-SAT instances, fixed-assignment XOR-SAT, q-coloring, generic forbidden-pattern exposure, multi-forbidden-pattern witnesses, hypergraph-coloring and exactly-one-SAT specializations, and a common universality interface |
 | SAT second-moment and information theory | `SATFirstMoment`, `SATSecondMoment`, `SecondMomentBound`, `PairCorrelation`, `AsymptoticExponent`, `KLDivergence`, `CorrelatedSecondMoment` | First/second moment SAT facts, overlap decomposition, KL identities, correlated sandwich bounds |
 | Multi-attractor / phase-transition layer | `MultiAttractor`, `TransitionTheorem`, `FreeEnergy` | Basin survival, transition points, free-energy formulation |
 
@@ -120,6 +120,11 @@ condition `0 < forbidden < alphabet^arity`.
 Chernoff/KL profile, collapse, stopped-collapse, and hitting-time wrappers are
 then generated from that witness.
 
+`ExactlyOneSATChernoffCollapse` demonstrates the witness bridge on a new CSP:
+for a fixed assignment and random signed `k`-clause, exactly-one-SAT forbids
+`2^k - k` local truth patterns, giving bad probability `(2^k - k) / 2^k` and
+drift `log (2^k / k)`.
+
 ### Hypergraph-coloring specialization
 
 The hypergraph-coloring layer specializes forbidden-pattern exposure to fixed
@@ -156,6 +161,7 @@ lake build Survival.NAESATChernoffCollapse
 lake build Survival.ForbiddenPatternCSPChernoffCollapse
 lake build Survival.MultiForbiddenPatternCSP
 lake build Survival.HypergraphColoringChernoffCollapse
+lake build Survival.ExactlyOneSATChernoffCollapse
 lake build Survival.BernoulliCSPUniversality
 ```
 

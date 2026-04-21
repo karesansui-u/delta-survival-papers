@@ -57,6 +57,7 @@ domain-specific bad-event probability p in (0,1)
 | Finite-alphabet forbidden-pattern exposure | `forbidden / alphabet^arity` | `log (alphabet^arity / (alphabet^arity - forbidden))` | `ForbiddenPatternCSPTemplate`, `ForbiddenPatternCSPExposureProcess`, `ForbiddenPatternCSPChernoffCollapse` | Derived |
 | Fixed-coloring `q`-coloring `k`-uniform hyperedge exposure | `q / q^k` | `log (q^k / (q^k - q))` for `q > 1`, `k > 1` | `HypergraphColoringChernoffCollapse` | Derived |
 | Multi-forbidden-pattern witness exposure | `forbiddenCount / alphabet^arity` | `log (alphabet^arity / (alphabet^arity - forbiddenCount))` | `MultiForbiddenPatternCSP` | Derived |
+| Fixed-assignment exactly-one-SAT clause exposure | `(2^k - k) / 2^k` | `log (2^k / k)` for `k > 0` | `ExactlyOneSATChernoffCollapse` | Derived |
 
 ## Shared Output Theorems
 
@@ -78,6 +79,7 @@ The instance constructors are:
 - `BernoulliCSPUniversality.qColoring`
 - `BernoulliCSPUniversality.forbiddenPattern`
 - `BernoulliCSPUniversality.multiForbiddenPattern`
+- `BernoulliCSPUniversality.exactlyOneSAT`
 - `BernoulliCSPUniversality.hypergraphColoring`
 
 ## Scope Boundaries
@@ -93,6 +95,8 @@ These boundaries are intentional:
   constraint dependence or adaptive sampling.
 - Hypergraph coloring is fixed-coloring iid hyperedge exposure, not random
   hypergraph dependence or coloring-algorithm dynamics.
+- Exactly-one-SAT is fixed-assignment signed-clause exposure, not solver
+  dynamics or overlapping-clause dependence.
 - All results are finite-prefix / high-probability statements, not almost-sure
   infinite-horizon ergodic theorems.
 
@@ -119,5 +123,6 @@ lake build Survival
 
 At freeze time the top-level import contains `120` `Survival/*` modules.
 
-Current post-v1.1 development adds `MultiForbiddenPatternCSP`; the top-level
-import contains `121` `Survival/*` modules.
+Current post-v1.1 development adds `MultiForbiddenPatternCSP` and
+`ExactlyOneSATChernoffCollapse`; the top-level import contains `122`
+`Survival/*` modules.

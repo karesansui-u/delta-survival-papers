@@ -157,6 +157,7 @@ import Survival.ForbiddenPatternCSPExposureProcess
 import Survival.ForbiddenPatternCSPChernoffCollapse
 import Survival.MultiForbiddenPatternCSP
 import Survival.HypergraphColoringChernoffCollapse
+import Survival.ExactlyOneSATChernoffCollapse
 import Survival.BernoulliCSPUniversality
 import Survival.SATPositiveDriftCollapse
 import Survival.SATUnconditionalTendency

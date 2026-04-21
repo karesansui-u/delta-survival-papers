@@ -5,6 +5,7 @@ import Survival.QColoringChernoffCollapse
 import Survival.ForbiddenPatternCSPChernoffCollapse
 import Survival.MultiForbiddenPatternCSP
 import Survival.HypergraphColoringChernoffCollapse
+import Survival.ExactlyOneSATChernoffCollapse
 
 /-!
 # Bernoulli CSP Universality Interface
@@ -19,6 +20,7 @@ instances currently formalized in the development:
 * generic finite-alphabet forbidden-pattern exposure;
 * multi-forbidden-pattern witness exposure;
 * fixed-coloring `q`-coloring `k`-uniform hyperedge exposure.
+* fixed-assignment exactly-one-SAT exposure via a multi-forbidden witness.
 
 The point is not to add a new concentration proof.  The point is to make the
 common template explicit: once a domain supplies a Bernoulli bad-event
@@ -225,6 +227,12 @@ def multiForbiddenPattern
     (W : Survival.MultiForbiddenPatternCSP.Witness) : ExposureModel where
   parameters := W.parameters
 
+/-- Fixed-assignment random exactly-one-SAT clause exposure as a
+multi-forbidden-pattern Bernoulli bad-event CSP exposure model. -/
+def exactlyOneSAT (k : ℕ) (hk : 0 < k) : ExposureModel where
+  parameters :=
+    Survival.ExactlyOneSATChernoffCollapse.exactlyOneSATParameters k hk
+
 /-- Fixed-coloring `q`-coloring exposure of `k`-uniform hyperedges as a
 Bernoulli bad-event CSP exposure model. -/
 def hypergraphColoring
@@ -268,6 +276,11 @@ theorem multiForbiddenPattern_badProb
     (multiForbiddenPattern W).badProb = W.badProb :=
   rfl
 
+theorem exactlyOneSAT_badProb (k : ℕ) (hk : 0 < k) :
+    (exactlyOneSAT k hk).badProb =
+      Survival.ExactlyOneSATChernoffCollapse.exactlyOneSATBadProb k :=
+  rfl
+
 theorem hypergraphColoring_badProb
     (q : ℝ) (arity : ℕ) (hq : 1 < q) (harity : 1 < arity) :
     (hypergraphColoring q arity hq harity).badProb =
@@ -309,6 +322,16 @@ theorem multiForbiddenPattern_drift_eq_log_ratio
       Real.log (W.totalPatternCount / (W.totalPatternCount - W.forbiddenCount)) := by
   exact W.drift_eq_log_ratio
 
+theorem exactlyOneSAT_drift_eq_log_ratio
+    (k : ℕ) (hk : 0 < k) :
+    (exactlyOneSAT k hk).drift =
+      Real.log
+        (Survival.ExactlyOneSATChernoffCollapse.totalPatternCount k /
+          Survival.ExactlyOneSATChernoffCollapse.allowedPatternCount k) := by
+  exact
+    Survival.ExactlyOneSATChernoffCollapse.exactlyOneSATDrift_eq_log_ratio
+      k hk
+
 theorem hypergraphColoring_drift_eq_log_ratio
     {q : ℝ} {arity : ℕ} (hq : 1 < q) (harity : 1 < arity) :
     (hypergraphColoring q arity hq harity).drift =
@@ -323,6 +346,12 @@ theorem hypergraphColoring_eq_multiForbiddenPattern
       multiForbiddenPattern
         (Survival.HypergraphColoringChernoffCollapse.hypergraphColoringWitness
           q arity hq harity) := rfl
+
+theorem exactlyOneSAT_eq_multiForbiddenPattern
+    (k : ℕ) (hk : 0 < k) :
+    exactlyOneSAT k hk =
+      multiForbiddenPattern
+        (Survival.ExactlyOneSATChernoffCollapse.exactlyOneSATWitness k hk) := rfl
 
 end
 
