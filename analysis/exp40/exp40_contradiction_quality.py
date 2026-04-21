@@ -12,6 +12,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import math
 import random
 import re
 import sys
@@ -415,6 +416,11 @@ def summarize(model_name: str) -> dict[str, Any]:
         "available": HAS_SCIPY,
         "tests": {},
     }
+
+    def finite_or_none(value: float) -> float | None:
+        value = float(value)
+        return value if math.isfinite(value) else None
+
     if HAS_SCIPY:
         comparisons = [
             ("scoped_vs_subtle", "scoped", "subtle", "greater"),
@@ -434,8 +440,8 @@ def summarize(model_name: str) -> dict[str, Any]:
                 "condition_b": b,
                 "alternative": alternative,
                 "table": table,
-                "odds_ratio": odds_ratio,
-                "p_value": p_value,
+                "odds_ratio": finite_or_none(odds_ratio),
+                "p_value": finite_or_none(p_value),
             }
 
     summary = {

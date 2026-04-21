@@ -85,18 +85,27 @@ and structure-aware contradiction type.
 
 ### Paper 3 — Exp.40 planned prospective contradiction-quality test
 
-Exp.40 is designed to test the strongest remaining baseline from the Exp.36/39
+Exp.40 tests the strongest remaining baseline from the Exp.36/39
 reanalysis: contradiction presence without contradiction quality. It fixes
 context length at 32K and compares `scoped`, `subtle`, and `structural`
 contradiction-like conditions with 50 trials per cell. In the preregistered
 coding, `quality_blind` treats all three primary conditions as contradiction
 present, while `structure_aware` treats `scoped` as repaired / zero-like.
 
+Result on `gpt-4.1-mini`: `zero_sanity = 50/50`, `scoped = 50/50`,
+`subtle = 23/50`, `structural = 0/50`. Strong support passed. Leave-one-target-out
+primary log loss: `structure_aware = 0.2763`, `quality_blind = 0.6944`.
+
 | File | Description |
 |------|-------------|
 | [Exp.40 README](analysis/exp40/README.md) | Design summary and commands |
 | [Exp.40 preregistration](analysis/exp40/exp40_preregistration.md) | Frozen prediction, exclusions, and falsification rules |
 | [Exp.40 runner](analysis/exp40/exp40_contradiction_quality.py) | Append-safe API runner; refuses paid calls without `--execute` |
+| [Exp.40 results summary](analysis/exp40/exp40_results_summary.md) | Human-readable result table and Fisher exact tests |
+| [Exp.40 raw trials](analysis/exp40/exp40_gpt-4_1-mini_trials.jsonl) | 200 raw trial records |
+| [Exp.40 summary JSON](analysis/exp40/exp40_gpt-4_1-mini_summary.json) | Machine-readable counts, prediction flags, and Fisher exact tests |
+| [Exp.40 model comparison](analysis/exp40/exp40_gpt-4_1-mini_model_comparison.md) | Human-readable quality-blind vs structure-aware comparison |
+| [Exp.40 model comparison JSON](analysis/exp40/exp40_gpt-4_1-mini_model_comparison.json) | Machine-readable leave-one-target-out metrics |
 
 ### Paper 3 — Experiment 3: Three-condition (gemma3:27b, n=3, 180 turns each)
 
