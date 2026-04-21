@@ -24,8 +24,7 @@ In practice, this means the main theoretical claims are accompanied by:
 ## Main entry points
 
 - overview of the formalization: [`lean/readme.md`](lean/readme.md)
-- SAT/k-SAT theorem map: [`lean/SAT_CHAIN_THEOREM_MAP.md`](lean/SAT_CHAIN_THEOREM_MAP.md)
-- Bernoulli-CSP universality map: [`lean/BERNOULLI_CSP_UNIVERSALITY_MAP.md`](lean/BERNOULLI_CSP_UNIVERSALITY_MAP.md)
+- paper-to-Lean theorem map: [`lean/PAPER_MAPPING.md`](lean/PAPER_MAPPING.md)
 - Lean source directory: [`lean/`](lean/)
 
 ## Build

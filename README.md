@@ -131,8 +131,8 @@ cardinality-SAT, and threshold-cardinality-SAT.
 
 The SAT/k-SAT finite-horizon chain is frozen as **SAT chain v1.0**. The primary
 reader-facing proof index is [`lean/PAPER_MAPPING.md`](lean/PAPER_MAPPING.md);
-the older SAT/CSP theorem maps are retained as local archive snapshots, not as
-the main reading path.
+the older SAT/CSP theorem maps were retired from the current tree after
+consolidation and remain available through git history / OSF snapshots.
 OSF mirrors for the previous v1.1 archive snapshot:
 [`Bernoulli CSP v1.1 theorem map`](https://osf.io/mdh7b/files/osfstorage/69e71062e808d300ca9236c9),
 [`Bernoulli CSP v1.1 update bundle`](https://osf.io/mdh7b/files/osfstorage/69e71087f4653a8fbfb0001a).
