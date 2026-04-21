@@ -1,0 +1,62 @@
+{
+  "generated_at": "2026-04-22T03:36:53.909166",
+  "rows": 20,
+  "checks": {
+    "all_solver_statuses_succeeded": true,
+    "all_sat_assignments_verified": true,
+    "pure_sat_cnf_ratio_1": true,
+    "pure_nae_cnf_ratio_2": true,
+    "pure_exact_one_cnf_ratio_4": true,
+    "mixed_sat_nae_cnf_ratio_1_5": true
+  },
+  "median_runtime_sec": 0.05947043751075398,
+  "p90_runtime_sec": 0.061125091393478215,
+  "primary_runtime_extrapolation_median_sec": 713.6452501290478,
+  "primary_runtime_extrapolation_p90_sec": 733.5010967217386,
+  "cell_diagnostics": [
+    {
+      "cell_id": "smoke|n=20|d=1.0|sat_0.00__nae_0.00__exact1_1.00",
+      "n": 5,
+      "valid_n": 5,
+      "sat_count": 0,
+      "sat_rate": 0.0,
+      "timeout_count": 0,
+      "timeout_rate": 0.0,
+      "flag_timeout_gt_0_05": false,
+      "median_cnf_ratio": 4.0
+    },
+    {
+      "cell_id": "smoke|n=20|d=1.0|sat_0.00__nae_1.00__exact1_0.00",
+      "n": 5,
+      "valid_n": 5,
+      "sat_count": 5,
+      "sat_rate": 1.0,
+      "timeout_count": 0,
+      "timeout_rate": 0.0,
+      "flag_timeout_gt_0_05": false,
+      "median_cnf_ratio": 2.0
+    },
+    {
+      "cell_id": "smoke|n=20|d=1.0|sat_0.50__nae_0.50__exact1_0.00",
+      "n": 5,
+      "valid_n": 5,
+      "sat_count": 5,
+      "sat_rate": 1.0,
+      "timeout_count": 0,
+      "timeout_rate": 0.0,
+      "flag_timeout_gt_0_05": false,
+      "median_cnf_ratio": 1.5
+    },
+    {
+      "cell_id": "smoke|n=20|d=1.0|sat_1.00__nae_0.00__exact1_0.00",
+      "n": 5,
+      "valid_n": 5,
+      "sat_count": 5,
+      "sat_rate": 1.0,
+      "timeout_count": 0,
+      "timeout_rate": 0.0,
+      "flag_timeout_gt_0_05": false,
+      "median_cnf_ratio": 1.0
+    }
+  ]
+}

@@ -21,12 +21,60 @@ Within a single family such as NAE-SAT, `L = m * constant`, so `L` and raw count
 are equivalent. The empirical test must use mixed-constraint instances or
 cross-family comparisons.
 
-Planned files:
+Implemented files:
 
 | File | Purpose |
 |---|---|
 | `mixed_csp_preregistration.md` | Frozen design and baseline comparison |
-| `mixed_csp_generator.py` | Future instance generator |
-| `mixed_csp_solvers.py` | Future solver wrappers |
-| `analyze_mixed_csp.py` | Future model-comparison analysis |
+| `implementation_plan.md` | Implementation design and failure branches |
+| `mixed_csp_generator.py` | Deterministic instance generator and CNF encoder |
+| `mixed_csp_solvers.py` | PySAT / MiniSat wrapper with wall-clock timeout |
+| `run_mixed_csp.py` | Append-safe smoke / pilot / primary runner |
+| `analyze_mixed_csp.py` | Leave-one-mixture-out model-comparison analysis |
+| `mixed_csp_trials.jsonl` | Future raw solver records |
 | `mixed_csp_results_summary.md` | Future human-readable results |
+| `mixed_csp_results.json` | Future machine-readable results |
+
+Dependency note:
+
+```bash
+pip install -r requirements.txt
+```
+
+The repository requirements include `python-sat`, `numpy`, and `scipy`.
+
+Smoke dry-run:
+
+```bash
+python3 analysis/route_a_mixed_csp/run_mixed_csp.py smoke dry-run
+```
+
+Smoke execution:
+
+```bash
+python3 analysis/route_a_mixed_csp/run_mixed_csp.py smoke run --execute
+```
+
+Primary dry-run:
+
+```bash
+python3 analysis/route_a_mixed_csp/run_mixed_csp.py primary dry-run
+```
+
+Primary execution after smoke checks and any required addendum:
+
+```bash
+python3 analysis/route_a_mixed_csp/run_mixed_csp.py primary run --execute
+python3 analysis/route_a_mixed_csp/analyze_mixed_csp.py analyze
+```
+
+Exact-one remains non-primary unless the optional pre-primary pilot is run and
+passes the frozen promotion criteria. The runner implements the pilot as
+`3 n-values * 2 stress mixtures * 50 = 300` instances at the lowest primary
+density (`m/n = 2.0`) to avoid immediate feasibility saturation:
+
+```bash
+python3 analysis/route_a_mixed_csp/run_mixed_csp.py exact_one_pilot dry-run
+python3 analysis/route_a_mixed_csp/run_mixed_csp.py exact_one_pilot run --execute
+python3 analysis/route_a_mixed_csp/analyze_mixed_csp.py exact-one-pilot
+```
