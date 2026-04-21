@@ -83,6 +83,23 @@ python exp36_context_delta_matrix.py
 python exp36_judge.py
 ```
 
+### Exp. 40 / 42 — Scope-as-repair checks
+
+```bash
+cd analysis/exp40
+python exp40_contradiction_quality.py dry-run
+python exp40_contradiction_quality.py summarize
+
+cd ../exp42
+python exp42_scope_gradient.py dry-run --include-diagnostics
+python exp42_scope_gradient.py summarize
+python exp42_scope_gradient.py compare
+python analyze_exp42_rows.py --model gpt-4.1-mini
+```
+
+Paid API calls require `run --execute`; the summary and row-level commands
+above reproduce the stored result tables from committed JSONL files.
+
 ### Exp. 14–19 — Double-bind & N_eff
 
 ```bash

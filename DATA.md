@@ -107,6 +107,42 @@ primary log loss: `structure_aware = 0.2763`, `quality_blind = 0.6944`.
 | [Exp.40 model comparison](analysis/exp40/exp40_gpt-4_1-mini_model_comparison.md) | Human-readable quality-blind vs structure-aware comparison |
 | [Exp.40 model comparison JSON](analysis/exp40/exp40_gpt-4_1-mini_model_comparison.json) | Machine-readable leave-one-target-out metrics |
 
+### Paper 3 — Exp.42 scope-strength dose-response
+
+Exp.42 decomposes the Exp.40 `scoped` effect into four preregistered
+scope-strength levels at fixed 32K context: `strong_scope`,
+`medium_scope`, `weak_scope`, and `subtle`. It tests whether the repair
+effect requires explicit imperative language, or whether weaker attribution
+and temporal/dataset markers also carry predictive information.
+
+Result on `gpt-4.1-mini`: `strong_scope = 50/50`, `medium_scope = 49/50`,
+`weak_scope = 42/50`, `subtle = 10/50`, `zero_sanity = 20/20`,
+`structural_anchor = 0/20`. The preregistered primary ordering passed, while
+the preregistered strong-support margin did not pass because the
+strong-vs-medium gap was only 2 percentage points. Leave-one-target-out log
+loss: `scope_gradient = 0.2646`, `binary_scoped = 0.3012`,
+`quality_blind = 0.5577`.
+
+Row-level analysis shows that exact wrong-sum adoption fell from 25/40
+subtle mistakes to 1/8 weak-scope mistakes and 0 in medium/strong, supporting
+an attribution-as-repair interpretation. OSF addendum:
+[zip](https://osf.io/mdh7b/files/osfstorage/69e7b24315d73a03cafd8705),
+[manifest](https://osf.io/mdh7b/files/osfstorage/69e7b246a1f38466e6923969).
+
+| File | Description |
+|------|-------------|
+| [Exp.42 README](analysis/exp42/README.md) | Design summary and commands |
+| [Exp.42 preregistration](analysis/exp42/exp42_preregistration.md) | Frozen prediction, exclusions, model comparison plan, and diagnostics |
+| [Exp.42 runner](analysis/exp42/exp42_scope_gradient.py) | Append-safe API runner; refuses paid calls without `--execute` |
+| [Exp.42 results summary](analysis/exp42/exp42_gpt-4_1-mini_results_summary.md) | Human-readable result table and Fisher exact tests |
+| [Exp.42 raw trials](analysis/exp42/exp42_gpt-4_1-mini_trials.jsonl) | 240 raw trial records |
+| [Exp.42 summary JSON](analysis/exp42/exp42_gpt-4_1-mini_summary.json) | Machine-readable counts and preregistered flags |
+| [Exp.42 model comparison](analysis/exp42/exp42_gpt-4_1-mini_model_comparison.md) | Human-readable scope-gradient vs binary/quality-blind comparison |
+| [Exp.42 model comparison JSON](analysis/exp42/exp42_gpt-4_1-mini_model_comparison.json) | Machine-readable leave-one-target-out metrics |
+| [Exp.42 row-level script](analysis/exp42/analyze_exp42_rows.py) | Reproducible row-level diagnostics |
+| [Exp.42 row-level summary](analysis/exp42/exp42_gpt-4_1-mini_row_analysis.md) | Human-readable row-level analysis |
+| [Exp.42 row-level JSON](analysis/exp42/exp42_gpt-4_1-mini_row_analysis.json) | Machine-readable row-level analysis |
+
 ### Paper 3 — Experiment 3: Three-condition (gemma3:27b, n=3, 180 turns each)
 
 Trials 2–4 are the three replicates reported in the paper (Table 3).

@@ -29,6 +29,8 @@ PDF は [`v2/pdf用/0_構造持続理論の統合版.pdf`](v2/pdf%E7%94%A8/0_%E6
 
 Exp.40 はこの残った quality-blind baseline を直接叩く事前登録済み検査です。32K に固定し、`scoped / subtle / structural` を各50試行で比較しました。`scoped` は事前に repaired / zero-like として符号化しています。結果は `zero_sanity=50/50`, `scoped=50/50`, `subtle=23/50`, `structural=0/50` で、strong support が通りました。leave-one-target-out の primary log loss でも structure-aware `0.2763` が quality-blind `0.6944` を上回りました。
 
+Exp.42 は Exp.40 の scope-as-repair 効果を四段階に分解しました。結果は `strong_scope=50/50`, `medium_scope=49/50`, `weak_scope=42/50`, `subtle=10/50` です。primary ordering は通りましたが、strong support の 10pt margin は strong/medium の天井効果により未達でした。row-level では exact wrong-sum adoption が `subtle` 25/40 mistakes から `weak_scope` 1/8 mistakes、`medium/strong` 0 へ落ち、最小の参照元 attribution が repair の主要成分であることを示唆します。
+
 Route A の非CSP skeletons は、信頼性・減衰・待ち行列・疲労・合意・臨界閾値などの古典例を同じ最小語彙で歪めず表せるかを見る sanity / coverage benchmark です。これらは各分野の新しい本命定理を主張するものではなく、今後の operational theorem がどこへ波及しうるかを示すための射程確認として扱います。
 
 ## Main Preprints (v2) / メインプレプリント
