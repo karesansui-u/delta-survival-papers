@@ -14,6 +14,20 @@
 microfoundation、SAT/k-SAT Chernoff-KL chain、Bernoulli-CSP 水平展開、Route A 非CSP skeletons まで
 含む。
 
+## 証拠の階層
+
+この mapping は「Lean で何が閉じているか」と「論文で何を前面に出すべきか」を分ける。
+現時点の強い主証拠は SAT と LLM に集中しており、非CSP例は新規予測ではなく sanity / coverage benchmark
+として読む。
+
+| 層 | 位置づけ | 読み方 |
+|---|---|---|
+| SAT chain v1.0 | 数学的 anchor | random 3-SAT の自然測度、actual path measure、MGF product、Chernoff/KL collapse が有限地平線で閉じている |
+| LLM 810 試行 | 経験的 anchor | 文脈長・制約数だけの基準モデルを越え、構造矛盾がより強い崩壊要因になることを示す |
+| Bernoulli CSP universality v1.2 | template validation | fixed assignment/coloring の iid bad-event exposure に限った水平展開。solver dynamics や依存構造は含めない |
+| Route A 非CSP skeletons | sanity / coverage benchmark | 古典例を最小語彙で歪めず表せるかの検査。信頼性・材料・待ち行列等の新規本命定理ではない |
+| Level B / proxy domains | future work | LLM 以外の高次元・非自然測度ドメインは calibration と実証を要する |
+
 ## Lean で閉じている範囲
 
 | 範囲 | 状態 | 読み方 |
@@ -24,7 +38,7 @@ microfoundation、SAT/k-SAT Chernoff-KL chain、Bernoulli-CSP 水平展開、Rou
 | 粗視化・表現安定性 | 完了 | Paper 1 §2 P5 を集合論・total production・stochastic layer で形式化 |
 | SAT chain v1.0 | 完了 | actual path measure → non-flat emission → MGF product → Chernoff/KL → collapse |
 | Bernoulli CSP universality v1.2 | 完了 | k-SAT / NAE-SAT / XOR-SAT / coloring / forbidden-pattern / cardinality families |
-| Route A 非CSP skeletons | 完了 | 指数型、線形過負荷型、累積容量型、臨界パラメータ型の有限 prefix examples |
+| Route A 非CSP skeletons | 表現検査として完了 | 指数型、線形過負荷型、累積容量型、臨界パラメータ型の finite-prefix sanity examples |
 
 ## 意図的に未着手の範囲
 

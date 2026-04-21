@@ -19,6 +19,12 @@ Structural Persistence Theory for LLM reasoning degradation, catastrophic forget
 全体像だけを先に掴みたい場合は、統合版 [`v2/0_構造持続理論の統合版.md`](v2/0_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E7%90%86%E8%AB%96%E3%81%AE%E7%B5%B1%E5%90%88%E7%89%88.md) から読むこともできます。
 PDF は [`v2/pdf用/0_構造持続理論の統合版.pdf`](v2/pdf%E7%94%A8/0_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E7%90%86%E8%AB%96%E3%81%AE%E7%B5%B1%E5%90%88%E7%89%88.pdf) を参照してください。
 
+## Evidence Status / 証拠の階層
+
+現時点で前面に出すべき主証拠は二つです。LLM 側では 810 試行の構造矛盾実験が、単なる文脈長や制約数の基準モデルを越える追加予測力を与えます。SAT 側では、自然測度・first moment・Chernoff/KL collapse chain が、有限地平線の数学的 anchor として Lean で閉じています。
+
+Route A の非CSP skeletons は、信頼性・減衰・待ち行列・疲労・合意・臨界閾値などの古典例を同じ最小語彙で歪めず表せるかを見る sanity / coverage benchmark です。これらは各分野の新しい本命定理を主張するものではなく、今後の operational theorem がどこへ波及しうるかを示すための射程確認として扱います。
+
 ## Main Preprints (v2) / メインプレプリント
 
 ### Paper 1 — 構造持続の最小形式
