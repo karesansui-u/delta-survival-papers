@@ -23,6 +23,8 @@ PDF は [`v2/pdf用/0_構造持続理論の統合版.pdf`](v2/pdf%E7%94%A8/0_%E6
 
 現時点で前面に出すべき主証拠は二つです。LLM 側では 810 試行の構造矛盾実験が、単なる文脈長や制約数の基準モデルを越える追加予測力を与えます。SAT 側では、自然測度・first moment・Chernoff/KL collapse chain が、有限地平線の数学的 anchor として Lean で閉じています。
 
+追加の prospective check として、Exp.39 では `gpt-4.1-nano` に対する 2×2 replication を行い、`32K structural contradiction` が `256K filler-only` より低い正答率を示した（0/30 vs 19/30）。これは文脈長が無害だという主張ではなく、構造矛盾が filler 長だけより強い崩壊要因になりうるという限定された予測を支持する。
+
 Route A の非CSP skeletons は、信頼性・減衰・待ち行列・疲労・合意・臨界閾値などの古典例を同じ最小語彙で歪めず表せるかを見る sanity / coverage benchmark です。これらは各分野の新しい本命定理を主張するものではなく、今後の operational theorem がどこへ波及しうるかを示すための射程確認として扱います。
 
 ## Main Preprints (v2) / メインプレプリント

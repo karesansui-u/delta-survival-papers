@@ -1,0 +1,47 @@
+{
+  "experiment": "exp39_prospective_contradiction_dominance",
+  "version": "1.0.0",
+  "model": "gpt-4.1-nano",
+  "completed_at": "2026-04-21",
+  "primary_prediction": "accuracy(32K structural) < accuracy(256K zero)",
+  "cells": {
+    "zero_32k": {
+      "correct": 29,
+      "total": 30,
+      "accuracy": 0.9666666666666667,
+      "errors": 0
+    },
+    "zero_256k": {
+      "correct": 19,
+      "total": 30,
+      "accuracy": 0.6333333333333333,
+      "errors": 0
+    },
+    "structural_32k": {
+      "correct": 0,
+      "total": 30,
+      "accuracy": 0.0,
+      "errors": 0
+    },
+    "structural_256k": {
+      "correct": 0,
+      "total": 30,
+      "accuracy": 0.0,
+      "errors": 0
+    }
+  },
+  "primary_margin_zero256_minus_structural32": 0.6333333333333333,
+  "directional_prediction_supported": true,
+  "strong_support_threshold_20pp_met": true,
+  "fisher_exact_p_structural32_less_than_zero256": 2.672e-8,
+  "pilot_exclusions": [
+    {
+      "file": "exp39_failed_expression_pilot_gpt-4_1-nano_trials.jsonl",
+      "reason": "Held-out expression task failed sanity: 32K zero accuracy was 0/30 before structural cells were run."
+    },
+    {
+      "file": "exp39_failed_new_targets_pilot_gpt-4_1-nano_trials.jsonl",
+      "reason": "New target values produced target-specific arithmetic errors in 32K zero; not used for the primary contrast."
+    }
+  ]
+}

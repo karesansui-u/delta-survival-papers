@@ -59,6 +59,18 @@ All files are directly fetchable via GitHub raw URLs (no redirect, no auth).
 | Gemini judged | https://raw.githubusercontent.com/karesansui-u/delta-survival-papers/main/analysis/exp36/exp36_gemini-3_1-flash-lite-preview_judged.jsonl |
 | Reassignment test (Gemini δ₁) | https://raw.githubusercontent.com/karesansui-u/delta-survival-papers/main/analysis/exp36/exp36c_reassignment_test.jsonl |
 
+### Paper 1 — Exp.39 prospective contradiction-dominance replication
+
+Focused 2×2 prospective replication of the primary structural-persistence
+contrast: `32K structural contradiction` vs `256K filler-only`.
+
+| File | Description |
+|------|-------------|
+| [Exp.39 preregistration](analysis/exp39/exp39_preregistration.md) | Frozen design, primary prediction, and falsification rule |
+| [Exp.39 results summary](analysis/exp39/exp39_results_summary.md) | `gpt-4.1-nano`: zero/32K `29/30`, zero/256K `19/30`, structural/32K `0/30`, structural/256K `0/30` |
+| [Exp.39 summary JSON](analysis/exp39/exp39_gpt-4_1-nano_summary.json) | Machine-readable cell counts and primary margin |
+| [Exp.39 raw trials](analysis/exp39/exp39_gpt-4_1-nano_trials.jsonl) | 120 raw trial records |
+
 ### Paper 3 — Experiment 3: Three-condition (gemma3:27b, n=3, 180 turns each)
 
 Trials 2–4 are the three replicates reported in the paper (Table 3).
