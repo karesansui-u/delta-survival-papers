@@ -9,6 +9,29 @@ This file exists so that external LLMs and reviewers can find all data without s
 - **Result summaries** (small JSON, GitHub-readable): [`data/summaries/`](data/summaries/)
 - **Raw trial data** (turn-by-turn logs, benchmarks): [`data/raw/`](data/raw/) — all on GitHub
 
+## Evidence hierarchy / 証拠の扱い
+
+The main public evidence is the LLM contradiction experiments listed below and
+the Lean-checked SAT / Bernoulli-CSP finite-horizon chain. Older computational
+validation runs from the previous `ugentropy-papers` workspace are useful as
+exploratory or sanity evidence, but they should not be treated as the primary
+public dataset unless separately archived.
+
+Legacy local workspace:
+`/Users/sunagawa/Project/ugentropy-papers/analysis/computational_validation/`
+
+Most reusable legacy SAT files:
+
+| File | Use in the current papers |
+|------|---------------------------|
+| `results/phase2c_solver_comparison_20260308_035525.json` | Solver comparison sanity check: CDCL `c = 0.2506`, WalkSAT `c = 0.1843`, with high linear fit quality |
+| `results/prediction_test_20260308_195043.json` | Cross-`N` prediction check: pooled CDCL `c ≈ 0.221`, WalkSAT `c ≈ 0.149`; useful as exploratory support, not a replacement for the current public summaries |
+| `results/bootstrap_ci_20260308_211934.json` | Bootstrap confidence intervals for solver-specific `c`; useful for uncertainty discussion |
+
+Other legacy files, such as percolation, branching, control, SIR, and real-data
+fits, are best read as Route A/B sanity checks or hypothesis-generation runs.
+They are not current headline evidence for universality claims.
+
 ---
 
 ## Raw data on GitHub — data/raw/
