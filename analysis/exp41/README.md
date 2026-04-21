@@ -25,11 +25,31 @@ accuracy(scoped) >= accuracy(subtle) >= accuracy(structural)
 contradiction can fail the secondary ordering without falsifying the primary
 width prediction.
 
-Planned files:
+Implemented files:
 
 | File | Purpose |
 |---|---|
 | `exp41_preregistration.md` | Frozen design, predictions, exclusions |
-| `exp41_width_replication.py` | Future append-safe runner, likely adapted from Exp.40 |
-| `exp41_results_summary.md` | Future human-readable result table |
-| `exp41_model_comparison.json` | Future machine-readable model-level outcomes |
+| `exp41_width_replication.py` | Append-safe runner adapted from Exp.40 |
+| `exp41_results_summary.md` | Human-readable result table, generated after execution |
+| `exp41_summary.json` | Machine-readable primary / secondary decision summary |
+| `exp41_model_comparison.json` | Machine-readable descriptive baseline-model comparison |
+
+Dry-run:
+
+```bash
+python3 analysis/exp41/exp41_width_replication.py --include-diagnostic dry-run
+```
+
+Primary run with zero-sanity diagnostics:
+
+```bash
+python3 analysis/exp41/exp41_width_replication.py --include-diagnostic run --execute
+python3 analysis/exp41/exp41_width_replication.py --include-diagnostic summarize
+python3 analysis/exp41/exp41_width_replication.py --include-diagnostic compare
+```
+
+To include the `gpt-4.1-mini` positive control, add
+`--include-positive-control` before the subcommand. The positive control is
+reported separately and does not rescue the preregistered 2/2 primary width
+decision.
