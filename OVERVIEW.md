@@ -35,6 +35,8 @@
 Latest OSF mirror:
 
 - [Project overview](https://osf.io/mdh7b/overview)
+- [Bernoulli CSP universality v1.1 theorem map](https://osf.io/mdh7b/files/osfstorage/69e71062e808d300ca9236c9)
+- [Bernoulli CSP universality v1.1 update bundle (zip)](https://osf.io/mdh7b/files/osfstorage/69e71087f4653a8fbfb0001a)
 - [SAT chain v1.0 theorem map](https://osf.io/mdh7b/files/osfstorage/69e7007ce808d300ca9230f2)
 - [SAT chain v1.0 update bundle (zip)](https://osf.io/mdh7b/files/osfstorage/69e7007e01466b7c85fd83fb)
 - [Paper 1](https://osf.io/mdh7b/files/osfstorage/69dde399e43067989d1187e1)

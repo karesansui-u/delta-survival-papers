@@ -8,7 +8,7 @@
 
 - GitHub: 反映済み
 - Codeberg: 反映済み
-- OSF: 2026-04-21 SAT chain v1.0 update bundle 反映済み
+- OSF: 2026-04-21 SAT chain v1.0 / Bernoulli CSP universality v1.1 update bundle 反映済み
 - Zenodo: 未反映
 
 2026-04-21 反映:
@@ -17,6 +17,14 @@
 - theorem map: https://osf.io/mdh7b/files/osfstorage/69e7007ce808d300ca9230f2
 - update bundle zip: https://osf.io/mdh7b/files/osfstorage/69e7007e01466b7c85fd83fb
 - uploaded commit: `cb5a252` (`Freeze SAT/k-SAT Chernoff collapse chain`)
+
+2026-04-21 Bernoulli-CSP v1.1 反映:
+
+- OSF folder: `bernoulli_csp_v1_1_2026-04-21`
+- theorem map: https://osf.io/mdh7b/files/osfstorage/69e71062e808d300ca9236c9
+- update bundle zip: https://osf.io/mdh7b/files/osfstorage/69e71087f4653a8fbfb0001a
+- uploaded commit: `99f9f6b` (`Freeze Bernoulli CSP universality v1.1`)
+- uploaded tag: `bernoulli-csp-v1.1`
 
 ## Canonical Metadata Packet
 
