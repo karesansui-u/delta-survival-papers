@@ -25,9 +25,9 @@ PDF は [`v2/pdf用/0_構造持続理論の統合版.pdf`](v2/pdf%E7%94%A8/0_%E6
 
 追加の prospective check として、Exp.39 では `gpt-4.1-nano` に対する 2×2 replication を行い、`32K structural contradiction` が `256K filler-only` より低い正答率を示した（0/30 vs 19/30）。これは文脈長が無害だという主張ではなく、構造矛盾が filler 長だけより強い崩壊要因になりうるという限定された予測を支持する。
 
-既存 Exp.36/39 の trial-level 再解析では、token-only、quality-blind、structure-aware の三つの予測モデルを比較しています。Exp.36 の leave-one-model/context-out と Exp.39 外挿のいずれでも structure-aware model が最良の log loss を示しました。ただし quality-blind baseline も強いため、次の前向き実験では「矛盾の有無」ではなく「矛盾の質」の差を固定比較する必要があります。
+既存 Exp.36/39 の trial-level 再解析では、token-only、quality-blind、structure-aware の三つの予測モデルを比較しています。Exp.36 の leave-one-model/context-out と Exp.39 外挿のいずれでも structure-aware model が最良の log loss を示しました。ただし quality-blind baseline も強いため、Exp.40 では「矛盾の有無」ではなく「矛盾の質」の差を固定比較しました。
 
-この次段階として Exp.40 の preregistration と実行スクリプトを追加しています。Exp.40 は 32K に固定し、`scoped / subtle / structural` を各50試行で比較して、quality-blind baseline を直接叩く設計です。`scoped` は事前に repaired / zero-like として符号化します。結果は `zero_sanity=50/50`, `scoped=50/50`, `subtle=23/50`, `structural=0/50` で、strong support が通りました。leave-one-target-out の primary log loss でも structure-aware `0.2763` が quality-blind `0.6944` を上回りました。
+Exp.40 はこの残った quality-blind baseline を直接叩く事前登録済み検査です。32K に固定し、`scoped / subtle / structural` を各50試行で比較しました。`scoped` は事前に repaired / zero-like として符号化しています。結果は `zero_sanity=50/50`, `scoped=50/50`, `subtle=23/50`, `structural=0/50` で、strong support が通りました。leave-one-target-out の primary log loss でも structure-aware `0.2763` が quality-blind `0.6944` を上回りました。
 
 Route A の非CSP skeletons は、信頼性・減衰・待ち行列・疲労・合意・臨界閾値などの古典例を同じ最小語彙で歪めず表せるかを見る sanity / coverage benchmark です。これらは各分野の新しい本命定理を主張するものではなく、今後の operational theorem がどこへ波及しうるかを示すための射程確認として扱います。
 

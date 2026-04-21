@@ -83,7 +83,7 @@ and structure-aware contradiction type.
 | [Baseline comparison summary](analysis/baseline_comparison/baseline_comparison_results_summary.md) | Human-readable table: structure-aware model has the best log loss on Exp.36 CV and Exp.39 |
 | [Baseline comparison JSON](analysis/baseline_comparison/baseline_comparison_results.json) | Machine-readable metrics, coefficients, and Exp.39 predicted cell probabilities |
 
-### Paper 3 — Exp.40 planned prospective contradiction-quality test
+### Paper 3 — Exp.40 prospective contradiction-quality test
 
 Exp.40 tests the strongest remaining baseline from the Exp.36/39
 reanalysis: contradiction presence without contradiction quality. It fixes
