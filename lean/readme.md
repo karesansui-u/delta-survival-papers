@@ -3,7 +3,7 @@
 Formal verification of the mathematical framework used across the structural
 persistence papers and supplements.
 
-- **122 imported `Survival/*` modules**
+- **123 imported `Survival/*` modules**
 - `sorry = 0`, `axiom = 0` for the imported development
 - Top-level target: `Survival`
 - SAT/k-SAT finite-horizon chain: frozen as **SAT chain v1.0**
@@ -27,7 +27,7 @@ For the cross-domain Bernoulli-CSP template index, see
 | Stopping-time collapse layer | `StoppingTimeCollapseEvent`, `StoppingTimeHighProbabilityCollapse`, `StoppingTimeSharpDecomposition`, `StoppingTimeCliffWarning` | Hitting-time, stopped-collapse, and sharp finite-horizon decompositions |
 | Finite-state Markov microfoundations | `FiniteStateMarkovRepairChain`, `FiniteStateMarkovStationaryProduction`, `FiniteStateMarkovStationaryLongTimeConcentration`, `ThreeStateStateDependentExample` | Finite path measures, stationary mean production, long-time prefix concentration, concrete examples |
 | SAT actual clause-exposure chain | `SATClauseExposureProcess`, `SATStateDependentClauseExposure`, `SATStateDependentCountMGFProduct`, `SATStateDependentCountChernoffKLAlgebra` | Actual path measure, non-flat outcome-dependent emission, derived MGF product, Chernoff/KL collapse |
-| Bernoulli CSP universality template | `BernoulliCSPTemplate`, `BernoulliCSPPathMeasure`, `BernoulliCSPPathChernoff`, `BernoulliCSPPathCollapse`, `BernoulliCSPUniversality`, `KSATChernoffCollapse`, `NAESATChernoffCollapse`, `XORSATChernoffCollapse`, `QColoringChernoffCollapse`, `ForbiddenPatternCSPChernoffCollapse`, `MultiForbiddenPatternCSP`, `HypergraphColoringChernoffCollapse`, `ExactlyOneSATChernoffCollapse` | Reusable Bernoulli bad-event CSP template, k-SAT / NAE-SAT instances, fixed-assignment XOR-SAT, q-coloring, generic forbidden-pattern exposure, multi-forbidden-pattern witnesses, hypergraph-coloring and exactly-one-SAT specializations, and a common universality interface |
+| Bernoulli CSP universality template | `BernoulliCSPTemplate`, `BernoulliCSPPathMeasure`, `BernoulliCSPPathChernoff`, `BernoulliCSPPathCollapse`, `BernoulliCSPUniversality`, `KSATChernoffCollapse`, `NAESATChernoffCollapse`, `XORSATChernoffCollapse`, `QColoringChernoffCollapse`, `ForbiddenPatternCSPChernoffCollapse`, `MultiForbiddenPatternCSP`, `HypergraphColoringChernoffCollapse`, `CardinalitySATChernoffCollapse`, `ExactlyOneSATChernoffCollapse` | Reusable Bernoulli bad-event CSP template, k-SAT / NAE-SAT instances, fixed-assignment XOR-SAT, q-coloring, generic forbidden-pattern exposure, multi-forbidden-pattern witnesses, hypergraph-coloring, cardinality-SAT, and exactly-one-SAT specializations, and a common universality interface |
 | SAT second-moment and information theory | `SATFirstMoment`, `SATSecondMoment`, `SecondMomentBound`, `PairCorrelation`, `AsymptoticExponent`, `KLDivergence`, `CorrelatedSecondMoment` | First/second moment SAT facts, overlap decomposition, KL identities, correlated sandwich bounds |
 | Multi-attractor / phase-transition layer | `MultiAttractor`, `TransitionTheorem`, `FreeEnergy` | Basin survival, transition points, free-energy formulation |
 
@@ -125,6 +125,11 @@ for a fixed assignment and random signed `k`-clause, exactly-one-SAT forbids
 `2^k - k` local truth patterns, giving bad probability `(2^k - k) / 2^k` and
 drift `log (2^k / k)`.
 
+`CardinalitySATChernoffCollapse` lifts that example to the exactly-`r`-of-`k`
+family: the allowed local patterns are `choose k r`, the bad probability is
+`(2^k - choose k r) / 2^k`, and the drift is `log (2^k / choose k r)`.
+The universality wrapper records exactly-one-SAT as the `r = 1` specialization.
+
 ### Hypergraph-coloring specialization
 
 The hypergraph-coloring layer specializes forbidden-pattern exposure to fixed
@@ -161,6 +166,7 @@ lake build Survival.NAESATChernoffCollapse
 lake build Survival.ForbiddenPatternCSPChernoffCollapse
 lake build Survival.MultiForbiddenPatternCSP
 lake build Survival.HypergraphColoringChernoffCollapse
+lake build Survival.CardinalitySATChernoffCollapse
 lake build Survival.ExactlyOneSATChernoffCollapse
 lake build Survival.BernoulliCSPUniversality
 ```

@@ -5,7 +5,7 @@ This project includes a Lean 4 formalization of the mathematical core used in Pa
 ## Current status
 
 - Lean 4 modules are included in [`lean/`](lean/)
-- current imported development size: `122 Survival modules`
+- current imported development size: `123 Survival modules`
 - current verification status: `sorry = 0`, `axiom = 0`
 - the formalization covers the core structural-persistence framework and related mathematical components used in the main theory papers
 - the finite-horizon SAT/k-SAT chain is frozen as **SAT chain v1.0**

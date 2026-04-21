@@ -5,6 +5,7 @@ import Survival.QColoringChernoffCollapse
 import Survival.ForbiddenPatternCSPChernoffCollapse
 import Survival.MultiForbiddenPatternCSP
 import Survival.HypergraphColoringChernoffCollapse
+import Survival.CardinalitySATChernoffCollapse
 import Survival.ExactlyOneSATChernoffCollapse
 
 /-!
@@ -20,6 +21,8 @@ instances currently formalized in the development:
 * generic finite-alphabet forbidden-pattern exposure;
 * multi-forbidden-pattern witness exposure;
 * fixed-coloring `q`-coloring `k`-uniform hyperedge exposure.
+* fixed-assignment exactly-`r`-of-`k` cardinality-SAT exposure via a
+  multi-forbidden witness;
 * fixed-assignment exactly-one-SAT exposure via a multi-forbidden witness.
 
 The point is not to add a new concentration proof.  The point is to make the
@@ -233,6 +236,12 @@ def exactlyOneSAT (k : ℕ) (hk : 0 < k) : ExposureModel where
   parameters :=
     Survival.ExactlyOneSATChernoffCollapse.exactlyOneSATParameters k hk
 
+/-- Fixed-assignment random exactly-`r`-of-`k` cardinality-SAT clause exposure
+as a multi-forbidden-pattern Bernoulli bad-event CSP exposure model. -/
+def exactRSAT (k r : ℕ) (hk : 0 < k) (hrk : r ≤ k) : ExposureModel where
+  parameters :=
+    Survival.CardinalitySATChernoffCollapse.exactRSATParameters k r hk hrk
+
 /-- Fixed-coloring `q`-coloring exposure of `k`-uniform hyperedges as a
 Bernoulli bad-event CSP exposure model. -/
 def hypergraphColoring
@@ -279,6 +288,11 @@ theorem multiForbiddenPattern_badProb
 theorem exactlyOneSAT_badProb (k : ℕ) (hk : 0 < k) :
     (exactlyOneSAT k hk).badProb =
       Survival.ExactlyOneSATChernoffCollapse.exactlyOneSATBadProb k :=
+  rfl
+
+theorem exactRSAT_badProb (k r : ℕ) (hk : 0 < k) (hrk : r ≤ k) :
+    (exactRSAT k r hk hrk).badProb =
+      Survival.CardinalitySATChernoffCollapse.exactRSATBadProb k r :=
   rfl
 
 theorem hypergraphColoring_badProb
@@ -332,6 +346,16 @@ theorem exactlyOneSAT_drift_eq_log_ratio
     Survival.ExactlyOneSATChernoffCollapse.exactlyOneSATDrift_eq_log_ratio
       k hk
 
+theorem exactRSAT_drift_eq_log_ratio
+    (k r : ℕ) (hk : 0 < k) (hrk : r ≤ k) :
+    (exactRSAT k r hk hrk).drift =
+      Real.log
+        (Survival.CardinalitySATChernoffCollapse.totalPatternCount k /
+          Survival.CardinalitySATChernoffCollapse.allowedPatternCount k r) := by
+  exact
+    Survival.CardinalitySATChernoffCollapse.exactRSATDrift_eq_log_ratio
+      k r hk hrk
+
 theorem hypergraphColoring_drift_eq_log_ratio
     {q : ℝ} {arity : ℕ} (hq : 1 < q) (harity : 1 < arity) :
     (hypergraphColoring q arity hq harity).drift =
@@ -352,6 +376,32 @@ theorem exactlyOneSAT_eq_multiForbiddenPattern
     exactlyOneSAT k hk =
       multiForbiddenPattern
         (Survival.ExactlyOneSATChernoffCollapse.exactlyOneSATWitness k hk) := rfl
+
+theorem exactRSAT_eq_multiForbiddenPattern
+    (k r : ℕ) (hk : 0 < k) (hrk : r ≤ k) :
+    exactRSAT k r hk hrk =
+      multiForbiddenPattern
+        (Survival.CardinalitySATChernoffCollapse.exactRSATWitness
+          k r hk hrk) := rfl
+
+theorem exactlyOneSAT_eq_exactRSAT
+    (k : ℕ) (hk : 0 < k) :
+    exactlyOneSAT k hk =
+      exactRSAT k 1 hk (Nat.succ_le_iff.mpr hk) := by
+  unfold exactlyOneSAT exactRSAT
+  simp [
+    Survival.ExactlyOneSATChernoffCollapse.exactlyOneSATParameters,
+    Survival.CardinalitySATChernoffCollapse.exactRSATParameters,
+    Survival.ExactlyOneSATChernoffCollapse.exactlyOneSATWitness,
+    Survival.CardinalitySATChernoffCollapse.exactRSATWitness,
+    Survival.ExactlyOneSATChernoffCollapse.forbiddenPatternCount,
+    Survival.CardinalitySATChernoffCollapse.forbiddenPatternCount,
+    Survival.ExactlyOneSATChernoffCollapse.totalPatternCount,
+    Survival.CardinalitySATChernoffCollapse.totalPatternCount,
+    Survival.ExactlyOneSATChernoffCollapse.allowedPatternCount,
+    Survival.CardinalitySATChernoffCollapse.allowedPatternCount,
+    Nat.choose_one_right,
+  ]
 
 end
 
