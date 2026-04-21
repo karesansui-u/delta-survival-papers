@@ -71,6 +71,18 @@ contrast: `32K structural contradiction` vs `256K filler-only`.
 | [Exp.39 summary JSON](analysis/exp39/exp39_gpt-4_1-nano_summary.json) | Machine-readable cell counts and primary margin |
 | [Exp.39 raw trials](analysis/exp39/exp39_gpt-4_1-nano_trials.jsonl) | 120 raw trial records |
 
+### Paper 3 — Baseline model comparison for Exp.36/39
+
+Zero-cost reanalysis of the trial-level Exp.36/39 data. It compares three
+predictive baselines: token length only, contradiction presence without type,
+and structure-aware contradiction type.
+
+| File | Description |
+|------|-------------|
+| [Baseline comparison script](analysis/baseline_comparison/compare_structural_models.py) | Fits ridge-regularized logistic models and evaluates leave-one-model-out, leave-one-context-out, and Exp.39 prospective prediction |
+| [Baseline comparison summary](analysis/baseline_comparison/baseline_comparison_results_summary.md) | Human-readable table: structure-aware model has the best log loss on Exp.36 CV and Exp.39 |
+| [Baseline comparison JSON](analysis/baseline_comparison/baseline_comparison_results.json) | Machine-readable metrics, coefficients, and Exp.39 predicted cell probabilities |
+
 ### Paper 3 — Experiment 3: Three-condition (gemma3:27b, n=3, 180 turns each)
 
 Trials 2–4 are the three replicates reported in the paper (Table 3).
