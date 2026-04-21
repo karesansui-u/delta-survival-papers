@@ -1,91 +1,88 @@
 # Survival Model — Formal Verification in Lean 4
 
-Formal verification of the mathematical framework used in Papers 1 and 2.
+Formal verification of the mathematical framework used across the structural
+persistence papers and supplements.
 
-- **21 modules**, `sorry = 0`, `axiom = 0`
-- All proofs fully verified by the Lean 4 type checker
+- **106 imported `Survival/*` modules**
+- `sorry = 0`, `axiom = 0` for the imported development
+- Top-level target: `Survival`
+- SAT/k-SAT finite-horizon chain: frozen as **SAT chain v1.0**
 
----
-
-## What is verified
-
-| Module | What it proves | Used in |
-|--------|---------------|---------|
-| `Basic.lean` | Survival equation: S > 0 iff all factors positive | Paper 1 |
-| `Penalty.lean` | Penalty function behavior (subcritical/supercritical) | Paper 1 |
-| `FullFormula.lean` | Full multiplicative formula properties | Paper 1 |
-| `CauchyExponential.lean` | Cauchy functional equation: `e^{cd}` is the unique continuous solution | Papers 1 & 2 |
-| `LogUniqueness.lean` | Log-ratio uniqueness: B1–B4 on ratio-space loss `f: (0,1] → ℝ≥0` imply `f(r) = -k·log r` | Paper 1 §3 (A2 characterization) |
-| `TelescopingExp.lean` | Purely algebraic A1–A2 telescoping identity `m_n = m_0 * exp(-Σ l_i)` from ratio-defined stage loss | Paper 2 §3 |
-| `AxiomsToExp.lean` | 3 axioms (finite states, fractional elimination, independence) imply `e^{-d}` | Paper 1 |
-| `SATFirstMoment.lean` | SAT first moment correspondence and decay rate ratio prediction | Papers 1 & 2 |
-| `HillNumber.lean` | Hill number upper bound: N_eff <= N (Jensen's inequality) | Paper 1 |
-| `ArrowOfTime.lean` | Survival selection theorem (H-theorem, 2-type) | Paper 1 |
-| `ArrowOfTimeGeneral.lean` | H-theorem generalized | Paper 1 |
-| `ArrowOfTimeNGeneral.lean` | H-theorem for n-type populations | Paper 1 |
-| `SensitivityAnalysis.lean` | Error propagation bounds, multiplicative vs additive comparison | Paper 1 |
-| `SecondMomentBound.lean` | Paley–Zygmund inequality and second moment method for SAT threshold lower bound | Paper 1 |
-| `PairCorrelation.lean` | Pair correlation function g(β) = 3/4 + (1/8)(1-β)³ for random 3-SAT | Paper 1 |
-| `SATSecondMoment.lean` | SAT second moment overlap decomposition and threshold bracketing | Paper 1 |
-| `AsymptoticExponent.lean` | Asymptotic exponent φ(β, α) and gap analysis between 1st/2nd moment thresholds | Paper 1 |
-| `KLDivergence.lean` | δ = D_KL identity, Jensen inequality direction, gap-R₂ connection, structural capacity | Paper 1 |
-| `WeakDependence.lean` | ρ-bracket `exp(-δ(1±ρ))` around joint survival; collapse to independence at ρ=0 | Paper 1 (A3 relaxation) |
-| `CorrelatedSecondMoment.lean` | Meshwise `2^n·(3/4)^m ≤ E[X²] ≤ 2^n·(7/8)^m` without clause independence; Paley–Zygmund reuse | Paper 1 |
-| `RobustSurvival.lean` | `μ·exp(-δ(1+ρ))` robust potential; δ interval from bounded pass-through rates | Paper 1 |
+For the SAT/k-SAT proof index, see
+[`SAT_CHAIN_THEOREM_MAP.md`](SAT_CHAIN_THEOREM_MAP.md).
 
 ---
 
-## Key results
+## Verified Layers
 
-### Cauchy functional equation (Paper 2, Section 2.2)
+| Layer | Representative modules | What is verified |
+|---|---|---|
+| Minimal structural persistence core | `Basic`, `Penalty`, `FullFormula`, `TelescopingExp`, `GeneralStateDynamics` | Survival equations, telescoping exponential identities, signed exponential kernels |
+| Axiomatic information-loss layer | `LogUniqueness`, `CauchyExponential`, `AxiomsToExp`, `WeakDependence`, `RobustSurvival`, `SignedWeakDependence` | Log-ratio uniqueness, independence-to-exponential derivation, weak/signed dependence bounds |
+| Coarse-graining and representation stability | `CoarseGraining`, `ScaleInvariance`, `CoarseTotalProduction`, `CoarseStochasticTotalProduction`, `CoarseTypicalNondecrease` | Coarse representation compatibility and preservation of total-production style statements |
+| Repair/resource budget layer | `MinimumRepairRate`, `ResourceBudget`, `TotalProduction`, `ResourceBoundedDynamics`, `ResourceBudgetToSigmaDrift`, `ResourceBoundedStochasticCollapse` | Repair lower bounds, resource-to-drift bridges, high-probability resource-bounded collapse |
+| Martingale/concentration layer | `ConcentrationInterface`, `AzumaHoeffding`, `BoundedAzumaConstruction`, `ConditionalMartingale`, `MartingaleDrift` | Abstract concentration interfaces and Azuma-style collapse wrappers |
+| Stopping-time collapse layer | `StoppingTimeCollapseEvent`, `StoppingTimeHighProbabilityCollapse`, `StoppingTimeSharpDecomposition`, `StoppingTimeCliffWarning` | Hitting-time, stopped-collapse, and sharp finite-horizon decompositions |
+| Finite-state Markov microfoundations | `FiniteStateMarkovRepairChain`, `FiniteStateMarkovStationaryProduction`, `FiniteStateMarkovStationaryLongTimeConcentration`, `ThreeStateStateDependentExample` | Finite path measures, stationary mean production, long-time prefix concentration, concrete examples |
+| SAT actual clause-exposure chain | `SATClauseExposureProcess`, `SATStateDependentClauseExposure`, `SATStateDependentCountMGFProduct`, `SATStateDependentCountChernoffKLAlgebra` | Actual path measure, non-flat outcome-dependent emission, derived MGF product, Chernoff/KL collapse |
+| Bernoulli CSP / k-SAT template | `BernoulliCSPTemplate`, `BernoulliCSPPathMeasure`, `BernoulliCSPPathChernoff`, `BernoulliCSPPathCollapse`, `KSATBernoulliTemplate`, `KSATChernoffCollapse`, `KSATToSATChernoffBridge` | Reusable Bernoulli bad-event CSP template, k-SAT instance, and k=3 bridge to the SAT chain |
+| SAT second-moment and information theory | `SATFirstMoment`, `SATSecondMoment`, `SecondMomentBound`, `PairCorrelation`, `AsymptoticExponent`, `KLDivergence`, `CorrelatedSecondMoment` | First/second moment SAT facts, overlap decomposition, KL identities, correlated sandwich bounds |
+| Multi-attractor / phase-transition layer | `MultiAttractor`, `TransitionTheorem`, `FreeEnergy` | Basin survival, transition points, free-energy formulation |
 
-If constraints contribute independently to cost, i.e.,
-`mu_c(d1 + d2) = mu_c(d1) * mu_c(d2) / A`,
-then the unique continuous monotone solution is `mu_c(d) = A * e^{cd}`.
+---
 
-### Log-ratio uniqueness (Paper 1 §3, A2 characterization)
+## SAT Chain v1.0
 
-Any ratio-space loss `f : (0,1] → ℝ≥0` satisfying
-  (B2)       `f(1) = 0`,
-  (B3)       `f(r₁·r₂) = f(r₁) + f(r₂)`,
-  (B4)       continuity,
-  (codomain) `f(r) ≥ 0`   (paper's codomain `[0, ∞)` on B1),
-is uniquely of the form `f(r) = -k · log r` for some `k ≥ 0`. This elevates
-A2 of Paper 2 from a definition to a theorem, following the Shannon/Hartley
-axiomatic characterization lineage. Proof reduces to the Cauchy additive
-equation via the substitution `g(t) = f(exp(-t))` with odd extension.
-Independent of A3 (probabilistic independence), so this module stands
-alongside `AxiomsToExp.lean` rather than depending on it.
+The SAT/k-SAT branch is now treated as a frozen finite-horizon core:
 
-Note on axiom labels: the paper's B5 is *monotonicity*, not the
-non-negativity hypothesis assumed here. Monotonicity follows as a consequence
-once `k ≥ 0` is established, so it is not needed as a separate hypothesis.
+```text
+random SAT/k-SAT problem data
+  -> actual finite path measure
+  -> non-flat bad-outcome additive functional
+  -> MGF product derived from path PMF
+  -> Chernoff/KL lower-tail profile
+  -> collapse / stopped-collapse / hitting-time bounds
+```
 
-### Three axioms to exponential decay (Paper 1, Section 3)
+The detailed claim-to-theorem index is in
+[`SAT_CHAIN_THEOREM_MAP.md`](SAT_CHAIN_THEOREM_MAP.md).
 
-1. Finite state space
-2. Constraints eliminate fixed fractions of states
-3. Independence across constraints
+Current scope boundaries:
 
-These three axioms uniquely determine `S = N_eff * e^{-d}`.
+- finite horizon, not infinite horizon;
+- iid Bernoulli bad-event exposure, not adaptive clause selection;
+- fixed-assignment exposure semantics, not XOR-SAT rank dynamics;
+- high-probability finite-prefix bounds, not almost-sure ergodic theorems.
 
-### SAT first moment (Papers 1 & 2)
+These are deliberate boundaries for v1.0, not hidden assumptions in the stated
+finite-horizon theorem stack.
 
-The expected number of satisfying assignments `E[#SAT] = 2^n * (7/8)^m = exp(n ln 2 - d)` where `d = m * |ln(7/8)|`.
+---
 
-### Second moment method and pair correlation (Paper 1)
+## Key Results
 
-The Paley–Zygmund inequality gives threshold lower bound:
-`Pr[X > 0] >= E[X]^2 / E[X^2]`.
+### Log-ratio uniqueness
 
-The pair correlation function `g(β) = 3/4 + (1/8)(1-β)³` satisfies `g(1/2)/(7/8)² = 1`
-(typical overlap is neutral). The truncated second moment explains 74% of the gap
-between the first-moment bound (α ≈ 5.19) and the true threshold (α ≈ 4.27).
+Any ratio-space loss `f : (0,1] -> R>=0` satisfying the paper's additive and
+continuity axioms is uniquely of the form `f(r) = -k * log r` for some `k >= 0`.
+This is the formal A2 characterization layer.
 
-### KL divergence and structural capacity (Paper 1)
+### Signed exponential kernel
 
-`δ = D_KL(P_SAT || P_0)` for independent constraints (identity, not approximation).
-Structural capacity theorem: `δ ≤ C_struct ⟺ survival`, isomorphic to Shannon's `R ≤ C`.
+The general state-dynamics layer separates contraction and repair and proves
+the signed exponential kernel for cumulative net action.
+
+### Resource budget to drift
+
+The resource-budget stack bridges contraction lower bounds to expected
+total-production drift. This turns externally supplied positive drift into a
+derived theorem once a domain-specific contraction lower bound is supplied.
+
+### SAT/k-SAT Chernoff-KL collapse
+
+For random 3-SAT and random k-SAT finite clause exposure, the development
+derives actual path measures, non-flat emission, MGF products, KL/Chernoff
+failure profiles, and operational collapse/hitting-time bounds.
 
 ---
 
@@ -95,8 +92,17 @@ Structural capacity theorem: `δ ≤ C_struct ⟺ survival`, isomorphic to Shann
 # Get Mathlib cache
 lake exe cache get
 
-# Build (verifies all proofs)
-lake build
+# Build the full imported development
+lake build Survival
+```
+
+Useful focused targets:
+
+```bash
+lake build Survival.SATStateDependentCountChernoffKLAlgebra
+lake build Survival.BernoulliCSPPathCollapse
+lake build Survival.KSATChernoffCollapse
+lake build Survival.KSATToSATChernoffBridge
 ```
 
 ---

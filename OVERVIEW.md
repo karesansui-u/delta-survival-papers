@@ -53,5 +53,6 @@ Latest OSF mirror:
 - Data: [`DATA.md`](DATA.md)
 - Reproduction: [`REPRODUCE.md`](REPRODUCE.md)
 - Lean formalization: [`lean/readme.md`](lean/readme.md)
+- SAT/k-SAT theorem map: [`lean/SAT_CHAIN_THEOREM_MAP.md`](lean/SAT_CHAIN_THEOREM_MAP.md)
 
-現在の Lean 側の核は、`LogUniqueness.lean`、`TelescopingExp.lean`、`AxiomsToExp.lean`、`WeakDependence.lean` に分かれている。
+現在の Lean 側は `106 Survival modules`、`sorry = 0`、`axiom = 0` の状態で、最小形式、弱依存、粗視化、停止時刻崩壊、有限状態 Markov 例、SAT/k-SAT Chernoff-KL chain までを含む。SAT/k-SAT の finite-horizon / iid Bernoulli bad-event exposure は **SAT chain v1.0** として凍結している。

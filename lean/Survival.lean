@@ -134,6 +134,15 @@ import Survival.SATStateDependentCountMGFProduct
 import Survival.SATStateDependentClosedMGFChernoff
 import Survival.SATStateDependentCountChernoffKL
 import Survival.SATStateDependentCountChernoffKLAlgebra
+import Survival.BernoulliCSPTemplate
+import Survival.BernoulliCSPPathMeasure
+import Survival.BernoulliCSPPathChernoff
+import Survival.BernoulliCSPPathCollapse
+import Survival.KSATBernoulliTemplate
+import Survival.KSATClauseExposureProcess
+import Survival.KSATChernoffCollapse
+import Survival.KSATToSATChernoffBridge
+import Survival.BernoulliCSPToSATBridge
 import Survival.SATPositiveDriftCollapse
 import Survival.SATUnconditionalTendency
 
