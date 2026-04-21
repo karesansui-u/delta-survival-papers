@@ -136,7 +136,9 @@ lake build Survival.BernoulliCSPUniversality
 lake build Survival
 ```
 
-At freeze time the top-level import contains `124` `Survival/*` modules.
+At Bernoulli-CSP v1.2 freeze time the top-level import contained `124`
+`Survival/*` modules.  The full development may contain additional non-CSP
+Route A modules after this snapshot.
 
 The previous OSF mirror records the v1.1 snapshot, which froze the first
 horizontal Bernoulli-CSP expansion through hypergraph coloring.  This v1.2
