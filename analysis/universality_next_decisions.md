@@ -1,6 +1,6 @@
 # Universality Program — Next Decisions
 
-Status: design draft for review after Exp.42.
+Status: design draft for review after Exp.42; updated after Exp.41.
 
 ## 1. Phase Assessment
 
@@ -15,7 +15,10 @@ The core theory and the LLM scope-as-repair domain are now load-bearing:
 - Exp.42 decomposed the scoped effect and showed that the result is not well
   explained by explicit instruction-following alone;
 - row-level Exp.42 analysis specified the main repair mechanism as
-  attribution-as-repair.
+  attribution-as-repair;
+- Exp.41 confirmed the preregistered `scoped > structural` width claim in
+  both primary models, while also showing that `subtle` / `structural`
+  ordering is model-dependent.
 
 The accurate public characterization is:
 
@@ -33,7 +36,7 @@ established". The stronger claim should wait for Mixed-CSP and at least the M1
 | Track | Phase | Current state | Next decisive signal |
 |---|---|---|---|
 | Core theory | Consolidation | Stable theorem vocabulary and Lean anchors | Only wording / mapping refinements |
-| LLM domain | Verification | Exp.40 + Exp.42 support scope-as-repair and attribution-as-repair | Exp.41 width check |
+| LLM domain | Verification | Exp.40 + Exp.42 support scope-as-repair and attribution-as-repair; Exp.41 width passed | Model-dependent failure-mode follow-up only if needed |
 | Route A / CSP | Empirical gate | Pre-registration drafted; implementation not run | Mixed-CSP `L_plus_n < raw_plus_n` log loss |
 | Formal tendency | Planned execution | Formal plan exists; gap map not written | M1 gap map, then SAT concrete M2 |
 | External reception | Open | Internal reproducibility and OSF available | Independent review / replication |
@@ -90,19 +93,15 @@ Purpose:
 Show that Exp.40 scoped > structural is not gpt-4.1-mini-specific.
 ```
 
-Primary success:
+Status:
 
 ```text
-scoped > structural in both primary new models.
+Passed: scoped > structural in both primary new models.
 ```
 
-Interpretation if successful:
+Interpretation:
   Paper 3 becomes substantially more defensible as a model-width claim.
-
-Interpretation if failed:
-  Scope-as-repair remains supported in gpt-4.1-mini but loses width. Inspect
-  whether failures are diagnostic/task-validity failures, structural_anchor
-  insensitivity, or true absence of scoped repair.
+  The invariant is scoped protection, not a fixed subtle/structural ordering.
 
 ### Gate 3: Formal Target Theorem 4
 
@@ -136,30 +135,34 @@ Interpretation if delayed:
 Short horizon:
 
 1. Finalize Mixed-CSP implementation plan.
-2. Run Exp.41 as the small-budget width check.
-3. Implement Mixed-CSP generator, CNF encoder, solver wrapper, and analysis.
-4. Start Lean M1 gap map in parallel.
-5. Run Mixed-CSP pre-primary exact-one pilot if exact-one is still being
+2. Implement Mixed-CSP generator, CNF encoder, solver wrapper, and analysis.
+3. Start Lean M1 gap map in parallel.
+4. Run Mixed-CSP pre-primary exact-one pilot if exact-one is still being
    considered for conditional primary promotion.
-6. Freeze any updated primary-grid decision before primary Mixed-CSP data.
-7. Run primary Mixed-CSP.
+5. Freeze any updated primary-grid decision before primary Mixed-CSP data.
+6. Run primary Mixed-CSP.
 
 Rationale:
 
-- Exp.41 is cheap and improves Paper 3 width.
 - Mixed-CSP is the major empirical gate.
 - Lean M1 is low monetary cost but can reveal hidden formal work early.
+- Exp.41 is now complete and supports Paper 3 width.
 
 Estimated timelines, assuming no unexpected gates:
 
 | Step | Estimate |
 |---|---:|
-| Exp.41 primary run | ~2 hours, about $1 |
 | Mixed-CSP smoke test | ~1 day |
 | Lean M1 gap map | 1-2 weeks, $0 |
 | Mixed-CSP exact-one pilot, if used | ~1 day, $0 |
 | Mixed-CSP primary grid | ~2-5 days depending on solver runtime |
 | Analysis integration | ~1 week |
+
+Route A extension discipline is recorded separately in
+[`route_a_extension_map.md`](route_a_extension_map.md). In short, Mixed-CSP
+remains first; q-coloring and Cardinality-SAT are safe post-Mixed-CSP
+extensions; XOR-SAT, LDPC decoder performance, SAT chain v2.0, and bootstrap
+percolation should not be promoted as primary Route A empirical anchors.
 
 ## 5. Public Wording
 
@@ -184,8 +187,7 @@ The remaining work is only examples.
 
 | Result pattern | Interpretation | Next action |
 |---|---|---|
-| Exp41 passes, Mixed-CSP passes, M1 gap small | Verification phase across LLM + Route A | integrate into universality paper / update program status |
-| Exp41 fails, Mixed-CSP passes | LLM width limited, Route A strong | keep Paper 3 model-specific, develop Route A |
-| Exp41 passes, Mixed-CSP fails | LLM scope theory strong, Route A not yet generalized | redesign Route A around cross-family or threshold-adjacent grids |
+| Exp41 passed, Mixed-CSP passes, M1 gap small | Verification phase across LLM + Route A | integrate into universality paper / update program status |
+| Exp41 passed, Mixed-CSP fails | LLM scope theory strong, Route A not yet generalized | redesign Route A around cross-family or threshold-adjacent grids |
 | M1 gap large | Formal tendency upgrade delayed | document gap; keep empirical claims separate |
 | CNF baseline beats L in Mixed-CSP | Encoding-size explanation stronger than semantic drift | report as weakening; redesign with native evaluator or alternate domain |
