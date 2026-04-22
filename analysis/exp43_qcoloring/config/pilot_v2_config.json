@@ -1,0 +1,18 @@
+{
+  "phase": "pilot_v2",
+  "n_values": [40, 80],
+  "per_q_config": {
+    "3": {
+      "rho_fm_values": [0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
+    },
+    "4": {
+      "rho_fm_values": [0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
+    },
+    "5": {
+      "rho_fm_values": [0.8, 0.9, 1.0, 1.1, 1.2, 1.3]
+    }
+  },
+  "instances_per_cell": 50,
+  "timeout_sec": 120,
+  "solver_backend": "minisat22"
+}

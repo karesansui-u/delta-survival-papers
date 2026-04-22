@@ -12,6 +12,8 @@ collection until `v2/data/exp43_qcoloring_preregistration_draft.md` is frozen.
 - `src/pilot_runner.py`: dry-run and append-safe pilot execution.
 - `src/pilot_summary.py`: pilot pass/fallback summary.
 - `config/pilot_config.json`: draft pilot grid.
+- `config/pilot_v2_config.json`: preregistered fallback pilot grid after the
+  pilot v1 addendum.
 - `tests/`: unit tests that avoid PySAT unless the optional solver test can run.
 
 ## Commands
@@ -41,6 +43,15 @@ Run the pilot only after review:
 
 ```bash
 python3 analysis/exp43_qcoloring/src/pilot_runner.py run --execute
+```
+
+Run the fallback pilot v2:
+
+```bash
+python3 analysis/exp43_qcoloring/src/pilot_runner.py \
+  --config analysis/exp43_qcoloring/config/pilot_v2_config.json \
+  --output analysis/exp43_qcoloring/data/pilot_v2_results.jsonl \
+  run --execute
 ```
 
 Summarize pilot output:

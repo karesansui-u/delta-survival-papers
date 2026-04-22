@@ -27,12 +27,24 @@ def load_config(path: Path) -> dict[str, Any]:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
-def iter_plan(config: dict[str, Any]) -> Iterable[tuple[int, int, float, int]]:
+def iter_q_rho_pairs(config: dict[str, Any]) -> Iterable[tuple[int, float]]:
+    """Yield q/rho pairs from either the global or per-q grid schema."""
+    if "per_q_config" in config:
+        for q_text, q_config in sorted(config["per_q_config"].items(), key=lambda item: int(item[0])):
+            for rho_fm in q_config["rho_fm_values"]:
+                yield int(q_text), float(rho_fm)
+        return
+
     for q in config["q_values"]:
+        for rho_fm in config["rho_fm_values"]:
+            yield int(q), float(rho_fm)
+
+
+def iter_plan(config: dict[str, Any]) -> Iterable[tuple[int, int, float, int]]:
+    for q, rho_fm in iter_q_rho_pairs(config):
         for n in config["n_values"]:
-            for rho_fm in config["rho_fm_values"]:
-                for instance_idx in range(config["instances_per_cell"]):
-                    yield int(q), int(n), float(rho_fm), int(instance_idx)
+            for instance_idx in range(config["instances_per_cell"]):
+                yield int(q), int(n), float(rho_fm), int(instance_idx)
 
 
 def load_completed(path: Path) -> set[str]:

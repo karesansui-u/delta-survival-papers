@@ -250,7 +250,8 @@ Current draft:
 v2/data/exp43_qcoloring_preregistration_draft.md
 ```
 
-Status: draft only, not frozen.
+Status: draft only, not frozen. Pilot v1 has run locally and did not pass the
+freeze gate; see `analysis/exp43_qcoloring/pilot_v1_addendum.md`.
 
 Pilot harness:
 
@@ -259,9 +260,29 @@ analysis/exp43_qcoloring/
 ```
 
 Status: draft harness; tests and dry-run pass with `python3`. Use
-`analysis/exp43_qcoloring/config/smoke_config.json` for the first solver-path
-check after PySAT is available. Do not run primary data until preregistration
-freeze.
+`analysis/exp43_qcoloring/config/pilot_v2_config.json` for the next fallback
+pilot. Do not run primary data until preregistration freeze.
+
+Pilot v1 summary:
+
+```text
+records: 900
+SAT: 493
+UNSAT: 403
+TIMEOUT: 4
+MALFORMED: 0
+pilot_pass: false
+inconclusive_by_30pct_rule: false
+```
+
+Pilot v2 fallback:
+
+```text
+n in {40,80}
+q=3: rho_fm in {0.40,0.50,0.60,0.70,0.80,0.90}
+q=4: rho_fm in {0.40,0.50,0.60,0.70,0.80,0.90}
+q=5: rho_fm in {0.80,0.90,1.00,1.10,1.20,1.30}
+```
 
 Need care:
 
@@ -359,9 +380,12 @@ If another LLM continues, do this:
 1. Read analysis/structural_balance_law_draft_plan.md.
 2. Read this roadmap.
 3. Read v2/5_構造持続の収支法則と崩壊傾向.md §1-8.
-4. Review / freeze v2/data/exp43_qcoloring_preregistration_draft.md.
-5. Keep M decomposition as a supplement reference only.
-6. Do not claim universal law established, even if Exp43 passes.
+4. Read analysis/exp43_qcoloring/pilot_v1_addendum.md.
+5. Run pilot_v2 using analysis/exp43_qcoloring/config/pilot_v2_config.json.
+6. If pilot_v2 passes, freeze preregistration / manifest / features /
+   analysis script before primary data.
+7. Keep M decomposition as a supplement reference only.
+8. Do not claim universal law established, even if Exp43 passes.
 ```
 
 Suggested commit message when ready:
