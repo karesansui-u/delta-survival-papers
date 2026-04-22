@@ -33,6 +33,8 @@ Exp.42 は Exp.40 の scope-as-repair 効果を四段階に分解しました。
 
 Route A の有限 CSP 側では、Mixed-SAT/NAE-SAT の事前登録済み primary test が、drift-weighted `L_plus_n` predictor が raw count + `n` baseline を大きく上回ることを示しました（leave-one-mixture-out log loss 0.0970 vs 0.7525）。これは Bernoulli-CSP universality class に対する経験的支持ですが、独立再現前の universal law 宣言ではなく、Level 2 universality candidate への支持として扱います。
 
+形式層では、Lean M1 gap analysis により、目標定理 4 の期待値レベル tendency schema が既存定理で formally accessible であることを確認しました。対応表は [`lean/PAPER_MAPPING.md`](lean/PAPER_MAPPING.md) にまとめています。残る formal work は、必要に応じた reader-facing wrapper の追加と、高確率 stopped-collapse schema を期待値版 tendency schema から分離して維持することです。
+
 Route A の非CSP skeletons は、信頼性・減衰・待ち行列・疲労・合意・臨界閾値などの古典例を同じ最小語彙で歪めず表せるかを見る sanity / coverage benchmark です。これらは各分野の新しい本命定理を主張するものではなく、今後の operational theorem がどこへ波及しうるかを示すための射程確認として扱います。
 
 ## Main Preprints (v2) / メインプレプリント

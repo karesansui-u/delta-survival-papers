@@ -1,10 +1,11 @@
 # Universality Program — Next Decisions
 
-Status: design draft for review after Exp.42; updated after Exp.41.
+Status: program memo after Exp.41, Mixed-CSP primary, and Lean M1.
 
 ## 1. Phase Assessment
 
-The program has passed a real phase transition, but not a victory condition.
+The program has passed a real phase transition, but not an independent
+replication / universal-law victory condition.
 
 The core theory and the LLM scope-as-repair domain are now load-bearing:
 
@@ -19,17 +20,24 @@ The core theory and the LLM scope-as-repair domain are now load-bearing:
 - Exp.41 confirmed the preregistered `scoped > structural` width claim in
   both primary models, while also showing that `subtle` / `structural`
   ordering is model-dependent.
+- the Mixed-CSP primary test showed that drift-weighted `L_plus_n` beats raw
+  count + `n` for SAT/NAE feasibility out-of-sample;
+- Lean M1 showed that the expectation-level target theorem 4 / law-of-tendency
+  schema is already formally accessible through existing theorems and only
+  needs reader-facing mapping.
 
 The accurate public characterization is:
 
 ```text
-Core theory is consolidated. The LLM domain has entered verification mode.
-Route A and the formal tendency upgrade remain decisive open gates.
+Core theory is consolidated. LLM scope repair and Route A Mixed-CSP feasibility
+now have prospective support, and the expectation-level formal tendency schema
+is mapped to existing Lean theorems. Independent replication and optional width
+extensions remain open.
 ```
 
 Avoid public wording such as "the theory is proven" or "universality is
-established". The stronger claim should wait for Mixed-CSP and at least the M1
-/ M2 formal gap work.
+established". The stronger claim should wait for independent review /
+replication and, if needed, later theorem-wrapper polish.
 
 ## 2. Current Status by Track
 
@@ -37,11 +45,11 @@ established". The stronger claim should wait for Mixed-CSP and at least the M1
 |---|---|---|---|
 | Core theory | Consolidation | Stable theorem vocabulary and Lean anchors | Only wording / mapping refinements |
 | LLM domain | Verification | Exp.40 + Exp.42 support scope-as-repair and attribution-as-repair; Exp.41 width passed | Model-dependent failure-mode follow-up only if needed |
-| Route A / CSP | Empirical gate | Pre-registration drafted; implementation not run | Mixed-CSP `L_plus_n < raw_plus_n` log loss |
-| Formal tendency | Planned execution | Formal plan exists; gap map not written | M1 gap map, then SAT concrete M2 |
+| Route A / CSP | Empirical support established for primary grid | Mixed-CSP official primary passed: `L_plus_n` log loss 0.0970 < `raw_plus_n` 0.7525 | Optional q-coloring / Cardinality-SAT width extension |
+| Formal tendency | M1 completed | Expectation-level target theorem 4 formally accessible via existing theorems; M2-A mapping-only fixed | Optional M2-B wrapper if paper needs named theorem aliases |
 | External reception | Open | Internal reproducibility and OSF available | Independent review / replication |
 
-## 3. Three Remaining Gates
+## 3. Resolved Gates And Next Options
 
 ### Gate 1: Mixed-CSP Feasibility Test
 
@@ -58,6 +66,12 @@ Primary success:
 L_plus_n held-out log loss < raw_plus_n held-out log loss
 ```
 
+Status:
+
+```text
+Passed: 0.0970 < 0.7525 on the official 12,000-row primary run.
+```
+
 Strong support:
 
 ```text
@@ -71,19 +85,17 @@ Theory-pure support:
 first_moment = n log 2 - L beats raw_plus_n.
 ```
 
-Interpretation if successful:
+Status:
+
+```text
+Passed: first_moment log loss 0.1489 < raw_plus_n 0.7525.
+Encoding guardrail also passed: L_plus_n 0.0970 <= cnf_count_plus_n 0.1010.
+```
+
+Interpretation:
   Route A gains an empirical universality-class anchor. The claim is still not
   "same coefficient everywhere"; it is that the pre-specified structural loss
   coordinate carries predictive information beyond unweighted baselines.
-
-Interpretation if failed:
-  The theory is not refuted globally, but Route A universality is weakened.
-  The likely failure branches are:
-
-- raw count is enough in the SAT/NAE grid;
-- finite-size threshold effects dominate first-moment drift;
-- CNF encoding size explains feasibility better than semantic drift;
-- the chosen density grid is too far from the informative transition region.
 
 ### Gate 2: Exp.41 Width Check
 
@@ -126,51 +138,59 @@ M1 output:
 lean/UNIVERSALITY_GAP_MAP.md
 ```
 
-M2 success:
+Status:
 
 ```text
-SAT state-dependent clause exposure is mapped to the target tendency schema.
+Passed at expectation level via M1 mapping.
 ```
 
-Interpretation if successful:
-  Formal law-strength improves independently of the empirical program.
+M1 conclusion:
 
-Interpretation if delayed:
-  This is not an empirical failure. It means the current Lean anchors require
-  more bridge lemmas before the theorem can be stated at the desired level.
+```text
+Target theorem 4 is formally accessible at the expectation level through
+existing Lean theorems. M2-A mapping-only is sufficient; M2-B thin wrappers are
+optional reader-facing polish.
+```
 
-## 4. Recommended Execution Order
+Interpretation:
+  Formal law-strength improves independently of the empirical program. The
+  remaining caution is schema separation: high-probability stopped-collapse
+  requires explicit concentration / margin assumptions and should not be folded
+  into the expectation-level theorem.
+
+## 4. Recommended Next Order
 
 Short horizon:
 
-1. Finalize Mixed-CSP implementation plan.
-2. Implement Mixed-CSP generator, CNF encoder, solver wrapper, and analysis.
-3. Start Lean M1 gap map in parallel.
-4. Run Mixed-CSP pre-primary exact-one pilot if exact-one is still being
-   considered for conditional primary promotion.
-5. Freeze any updated primary-grid decision before primary Mixed-CSP data.
-6. Run primary Mixed-CSP.
+1. Keep the M1 conclusion synchronized across the supplement / README /
+   program memo.
+2. Decide whether the paper needs optional M2-B reader-facing Lean wrapper
+   theorem names.
+3. Start Paper 5 resource-operationalization draft if extending the program
+   beyond the now-closed core gates.
+4. Treat q-coloring and Cardinality-SAT as optional Route A width extensions,
+   not as required gates.
 
 Rationale:
 
-- Mixed-CSP is the major empirical gate.
-- Lean M1 is low monetary cost but can reveal hidden formal work early.
-- Exp.41 is now complete and supports Paper 3 width.
+- Mixed-CSP and Exp.41 are now complete and passed.
+- Lean M1 is now complete and reduced the formal gate to mapping / wording.
+- The remaining work is no longer a core gate; it is propagation, optional
+  wrappers, width extension, and external replication.
 
 Estimated timelines, assuming no unexpected gates:
 
 | Step | Estimate |
 |---|---:|
-| Mixed-CSP smoke test | ~1 day |
-| Lean M1 gap map | 1-2 weeks, $0 |
-| Mixed-CSP exact-one pilot, if used | ~1 day, $0 |
-| Mixed-CSP primary grid | ~2-5 days depending on solver runtime |
-| Analysis integration | ~1 week |
+| M1 propagation to public docs | 30-60 min |
+| Optional M2-B wrapper, if needed | 1-2 hours + `lake build` |
+| Paper 5 §1-2 first draft | 2-3 hours |
+| Optional q-coloring / Cardinality-SAT design | 1 focused session |
 
 Route A extension discipline is recorded separately in
 [`route_a_extension_map.md`](route_a_extension_map.md). In short, Mixed-CSP
-remains first; q-coloring and Cardinality-SAT are safe post-Mixed-CSP
-extensions; XOR-SAT, LDPC decoder performance, SAT chain v2.0, and bootstrap
+has now passed; q-coloring and Cardinality-SAT are safe post-Mixed-CSP
+extensions. XOR-SAT, LDPC decoder performance, SAT chain v2.0, and bootstrap
 percolation should not be promoted as primary Route A empirical anchors.
 
 ## 5. Public Wording
@@ -178,10 +198,12 @@ percolation should not be promoted as primary Route A empirical anchors.
 Recommended:
 
 ```text
-The core framework is consolidated, and the LLM scope-as-repair domain now has
-prospective and row-level support. The next stage tests empirical universality:
-whether the same L-normalization methodology beats raw baselines in Mixed-CSP,
-and whether formal balance laws can be lifted into reusable tendency theorems.
+The core framework is consolidated. LLM scope repair, model-width replication,
+and Mixed-CSP feasibility now support structure-aware coordinates over
+quality-blind / raw baselines. Lean M1 maps the expectation-level tendency
+schema to existing verified theorems. This supports a Level 2 universality
+candidate, while independent replication remains necessary before any universal
+law declaration.
 ```
 
 Avoid:
@@ -196,7 +218,7 @@ The remaining work is only examples.
 
 | Result pattern | Interpretation | Next action |
 |---|---|---|
-| Exp41 passed, Mixed-CSP passes, M1 gap small | Verification phase across LLM + Route A | integrate into universality paper / update program status |
-| Exp41 passed, Mixed-CSP fails | LLM scope theory strong, Route A not yet generalized | redesign Route A around cross-family or threshold-adjacent grids |
-| M1 gap large | Formal tendency upgrade delayed | document gap; keep empirical claims separate |
-| CNF baseline beats L in Mixed-CSP | Encoding-size explanation stronger than semantic drift | report as weakening; redesign with native evaluator or alternate domain |
+| Exp41 passed, Mixed-CSP passed, M1 mapping-only sufficient | Verification phase across LLM + Route A + formal expectation-level tendency | integrate into universality paper / update program status |
+| Optional M2-B wrapper added | Reader-facing theorem names improve | cite wrappers in supplement; no new empirical claim |
+| q-coloring / Cardinality-SAT passes later | Route A width expands | update Route A extension map and finite-CSP supplement |
+| independent replication arrives | Social proof strengthens | consider stronger universality wording |
