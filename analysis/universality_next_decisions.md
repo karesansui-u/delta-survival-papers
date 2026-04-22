@@ -45,7 +45,7 @@ replication and, if needed, later theorem-wrapper polish.
 |---|---|---|---|
 | Core theory | Consolidation | Stable theorem vocabulary and Lean anchors | Only wording / mapping refinements |
 | LLM domain | Verification | Exp.40 + Exp.42 support scope-as-repair and attribution-as-repair; Exp.41 width passed | Model-dependent failure-mode follow-up only if needed |
-| Route A / CSP | Mixed-CSP validated; q-coloring exploratory; Exp44 pilot_v2 clean but not freeze-ready | Mixed-CSP official primary passed: `L_plus_n` log loss 0.0970 < `raw_plus_n` 0.7525. Exp43 q-coloring is pilot calibration only; pilot_v1/v2 did not pass the freeze gate. Exp44 smoke and pilot_v2 are infrastructure-clean; pilot_v2 still needs fine-grid fallback because M0/M1/M2 have one informative band | Exp43b fine-grid preregistration or Exp44 pilot_v3 fine grid |
+| Route A / CSP | Mixed-CSP validated; q-coloring exploratory; Exp44 calibration inconclusive | Mixed-CSP official primary passed: `L_plus_n` log loss 0.0970 < `raw_plus_n` 0.7525. Exp43 q-coloring is pilot calibration only; pilot_v1/v2 did not pass the freeze gate. Exp44 smoke/pilot_v2/pilot_v3 are infrastructure-clean but pilot_v3 still failed the informative-band gate for M0/M1/M2 | Exp43b / Exp44b redesign, or shift to G4/G6 non-CSP mapping |
 | Formal tendency | M1 completed | Expectation-level target theorem 4 formally accessible via existing theorems; M2-A mapping-only fixed | Optional M2-B wrapper if paper needs named theorem aliases |
 | External reception | Open | Internal reproducibility and OSF available | Independent review / replication |
 
@@ -222,8 +222,10 @@ infrastructure level; see `analysis/exp44_cardinality_sat/smoke_summary.md`.
 A partial runtime probe found a hard `M0_low, n=120, rho=1.00` cell; see
 `analysis/exp44_cardinality_sat/pilot_runtime_probe.md`. Pilot_v2 with
 `n={60,100}` completed cleanly but did not pass the informative-band gate; see
-`analysis/exp44_cardinality_sat/pilot_v2_summary.md`. No Exp44 primary data
-should be generated until its freeze checklist is complete.
+`analysis/exp44_cardinality_sat/pilot_v2_summary.md`. Pilot_v3 fine-grid also
+completed cleanly but did not pass the informative-band gate for M0/M1/M2; see
+`analysis/exp44_cardinality_sat/pilot_v3_summary.md`. No Exp44 primary data
+should be generated from the current design.
 
 ## 5. Public Wording
 

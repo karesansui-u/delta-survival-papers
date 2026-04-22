@@ -424,6 +424,29 @@ Remaining issue: M0/M1/M2 each have only one informative rho band. This
 triggers the precommitted fine-grid fallback. Next step is pilot_v3 with
 `rho_fm in {0.70,0.80,0.90,1.00,1.10,1.20}`.
 
+Pilot_v3:
+
+```text
+analysis/exp44_cardinality_sat/pilot_v3_summary.md
+```
+
+Result: infrastructure-clean but still not freeze-ready.
+
+```text
+records: 3600
+SAT: 1087
+UNSAT: 2513
+TIMEOUT: 0
+MALFORMED: 0
+monotone mixtures: 6/6
+pilot_pass: false
+```
+
+Remaining issue: M0/M1/M2 still each have only one informative rho band. Any
+additional grid tuning between `rho_fm=0.90` and `rho_fm=1.00` would require a
+new Exp44b preregistration. Do not run primary Exp44 data from the current
+design.
+
 Why second:
 
 Cardinality-SAT is mathematically useful but rhetorically still SAT-like. q-coloring should be the first "SAT 以外に見える" empirical Route A extension.
