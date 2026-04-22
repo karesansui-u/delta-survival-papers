@@ -117,7 +117,10 @@ def decode_model_to_assignment(model: Iterable[int], *, n: int) -> tuple[bool, .
         elif -vid in literals:
             values.append(False)
         else:
-            return None
+            # PySAT models need not mention variables absent from the CNF.
+            # They are semantically free, so choose a deterministic default
+            # and let the independent verifier check the original constraints.
+            values.append(False)
     return tuple(values)
 
 

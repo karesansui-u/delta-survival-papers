@@ -9,6 +9,7 @@ sys.path.insert(0, str(SRC))
 
 from cnf_encoder import (  # noqa: E402
     brute_force_satisfiable,
+    decode_model_to_assignment,
     encode_cardinality_sat,
     forbidden_patterns,
     verify_assignment,
@@ -50,6 +51,9 @@ class CNFEncoderTests(unittest.TestCase):
         constraint = positive_constraint("EX1_4")
         self.assertTrue(verify_assignment(n=4, constraints=[constraint], assignment=(True, False, False, False)))
         self.assertFalse(verify_assignment(n=4, constraints=[constraint], assignment=(True, True, False, False)))
+
+    def test_decode_model_defaults_missing_free_variables_to_false(self) -> None:
+        self.assertEqual(decode_model_to_assignment([1, -2], n=4), (True, False, False, False))
 
     def test_bruteforce_detects_contradiction(self) -> None:
         constraints = [positive_constraint("EX1_4"), positive_constraint("EX2_4")]
