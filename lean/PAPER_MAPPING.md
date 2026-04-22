@@ -230,6 +230,12 @@ drift は `log(2^k / allowed)` になる。部分二項和が \(0\) と \(2^k\) 
 | [`BucklingThreshold.lean`](Survival/BucklingThreshold.lean) | load ramp `P_n = P_0 + n ΔP` が critical load `Pcr` に到達/超過すると座屈閾値到達 | A10。機械構造体の critical-load threshold skeleton |
 | [`PercolationThreshold.lean`](Survival/PercolationThreshold.lean) | occupation ramp `p_n = p_0 + n Δp` が critical occupation `p_c` に到達/超過すると percolation threshold 到達 | A11/A12。巨大成分・パーコレーション転移の threshold skeleton |
 
+### C3. G6-c formal mapping（1）
+
+| ファイル | 主定理 | 評価 |
+|---------|-------|------|
+| [`LyapunovBalanceEmbedding.lean`](Survival/LyapunovBalanceEmbedding.lean) | Lyapunov/load sequence `Z_t` から `a_t = Z_{t+1}-Z_t`, `A_n = Z_n-Z_0`, `R_{t+1}=R_t exp(-a_t)`、queue excess demand への wrapper | G6-c。Foster-Lyapunov / queueing drift を構造収支律の expectation-level tendency へ埋め込む最小代数 skeleton |
+
 ### D. 表現安定性・粗視化（5）— Paper 1 §2 P5
 
 | ファイル | 主定理 | 評価 |
