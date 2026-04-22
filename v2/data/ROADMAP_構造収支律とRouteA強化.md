@@ -338,7 +338,8 @@ universal law established
 
 ## 7. Step 4: Cardinality-SAT as stress extension
 
-Do this after q-coloring.
+Do this after q-coloring calibration is either completed or explicitly closed
+as inconclusive.
 
 Role:
 
@@ -353,9 +354,30 @@ Existing Lean support:
 - `ExactlyOneSATChernoffCollapse.lean`
 - `MultiForbiddenPatternCSP.lean`
 
+Current draft:
+
+```text
+analysis/exp44_cardinality_sat/preregistration_draft.md
+```
+
+Status: draft only, not frozen. No primary Exp44 data should be generated until
+the preregistration, generator, feature schema, and analysis script are fixed.
+
+Draft design:
+
+- type family: `AL1_4`, `EX2_4`, `EX1_4`;
+- primary theory coordinate: `first_moment_log_count = n log 2 - L`;
+- primary endpoint: SAT feasibility after direct forbidden-pattern CNF encoding;
+- primary comparison: `fm_plus_n` against raw semantic count / density and CNF
+  encoding-size baselines;
+- phase: exploration / pilot design.
+
 Why second:
 
 Cardinality-SAT is mathematically useful but rhetorically still SAT-like. q-coloring should be the first "SAT 以外に見える" empirical Route A extension.
+Since Exp43 q-coloring is currently under-calibrated rather than validated,
+Exp44 should be treated as a stress-extension draft, not as a replacement proof
+of q-coloring.
 
 ## 8. Step 5: Beyond Internal Strength
 
@@ -411,8 +433,9 @@ If another LLM continues, do this:
 7. Treat Exp43 as exploration / pilot calibration, not validation.
 8. If continuing q-coloring, write a new Exp43b freeze-ready fine-grid
    preregistration before generating primary data.
-9. If not continuing q-coloring, mark Exp43 calibration inconclusive and move
-   to Exp44 Cardinality-SAT.
+9. If not continuing q-coloring, mark Exp43 calibration inconclusive and use
+   `analysis/exp44_cardinality_sat/preregistration_draft.md` as the starting
+   point for Exp44 harness / pilot work.
 10. Keep M decomposition as a supplement reference only.
 11. Do not claim universal law established, even if Exp43b or Exp44 passes.
 ```
