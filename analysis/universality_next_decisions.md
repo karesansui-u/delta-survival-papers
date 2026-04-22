@@ -45,7 +45,7 @@ replication and, if needed, later theorem-wrapper polish.
 |---|---|---|---|
 | Core theory | Consolidation | Stable theorem vocabulary and Lean anchors | Only wording / mapping refinements |
 | LLM domain | Verification | Exp.40 + Exp.42 support scope-as-repair and attribution-as-repair; Exp.41 width passed | Model-dependent failure-mode follow-up only if needed |
-| Route A / CSP | Mixed-CSP validated; q-coloring exploratory; Exp44 smoke-clean with runtime-probe feedback | Mixed-CSP official primary passed: `L_plus_n` log loss 0.0970 < `raw_plus_n` 0.7525. Exp43 q-coloring is pilot calibration only; pilot_v1/v2 did not pass the freeze gate. Exp44 Cardinality-SAT draft and harness exist; smoke passed; partial pilot found an `M0_low, n=120, rho=1.00` runtime bottleneck | Exp43b fine-grid preregistration or Exp44 pilot_v2 with runtime guard |
+| Route A / CSP | Mixed-CSP validated; q-coloring exploratory; Exp44 pilot_v2 clean but not freeze-ready | Mixed-CSP official primary passed: `L_plus_n` log loss 0.0970 < `raw_plus_n` 0.7525. Exp43 q-coloring is pilot calibration only; pilot_v1/v2 did not pass the freeze gate. Exp44 smoke and pilot_v2 are infrastructure-clean; pilot_v2 still needs fine-grid fallback because M0/M1/M2 have one informative band | Exp43b fine-grid preregistration or Exp44 pilot_v3 fine grid |
 | Formal tendency | M1 completed | Expectation-level target theorem 4 formally accessible via existing theorems; M2-A mapping-only fixed | Optional M2-B wrapper if paper needs named theorem aliases |
 | External reception | Open | Internal reproducibility and OSF available | Independent review / replication |
 
@@ -220,7 +220,9 @@ Exp44 Cardinality-SAT now has a draft preregistration and harness at
 design using heterogeneous cardinality constraints. The smoke run passed at
 infrastructure level; see `analysis/exp44_cardinality_sat/smoke_summary.md`.
 A partial runtime probe found a hard `M0_low, n=120, rho=1.00` cell; see
-`analysis/exp44_cardinality_sat/pilot_runtime_probe.md`. No Exp44 primary data
+`analysis/exp44_cardinality_sat/pilot_runtime_probe.md`. Pilot_v2 with
+`n={60,100}` completed cleanly but did not pass the informative-band gate; see
+`analysis/exp44_cardinality_sat/pilot_v2_summary.md`. No Exp44 primary data
 should be generated until its freeze checklist is complete.
 
 ## 5. Public Wording

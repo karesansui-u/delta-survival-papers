@@ -17,6 +17,8 @@ feature schema, and analysis script are frozen.
 - `config/pilot_config.json`: draft pilot grid from the preregistration.
 - `config/pilot_v2_config.json`: runtime-guard fallback grid after the partial
   runtime probe.
+- `config/pilot_v3_config.json`: fine-grid fallback after pilot_v2 showed
+  sharp transitions in low-drift mixtures.
 - `tests/`: unit tests; solver tests skip if PySAT is unavailable.
 
 ## Commands
@@ -67,6 +69,15 @@ Run the runtime-guard pilot v2 only after reviewing
 python3 analysis/exp44_cardinality_sat/src/pilot_runner.py \
   --config analysis/exp44_cardinality_sat/config/pilot_v2_config.json \
   --output analysis/exp44_cardinality_sat/data/pilot_v2_results.jsonl \
+  run --execute
+```
+
+Run the fine-grid pilot v3 only after reviewing `pilot_v2_summary.md`:
+
+```bash
+python3 analysis/exp44_cardinality_sat/src/pilot_runner.py \
+  --config analysis/exp44_cardinality_sat/config/pilot_v3_config.json \
+  --output analysis/exp44_cardinality_sat/data/pilot_v3_results.jsonl \
   run --execute
 ```
 

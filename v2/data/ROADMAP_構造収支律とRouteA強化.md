@@ -402,6 +402,28 @@ Finding: the original pilot grid hit a runtime bottleneck at
 feedback, not validation evidence. The draft now includes a runtime guard and
 the next Exp44 step is pilot_v2 with a reduced `n` grid such as `{60,100}`.
 
+Pilot_v2:
+
+```text
+analysis/exp44_cardinality_sat/pilot_v2_summary.md
+```
+
+Result: infrastructure-clean but not freeze-ready.
+
+```text
+records: 2400
+SAT: 809
+UNSAT: 1591
+TIMEOUT: 0
+MALFORMED: 0
+monotone mixtures: 6/6
+pilot_pass: false
+```
+
+Remaining issue: M0/M1/M2 each have only one informative rho band. This
+triggers the precommitted fine-grid fallback. Next step is pilot_v3 with
+`rho_fm in {0.70,0.80,0.90,1.00,1.10,1.20}`.
+
 Why second:
 
 Cardinality-SAT is mathematically useful but rhetorically still SAT-like. q-coloring should be the first "SAT 以外に見える" empirical Route A extension.
