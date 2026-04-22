@@ -1,6 +1,8 @@
 # Universality Formal Gap Map
 
-Status: M1 design draft for review. This is not a proof file.
+Status: M1 gap analysis completed for review. This is not a proof file.
+
+Date: 2026-04-22
 
 ## 1. Target
 
@@ -13,8 +15,16 @@ increments, a high-probability stopped-collapse / non-collapse tendency follows.
 ```
 
 The current Lean tree already proves several pieces of this target under more
-specific names. The main task is to map the pieces and identify the smallest
-bridge theorem still worth proving.
+specific names. M1 therefore treats target theorem 4 as a **mapping and
+packaging problem first**, not as an immediate new proof obligation.
+
+M1 conclusion:
+
+```text
+Expectation-level tendency is already formally accessible through existing
+Lean theorems. The remaining work is reader-facing theorem mapping and careful
+paper-side wording. A new Lean wrapper is optional, not required.
+```
 
 ## 2. Existing Anchors
 
@@ -159,6 +169,10 @@ Needed output:
   A mapping table in `lean/PAPER_MAPPING.md` from target theorem 4 language to
   existing theorem names.
 
+M1 decision:
+  Real gap, but documentation-only. Solved by the target theorem 4 mapping
+  table in `PAPER_MAPPING.md`.
+
 Difficulty:
   Low.
 
@@ -196,8 +210,14 @@ Risk:
   assumptions. The target should therefore use stepwise or adjacent-prefix
   dominance.
 
+M1 decision:
+  Do not add a bridge theorem for vague cumulative-prefix dominance. The paper
+  wording should instead use one-step / adjacent-prefix nonnegative total
+  production, matching the existing Lean assumption layer.
+
 Difficulty:
-  Low to medium, depending on the exact statement.
+  Low if wording is corrected; medium only if the paper insists on a broader
+  cumulative-prefix statement.
 
 ### Gap G3: SAT Concrete Instance to Generic Schema
 
@@ -233,6 +253,10 @@ Decision rule:
 
 Otherwise, a `PAPER_MAPPING.md` entry is sufficient.
 
+M1 decision:
+  Mapping is sufficient for now. A wrapper such as
+  `SAT_targetTheorem4_expected_tendency` is optional M2 polish only.
+
 ### Gap G4: Bernoulli CSP General Tendency Wrapper
 
 Problem:
@@ -256,6 +280,12 @@ Risk:
   repair-centered. If so, M3 should avoid forcing repair language and instead
   state a collapse/tendency wrapper in the native bad-event exposure vocabulary.
 
+M1 decision:
+  Do not force repair-dominance vocabulary onto Bernoulli-CSP. Map it as a
+  finite-horizon bad-event drift / Chernoff collapse tendency interface. This
+  is formally useful and empirically aligned with Mixed-CSP, but it is a
+  different schema from resource-repair total production.
+
 Difficulty:
   Medium.
 
@@ -276,15 +306,23 @@ Resolution:
 
 Do not merge these into a single theorem unless the assumptions are explicit.
 
+M1 decision:
+  Existing high-probability wrappers are sufficient under their stated
+  concentration and margin assumptions. They should be cited as a separate
+  branch, not as the expectation-level theorem itself.
+
 Difficulty:
   Medium for wording; low if existing wrappers are simply mapped.
 
-## 4. Proposed M1 Deliverables
+## 4. M1 Deliverables
 
-M1 should produce:
+M1 produces:
 
-1. A final version of this gap map.
-2. A theorem mapping table:
+1. This final gap map.
+2. A theorem mapping table in `PAPER_MAPPING.md`.
+3. A decision on whether M2 needs a new Lean file or only a mapping update.
+
+The core mapping is:
 
 | Informal target phrase | Existing Lean theorem | Gap |
 |---|---|---|
@@ -296,38 +334,31 @@ M1 should produce:
 | Bernoulli CSP collapse wrapper | `collapseWithChernoffBound_of_linearMargin` | tendency wrapper optional |
 | stopped collapse with concentration | resource/coarse stopped-collapse wrappers | wording |
 
-3. A decision on whether M2 needs a new Lean file or only a mapping update.
+## 5. M2 Decision
 
-### 4.1 Best-Case Outcome
-
-If the mapping table shows every gap as `none` or `mapping`, then M2 requires
-no new Lean file. A `PAPER_MAPPING.md` update alone suffices.
-
-In that case, target theorem 4 should be described as formally accessible via
-existing theorems rather than as a newly proved theorem.
-
-### 4.2 Worst-Case Outcome
-
-If G2 requires stepwise assumptions that the paper-side target language does
-not naturally imply, the target wording itself should be adjusted. In that
-case:
-
-- document the gap in `PAPER_MAPPING.md` as "target language incompatible with
-  current assumption layer";
-- propose paper-side wording that uses stepwise or adjacent-prefix dominance;
-- avoid stating the generic theorem until paper wording and Lean assumptions
-  align.
-
-## 5. Recommended M2 Target
-
-Conservative M2:
+M2 recommendation:
 
 ```text
-Add a SAT target-theorem-4 wrapper theorem only if it reduces paper ambiguity.
-Otherwise update PAPER_MAPPING.md with the existing SAT theorem names.
+M2-A: mapping-only is sufficient.
 ```
 
-Preferred theorem shape if new wrapper is added:
+Rationale:
+
+- expectation-level tendency is already covered by
+  `expectedCumulative_monotone_of_ae_nonnegative_stepTotalProduction`,
+  `expectedCumulative_monotone`, and the coarse wrappers;
+- SAT concrete tendency is already covered by
+  `expectedCumulative_monotone_stepModel`;
+- high-probability stopped-collapse is already covered by resource/coarse
+  stopped-collapse wrappers under explicit concentration assumptions.
+
+Optional M2 polish:
+
+```text
+M2-B: add thin reader-facing wrapper names only if the paper needs them.
+```
+
+Candidate wrapper shape:
 
 ```text
 theorem SAT_targetTheorem4_expected_tendency
@@ -345,7 +376,28 @@ This is likely a thin wrapper around:
 SATStateDependentUnconditionalTendency.expectedCumulative_monotone_stepModel
 ```
 
-## 6. Recommended M3 Target
+## 6. Paper-Side Wording Required by M1
+
+Avoid:
+
+```text
+If repair dominates contraction on every prefix, then typical nondecrease follows.
+```
+
+unless "dominates on every prefix" is explicitly adjacent-step-wise.
+
+Safer wording:
+
+```text
+At the expectation level, a law-of-tendency theorem is available when one-step
+total production is nonnegative, or when an equivalent resource-bounded
+assumption implies nonnegative one-step total production. Under admissible
+coarse-graining, this monotonicity transfers to the coarse process.
+High-probability stopped-collapse statements require additional concentration
+and margin assumptions and are treated as a separate theorem schema.
+```
+
+## 7. Recommended M3 Target
 
 Do not start by proving a very abstract "all CSPs repair dominance" theorem.
 Instead, expose the existing Bernoulli CSP interface as a common collapse /
@@ -360,7 +412,7 @@ Chernoff collapse and stopped-collapse wrappers.
 Then decide whether an expectation-level total-production wrapper is natural in
 the existing process vocabulary.
 
-## 7. Non-Goals for M1-M2
+## 8. Non-Goals for M1-M2
 
 - No new axioms.
 - No empirical claims in Lean.

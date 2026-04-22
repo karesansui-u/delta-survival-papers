@@ -28,6 +28,59 @@ microfoundation、SAT/k-SAT Chernoff-KL chain、Bernoulli-CSP 水平展開、Rou
 | Route A 非CSP skeletons | sanity / coverage benchmark | 古典例を最小語彙で歪めず表せるかの検査。信頼性・材料・待ち行列等の新規本命定理ではない |
 | Level B / proxy domains | future work | LLM 以外の高次元・非自然測度ドメインは calibration と実証を要する |
 
+## Target Theorem 4 / Law-of-Tendency Mapping
+
+M1 gap analysis conclusion:
+
+```text
+Target theorem 4 is already formally accessible at the expectation level
+through existing Lean theorems. The remaining work is reader-facing mapping
+and paper-side wording, not a new proof obligation.
+```
+
+The paper-side target should be split into two schemas:
+
+1. **Expectation-level tendency**: one-step total production is nonnegative
+   (or implied by a resource-bounded assumption), so expected cumulative total
+   production is monotone.
+2. **High-probability stopped-collapse / non-collapse**: finite-horizon
+   collapse or hitting-time bounds follow only after adding concentration,
+   bounded-increment, and margin assumptions.
+
+These schemas should not be merged without explicitly carrying the extra
+probability assumptions.
+
+| Paper phrase | Lean vocabulary | Lean theorem / object | Status |
+|---|---|---|---|
+| signed exponential balance | local net action / feasible mass | `feasibleMass_succ_eq_mass_mul_exp_neg_stepNetAction`; `feasibleMass_eq_initial_mul_exp_neg_cumulativeNetAction` | proven |
+| cumulative signed kernel \(m(V^{(n)}) = m(V^{(0)}) e^{-A_n}\) | cumulative net action | `feasibleMass_eq_initial_mul_exp_neg_cumulativeNetAction` | proven |
+| repair/resource contribution dominates contraction loss | nonnegative step total production | `expectedCumulative_monotone_of_ae_nonnegative_stepTotalProduction` | proven; naming gap only |
+| deterministic total production tendency | deterministic step model | `deterministic_expectedCumulative_monotone` | proven |
+| coarse-grained typical nondecrease | coarse stochastic compatibility | `coarse_expectedCumulative_monotone_of_micro_nonnegative`; `coarse_expectedCumulative_monotone_of_micro_resourceBounded`; `coarse_expectedCumulative_monotone_of_micro_conditionalAzuma` | proven |
+| SAT expected tendency | state-dependent SAT step model | `expectedCumulative_monotone_stepModel`; `expectedCumulative_eq_initial_add_linear` | proven; mapping sufficient |
+| Bernoulli-CSP finite drift / collapse tendency | bad-event exposure, drift, Chernoff margin | `drift`; `expectedBadEmission_eq_drift`; `collapseWithChernoffBound_of_linearMargin`; `stoppedCollapseWithChernoffBound_of_linearMargin` | proven; different schema from repair dominance |
+| stopped collapse / hitting-time bound | bounded increments, expected margin, concentration | `stoppedCollapseWithFailureBound_of_boundedIncrementData_expectedMargin`; resource/coarse stopped-collapse wrappers | proven under assumptions |
+
+M1 wording discipline:
+
+```text
+Do not state "prefix dominance implies nondecrease" unless prefix dominance is
+defined stepwise or adjacent-prefix-wise. The Lean layer proves monotonicity
+from nonnegative one-step total production or equivalent resource-bounded
+assumptions. A merely nonnegative cumulative prefix value is not enough to
+imply monotonicity.
+```
+
+M2 decision:
+
+```text
+M2-A: mapping-only is sufficient.
+```
+
+A thin wrapper file may still be added later for readability, but it is not
+mathematically required. If added, wrappers should be direct aliases of the
+existing theorems, with no new axioms and no strengthened empirical claim.
+
 ## Lean で閉じている範囲
 
 | 範囲 | 状態 | 読み方 |
