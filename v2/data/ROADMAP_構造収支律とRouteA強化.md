@@ -56,7 +56,7 @@ Current state:
 | G3 | Lean 上は q-coloring / XOR / NAE / cardinality まで水平展開済み。empirical primary は Mixed-CSP が中心 |
 | G4 | non-CSP Lean skeleton はあるが SAT-chain-level anchor ではない |
 | G5 | LLM / Mixed-CSP の内部 prospective はある。外部・異質ドメインでは未達 |
-| G6 | §7 で G6-a/b/c の整理と queueing / Foster-Lyapunov の G6-c 候補を記述済み。theorem transfer と non-CSP 追加例は未整理 |
+| G6 | G6-c iteration 1 closed。Foster-Lyapunov / queueing drift の minimal algebraic embedding は `lean/Survival/LyapunovBalanceEmbedding.lean` で Lean formalized。positive recurrence / geometric ergodicity theorem は iteration 2 に defer |
 | G7 | 未達。外部再現待ち |
 
 Gate interaction:
@@ -492,7 +492,19 @@ Existing non-CSP skeletons:
 
 Current status:
 
-These are coverage / sanity skeletons, not yet full SAT-chain-level anchors.
+G6-c iteration 1 is closed at the minimal algebraic embedding level:
+
+- `analysis/g6c_formal_mapping_scope.md` fixes the scope boundary.
+- `analysis/g6c_foster_lyapunov_embedding_draft.md` records the prose embedding and non-claims.
+- `lean/Survival/LyapunovBalanceEmbedding.lean` formalizes:
+  - \(A_n = Z_n - Z_0\) telescoping;
+  - \(R_{t+1}=R_t e^{-a_t}\);
+  - \(a_t=\ell_t-g_t\) via positive / negative parts;
+  - queue excess-demand wrappers against `QueueStability.lean`.
+
+This is not a proof of positive recurrence or geometric ergodicity. Those
+belong to G6-c iteration 2. The remaining non-CSP skeletons are coverage /
+sanity skeletons, not yet full SAT-chain-level empirical anchors.
 
 ## 9. Exact Next Action For Another LLM
 
