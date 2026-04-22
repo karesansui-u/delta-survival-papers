@@ -250,8 +250,9 @@ Current draft:
 v2/data/exp43_qcoloring_preregistration_draft.md
 ```
 
-Status: draft only, not frozen. Pilot v1 has run locally and did not pass the
-freeze gate; see `analysis/exp43_qcoloring/pilot_v1_addendum.md`.
+Status: draft only, not frozen. Pilot v1 and pilot v2 have run locally and did
+not pass the freeze gate; see `analysis/exp43_qcoloring/pilot_v1_addendum.md`
+and `analysis/exp43_qcoloring/pilot_v2_summary.md`.
 
 Pilot harness:
 
@@ -259,9 +260,8 @@ Pilot harness:
 analysis/exp43_qcoloring/
 ```
 
-Status: draft harness; tests and dry-run pass with `python3`. Use
-`analysis/exp43_qcoloring/config/pilot_v2_config.json` for the next fallback
-pilot. Do not run primary data until preregistration freeze.
+Status: draft harness; tests and dry-runs pass with `python3`. Pilot_v2 has
+also run. Do not run primary data until a new preregistration freeze.
 
 Pilot v1 summary:
 
@@ -283,6 +283,28 @@ q=3: rho_fm in {0.40,0.50,0.60,0.70,0.80,0.90}
 q=4: rho_fm in {0.40,0.50,0.60,0.70,0.80,0.90}
 q=5: rho_fm in {0.80,0.90,1.00,1.10,1.20,1.30}
 ```
+
+Pilot v2 summary:
+
+```text
+records: 1800
+SAT: 955
+UNSAT: 844
+TIMEOUT: 1
+MALFORMED: 0
+pilot_pass: false
+inconclusive_by_30pct_rule: false
+informative bands:
+  q=3: {0.60,0.70,0.80}
+  q=4: {0.80}
+  q=5: {0.80}
+```
+
+Interpretation: timeout is no longer the main blocker. The current precommitted
+fallback grids are too coarse for q=4 and q=5. Do not freeze the current grid
+as primary. The clean next step is a new freeze-ready fine-grid preregistration
+that treats pilot_v1/v2 as calibration, or else marks Exp43 calibration
+inconclusive.
 
 Need care:
 
@@ -381,11 +403,12 @@ If another LLM continues, do this:
 2. Read this roadmap.
 3. Read v2/5_構造持続の収支法則と崩壊傾向.md §1-8.
 4. Read analysis/exp43_qcoloring/pilot_v1_addendum.md.
-5. Run pilot_v2 using analysis/exp43_qcoloring/config/pilot_v2_config.json.
-6. If pilot_v2 passes, freeze preregistration / manifest / features /
-   analysis script before primary data.
-7. Keep M decomposition as a supplement reference only.
-8. Do not claim universal law established, even if Exp43 passes.
+5. Read analysis/exp43_qcoloring/pilot_v2_summary.md.
+6. Do not run primary q-coloring data from the current grid.
+7. If continuing Exp43, write a new freeze-ready fine-grid preregistration
+   before generating primary data.
+8. Keep M decomposition as a supplement reference only.
+9. Do not claim universal law established, even if Exp43 passes.
 ```
 
 Suggested commit message when ready:

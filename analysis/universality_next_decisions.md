@@ -203,12 +203,13 @@ percolation should not be promoted as primary Route A empirical anchors.
 The current Exp43 draft is
 `v2/data/exp43_qcoloring_preregistration_draft.md`.
 It is draft-only and must be reviewed / frozen before primary data generation.
-The pilot harness lives at `analysis/exp43_qcoloring/`. Smoke and pilot_v1 have
-run locally. Pilot_v1 was infrastructure-clean but failed the freeze gate:
-each q had only one informative rho band and the cell
-`q=5,n=100,rho_fm=1.00` had 4/50 timeouts. The fallback is recorded in
-`analysis/exp43_qcoloring/pilot_v1_addendum.md`; next practical step is
-pilot_v2 with `analysis/exp43_qcoloring/config/pilot_v2_config.json`.
+The pilot harness lives at `analysis/exp43_qcoloring/`. Smoke, pilot_v1, and
+pilot_v2 have run locally. Pilot_v1 was infrastructure-clean but failed the
+freeze gate; pilot_v2 solved the timeout issue but still failed because q=4 and
+q=5 each had only one informative rho band. See
+`analysis/exp43_qcoloring/pilot_v1_addendum.md` and
+`analysis/exp43_qcoloring/pilot_v2_summary.md`. Primary q-coloring data must
+not be generated from the current grid.
 
 ## 5. Public Wording
 
