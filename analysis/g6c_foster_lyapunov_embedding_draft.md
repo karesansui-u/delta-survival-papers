@@ -25,7 +25,7 @@ Date: 2026-04-23
 \]
 という recovery tendency になる。
 
-この対応は G6-c formal embedding の候補である。理由は、語彙の類似ではなく、累積作用と指数的維持量の恒等式が同じ形で書けるからである。
+この対応は、G6-c iteration 1 の minimal algebraic embedding として閉じた。理由は、語彙の類似ではなく、累積作用と指数的維持量の恒等式が同じ形で書けるからである。
 
 ## 2. G6-a/b/c の中での位置
 
@@ -263,6 +263,7 @@ Foster-Lyapunov drift calculus は、構造収支律の expectation-level tenden
      `queue_increment_nonpos_of_stable`,
      `queue_increment_pos_of_overloaded` による `QueueStability` wrapper。
 3. `lean/PAPER_MAPPING.md` に G6-c formal mapping として reader-facing 対応を追加した。
+4. reader-facing 補論として `v2/補論_構造収支律とFoster-Lyapunovドリフトの形式的埋め込み.md` を作成した。
 
 したがって、G6-c iteration 1 は minimal algebraic embedding として閉じた状態にある。
 
@@ -275,4 +276,4 @@ Foster-Lyapunov drift calculus は、構造収支律の expectation-level tenden
 
 これらは本 draft の scope を超える。現在の最小 embedding が閉じたことで、次の G4 non-CSP anchor（queueing、reliability、branching、population dynamics）を選ぶ基準は得られている。
 
-補論化（候補名「補論\_構造収支律とFoster-Lyapunovドリフトの形式的埋め込み」）は、本編 paper の §7 との整理が固まり次第行う。
+今後この補論を改訂する場合も、positive recurrence / geometric ergodicity へ進む変更は G6-c iteration 2 として明示的に分離する。

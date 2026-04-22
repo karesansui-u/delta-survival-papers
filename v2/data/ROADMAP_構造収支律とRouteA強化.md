@@ -56,7 +56,7 @@ Current state:
 | G3 | Lean 上は q-coloring / XOR / NAE / cardinality まで水平展開済み。empirical primary は Mixed-CSP が中心 |
 | G4 | non-CSP Lean skeleton はあるが SAT-chain-level anchor ではない |
 | G5 | LLM / Mixed-CSP の内部 prospective はある。外部・異質ドメインでは未達 |
-| G6 | G6-c iteration 1 closed。Foster-Lyapunov / queueing drift の minimal algebraic embedding は `lean/Survival/LyapunovBalanceEmbedding.lean` で Lean formalized。positive recurrence / geometric ergodicity theorem は iteration 2 に defer |
+| G6 | G6-c iteration 1 closed。Foster-Lyapunov / queueing drift の minimal algebraic embedding は `v2/補論_構造収支律とFoster-Lyapunovドリフトの形式的埋め込み.md` と `lean/Survival/LyapunovBalanceEmbedding.lean` で reader-facing / Lean formalized。positive recurrence / geometric ergodicity theorem は iteration 2 に defer |
 | G7 | 未達。外部再現待ち |
 
 Gate interaction:
@@ -496,6 +496,7 @@ G6-c iteration 1 is closed at the minimal algebraic embedding level:
 
 - `analysis/g6c_formal_mapping_scope.md` fixes the scope boundary.
 - `analysis/g6c_foster_lyapunov_embedding_draft.md` records the prose embedding and non-claims.
+- `v2/補論_構造収支律とFoster-Lyapunovドリフトの形式的埋め込み.md` is the reader-facing supplement.
 - `lean/Survival/LyapunovBalanceEmbedding.lean` formalizes:
   - \(A_n = Z_n - Z_0\) telescoping;
   - \(R_{t+1}=R_t e^{-a_t}\);
