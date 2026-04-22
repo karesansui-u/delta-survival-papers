@@ -108,4 +108,3 @@ then run pilot_v2 as exploration.
 
 Primary validation remains prohibited until the revised pilot passes and the
 freeze checklist is completed.
-

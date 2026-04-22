@@ -116,4 +116,3 @@ instances_per_cell = 50
 If pilot_v3 passes, the corresponding fine grid can be considered for freeze.
 If pilot_v3 also fails, Exp44 should be marked calibration-inconclusive rather
 than tuned silently.
-
