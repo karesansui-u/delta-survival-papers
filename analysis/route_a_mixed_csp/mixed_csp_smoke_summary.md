@@ -1,11 +1,11 @@
 # Mixed-CSP Smoke Summary
 
-Generated: 2026-04-22T03:36:53.909166
+Generated: 2026-04-22T09:42:41.500520
 Rows: `20`
-Median runtime: `0.0595` sec
-P90 runtime: `0.0611` sec
-Primary runtime extrapolation, median: `713.6453` sec
-Primary runtime extrapolation, P90: `733.5011` sec
+Median runtime: `0.0581` sec
+P90 runtime: `0.0607` sec
+Primary runtime extrapolation, median: `697.6798` sec
+Primary runtime extrapolation, P90: `728.5277` sec
 
 ## Checks
 

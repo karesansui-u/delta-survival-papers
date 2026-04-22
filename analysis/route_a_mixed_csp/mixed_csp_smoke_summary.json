@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-22T03:36:53.909166",
+  "generated_at": "2026-04-22T09:42:41.500520",
   "rows": 20,
   "checks": {
     "all_solver_statuses_succeeded": true,
@@ -9,10 +9,10 @@
     "pure_exact_one_cnf_ratio_4": true,
     "mixed_sat_nae_cnf_ratio_1_5": true
   },
-  "median_runtime_sec": 0.05947043751075398,
-  "p90_runtime_sec": 0.061125091393478215,
-  "primary_runtime_extrapolation_median_sec": 713.6452501290478,
-  "primary_runtime_extrapolation_p90_sec": 733.5010967217386,
+  "median_runtime_sec": 0.0581399795046309,
+  "p90_runtime_sec": 0.06071063809795305,
+  "primary_runtime_extrapolation_median_sec": 697.6797540555708,
+  "primary_runtime_extrapolation_p90_sec": 728.5276571754366,
   "cell_diagnostics": [
     {
       "cell_id": "smoke|n=20|d=1.0|sat_0.00__nae_0.00__exact1_1.00",
