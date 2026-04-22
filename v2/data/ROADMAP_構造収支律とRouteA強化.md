@@ -244,6 +244,25 @@ primary split: leave-one-q-out or leave-one-threshold-band-out
 primary metric: held-out log loss / Brier score
 ```
 
+Current draft:
+
+```text
+v2/data/exp43_qcoloring_preregistration_draft.md
+```
+
+Status: draft only, not frozen.
+
+Pilot harness:
+
+```text
+analysis/exp43_qcoloring/
+```
+
+Status: draft harness; tests and dry-run pass with `python3`. Use
+`analysis/exp43_qcoloring/config/smoke_config.json` for the first solver-path
+check after PySAT is available. Do not run primary data until preregistration
+freeze.
+
 Need care:
 
 - q ごとに colorability threshold が違う。
@@ -340,7 +359,7 @@ If another LLM continues, do this:
 1. Read analysis/structural_balance_law_draft_plan.md.
 2. Read this roadmap.
 3. Read v2/5_構造持続の収支法則と崩壊傾向.md §1-8.
-4. Review §1-8 for consistency and/or design Exp43 q-coloring cross-q feasibility.
+4. Review / freeze v2/data/exp43_qcoloring_preregistration_draft.md.
 5. Keep M decomposition as a supplement reference only.
 6. Do not claim universal law established, even if Exp43 passes.
 ```

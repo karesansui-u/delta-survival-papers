@@ -1,0 +1,9 @@
+{
+  "phase": "smoke",
+  "q_values": [3, 4],
+  "n_values": [20],
+  "rho_fm_values": [0.5, 1.0, 1.5],
+  "instances_per_cell": 5,
+  "timeout_sec": 10,
+  "solver_backend": "minisat22"
+}

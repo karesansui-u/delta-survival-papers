@@ -1,0 +1,9 @@
+{
+  "phase": "pilot",
+  "q_values": [3, 4, 5],
+  "n_values": [50, 100],
+  "rho_fm_values": [0.6, 0.8, 1.0],
+  "instances_per_cell": 50,
+  "timeout_sec": 120,
+  "solver_backend": "minisat22"
+}

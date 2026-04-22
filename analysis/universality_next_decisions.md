@@ -191,7 +191,7 @@ Estimated timelines, assuming no unexpected gates:
 | Optional M2-B wrapper, if needed | 1-2 hours + `lake build` |
 | M operationalization supplement cleanup | 30-60 min |
 | Structural balance law §1-8 review pass | 1 focused session |
-| Exp43 q-coloring preregistration draft | 1 focused session |
+| Exp43 q-coloring preregistration draft review / freeze | 1 focused session |
 | Optional q-coloring / Cardinality-SAT design | 1 focused session |
 
 Route A extension discipline is recorded separately in
@@ -199,6 +199,13 @@ Route A extension discipline is recorded separately in
 has now passed; q-coloring and Cardinality-SAT are safe post-Mixed-CSP
 extensions. XOR-SAT, LDPC decoder performance, SAT chain v2.0, and bootstrap
 percolation should not be promoted as primary Route A empirical anchors.
+
+The current Exp43 draft is
+`v2/data/exp43_qcoloring_preregistration_draft.md`.
+It is draft-only and must be reviewed / frozen before primary data generation.
+The pilot harness draft lives at `analysis/exp43_qcoloring/`; tests and dry-run
+currently pass with `python3`. Next practical step is the small smoke config
+(`analysis/exp43_qcoloring/config/smoke_config.json`) after PySAT is available.
 
 ## 5. Public Wording
 
