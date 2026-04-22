@@ -15,6 +15,8 @@ feature schema, and analysis script are frozen.
 - `src/pilot_summary.py`: pilot pass/fallback summary.
 - `config/smoke_config.json`: small solver smoke grid.
 - `config/pilot_config.json`: draft pilot grid from the preregistration.
+- `config/pilot_v2_config.json`: runtime-guard fallback grid after the partial
+  runtime probe.
 - `tests/`: unit tests; solver tests skip if PySAT is unavailable.
 
 ## Commands
@@ -55,6 +57,16 @@ Run the pilot only after review:
 python3 analysis/exp44_cardinality_sat/src/pilot_runner.py \
   --config analysis/exp44_cardinality_sat/config/pilot_config.json \
   --output analysis/exp44_cardinality_sat/data/pilot_results.jsonl \
+  run --execute
+```
+
+Run the runtime-guard pilot v2 only after reviewing
+`pilot_runtime_probe.md`:
+
+```bash
+python3 analysis/exp44_cardinality_sat/src/pilot_runner.py \
+  --config analysis/exp44_cardinality_sat/config/pilot_v2_config.json \
+  --output analysis/exp44_cardinality_sat/data/pilot_v2_results.jsonl \
   run --execute
 ```
 

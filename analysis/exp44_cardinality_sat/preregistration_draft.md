@@ -163,6 +163,9 @@ The pilot passes if all conditions hold:
    rate in `(5%, 95%)` after excluding timeouts.
 4. At least four of six mixtures have monotone non-increasing SAT rate as
    \(\rho_{\mathrm{fm}}\) increases.
+5. No pilot cell is runtime-unstable, where runtime-unstable means either:
+   median runtime exceeds 30 seconds, or at least 20% of completed instances in
+   that cell have runtime greater than 60 seconds.
 
 If the pilot fails, the result is calibration feedback, not theory evidence.
 
@@ -176,6 +179,7 @@ Fallback rules must be chosen before any primary data:
 | Most cells UNSAT-saturated | shift rho grid down to `{0.45, 0.60, 0.75, 0.90}` |
 | Transition too sharp | use fine grid `{0.70, 0.80, 0.90, 1.00, 1.10, 1.20}` with `instances_per_cell = 50` |
 | Timeout > 5% in any cell but < 30% of cells suspended | reduce `n` to `{60, 100}` and keep the same rho grid |
+| Runtime-unstable cell without hard timeout | reduce `n` to `{60, 100}` and keep the same rho grid |
 | Timeout suspension in at least 30% of cells | mark Exp44 pilot inconclusive; do not freeze |
 
 Any fallback decision must be recorded in an addendum before the next pilot run.

@@ -391,6 +391,17 @@ MALFORMED: 0
 SAT assignment_verified: 14/14
 ```
 
+Partial pilot runtime probe:
+
+```text
+analysis/exp44_cardinality_sat/pilot_runtime_probe.md
+```
+
+Finding: the original pilot grid hit a runtime bottleneck at
+`M0_low, n=120, rho_fm=1.00` before the pilot completed. This is exploration
+feedback, not validation evidence. The draft now includes a runtime guard and
+the next Exp44 step is pilot_v2 with a reduced `n` grid such as `{60,100}`.
+
 Why second:
 
 Cardinality-SAT is mathematically useful but rhetorically still SAT-like. q-coloring should be the first "SAT 以外に見える" empirical Route A extension.
