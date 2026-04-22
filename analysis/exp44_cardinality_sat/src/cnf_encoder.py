@@ -157,4 +157,3 @@ def brute_force_satisfiable(
         if verify_assignment(n=n, constraints=constraints_tuple, assignment=values):
             return True, tuple(values)
     return False, None
-

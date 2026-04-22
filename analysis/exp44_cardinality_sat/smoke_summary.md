@@ -82,4 +82,3 @@ preregistration draft is revised before pilot.
 Primary validation is still not allowed. Exp44 remains in exploration / pilot
 calibration until the freeze checklist in `preregistration_draft.md` is
 completed.
-

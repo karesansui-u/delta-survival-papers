@@ -211,4 +211,3 @@ def solve_instance(
         timeout_sec=timeout_sec,
         backend=backend,
     )
-

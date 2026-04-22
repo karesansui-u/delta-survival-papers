@@ -66,4 +66,3 @@ python3 analysis/exp44_cardinality_sat/src/pilot_runner.py \
 - SAT models are checked by an independent semantic cardinality verifier.
 - Timeout / unknown instances are not silently counted as UNSAT.
 - CNF size is recorded as a guardrail baseline, not hidden inside `L`.
-

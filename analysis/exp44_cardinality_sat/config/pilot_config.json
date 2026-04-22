@@ -14,4 +14,3 @@
   "timeout_sec": 120,
   "solver_backend": "minisat22"
 }
-

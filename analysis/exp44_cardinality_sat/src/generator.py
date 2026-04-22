@@ -340,4 +340,3 @@ def generate_instance(
         type_counts=type_counts,
         constraints=tuple(constraints),
     )
-

@@ -64,4 +64,3 @@ def build_base_record(instance: CardinalitySATInstance) -> dict[str, Any]:
         "features": extract_features(instance),
         "predictor_vectors": predictor_vectors(instance),
     }
-
