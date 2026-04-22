@@ -166,17 +166,22 @@ Short horizon:
    program memo.
 2. Decide whether the paper needs optional M2-B reader-facing Lean wrapper
    theorem names.
-3. Start Paper 5 resource-operationalization draft if extending the program
-   beyond the now-closed core gates.
-4. Treat q-coloring and Cardinality-SAT as optional Route A width extensions,
+3. Keep M resource operationalization as a supplement-level mapping layer, not
+   as the next main-theory paper.
+4. Review and polish the structural balance law / 構造収支律 draft as the next
+   core-theory candidate. §1-8 now exist at
+   `v2/5_構造持続の収支法則と崩壊傾向.md`; current control memo:
+   `analysis/structural_balance_law_draft_plan.md`.
+5. Treat q-coloring and Cardinality-SAT as optional Route A width extensions,
    not as required gates.
 
 Rationale:
 
 - Mixed-CSP and Exp.41 are now complete and passed.
 - Lean M1 is now complete and reduced the formal gate to mapping / wording.
-- The remaining work is no longer a core gate; it is propagation, optional
-  wrappers, width extension, and external replication.
+- The remaining work is no longer a hidden core-definition gate; it is
+  propagation, optional wrappers, structural-balance-law review / freeze,
+  width extension, and external replication.
 
 Estimated timelines, assuming no unexpected gates:
 
@@ -184,7 +189,9 @@ Estimated timelines, assuming no unexpected gates:
 |---|---:|
 | M1 propagation to public docs | 30-60 min |
 | Optional M2-B wrapper, if needed | 1-2 hours + `lake build` |
-| Paper 5 §1-2 first draft | 2-3 hours |
+| M operationalization supplement cleanup | 30-60 min |
+| Structural balance law §1-8 review pass | 1 focused session |
+| Exp43 q-coloring preregistration draft | 1 focused session |
 | Optional q-coloring / Cardinality-SAT design | 1 focused session |
 
 Route A extension discipline is recorded separately in
