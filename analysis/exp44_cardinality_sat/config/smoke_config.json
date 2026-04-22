@@ -1,0 +1,10 @@
+{
+  "phase": "smoke",
+  "mixture_ids": ["M0_low", "M2_bal_low_med", "M5_med_high"],
+  "n_values": [24],
+  "rho_fm_values": [0.70, 1.00, 1.30],
+  "instances_per_cell": 5,
+  "timeout_sec": 20,
+  "solver_backend": "minisat22"
+}
+

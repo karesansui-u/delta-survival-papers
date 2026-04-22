@@ -45,7 +45,7 @@ replication and, if needed, later theorem-wrapper polish.
 |---|---|---|---|
 | Core theory | Consolidation | Stable theorem vocabulary and Lean anchors | Only wording / mapping refinements |
 | LLM domain | Verification | Exp.40 + Exp.42 support scope-as-repair and attribution-as-repair; Exp.41 width passed | Model-dependent failure-mode follow-up only if needed |
-| Route A / CSP | Mixed-CSP validated; q-coloring exploratory; Exp44 drafted | Mixed-CSP official primary passed: `L_plus_n` log loss 0.0970 < `raw_plus_n` 0.7525. Exp43 q-coloring is pilot calibration only; pilot_v1/v2 did not pass the freeze gate. Exp44 Cardinality-SAT draft exists but is not frozen | Exp43b fine-grid preregistration or Exp44 harness / pilot |
+| Route A / CSP | Mixed-CSP validated; q-coloring exploratory; Exp44 smoke-clean | Mixed-CSP official primary passed: `L_plus_n` log loss 0.0970 < `raw_plus_n` 0.7525. Exp43 q-coloring is pilot calibration only; pilot_v1/v2 did not pass the freeze gate. Exp44 Cardinality-SAT draft and harness exist; smoke passed, but Exp44 is not frozen | Exp43b fine-grid preregistration or Exp44 pilot |
 | Formal tendency | M1 completed | Expectation-level target theorem 4 formally accessible via existing theorems; M2-A mapping-only fixed | Optional M2-B wrapper if paper needs named theorem aliases |
 | External reception | Open | Internal reproducibility and OSF available | Independent review / replication |
 
@@ -215,10 +215,12 @@ Exp43 is therefore in exploration / pilot calibration, not validation. Pilot
 data are not theory-confirming primary evidence. Primary q-coloring data must
 not be generated from the current grid.
 
-Exp44 Cardinality-SAT now has a draft preregistration at
-`analysis/exp44_cardinality_sat/preregistration_draft.md`. It is a draft-only
-Route A width-extension design using heterogeneous cardinality constraints. No
-Exp44 primary data should be generated until its freeze checklist is complete.
+Exp44 Cardinality-SAT now has a draft preregistration and harness at
+`analysis/exp44_cardinality_sat/`. It is a draft-only Route A width-extension
+design using heterogeneous cardinality constraints. The smoke run passed at
+infrastructure level; see `analysis/exp44_cardinality_sat/smoke_summary.md`.
+No Exp44 primary data should be generated until its freeze checklist is
+complete.
 
 ## 5. Public Wording
 

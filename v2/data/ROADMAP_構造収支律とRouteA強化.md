@@ -360,8 +360,9 @@ Current draft:
 analysis/exp44_cardinality_sat/preregistration_draft.md
 ```
 
-Status: draft only, not frozen. No primary Exp44 data should be generated until
-the preregistration, generator, feature schema, and analysis script are fixed.
+Status: draft + harness, not frozen. Smoke has passed at infrastructure level.
+No primary Exp44 data should be generated until the preregistration, generator,
+feature schema, and analysis script are fixed.
 
 Draft design:
 
@@ -371,6 +372,24 @@ Draft design:
 - primary comparison: `fm_plus_n` against raw semantic count / density and CNF
   encoding-size baselines;
 - phase: exploration / pilot design.
+
+Harness:
+
+```text
+analysis/exp44_cardinality_sat/
+analysis/exp44_cardinality_sat/smoke_summary.md
+```
+
+Smoke result:
+
+```text
+records: 45
+SAT: 14
+UNSAT: 31
+TIMEOUT: 0
+MALFORMED: 0
+SAT assignment_verified: 14/14
+```
 
 Why second:
 

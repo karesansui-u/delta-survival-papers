@@ -1,0 +1,17 @@
+{
+  "phase": "pilot",
+  "mixture_ids": [
+    "M0_low",
+    "M1_low_med",
+    "M2_bal_low_med",
+    "M3_threeway_low",
+    "M4_threeway_med",
+    "M5_med_high"
+  ],
+  "n_values": [80, 120],
+  "rho_fm_values": [0.70, 0.85, 1.00, 1.15],
+  "instances_per_cell": 50,
+  "timeout_sec": 120,
+  "solver_backend": "minisat22"
+}
+
