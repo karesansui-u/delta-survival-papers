@@ -45,7 +45,7 @@ replication and, if needed, later theorem-wrapper polish.
 |---|---|---|---|
 | Core theory | Consolidation | Stable theorem vocabulary and Lean anchors | Only wording / mapping refinements |
 | LLM domain | Verification | Exp.40 + Exp.42 support scope-as-repair and attribution-as-repair; Exp.41 width passed | Model-dependent failure-mode follow-up only if needed |
-| Route A / CSP | Empirical support established for primary grid | Mixed-CSP official primary passed: `L_plus_n` log loss 0.0970 < `raw_plus_n` 0.7525 | Optional q-coloring / Cardinality-SAT width extension |
+| Route A / CSP | Mixed-CSP validated; q-coloring exploratory | Mixed-CSP official primary passed: `L_plus_n` log loss 0.0970 < `raw_plus_n` 0.7525. Exp43 q-coloring is pilot calibration only; pilot_v1/v2 did not pass the freeze gate | Exp43b fine-grid preregistration or Exp44 Cardinality-SAT |
 | Formal tendency | M1 completed | Expectation-level target theorem 4 formally accessible via existing theorems; M2-A mapping-only fixed | Optional M2-B wrapper if paper needs named theorem aliases |
 | External reception | Open | Internal reproducibility and OSF available | Independent review / replication |
 
@@ -207,8 +207,12 @@ The pilot harness lives at `analysis/exp43_qcoloring/`. Smoke, pilot_v1, and
 pilot_v2 have run locally. Pilot_v1 was infrastructure-clean but failed the
 freeze gate; pilot_v2 solved the timeout issue but still failed because q=4 and
 q=5 each had only one informative rho band. See
-`analysis/exp43_qcoloring/pilot_v1_addendum.md` and
-`analysis/exp43_qcoloring/pilot_v2_summary.md`. Primary q-coloring data must
+`analysis/exp43_qcoloring/phase_status.md`,
+`analysis/exp43_qcoloring/pilot_v1_addendum.md`, and
+`analysis/exp43_qcoloring/pilot_v2_summary.md`.
+
+Exp43 is therefore in exploration / pilot calibration, not validation. Pilot
+data are not theory-confirming primary evidence. Primary q-coloring data must
 not be generated from the current grid.
 
 ## 5. Public Wording
@@ -238,5 +242,5 @@ The remaining work is only examples.
 |---|---|---|
 | Exp41 passed, Mixed-CSP passed, M1 mapping-only sufficient | Verification phase across LLM + Route A + formal expectation-level tendency | integrate into universality paper / update program status |
 | Optional M2-B wrapper added | Reader-facing theorem names improve | cite wrappers in supplement; no new empirical claim |
-| q-coloring / Cardinality-SAT passes later | Route A width expands | update Route A extension map and finite-CSP supplement |
+| Exp43b q-coloring or Cardinality-SAT passes later | Route A width expands | update Route A extension map and finite-CSP supplement |
 | independent replication arrives | Social proof strengthens | consider stronger universality wording |

@@ -1,7 +1,9 @@
 # Exp43 q-coloring pilot harness
 
-Status: draft harness for the Exp43 preregistration. Do not run primary data
-collection until `v2/data/exp43_qcoloring_preregistration_draft.md` is frozen.
+Status: exploration / pilot calibration harness for the Exp43 preregistration.
+Do not run primary data collection until a new freeze-ready preregistration is
+fixed. The current pilot_v1/v2 outputs are calibration data, not validation
+evidence.
 
 ## Layout
 
@@ -14,6 +16,7 @@ collection until `v2/data/exp43_qcoloring_preregistration_draft.md` is frozen.
 - `config/pilot_config.json`: draft pilot grid.
 - `config/pilot_v2_config.json`: preregistered fallback pilot grid after the
   pilot v1 addendum.
+- `phase_status.md`: current exploration / freeze / validation boundary.
 - `tests/`: unit tests that avoid PySAT unless the optional solver test can run.
 
 ## Commands
@@ -64,6 +67,12 @@ python3 analysis/exp43_qcoloring/src/pilot_summary.py \
 
 ## Guardrails
 
+- Exp43 is currently in exploration / pilot calibration, not validation.
+- Pilot_v1 and pilot_v2 must not be counted as theory-confirming primary data.
+- The current grid did not pass the freeze gate; do not run primary data from
+  it.
+- Before any primary run, freeze the preregistration, grid, seed policy,
+  feature schema, and analysis script.
 - The solver endpoint is q-colorability / feasibility, not solver cost.
 - The solver result is checked by an independent coloring verifier on the
   original graph edges.

@@ -250,9 +250,11 @@ Current draft:
 v2/data/exp43_qcoloring_preregistration_draft.md
 ```
 
-Status: draft only, not frozen. Pilot v1 and pilot v2 have run locally and did
-not pass the freeze gate; see `analysis/exp43_qcoloring/pilot_v1_addendum.md`
-and `analysis/exp43_qcoloring/pilot_v2_summary.md`.
+Status: draft only, not frozen. Exp43 is in exploration / pilot calibration,
+not validation. Pilot v1 and pilot v2 have run locally and did not pass the
+freeze gate; see `analysis/exp43_qcoloring/phase_status.md`,
+`analysis/exp43_qcoloring/pilot_v1_addendum.md`, and
+`analysis/exp43_qcoloring/pilot_v2_summary.md`.
 
 Pilot harness:
 
@@ -260,8 +262,8 @@ Pilot harness:
 analysis/exp43_qcoloring/
 ```
 
-Status: draft harness; tests and dry-runs pass with `python3`. Pilot_v2 has
-also run. Do not run primary data until a new preregistration freeze.
+Status: exploration harness; tests and dry-runs pass with `python3`. Pilot_v2
+has also run. Do not run primary data until a new preregistration freeze.
 
 Pilot v1 summary:
 
@@ -302,9 +304,10 @@ informative bands:
 
 Interpretation: timeout is no longer the main blocker. The current precommitted
 fallback grids are too coarse for q=4 and q=5. Do not freeze the current grid
-as primary. The clean next step is a new freeze-ready fine-grid preregistration
-that treats pilot_v1/v2 as calibration, or else marks Exp43 calibration
-inconclusive.
+as primary. Pilot_v1/v2 are calibration data only and should not be counted as
+validation evidence. The clean next step is a new freeze-ready fine-grid
+preregistration that treats pilot_v1/v2 as calibration, or else marks Exp43
+calibration inconclusive and pivots to Exp44 Cardinality-SAT.
 
 Need care:
 
@@ -405,10 +408,13 @@ If another LLM continues, do this:
 4. Read analysis/exp43_qcoloring/pilot_v1_addendum.md.
 5. Read analysis/exp43_qcoloring/pilot_v2_summary.md.
 6. Do not run primary q-coloring data from the current grid.
-7. If continuing Exp43, write a new freeze-ready fine-grid preregistration
-   before generating primary data.
-8. Keep M decomposition as a supplement reference only.
-9. Do not claim universal law established, even if Exp43 passes.
+7. Treat Exp43 as exploration / pilot calibration, not validation.
+8. If continuing q-coloring, write a new Exp43b freeze-ready fine-grid
+   preregistration before generating primary data.
+9. If not continuing q-coloring, mark Exp43 calibration inconclusive and move
+   to Exp44 Cardinality-SAT.
+10. Keep M decomposition as a supplement reference only.
+11. Do not claim universal law established, even if Exp43b or Exp44 passes.
 ```
 
 Suggested commit message when ready:
