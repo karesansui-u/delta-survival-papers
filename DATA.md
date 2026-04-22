@@ -172,6 +172,32 @@ log loss: `structure_aware_ordered = 0.4715`, `structure_aware_categorical = 0.5
 | [Exp.41 model comparison](analysis/exp41/exp41_model_comparison.md) | Human-readable descriptive baseline-model comparison |
 | [Exp.41 model comparison JSON](analysis/exp41/exp41_model_comparison.json) | Machine-readable leave-one-(model,target)-out metrics |
 
+### Route A — Mixed-CSP empirical universality test
+
+Mixed-CSP tests whether drift-weighted structural loss `L` predicts feasibility
+better than raw constraint count in a mixed SAT/NAE Bernoulli-CSP domain. The
+official primary run uses 12,000 solver records across 3 values of `n`, 4
+densities, and 5 SAT/NAE mixture weights.
+
+Result: all preregistered support criteria passed. The primary model
+`L_plus_n` achieved leave-one-mixture-out log loss `0.0970`, compared with
+`raw_plus_n = 0.7525`. Strong support passed with an 87.1% relative improvement.
+The theory-pure `first_moment` predictor also beat `raw_plus_n`
+(`0.1489 < 0.7525`), and the encoding guardrail passed
+(`L_plus_n = 0.0970 <= cnf_count_plus_n = 0.1010`). OSF addendum:
+[zip](https://osf.io/download/69e826573b65e7b53bfd8b7e/),
+[manifest](https://osf.io/download/69e8265a30357781bafd90d6/).
+
+| File | Description |
+|------|-------------|
+| [Mixed-CSP README](analysis/route_a_mixed_csp/README.md) | Design summary, commands, verifier-fix note, and status |
+| [Mixed-CSP preregistration](analysis/route_a_mixed_csp/mixed_csp_preregistration.md) | Frozen primary prediction, support criteria, and guardrails |
+| [Mixed-CSP runner](analysis/route_a_mixed_csp/run_mixed_csp.py) | Append-safe smoke / pilot / primary runner |
+| [Mixed-CSP analyzer](analysis/route_a_mixed_csp/analyze_mixed_csp.py) | Leave-one-mixture-out model-comparison analysis |
+| [Official primary records](analysis/route_a_mixed_csp/mixed_csp_primary_official_2026-04-22.jsonl) | 12,000 official solver records; aborted attempt excluded |
+| [Mixed-CSP results summary](analysis/route_a_mixed_csp/mixed_csp_results_summary.md) | Human-readable primary model-comparison summary |
+| [Mixed-CSP results JSON](analysis/route_a_mixed_csp/mixed_csp_results.json) | Machine-readable primary analysis and support flags |
+
 ### Paper 3 — Experiment 3: Three-condition (gemma3:27b, n=3, 180 turns each)
 
 Trials 2–4 are the three replicates reported in the paper (Table 3).

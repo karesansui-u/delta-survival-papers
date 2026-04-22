@@ -1,6 +1,6 @@
 # Route A Mixed-CSP Empirical Replication
 
-Status: frozen before primary data collection.
+Status: official primary complete.
 
 This experiment tests whether drift-weighted structural loss `L` / first-moment
 log count predicts feasibility better than raw constraint count in a hard Route
@@ -21,6 +21,33 @@ Within a single family such as NAE-SAT, `L = m * constant`, so `L` and raw count
 are equivalent. The empirical test must use mixed-constraint instances or
 cross-family comparisons.
 
+Headline result:
+
+```text
+Official primary rows: 12000/12000
+Timeouts: 0
+Malformed encodings: 0
+
+L_plus_n log loss:          0.0970
+raw_plus_n log loss:        0.7525
+first_moment log loss:      0.1489
+cnf_count_plus_n log loss:  0.1010
+```
+
+All preregistered support flags passed:
+
+```text
+primary_supported = true
+strong_support = true
+theory_pure_support = true
+encoding_guardrail_passed = true
+```
+
+OSF addendum:
+
+- zip: <https://osf.io/download/69e826573b65e7b53bfd8b7e/>
+- manifest: <https://osf.io/download/69e8265a30357781bafd90d6/>
+
 Implemented files:
 
 | File | Purpose |
@@ -32,9 +59,9 @@ Implemented files:
 | `run_mixed_csp.py` | Append-safe smoke / pilot / primary runner |
 | `analyze_mixed_csp.py` | Leave-one-mixture-out model-comparison analysis |
 | `debug_mixed_csp_encoding.py` | Pre-primary CNF / semantic agreement diagnostics |
-| `mixed_csp_trials.jsonl` | Future raw solver records |
-| `mixed_csp_results_summary.md` | Future human-readable results |
-| `mixed_csp_results.json` | Future machine-readable results |
+| `mixed_csp_primary_official_2026-04-22.jsonl` | Official primary solver records |
+| `mixed_csp_results_summary.md` | Human-readable primary results |
+| `mixed_csp_results.json` | Machine-readable primary results |
 
 Dependency note:
 
