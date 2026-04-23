@@ -103,3 +103,61 @@ The clean research move is:
 current Exp43 = exploration / pilot calibration
 next = Exp43b fine-grid preregistration or Exp44 Cardinality-SAT
 ```
+
+## 6. Exp43b Threshold-local Calibration
+
+Exp43b was a threshold-local q-coloring calibration attempt. It also remained
+in exploration:
+
+```text
+records: 2050
+cells: 41
+SAT: 1004
+UNSAT: 1038
+TIMEOUT: 8
+MALFORMED: 0
+primary data generated: no
+validation status: not reached
+```
+
+Closeout:
+
+```text
+analysis/exp43_qcoloring/exp43b_calibration_closeout.md
+```
+
+The threshold-local redesign worked in the narrow calibration sense:
+
+```text
+q=3: multiple informative bands
+q=4: multiple informative bands
+q=5: multiple informative bands
+```
+
+However, the current Exp43b preregistration could not be frozen because one
+cell exceeded the all-cell timeout gate:
+
+```text
+q=5, n=80, rho_fm=0.86
+TIMEOUT = 5/50 = 10% > 5%
+```
+
+This is a calibration no-go under the current timeout rule. It is not a theory
+failure, not validation evidence, and not an inconclusive-trigger event of the
+specific Exp43b §15 form, because every q still had at least one n-specific
+usable window.
+
+The clean interpretation is:
+
+```text
+Exp43b = exploration artifact; calibration no-go under current runtime gate.
+```
+
+The clean next move is not to amend Exp43b after seeing calibration outcomes.
+Instead:
+
+```text
+1. update the shared threshold-local protocol with a general runtime-instability rule;
+2. open Exp43c as a fresh preregistration using that rule;
+3. treat Exp43b data only as exploration history.
+```

@@ -45,7 +45,7 @@ replication and, if needed, later theorem-wrapper polish.
 |---|---|---|---|
 | Core theory | Consolidation | Stable theorem vocabulary and Lean anchors | Only wording / mapping refinements |
 | LLM domain | Verification | Exp.40 + Exp.42 support scope-as-repair and attribution-as-repair; Exp.41 width passed | Model-dependent failure-mode follow-up only if needed |
-| Route A / CSP | Mixed-CSP validated; q-coloring exploratory; Exp44 calibration inconclusive | Mixed-CSP official primary passed: `L_plus_n` log loss 0.0970 < `raw_plus_n` 0.7525. Exp43 q-coloring is pilot calibration only; pilot_v1/v2 did not pass the freeze gate. Exp44 smoke/pilot_v2/pilot_v3 are infrastructure-clean but pilot_v3 still failed the informative-band gate for M0/M1/M2 | Exp43b / Exp44b redesign, or shift to G4/G6 non-CSP mapping |
+| Route A / CSP | Mixed-CSP validated; q-coloring exploratory; Exp44 calibration inconclusive | Mixed-CSP official primary passed: `L_plus_n` log loss 0.0970 < `raw_plus_n` 0.7525. Exp43 q-coloring is pilot calibration only; pilot_v1/v2 did not pass the freeze gate. Exp43b threshold-local calibration located informative windows but hit the q=5/n=80 runtime gate, so it is calibration no-go, not validation. Exp44 smoke/pilot_v2/pilot_v3 are infrastructure-clean but pilot_v3 still failed the informative-band gate for M0/M1/M2 | Exp43c fresh prereg, Exp44b redesign, or shift to G4/G6 non-CSP mapping |
 | Formal tendency | M1 completed | Expectation-level target theorem 4 formally accessible via existing theorems; M2-A mapping-only fixed | Optional M2-B wrapper if paper needs named theorem aliases |
 | External reception | Open | Internal reproducibility and OSF available | Independent review / replication |
 
@@ -254,5 +254,5 @@ The remaining work is only examples.
 |---|---|---|
 | Exp41 passed, Mixed-CSP passed, M1 mapping-only sufficient | Verification phase across LLM + Route A + formal expectation-level tendency | integrate into universality paper / update program status |
 | Optional M2-B wrapper added | Reader-facing theorem names improve | cite wrappers in supplement; no new empirical claim |
-| Exp43b q-coloring or Exp44 Cardinality-SAT passes later | Route A width expands | update Route A extension map and finite-CSP supplement |
+| Exp43c q-coloring or Exp44 Cardinality-SAT passes later | Route A width expands | update Route A extension map and finite-CSP supplement |
 | independent replication arrives | Social proof strengthens | consider stronger universality wording |

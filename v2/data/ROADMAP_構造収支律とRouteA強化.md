@@ -519,10 +519,12 @@ G4 v1 selection:
 Route A threshold-local re-entry:
 
 - Shared redesign note: `analysis/protocols/route_a_threshold_local_redesign_note.md`.
-- First target: Exp43b q-coloring, because it is visibly outside SAT syntax.
-- Freeze-ready draft structure: `analysis/exp43_qcoloring/exp43b_threshold_local_preregistration_draft.md`.
-- Status: exploration / preregistration draft only. Calibration must close and
-  freeze before any primary q-coloring data are generated.
+- First target was Exp43b q-coloring, because it is visibly outside SAT syntax.
+- Exp43b status: calibration no-go under the current runtime gate, not
+  validation evidence. Closeout: `analysis/exp43_qcoloring/exp43b_calibration_closeout.md`.
+- Fresh successor draft: `analysis/exp43_qcoloring/exp43c_threshold_local_preregistration_draft.md`.
+- Status: exploration / preregistration draft only. Exp43c calibration must
+  close and freeze before any primary q-coloring data are generated.
 
 ## 9. Exact Next Action For Another LLM
 
@@ -536,13 +538,13 @@ If another LLM continues, do this:
 5. Read analysis/exp43_qcoloring/pilot_v2_summary.md.
 6. Do not run primary q-coloring data from the current grid.
 7. Treat Exp43 as exploration / pilot calibration, not validation.
-8. If continuing q-coloring, write a new Exp43b freeze-ready fine-grid
-   preregistration before generating primary data.
-9. If not continuing q-coloring, mark Exp43 calibration inconclusive and use
+8. If continuing q-coloring, use Exp43c as the fresh preregistration draft;
+   do not amend Exp43b after seeing calibration outcomes.
+9. If not continuing q-coloring, mark the q-coloring route paused and use
    `analysis/exp44_cardinality_sat/preregistration_draft.md` as the starting
    point for Exp44 harness / pilot work.
 10. Keep M decomposition as a supplement reference only.
-11. Do not claim universal law established, even if Exp43b or Exp44 passes.
+11. Do not claim universal law established, even if Exp43c or Exp44 passes.
 ```
 
 Suggested commit message when ready:

@@ -153,7 +153,29 @@ intended comparison and must not be frozen as a primary validation design.
 For Cardinality-SAT, mixture heterogeneity should usually preserve power. This
 must still be checked rather than assumed.
 
-## 7. Seed stream separator
+## 7. Runtime-instability rule
+
+Solver runtime is not the Route A primary endpoint, but runtime instability can
+invalidate a feasibility-validation design by making primary log-loss depend on
+which instances timed out.
+
+For future threshold-local Route A preregistrations:
+
+1. A cell is runtime-suspended if its timeout rate exceeds the preregistered
+   tolerance.
+2. A family unit is primary-eligible only if its selected buffered primary
+   window contains no runtime-suspended cell.
+3. If dropping runtime-suspended units leaves any family value without at
+   least one primary-eligible unit, the experiment is calibration no-go and no
+   primary data may be generated for a strict subset of family values.
+4. A fresh preregistration may reduce the relevant size grid, change timeout
+   policy, or choose a different anchor, but calibration outcomes from the
+   failed design remain exploration only.
+
+This rule is general. It is not an amendment that rescues any particular
+experiment after observing its calibration output.
+
+## 8. Seed stream separator
 
 Calibration and primary instances must use disjoint seed streams, not merely
 different numeric seed values.
@@ -182,7 +204,7 @@ should make this mechanically checkable by including:
 - generator version
 - solver / verifier version
 
-## 8. Freeze package
+## 9. Freeze package
 
 Before primary validation, commit or otherwise timestamp:
 
@@ -214,7 +236,7 @@ The calibration closeout note must contain:
 
 No primary data should be generated before this freeze package exists.
 
-## 9. Re-entry condition for Route A
+## 10. Re-entry condition for Route A
 
 Route A empirical calibration is paused after Exp43 / Exp44 until both of the
 following exist:
@@ -235,7 +257,7 @@ threshold-local protocol note
 This is not abandonment of Route A. It is a pause to prevent calibration chase
 and to improve anchor selection.
 
-## 10. Non-claims
+## 11. Non-claims
 
 This protocol does not claim:
 
@@ -255,7 +277,7 @@ from evidence-bearing primary prediction, and should test relative coordinate
 quality inside a frozen threshold-local window.
 ```
 
-## 11. Relation to Exp43 and Exp44
+## 12. Relation to Exp43 and Exp44
 
 Exp43 q-coloring showed:
 
@@ -277,3 +299,13 @@ M3/M4/M5 informative bands: at least two bands
 Both patterns point to the same protocol lesson: broad or semi-broad grids are
 not enough when finite-size transitions are sharp. The next CSP validation
 must be explicitly threshold-local or should be postponed.
+
+Exp43b q-coloring showed:
+
+```text
+threshold-local calibration located informative windows for q=3, q=4, q=5
+but q=5, n=80, rho_fm=0.86 exceeded the timeout tolerance
+```
+
+This adds a second protocol lesson: threshold-local windows must also be
+runtime-stable before they can be frozen for primary validation.
