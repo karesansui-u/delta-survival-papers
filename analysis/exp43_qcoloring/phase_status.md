@@ -184,7 +184,7 @@ Closeout:
 analysis/exp43_qcoloring/exp43c_calibration_closeout.md
 ```
 
-Selected primary grid, pending freeze package:
+Selected primary grid:
 
 ```text
 q=3, n=80, rho_fm={0.76,0.78,0.80,0.82,0.84,0.86,0.88}
@@ -192,5 +192,11 @@ q=4, n=80, rho_fm={0.78,0.80,0.82,0.84,0.86,0.88,0.90}
 q=5, n=60, rho_fm={0.76,0.78,0.80,0.82,0.84,0.86}
 ```
 
-This is not validation evidence. Primary generation remains forbidden until
-the freeze package is committed.
+Freeze package:
+
+```text
+analysis/exp43_qcoloring/exp43c_freeze_package.md
+```
+
+This is not validation evidence. Primary generation is allowed only after the
+freeze package commit is pushed.

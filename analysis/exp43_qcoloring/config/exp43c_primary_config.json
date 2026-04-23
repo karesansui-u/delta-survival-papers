@@ -1,0 +1,23 @@
+{
+  "phase": "exp43c_primary",
+  "unit_config": [
+    {
+      "q": 3,
+      "n": 80,
+      "rho_fm_values": [0.76, 0.78, 0.80, 0.82, 0.84, 0.86, 0.88]
+    },
+    {
+      "q": 4,
+      "n": 80,
+      "rho_fm_values": [0.78, 0.80, 0.82, 0.84, 0.86, 0.88, 0.90]
+    },
+    {
+      "q": 5,
+      "n": 60,
+      "rho_fm_values": [0.76, 0.78, 0.80, 0.82, 0.84, 0.86]
+    }
+  ],
+  "instances_per_cell": 200,
+  "timeout_sec": 120,
+  "solver_backend": "minisat22"
+}
