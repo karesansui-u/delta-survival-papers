@@ -50,14 +50,14 @@ preregistered experiments.
 | Serial reliability | G4 v1 loss-only control | Multiplicative survival / exponential kernel outside CSP | No repair flow |
 | Constant-fraction decay | G4 v1 loss-only control | Exponential decay sanity anchor | No open-system compensation |
 | Repair / maintenance balance | G4 v2 open-system anchor | Explicit non-CSP \(g_t\) as repair / maintenance flow | No optimal maintenance or stochastic reliability theorem |
-| Backblaze drive stats | G4 loss-only observational draft | Candidate non-CSP industrial reliability anchor with repeated units, SMART degradation fields, and failure endpoint | Not repair-flow evidence; preregistration not frozen |
+| Backblaze drive stats | G4 loss-only observational draft + Q4 2025 feasibility passed | Candidate non-CSP industrial reliability anchor with repeated units, SMART degradation fields, and failure endpoint | Not repair-flow evidence; preregistration not frozen |
 
 ## 6. Open Gates
 
 | Gate | Current status | Next clean move |
 |---|---|---|
 | G3 Route A width | Strengthened by Mixed-CSP + Exp43c | Independent replication, or optional Exp44b redesign under threshold-local protocol |
-| G4 non-CSP | G4 v1/v2 minimal skeletons closed; repair-flow public dataset search paused; Backblaze loss-only draft opened | If continuing empirical work, freeze a Backblaze loss-only preregistration; do not report it as repair-flow \(g_t\) evidence |
+| G4 non-CSP | G4 v1/v2 minimal skeletons closed; repair-flow public dataset search paused; Backblaze loss-only draft opened and Q4 2025 archive feasibility passed | Next clean move: Backblaze freeze manifest + evaluation script hash; do not report it as repair-flow \(g_t\) evidence |
 | G5 prospective prediction | Supported by Exp40/41/42, Mixed-CSP, Exp43c | Another preregistered external-domain test |
 | G6 existing-theory mapping | G6-c iteration 1 closed | Optional iteration 2: positive recurrence / geometric ergodicity |
 | G7 independent replication | Open | External reviewer / independent run / public replication package |

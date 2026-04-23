@@ -269,12 +269,21 @@ support. It does not advance the paused G4 v2 repair-flow primary gate.
 
 Random row split is forbidden.
 
+Eligible prediction dates:
+
+```text
+date t is eligible iff t + H <= max date in the frozen archive
+```
+
+Rows outside the eligible prediction-date range are not used as prediction rows.
+They may still be used as future endpoint support for earlier eligible dates.
+
 Primary split:
 
 ```text
-train: earliest 70% of dates in the frozen archive
-validation: next 15% of dates
-test: latest 15% of dates
+train: earliest 70% of eligible prediction dates
+validation: next 15% of eligible prediction dates
+test: latest 15% of eligible prediction dates
 ```
 
 The final test block is used once.
@@ -284,7 +293,8 @@ evaluation code must be frozen before evaluating the test block.
 
 Drive identity can appear in multiple splits over time because the task is a
 temporal prediction task. However, no future observations for a drive may be
-used to construct features at date \(t\).
+used to construct features at date \(t\), and no prediction row is eligible
+unless its full \(H\)-day future endpoint lies inside the frozen archive.
 
 ## 9. Missingness And Eligibility
 
@@ -392,7 +402,8 @@ Before validation, freeze:
 4. Exact allowed SMART field list.
 5. Exact metadata baseline fields.
 6. Missing-field rule implementation.
-7. Train / validation / test date boundaries.
+7. Eligible prediction-date range and train / validation / test date
+   boundaries.
 8. L2-logistic implementation package, standardization rule, class-weight
    policy, and regularization value \(C\).
 9. Evaluation script hash.
