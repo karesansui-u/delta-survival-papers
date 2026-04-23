@@ -194,6 +194,13 @@ Baseline B0: intercept only.
 failure_future ~ 1
 ```
 
+Operational implementation:
+
+```text
+predict a single probability equal to the empirical positive rate in the
+training prediction rows
+```
+
 Baseline B1: metadata only.
 
 ```text
@@ -245,6 +252,9 @@ stage 2 = probability calibration
 
 The validation block is therefore used for calibration, not for test-time
 selection after seeing the final block.
+
+Baseline B0 is not Platt-scaled. It remains the constant training-prevalence
+reference model.
 
 ## 8. Model Class
 
