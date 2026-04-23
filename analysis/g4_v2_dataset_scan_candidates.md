@@ -22,7 +22,7 @@ validation by this note.
 
 | ID | Candidate | Source | Provisional label | One-line reason |
 |---|---|---|---|---|
-| C1 | Microsoft Azure Predictive Maintenance | Kaggle mirror / Azure sample dataset | promising | Best schema-inspection fit in this shortlist: has 100 machines, hourly telemetry, errors, maintenance, failures, and machine metadata |
+| C1 | Microsoft Azure Predictive Maintenance | Kaggle mirror / Azure sample dataset | leakage-risk | Schema inspection found unit/time/damage/failure structure, but no direct proactive/reactive maintenance label; repair class would require failure-overlap inference |
 | C2 | MetroPT-3 Air Production Unit | UCI / Scientific Data | unclear | Has compressor sensor time series, failure reports, and maintenance timestamps, but may lack repeated units |
 | C3 | Backblaze Drive Stats | Backblaze public hard-drive test data | weak-g | Excellent unit-level SMART / failure data, but repair / preventive maintenance is not cleanly logged |
 | C4 | NASA C-MAPSS turbofan degradation | NASA / PHM benchmark mirrors | weak-g | Strong unit-time degradation and RUL endpoint, but no repair / maintenance flow |
@@ -57,7 +57,7 @@ Relevant fields from source description:
 - `PdM_failures.csv`: component replacements due to failure.
 - `PdM_machines.csv`: model type and age.
 
-Why promising:
+Why it looked promising before schema inspection:
 
 - unit: `machineID`;
 - time: hourly timestamps;
@@ -65,8 +65,16 @@ Why promising:
 - repair candidates: maintenance / component replacement records;
 - endpoint candidates: failure in a future horizon;
 - activity baseline: error count / telemetry count / maintenance count;
-- source explicitly distinguishes proactive scheduled replacement from reactive
-  failure-linked replacement in the description.
+- source separates maintenance and failure records at the file level.
+
+Schema inspection result:
+
+- See `analysis/g4_v2_c1_schema_inspection_note.md`.
+- `PdM_maint.csv` has only `datetime`, `machineID`, and `comp`.
+- It does not directly distinguish proactive / preventive replacement from
+  reactive / failure-linked replacement.
+- Inferring this split from overlap with `PdM_failures.csv` would couple the
+  repair variable to the endpoint during feature construction.
 
 Main concerns:
 
@@ -81,27 +89,15 @@ Main concerns:
 Provisional label:
 
 ```text
-promising
+leakage-risk
 ```
 
-Recommended next inspection:
+Completed schema inspection:
 
 ```text
-Download only schemas / heads, not full modeling:
-  PdM_telemetry.csv
-  PdM_errors.csv
-  PdM_maint.csv
-  PdM_failures.csv
-  PdM_machines.csv
-
-Check whether maintenance timestamps precede failures often enough to decide
-whether a later lagged \(g_t\) feature would be feasible, and whether
-preventive maintenance can be separated from failure-caused replacement.
-
-If proactive / reactive status is not directly available and must be inferred
-from failure overlap, C1 should not be promoted as a primary G4 v2 repair-flow
-dataset. It may still be useful as a loss-only control or synthetic weak-repair
-schema exercise.
+C1 should not be promoted as a primary G4 v2 repair-flow dataset.
+It may still be useful as a loss-only control or synthetic weak-repair schema
+exercise.
 ```
 
 ### C2. MetroPT-3 Air Production Unit
@@ -326,37 +322,41 @@ first G4 v2 repair-maintenance dataset.
 This is not a primary-dataset ranking. It is only a work-order for the next
 schema inspection.
 
-| Exploration priority | Candidate | Reason |
-|---:|---|---|
-| 1 | C1 Microsoft Azure Predictive Maintenance | First schema-inspection target because it appears to contain unit / time / damage / repair / failure fields |
-| 2 | C2 MetroPT-3 | Has maintenance timestamps and failures, but repeated-unit structure may be weak |
-| 3 | C3 Backblaze Drive Stats | Very strong loss-only control, weak repair |
-| 4 | C4 NASA C-MAPSS | Standard degradation control, no repair |
-| 5 | C6 ServiceNow incident log | May have repair/process information, but unit/endpoint unclear |
-| 6 | C7 TravisTorrent / CI | Potential software route, high extraction and leakage risk |
-| 7 | C5 Fabric tutorial dataset | Easy but likely too toy / weak-g |
+| Exploration status | Candidate | Reason |
+|---|---|---|
+| done | C1 Microsoft Azure Predictive Maintenance | Schema inspected; direct proactive/reactive repair label absent, so not primary G4 v2 repair-flow material |
+| next | C2 MetroPT-3 | Has maintenance timestamps and failures, but repeated-unit structure may be weak |
+| later | C3 Backblaze Drive Stats | Very strong loss-only control, weak repair |
+| later | C4 NASA C-MAPSS | Standard degradation control, no repair |
+| later | C6 ServiceNow incident log | May have repair/process information, but unit/endpoint unclear |
+| later | C7 TravisTorrent / CI | Potential software route, high extraction and leakage risk |
+| later | C5 Fabric tutorial dataset | Easy but likely too toy / weak-g |
 
 ## 4. Recommendation
 
 The next concrete step should be:
 
 ```text
-Inspect C1 Microsoft Azure Predictive Maintenance schemas only.
+Inspect C2 MetroPT-3 schemas only.
 ```
 
 Do not train models yet.
 
-Minimum inspection questions:
+Minimum inspection questions for C2:
 
-1. How many machines and timestamps exist?
-2. Does `PdM_maint.csv` distinguish proactive vs reactive replacement directly,
-   or only indirectly through overlap with `PdM_failures.csv`?
+1. Does C2 expose repeated unit identifiers, or is it effectively a single
+   asset time series?
+2. Does C2 expose maintenance / repair events directly, and can preventive or
+   scheduled maintenance be separated from failure-response events without
+   using future failures?
 3. Can a lagged window \([t-W,t)\) be defined without using future failures?
-4. Can failure in \((t,t+H]\) be defined cleanly?
-5. Is there enough preventive maintenance before failures to make \(g_t\)
-   meaningful?
-6. Can generic activity baselines be defined from errors / telemetry counts?
+4. Can failure or degradation in \((t,t+H]\) be defined cleanly?
+5. Is there enough directly observed maintenance before failures to make
+   \(g_t\) meaningful?
+6. Can generic activity baselines be defined from telemetry / operating-state
+   coverage without outcome coupling?
 
-If C1 fails on repair separability, move to C2. If both fail, G4 v2 should
+C1 failed on repair separability at the schema level; see
+`analysis/g4_v2_c1_schema_inspection_note.md`. If C2 also fails, G4 v2 should
 pause or downgrade to loss-only controls rather than forcing a repair-flow
 validation.
