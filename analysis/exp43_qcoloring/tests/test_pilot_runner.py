@@ -39,6 +39,22 @@ class PilotRunnerTests(unittest.TestCase):
         self.assertEqual(rows[6], (5, 40, 0.8, 0))
         self.assertEqual(rows[-1], (5, 80, 0.9, 2))
 
+    def test_iter_plan_supports_q_n_specific_unit_grid(self) -> None:
+        config = {
+            "unit_config": [
+                {"q": 3, "n": 40, "rho_fm_values": [0.55, 0.60]},
+                {"q": 3, "n": 80, "rho_fm_values": [0.76]},
+                {"q": 5, "n": 40, "rho_fm_values": [0.725]},
+            ],
+            "instances_per_cell": 2,
+        }
+        rows = list(iter_plan(config))
+        self.assertEqual(len(rows), 8)
+        self.assertEqual(rows[0], (3, 40, 0.55, 0))
+        self.assertEqual(rows[3], (3, 40, 0.60, 1))
+        self.assertEqual(rows[4], (3, 80, 0.76, 0))
+        self.assertEqual(rows[-1], (5, 40, 0.725, 1))
+
 
 if __name__ == "__main__":
     unittest.main()

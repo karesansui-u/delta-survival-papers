@@ -41,6 +41,16 @@ def iter_q_rho_pairs(config: dict[str, Any]) -> Iterable[tuple[int, float]]:
 
 
 def iter_plan(config: dict[str, Any]) -> Iterable[tuple[int, int, float, int]]:
+    """Yield q/n/rho/instance rows from any supported grid schema."""
+    if "unit_config" in config:
+        for unit in config["unit_config"]:
+            q = int(unit["q"])
+            n = int(unit["n"])
+            for rho_fm in unit["rho_fm_values"]:
+                for instance_idx in range(config["instances_per_cell"]):
+                    yield q, n, float(rho_fm), int(instance_idx)
+        return
+
     for q, rho_fm in iter_q_rho_pairs(config):
         for n in config["n_values"]:
             for instance_idx in range(config["instances_per_cell"]):
@@ -87,7 +97,7 @@ def print_plan(config: dict[str, Any], output: Path) -> None:
     print(f"completed instances in output: {len(completed)}")
     print(f"cells: {len(cells)}")
     for key in sorted(cells)[:12]:
-        print(f"  q={key[0]} n={key[1]} rho_fm={key[2]:.2f} count={cells[key]}")
+        print(f"  q={key[0]} n={key[1]} rho_fm={key[2]:.6g} count={cells[key]}")
     if len(cells) > 12:
         print(f"  ... {len(cells) - 12} more cells")
 
