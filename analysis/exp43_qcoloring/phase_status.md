@@ -161,3 +161,36 @@ Instead:
 2. open Exp43c as a fresh preregistration using that rule;
 3. treat Exp43b data only as exploration history.
 ```
+
+## 7. Exp43c Threshold-local Calibration
+
+Exp43c is the fresh q-coloring preregistration opened after Exp43b no-go.
+Its calibration phase has run and passed:
+
+```text
+records: 2100
+cells: 42
+SAT: 1011
+UNSAT: 1089
+TIMEOUT: 0
+MALFORMED: 0
+pilot_pass: true
+validation status: not reached
+```
+
+Closeout:
+
+```text
+analysis/exp43_qcoloring/exp43c_calibration_closeout.md
+```
+
+Selected primary grid, pending freeze package:
+
+```text
+q=3, n=80, rho_fm={0.76,0.78,0.80,0.82,0.84,0.86,0.88}
+q=4, n=80, rho_fm={0.78,0.80,0.82,0.84,0.86,0.88,0.90}
+q=5, n=60, rho_fm={0.76,0.78,0.80,0.82,0.84,0.86}
+```
+
+This is not validation evidence. Primary generation remains forbidden until
+the freeze package is committed.

@@ -523,8 +523,10 @@ Route A threshold-local re-entry:
 - Exp43b status: calibration no-go under the current runtime gate, not
   validation evidence. Closeout: `analysis/exp43_qcoloring/exp43b_calibration_closeout.md`.
 - Fresh successor draft: `analysis/exp43_qcoloring/exp43c_threshold_local_preregistration_draft.md`.
-- Status: exploration / preregistration draft only. Exp43c calibration must
-  close and freeze before any primary q-coloring data are generated.
+- Exp43c status: calibration passed; freeze package not yet assembled.
+  Closeout: `analysis/exp43_qcoloring/exp43c_calibration_closeout.md`.
+- Status: exploration / calibration only. Exp43c must freeze before any primary
+  q-coloring data are generated.
 
 ## 9. Exact Next Action For Another LLM
 
@@ -538,8 +540,8 @@ If another LLM continues, do this:
 5. Read analysis/exp43_qcoloring/pilot_v2_summary.md.
 6. Do not run primary q-coloring data from the current grid.
 7. Treat Exp43 as exploration / pilot calibration, not validation.
-8. If continuing q-coloring, use Exp43c as the fresh preregistration draft;
-   do not amend Exp43b after seeing calibration outcomes.
+8. If continuing q-coloring, assemble the Exp43c freeze package; do not
+   generate primary data before freeze.
 9. If not continuing q-coloring, mark the q-coloring route paused and use
    `analysis/exp44_cardinality_sat/preregistration_draft.md` as the starting
    point for Exp44 harness / pilot work.
