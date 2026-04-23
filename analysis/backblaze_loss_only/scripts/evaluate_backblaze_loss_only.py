@@ -16,18 +16,16 @@ import json
 import math
 import zipfile
 from collections import defaultdict
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import date, timedelta
 from pathlib import Path
-from typing import Any, Iterable
+from typing import Iterable
 
 import numpy as np
 import pandas as pd
-from sklearn.compose import ColumnTransformer
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import brier_score_loss, log_loss, roc_auc_score
-from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import OneHotEncoder, StandardScaler
+from scipy import sparse
+from sklearn.linear_model import SGDClassifier
+from sklearn.metrics import roc_auc_score
 
 
 SMART_FIELDS = [
@@ -52,10 +50,23 @@ METADATA_B2 = [
 ]
 METADATA_B3 = ["model", "capacity_bytes", "drive_age_days"]
 
+CATEGORICAL_FIELDS = [
+    "model",
+    "is_legacy_format",
+    "datacenter",
+    "cluster_id",
+    "vault_id",
+    "pod_id",
+    "pod_slot_num",
+]
+NUMERIC_FIELDS = ["capacity_bytes", "drive_age_days"] + SMART_FIELDS
+
 PRIMARY_HORIZON_DAYS = 30
 MIN_FINAL_TEST_FAILURE_EVENTS = 200
-LOGISTIC_C = 1.0
+SGD_ALPHA = 1.0e-4
+SGD_EPOCHS = 1
 RANDOM_SEED = 43001
+CLIP_EPS = 1.0e-15
 
 
 @dataclass(frozen=True)
@@ -66,9 +77,95 @@ class SplitDates:
 
 
 @dataclass(frozen=True)
-class Dataset:
-    frame: pd.DataFrame
-    labels: np.ndarray
+class ModelSpec:
+    numeric: list[str]
+    categorical: list[str]
+
+
+@dataclass
+class NumericAccumulator:
+    count: int = 0
+    total: float = 0.0
+    total_sq: float = 0.0
+
+    def update(self, values: pd.Series) -> None:
+        array = pd.to_numeric(values, errors="coerce").fillna(0.0).to_numpy(dtype=float)
+        self.count += int(array.size)
+        self.total += float(array.sum())
+        self.total_sq += float(np.square(array).sum())
+
+    @property
+    def mean(self) -> float:
+        if self.count == 0:
+            return 0.0
+        return self.total / self.count
+
+    @property
+    def scale(self) -> float:
+        if self.count == 0:
+            return 1.0
+        variance = max(self.total_sq / self.count - self.mean * self.mean, 0.0)
+        scale = math.sqrt(variance)
+        return scale if scale > 0.0 else 1.0
+
+
+@dataclass
+class TrainingProfile:
+    numeric: dict[str, NumericAccumulator] = field(
+        default_factory=lambda: {name: NumericAccumulator() for name in ["intercept_only"] + NUMERIC_FIELDS}
+    )
+    categories: dict[str, set[str]] = field(default_factory=lambda: {name: set() for name in CATEGORICAL_FIELDS})
+    class_counts: dict[int, int] = field(default_factory=lambda: {0: 0, 1: 0})
+
+    def class_weights(self) -> dict[int, float]:
+        count0 = self.class_counts[0]
+        count1 = self.class_counts[1]
+        if count0 == 0 or count1 == 0:
+            raise SystemExit("Training split must contain both classes for weighted logistic fitting.")
+        total = count0 + count1
+        return {0: total / (2.0 * count0), 1: total / (2.0 * count1)}
+
+
+@dataclass
+class MatrixSpec:
+    numeric: list[str]
+    categorical: list[str]
+    category_maps: dict[str, dict[str, int]]
+    n_features: int
+    column_names: list[str]
+
+
+@dataclass
+class MetricAccumulator:
+    n: int = 0
+    positives: int = 0
+    log_loss_sum: float = 0.0
+    brier_sum: float = 0.0
+    probs: list[np.ndarray] = field(default_factory=list)
+    labels: list[np.ndarray] = field(default_factory=list)
+
+    def update(self, y_true: np.ndarray, proba: np.ndarray) -> None:
+        clipped = np.clip(proba, CLIP_EPS, 1.0 - CLIP_EPS)
+        self.n += int(y_true.size)
+        self.positives += int(y_true.sum())
+        self.log_loss_sum += float(-(y_true * np.log(clipped) + (1 - y_true) * np.log1p(-clipped)).sum())
+        self.brier_sum += float(np.square(y_true - proba).sum())
+        self.probs.append(proba.astype(np.float32))
+        self.labels.append(y_true.astype(np.int8))
+
+    def result(self, n_train: int, train_positive: int) -> dict[str, float | int | None]:
+        output: dict[str, float | int | None] = {
+            "n_train": int(n_train),
+            "n_test": int(self.n),
+            "train_positive": int(train_positive),
+            "test_positive": int(self.positives),
+            "log_loss": self.log_loss_sum / self.n,
+            "brier": self.brier_sum / self.n,
+        }
+        labels = np.concatenate(self.labels) if self.labels else np.array([], dtype=np.int8)
+        probs = np.concatenate(self.probs) if self.probs else np.array([], dtype=np.float32)
+        output["auc"] = float(roc_auc_score(labels, probs)) if len(set(labels.tolist())) == 2 else None
+        return output
 
 
 def parse_args() -> argparse.Namespace:
@@ -79,7 +176,7 @@ def parse_args() -> argparse.Namespace:
         "--max-rows",
         type=int,
         default=None,
-        help="Debug-only row limit. Must be omitted for the frozen primary run.",
+        help="Debug-only row limit per split. Must be omitted for the frozen primary run.",
     )
     parser.add_argument(
         "--metadata-only",
@@ -99,11 +196,27 @@ def parse_args() -> argparse.Namespace:
         "--allow-primary-run",
         action="store_true",
         help=(
-            "Enable model fitting. This flag is a structural guard: use it for synthetic "
-            "smoke tests or after the freeze manifest has recorded this script hash."
+            "Enable final test-block model fitting/evaluation. Use only after the freeze "
+            "manifest has recorded this script hash."
         ),
     )
     return parser.parse_args()
+
+
+def model_specs(available_smart: list[str]) -> dict[str, ModelSpec]:
+    return {
+        "B0_intercept": ModelSpec(numeric=["intercept_only"], categorical=[]),
+        "B1_metadata": ModelSpec(numeric=["capacity_bytes"], categorical=["model", "is_legacy_format"]),
+        "B2_fleet_context": ModelSpec(
+            numeric=["capacity_bytes"],
+            categorical=["model", "datacenter", "cluster_id", "vault_id", "pod_id", "pod_slot_num", "is_legacy_format"],
+        ),
+        "B3_exposure": ModelSpec(numeric=["capacity_bytes", "drive_age_days"], categorical=["model"]),
+        "primary_metadata_plus_smart": ModelSpec(
+            numeric=["capacity_bytes"] + available_smart,
+            categorical=["model", "datacenter", "cluster_id", "vault_id", "pod_id", "pod_slot_num", "is_legacy_format"],
+        ),
+    }
 
 
 def list_csv_files(archive: zipfile.ZipFile) -> list[str]:
@@ -192,18 +305,6 @@ def endpoint_dates_for_test(test_dates: list[str], horizon_days: int) -> list[st
     return [(start + timedelta(days=i)).isoformat() for i in range((end - start).days + 1)]
 
 
-def log1p_or_zero(value: str) -> float:
-    if value == "" or value is None:
-        return 0.0
-    try:
-        parsed = float(value)
-    except ValueError:
-        return 0.0
-    if parsed < 0:
-        return 0.0
-    return math.log1p(parsed)
-
-
 def future_failure_label(serial_number: str, current_ordinal: int, failures: dict[str, list[int]]) -> int:
     serial_failures = failures.get(serial_number)
     if not serial_failures:
@@ -215,6 +316,8 @@ def future_failure_label(serial_number: str, current_ordinal: int, failures: dic
 
 
 def numeric_series(frame: pd.DataFrame, column: str) -> pd.Series:
+    if column not in frame.columns:
+        return pd.Series(np.zeros(len(frame)), index=frame.index)
     return pd.to_numeric(frame[column], errors="coerce").fillna(0.0)
 
 
@@ -223,157 +326,262 @@ def smart_series(frame: pd.DataFrame, column: str) -> pd.Series:
     return np.log1p(values)
 
 
-def build_dataset(
-    archive: zipfile.ZipFile,
+def daily_features_and_labels(
+    frame: pd.DataFrame,
+    current_ordinal: int,
+    first_seen: dict[str, int],
+    failures: dict[str, list[int]],
+    available_smart: list[str],
+) -> tuple[pd.DataFrame, np.ndarray]:
+    serials = frame["serial_number"].astype(str)
+    features = pd.DataFrame(index=frame.index)
+    for column in CATEGORICAL_FIELDS:
+        if column in frame.columns:
+            features[column] = frame[column].fillna("").astype(str)
+        else:
+            features[column] = ""
+    features["capacity_bytes"] = numeric_series(frame, "capacity_bytes")
+    features["drive_age_days"] = np.array(
+        [float(current_ordinal - first_seen[str(serial)]) for serial in serials],
+        dtype=float,
+    )
+    features["intercept_only"] = 1.0
+    for field in available_smart:
+        features[field] = smart_series(frame, field)
+    labels = np.array(
+        [future_failure_label(str(serial), current_ordinal, failures) for serial in serials],
+        dtype=np.int8,
+    )
+    return features.reset_index(drop=True), labels
+
+
+def stream_batches(
+    archive_path: Path,
     csv_names: list[str],
     dates: list[str],
     failures: dict[str, list[int]],
-    include_smart: bool,
+    available_smart: list[str],
+    present_columns: set[str],
     max_rows: int | None,
-) -> Dataset:
+) -> Iterable[tuple[pd.DataFrame, np.ndarray]]:
     wanted_dates = set(dates)
     max_wanted_date = max(wanted_dates)
-    first_seen: dict[str, int] = {}
-    frames: list[pd.DataFrame] = []
-    label_chunks: list[np.ndarray] = []
-    total_rows = 0
-    columns = sorted(
-        set(
-            [
+    read_columns = sorted(
+        (
+            {
                 "date",
                 "serial_number",
                 "model",
                 "capacity_bytes",
+                "failure",
                 "is_legacy_format",
                 "datacenter",
                 "cluster_id",
                 "vault_id",
                 "pod_id",
                 "pod_slot_num",
-            ]
-            + SMART_FIELDS
+            }
+            | set(available_smart)
         )
+        & present_columns
+    )
+    first_seen: dict[str, int] = {}
+    emitted = 0
+    with zipfile.ZipFile(archive_path) as archive:
+        for name in csv_names:
+            current_date = Path(name).stem
+            current_ordinal = date.fromisoformat(current_date).toordinal()
+            frame = read_daily_frame(archive, name, read_columns)
+            for serial in pd.unique(frame["serial_number"].astype(str)):
+                first_seen.setdefault(str(serial), current_ordinal)
+            if current_date not in wanted_dates:
+                if current_date > max_wanted_date and (max_rows is None or emitted >= max_rows):
+                    break
+                continue
+            if max_rows is not None:
+                remaining = max_rows - emitted
+                if remaining <= 0:
+                    break
+                frame = frame.head(remaining)
+            features, labels = daily_features_and_labels(
+                frame=frame,
+                current_ordinal=current_ordinal,
+                first_seen=first_seen,
+                failures=failures,
+                available_smart=available_smart,
+            )
+            emitted += len(features)
+            yield features, labels
+            if max_rows is not None and emitted >= max_rows:
+                break
+
+
+def collect_training_profile(
+    archive_path: Path,
+    csv_names: list[str],
+    train_dates: list[str],
+    failures: dict[str, list[int]],
+    available_smart: list[str],
+    present_columns: set[str],
+    max_rows: int | None,
+) -> TrainingProfile:
+    profile = TrainingProfile()
+    for features, labels in stream_batches(
+        archive_path, csv_names, train_dates, failures, available_smart, present_columns, max_rows
+    ):
+        profile.class_counts[0] += int((labels == 0).sum())
+        profile.class_counts[1] += int((labels == 1).sum())
+        for field in NUMERIC_FIELDS:
+            if field in features.columns:
+                profile.numeric[field].update(features[field])
+        profile.numeric["intercept_only"].update(features["intercept_only"])
+        for field in CATEGORICAL_FIELDS:
+            if field in features.columns:
+                profile.categories[field].update(features[field].astype(str).unique().tolist())
+    return profile
+
+
+def build_matrix_spec(spec: ModelSpec, profile: TrainingProfile) -> MatrixSpec:
+    category_maps: dict[str, dict[str, int]] = {}
+    column_names = list(spec.numeric)
+    offset = len(column_names)
+    for field in spec.categorical:
+        values = sorted(profile.categories.get(field, set()))
+        category_maps[field] = {value: offset + index for index, value in enumerate(values)}
+        column_names.extend([f"{field}={value}" for value in values])
+        offset += len(values)
+    return MatrixSpec(
+        numeric=list(spec.numeric),
+        categorical=list(spec.categorical),
+        category_maps=category_maps,
+        n_features=len(column_names),
+        column_names=column_names,
     )
 
-    for name in csv_names:
-        current_date = Path(name).stem
-        frame = read_daily_frame(archive, name, columns)
-        current_ordinal = date.fromisoformat(current_date).toordinal()
-        serials = frame["serial_number"].astype(str)
-        for serial in pd.unique(serials):
-            first_seen.setdefault(serial, current_ordinal)
-        if current_date not in wanted_dates:
-            if current_date > max_wanted_date and (max_rows is None or total_rows >= max_rows):
-                break
+
+def design_matrix(frame: pd.DataFrame, matrix_spec: MatrixSpec, profile: TrainingProfile) -> sparse.csr_matrix:
+    blocks: list[sparse.csr_matrix] = []
+    n_rows = len(frame)
+    if matrix_spec.numeric:
+        numeric_columns = []
+        for field in matrix_spec.numeric:
+            values = numeric_series(frame, field).to_numpy(dtype=float)
+            if field != "intercept_only":
+                acc = profile.numeric[field]
+                values = (values - acc.mean) / acc.scale
+            numeric_columns.append(values)
+        numeric_array = np.column_stack(numeric_columns) if numeric_columns else np.empty((n_rows, 0))
+        blocks.append(sparse.csr_matrix(numeric_array))
+
+    row_indices: list[np.ndarray] = []
+    col_indices: list[np.ndarray] = []
+    for field in matrix_spec.categorical:
+        mapping = matrix_spec.category_maps.get(field, {})
+        if not mapping:
             continue
+        codes = frame[field].astype(str).map(mapping).fillna(-1).to_numpy(dtype=int)
+        mask = codes >= 0
+        row_indices.append(np.nonzero(mask)[0])
+        col_indices.append(codes[mask])
+    if row_indices:
+        rows = np.concatenate(row_indices)
+        cols = np.concatenate(col_indices)
+        data = np.ones(len(rows), dtype=float)
+        categorical = sparse.csr_matrix((data, (rows, cols)), shape=(n_rows, matrix_spec.n_features))
+        if matrix_spec.numeric:
+            categorical = categorical[:, len(matrix_spec.numeric) :]
+        blocks.append(categorical)
 
-        if max_rows is not None:
-            remaining = max_rows - total_rows
-            if remaining <= 0:
-                break
-            frame = frame.head(remaining)
-            serials = frame["serial_number"].astype(str)
-
-        features = pd.DataFrame(index=frame.index)
-        for column in ["model", "is_legacy_format", "datacenter", "cluster_id", "vault_id", "pod_id", "pod_slot_num"]:
-            features[column] = frame[column].fillna("").astype(str)
-        features["capacity_bytes"] = numeric_series(frame, "capacity_bytes")
-        features["drive_age_days"] = [
-            float(current_ordinal - first_seen[str(serial)])
-            for serial in serials
-        ]
-        if include_smart:
-            for field in SMART_FIELDS:
-                features[field] = smart_series(frame, field)
-        labels = np.array(
-            [future_failure_label(str(serial), current_ordinal, failures) for serial in serials],
-            dtype=np.int8,
-        )
-        frames.append(features.reset_index(drop=True))
-        label_chunks.append(labels)
-        total_rows += len(features)
-        if max_rows is not None and total_rows >= max_rows:
-            break
-
-    if not frames:
-        return Dataset(frame=pd.DataFrame(), labels=np.array([], dtype=np.int8))
-    return Dataset(frame=pd.concat(frames, ignore_index=True), labels=np.concatenate(label_chunks))
+    if not blocks:
+        return sparse.csr_matrix((n_rows, matrix_spec.n_features))
+    return sparse.hstack(blocks, format="csr")
 
 
-def feature_columns(frame: pd.DataFrame, requested: list[str]) -> list[str]:
-    if frame.empty:
-        return []
-    present = frame.columns
-    return [column for column in requested if column in present]
-
-
-def fit_and_score(
-    train: Dataset,
-    test: Dataset,
-    feature_names: list[str],
-    categorical: list[str],
-) -> tuple[dict[str, Any], Pipeline]:
-    numeric = [name for name in feature_names if name not in categorical]
-    categorical = [name for name in categorical if name in feature_names]
-
-    transformer = ColumnTransformer(
-        transformers=[
-            ("numeric", StandardScaler(), numeric),
-            (
-                "categorical",
-                OneHotEncoder(handle_unknown="ignore", sparse_output=True),
-                categorical,
-            ),
-        ],
-        remainder="drop",
-        sparse_threshold=1.0,
-    )
-    model = LogisticRegression(
-        C=LOGISTIC_C,
-        solver="lbfgs",
-        max_iter=1000,
-        class_weight="balanced",
+def new_classifier(class_weights: dict[int, float]) -> SGDClassifier:
+    return SGDClassifier(
+        loss="log_loss",
+        penalty="l2",
+        alpha=SGD_ALPHA,
+        learning_rate="optimal",
+        average=True,
+        class_weight=class_weights,
         random_state=RANDOM_SEED,
     )
-    pipeline = Pipeline([("preprocess", transformer), ("model", model)])
-    x_train = train.frame.loc[:, feature_names]
-    x_test = test.frame.loc[:, feature_names]
-    y_train = train.labels
-    y_test = test.labels
-    pipeline.fit(x_train, y_train)
-    proba = pipeline.predict_proba(x_test)[:, 1]
-    result: dict[str, Any] = {
-        "n_train": int(len(y_train)),
-        "n_test": int(len(y_test)),
-        "train_positive": int(y_train.sum()),
-        "test_positive": int(y_test.sum()),
-        "log_loss": float(log_loss(y_test, proba, labels=[0, 1])),
-        "brier": float(brier_score_loss(y_test, proba)),
+
+
+def fit_models(
+    archive_path: Path,
+    csv_names: list[str],
+    train_dates: list[str],
+    failures: dict[str, list[int]],
+    available_smart: list[str],
+    present_columns: set[str],
+    max_rows: int | None,
+    specs: dict[str, ModelSpec],
+    profile: TrainingProfile,
+) -> tuple[dict[str, SGDClassifier], dict[str, MatrixSpec]]:
+    class_weights = profile.class_weights()
+    matrix_specs = {name: build_matrix_spec(spec, profile) for name, spec in specs.items()}
+    classifiers = {name: new_classifier(class_weights) for name in specs}
+    initialized = {name: False for name in specs}
+    classes = np.array([0, 1], dtype=np.int8)
+
+    for _ in range(SGD_EPOCHS):
+        for features, labels in stream_batches(
+            archive_path, csv_names, train_dates, failures, available_smart, present_columns, max_rows
+        ):
+            for name, classifier in classifiers.items():
+                matrix = design_matrix(features, matrix_specs[name], profile)
+                if initialized[name]:
+                    classifier.partial_fit(matrix, labels)
+                else:
+                    classifier.partial_fit(matrix, labels, classes=classes)
+                    initialized[name] = True
+    return classifiers, matrix_specs
+
+
+def evaluate_models(
+    archive_path: Path,
+    csv_names: list[str],
+    evaluation_dates: list[str],
+    failures: dict[str, list[int]],
+    available_smart: list[str],
+    present_columns: set[str],
+    max_rows: int | None,
+    classifiers: dict[str, SGDClassifier],
+    matrix_specs: dict[str, MatrixSpec],
+    profile: TrainingProfile,
+) -> dict[str, dict[str, float | int | None]]:
+    metrics = {name: MetricAccumulator() for name in classifiers}
+    for features, labels in stream_batches(
+        archive_path, csv_names, evaluation_dates, failures, available_smart, present_columns, max_rows
+    ):
+        for name, classifier in classifiers.items():
+            matrix = design_matrix(features, matrix_specs[name], profile)
+            proba = classifier.predict_proba(matrix)[:, 1]
+            metrics[name].update(labels, proba)
+    return {
+        name: accumulator.result(
+            n_train=profile.class_counts[0] + profile.class_counts[1],
+            train_positive=profile.class_counts[1],
+        )
+        for name, accumulator in metrics.items()
     }
-    if len(set(y_test.tolist())) == 2:
-        result["auc"] = float(roc_auc_score(y_test, proba))
-    else:
-        result["auc"] = None
-    return result, pipeline
 
 
-def sign_diagnostics(pipeline: Pipeline, feature_names: list[str]) -> dict[str, Any]:
-    preprocess = pipeline.named_steps["preprocess"]
-    model = pipeline.named_steps["model"]
-    names = preprocess.get_feature_names_out()
-    coefficients = model.coef_[0]
-    by_name = {name: float(value) for name, value in zip(names, coefficients, strict=True)}
+def sign_diagnostics(classifier: SGDClassifier, matrix_spec: MatrixSpec) -> dict[str, object]:
+    coefficients = classifier.coef_[0]
+    by_name = {name: float(coefficients[index]) for index, name in enumerate(matrix_spec.column_names)}
     smart_signs = {}
     for field in SMART_FIELDS:
-        key = f"numeric__{field}"
-        if key in by_name:
-            value = by_name[key]
+        if field in by_name:
+            value = by_name[field]
             smart_signs[field] = {
                 "coefficient": value,
                 "non_violating": value >= 0.0,
                 "theory_supporting": value > 0.0,
             }
-    return {"smart_signs": smart_signs, "feature_count": len(feature_names)}
+    return {"smart_signs": smart_signs, "feature_count": len(matrix_spec.column_names)}
 
 
 def main() -> None:
@@ -389,6 +597,8 @@ def main() -> None:
             raise SystemExit("No CSV files found in archive.")
 
         header = read_header(archive, csv_names[0])
+        present_columns = set(header)
+        available_smart = [field for field in SMART_FIELDS if field in present_columns]
         all_dates = date_range_from_names(csv_names)
         eligible = eligible_prediction_dates(all_dates, PRIMARY_HORIZON_DAYS)
         splits = split_dates(eligible)
@@ -412,8 +622,11 @@ def main() -> None:
         "min_final_test_failure_events": MIN_FINAL_TEST_FAILURE_EVENTS,
         "raw_failures_in_test_endpoint_horizon": endpoint_failures,
         "columns_present": required_columns_present(header),
-        "model_class": "L2-regularized logistic regression",
-        "regularization_C": LOGISTIC_C,
+        "available_smart_fields": available_smart,
+        "model_class": "streaming L2-regularized logistic regression",
+        "optimizer": "sklearn.linear_model.SGDClassifier(loss='log_loss')",
+        "sgd_alpha": SGD_ALPHA,
+        "sgd_epochs": SGD_EPOCHS,
         "random_seed": RANDOM_SEED,
         "metadata_only": args.metadata_only,
         "validation_smoke": args.validation_smoke,
@@ -431,76 +644,54 @@ def main() -> None:
             "--allow-primary-run only after the freeze manifest has recorded the final "
             "script hash."
         )
-
     if failures is None:
         raise AssertionError("failure lookup is required for model fitting")
 
     if args.validation_smoke:
         evaluation_mode = "validation_smoke"
         train_dates = splits.train
-        eval_dates = splits.validation
+        evaluation_dates = splits.validation
     else:
         evaluation_mode = "primary_test"
         train_dates = splits.train + splits.validation
-        eval_dates = splits.test
+        evaluation_dates = splits.test
 
-    with zipfile.ZipFile(archive_path) as archive:
-        train_smart = build_dataset(
-            archive, csv_names, train_dates, failures, include_smart=True, max_rows=args.max_rows
-        )
-        eval_smart = build_dataset(
-            archive, csv_names, eval_dates, failures, include_smart=True, max_rows=args.max_rows
-        )
-        train_meta = Dataset(
-            frame=train_smart.frame.drop(columns=SMART_FIELDS, errors="ignore"),
-            labels=train_smart.labels,
-        )
-        eval_meta = Dataset(
-            frame=eval_smart.frame.drop(columns=SMART_FIELDS, errors="ignore"),
-            labels=eval_smart.labels,
-        )
-
-    categorical_base = [
-        "model",
-        "is_legacy_format",
-        "datacenter",
-        "cluster_id",
-        "vault_id",
-        "pod_id",
-        "pod_slot_num",
-    ]
-    models = {
-        "B0_intercept": [],
-        "B1_metadata": METADATA_B1,
-        "B2_fleet_context": METADATA_B2,
-        "B3_exposure": METADATA_B3,
-        "primary_metadata_plus_smart": METADATA_B2 + SMART_FIELDS,
-    }
-    scores: dict[str, Any] = {}
-    primary_pipeline: Pipeline | None = None
-    primary_features: list[str] = []
-    for name, requested in models.items():
-        if name == "B0_intercept":
-            train_meta = Dataset(frame=train_meta.frame.assign(intercept_only=1.0), labels=train_meta.labels)
-            eval_meta = Dataset(frame=eval_meta.frame.assign(intercept_only=1.0), labels=eval_meta.labels)
-            requested = ["intercept_only"]
-        source_train = train_smart if name == "primary_metadata_plus_smart" else train_meta
-        source_test = eval_smart if name == "primary_metadata_plus_smart" else eval_meta
-        features = feature_columns(source_train.frame, requested)
-        categorical = [value for value in categorical_base if value in features]
-        score, pipeline = fit_and_score(source_train, source_test, features, categorical)
-        scores[name] = score
-        if name == "primary_metadata_plus_smart":
-            primary_pipeline = pipeline
-            primary_features = features
+    specs = model_specs(available_smart)
+    profile = collect_training_profile(
+        archive_path, csv_names, train_dates, failures, available_smart, present_columns, args.max_rows
+    )
+    classifiers, matrix_specs = fit_models(
+        archive_path,
+        csv_names,
+        train_dates,
+        failures,
+        available_smart,
+        present_columns,
+        args.max_rows,
+        specs,
+        profile,
+    )
+    scores = evaluate_models(
+        archive_path,
+        csv_names,
+        evaluation_dates,
+        failures,
+        available_smart,
+        present_columns,
+        args.max_rows,
+        classifiers,
+        matrix_specs,
+        profile,
+    )
 
     best_baseline = min(
         scores[name]["log_loss"] for name in ["B0_intercept", "B1_metadata", "B2_fleet_context", "B3_exposure"]
     )
     primary_logloss = scores["primary_metadata_plus_smart"]["log_loss"]
-    if primary_pipeline is None:
-        raise AssertionError("primary pipeline was not fitted")
-    sign_info = sign_diagnostics(primary_pipeline, primary_features)
+    sign_info = sign_diagnostics(
+        classifiers["primary_metadata_plus_smart"],
+        matrix_specs["primary_metadata_plus_smart"],
+    )
     sign_pass = all(item["non_violating"] for item in sign_info["smart_signs"].values())
     h1_pass = primary_logloss < 0.95 * best_baseline
     h2_pass = bool(sign_info["smart_signs"]) and sign_pass
@@ -510,7 +701,11 @@ def main() -> None:
         **metadata,
         "evaluation_mode": evaluation_mode,
         "train_prediction_dates": [train_dates[0], train_dates[-1], len(train_dates)],
-        "evaluation_prediction_dates": [eval_dates[0], eval_dates[-1], len(eval_dates)],
+        "evaluation_prediction_dates": [evaluation_dates[0], evaluation_dates[-1], len(evaluation_dates)],
+        "training_profile": {
+            "class_counts": profile.class_counts,
+            "class_weights": profile.class_weights(),
+        },
         "scores": scores,
         "best_baseline_log_loss": best_baseline,
         "primary_log_loss": primary_logloss,

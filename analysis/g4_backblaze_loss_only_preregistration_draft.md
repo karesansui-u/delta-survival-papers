@@ -226,8 +226,8 @@ L2-regularized logistic regression
 ```
 
 The model class is fixed by this draft. The exact implementation package,
-standardization rule, class-weight policy, and regularization value \(C\) must
-be fixed in the freeze manifest before any validation run.
+optimizer, standardization rule, class-weight policy, and regularization value
+must be fixed in the freeze manifest before any validation run.
 
 ## 7. Primary Hypotheses
 
@@ -408,8 +408,8 @@ Before validation, freeze:
 6. Missing-field rule implementation.
 7. Eligible prediction-date range and train / validation / test date
    boundaries.
-8. L2-logistic implementation package, standardization rule, class-weight
-   policy, and regularization value \(C\).
+8. L2-logistic implementation package, optimizer, standardization rule,
+   class-weight policy, and regularization value.
 9. Evaluation script hash.
 10. Primary metric and secondary metric code.
 11. Minimum final-test failure count \(N_f\).

@@ -127,27 +127,31 @@ model + capacity_bytes + drive_age_days
 Model class:
 
 ```text
-L2-regularized logistic regression
+streaming L2-regularized logistic regression
 ```
 
 Implementation:
 
 ```text
-scikit-learn LogisticRegression
-solver = "lbfgs"
-max_iter = 1000
+scikit-learn SGDClassifier
+loss = "log_loss"
+penalty = "l2"
+learning_rate = "optimal"
+average = True
 ```
 
-Regularization:
+Regularization / optimizer:
 
 ```text
-C = 1.0
+alpha = 1.0e-4
+epochs = 1 chronological pass over the training prediction dates
 ```
 
 Class weighting:
 
 ```text
-class_weight = "balanced"
+class weights are computed from the training prediction rows:
+w_c = n_train / (2 * n_c)
 ```
 
 Standardization:
@@ -161,8 +165,8 @@ unknown validation/test categories ignored.
 Categorical encoder:
 
 ```text
-scikit-learn OneHotEncoder(handle_unknown="ignore", sparse_output=True)
-scikit-learn ColumnTransformer(sparse_threshold=1.0)
+manual sparse one-hot encoding using categories observed in the training
+prediction rows; unknown validation/test categories ignored.
 ```
 
 Random seed:
