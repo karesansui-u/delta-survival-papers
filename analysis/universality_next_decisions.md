@@ -49,7 +49,7 @@ replication and, if needed, later theorem-wrapper polish.
 |---|---|---|---|
 | Core theory | Consolidation | Stable theorem vocabulary and Lean anchors | Only wording / mapping refinements |
 | LLM domain | Verification | Exp.40 + Exp.42 support scope-as-repair and attribution-as-repair; Exp.41 width passed | Model-dependent failure-mode follow-up only if needed |
-| Route A / CSP | Mixed-CSP validated; Exp43c q-coloring primary validated; Exp44 calibration inconclusive | Mixed-CSP official primary passed: `L_plus_n` log loss 0.0970 < `raw_plus_n` 0.7525. Exp43c q-coloring primary passed under frozen threshold-local package: `fm_plus_n` log loss 0.440189 < best primary raw baseline 2.804019, with H1 direction passing for q=3/4/5 and q=5 narrow. Exp44 smoke/pilot_v2/pilot_v3 are infrastructure-clean but pilot_v3 still failed the informative-band gate for M0/M1/M2 | Integrate Exp43c into Route A extension map / finite-CSP supplement; optional Exp44b redesign later |
+| Route A / CSP | Mixed-CSP validated; Exp43c q-coloring primary validated; Exp44 calibration inconclusive | Mixed-CSP official primary passed: `L_plus_n` log loss 0.0970 < `raw_plus_n` 0.7525. Exp43c q-coloring primary passed under frozen threshold-local package: `fm_plus_n` log loss 0.440189 < best primary raw baseline 2.804019, with H1 direction passing for q=3/4/5 and q=5 narrow. Exp43c is now integrated into the Route A extension map / finite-CSP supplement. Exp44 smoke/pilot_v2/pilot_v3 are infrastructure-clean but pilot_v3 still failed the informative-band gate for M0/M1/M2 | Independent replication, optional Exp44b redesign, or G4/G6 non-CSP continuation |
 | Formal tendency | M1 completed | Expectation-level target theorem 4 formally accessible via existing theorems; M2-A mapping-only fixed | Optional M2-B wrapper if paper needs named theorem aliases |
 | External reception | Open | Internal reproducibility and OSF available | Independent review / replication |
 
@@ -262,5 +262,5 @@ The remaining work is only examples.
 |---|---|---|
 | Exp41 passed, Mixed-CSP passed, M1 mapping-only sufficient | Verification phase across LLM + Route A + formal expectation-level tendency | integrate into universality paper / update program status |
 | Optional M2-B wrapper added | Reader-facing theorem names improve | cite wrappers in supplement; no new empirical claim |
-| Exp43c q-coloring passed | Route A width expands beyond SAT syntax | update Route A extension map and finite-CSP supplement; keep q=5 narrowness explicit |
+| Exp43c q-coloring passed | Route A width expands beyond SAT syntax | Route A extension map and finite-CSP supplement updated; keep q=5 narrowness explicit in public wording |
 | independent replication arrives | Social proof strengthens | consider stronger universality wording |

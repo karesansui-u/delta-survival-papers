@@ -198,6 +198,28 @@ The theory-pure `first_moment` predictor also beat `raw_plus_n`
 | [Mixed-CSP results summary](analysis/route_a_mixed_csp/mixed_csp_results_summary.md) | Human-readable primary model-comparison summary |
 | [Mixed-CSP results JSON](analysis/route_a_mixed_csp/mixed_csp_results.json) | Machine-readable primary analysis and support flags |
 
+### Route A — Exp43c q-coloring threshold-local primary validation
+
+Exp43c tests whether the first-moment / drift coordinate predicts random
+q-colorability better than raw edge-count, density, and CNF-size baselines
+inside a frozen threshold-local window. The primary run uses 4,000 solver
+records across q=3,4,5, with disjoint calibration and primary seed namespaces.
+
+Result: H1 primary support, aggregate strong support, cross-q H1 direction,
+encoding guardrail, and runtime guardrail all passed. `fm_plus_n` achieved mean
+held-out log loss `0.440189`, compared with best preregistered primary raw
+baseline `2.804019` (84.3% relative improvement). The q=5 fold passed narrowly
+(`0.426651 < 0.438133`), so this should be reported as real but narrow
+fold-level support rather than a large q=5 effect.
+
+| File | Description |
+|------|-------------|
+| [Exp43c preregistration](analysis/exp43_qcoloring/exp43c_threshold_local_preregistration_draft.md) | Fresh threshold-local preregistration after Exp43b no-go |
+| [Exp43c calibration closeout](analysis/exp43_qcoloring/exp43c_calibration_closeout.md) | Calibration pass and primary window selection |
+| [Exp43c freeze package](analysis/exp43_qcoloring/exp43c_freeze_package.md) | Frozen primary grid, seed namespace, model, and evaluation script |
+| [Exp43c primary report](analysis/exp43_qcoloring/exp43c_primary_report.md) | Human-readable primary validation report |
+| [Exp43c evaluator](analysis/exp43_qcoloring/src/evaluate_primary.py) | Frozen leave-one-q-out evaluation script |
+
 ### Paper 3 — Experiment 3: Three-condition (gemma3:27b, n=3, 180 turns each)
 
 Trials 2–4 are the three replicates reported in the paper (Table 3).

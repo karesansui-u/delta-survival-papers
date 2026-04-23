@@ -1,6 +1,6 @@
 # Route A Extension Map
 
-Status: calibration draft after Exp.41 and before Mixed-CSP execution.
+Status: updated after Mixed-CSP primary and Exp43c q-coloring primary.
 
 This note separates three things that are easy to conflate:
 
@@ -18,44 +18,50 @@ evaluator does not replace the intended phenomenon with a different polynomial
 structure.
 ```
 
-## 1. Current Priority
+## 1. Current Status
 
-The next Route A empirical gate remains the frozen Mixed-CSP program.
+Route A now has two empirical validation anchors beyond the formal SAT /
+Bernoulli-CSP theorem layer.
 
-Primary empirical question:
+| Anchor | Status | Main signal | Interpretation |
+|---|---|---|---|
+| Mixed-SAT/NAE-SAT | primary validated | `L_plus_n` log loss `0.0970` vs `raw_plus_n` `0.7525` | drift-weighted constraint quality beats raw count in a mixed Bernoulli-CSP family |
+| Exp43c q-coloring | primary validated | `fm_plus_n` log loss `0.440189` vs best primary raw baseline `2.804019` | first-moment / drift coordinate extrapolates across held-out q better than raw / density / CNF-size baselines |
+| Exp44 Cardinality-SAT | calibration no-go | informative-window gate failed for low-drift mixtures | useful future stress extension, not current validation evidence |
 
-```text
-Does L_plus_n beat raw_plus_n on held-out feasibility prediction?
-```
+The current priority is no longer "run Mixed-CSP" or "recover q-coloring".
+Those gates have moved: Mixed-CSP and Exp43c are positive primary evidence.
+The next Route A work, if continued, should either:
 
-The first implementation should keep the primary grid clean:
-
-- 3-SAT;
-- 3-NAE-SAT;
-- SAT/NAE mixtures;
-- exactly-one only as pilot / exploratory unless preregistered promotion
-  criteria are met before primary data.
-
-This is the first empirical universality-class anchor. Later Route A domains
-should wait until Mixed-CSP has either passed or exposed a specific failure
-branch.
+1. integrate Exp43c into reader-facing Route A / finite-CSP summaries;
+2. design a fresh Cardinality-SAT / forbidden-pattern stress extension under
+   the threshold-local protocol;
+3. pause Route A width and move to G4 / G6 / independent replication.
 
 ## 2. Safe Empirical Route A Extensions
 
-These are reasonable next candidates after Mixed-CSP.
+These are the safe Route A candidates and their current status.
 
 | Candidate | Why It Is Safe | Lean Status | Empirical Role |
 |---|---|---|---|
 | `3-NAE-SAT` | No special polynomial solver shortcut for generic instances; drift differs from SAT: `log(4/3)` | Present via NAE-SAT Bernoulli templates / collapse wrappers | Already in Mixed-CSP primary |
-| `q`-coloring, fixed coloring under edge exposure | Bad edge probability is `1/q`, drift `log(q/(q-1))`; varying `q` gives clean drift variation | Present via q-coloring Bernoulli template / Chernoff wrapper | Natural post-Mixed-CSP cross-family test |
-| Cardinality-SAT family | Drift varies by binomial count, e.g. `log(2^k / C(k,r))`; one family can scan multiple drift levels | Present via exactly-`r`, at-most, at-least wrappers | Good post-Mixed-CSP robustness / dose-response test |
+| `q`-coloring | Bad edge probability is `1/q`, drift `log(q/(q-1))`; varying `q` gives clean drift variation | Present via q-coloring Bernoulli template / Chernoff wrapper | Validated by Exp43c threshold-local leave-one-q-out primary |
+| Cardinality-SAT family | Drift varies by binomial count, e.g. `log(2^k / C(k,r))`; one family can scan multiple drift levels | Present via exactly-`r`, at-most, at-least wrappers | Good future robustness / dose-response test, but Exp44 current calibration is no-go |
 | Forbidden-pattern CSP | Direct Bernoulli bad-event semantics; drift is specified by number of forbidden patterns | Present in Bernoulli CSP interface | Good generalization if SAT/NAE passes |
 
-For `q`-coloring, the intended empirical extension is a fixed-coloring
-edge-exposure protocol. It measures whether a pre-fixed coloring survives
-random edge exposure. It is not a graph-coloring search experiment and should
-not be implemented by calling a coloring solver such as DSATUR as the primary
-endpoint.
+For `q`-coloring, separate the formal and empirical layers:
+
+- Lean formalization uses fixed-coloring edge exposure, where a random edge is
+  bad with probability `1/q`.
+- Exp43c empirical validation used full graph q-colorability as the feasibility
+  endpoint, with the first-moment coordinate `n log q - L` as the
+  theory-specified predictor.
+
+This is intentional. Exp43c does not claim that the fixed-coloring theorem is a
+full q-colorability threshold theorem. It claims that the first-moment / drift
+coordinate derived from the Route A exposure semantics predicts held-out
+q-colorability better than raw / density / CNF-size baselines inside a frozen
+threshold-local window.
 
 For these candidates, the preferred empirical claim is not an absolute
 prediction of a universal `c`. The preferred claim is:
@@ -146,9 +152,11 @@ meaning of the predictor or the endpoint.
 
 Near-term:
 
-1. Run Mixed-CSP primary as frozen.
-2. If Mixed-CSP passes, design q-coloring empirical replication.
-3. Then design Cardinality-SAT drift-scan / robustness test.
+1. Keep Mixed-CSP and Exp43c q-coloring as the two current empirical Route A
+   validation anchors.
+2. Integrate Exp43c into the finite-CSP supplement and Route A public wording.
+3. If continuing Route A width, design a fresh Cardinality-SAT / forbidden-
+   pattern stress extension under the threshold-local protocol.
 
 Hold back:
 
@@ -164,16 +172,27 @@ first prove that L carries predictive information beyond raw baselines,
 then broaden the universality class.
 ```
 
+Current status:
+
+```text
+Mixed-CSP: passed.
+Exp43c q-coloring: passed.
+Cardinality-SAT: calibration no-go under current Exp44 design.
+```
+
 ## 6. Public Wording
 
 Recommended:
 
 ```text
 The formal Bernoulli-CSP layer already covers several horizontal instances.
-For empirical Route A replication, we prioritize SAT/NAE Mixed-CSP first, then
-q-coloring and Cardinality-SAT. XOR-SAT and LDPC-like examples are useful
-formal or analogical cases, but they are not primary empirical solver-scaling
-anchors because solver / decoder structure can dominate the observed c.
+Empirically, Mixed-SAT/NAE-SAT and Exp43c q-coloring have both passed frozen
+primary tests in which a first-moment / drift-weighted coordinate beat raw or
+encoding-size baselines out of sample. Cardinality-SAT remains a future stress
+extension rather than current validation evidence. XOR-SAT and LDPC-like
+examples are useful formal or analogical cases, but they are not primary
+empirical solver-scaling anchors because solver / decoder structure can
+dominate the observed c.
 ```
 
 Avoid:
