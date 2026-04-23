@@ -523,6 +523,8 @@ G4 v2 selection:
 - Scope memo: `analysis/g4_v2_repair_maintenance_scope.md`.
 - Selected direction: repair / maintenance reliability-fatigue balance.
 - Lean skeleton: `lean/Survival/RepairMaintenanceBalance.lean`.
+- Reader-facing section: `v2/補論_非CSP古典例における構造収支律の最小アンカー.md`
+  §11.
 - Reason: expose \(g_t\) as an explicit compensation / maintenance flow in a
   non-CSP open-system anchor.
 - Deferred direction: branching-process almost-sure extinction / generating
