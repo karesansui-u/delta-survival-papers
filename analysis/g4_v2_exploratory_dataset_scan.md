@@ -186,3 +186,9 @@ No suitable dataset found yet.
 That outcome is useful. It would mean the G4 v2 operational pilot needs either
 a different domain, a private dataset, or a more modest loss-only control.
 
+Current candidate table:
+
+```text
+analysis/g4_v2_dataset_scan_candidates.md
+```
+
