@@ -1,7 +1,7 @@
 # Current Evidence Map
 
 Status: after Exp43c q-coloring primary validation, G4 v2 repair-maintenance
-integration, and G4 v2 operational pilot draft opening.
+integration, and Backblaze loss-only primary completion.
 
 This note is a compact map of what each artifact currently supports. It is not
 a new claim source; it is a navigation layer for the papers, Lean modules, and
@@ -50,14 +50,14 @@ preregistered experiments.
 | Serial reliability | G4 v1 loss-only control | Multiplicative survival / exponential kernel outside CSP | No repair flow |
 | Constant-fraction decay | G4 v1 loss-only control | Exponential decay sanity anchor | No open-system compensation |
 | Repair / maintenance balance | G4 v2 open-system anchor | Explicit non-CSP \(g_t\) as repair / maintenance flow | No optimal maintenance or stochastic reliability theorem |
-| Backblaze drive stats | G4 loss-only observational draft + Q4 2025 feasibility passed | Candidate non-CSP industrial reliability anchor with repeated units, SMART degradation fields, and failure endpoint | Not repair-flow evidence; preregistration not frozen |
+| Backblaze drive stats | G4 loss-only observational primary completed: no support | Under frozen Q4 2025 package, primary SMART model had high AUC (0.902456) but failed preregistered log-loss support (`1.779176` vs best baseline `0.157102`) and failed H2 due `smart_199_raw` sign | Not repair-flow evidence; not a structural-balance falsification |
 
 ## 6. Open Gates
 
 | Gate | Current status | Next clean move |
 |---|---|---|
 | G3 Route A width | Strengthened by Mixed-CSP + Exp43c | Independent replication, or optional Exp44b redesign under threshold-local protocol |
-| G4 non-CSP | G4 v1/v2 minimal skeletons closed; repair-flow public dataset search paused; Backblaze loss-only draft opened and Q4 2025 archive feasibility passed | Next clean move: Backblaze freeze manifest + evaluation script hash; do not report it as repair-flow \(g_t\) evidence |
+| G4 non-CSP | G4 v1/v2 minimal skeletons closed; repair-flow public dataset search paused; Backblaze loss-only primary completed with no support under frozen log-loss rule | Next clean move: do not rescue Backblaze post-hoc; either keep this as a negative observational anchor or open a new preregistration for calibration / survival modeling |
 | G5 prospective prediction | Supported by Exp40/41/42, Mixed-CSP, Exp43c | Another preregistered external-domain test |
 | G6 existing-theory mapping | G6-c iteration 1 closed | Optional iteration 2: positive recurrence / geometric ergodicity |
 | G7 independent replication | Open | External reviewer / independent run / public replication package |
@@ -88,5 +88,7 @@ large-deviation / rate-function machinery on the Route A side.
 
 The program has a stable structural-balance core, Lean-backed algebraic
 embeddings, two validated Route A empirical anchors beyond the SAT-only core,
-and disciplined Route C observational support. It is a stronger universal-law
-candidate than before, but it is not yet a universal law.
+and disciplined Route C observational support. The first Backblaze loss-only
+non-CSP observational primary was negative under its frozen primary metric. The
+program remains a stronger universal-law candidate than before, but it is not
+yet a universal law.
