@@ -50,7 +50,7 @@ replication and, if needed, later theorem-wrapper polish.
 | Core theory | Consolidation | Stable theorem vocabulary and Lean anchors | Only wording / mapping refinements |
 | LLM domain | Verification | Exp.40 + Exp.42 support scope-as-repair and attribution-as-repair; Exp.41 width passed | Model-dependent failure-mode follow-up only if needed |
 | Route A / CSP | Mixed-CSP validated; Exp43c q-coloring primary validated; Exp44 calibration inconclusive | Mixed-CSP official primary passed: `L_plus_n` log loss 0.0970 < `raw_plus_n` 0.7525. Exp43c q-coloring primary passed under frozen threshold-local package: `fm_plus_n` log loss 0.440189 < best primary raw baseline 2.804019, with H1 direction passing for q=3/4/5 and q=5 narrow. Exp43c is now integrated into the Route A extension map / finite-CSP supplement. Exp44 smoke/pilot_v2/pilot_v3 are infrastructure-clean but pilot_v3 still failed the informative-band gate for M0/M1/M2 | Independent replication, optional Exp44b redesign, or G4/G6 non-CSP continuation |
-| G4 / non-CSP | G4 v1 closed; G4 v2 minimal skeleton implemented and supplement-integrated | Queueing / Foster-Lyapunov is the primary G4 v1 anchor; serial reliability and constant-fraction decay are loss-only controls. G4 v2 is scoped toward repair / maintenance reliability-fatigue balance, where \(g_t\) is explicit in a non-CSP open-system model. `RepairMaintenanceBalance.lean` formalizes the finite-prefix algebraic skeleton, and the G4 supplement now includes the reader-facing G4 v2 section | Optional stochastic reliability / operational pilot design, if explicitly scoped |
+| G4 / non-CSP | G4 v1 closed; G4 v2 minimal skeleton implemented and supplement-integrated; operational pilot draft opened | Queueing / Foster-Lyapunov is the primary G4 v1 anchor; serial reliability and constant-fraction decay are loss-only controls. G4 v2 is scoped toward repair / maintenance reliability-fatigue balance, where \(g_t\) is explicit in a non-CSP open-system model. `RepairMaintenanceBalance.lean` formalizes the finite-prefix algebraic skeleton, and the G4 supplement now includes the reader-facing G4 v2 section. `analysis/g4_v2_operational_pilot_preregistration_draft.md` defines the next maintenance-log prediction design without freezing a dataset | Dataset eligibility screen for the G4 v2 operational pilot |
 | Formal tendency | M1 completed | Expectation-level target theorem 4 formally accessible via existing theorems; M2-A mapping-only fixed | Optional M2-B wrapper if paper needs named theorem aliases |
 | External reception | Open | Internal reproducibility and OSF available | Independent review / replication |
 
@@ -179,10 +179,11 @@ Short horizon:
    `analysis/structural_balance_law_draft_plan.md`.
 5. Treat q-coloring and Cardinality-SAT as optional Route A width extensions,
    not as required gates.
-6. For G4 v2, prioritize repair / maintenance reliability-fatigue balance over
-   branching-process strengthening. The goal is to make the compensation flow
-   \(g_t\) visible in a non-CSP open-system anchor before adding another
-   loss-only / extinction-style example.
+6. For G4 v2, use
+   `analysis/g4_v2_operational_pilot_preregistration_draft.md` as the next
+   operational track. The immediate task is dataset eligibility screening, not
+   validation. No maintenance-log primary data should be generated before a
+   dataset, split, feature schema, and evaluation script are frozen.
 
 Rationale:
 
@@ -190,7 +191,7 @@ Rationale:
 - Lean M1 is now complete and reduced the formal gate to mapping / wording.
 - The remaining work is no longer a hidden core-definition gate; it is
   propagation, optional wrappers, structural-balance-law review / freeze,
-  width extension, and external replication.
+  operational dataset eligibility, width extension, and external replication.
 
 Estimated timelines, assuming no unexpected gates:
 
@@ -200,8 +201,8 @@ Estimated timelines, assuming no unexpected gates:
 | Optional M2-B wrapper, if needed | 1-2 hours + `lake build` |
 | M operationalization supplement cleanup | 30-60 min |
 | Structural balance law §1-8 review pass | 1 focused session |
-| Exp43 q-coloring preregistration draft review / freeze | 1 focused session |
-| Optional q-coloring / Cardinality-SAT design | 1 focused session |
+| G4 v2 maintenance-log dataset eligibility screen | 1 focused session |
+| Optional Exp44b / Cardinality-SAT redesign | 1 focused session |
 
 Route A extension discipline is recorded separately in
 [`route_a_extension_map.md`](route_a_extension_map.md). In short, Mixed-CSP

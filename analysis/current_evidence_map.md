@@ -1,6 +1,7 @@
 # Current Evidence Map
 
-Status: after Exp43c q-coloring primary validation and G4 v2 repair-maintenance integration.
+Status: after Exp43c q-coloring primary validation, G4 v2 repair-maintenance
+integration, and G4 v2 operational pilot draft opening.
 
 This note is a compact map of what each artifact currently supports. It is not
 a new claim source; it is a navigation layer for the papers, Lean modules, and
@@ -55,7 +56,7 @@ preregistered experiments.
 | Gate | Current status | Next clean move |
 |---|---|---|
 | G3 Route A width | Strengthened by Mixed-CSP + Exp43c | Independent replication, or optional Exp44b redesign under threshold-local protocol |
-| G4 non-CSP | G4 v1/v2 minimal skeletons closed | Optional stochastic reliability / maintenance-log pilot, with explicit scope lock |
+| G4 non-CSP | G4 v1/v2 minimal skeletons closed; operational pilot draft opened | Select an eligible maintenance / repair log dataset under `analysis/g4_v2_operational_pilot_preregistration_draft.md` |
 | G5 prospective prediction | Supported by Exp40/41/42, Mixed-CSP, Exp43c | Another preregistered external-domain test |
 | G6 existing-theory mapping | G6-c iteration 1 closed | Optional iteration 2: positive recurrence / geometric ergodicity |
 | G7 independent replication | Open | External reviewer / independent run / public replication package |
