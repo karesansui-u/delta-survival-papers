@@ -31,6 +31,17 @@ Frozen evaluation script:
 analysis/exp43_qcoloring/src/evaluate_primary.py
 ```
 
+The evaluation model and regularization were fixed in the freeze package:
+
+```text
+sklearn LogisticRegression
+penalty = l2
+solver = lbfgs
+C = 1.0
+max_iter = 1000
+feature standardization fit on train fold only
+```
+
 ## 2. Primary Data
 
 Primary output (gitignored raw artifact):
@@ -131,6 +142,34 @@ fm_plus_n = 0.440189
 cnf_count_plus_n_q = 7.700105
 ```
 
+Technical observation:
+
+The best predictors are the theory-specified scalar coordinates:
+
+```text
+fm_plus_n     = 0.440189
+first_moment  = 0.446814
+raw_density   = 0.780910
+avg_degree    = 0.780910
+```
+
+By contrast, several tuple predictors that include `q` as an explicit learned
+feature fail badly under leave-one-q-out evaluation:
+
+```text
+density_plus_n_q    = 2.804019
+L_plus_n_plus_q     = 7.535080
+cnf_count_plus_n_q  = 7.700105
+raw_plus_n_q        = 8.567224
+```
+
+This matters because the held-out split tests extrapolation across q. A
+coordinate such as `fm_plus_n = (n log q - L, n)` folds the q-dependence into
+the first-moment geometry before learning. A raw tuple model that learns a
+free coefficient for q can overfit the training q values and extrapolate poorly
+to the held-out q. The result therefore supports the theory-specified
+coordinate choice, not merely adding q as another regression feature.
+
 ## 5. Fold-Level H1 Check
 
 H1 requires the `fm_plus_n` direction to hold for each held-out q.
@@ -150,6 +189,13 @@ relative improvement = 2.62%
 
 This should be reported as a real but narrow fold-level win, not as a large
 q=5 effect.
+
+The narrow q=5 margin is consistent with the training-set log-q geometry:
+when q=5 is held out, training uses q=3 and q=4, and `log 4` is closer to
+`log 5` than the corresponding extrapolation distance for held-out q=3. Thus
+coordinate-agnostic baselines can extrapolate more reasonably to q=5 than to
+q=3. This is not a failure of H1, but it should keep the q=5 interpretation
+modest.
 
 ## 6. Decision Rules
 
