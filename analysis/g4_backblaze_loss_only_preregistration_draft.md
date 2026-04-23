@@ -278,6 +278,10 @@ date t is eligible iff t + H <= max date in the frozen archive
 Rows outside the eligible prediction-date range are not used as prediction rows.
 They may still be used as future endpoint support for earlier eligible dates.
 
+This is a pre-freeze mathematical clarification, not a post-hoc amendment:
+prediction cannot be evaluated on rows whose outcome window extends past the
+archive.
+
 Primary split:
 
 ```text
