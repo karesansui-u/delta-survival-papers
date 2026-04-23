@@ -175,6 +175,12 @@ For each q/n unit:
 
 The primary validation grid is the union of selected q/n windows.
 
+If the minimal covering interval includes calibration-non-informative cells
+between informative cells, those intermediate cells are retained in the
+primary grid. They contribute to held-out log-loss as high-confidence
+predictions, but they do not count toward the "two informative cells"
+eligibility criterion.
+
 This rule is deterministic and must be applied before primary data generation.
 
 ## 7. Power-Collapse Diagnostic
@@ -383,3 +389,10 @@ closeout fills:
 - exact analysis script hash.
 
 Until then, Exp43b remains exploration.
+
+If calibration yields no primary-eligible q/n unit for at least one
+q in `{3,4,5}`, Exp43b is declared inconclusive. In that case, the fallback
+described in `analysis/protocols/route_a_threshold_local_redesign_note.md`
+§8 applies: Cardinality-SAT or another Route A anchor may be redesigned under
+the same threshold-local protocol. Primary data must not be generated for any
+strict subset of q values.

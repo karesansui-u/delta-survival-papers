@@ -201,6 +201,17 @@ Before primary validation, commit or otherwise timestamp:
 13. analysis script;
 14. non-claim list.
 
+The calibration closeout note must contain:
+
+1. per family-unit / cell SAT rate, timeout rate, and malformed count;
+2. informative cells marked under the preregistered definition;
+3. selected primary window per family unit;
+4. buffer application record;
+5. rank-correlation matrix and power-collapse verdict;
+6. deviations from the preregistration, with rationale;
+7. explicit pass / inconclusive decision and whether primary data may be
+   generated.
+
 No primary data should be generated before this freeze package exists.
 
 ## 9. Re-entry condition for Route A
