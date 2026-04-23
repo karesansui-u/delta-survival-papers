@@ -142,13 +142,44 @@ predictors:
 Required reporting:
 
 1. Spearman correlation matrix.
-2. Kendall tau matrix if sample size is large enough.
+2. Kendall tau-b matrix if the candidate window has at least 10 distinct
+   candidate-grid rows after collapsing duplicate feature vectors.
 3. A short statement of whether the theory predictor is distinguishable from
    raw / density / CNF baselines in the candidate window.
+
+Tuple predictor projection rule:
+
+Some primary predictors are tuples, for example `(first_moment_log_count, n)`
+or `(cnf_clause_count, n, family_id)`. Logistic regression uses these as
+multi-feature predictors, but the rank-correlation diagnostic needs a scalar
+projection. Unless a later preregistration explicitly overrides this before
+calibration, use the following conservative projections:
+
+| tuple predictor pattern | scalar diagnostic projection |
+|---|---|
+| `(first_moment, n)` | `first_moment + n` |
+| `(L, n)` | `L + n` |
+| `(L, n, family)` | `L + n + numeric_family_id` |
+| `(raw_count, n, family)` | `raw_count + n + numeric_family_id` |
+| `(density, n, family)` | `density + n + numeric_family_id` |
+| `(avg_degree, n, family)` | `avg_degree + n + numeric_family_id` |
+| `(cnf_count, n, family)` | `cnf_count + n + numeric_family_id` |
+| `(cnf_density, n, family)` | `cnf_density + n + numeric_family_id` |
+
+The projection is not used for primary validation. It is only a freeze-time
+diagnostic for underpowered designs. It is conservative because it can
+underestimate the discriminative power of the full tuple model; therefore a
+design that passes this scalar diagnostic is not being rescued by a tuned
+projection.
 
 If the theory predictor has absolute Spearman correlation at least `0.98` with
 every baseline in the candidate window, the design is underpowered for the
 intended comparison and must not be frozen as a primary validation design.
+
+If Kendall tau-b is not reported because there are fewer than 10 distinct
+candidate-grid rows, the closeout note must say so explicitly and mark the
+rank-correlation diagnostic as low-resolution. A low-resolution diagnostic is
+allowed only for smoke / pilot planning, not for a primary freeze package.
 
 For Cardinality-SAT, mixture heterogeneity should usually preserve power. This
 must still be checked rather than assumed.
