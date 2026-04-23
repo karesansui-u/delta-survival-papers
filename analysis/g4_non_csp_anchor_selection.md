@@ -79,6 +79,8 @@ Queueing / Foster-Lyapunov を主 anchor にする理由は、構造収支律の
 \]
 を形式化している。これにより、queueing / Foster-Lyapunov drift は G6-c iteration 1 と G4 の交点になる。
 
+これは double-counting ではない。G6 は既存理論との formal-mapping credibility を測る gate であり、G4 は non-CSP domain coverage を測る gate である。同一の artifact が両 dimension に寄与するのは、埋め込みが自然であることの帰結であり、二重に evidence を数えるという意味ではない。
+
 この anchor が言えること:
 
 - \(a_t\) が古典的な excess demand / Lyapunov increment と一致する。
@@ -191,9 +193,8 @@ G4 v1 の正しい言い方:
 
 G4 v1 の次作業は、次の順で進めるのがよい。
 
-1. Paper 5 §7 / §8 と G6-c 補論から、queueing / Foster-Lyapunov を primary non-CSP anchor として明示する。
-2. `SerialReliability.lean` と `ConstantFractionDecay.lean` を loss-only control anchors として theorem map にまとめる。
-3. 必要なら `analysis/g4_non_csp_anchor_selection.md` をもとに、短い reader-facing 補論または Paper 5 appendix note を作る。
-4. G4 v2 では、branching expectation から almost-sure extinction 方向へ進むか、fatigue / reliability の repair intervention を含む open-system model へ進むかを選ぶ。
+1. Paper 5 §7 / §8 と G6-c 補論から、queueing / Foster-Lyapunov を primary non-CSP anchor として明示する。これは `v2/5_構造持続の収支法則と崩壊傾向.md` と `v2/補論_非CSP古典例における構造収支律の最小アンカー.md` に反映済みである。
+2. `SerialReliability.lean` と `ConstantFractionDecay.lean` を loss-only control anchors として theorem map にまとめる。これは `lean/PAPER_MAPPING.md` の C2 / C3 と README の formalization section に反映済みである。
+3. G4 v2 では、branching expectation から almost-sure extinction 方向へ進むか、fatigue / reliability の repair intervention を含む open-system model へ進むかを選ぶ。
 
 この時点で G4 は「non-CSP 古典例をすべて証明した」ではなく、「次に見るべき non-CSP anchor の優先順位が G6-c embedding によって決まった」と読む。
