@@ -24,7 +24,7 @@ validation by this note.
 |---|---|---|---|---|
 | C1 | Microsoft Azure Predictive Maintenance | Kaggle mirror / Azure sample dataset | leakage-risk | Schema inspection found unit/time/damage/failure structure, but no direct proactive/reactive maintenance label; repair class would require failure-overlap inference |
 | C2 | MetroPT-3 Air Production Unit | UCI / Scientific Data | weak-g | Schema inspection found a real single-system time series, but repeated units and direct repair-flow event structure are too weak for primary validation |
-| C3 | Backblaze Drive Stats | Backblaze public hard-drive test data | weak-g | Excellent unit-level SMART / failure data, but repair / preventive maintenance is not cleanly logged |
+| C3 | Backblaze Drive Stats | Backblaze public hard-drive test data | loss-only | Schema inspection confirms repeated drive-day panel with SMART degradation and failure endpoint, but no direct repair / preventive maintenance signal |
 | C4 | NASA C-MAPSS turbofan degradation | NASA / PHM benchmark mirrors | weak-g | Strong unit-time degradation and RUL endpoint, but no repair / maintenance flow |
 | C5 | Microsoft Fabric predictive maintenance tutorial dataset | Microsoft Learn / Azure Open Datasets example | weak-g | Has machine parameters and failure label, but appears row-based and lacks explicit repair flow |
 | C6 | ServiceNow IT incident log | Kaggle mirror of incident management process log | unclear | Rich incident lifecycle and change-request fields, but stable unit and future failure endpoint are not confirmed |
@@ -176,6 +176,15 @@ damage / degradation indicators -> future failure endpoint
 
 It must not be described as operational repair-flow validation.
 
+Schema inspection result:
+
+- See `analysis/g4_c3_backblaze_loss_only_schema_inspection_note.md`.
+- Current schema exposes `serial_number`, `date`, `failure`, and SMART
+  degradation fields.
+- No direct repair / preventive maintenance field is present.
+- C3 is the strongest current candidate for a non-CSP loss-only empirical
+  anchor, not a repair-flow anchor.
+
 Why useful:
 
 - unit: drive serial number;
@@ -192,14 +201,14 @@ Main concern:
 Provisional label:
 
 ```text
-weak-g
+loss-only
 ```
 
 Recommended use:
 
 ```text
-Good G4 loss-only or degradation-control dataset. Not the first choice for G4
-v2 repair-flow validation.
+Good G4 loss-only or degradation-control dataset. Not a G4 v2 repair-flow
+validation dataset.
 ```
 
 ### C4. NASA C-MAPSS Turbofan Degradation
@@ -353,8 +362,8 @@ schema inspection.
 |---|---|---|
 | done | C1 Microsoft Azure Predictive Maintenance | Schema inspected; direct proactive/reactive repair label absent, so not primary G4 v2 repair-flow material |
 | done | C2 MetroPT-3 | Schema inspected; real single-system time series, but repair-flow primary structure is too weak |
-| next | C3 Backblaze Drive Stats | Very strong loss-only control, weak repair |
-| later | C4 NASA C-MAPSS | Standard degradation control, no repair |
+| done | C3 Backblaze Drive Stats | Schema inspected; strongest loss-only non-CSP control, no repair-flow signal |
+| next | C4 NASA C-MAPSS | Standard degradation control, no repair |
 | later | C6 ServiceNow incident log | May have repair/process information, but unit/endpoint unclear |
 | later | C7 TravisTorrent / CI | Potential software route, high extraction and leakage risk |
 | later | C5 Fabric tutorial dataset | Easy but likely too toy / weak-g |
@@ -364,24 +373,21 @@ schema inspection.
 The next concrete step should be:
 
 ```text
-Pause G4 v2 repair-flow primary search, or inspect C3 only as a loss-only /
-weak-g control candidate.
+Pause G4 v2 repair-flow primary search. If continuing non-CSP empirical work,
+draft a separate Backblaze loss-only preregistration.
 ```
 
-If C3 is inspected, the inspection is explicitly a loss-only / weak-g branch.
-It is not a continuation of the G4 v2 repair-flow primary search.
+The C3 inspection is complete and confirms the loss-only tier boundary.
 
 Do not train models yet.
 
-Minimum inspection questions for C3 if continuing with loss-only / weak-g
-controls:
+Minimum questions for a future Backblaze loss-only preregistration:
 
-1. Does C3 expose repeated unit identifiers and time?
-2. Does C3 expose degradation / damage indicators without future failure labels?
-3. Can failure in \((t,t+H]\) be defined cleanly?
-4. Is there any direct repair / preventive maintenance signal, or is C3 strictly
-   loss-only?
-5. Can generic activity baselines be defined without outcome coupling?
+1. What frozen horizon \(H\) defines future drive failure?
+2. Which SMART fields are allowed as lagged damage / degradation indicators?
+3. Which drive metadata fields are allowed as activity / exposure baselines?
+4. What time-based split prevents leakage?
+5. What loss-only claim wording is allowed if the preregistered model passes?
 
 C1 failed on repair separability at the schema level; see
 `analysis/g4_v2_c1_schema_inspection_note.md`.
@@ -389,7 +395,10 @@ C1 failed on repair separability at the schema level; see
 C2 failed on repeated-unit / repair-flow event structure; see
 `analysis/g4_v2_c2_schema_inspection_note.md`.
 
+C3 confirms a clean loss-only branch; see
+`analysis/g4_c3_backblaze_loss_only_schema_inspection_note.md`.
+
 This means the original G4 v2 repair-flow primary search should pause rather
-than forcing a repair-flow validation. Continuing to C3 is only justified as a
-loss-only or weak-g control track, not as a rescue of the G4 v2 repair-flow
-primary.
+than forcing a repair-flow validation. Continuing with Backblaze requires a
+separate loss-only preregistration and must not be described as repair-flow
+evidence.
