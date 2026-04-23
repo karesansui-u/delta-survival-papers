@@ -9,6 +9,7 @@ It does not contain repair-flow logic.
 from __future__ import annotations
 
 import argparse
+import bisect
 import csv
 import io
 import json
@@ -66,8 +67,8 @@ class SplitDates:
 
 @dataclass(frozen=True)
 class Dataset:
-    rows: list[dict[str, Any]]
-    labels: list[int]
+    frame: pd.DataFrame
+    labels: np.ndarray
 
 
 def parse_args() -> argparse.Namespace:
@@ -84,6 +85,15 @@ def parse_args() -> argparse.Namespace:
         "--metadata-only",
         action="store_true",
         help="Only emit archive metadata and split information; do not fit models.",
+    )
+    parser.add_argument(
+        "--validation-smoke",
+        action="store_true",
+        help=(
+            "Fit on the train split and evaluate only the validation split. This is an "
+            "integration smoke test, not validation evidence, and it does not evaluate "
+            "the final test prediction dates."
+        ),
     )
     parser.add_argument(
         "--allow-primary-run",
@@ -143,16 +153,37 @@ def required_columns_present(header: list[str]) -> dict[str, bool]:
     return {field: field in header for field in fields}
 
 
-def count_raw_failures_by_date(archive: zipfile.ZipFile, csv_names: list[str]) -> dict[str, int]:
+def read_daily_frame(archive: zipfile.ZipFile, csv_name: str, columns: list[str]) -> pd.DataFrame:
+    with archive.open(csv_name) as handle:
+        return pd.read_csv(handle, usecols=columns)
+
+
+def collect_failure_metadata(
+    archive: zipfile.ZipFile,
+    csv_names: list[str],
+    include_lookup: bool,
+) -> tuple[dict[str, int], dict[str, list[int]] | None]:
     failures_by_date: dict[str, int] = defaultdict(int)
+    failures: dict[str, list[int]] | None = defaultdict(list) if include_lookup else None
+    columns = ["date", "serial_number", "failure"]
     for name in csv_names:
-        with archive.open(name) as handle:
-            text = io.TextIOWrapper(handle, encoding="utf-8-sig", newline="")
-            reader = csv.DictReader(text)
-            for row in reader:
-                if row.get("failure") == "1":
-                    failures_by_date[row["date"]] += 1
-    return dict(failures_by_date)
+        frame = read_daily_frame(archive, name, columns)
+        failed = frame[frame["failure"] == 1]
+        if failed.empty:
+            continue
+        for failure_date, count in failed["date"].value_counts().items():
+            failures_by_date[str(failure_date)] += int(count)
+        if failures is not None:
+            for serial, failure_date in zip(
+                failed["serial_number"].astype(str),
+                failed["date"].astype(str),
+                strict=True,
+            ):
+                failures[serial].append(date.fromisoformat(failure_date).toordinal())
+    if failures is not None:
+        for values in failures.values():
+            values.sort()
+    return dict(failures_by_date), dict(failures) if failures is not None else None
 
 
 def endpoint_dates_for_test(test_dates: list[str], horizon_days: int) -> list[str]:
@@ -173,90 +204,106 @@ def log1p_or_zero(value: str) -> float:
     return math.log1p(parsed)
 
 
-def failure_lookup(archive: zipfile.ZipFile, csv_names: list[str]) -> set[tuple[str, str]]:
-    failures: set[tuple[str, str]] = set()
-    for name in csv_names:
-        with archive.open(name) as handle:
-            text = io.TextIOWrapper(handle, encoding="utf-8-sig", newline="")
-            reader = csv.DictReader(text)
-            for row in reader:
-                if row.get("failure") == "1":
-                    failures.add((row["serial_number"], row["date"]))
-    return failures
+def future_failure_label(serial_number: str, current_ordinal: int, failures: dict[str, list[int]]) -> int:
+    serial_failures = failures.get(serial_number)
+    if not serial_failures:
+        return 0
+    index = bisect.bisect_right(serial_failures, current_ordinal)
+    if index >= len(serial_failures):
+        return 0
+    return int(serial_failures[index] <= current_ordinal + PRIMARY_HORIZON_DAYS)
 
 
-def future_failure_label(serial_number: str, current_date: str, failures: set[tuple[str, str]]) -> int:
-    start = date.fromisoformat(current_date) + timedelta(days=1)
-    for offset in range(PRIMARY_HORIZON_DAYS):
-        check_date = (start + timedelta(days=offset)).isoformat()
-        if (serial_number, check_date) in failures:
-            return 1
-    return 0
+def numeric_series(frame: pd.DataFrame, column: str) -> pd.Series:
+    return pd.to_numeric(frame[column], errors="coerce").fillna(0.0)
 
 
-def as_float(value: str) -> float:
-    if value == "" or value is None:
-        return 0.0
-    try:
-        return float(value)
-    except ValueError:
-        return 0.0
-
-
-def build_feature_row(row: dict[str, str], first_seen: dict[str, str], include_smart: bool) -> dict[str, Any]:
-    serial = row["serial_number"]
-    current = date.fromisoformat(row["date"])
-    first = date.fromisoformat(first_seen[serial])
-    result: dict[str, Any] = {
-        "model": row.get("model", ""),
-        "capacity_bytes": as_float(row.get("capacity_bytes", "")),
-        "is_legacy_format": row.get("is_legacy_format", ""),
-        "datacenter": row.get("datacenter", ""),
-        "cluster_id": row.get("cluster_id", ""),
-        "vault_id": row.get("vault_id", ""),
-        "pod_id": row.get("pod_id", ""),
-        "pod_slot_num": row.get("pod_slot_num", ""),
-        "drive_age_days": float((current - first).days),
-    }
-    if include_smart:
-        for field in SMART_FIELDS:
-            result[field] = log1p_or_zero(row.get(field, ""))
-    return result
+def smart_series(frame: pd.DataFrame, column: str) -> pd.Series:
+    values = numeric_series(frame, column).clip(lower=0.0)
+    return np.log1p(values)
 
 
 def build_dataset(
     archive: zipfile.ZipFile,
     csv_names: list[str],
     dates: list[str],
-    failures: set[tuple[str, str]],
+    failures: dict[str, list[int]],
     include_smart: bool,
     max_rows: int | None,
 ) -> Dataset:
     wanted_dates = set(dates)
-    first_seen: dict[str, str] = {}
-    rows: list[dict[str, Any]] = []
-    labels: list[int] = []
+    max_wanted_date = max(wanted_dates)
+    first_seen: dict[str, int] = {}
+    frames: list[pd.DataFrame] = []
+    label_chunks: list[np.ndarray] = []
+    total_rows = 0
+    columns = sorted(
+        set(
+            [
+                "date",
+                "serial_number",
+                "model",
+                "capacity_bytes",
+                "is_legacy_format",
+                "datacenter",
+                "cluster_id",
+                "vault_id",
+                "pod_id",
+                "pod_slot_num",
+            ]
+            + SMART_FIELDS
+        )
+    )
 
     for name in csv_names:
-        with archive.open(name) as handle:
-            text = io.TextIOWrapper(handle, encoding="utf-8-sig", newline="")
-            reader = csv.DictReader(text)
-            for row in reader:
-                serial = row["serial_number"]
-                first_seen.setdefault(serial, row["date"])
-                if row["date"] not in wanted_dates:
-                    continue
-                rows.append(build_feature_row(row, first_seen, include_smart=include_smart))
-                labels.append(future_failure_label(serial, row["date"], failures))
-                if max_rows is not None and len(rows) >= max_rows:
-                    return Dataset(rows=rows, labels=labels)
-    return Dataset(rows=rows, labels=labels)
+        current_date = Path(name).stem
+        frame = read_daily_frame(archive, name, columns)
+        current_ordinal = date.fromisoformat(current_date).toordinal()
+        serials = frame["serial_number"].astype(str)
+        for serial in pd.unique(serials):
+            first_seen.setdefault(serial, current_ordinal)
+        if current_date not in wanted_dates:
+            if current_date > max_wanted_date and (max_rows is None or total_rows >= max_rows):
+                break
+            continue
+
+        if max_rows is not None:
+            remaining = max_rows - total_rows
+            if remaining <= 0:
+                break
+            frame = frame.head(remaining)
+            serials = frame["serial_number"].astype(str)
+
+        features = pd.DataFrame(index=frame.index)
+        for column in ["model", "is_legacy_format", "datacenter", "cluster_id", "vault_id", "pod_id", "pod_slot_num"]:
+            features[column] = frame[column].fillna("").astype(str)
+        features["capacity_bytes"] = numeric_series(frame, "capacity_bytes")
+        features["drive_age_days"] = [
+            float(current_ordinal - first_seen[str(serial)])
+            for serial in serials
+        ]
+        if include_smart:
+            for field in SMART_FIELDS:
+                features[field] = smart_series(frame, field)
+        labels = np.array(
+            [future_failure_label(str(serial), current_ordinal, failures) for serial in serials],
+            dtype=np.int8,
+        )
+        frames.append(features.reset_index(drop=True))
+        label_chunks.append(labels)
+        total_rows += len(features)
+        if max_rows is not None and total_rows >= max_rows:
+            break
+
+    if not frames:
+        return Dataset(frame=pd.DataFrame(), labels=np.array([], dtype=np.int8))
+    return Dataset(frame=pd.concat(frames, ignore_index=True), labels=np.concatenate(label_chunks))
 
 
-def feature_columns(rows: list[dict[str, Any]], requested: list[str]) -> list[str]:
-    if not rows:
+def feature_columns(frame: pd.DataFrame, requested: list[str]) -> list[str]:
+    if frame.empty:
         return []
-    present = rows[0].keys()
+    present = frame.columns
     return [column for column in requested if column in present]
 
 
@@ -265,7 +312,7 @@ def fit_and_score(
     test: Dataset,
     feature_names: list[str],
     categorical: list[str],
-) -> dict[str, Any]:
+) -> tuple[dict[str, Any], Pipeline]:
     numeric = [name for name in feature_names if name not in categorical]
     categorical = [name for name in categorical if name in feature_names]
 
@@ -274,11 +321,12 @@ def fit_and_score(
             ("numeric", StandardScaler(), numeric),
             (
                 "categorical",
-                OneHotEncoder(handle_unknown="ignore", sparse_output=False),
+                OneHotEncoder(handle_unknown="ignore", sparse_output=True),
                 categorical,
             ),
         ],
         remainder="drop",
+        sparse_threshold=1.0,
     )
     model = LogisticRegression(
         C=LOGISTIC_C,
@@ -288,10 +336,10 @@ def fit_and_score(
         random_state=RANDOM_SEED,
     )
     pipeline = Pipeline([("preprocess", transformer), ("model", model)])
-    x_train = pd.DataFrame([{k: row.get(k) for k in feature_names} for row in train.rows])
-    x_test = pd.DataFrame([{k: row.get(k) for k in feature_names} for row in test.rows])
-    y_train = np.array(train.labels)
-    y_test = np.array(test.labels)
+    x_train = train.frame.loc[:, feature_names]
+    x_test = test.frame.loc[:, feature_names]
+    y_train = train.labels
+    y_test = test.labels
     pipeline.fit(x_train, y_train)
     proba = pipeline.predict_proba(x_test)[:, 1]
     result: dict[str, Any] = {
@@ -306,7 +354,7 @@ def fit_and_score(
         result["auc"] = float(roc_auc_score(y_test, proba))
     else:
         result["auc"] = None
-    return result
+    return result, pipeline
 
 
 def sign_diagnostics(pipeline: Pipeline, feature_names: list[str]) -> dict[str, Any]:
@@ -332,6 +380,8 @@ def main() -> None:
     args = parse_args()
     archive_path = Path(args.archive)
     output_path = Path(args.output)
+    if args.validation_smoke and args.allow_primary_run:
+        raise SystemExit("--validation-smoke and --allow-primary-run are mutually exclusive.")
 
     with zipfile.ZipFile(archive_path) as archive:
         csv_names = list_csv_files(archive)
@@ -342,10 +392,11 @@ def main() -> None:
         all_dates = date_range_from_names(csv_names)
         eligible = eligible_prediction_dates(all_dates, PRIMARY_HORIZON_DAYS)
         splits = split_dates(eligible)
-        failures_by_date = count_raw_failures_by_date(archive, csv_names)
+        failures_by_date, failures = collect_failure_metadata(
+            archive, csv_names, include_lookup=not args.metadata_only
+        )
         endpoint_dates = endpoint_dates_for_test(splits.test, PRIMARY_HORIZON_DAYS)
         endpoint_failures = sum(failures_by_date.get(d, 0) for d in endpoint_dates)
-        failures = failure_lookup(archive, csv_names)
 
     metadata = {
         "archive": str(archive_path),
@@ -365,6 +416,7 @@ def main() -> None:
         "regularization_C": LOGISTIC_C,
         "random_seed": RANDOM_SEED,
         "metadata_only": args.metadata_only,
+        "validation_smoke": args.validation_smoke,
         "allow_primary_run": args.allow_primary_run,
         "max_rows": args.max_rows,
     }
@@ -372,28 +424,40 @@ def main() -> None:
     if args.metadata_only:
         output_path.write_text(json.dumps(metadata, indent=2, sort_keys=True) + "\n")
         return
-    if not args.allow_primary_run:
+    if not args.allow_primary_run and not args.validation_smoke:
         raise SystemExit(
-            "Model fitting requires --allow-primary-run. Use this only for synthetic smoke "
-            "tests or after the freeze manifest has recorded the final script hash."
+            "Model fitting requires --validation-smoke or --allow-primary-run. Use "
+            "--validation-smoke for pre-freeze integration checks, and use "
+            "--allow-primary-run only after the freeze manifest has recorded the final "
+            "script hash."
         )
 
-    train_dates = splits.train + splits.validation
-    test_dates = splits.test
+    if failures is None:
+        raise AssertionError("failure lookup is required for model fitting")
+
+    if args.validation_smoke:
+        evaluation_mode = "validation_smoke"
+        train_dates = splits.train
+        eval_dates = splits.validation
+    else:
+        evaluation_mode = "primary_test"
+        train_dates = splits.train + splits.validation
+        eval_dates = splits.test
+
     with zipfile.ZipFile(archive_path) as archive:
         train_smart = build_dataset(
             archive, csv_names, train_dates, failures, include_smart=True, max_rows=args.max_rows
         )
-        test_smart = build_dataset(
-            archive, csv_names, test_dates, failures, include_smart=True, max_rows=args.max_rows
+        eval_smart = build_dataset(
+            archive, csv_names, eval_dates, failures, include_smart=True, max_rows=args.max_rows
         )
         train_meta = Dataset(
-            rows=[{k: v for k, v in row.items() if k not in SMART_FIELDS} for row in train_smart.rows],
+            frame=train_smart.frame.drop(columns=SMART_FIELDS, errors="ignore"),
             labels=train_smart.labels,
         )
-        test_meta = Dataset(
-            rows=[{k: v for k, v in row.items() if k not in SMART_FIELDS} for row in test_smart.rows],
-            labels=test_smart.labels,
+        eval_meta = Dataset(
+            frame=eval_smart.frame.drop(columns=SMART_FIELDS, errors="ignore"),
+            labels=eval_smart.labels,
         )
 
     categorical_base = [
@@ -413,61 +477,29 @@ def main() -> None:
         "primary_metadata_plus_smart": METADATA_B2 + SMART_FIELDS,
     }
     scores: dict[str, Any] = {}
+    primary_pipeline: Pipeline | None = None
+    primary_features: list[str] = []
     for name, requested in models.items():
         if name == "B0_intercept":
-            for dataset in (train_meta, test_meta):
-                for row in dataset.rows:
-                    row["intercept_only"] = 1.0
+            train_meta = Dataset(frame=train_meta.frame.assign(intercept_only=1.0), labels=train_meta.labels)
+            eval_meta = Dataset(frame=eval_meta.frame.assign(intercept_only=1.0), labels=eval_meta.labels)
             requested = ["intercept_only"]
         source_train = train_smart if name == "primary_metadata_plus_smart" else train_meta
-        source_test = test_smart if name == "primary_metadata_plus_smart" else test_meta
-        features = feature_columns(source_train.rows, requested)
+        source_test = eval_smart if name == "primary_metadata_plus_smart" else eval_meta
+        features = feature_columns(source_train.frame, requested)
         categorical = [value for value in categorical_base if value in features]
-        score = fit_and_score(source_train, source_test, features, categorical)
+        score, pipeline = fit_and_score(source_train, source_test, features, categorical)
         scores[name] = score
-
-    # Refit primary once for sign diagnostics.
-    primary_features = feature_columns(train_smart.rows, METADATA_B2 + SMART_FIELDS)
-    primary_categorical = [value for value in categorical_base if value in primary_features]
-    transformer = ColumnTransformer(
-        transformers=[
-            (
-                "numeric",
-                StandardScaler(),
-                [name for name in primary_features if name not in primary_categorical],
-            ),
-            (
-                "categorical",
-                OneHotEncoder(handle_unknown="ignore", sparse_output=False),
-                primary_categorical,
-            ),
-        ],
-        remainder="drop",
-    )
-    primary_pipeline = Pipeline(
-        [
-            ("preprocess", transformer),
-            (
-                "model",
-                LogisticRegression(
-                    C=LOGISTIC_C,
-                    solver="lbfgs",
-                    max_iter=1000,
-                    class_weight="balanced",
-                    random_state=RANDOM_SEED,
-                ),
-            ),
-        ]
-    )
-    primary_pipeline.fit(
-        pd.DataFrame([{k: row.get(k) for k in primary_features} for row in train_smart.rows]),
-        np.array(train_smart.labels),
-    )
+        if name == "primary_metadata_plus_smart":
+            primary_pipeline = pipeline
+            primary_features = features
 
     best_baseline = min(
         scores[name]["log_loss"] for name in ["B0_intercept", "B1_metadata", "B2_fleet_context", "B3_exposure"]
     )
     primary_logloss = scores["primary_metadata_plus_smart"]["log_loss"]
+    if primary_pipeline is None:
+        raise AssertionError("primary pipeline was not fitted")
     sign_info = sign_diagnostics(primary_pipeline, primary_features)
     sign_pass = all(item["non_violating"] for item in sign_info["smart_signs"].values())
     h1_pass = primary_logloss < 0.95 * best_baseline
@@ -476,6 +508,9 @@ def main() -> None:
 
     output = {
         **metadata,
+        "evaluation_mode": evaluation_mode,
+        "train_prediction_dates": [train_dates[0], train_dates[-1], len(train_dates)],
+        "evaluation_prediction_dates": [eval_dates[0], eval_dates[-1], len(eval_dates)],
         "scores": scores,
         "best_baseline_log_loss": best_baseline,
         "primary_log_loss": primary_logloss,
@@ -483,7 +518,9 @@ def main() -> None:
             "H1_predictive_improvement": h1_pass,
             "H2_directional_consistency": h2_pass,
             "H3_test_block_direction": h3_pass,
-            "primary_support": h1_pass and h2_pass and h3_pass,
+            "primary_support": None if args.validation_smoke else h1_pass and h2_pass and h3_pass,
+            "validation_smoke_only": args.validation_smoke,
+            "not_validation_evidence": args.validation_smoke,
             "no_repair_flow_claim": True,
         },
         "sign_diagnostics": sign_info,

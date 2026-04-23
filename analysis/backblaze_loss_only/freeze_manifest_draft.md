@@ -161,7 +161,8 @@ unknown validation/test categories ignored.
 Categorical encoder:
 
 ```text
-scikit-learn OneHotEncoder(handle_unknown="ignore", sparse_output=False)
+scikit-learn OneHotEncoder(handle_unknown="ignore", sparse_output=True)
+scikit-learn ColumnTransformer(sparse_threshold=1.0)
 ```
 
 Random seed:
@@ -218,6 +219,18 @@ TO_BE_FILLED_AFTER_FINAL_EDIT
 
 Primary validation must not run until this hash is filled and committed.
 
+The script may be run before freeze only in metadata-only mode or
+validation-smoke mode:
+
+```text
+--metadata-only       inspect structural archive metadata only
+--validation-smoke    fit on train dates and evaluate validation dates only
+```
+
+Validation-smoke output is an integration check, not validation evidence.
+Final test prediction dates must not be evaluated until this manifest is
+frozen with the final script hash.
+
 ## 10. Claim Wording
 
 Allowed if primary support passes:
@@ -242,6 +255,6 @@ This manifest is not frozen yet because the script hash is not filled.
 Next step:
 
 ```text
-finalize evaluation script hash, commit this manifest as frozen, then and only
-then run primary validation.
+run validation-smoke integration check if needed; finalize evaluation script
+hash; commit this manifest as frozen; then and only then run primary validation.
 ```
