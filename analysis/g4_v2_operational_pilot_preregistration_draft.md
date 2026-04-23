@@ -375,8 +375,22 @@ The validation report should include:
 
 ## 15. Dataset Selection Discipline
 
-Dataset selection is part of the preregistration discipline. The pilot must not
-silently choose whichever eligible dataset looks most favorable.
+Dataset selection is part of the preregistration discipline once the project
+moves from exploration to freeze. Before that point, an exploratory dataset
+scan is allowed and should be documented separately. The current scan document
+is:
+
+```text
+analysis/g4_v2_exploratory_dataset_scan.md
+```
+
+The scan may inspect schemas, documentation, timestamps, rough base rates, and
+repair / outcome availability. It must not report validation evidence or model
+performance. Its purpose is only to decide whether a frozen operational pilot
+is feasible.
+
+If this draft later moves to freeze, the pilot must not silently choose
+whichever eligible dataset looks most favorable.
 
 Candidate datasets are handled as follows.
 
@@ -393,9 +407,10 @@ Candidate datasets are handled as follows.
 5. Dataset selection cannot use primary model log loss, coefficient signs, or
    any outcome-dependent comparison between candidate datasets.
 
-The dataset-ranking commit should be separate from the later freeze commit. It
-records the search path and prevents the pilot from becoming a
-garden-of-forking-paths exercise.
+The dataset-ranking commit is required only if moving from exploratory scan to
+frozen validation. It should be separate from the later freeze commit. It records
+the search path and prevents the pilot from becoming a garden-of-forking-paths
+exercise.
 
 
 ## 16. Evidence Weight
@@ -421,6 +436,14 @@ strength to a randomized Route A primary.
 This draft opens the G4 v2 operational pilot track. It does not freeze a dataset
 or launch validation.
 
-The clean next step is dataset selection. Candidate datasets should be scored
-only for eligibility under §9, not for whether they are likely to support the
-theory.
+The clean next step is an exploration-only dataset scan under:
+
+```text
+analysis/g4_v2_exploratory_dataset_scan.md
+```
+
+Candidate datasets should first be inspected only for schema feasibility and
+eligibility under §9, not for whether they are likely to support the theory.
+Dataset-ranking and freeze discipline become necessary only after a plausible
+candidate has been found and the project is ready to define a primary
+validation package.
