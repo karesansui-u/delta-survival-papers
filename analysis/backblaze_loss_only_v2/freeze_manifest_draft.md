@@ -1,8 +1,7 @@
-# Backblaze Loss-Only v2 Freeze Manifest Draft
+# Backblaze Loss-Only v2 Freeze Manifest
 
-Status: draft freeze manifest. Not frozen. Not validation evidence. The final
-test block must remain untouched until the script hash below is filled and this
-manifest is explicitly frozen.
+Status: frozen freeze manifest. Not validation evidence by itself. The final
+test block may now be evaluated once with the frozen script and command below.
 
 Date opened: 2026-04-24
 
@@ -269,7 +268,7 @@ raw failures in final test endpoint horizon: 571
 
 ## 10. Evaluation Script
 
-Planned script path:
+Frozen script path:
 
 ```text
 analysis/backblaze_loss_only_v2/scripts/evaluate_backblaze_loss_only_v2.py
@@ -278,20 +277,20 @@ analysis/backblaze_loss_only_v2/scripts/evaluate_backblaze_loss_only_v2.py
 Script SHA256:
 
 ```text
-TO_BE_FILLED_AFTER_FINAL_EDIT
+58d2b17ee8fa91446156fb4d9215dc365d69c274347f3af7c2f210979116616c
 ```
 
-Allowed pre-freeze modes:
+Completed pre-freeze modes:
 
 ```text
 --metadata-only       inspect structural archive metadata only
 --validation-smoke    fit on train dates and evaluate validation dates only
 ```
 
-Not allowed before freeze:
+Still not allowed outside the frozen one-shot primary execution:
 
 ```text
-final test-block evaluation
+any test-block evaluation other than the single frozen primary run below
 ```
 
 Planned primary validation command:
@@ -323,17 +322,19 @@ Backblaze evidence is equal in strength to Exp43c.
 
 ## 12. Current Status
 
-This manifest is not frozen yet because:
+This manifest is now frozen.
 
-1. the v2 evaluation script has not been finalized and hashed;
-2. no validation-smoke on the v2 script has been recorded yet;
-3. the explicit frozen wording has not yet been switched from draft to frozen.
+Frozen prerequisites completed:
+
+1. the v2 evaluation script was finalized and hashed;
+2. metadata-only and validation-smoke paths completed without touching the
+   Q3 test block;
+3. the Q3 archive, split, model family, calibration family, and claim wording
+   are fixed by this manifest.
 
 Next step:
 
 ```text
-implement the v2 evaluation script to match this manifest draft,
-run metadata-only / validation-smoke modes only,
-then fill the final script SHA and freeze this manifest before touching the
-Q3 test block
+run the Q3 primary validation once with --allow-primary-run, then write the
+primary report without altering this frozen package
 ```
