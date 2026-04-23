@@ -172,6 +172,18 @@ Spearman matrix:
 | avg_degree_plus_n_q_scalar | -0.352 | 0.498 | 1.000 | 0.105 | 1.000 | 1.000 | -0.263 |
 | cnf_count_plus_n_q_scalar | -0.111 | -0.765 | -0.263 | 0.917 | -0.263 | -0.263 | 1.000 |
 
+Kendall tau-b matrix:
+
+| predictor | first_moment | fm_plus_n_scalar | L_plus_n_scalar | raw_plus_n_q_scalar | density_plus_n_q_scalar | avg_degree_plus_n_q_scalar | cnf_count_plus_n_q_scalar |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| first_moment | 1.000 | 0.474 | -0.326 | -0.316 | -0.326 | -0.326 | -0.158 |
+| fm_plus_n_scalar | 0.474 | 1.000 | 0.200 | -0.526 | 0.200 | 0.200 | -0.684 |
+| L_plus_n_scalar | -0.326 | 0.200 | 1.000 | 0.274 | 1.000 | 1.000 | 0.116 |
+| raw_plus_n_q_scalar | -0.316 | -0.526 | 0.274 | 1.000 | 0.274 | 0.274 | 0.842 |
+| density_plus_n_q_scalar | -0.326 | 0.200 | 1.000 | 0.274 | 1.000 | 1.000 | 0.116 |
+| avg_degree_plus_n_q_scalar | -0.326 | 0.200 | 1.000 | 0.274 | 1.000 | 1.000 | 0.116 |
+| cnf_count_plus_n_q_scalar | -0.158 | -0.684 | 0.116 | 0.842 | 0.116 | 0.116 | 1.000 |
+
 Power-collapse verdict:
 
 ```text
