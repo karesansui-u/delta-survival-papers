@@ -54,7 +54,7 @@ Current state:
 | G1 | draft complete。`v2/5_構造持続の収支法則と崩壊傾向.md` §1-8 が作成済み |
 | G2 | expectation-level tendency と high-probability schema は §3-4 に対応済み。詳細 theorem map の polish は未整理 |
 | G3 | Lean 上は q-coloring / XOR / NAE / cardinality まで水平展開済み。empirical primary は Mixed-CSP に加え、Exp43c q-coloring が freeze 済み threshold-local validation として通過 |
-| G4 | G4 v1 reader-facing supplement complete。`v2/補論_非CSP古典例における構造収支律の最小アンカー.md` で queueing / Foster-Lyapunov を primary、serial reliability / constant-fraction decay を loss-only controls として整理。G4 v2 は `analysis/g4_v2_repair_maintenance_scope.md` で repair / maintenance reliability-fatigue balance に scope lock し、`RepairMaintenanceBalance.lean` で finite-prefix skeleton を実装 |
+| G4 | G4 v1 reader-facing supplement complete。`v2/補論_非CSP古典例における構造収支律の最小アンカー.md` で queueing / Foster-Lyapunov を primary、serial reliability / constant-fraction decay を loss-only controls として整理。G4 v2 は repair / maintenance reliability-fatigue balance に scope lock し、`RepairMaintenanceBalance.lean` で finite-prefix skeleton を実装、同補論 §11 に reader-facing section として統合済み |
 | G5 | LLM / Mixed-CSP の内部 prospective はある。外部・異質ドメインでは未達 |
 | G6 | G6-c iteration 1 closed。Foster-Lyapunov / queueing drift の minimal algebraic embedding は `v2/補論_構造収支律とFoster-Lyapunovドリフトの形式的埋め込み.md` と `lean/Survival/LyapunovBalanceEmbedding.lean` で reader-facing / Lean formalized。positive recurrence / geometric ergodicity theorem は iteration 2 に defer |
 | G7 | 未達。外部再現待ち |
@@ -564,9 +564,9 @@ If another LLM continues, do this:
    `analysis/exp44_cardinality_sat/preregistration_draft.md` as the starting
    point for Exp44 harness / pilot work.
 9. If continuing G4, use
-   `analysis/g4_v2_repair_maintenance_scope.md` and keep the first iteration
-   finite-prefix / algebraic; the first Lean skeleton is
-   `lean/Survival/RepairMaintenanceBalance.lean`.
+   `analysis/g4_v2_repair_maintenance_scope.md` and the G4 supplement §11 as
+   the completed iteration-1 reference; any next step must be explicitly
+   scoped as stochastic reliability, operational pilot, or G6-c iteration 2.
 10. Keep M decomposition as a supplement reference only.
 11. Do not claim universal law established, even after Exp43c.
 ```
