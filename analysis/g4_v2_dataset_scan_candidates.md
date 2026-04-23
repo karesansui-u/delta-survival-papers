@@ -23,7 +23,7 @@ validation by this note.
 | ID | Candidate | Source | Provisional label | One-line reason |
 |---|---|---|---|---|
 | C1 | Microsoft Azure Predictive Maintenance | Kaggle mirror / Azure sample dataset | leakage-risk | Schema inspection found unit/time/damage/failure structure, but no direct proactive/reactive maintenance label; repair class would require failure-overlap inference |
-| C2 | MetroPT-3 Air Production Unit | UCI / Scientific Data | unclear | Has compressor sensor time series, failure reports, and maintenance timestamps, but may lack repeated units |
+| C2 | MetroPT-3 Air Production Unit | UCI / Scientific Data | weak-g | Schema inspection found a real single-system time series, but repeated units and direct repair-flow event structure are too weak for primary validation |
 | C3 | Backblaze Drive Stats | Backblaze public hard-drive test data | weak-g | Excellent unit-level SMART / failure data, but repair / preventive maintenance is not cleanly logged |
 | C4 | NASA C-MAPSS turbofan degradation | NASA / PHM benchmark mirrors | weak-g | Strong unit-time degradation and RUL endpoint, but no repair / maintenance flow |
 | C5 | Microsoft Fabric predictive maintenance tutorial dataset | Microsoft Learn / Azure Open Datasets example | weak-g | Has machine parameters and failure label, but appears row-based and lacks explicit repair flow |
@@ -121,6 +121,16 @@ Why promising:
 - endpoint candidates: air leak / high-stress failure intervals;
 - repair candidates: maintenance timestamps in the failure / report metadata.
 
+Schema inspection result:
+
+- See `analysis/g4_v2_c2_schema_inspection_note.md`.
+- `MetroPT3(AirCompressor).csv` has timestamped sensor / control signals but
+  no explicit unit column.
+- Maintenance timestamps appear in report metadata rather than in a separate
+  structured repair-event table.
+- C2 is therefore useful as a single-system degradation / loss-control case
+  study, but not as the first G4 v2 repair-flow primary.
+
 Main concerns:
 
 - Unit structure may be weak if the dataset centers on one APU rather than many
@@ -132,14 +142,15 @@ Main concerns:
 Provisional label:
 
 ```text
-unclear
+weak-g
 ```
 
-Recommended next inspection:
+Completed schema inspection:
 
 ```text
-Inspect whether there are enough maintenance events and enough non-failure
-intervals to define lagged repair features without leakage.
+C2 should not be promoted as a primary G4 v2 repair-flow dataset.
+It remains useful as a real operational single-system degradation / weak-g
+control.
 ```
 
 ### C3. Backblaze Drive Stats
@@ -325,8 +336,8 @@ schema inspection.
 | Exploration status | Candidate | Reason |
 |---|---|---|
 | done | C1 Microsoft Azure Predictive Maintenance | Schema inspected; direct proactive/reactive repair label absent, so not primary G4 v2 repair-flow material |
-| next | C2 MetroPT-3 | Has maintenance timestamps and failures, but repeated-unit structure may be weak |
-| later | C3 Backblaze Drive Stats | Very strong loss-only control, weak repair |
+| done | C2 MetroPT-3 | Schema inspected; real single-system time series, but repair-flow primary structure is too weak |
+| next | C3 Backblaze Drive Stats | Very strong loss-only control, weak repair |
 | later | C4 NASA C-MAPSS | Standard degradation control, no repair |
 | later | C6 ServiceNow incident log | May have repair/process information, but unit/endpoint unclear |
 | later | C7 TravisTorrent / CI | Potential software route, high extraction and leakage risk |
@@ -337,26 +348,29 @@ schema inspection.
 The next concrete step should be:
 
 ```text
-Inspect C2 MetroPT-3 schemas only.
+Pause G4 v2 repair-flow primary search, or inspect C3 only as a loss-only /
+weak-g control candidate.
 ```
 
 Do not train models yet.
 
-Minimum inspection questions for C2:
+Minimum inspection questions for C3 if continuing with loss-only / weak-g
+controls:
 
-1. Does C2 expose repeated unit identifiers, or is it effectively a single
-   asset time series?
-2. Does C2 expose maintenance / repair events directly, and can preventive or
-   scheduled maintenance be separated from failure-response events without
-   using future failures?
-3. Can a lagged window \([t-W,t)\) be defined without using future failures?
-4. Can failure or degradation in \((t,t+H]\) be defined cleanly?
-5. Is there enough directly observed maintenance before failures to make
-   \(g_t\) meaningful?
-6. Can generic activity baselines be defined from telemetry / operating-state
-   coverage without outcome coupling?
+1. Does C3 expose repeated unit identifiers and time?
+2. Does C3 expose degradation / damage indicators without future failure labels?
+3. Can failure in \((t,t+H]\) be defined cleanly?
+4. Is there any direct repair / preventive maintenance signal, or is C3 strictly
+   loss-only?
+5. Can generic activity baselines be defined without outcome coupling?
 
 C1 failed on repair separability at the schema level; see
-`analysis/g4_v2_c1_schema_inspection_note.md`. If C2 also fails, G4 v2 should
-pause or downgrade to loss-only controls rather than forcing a repair-flow
-validation.
+`analysis/g4_v2_c1_schema_inspection_note.md`.
+
+C2 failed on repeated-unit / repair-flow event structure; see
+`analysis/g4_v2_c2_schema_inspection_note.md`.
+
+This means the original G4 v2 repair-flow primary search should pause rather
+than forcing a repair-flow validation. Continuing to C3 is only justified as a
+loss-only or weak-g control track, not as a rescue of the G4 v2 repair-flow
+primary.
