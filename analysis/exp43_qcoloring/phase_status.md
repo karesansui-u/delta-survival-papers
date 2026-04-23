@@ -200,3 +200,44 @@ analysis/exp43_qcoloring/exp43c_freeze_package.md
 
 This is not validation evidence. Primary generation is allowed only after the
 freeze package commit is pushed.
+
+## 8. Exp43c Primary Validation
+
+Exp43c primary validation has run under the frozen package.
+
+Report:
+
+```text
+analysis/exp43_qcoloring/exp43c_primary_report.md
+```
+
+Primary status:
+
+```text
+records: 4000
+SAT: 2003
+UNSAT: 1997
+TIMEOUT: 0
+MALFORMED: 0
+```
+
+Decision:
+
+```text
+H1 primary support: pass
+aggregate strong support: pass
+cross-q H1 direction: pass
+encoding guardrail: pass
+runtime guardrail: pass
+```
+
+Key metric:
+
+```text
+fm_plus_n mean held-out log loss = 0.440189
+best preregistered primary raw baseline = 2.804019
+relative improvement = 84.3%
+```
+
+This is primary evidence for Route A q-coloring support inside a frozen
+threshold-local window. It is not a universal-law declaration.

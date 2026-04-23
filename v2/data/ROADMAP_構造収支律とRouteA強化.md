@@ -53,7 +53,7 @@ Current state:
 |---|---|
 | G1 | draft complete。`v2/5_構造持続の収支法則と崩壊傾向.md` §1-8 が作成済み |
 | G2 | expectation-level tendency と high-probability schema は §3-4 に対応済み。詳細 theorem map の polish は未整理 |
-| G3 | Lean 上は q-coloring / XOR / NAE / cardinality まで水平展開済み。empirical primary は Mixed-CSP が中心 |
+| G3 | Lean 上は q-coloring / XOR / NAE / cardinality まで水平展開済み。empirical primary は Mixed-CSP に加え、Exp43c q-coloring が freeze 済み threshold-local validation として通過 |
 | G4 | G4 v1 reader-facing supplement complete。`v2/補論_非CSP古典例における構造収支律の最小アンカー.md` で queueing / Foster-Lyapunov を primary、serial reliability / constant-fraction decay を loss-only controls として整理 |
 | G5 | LLM / Mixed-CSP の内部 prospective はある。外部・異質ドメインでは未達 |
 | G6 | G6-c iteration 1 closed。Foster-Lyapunov / queueing drift の minimal algebraic embedding は `v2/補論_構造収支律とFoster-Lyapunovドリフトの形式的埋め込み.md` と `lean/Survival/LyapunovBalanceEmbedding.lean` で reader-facing / Lean formalized。positive recurrence / geometric ergodicity theorem は iteration 2 に defer |
@@ -250,11 +250,10 @@ Current draft:
 v2/data/exp43_qcoloring_preregistration_draft.md
 ```
 
-Status: draft only, not frozen. Exp43 is in exploration / pilot calibration,
-not validation. Pilot v1 and pilot v2 have run locally and did not pass the
-freeze gate; see `analysis/exp43_qcoloring/phase_status.md`,
-`analysis/exp43_qcoloring/pilot_v1_addendum.md`, and
-`analysis/exp43_qcoloring/pilot_v2_summary.md`.
+Status: early Exp43 / Exp43b designs were exploration-only and did not produce
+validation evidence. The fresh Exp43c threshold-local successor passed
+calibration, freeze, and primary validation. Report:
+`analysis/exp43_qcoloring/exp43c_primary_report.md`.
 
 Pilot harness:
 
@@ -523,10 +522,14 @@ Route A threshold-local re-entry:
 - Exp43b status: calibration no-go under the current runtime gate, not
   validation evidence. Closeout: `analysis/exp43_qcoloring/exp43b_calibration_closeout.md`.
 - Fresh successor draft: `analysis/exp43_qcoloring/exp43c_threshold_local_preregistration_draft.md`.
-- Exp43c status: calibration passed; freeze package assembled.
+- Exp43c status: primary validation passed under the frozen threshold-local
+  package.
   Closeout: `analysis/exp43_qcoloring/exp43c_calibration_closeout.md`.
   Freeze package: `analysis/exp43_qcoloring/exp43c_freeze_package.md`.
-- Status: ready for primary only after the freeze package commit is pushed.
+  Primary report: `analysis/exp43_qcoloring/exp43c_primary_report.md`.
+- Key result: `fm_plus_n` mean held-out log loss `0.440189` vs best
+  preregistered primary raw baseline `2.804019` (84.3% improvement). H1
+  direction passed for q=3/4/5, with q=5 narrow.
 
 ## 9. Exact Next Action For Another LLM
 
@@ -538,15 +541,15 @@ If another LLM continues, do this:
 3. Read v2/5_構造持続の収支法則と崩壊傾向.md §1-8.
 4. Read analysis/exp43_qcoloring/pilot_v1_addendum.md.
 5. Read analysis/exp43_qcoloring/pilot_v2_summary.md.
-6. Do not run primary q-coloring data from the current grid.
-7. Treat Exp43 as exploration / pilot calibration, not validation.
-8. If continuing q-coloring, push the Exp43c freeze package before primary
-   data generation.
-9. If not continuing q-coloring, mark the q-coloring route paused and use
+6. Treat early Exp43 / Exp43b as exploration / pilot calibration, not
+   validation.
+7. Treat Exp43c as the current q-coloring validation report, but do not call it
+   universal-law proof.
+8. If continuing Route A width after Exp43c, use
    `analysis/exp44_cardinality_sat/preregistration_draft.md` as the starting
    point for Exp44 harness / pilot work.
-10. Keep M decomposition as a supplement reference only.
-11. Do not claim universal law established, even if Exp43c or Exp44 passes.
+9. Keep M decomposition as a supplement reference only.
+10. Do not claim universal law established, even after Exp43c.
 ```
 
 Suggested commit message when ready:

@@ -1,6 +1,7 @@
 # Universality Program — Next Decisions
 
-Status: program memo after Exp.41, Mixed-CSP primary, and Lean M1.
+Status: program memo after Exp.41, Mixed-CSP primary, Lean M1, and Exp43c
+q-coloring primary validation.
 
 ## 1. Phase Assessment
 
@@ -22,6 +23,9 @@ The core theory and the LLM scope-as-repair domain are now load-bearing:
   ordering is model-dependent.
 - the Mixed-CSP primary test showed that drift-weighted `L_plus_n` beats raw
   count + `n` for SAT/NAE feasibility out-of-sample;
+- Exp43c q-coloring primary validation showed that frozen threshold-local
+  `fm_plus_n` beats raw / density / CNF-size baselines out-of-sample across
+  held-out q folds;
 - Lean M1 showed that the expectation-level target theorem 4 / law-of-tendency
   schema is already formally accessible through existing theorems and only
   needs reader-facing mapping.
@@ -29,10 +33,10 @@ The core theory and the LLM scope-as-repair domain are now load-bearing:
 The accurate public characterization is:
 
 ```text
-Core theory is consolidated. LLM scope repair and Route A Mixed-CSP feasibility
-now have prospective support, and the expectation-level formal tendency schema
-is mapped to existing Lean theorems. Independent replication and optional width
-extensions remain open.
+Core theory is consolidated. LLM scope repair, Route A Mixed-CSP feasibility,
+and Route A q-coloring feasibility now have prospective support, and the
+expectation-level formal tendency schema is mapped to existing Lean theorems.
+Independent replication and further heterogeneous-domain extensions remain open.
 ```
 
 Avoid public wording such as "the theory is proven" or "universality is
@@ -45,7 +49,7 @@ replication and, if needed, later theorem-wrapper polish.
 |---|---|---|---|
 | Core theory | Consolidation | Stable theorem vocabulary and Lean anchors | Only wording / mapping refinements |
 | LLM domain | Verification | Exp.40 + Exp.42 support scope-as-repair and attribution-as-repair; Exp.41 width passed | Model-dependent failure-mode follow-up only if needed |
-| Route A / CSP | Mixed-CSP validated; q-coloring calibration passed but not validated; Exp44 calibration inconclusive | Mixed-CSP official primary passed: `L_plus_n` log loss 0.0970 < `raw_plus_n` 0.7525. Exp43 q-coloring is pilot calibration only; pilot_v1/v2 did not pass the freeze gate. Exp43b threshold-local calibration located informative windows but hit the q=5/n=80 runtime gate, so it is calibration no-go, not validation. Exp43c calibration passed and has a freeze package assembled. Exp44 smoke/pilot_v2/pilot_v3 are infrastructure-clean but pilot_v3 still failed the informative-band gate for M0/M1/M2 | Exp43c primary after freeze-package push, Exp44b redesign, or shift to G4/G6 non-CSP mapping |
+| Route A / CSP | Mixed-CSP validated; Exp43c q-coloring primary validated; Exp44 calibration inconclusive | Mixed-CSP official primary passed: `L_plus_n` log loss 0.0970 < `raw_plus_n` 0.7525. Exp43c q-coloring primary passed under frozen threshold-local package: `fm_plus_n` log loss 0.440189 < best primary raw baseline 2.804019, with H1 direction passing for q=3/4/5 and q=5 narrow. Exp44 smoke/pilot_v2/pilot_v3 are infrastructure-clean but pilot_v3 still failed the informative-band gate for M0/M1/M2 | Integrate Exp43c into Route A extension map / finite-CSP supplement; optional Exp44b redesign later |
 | Formal tendency | M1 completed | Expectation-level target theorem 4 formally accessible via existing theorems; M2-A mapping-only fixed | Optional M2-B wrapper if paper needs named theorem aliases |
 | External reception | Open | Internal reproducibility and OSF available | Independent review / replication |
 
@@ -200,20 +204,24 @@ has now passed; q-coloring and Cardinality-SAT are safe post-Mixed-CSP
 extensions. XOR-SAT, LDPC decoder performance, SAT chain v2.0, and bootstrap
 percolation should not be promoted as primary Route A empirical anchors.
 
-The current Exp43 draft is
-`v2/data/exp43_qcoloring_preregistration_draft.md`.
-It is draft-only and must be reviewed / frozen before primary data generation.
-The pilot harness lives at `analysis/exp43_qcoloring/`. Smoke, pilot_v1, and
-pilot_v2 have run locally. Pilot_v1 was infrastructure-clean but failed the
-freeze gate; pilot_v2 solved the timeout issue but still failed because q=4 and
-q=5 each had only one informative rho band. See
-`analysis/exp43_qcoloring/phase_status.md`,
-`analysis/exp43_qcoloring/pilot_v1_addendum.md`, and
-`analysis/exp43_qcoloring/pilot_v2_summary.md`.
+Exp43 q-coloring is now resolved through the Exp43c fresh threshold-local
+successor. The early Exp43 / Exp43b pilots remain exploration history only.
+Exp43c passed calibration, was frozen in
+`analysis/exp43_qcoloring/exp43c_freeze_package.md`, and then passed primary
+validation. Report:
+`analysis/exp43_qcoloring/exp43c_primary_report.md`.
 
-Exp43 is therefore in exploration / pilot calibration, not validation. Pilot
-data are not theory-confirming primary evidence. Primary q-coloring data must
-not be generated from the current grid.
+Key Exp43c result:
+
+```text
+fm_plus_n mean held-out log loss = 0.440189
+best preregistered primary raw baseline = 2.804019
+relative improvement = 84.3%
+TIMEOUT = 0, MALFORMED = 0
+```
+
+H1 direction passed for every held-out q fold, but q=5 was narrow. Use this as
+Route A width support beyond SAT syntax, not as universal-law proof.
 
 Exp44 Cardinality-SAT now has a draft preregistration and harness at
 `analysis/exp44_cardinality_sat/`. It is a draft-only Route A width-extension
@@ -254,5 +262,5 @@ The remaining work is only examples.
 |---|---|---|
 | Exp41 passed, Mixed-CSP passed, M1 mapping-only sufficient | Verification phase across LLM + Route A + formal expectation-level tendency | integrate into universality paper / update program status |
 | Optional M2-B wrapper added | Reader-facing theorem names improve | cite wrappers in supplement; no new empirical claim |
-| Exp43c q-coloring or Exp44 Cardinality-SAT passes later | Route A width expands | update Route A extension map and finite-CSP supplement |
+| Exp43c q-coloring passed | Route A width expands beyond SAT syntax | update Route A extension map and finite-CSP supplement; keep q=5 narrowness explicit |
 | independent replication arrives | Social proof strengthens | consider stronger universality wording |
