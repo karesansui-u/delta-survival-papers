@@ -56,7 +56,7 @@ Current state:
 | G3 | Lean 上は q-coloring / XOR / NAE / cardinality まで水平展開済み。empirical primary は Mixed-CSP に加え、Exp43c q-coloring が freeze 済み threshold-local validation として通過 |
 | G4 | G4 v1 reader-facing supplement complete。`v2/補論_非CSP古典例における構造収支律の最小アンカー.md` で queueing / Foster-Lyapunov を primary、serial reliability / constant-fraction decay を loss-only controls として整理。G4 v2 は repair / maintenance reliability-fatigue balance に scope lock し、`RepairMaintenanceBalance.lean` で finite-prefix skeleton を実装、同補論 §11 に reader-facing section として統合済み。Operational pilot draft は `analysis/g4_v2_operational_pilot_preregistration_draft.md` |
 | G5 | LLM / Mixed-CSP の内部 prospective はある。外部・異質ドメインでは未達 |
-| G6 | G6-c iteration 1 closed。Foster-Lyapunov / queueing drift の minimal algebraic embedding は `v2/補論_構造収支律とFoster-Lyapunovドリフトの形式的埋め込み.md` と `lean/Survival/LyapunovBalanceEmbedding.lean` で reader-facing / Lean formalized。positive recurrence / geometric ergodicity theorem は iteration 2 に defer |
+| G6 | G6-c iteration 1 closed。Foster-Lyapunov / queueing drift の minimal algebraic embedding は `v2/補論_構造収支律とFoster-Lyapunovドリフトの形式的埋め込み.md` と `lean/Survival/LyapunovBalanceEmbedding.lean` で reader-facing / Lean formalized。positive recurrence / geometric ergodicity theorem は iteration 2 に defer。加えて `analysis/falsification_and_rival_frameworks.md` で、LDP / free-energy / contraction などに吸収されるリスクを stress-test として明示 |
 | G7 | 未達。外部再現待ち |
 
 Gate interaction:
@@ -97,6 +97,24 @@ G4:
 ```
 
 この bundle は Level 2 をかなり強くするためのもの。Level 3 universal-law credibility に近づくには、さらに G6 の強い版と G7 が必要になる。
+
+Stress-test discipline:
+
+```text
+ドメインを増やすだけでは不十分。
+翻訳の符号一貫性、予測内容の保存、沈黙すべき系のカタログ、
+既存統一理論への吸収リスクを明示的に検査する。
+```
+
+Current stress-test memo:
+
+```text
+analysis/falsification_and_rival_frameworks.md
+```
+
+このメモは evidence source ではない。反証可能性と rival-framework risk を
+管理する navigation layer である。最も急ぐ次作業は、LDP / rate-function
+machinery との関係を focused note として整理すること。
 
 この bundle が通れば、まだ「普遍法則が確立した」とは言わないが、かなり強く次のように言える。
 

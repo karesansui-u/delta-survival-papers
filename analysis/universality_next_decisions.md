@@ -51,7 +51,7 @@ replication and, if needed, later theorem-wrapper polish.
 | LLM domain | Verification | Exp.40 + Exp.42 support scope-as-repair and attribution-as-repair; Exp.41 width passed | Model-dependent failure-mode follow-up only if needed |
 | Route A / CSP | Mixed-CSP validated; Exp43c q-coloring primary validated; Exp44 calibration inconclusive | Mixed-CSP official primary passed: `L_plus_n` log loss 0.0970 < `raw_plus_n` 0.7525. Exp43c q-coloring primary passed under frozen threshold-local package: `fm_plus_n` log loss 0.440189 < best primary raw baseline 2.804019, with H1 direction passing for q=3/4/5 and q=5 narrow. Exp43c is now integrated into the Route A extension map / finite-CSP supplement. Exp44 smoke/pilot_v2/pilot_v3 are infrastructure-clean but pilot_v3 still failed the informative-band gate for M0/M1/M2 | Independent replication, optional Exp44b redesign, or G4/G6 non-CSP continuation |
 | G4 / non-CSP | G4 v1 closed; G4 v2 minimal skeleton implemented and supplement-integrated; operational pilot draft opened | Queueing / Foster-Lyapunov is the primary G4 v1 anchor; serial reliability and constant-fraction decay are loss-only controls. G4 v2 is scoped toward repair / maintenance reliability-fatigue balance, where \(g_t\) is explicit in a non-CSP open-system model. `RepairMaintenanceBalance.lean` formalizes the finite-prefix algebraic skeleton, and the G4 supplement now includes the reader-facing G4 v2 section. `analysis/g4_v2_operational_pilot_preregistration_draft.md` defines the next maintenance-log prediction design without freezing a dataset | Dataset eligibility screen for the G4 v2 operational pilot |
-| Formal tendency | M1 completed | Expectation-level target theorem 4 formally accessible via existing theorems; M2-A mapping-only fixed | Optional M2-B wrapper if paper needs named theorem aliases |
+| Formal tendency / rival-framework stress test | M1 completed; G6-c iteration 1 closed; falsification stress-test memo opened | Expectation-level target theorem 4 formally accessible via existing theorems; M2-A mapping-only fixed. `analysis/falsification_and_rival_frameworks.md` records the main ways the program could still be weakened, especially rival-framework subsumption by LDP / free-energy / contraction-style frameworks | Optional M2-B wrapper if paper needs named theorem aliases; focused LDP / rate-function comparison note |
 | External reception | Open | Internal reproducibility and OSF available | Independent review / replication |
 
 ## 3. Resolved Gates And Next Options
@@ -177,9 +177,13 @@ Short horizon:
    core-theory candidate. §1-8 now exist at
    `v2/5_構造持続の収支法則と崩壊傾向.md`; current control memo:
    `analysis/structural_balance_law_draft_plan.md`.
-5. Treat q-coloring and Cardinality-SAT as optional Route A width extensions,
+5. Keep `analysis/falsification_and_rival_frameworks.md` visible as the
+   stress-test layer for overclaim, sign inconsistency, silent-system scope,
+   and rival-framework subsumption. The clean next theory-defense move is a
+   focused LDP / rate-function comparison note.
+6. Treat q-coloring and Cardinality-SAT as optional Route A width extensions,
    not as required gates.
-6. For G4 v2, use
+7. For G4 v2, use
    `analysis/g4_v2_operational_pilot_preregistration_draft.md` as the next
    operational track. The immediate task is dataset eligibility screening, not
    validation. No maintenance-log primary data should be generated before a

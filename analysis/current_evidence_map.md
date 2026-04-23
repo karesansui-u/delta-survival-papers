@@ -61,7 +61,29 @@ preregistered experiments.
 | G6 existing-theory mapping | G6-c iteration 1 closed | Optional iteration 2: positive recurrence / geometric ergodicity |
 | G7 independent replication | Open | External reviewer / independent run / public replication package |
 
-## 7. One-Line Current Position
+## 7. Stress-Test / Falsification Layer
+
+| Artifact | Role | Current status | Boundary |
+|---|---|---|---|
+| `analysis/falsification_and_rival_frameworks.md` | Records how the program could still be overturned or weakened after several anchors succeed | Working stress-test memo | Not evidence for the theory |
+
+Main stress-test routes:
+
+- translation / sign inconsistency across anchors;
+- translation that preserves notation but not nontrivial prediction or theorem
+  content;
+- scope overreach into systems where scalar loss-repair balance should be
+  silent;
+- subsumption by rival frameworks such as large deviation theory, free-energy
+  / stochastic-thermodynamic frameworks, contraction analysis, or Lyapunov
+  drift calculus;
+- practical redundancy, where the language is correct but less useful than
+  domain-native theories.
+
+The most urgent theoretical risk is rival-framework subsumption, especially by
+large-deviation / rate-function machinery on the Route A side.
+
+## 8. One-Line Current Position
 
 The program has a stable structural-balance core, Lean-backed algebraic
 embeddings, two validated Route A empirical anchors beyond the SAT-only core,
