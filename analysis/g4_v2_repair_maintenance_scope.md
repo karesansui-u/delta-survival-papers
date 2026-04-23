@@ -17,6 +17,12 @@ G4 v2 should not merely add another loss-only example. The next most valuable
 step is to show a non-CSP open-system model in which repair / maintenance is
 explicitly represented as a compensation flow \(g_t\).
 
+Queueing already instantiates \(a_t\) with implicit compensation through the
+service rate \(\mu\). G4 v2 extends the semantic range of \(g_t\) to
+schedule-driven intervention, preventive replacement, redundancy activation,
+and repair events, none of which are naturally represented in the
+constant-rate queueing gloss.
+
 This memo therefore selects the next G4 direction:
 
 \begin{quote}
@@ -135,6 +141,11 @@ This is a clean open-system version of cumulative damage. It also maps well to
 engineering language: damage accumulation, healing / annealing / maintenance,
 remaining useful life, and failure threshold.
 
+The closed case \(g_t\equiv 0\) recovers the Miner-rule style skeleton
+\(\sum d_t\ge C\). The open extension with \(g_t\) matches engineering
+practices such as re-annealing, crack repair, and scheduled component
+replacement, each of which restores a portion of accumulated fatigue life.
+
 ### 4.3 Preventive Maintenance Schedule
 
 A schedule \(g_t\) can be deterministic:
@@ -156,6 +167,10 @@ This gives an intervention-ranking bridge:
 - a schedule is useful only relative to the loss profile \(d_t\).
 
 This is the non-CSP version of the M supplement's operational mapping layer.
+In the M supplement's \(M_b / M_r / M_a / M_x\) decomposition, preventive
+maintenance schedules instantiate the \(M_r\) recovery component with
+operationally observable semantics: repair events are scheduled, logged, and
+cost-accounted.
 
 
 ## 5. Minimal Theorem Targets
@@ -198,13 +213,13 @@ reliability, or fatigue crack-growth laws.
 
 ## 6. Lean Scope
 
-A possible Lean file name is:
+The minimal Lean skeleton is implemented in:
 
 ```text
 lean/Survival/RepairMaintenanceBalance.lean
 ```
 
-Minimal contents:
+Implemented contents:
 
 - finite sequences of damage \(d_t\) and repair \(g_t\);
 - cumulative net action;
@@ -212,6 +227,9 @@ Minimal contents:
 - remaining margin;
 - threshold crossing predicates;
 - telescoping identities.
+- exponential maintenance update
+  \(R_{t+1}=R_t\exp(-(d_t-g_t))\);
+- comparison with damage-only dynamics under nonnegative repair.
 
 This should reuse the style of:
 
@@ -250,13 +268,12 @@ domain-specific reliability and fatigue theorems intact.
 
 Recommended sequence:
 
-1. Add this scope memo.
+1. Add this scope memo. Done.
 2. Update the G4 v1 supplement and selection memo to mark repair /
-   maintenance as the selected G4 v2 direction.
-3. If proceeding to formalization, add a narrow Lean skeleton:
-   `RepairMaintenanceBalance.lean`.
+   maintenance as the selected G4 v2 direction. Done.
+3. Add a narrow Lean skeleton: `RepairMaintenanceBalance.lean`. Done.
 4. Add a reader-facing supplement or subsection only after the Lean skeleton
-   and theorem map are stable.
+   and theorem map are stable. Next optional step.
 
 This sequence keeps G4 v2 from becoming an unconstrained engineering survey.
 The first step is to formalize the balance identity; empirical or optimal

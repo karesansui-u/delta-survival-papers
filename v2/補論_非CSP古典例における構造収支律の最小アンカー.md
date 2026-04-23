@@ -240,7 +240,7 @@ G4 v1 の次の direction は、repair / intervention を持つ reliability or f
 \]
 と読める。
 
-この G4 v2 scope は `analysis/g4_v2_repair_maintenance_scope.md` に記録した。最初の iteration は finite-prefix algebraic skeleton に限定し、component replacement、maintenance schedule、damage repair を \(g_t\) として読むための最小恒等式を整える。
+この G4 v2 scope は `analysis/g4_v2_repair_maintenance_scope.md` に記録した。最初の iteration は finite-prefix algebraic skeleton に限定し、component replacement、maintenance schedule、damage repair を \(g_t\) として読むための最小恒等式を整える。この最小 skeleton は `RepairMaintenanceBalance.lean` に実装済みであり、damage level、remaining margin、threshold crossing、exponential maintenance update、および非負 repair が damage-only dynamics より margin を改善することを形式化している。
 
 Branching process を強化する方向は defer する。現状は expectation-level skeleton だが、almost-sure extinction や martingale / generating-function argument へ進めば、より強い非CSP確率過程 anchor になる。ただし、それは \(g_t\) を明示する open-system anchor ではなく、主に loss-only / decay 側の強化である。
 
