@@ -516,6 +516,14 @@ G4 v1 selection:
 - Branching, fatigue, consensus, buckling, and percolation remain secondary /
   coverage skeletons until richer theorem or intervention structure is added.
 
+Route A threshold-local re-entry:
+
+- Shared redesign note: `analysis/protocols/route_a_threshold_local_redesign_note.md`.
+- First target: Exp43b q-coloring, because it is visibly outside SAT syntax.
+- Freeze-ready draft structure: `analysis/exp43_qcoloring/exp43b_threshold_local_preregistration_draft.md`.
+- Status: exploration / preregistration draft only. Calibration must close and
+  freeze before any primary q-coloring data are generated.
+
 ## 9. Exact Next Action For Another LLM
 
 If another LLM continues, do this:
