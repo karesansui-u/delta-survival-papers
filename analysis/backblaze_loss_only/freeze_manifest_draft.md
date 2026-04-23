@@ -134,6 +134,8 @@ Implementation:
 
 ```text
 scikit-learn LogisticRegression
+solver = "lbfgs"
+max_iter = 1000
 ```
 
 Regularization:
@@ -154,6 +156,12 @@ Standardization:
 numeric predictors standardized using train split mean and standard deviation;
 categorical predictors one-hot encoded using train split categories;
 unknown validation/test categories ignored.
+```
+
+Categorical encoder:
+
+```text
+scikit-learn OneHotEncoder(handle_unknown="ignore", sparse_output=False)
 ```
 
 Random seed:
