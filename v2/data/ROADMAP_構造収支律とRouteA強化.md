@@ -54,7 +54,7 @@ Current state:
 | G1 | draft complete。`v2/5_構造持続の収支法則と崩壊傾向.md` §1-8 が作成済み |
 | G2 | expectation-level tendency と high-probability schema は §3-4 に対応済み。詳細 theorem map の polish は未整理 |
 | G3 | Lean 上は q-coloring / XOR / NAE / cardinality まで水平展開済み。empirical primary は Mixed-CSP に加え、Exp43c q-coloring が freeze 済み threshold-local validation として通過 |
-| G4 | G4 v1 reader-facing supplement complete。`v2/補論_非CSP古典例における構造収支律の最小アンカー.md` で queueing / Foster-Lyapunov を primary、serial reliability / constant-fraction decay を loss-only controls として整理 |
+| G4 | G4 v1 reader-facing supplement complete。`v2/補論_非CSP古典例における構造収支律の最小アンカー.md` で queueing / Foster-Lyapunov を primary、serial reliability / constant-fraction decay を loss-only controls として整理。G4 v2 は `analysis/g4_v2_repair_maintenance_scope.md` で repair / maintenance reliability-fatigue balance に scope lock |
 | G5 | LLM / Mixed-CSP の内部 prospective はある。外部・異質ドメインでは未達 |
 | G6 | G6-c iteration 1 closed。Foster-Lyapunov / queueing drift の minimal algebraic embedding は `v2/補論_構造収支律とFoster-Lyapunovドリフトの形式的埋め込み.md` と `lean/Survival/LyapunovBalanceEmbedding.lean` で reader-facing / Lean formalized。positive recurrence / geometric ergodicity theorem は iteration 2 に defer |
 | G7 | 未達。外部再現待ち |
@@ -80,6 +80,9 @@ G3:
 G4:
   reliability / decay / queueing などの non-CSP skeleton を、単なる例示から
   balance-law reduction として整理する。
+  次の G4 v2 は、branching theorem 強化ではなく repair / maintenance を
+  持つ reliability-fatigue anchor を優先し、補償流 g_t を非CSP open-system
+  domain で明示する。
 ```
 
 「これができたら確実」に最も近い bundle:
@@ -515,6 +518,15 @@ G4 v1 selection:
 - Branching, fatigue, consensus, buckling, and percolation remain secondary /
   coverage skeletons until richer theorem or intervention structure is added.
 
+G4 v2 selection:
+
+- Scope memo: `analysis/g4_v2_repair_maintenance_scope.md`.
+- Selected direction: repair / maintenance reliability-fatigue balance.
+- Reason: expose \(g_t\) as an explicit compensation / maintenance flow in a
+  non-CSP open-system anchor.
+- Deferred direction: branching-process almost-sure extinction / generating
+  function strengthening.
+
 Route A threshold-local re-entry:
 
 - Shared redesign note: `analysis/protocols/route_a_threshold_local_redesign_note.md`.
@@ -548,8 +560,11 @@ If another LLM continues, do this:
 8. If continuing Route A width after Exp43c, use
    `analysis/exp44_cardinality_sat/preregistration_draft.md` as the starting
    point for Exp44 harness / pilot work.
-9. Keep M decomposition as a supplement reference only.
-10. Do not claim universal law established, even after Exp43c.
+9. If continuing G4, use
+   `analysis/g4_v2_repair_maintenance_scope.md` and keep the first iteration
+   finite-prefix / algebraic.
+10. Keep M decomposition as a supplement reference only.
+11. Do not claim universal law established, even after Exp43c.
 ```
 
 Suggested commit message when ready:

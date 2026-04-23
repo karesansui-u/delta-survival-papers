@@ -195,6 +195,10 @@ G4 v1 の次作業は、次の順で進めるのがよい。
 
 1. Paper 5 §7 / §8 と G6-c 補論から、queueing / Foster-Lyapunov を primary non-CSP anchor として明示する。これは `v2/5_構造持続の収支法則と崩壊傾向.md` と `v2/補論_非CSP古典例における構造収支律の最小アンカー.md` に反映済みである。
 2. `SerialReliability.lean` と `ConstantFractionDecay.lean` を loss-only control anchors として theorem map にまとめる。これは `lean/PAPER_MAPPING.md` の C2 / C3 と README の formalization section に反映済みである。
-3. G4 v2 では、branching expectation から almost-sure extinction 方向へ進むか、fatigue / reliability の repair intervention を含む open-system model へ進むかを選ぶ。
+3. G4 v2 は、fatigue / reliability の repair intervention を含む
+   open-system model へ進む。scope は
+   `analysis/g4_v2_repair_maintenance_scope.md` に固定した。branching
+   expectation から almost-sure extinction へ進む方向は、後続 iteration
+   に defer する。
 
 この時点で G4 は「non-CSP 古典例をすべて証明した」ではなく、「次に見るべき non-CSP anchor の優先順位が G6-c embedding によって決まった」と読む。

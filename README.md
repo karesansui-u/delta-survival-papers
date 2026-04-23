@@ -35,7 +35,7 @@ Route A の有限 CSP 側では、Mixed-SAT/NAE-SAT の事前登録済み primar
 
 形式層では、Lean M1 gap analysis により、目標定理 4 の期待値レベル tendency schema が既存定理で formally accessible であることを確認しました。さらに G6-c iteration 1 として、Foster-Lyapunov / queueing drift の最小代数的埋め込みを `Survival/LyapunovBalanceEmbedding.lean` で形式化しました。対応表は [`lean/PAPER_MAPPING.md`](lean/PAPER_MAPPING.md) にまとめています。残る formal work は、必要に応じた reader-facing wrapper の追加と、高確率 stopped-collapse schema を期待値版 tendency schema から分離して維持することです。
 
-Route A の非CSP skeletons は、信頼性・減衰・待ち行列・疲労・合意・臨界閾値などの古典例を同じ最小語彙で歪めず表せるかを見る sanity / coverage benchmark です。G4 v1 では queueing / Foster-Lyapunov drift を primary anchor、serial reliability と constant-fraction decay を loss-only control anchors として扱います。これらは各分野の新しい本命定理を主張するものではなく、今後の operational theorem がどこへ波及しうるかを示すための射程確認として扱います。
+Route A の非CSP skeletons は、信頼性・減衰・待ち行列・疲労・合意・臨界閾値などの古典例を同じ最小語彙で歪めず表せるかを見る sanity / coverage benchmark です。G4 v1 では queueing / Foster-Lyapunov drift を primary anchor、serial reliability と constant-fraction decay を loss-only control anchors として扱います。次の G4 v2 は repair / maintenance を持つ reliability / fatigue 系へ進め、補償流 \(g_t\) を非CSP open-system anchor として明示する方針です。これらは各分野の新しい本命定理を主張するものではなく、今後の operational theorem がどこへ波及しうるかを示すための射程確認として扱います。
 
 ## Main Preprints (v2) / メインプレプリント
 

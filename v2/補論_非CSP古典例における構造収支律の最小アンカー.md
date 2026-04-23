@@ -232,11 +232,17 @@ G4 v1 の reader-facing claim は、次の Lean files に対応する。
 
 11. 次の iteration
 
-G4 v1 の次にありうる方向は二つである。
+G4 v1 の次の direction は、repair / intervention を持つ reliability or fatigue model とする。
 
-第一に、G4 v2 として branching process を強化する方向である。現状は expectation-level skeleton だが、almost-sure extinction や martingale / generating-function argument へ進めば、より強い非CSP確率過程 anchor になる。
+理由は、G4 v1 の serial reliability と constant-fraction decay が loss-only control anchors であるのに対し、構造収支律の中心的な新しさは open-system compensation \(g_t\) にあるからである。repair / maintenance を持つ reliability or fatigue model では、damage increment \(d_t\) と repair flow \(g_t\) を分けて、
+\[
+  D_n = D_0 + \sum_{t<n}(d_t-g_t)
+\]
+と読める。
 
-第二に、repair / intervention を持つ reliability or fatigue model へ進む方向である。たとえば、component replacement、redundancy、maintenance schedule、damage repair を \(g_t\) として明示できれば、loss-only control から open-system balance へ進める。
+この G4 v2 scope は `analysis/g4_v2_repair_maintenance_scope.md` に記録した。最初の iteration は finite-prefix algebraic skeleton に限定し、component replacement、maintenance schedule、damage repair を \(g_t\) として読むための最小恒等式を整える。
+
+Branching process を強化する方向は defer する。現状は expectation-level skeleton だが、almost-sure extinction や martingale / generating-function argument へ進めば、より強い非CSP確率過程 anchor になる。ただし、それは \(g_t\) を明示する open-system anchor ではなく、主に loss-only / decay 側の強化である。
 
 どちらに進む場合でも、現在の G4 v1 の discipline を保つ必要がある。すなわち、既存分野の theorem を置き換えたとは言わず、どの仮定を保持し、どの algebraic skeleton だけを構造収支律へ写したのかを明示する。
 
