@@ -160,6 +160,22 @@ Source:
 - Data page: <https://www.backblaze.com/cloud-storage/resources/hard-drive-test-data>
 - Recent reliability report context: <https://ir.backblaze.com/news/news-details/2026/Backblaze-Publishes-2025-Drive-Stats-Report/default.aspx>
 
+Tier boundary before inspection:
+
+```text
+C3 is loss-only / weak-g only.
+It does not count as repair-flow \(g_t\) evidence.
+It cannot rescue the paused G4 v2 repair-flow primary search.
+```
+
+If inspected, C3 can only support a non-CSP loss-only empirical anchor:
+
+```text
+damage / degradation indicators -> future failure endpoint
+```
+
+It must not be described as operational repair-flow validation.
+
 Why useful:
 
 - unit: drive serial number;
@@ -351,6 +367,9 @@ The next concrete step should be:
 Pause G4 v2 repair-flow primary search, or inspect C3 only as a loss-only /
 weak-g control candidate.
 ```
+
+If C3 is inspected, the inspection is explicitly a loss-only / weak-g branch.
+It is not a continuation of the G4 v2 repair-flow primary search.
 
 Do not train models yet.
 
