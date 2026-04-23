@@ -1,9 +1,11 @@
-# Backblaze Loss-Only Freeze Manifest Draft
+# Backblaze Loss-Only Freeze Manifest
 
-Status: draft freeze manifest. Not frozen until committed with final script
-hash. Do not run primary validation until this file is promoted from draft.
+Status: frozen freeze manifest. Primary validation may be run once using the
+script hash recorded below. Do not change the script, archive, split,
+predictors, model, or decision rules before the primary run.
 
 Date opened: 2026-04-23
+Date frozen: 2026-04-23
 
 Preregistration draft:
 
@@ -218,12 +220,10 @@ analysis/backblaze_loss_only/scripts/evaluate_backblaze_loss_only.py
 Script SHA256:
 
 ```text
-TO_BE_FILLED_AFTER_FINAL_EDIT
+af3f5c44b55fb97869e421a26f492b7dc1837a1f7c4e3e7025e77801ef2c9945
 ```
 
-Primary validation must not run until this hash is filled and committed.
-
-The script may be run before freeze only in metadata-only mode or
+Before this freeze, the script was allowed to run only in metadata-only mode or
 validation-smoke mode:
 
 ```text
@@ -231,9 +231,17 @@ validation-smoke mode:
 --validation-smoke    fit on train dates and evaluate validation dates only
 ```
 
-Validation-smoke output is an integration check, not validation evidence.
-Final test prediction dates must not be evaluated until this manifest is
-frozen with the final script hash.
+Validation-smoke output is an integration check, not validation evidence. The
+final test prediction dates have not been evaluated at the time of this freeze.
+
+Primary validation command:
+
+```bash
+python3 analysis/backblaze_loss_only/scripts/evaluate_backblaze_loss_only.py \
+  --archive /tmp/backblaze_feasibility/data_Q4_2025.zip \
+  --output analysis/backblaze_loss_only/data/backblaze_q4_2025_primary_result.json \
+  --allow-primary-run
+```
 
 ## 10. Claim Wording
 
@@ -254,11 +262,11 @@ Backblaze evidence is equal in strength to Exp43c.
 
 ## 11. Current Status
 
-This manifest is not frozen yet because the script hash is not filled.
+This manifest is frozen. The primary run has not yet been executed.
 
 Next step:
 
 ```text
-run validation-smoke integration check if needed; finalize evaluation script
-hash; commit this manifest as frozen; then and only then run primary validation.
+run primary validation once, then write the primary report without changing
+this manifest or the evaluation script.
 ```
