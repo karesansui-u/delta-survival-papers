@@ -155,8 +155,11 @@ Repair summary:
   \sum_{u\in[t-W,t)} w_g(u)\,g_{i,u}.
 \]
 
-If damage and repair are naturally commensurable, the draft may use a fixed
-net-action proxy:
+The default primary model is the non-commensurable vector model
+\((D^{\mathrm{obs}},G^{\mathrm{obs}})\). Real maintenance logs usually do not
+put damage and repair in the same physical unit.
+
+The net-action proxy
 
 \[
   A^{\mathrm{obs}}_{i,t}
@@ -166,7 +169,13 @@ net-action proxy:
   G^{\mathrm{obs}}_{i,t}.
 \]
 
-If the units are not commensurable, the primary repair-aware model uses
+may be used as primary only if the dataset already contains a pre-existing
+engineering or operational standard that converts damage and repair into the
+same damage-equivalent unit. This conversion rule must exist before this pilot;
+it cannot be fitted from validation outcomes or chosen after seeing predictive
+performance.
+
+If no such pre-existing standard exists, the primary repair-aware model uses
 separate features \((D^{\mathrm{obs}},G^{\mathrm{obs}})\), and support requires
 both predictive improvement and the pre-specified coefficient-sign check in
 §10.
@@ -183,13 +192,16 @@ time period.
 | B1 damage-only | B0 + \(D^{\mathrm{obs}}\) | primary baseline |
 | B2 activity-only | B0 + generic activity count | confounding / logging baseline |
 | B3 repair-only | B0 + \(G^{\mathrm{obs}}\) | diagnostic, not support by itself |
-| S1 net-action | B0 + \(A^{\mathrm{obs}}\) | primary if units are commensurable |
-| S2 repair-aware vector | B0 + \((D^{\mathrm{obs}},G^{\mathrm{obs}})\) as separate features | primary if units are not commensurable |
+| S1 net-action | B0 + \(A^{\mathrm{obs}}\) | primary only with pre-existing damage-equivalent units |
+| S2 repair-aware vector | B0 + \((D^{\mathrm{obs}},G^{\mathrm{obs}})\) as separate features | default primary model |
 
 The default model class is L2-regularized logistic regression for binary
 endpoints. If the endpoint is time-to-event rather than binary horizon risk,
-the freeze document must explicitly switch to a survival model and define the
-corresponding metric.
+the freeze document must explicitly switch to a survival model. In that case,
+the primary metric is integrated Brier score over the pre-specified prediction
+horizon, and the secondary metric is C-index. If integrated Brier score cannot
+be computed from the available censoring information, the survival path is not
+eligible for primary validation under this draft.
 
 
 ## 8. Splits
@@ -224,6 +236,9 @@ A dataset is eligible only if it satisfies all of the following before freeze.
 6. Outcome base rate in validation is not saturated: target range 5%-50%.
 7. Missingness and censoring rules can be written before validation.
 8. Data use is permitted, privacy-safe, and reproducible at the level reported.
+9. Preventive or scheduled repair is distinguishable from purely reactive
+   repair, or there is another pre-specified repair class that occurs before
+   visible failure and is not merely an outcome response.
 
 If these conditions fail, the pilot is marked dataset-ineligible. This is not a
 theory failure.
@@ -332,13 +347,15 @@ Before validation, the freeze commit must contain:
 6. damage indicators and weights;
 7. repair indicators and weights;
 8. preventive vs reactive repair rule;
-9. blackout interval, if used;
-10. missingness / censoring rules;
-11. primary train / validation split;
-12. model class and regularization value;
-13. metric and decision rules;
-14. evaluation script hash or committed script path;
-15. non-claim statement copied into the report template.
+9. commensurability decision: S2 default, or S1 only with a pre-existing
+   damage-equivalent unit standard;
+10. blackout interval, if used;
+11. missingness / censoring rules;
+12. primary train / validation split;
+13. model class and regularization value;
+14. metric and decision rules;
+15. evaluation script hash or committed script path;
+16. non-claim statement copied into the report template.
 
 
 ## 14. Report Template
@@ -356,7 +373,50 @@ The validation report should include:
 - exact statement of what is supported and what is not supported.
 
 
-## 15. Current Status
+## 15. Dataset Selection Discipline
+
+Dataset selection is part of the preregistration discipline. The pilot must not
+silently choose whichever eligible dataset looks most favorable.
+
+Candidate datasets are handled as follows.
+
+1. Before inspecting outcome-model performance, create a candidate list with a
+   fixed ranking rule. The ranking rule may use only metadata: domain relevance,
+   timestamp coverage, unit count, repair-class availability, expected privacy
+   feasibility, and reproducibility.
+2. The first §9-eligible dataset under that fixed ranking becomes the primary
+   dataset.
+3. Later §9-eligible candidates become pre-committed replication candidates.
+4. If multiple datasets are already equally accessible, the stronger option is
+   to analyze all §9-eligible datasets in parallel and report the pattern
+   across them. This must be frozen before validation.
+5. Dataset selection cannot use primary model log loss, coefficient signs, or
+   any outcome-dependent comparison between candidate datasets.
+
+The dataset-ranking commit should be separate from the later freeze commit. It
+records the search path and prevents the pilot from becoming a
+garden-of-forking-paths exercise.
+
+
+## 16. Evidence Weight
+
+Even if this pilot passes, its evidential weight is lower than Exp43c
+q-coloring primary validation.
+
+| comparison | Exp43c q-coloring | G4 v2 operational pilot |
+|---|---|---|
+| data generation | randomized from frozen rules | observational logs |
+| confounding | structurally controlled by generation | residual confounding remains |
+| primary claim | frozen coordinate beats baselines | predictive consistency with repair balance |
+| causal interpretation | not causal, but randomized instance generation | explicitly non-causal |
+| evidence tier | Route A primary validation | Route C / operational observational support |
+
+Therefore, a passing G4 v2 operational pilot should be reported as
+observational support for operationalizing \(g_t\), not as evidence equal in
+strength to a randomized Route A primary.
+
+
+## 17. Current Status
 
 This draft opens the G4 v2 operational pilot track. It does not freeze a dataset
 or launch validation.
