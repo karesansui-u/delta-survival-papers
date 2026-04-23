@@ -54,7 +54,7 @@ Current state:
 | G1 | draft complete。`v2/5_構造持続の収支法則と崩壊傾向.md` §1-8 が作成済み |
 | G2 | expectation-level tendency と high-probability schema は §3-4 に対応済み。詳細 theorem map の polish は未整理 |
 | G3 | Lean 上は q-coloring / XOR / NAE / cardinality まで水平展開済み。empirical primary は Mixed-CSP が中心 |
-| G4 | anchor selection complete。`analysis/g4_non_csp_anchor_selection.md` で queueing / Foster-Lyapunov を primary、serial reliability / constant-fraction decay を loss-only controls として選定 |
+| G4 | G4 v1 reader-facing supplement complete。`v2/補論_非CSP古典例における構造収支律の最小アンカー.md` で queueing / Foster-Lyapunov を primary、serial reliability / constant-fraction decay を loss-only controls として整理 |
 | G5 | LLM / Mixed-CSP の内部 prospective はある。外部・異質ドメインでは未達 |
 | G6 | G6-c iteration 1 closed。Foster-Lyapunov / queueing drift の minimal algebraic embedding は `v2/補論_構造収支律とFoster-Lyapunovドリフトの形式的埋め込み.md` と `lean/Survival/LyapunovBalanceEmbedding.lean` で reader-facing / Lean formalized。positive recurrence / geometric ergodicity theorem は iteration 2 に defer |
 | G7 | 未達。外部再現待ち |
@@ -512,6 +512,7 @@ G4 v1 selection:
 - Primary anchor: queueing / Foster-Lyapunov drift.
 - Loss-only control anchors: serial reliability and constant-fraction decay.
 - Rationale and non-claims: `analysis/g4_non_csp_anchor_selection.md`.
+- Reader-facing supplement: `v2/補論_非CSP古典例における構造収支律の最小アンカー.md`.
 - Branching, fatigue, consensus, buckling, and percolation remain secondary /
   coverage skeletons until richer theorem or intervention structure is added.
 
