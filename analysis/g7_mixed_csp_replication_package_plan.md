@@ -3,6 +3,14 @@
 Status: replication-planning note. This is not a new empirical result and not a
 new freeze document.
 
+Level 1 status update:
+
+```text
+Artifact-level audit replay is now complete.
+See analysis/route_a_mixed_csp/mixed_csp_audit_replay_note.md.
+Level 2 fresh rerun remains open.
+```
+
 Purpose:
 
 Define the first independent-replication target for the program. Mixed-CSP is

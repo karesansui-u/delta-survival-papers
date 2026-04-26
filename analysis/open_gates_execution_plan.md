@@ -229,17 +229,24 @@ Avoid the following near-term moves:
 5. starting independent replication with the most complicated observational
    branch.
 
-## 8. Immediate Next Deliverables
+## 8. Immediate Deliverables Status
 
-The next four concrete deliverables should be:
+The first concrete deliverables from this memo now exist:
 
 1. `analysis/g4_cmapss_loss_only_feasibility_note.md`
 2. `analysis/g4_v2_repair_flow_candidate_criteria.md`
 3. `analysis/scope_silence_catalog.md`
-4. `analysis/g7_exp43c_replication_package_plan.md`
+4. `analysis/route_a_mixed_csp/mixed_csp_audit_replay_note.md`
 
-This sequence keeps the program moving on the actual open gaps rather than
-adding more same-type evidence to already-strong tracks.
+So the next concrete moves become:
+
+1. exact C-MAPSS subset / archive note before any loss-only prereg;
+2. Mixed-CSP Level 2 fresh rerun under the G7 workstream;
+3. `analysis/g7_exp43c_replication_package_plan.md`;
+4. future repair-flow data acquisition under the candidate-criteria gate.
+
+This keeps the program moving on the actual open gaps rather than adding more
+same-type evidence to already-strong tracks.
 
 ## 9. Non-Claims
 

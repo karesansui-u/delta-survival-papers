@@ -57,16 +57,16 @@ preregistered experiments.
 | Gate | Current status | Next clean move |
 |---|---|---|
 | G3 Route A width | Strengthened by Mixed-CSP + Exp43c | Independent replication, or optional Exp44b redesign under threshold-local protocol |
-| G4 non-CSP | G4 v1/v2 minimal skeletons closed; repair-flow public dataset search paused; Backblaze loss-only branch now contains one closed no-support attempt and one same-domain support pass | Next clean move: keep both Backblaze outcomes visible without rescue language; use `analysis/backblaze_loss_only_v2/primary_report.md` as the reader-facing record of the Q3 2025 calibrated pass, while preserving `analysis/backblaze_loss_only/primary_report.md` as the Q4 2025 no-support record. The main open gap remains repair-flow / cross-domain non-CSP support, not further retroactive Backblaze tuning |
+| G4 non-CSP | G4 v1/v2 minimal skeletons closed; repair-flow public dataset search paused; Backblaze loss-only branch now contains one closed no-support attempt and one same-domain support pass | Keep both Backblaze outcomes visible without rescue language. The main open gap remains repair-flow / cross-domain non-CSP support. The current public-work path is now split explicitly into `analysis/g4_cmapss_loss_only_feasibility_note.md` for a cross-domain loss-only candidate and `analysis/g4_v2_repair_flow_candidate_criteria.md` for future repair-flow gating |
 | G5 prospective prediction | Supported by Exp40/41/42, Mixed-CSP, Exp43c | Another preregistered external-domain test |
 | G6 existing-theory mapping | G6-c iteration 1 closed | Optional iteration 2: positive recurrence / geometric ergodicity |
-| G7 independent replication | Open | Public replication package, starting with Mixed-CSP via `analysis/g7_mixed_csp_replication_package_plan.md`, before threshold-local or observational branches |
+| G7 independent replication | Open, but Mixed-CSP Level 1 audit replay is complete | Public replication package starts with Mixed-CSP via `analysis/g7_mixed_csp_replication_package_plan.md`; `analysis/route_a_mixed_csp/mixed_csp_audit_replay_note.md` now records Level 1 artifact replay. The next clean move is a fresh Level 2 rerun before threshold-local or observational branches |
 
 ## 7. Stress-Test / Falsification Layer
 
 | Artifact | Role | Current status | Boundary |
 |---|---|---|---|
-| `analysis/falsification_and_rival_frameworks.md` + `analysis/ldp_rate_function_comparison.md` + `analysis/cross_domain_sign_convention_table.md` | Records how the program could still be overturned or weakened after several anchors succeed, especially by rival-framework subsumption or hidden sign inconsistency | Working stress-test layer | Not evidence for the theory |
+| `analysis/falsification_and_rival_frameworks.md` + `analysis/ldp_rate_function_comparison.md` + `analysis/cross_domain_sign_convention_table.md` + `analysis/scope_silence_catalog.md` | Records how the program could still be overturned or weakened after several anchors succeed, especially by rival-framework subsumption, hidden sign inconsistency, or scope overreach into systems where the language should stay silent | Working stress-test layer | Not evidence for the theory |
 
 Main stress-test routes:
 
