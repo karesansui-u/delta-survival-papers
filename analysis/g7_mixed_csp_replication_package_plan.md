@@ -13,6 +13,10 @@ See analysis/route_a_mixed_csp/mixed_csp_level2_rerun_note.md.
 External independent rerun remains open.
 ```
 
+External package boundary note:
+
+- `analysis/route_a_mixed_csp/mixed_csp_external_rerun_package.md`
+
 Purpose:
 
 Define the first independent-replication target for the program. Mixed-CSP is

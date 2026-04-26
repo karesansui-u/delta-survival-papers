@@ -112,26 +112,18 @@ It does not yet establish:
 independent fresh regeneration of the official rows on a new machine
 ```
 
-So the G7 status becomes:
+So the G7 status at the level of this note is:
 
 - Level 1 audit replay: complete
-- Level 2 fresh full rerun: still open
+- Level 2 fresh full rerun: not performed here
+
+Later same-day update:
+
+- Level 2 local fresh rerun is now recorded separately in
+  `analysis/route_a_mixed_csp/mixed_csp_level2_rerun_note.md`
 
 ## 5. Next Action
 
-The next clean Mixed-CSP replication step is the Level 2 fresh rerun described
-in `analysis/g7_mixed_csp_replication_package_plan.md`:
-
-1. smoke dry-run;
-2. smoke execution;
-3. encoding diagnostics;
-4. primary dry-run;
-5. primary rerun from scratch;
-6. held-out reanalysis and comparison to the official reference.
-
-Until then, Mixed-CSP should be described as:
-
-```text
-validated primary with a completed audit replay, but not yet independently
-rerun from scratch under the G7 workstream
-```
+This note remains the Level 1 artifact-only replay. The later Level 2 local
+fresh rerun is documented separately and should now be cited alongside this
+note whenever Mixed-CSP internal reproducibility is summarized.

@@ -3,6 +3,14 @@
 Status: replication-planning note. Not a new empirical result and not a new
 freeze document.
 
+Status update:
+
+```text
+Level 2 local fresh rerun is now complete.
+See analysis/exp43_qcoloring/exp43c_level2_rerun_note.md.
+External independent rerun remains open.
+```
+
 Purpose:
 
 Define the second Route A independent-replication target after Mixed-CSP.
@@ -164,7 +172,8 @@ Actions:
 3. run the frozen evaluation script;
 4. compare outcomes to the official report.
 
-This is the preferred first true Exp43c replication target.
+This target is now complete locally and remains the next clean outside
+Route A rerun after Mixed-CSP.
 
 ## 6. Clean Execution Order
 
