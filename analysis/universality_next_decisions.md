@@ -197,20 +197,26 @@ Short horizon:
    `analysis/route_a_mixed_csp/mixed_csp_published_remote_rerun_note.md`.
 10. The external handoff boundary for Mixed-CSP is now
     `analysis/route_a_mixed_csp/mixed_csp_external_rerun_package.md`.
-11. Exp43c now has both a package-plan note, a completed local fresh rerun
+11. Mixed-CSP now also has a final outside-group handoff checklist at
+    `analysis/route_a_mixed_csp/mixed_csp_true_outside_handoff_checklist.md`.
+12. A short coordination note for the send order now exists at
+    `analysis/g7_true_outside_handoff_overview.md`.
+13. Exp43c now has both a package-plan note, a completed local fresh rerun
     note at `analysis/exp43_qcoloring/exp43c_level2_rerun_note.md`, and an
     outside handoff note at
     `analysis/exp43_qcoloring/exp43c_external_rerun_package.md`.
-12. Exp43c now also has a published-remote outside-workspace rerun note at
+14. Exp43c now also has a published-remote outside-workspace rerun note at
     `analysis/exp43_qcoloring/exp43c_published_remote_rerun_note.md`.
-13. Treat q-coloring and Cardinality-SAT as optional Route A width extensions,
+15. Exp43c now also has a final outside-group handoff checklist at
+    `analysis/exp43_qcoloring/exp43c_true_outside_handoff_checklist.md`.
+16. Treat q-coloring and Cardinality-SAT as optional Route A width extensions,
    not as required gates.
-14. For G4 v2, use `analysis/g4_v2_exploratory_dataset_scan.md` as the immediate
+17. For G4 v2, use `analysis/g4_v2_exploratory_dataset_scan.md` as the immediate
    operational track. The task is to inspect candidate maintenance / repair
    datasets for schema feasibility only. Do not treat this scan as validation,
    and do not generate maintenance-log primary evidence before a dataset, split,
    feature schema, and evaluation script are frozen.
-15. For the current cross-domain non-CSP public branch, treat
+18. For the current cross-domain non-CSP public branch, treat
     `analysis/g4_cmapss_loss_only_feasibility_note.md` as the candidate logic,
     `analysis/g4_cmapss_fd001_archive_note.md` as the exact-subset choice,
     `analysis/g4_cmapss_fd001_archive_feasibility_note.md` as the exact public

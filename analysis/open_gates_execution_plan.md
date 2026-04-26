@@ -156,9 +156,9 @@ failed theory test and not as a hidden support result.
 ### Current state
 
 The program now has real validated anchors, a Mixed-CSP external package, an
-Exp43c external package, and published-remote outside-workspace reruns for
-both Route A packages. What remains open is true outside-group rerun, not
-project-side reproducibility.
+Exp43c external package, published-remote outside-workspace reruns for both
+Route A packages, and final handoff checklists for both. What remains open is
+true outside-group rerun, not project-side reproducibility.
 
 ### Principle
 
@@ -182,15 +182,12 @@ Reason:
 
 ### Next artifact
 
-Create a replication-package plan note for Mixed-CSP. Minimum contents:
+The plan and final handoff artifacts now exist. The next clean move is the
+actual send order:
 
-- exact frozen commit / prereg path;
-- scripts to run;
-- expected input artifacts;
-- expected summary outputs;
-- what counts as a successful rerun;
-- what is allowed to vary across machines;
-- what does not count as replication failure.
+1. send Mixed-CSP first;
+2. wait for the outside-group rerun outcome;
+3. send Exp43c second.
 
 ## 5. Workstream D — Rival-Framework Stress Test
 
