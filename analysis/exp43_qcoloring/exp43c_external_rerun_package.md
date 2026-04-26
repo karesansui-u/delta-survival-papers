@@ -36,6 +36,16 @@ package Exp43c so an outside replicator can rerun the frozen threshold-local
 primary without touching official artifacts
 ```
 
+Important boundary:
+
+```text
+The public repository clone does not contain
+analysis/exp43_qcoloring/data/exp43c_primary_*.json* because that directory is
+gitignored. So the official manifest / results / evaluation should be treated
+as attached reference artifacts in the handoff bundle, not assumed to be
+present in a fresh public clone.
+```
+
 ## 2. Package Boundary
 
 The external rerun package should contain only the files required to:
@@ -71,6 +81,15 @@ Recommended external bundle contents:
 | `analysis/exp43_qcoloring/src/cnf_encoder.py` | CNF encoder |
 | `analysis/exp43_qcoloring/src/solver.py` | PySAT solver wrapper |
 | `analysis/exp43_qcoloring/src/feature_extractor.py` | frozen feature schema |
+| `requirements.txt` | install surface |
+
+Attached official reference artifacts:
+
+| File | Role |
+|---|---|
+| `analysis/exp43_qcoloring/data/exp43c_primary_manifest.jsonl` | official manifest target |
+| `analysis/exp43_qcoloring/data/exp43c_primary_results.jsonl` | official primary-row target |
+| `analysis/exp43_qcoloring/data/exp43c_primary_evaluation.json` | official evaluation target |
 
 Optional but useful:
 
@@ -93,6 +112,12 @@ These give the outside replicator a fixed target before any fresh rerun.
 ## 5. External Quickstart
 
 Recommended external rerun order:
+
+Install:
+
+```bash
+pip install -r requirements.txt
+```
 
 Manifest regeneration:
 

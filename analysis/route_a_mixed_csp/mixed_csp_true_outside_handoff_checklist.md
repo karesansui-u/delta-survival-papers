@@ -21,17 +21,19 @@ an outside replicator who is not operating from the project side.
 Package to hand off:
 
 ```text
-Mixed-CSP frozen primary package as documented at commit 21d9905, with the
-published-remote code path already exercised from commit 96de727.
+Mixed-CSP frozen primary package as shipped in the current published handoff
+bundle at send time. The project-side published-remote rerun was exercised
+from commit 96de727, and the first send-ready outside-group checklist was
+assembled at 4a74e76.
 ```
 
 Important distinction:
 
 ```text
-21d9905 is the current documentation state.
-96de727 is the published-remote state already exercised in a fresh clone.
-The outside-group rerun should use the current published bundle, but should not
-be described as reproducing a local draft.
+The outside-group rerun should clone the current published HEAD at handoff
+time. Commit 96de727 is the earlier published-remote rehearsal commit, and
+4a74e76 is the first commit where the final outside-group checklist itself was
+checked in. Neither should be confused with an unpublished local draft.
 ```
 
 ## 2. Before-Send Checklist

@@ -21,18 +21,19 @@ an outside replicator who is not operating from the project side.
 Package to hand off:
 
 ```text
-Exp43c frozen q-coloring primary package as documented at commit 21d9905, with
-the published-remote code path already exercised from commit 96de727.
+Exp43c frozen q-coloring primary package as shipped in the current published
+handoff bundle at send time. The project-side published-remote rerun was
+exercised from commit 96de727, and the first send-ready outside-group
+checklist was assembled at 4a74e76.
 ```
 
 Important distinction:
 
 ```text
-21d9905 is the current documentation state.
-96de727 is the published-remote state already exercised in a fresh clone.
-The outside-group rerun should use the current published bundle, but it should
-be described as a replication of the frozen Exp43c package, not as a rerun of
-an unpublished local state.
+The outside-group rerun should clone the current published HEAD at handoff
+time. Commit 96de727 is the earlier published-remote rehearsal commit, and
+4a74e76 is the first commit where the final outside-group checklist itself was
+checked in. Neither should be confused with an unpublished local draft.
 ```
 
 ## 2. Before-Send Checklist
@@ -40,12 +41,12 @@ an unpublished local state.
 Before sending the package, verify all of the following:
 
 1. `origin/main` and `codeberg/main` both point to the same published commit.
-2. `analysis/exp43_qcoloring/data/exp43c_primary_manifest.jsonl` exists and
-   matches the published hash.
-3. `analysis/exp43_qcoloring/data/exp43c_primary_results.jsonl` exists and
-   matches the published hash.
-4. `analysis/exp43_qcoloring/data/exp43c_primary_evaluation.json` exists and
-   matches the published hash.
+2. The official reference artifacts are available either in a local archival
+   path or as separate attached files:
+   - `analysis/exp43_qcoloring/data/exp43c_primary_manifest.jsonl`
+   - `analysis/exp43_qcoloring/data/exp43c_primary_results.jsonl`
+   - `analysis/exp43_qcoloring/data/exp43c_primary_evaluation.json`
+3. Those three official reference artifacts match the published hashes.
 5. `analysis/exp43_qcoloring/exp43c_external_rerun_package.md` contains
    separate-output commands.
 6. `analysis/exp43_qcoloring/exp43c_published_remote_rerun_note.md`
@@ -72,8 +73,13 @@ Send the following files and nothing more unless requested:
 11. `analysis/exp43_qcoloring/src/cnf_encoder.py`
 12. `analysis/exp43_qcoloring/src/solver.py`
 13. `analysis/exp43_qcoloring/src/feature_extractor.py`
-14. `analysis/exp43_qcoloring/exp43c_external_rerun_package.md`
-15. `analysis/exp43_qcoloring/exp43c_true_outside_handoff_checklist.md`
+14. `requirements.txt`
+15. `analysis/exp43_qcoloring/exp43c_external_rerun_package.md`
+16. `analysis/exp43_qcoloring/exp43c_true_outside_handoff_checklist.md`
+17. attached official reference artifacts:
+   - `analysis/exp43_qcoloring/data/exp43c_primary_manifest.jsonl`
+   - `analysis/exp43_qcoloring/data/exp43c_primary_results.jsonl`
+   - `analysis/exp43_qcoloring/data/exp43c_primary_evaluation.json`
 
 Optional context only:
 
@@ -110,11 +116,13 @@ Published-remote project-side rerun artifacts:
 Ask the outside group to do exactly this:
 
 1. clone the published repository state;
-2. create a separate output directory;
-3. regenerate the manifest from the frozen config;
-4. run the primary solver pipeline;
-5. run the frozen evaluation script;
-6. return:
+2. install from `requirements.txt`;
+3. create a separate output directory;
+4. regenerate the manifest from the frozen config;
+5. run the primary solver pipeline;
+6. run the frozen evaluation script;
+7. compare to the attached official reference artifacts;
+8. return:
    - output file hashes;
    - row counts and status counts;
    - held-out predictor summary;
