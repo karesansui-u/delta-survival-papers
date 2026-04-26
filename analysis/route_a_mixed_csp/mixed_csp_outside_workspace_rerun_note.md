@@ -20,6 +20,15 @@ This note strengthens the operational credibility of the handoff package, but
 it does not close G7 because the rerun was still performed by the same project
 side.
 
+Important boundary:
+
+```text
+The fresh-clone rehearsal itself was run from commit 514f168 before the later
+382bd00 handoff-doc sync. The later published package documents the same
+frozen Mixed-CSP code path with safer separate-output commands; it is not a
+claim that commit 382bd00 itself was the clone source for this rehearsal.
+```
+
 ## 1. Workspace Boundary
 
 Fresh clone used:

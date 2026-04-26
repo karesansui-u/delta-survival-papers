@@ -97,6 +97,8 @@ Install:
 
 ```bash
 pip install -r requirements.txt
+mkdir -p analysis/route_a_mixed_csp/external_outputs
+printf '*\n!.gitignore\n' > analysis/route_a_mixed_csp/external_outputs/.gitignore
 ```
 
 Smoke dry-run:
@@ -151,12 +153,9 @@ print(am.analyze(outdir / 'mixed_csp_primary_external.jsonl'))
 PY
 ```
 
-Recommended hygiene:
-
-```bash
-mkdir -p analysis/route_a_mixed_csp/external_outputs
-printf '*\n!.gitignore\n' > analysis/route_a_mixed_csp/external_outputs/.gitignore
-```
+The directory creation step is intentionally placed before smoke dry-run,
+because `run_mixed_csp.py` appends directly to the requested JSONL path and
+does not create missing parent directories on behalf of the caller.
 
 ## 6. Success Criterion To Hand Off
 

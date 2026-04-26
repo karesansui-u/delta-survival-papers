@@ -263,12 +263,14 @@ Status update:
   `analysis/exp43_qcoloring/exp43c_external_rerun_package.md`.
 - C-MAPSS loss-only prereg draft now exists as
   `analysis/g4_cmapss_fd001_loss_only_preregistration_draft.md`.
+- C-MAPSS freeze-manifest draft now exists as
+  `analysis/g4_cmapss_fd001_loss_only/freeze_manifest_draft.md`.
 
 So the next concrete order becomes:
 
 1. true outside Mixed-CSP rerun from the published package;
 2. true outside Exp43c rerun from the published handoff package;
-3. C-MAPSS FD001 hardening from draft prereg toward freeze / execution;
+3. C-MAPSS FD001 execution-script implementation and freeze completion;
 4. future repair-flow data acquisition under the candidate-criteria gate.
 
 This keeps the program moving on the actual open gaps rather than adding more
