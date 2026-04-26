@@ -38,7 +38,7 @@ Still open:
 
 - no repair-flow empirical primary;
 - no cross-domain non-CSP empirical support beyond drive reliability;
-- no external independent replication package;
+- no external independent rerun result yet;
 - no completed reader-facing rival-framework comparison.
 
 ## 2. Workstream A — G4 Repair-Flow Empirical Gap
@@ -238,7 +238,7 @@ The first concrete deliverables from this memo now exist:
 3. `analysis/scope_silence_catalog.md`
 4. `analysis/route_a_mixed_csp/mixed_csp_audit_replay_note.md`
 
-So the next concrete moves become:
+So the next concrete moves became:
 
 1. exact C-MAPSS subset / archive note before any loss-only prereg;
 2. Mixed-CSP Level 2 fresh rerun under the G7 workstream;
@@ -255,14 +255,20 @@ Status update:
   `analysis/g4_cmapss_fd001_archive_feasibility_note.md`;
 - external Mixed-CSP packaging now exists as
   `analysis/route_a_mixed_csp/mixed_csp_external_rerun_package.md`.
+- Mixed-CSP fresh-clone rehearsal now exists as
+  `analysis/route_a_mixed_csp/mixed_csp_outside_workspace_rerun_note.md`.
 - Exp43c local rerun is now complete in
   `analysis/exp43_qcoloring/exp43c_level2_rerun_note.md`.
+- Exp43c external handoff now exists as
+  `analysis/exp43_qcoloring/exp43c_external_rerun_package.md`.
+- C-MAPSS loss-only prereg draft now exists as
+  `analysis/g4_cmapss_fd001_loss_only_preregistration_draft.md`.
 
 So the next concrete order becomes:
 
-1. external Mixed-CSP rerun handoff;
-2. external Exp43c rerun handoff;
-3. C-MAPSS loss-only prereg path from the exact FD001 archive;
+1. true outside Mixed-CSP rerun from the published package;
+2. true outside Exp43c rerun from the published handoff package;
+3. C-MAPSS FD001 hardening from draft prereg toward freeze / execution;
 4. future repair-flow data acquisition under the candidate-criteria gate.
 
 This keeps the program moving on the actual open gaps rather than adding more

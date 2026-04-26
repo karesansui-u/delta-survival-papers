@@ -10,12 +10,15 @@ Artifact-level audit replay is now complete.
 See analysis/route_a_mixed_csp/mixed_csp_audit_replay_note.md.
 Level 2 local fresh rerun is now also complete.
 See analysis/route_a_mixed_csp/mixed_csp_level2_rerun_note.md.
+Fresh-clone outside-workspace rehearsal is now also complete.
+See analysis/route_a_mixed_csp/mixed_csp_outside_workspace_rerun_note.md.
 External independent rerun remains open.
 ```
 
-External package boundary note:
+External package boundary notes:
 
 - `analysis/route_a_mixed_csp/mixed_csp_external_rerun_package.md`
+- `analysis/route_a_mixed_csp/mixed_csp_outside_workspace_rerun_note.md`
 
 Purpose:
 
@@ -176,13 +179,17 @@ pip install -r requirements.txt
 Smoke dry-run:
 
 ```bash
-python3 analysis/route_a_mixed_csp/run_mixed_csp.py smoke dry-run
+python3 analysis/route_a_mixed_csp/run_mixed_csp.py \
+  --output analysis/route_a_mixed_csp/external_outputs/mixed_csp_smoke_external.jsonl \
+  smoke dry-run
 ```
 
 Smoke execution:
 
 ```bash
-python3 analysis/route_a_mixed_csp/run_mixed_csp.py smoke run --execute
+python3 analysis/route_a_mixed_csp/run_mixed_csp.py \
+  --output analysis/route_a_mixed_csp/external_outputs/mixed_csp_smoke_external.jsonl \
+  smoke run --execute
 ```
 
 Encoding diagnostics:
@@ -197,14 +204,28 @@ python3 analysis/route_a_mixed_csp/debug_mixed_csp_encoding.py agreement --insta
 Primary dry-run:
 
 ```bash
-python3 analysis/route_a_mixed_csp/run_mixed_csp.py primary dry-run
+python3 analysis/route_a_mixed_csp/run_mixed_csp.py \
+  --output analysis/route_a_mixed_csp/external_outputs/mixed_csp_primary_external.jsonl \
+  primary dry-run
 ```
 
 Primary execution:
 
 ```bash
-python3 analysis/route_a_mixed_csp/run_mixed_csp.py primary run --execute
-python3 analysis/route_a_mixed_csp/analyze_mixed_csp.py analyze
+python3 analysis/route_a_mixed_csp/run_mixed_csp.py \
+  --output analysis/route_a_mixed_csp/external_outputs/mixed_csp_primary_external.jsonl \
+  primary run --execute
+
+python3 - <<'PY'
+import sys
+from pathlib import Path
+sys.path.insert(0, 'analysis/route_a_mixed_csp')
+import analyze_mixed_csp as am
+outdir = Path('analysis/route_a_mixed_csp/external_outputs')
+am.RESULTS_JSON = outdir / 'mixed_csp_primary_external_results.json'
+am.RESULTS_MD = outdir / 'mixed_csp_primary_external_summary.md'
+print(am.analyze(outdir / 'mixed_csp_primary_external.jsonl'))
+PY
 ```
 
 ## 7. Success Criterion For G7

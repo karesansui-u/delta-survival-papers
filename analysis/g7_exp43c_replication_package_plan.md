@@ -8,6 +8,8 @@ Status update:
 ```text
 Level 2 local fresh rerun is now complete.
 See analysis/exp43_qcoloring/exp43c_level2_rerun_note.md.
+External handoff package is now complete.
+See analysis/exp43_qcoloring/exp43c_external_rerun_package.md.
 External independent rerun remains open.
 ```
 
@@ -184,7 +186,7 @@ Manifest regeneration:
 ```bash
 python3 analysis/exp43_qcoloring/src/primary_manifest.py \
   --config analysis/exp43_qcoloring/config/exp43c_primary_config.json \
-  --output analysis/exp43_qcoloring/data/exp43c_primary_manifest_replication.jsonl
+  --output analysis/exp43_qcoloring/replication_outputs/exp43c_primary_manifest_external.jsonl
 ```
 
 Primary rerun:
@@ -192,7 +194,7 @@ Primary rerun:
 ```bash
 python3 analysis/exp43_qcoloring/src/pilot_runner.py \
   --config analysis/exp43_qcoloring/config/exp43c_primary_config.json \
-  --output analysis/exp43_qcoloring/data/exp43c_primary_results_replication.jsonl \
+  --output analysis/exp43_qcoloring/replication_outputs/exp43c_primary_results_external.jsonl \
   run --execute
 ```
 
@@ -200,8 +202,15 @@ Frozen evaluation:
 
 ```bash
 python3 analysis/exp43_qcoloring/src/evaluate_primary.py \
-  analysis/exp43_qcoloring/data/exp43c_primary_results_replication.jsonl \
-  --output analysis/exp43_qcoloring/data/exp43c_primary_evaluation_replication.json
+  analysis/exp43_qcoloring/replication_outputs/exp43c_primary_results_external.jsonl \
+  --output analysis/exp43_qcoloring/replication_outputs/exp43c_primary_evaluation_external.json
+```
+
+Recommended hygiene:
+
+```bash
+mkdir -p analysis/exp43_qcoloring/replication_outputs
+printf '*\n!.gitignore\n' > analysis/exp43_qcoloring/replication_outputs/.gitignore
 ```
 
 ## 7. Success Criterion For G7
