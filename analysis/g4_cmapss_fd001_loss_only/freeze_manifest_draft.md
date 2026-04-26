@@ -1,8 +1,8 @@
 # G4 C-MAPSS FD001 Loss-Only Freeze Manifest Draft
 
-Status: draft freeze manifest. Not frozen. Not validation evidence by itself.
-The held-out FD001 test units must not be evaluated until the execution script
-is implemented, hashed, and this manifest is frozen.
+Status: frozen freeze manifest. Not validation evidence by itself. The held-out
+FD001 test units may now be evaluated once with the frozen script and command
+below.
 
 Date opened: 2026-04-27
 
@@ -28,6 +28,12 @@ Frozen archive SHA256:
 
 ```text
 74bef434a34db25c7bf72e668ea4cd52afe5f2cf8e44367c55a82bfd91a5a34f
+```
+
+Frozen local archive path used for the primary run:
+
+```text
+analysis/g4_cmapss_fd001_loss_only/data/CMAPSSData.zip
 ```
 
 Frozen subset:
@@ -267,23 +273,39 @@ cmapss_fd001_primary_results.json
 cmapss_fd001_primary_report.md
 ```
 
-The exact script hash and final output-schema hash remain open until the next
-freeze step.
+Frozen execution script SHA256:
+
+```text
+25980fc025409a4d74fdc63247cc44e2f98fe44957830fa7e378eae14dd86cb1
+```
+
+Frozen primary command:
+
+```bash
+python3 analysis/g4_cmapss_fd001_loss_only/scripts/evaluate_cmapss_fd001_loss_only.py \
+  --archive analysis/g4_cmapss_fd001_loss_only/data/CMAPSSData.zip \
+  --output analysis/g4_cmapss_fd001_loss_only/data/cmapss_fd001_primary_results.json \
+  --report-output analysis/g4_cmapss_fd001_loss_only/primary_report.md \
+  --allow-primary-run
+```
+
+Frozen output schema:
+
+```text
+JSON machine-readable output at
+analysis/g4_cmapss_fd001_loss_only/data/cmapss_fd001_primary_results.json
+
+Markdown reader-facing report at
+analysis/g4_cmapss_fd001_loss_only/primary_report.md
+```
 
 ## 11. Remaining Freeze Items
 
-Before this manifest can become frozen, the following must be filled:
-
-1. exact script SHA256;
-2. exact JSON output schema and report path;
-3. exact command line for the primary run;
-4. explicit confirmation that no test-unit predictor inspection occurred before
-   freeze.
+No remaining freeze items.
 
 ## 12. Current Status
 
-This manifest is not frozen yet because the execution script is implemented but
-its hash and frozen command have not yet been inserted. The current state is:
+This manifest is now frozen. The current state is:
 
 ```text
 archive fixed
@@ -294,7 +316,8 @@ PCA orientation rule fixed
 model class fixed
 metrics fixed
 script path fixed
-script hash still open
+script hash fixed
+primary command fixed
 ```
 
 The no-peek parser / train-smoke step is now complete in:
@@ -303,5 +326,21 @@ The no-peek parser / train-smoke step is now complete in:
 analysis/g4_cmapss_fd001_loss_only/train_smoke_note.md
 ```
 
-So the next clean move is freeze completion, followed by a single held-out
-primary run.
+That smoke step is now strictly train-only:
+
+```text
+metadata-only may inspect archive identity and structural held-out class
+balance, but train-smoke does not load held-out test predictors or labels
+```
+
+The no-peek condition before freeze was:
+
+```text
+metadata-only was allowed to inspect archive identity and structural held-out
+class balance;
+train-smoke was strictly train-only and did not load held-out test predictors
+or labels.
+```
+
+The next clean move is the single held-out primary run using the frozen command
+above.

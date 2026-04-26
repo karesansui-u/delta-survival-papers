@@ -14,8 +14,9 @@ Upstream notes:
 Purpose:
 
 Record that the first FD001 execution script now parses the exact archive,
-constructs the frozen loss-only coordinate, and fits all preregistered train-
-side models without touching held-out test performance metrics.
+constructs the frozen loss-only coordinate on training rows only, and fits all
+preregistered train-side models without loading held-out test predictors or
+held-out test labels.
 
 This note is an integration check only.
 
@@ -69,7 +70,8 @@ Metadata-only output reproduced the expected exact-archive structure:
 | `test_positive_units_h50` | `33` |
 | `test_negative_units_h50` | `67` |
 
-These agree with the exact archive feasibility note.
+These agree with the exact archive feasibility note. This structural check came
+from the separate `--metadata-only` pass, not from the train-smoke pass.
 
 ## 4. Train-Side Smoke Results
 
@@ -106,13 +108,16 @@ The train-smoke JSON explicitly records:
 
 ```json
 {
+  "held_out_test_files_loaded_by_train_smoke": false,
+  "held_out_test_feature_construction_performed": false,
   "held_out_test_metrics_recorded": false,
   "held_out_test_predictions_recorded": false
 }
 ```
 
-No log-loss, AUC, Brier, accuracy, or model-comparison result on held-out
-FD001 test units is recorded in this note or used as evidence.
+So the train-smoke pass is now genuinely train-only. No held-out test files,
+no held-out feature construction, and no held-out metrics or predictions are
+used in this step.
 
 ## 6. Interpretation
 
@@ -120,8 +125,8 @@ This smoke establishes only that:
 
 ```text
 the exact FD001 archive parses cleanly, the frozen D_pc1 construction can be
-built, and all preregistered train-side models fit successfully without any
-held-out evaluation
+built on training rows only, and all preregistered train-side models fit
+successfully without any held-out test touch
 ```
 
 It does not establish support, no-support, or any result on the held-out test
