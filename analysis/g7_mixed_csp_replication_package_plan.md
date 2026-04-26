@@ -8,7 +8,9 @@ Level 1 status update:
 ```text
 Artifact-level audit replay is now complete.
 See analysis/route_a_mixed_csp/mixed_csp_audit_replay_note.md.
-Level 2 fresh rerun remains open.
+Level 2 local fresh rerun is now also complete.
+See analysis/route_a_mixed_csp/mixed_csp_level2_rerun_note.md.
+External independent rerun remains open.
 ```
 
 Purpose:

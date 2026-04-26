@@ -49,10 +49,10 @@ replication and, if needed, later theorem-wrapper polish.
 |---|---|---|---|
 | Core theory | Consolidation | Stable theorem vocabulary and Lean anchors | Only wording / mapping refinements |
 | LLM domain | Verification | Exp.40 + Exp.42 support scope-as-repair and attribution-as-repair; Exp.41 width passed | Model-dependent failure-mode follow-up only if needed |
-| Route A / CSP | Mixed-CSP validated; Exp43c q-coloring primary validated; Exp44 calibration inconclusive | Mixed-CSP official primary passed: `L_plus_n` log loss 0.0970 < `raw_plus_n` 0.7525. Exp43c q-coloring primary passed under frozen threshold-local package: `fm_plus_n` log loss 0.440189 < best primary raw baseline 2.804019, with H1 direction passing for q=3/4/5 and q=5 narrow. Exp43c is now integrated into the Route A extension map / finite-CSP supplement. Exp44 smoke/pilot_v2/pilot_v3 are infrastructure-clean but pilot_v3 still failed the informative-band gate for M0/M1/M2 | Independent replication, optional Exp44b redesign, or G4/G6 non-CSP continuation |
+| Route A / CSP | Mixed-CSP validated; local fresh rerun completed; Exp43c q-coloring primary validated; Exp44 calibration inconclusive | Mixed-CSP official primary passed: `L_plus_n` log loss 0.0970 < `raw_plus_n` 0.7525, and the package has now also been rerun locally from scratch with exact reproduction on the checked core fields (`analysis/route_a_mixed_csp/mixed_csp_level2_rerun_note.md`). Exp43c q-coloring primary passed under frozen threshold-local package: `fm_plus_n` log loss 0.440189 < best primary raw baseline 2.804019, with H1 direction passing for q=3/4/5 and q=5 narrow. Exp43c is now integrated into the Route A extension map / finite-CSP supplement. Exp44 smoke/pilot_v2/pilot_v3 are infrastructure-clean but pilot_v3 still failed the informative-band gate for M0/M1/M2 | External independent replication, Exp43c replication package, optional Exp44b redesign, or G4/G6 non-CSP continuation |
 | G4 / non-CSP | G4 v1 closed; G4 v2 minimal skeleton implemented and supplement-integrated; Backblaze loss-only observational branch now has one no-support result and one same-domain calibrated support pass | Queueing / Foster-Lyapunov is the primary G4 v1 anchor; serial reliability and constant-fraction decay are loss-only controls. G4 v2 is scoped toward repair / maintenance reliability-fatigue balance, where \(g_t\) is explicit in a non-CSP open-system model. Public repair-flow dataset search found C1 Azure PdM leakage-risk and C2 MetroPT-3 weak-g, so repair-flow primary remains paused. Backblaze Q4 2025 loss-only primary was frozen and run; primary SMART model failed log-loss support (`1.779176` vs best baseline `0.157102`) and H2 sign consistency due `smart_199_raw`. Backblaze Q3 2025 v2 then ran under a separately frozen calibration-aware package and passed: calibrated primary log loss `0.007936` < best baseline `0.008801` (9.83% improvement), H2 passed on the five core SMART fields, and stage-1 AUC `0.882895` > best baseline `0.739014`. This counts only as same-domain observational loss-only support and does not erase the Q4 no-support result. New follow-on notes now exist at `analysis/g4_cmapss_loss_only_feasibility_note.md` and `analysis/g4_v2_repair_flow_candidate_criteria.md` | Preserve both Backblaze outcomes, avoid same-domain overclaim, and treat the remaining non-CSP empirical gap as repair-flow / cross-domain support rather than further retroactive Backblaze rescue. Current execution order is recorded in `analysis/open_gates_execution_plan.md` |
 | Formal tendency / rival-framework stress test | M1 completed; G6-c iteration 1 closed; falsification stress-test layer expanded | Expectation-level target theorem 4 formally accessible via existing theorems; M2-A mapping-only fixed. `analysis/falsification_and_rival_frameworks.md` records the main ways the program could still be weakened, especially rival-framework subsumption by LDP / free-energy / contraction-style frameworks. Concrete defenses now include `analysis/ldp_rate_function_comparison.md`, `analysis/cross_domain_sign_convention_table.md`, and `analysis/scope_silence_catalog.md` | Optional M2-B wrapper if paper needs named theorem aliases; theorem-transfer score |
-| External reception | Open | Internal reproducibility and OSF available | Independent review / replication |
+| External reception | Open | Internal reproducibility, OSF, and a local fresh Mixed-CSP rerun are available | Independent review / replication |
 
 ## 3. Resolved Gates And Next Options
 
@@ -187,20 +187,25 @@ Short horizon:
    cross-domain non-CSP anchor -> repair-flow data acquisition.
 7. For the rival-framework layer, the first defensive quartet now exists:
    falsification memo -> LDP note -> sign table -> scope/silence catalog.
-8. For G7, start with `analysis/g7_mixed_csp_replication_package_plan.md`
-   and the completed Level 1 replay note
-   `analysis/route_a_mixed_csp/mixed_csp_audit_replay_note.md`, rather than
-   the observational Backblaze branch.
-9. Treat q-coloring and Cardinality-SAT as optional Route A width extensions,
+8. For G7, Mixed-CSP now has both a completed Level 1 replay note
+   (`analysis/route_a_mixed_csp/mixed_csp_audit_replay_note.md`) and a
+   completed Level 2 local rerun note
+   (`analysis/route_a_mixed_csp/mixed_csp_level2_rerun_note.md`).
+9. The next Route A replication-planning artifact is now
+   `analysis/g7_exp43c_replication_package_plan.md`, rather than another
+   observational branch.
+10. Treat q-coloring and Cardinality-SAT as optional Route A width extensions,
    not as required gates.
-10. For G4 v2, use `analysis/g4_v2_exploratory_dataset_scan.md` as the immediate
+11. For G4 v2, use `analysis/g4_v2_exploratory_dataset_scan.md` as the immediate
    operational track. The task is to inspect candidate maintenance / repair
    datasets for schema feasibility only. Do not treat this scan as validation,
    and do not generate maintenance-log primary evidence before a dataset, split,
    feature schema, and evaluation script are frozen.
-11. For the next cross-domain non-CSP empirical move, treat
+12. For the next cross-domain non-CSP empirical move, treat
     `analysis/g4_cmapss_loss_only_feasibility_note.md` as the current public
-    loss-only candidate note and keep it explicitly below repair-flow evidence.
+    loss-only candidate note and `analysis/g4_cmapss_fd001_archive_note.md` as
+    the first exact-subset choice note; keep both explicitly below repair-flow
+    evidence.
 
 Rationale:
 

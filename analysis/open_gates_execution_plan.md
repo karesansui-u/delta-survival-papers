@@ -245,6 +245,20 @@ So the next concrete moves become:
 3. `analysis/g7_exp43c_replication_package_plan.md`;
 4. future repair-flow data acquisition under the candidate-criteria gate.
 
+Status update:
+
+- item 1 now exists as `analysis/g4_cmapss_fd001_archive_note.md`;
+- item 2 is now complete locally in
+  `analysis/route_a_mixed_csp/mixed_csp_level2_rerun_note.md`;
+- item 3 now exists as `analysis/g7_exp43c_replication_package_plan.md`.
+
+So the next concrete order becomes:
+
+1. C-MAPSS exact-archive feasibility / later prereg path;
+2. external Mixed-CSP rerun packaging;
+3. Exp43c rerun execution when desired;
+4. future repair-flow data acquisition under the candidate-criteria gate.
+
 This keeps the program moving on the actual open gaps rather than adding more
 same-type evidence to already-strong tracks.
 
