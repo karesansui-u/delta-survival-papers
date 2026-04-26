@@ -1,8 +1,9 @@
 # Open Gates Execution Plan
 
 Status: active program-execution memo after Backblaze v2 same-domain
-observational support. This is not a freeze document, not validation evidence,
-and not a new claim source.
+observational support and the first C-MAPSS FD001 cross-domain loss-only
+primary. This is not a freeze document, not validation evidence, and not a
+new claim source.
 
 Purpose:
 
@@ -40,6 +41,13 @@ Still open:
 - no cross-domain non-CSP empirical support beyond drive reliability;
 - no external independent rerun result yet;
 - no completed reader-facing rival-framework comparison.
+
+New information:
+
+- the first frozen cross-domain non-CSP public branch has now run on
+  C-MAPSS FD001;
+- it produced a weakening outcome, not a support result:
+  `H1 = true`, `H2 = false`, `H3 = true`, `primary_support = false`.
 
 ## 2. Workstream A — G4 Repair-Flow Empirical Gap
 
@@ -95,6 +103,19 @@ Backblaze v2 is useful, but it is:
 
 So it improves G4, but it does not close the heterogeneous-domain non-CSP gap.
 
+C-MAPSS FD001 has now also been run under a frozen loss-only package.
+
+Outcome:
+
+- the compressed `D_pc1` primary beat the simple baselines (`H1 = true`);
+- the oriented degradation coefficient stayed directionally coherent
+  (`H3 = true`);
+- but the compressed coordinate remained weaker than the preregistered wide
+  raw-sensor model (`H2 = false`).
+
+So C-MAPSS FD001 is informative, but it is not yet the cross-domain non-CSP
+support anchor we would want for closing this gate.
+
 ### Recommended direction
 
 The next non-CSP empirical move should not be another Backblaze redesign.
@@ -121,13 +142,14 @@ a cross-domain primary anchor because unit repetition is limited.
 
 ### Next artifact
 
-Create a C-MAPSS feasibility note using the same discipline as the Backblaze
-schema / feasibility notes:
+Do not immediately rescue C-MAPSS on the same archive. The clean next artifact
+is either:
 
-- archive / source identity;
-- unit / time / degradation / endpoint structure;
-- what can be frozen later;
-- why it is loss-only and not repair-flow.
+- a later C-MAPSS v2 exploration note on a fresh untouched archive, or
+- a different cross-domain non-CSP candidate note.
+
+Until then, keep the current FD001 result as a weakening outcome, not as a
+failed theory test and not as a hidden support result.
 
 ## 4. Workstream C — G7 Independent Replication
 
@@ -267,12 +289,16 @@ Status update:
   `analysis/g4_cmapss_fd001_loss_only/freeze_manifest_draft.md`.
 - C-MAPSS no-peek train-side smoke now exists as
   `analysis/g4_cmapss_fd001_loss_only/train_smoke_note.md`.
+- C-MAPSS frozen primary report now exists as
+  `analysis/g4_cmapss_fd001_loss_only/primary_report.md` and records the
+  weakening outcome `H1/H3 pass, H2 fail`.
 
 So the next concrete order becomes:
 
 1. true outside Mixed-CSP rerun from the published package;
 2. true outside Exp43c rerun from the published handoff package;
-3. C-MAPSS FD001 freeze completion and single held-out primary run;
+3. decide whether to open a fresh-archive C-MAPSS v2 exploration note or move
+   directly toward repair-flow data acquisition;
 4. future repair-flow data acquisition under the candidate-criteria gate.
 
 This keeps the program moving on the actual open gaps rather than adding more
