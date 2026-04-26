@@ -15,9 +15,10 @@ Upstream notes:
 
 Purpose:
 
-Confirm that the published Exp43c package at the current pushed commit can be
-cloned into a fresh workspace and rerun end-to-end using separate outputs,
-while preserving the frozen manifest, primary result, and evaluation behavior.
+Confirm that the published remote Exp43c package at commit `96de727`, before
+this documentation commit, can be cloned into a fresh workspace and rerun
+end-to-end using separate outputs, while preserving the frozen manifest,
+primary result, and evaluation behavior.
 
 Important boundary:
 
@@ -94,7 +95,7 @@ python3 analysis/exp43_qcoloring/src/evaluate_primary.py \
 | File | size bytes | sha256 |
 |---|---:|---|
 | `exp43c_primary_manifest_external.jsonl` | `6330030` | `e0c0058fc0279de6dddace700d1929820e98c152382039051244faedcd0d0cf2` |
-| `exp43c_primary_results_external.jsonl` | `8336173` | `e0a713ac998e1e2c7366a873afb9ba8649d8f7cf48740a6770b409ca85840179` |
+| `exp43c_primary_results_external.jsonl` | `8367017` | `e0a713ac998e1e2c7366a873afb9ba8649d8f7cf48740a6770b409ca85840179` |
 | `exp43c_primary_evaluation_external.json` | `14814` | `901a307be1cc14ef038388b14becc2536a7247e307bae87a8c6e14757cb96539` |
 
 ## 4. Primary Published-Remote Rerun Result

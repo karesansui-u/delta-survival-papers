@@ -15,9 +15,10 @@ Upstream notes:
 
 Purpose:
 
-Confirm that the published project-side package at the current pushed commit
-can be cloned into a fresh workspace and rerun end-to-end using the documented
-separate-output commands, without touching the checked-in official artifacts.
+Confirm that the published remote state at commit `96de727`, before this
+documentation commit, can be cloned into a fresh workspace and rerun
+end-to-end using the documented separate-output commands, without touching the
+checked-in official artifacts.
 
 Important boundary:
 
@@ -115,9 +116,9 @@ PY
 
 | File | size bytes | sha256 |
 |---|---:|---|
-| `mixed_csp_smoke_external.jsonl` | `25031` | `3e29ce71c78f36e9613d997422343fccfc98be9f02a3cfbc43253eddd3edafc9` |
-| `mixed_csp_primary_external.jsonl` | `15235082` | `c60603aa7e738785ae459dfc25c4cb9ca0da965dfc38cb9be13f1a871dd21817` |
-| `mixed_csp_primary_external_results.json` | `41663` | `6fb2c5f9ba6bc1290656612bddcfcdb81bf4547c0308ca2fe0da63d9b74f4735` |
+| `mixed_csp_smoke_external.jsonl` | `25030` | `3d24bb81e20c1cea882ea654cc32598f24011533cc062a6a52b84820fd59dee6` |
+| `mixed_csp_primary_external.jsonl` | `15236537` | `c60603aa7e738785ae459dfc25c4cb9ca0da965dfc38cb9be13f1a871dd21817` |
+| `mixed_csp_primary_external_results.json` | `41665` | `6fb2c5f9ba6bc1290656612bddcfcdb81bf4547c0308ca2fe0da63d9b74f4735` |
 | `mixed_csp_primary_external_summary.md` | `7276` | `ef5d91b672b31975908be8abd549244e747bfedfdb684a998b239056dd13ee0d` |
 
 ## 4. Rerun Result
