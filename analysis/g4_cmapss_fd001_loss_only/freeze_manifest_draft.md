@@ -246,7 +246,13 @@ H4:
 No result permits any repair-flow claim.
 ```
 
-## 10. Frozen Output Paths
+## 10. Execution Script And Output Paths
+
+Current execution script path:
+
+```text
+analysis/g4_cmapss_fd001_loss_only/scripts/evaluate_cmapss_fd001_loss_only.py
+```
 
 The later execution script must write to separate outputs under:
 
@@ -261,23 +267,23 @@ cmapss_fd001_primary_results.json
 cmapss_fd001_primary_report.md
 ```
 
-The exact script path and output-schema hash remain open until implementation.
+The exact script hash and final output-schema hash remain open until the next
+freeze step.
 
 ## 11. Remaining Freeze Items
 
 Before this manifest can become frozen, the following must be filled:
 
-1. exact execution script path;
-2. exact script SHA256;
-3. exact JSON output schema and report path;
-4. exact command line for the primary run;
-5. explicit confirmation that no test-unit predictor inspection occurred before
+1. exact script SHA256;
+2. exact JSON output schema and report path;
+3. exact command line for the primary run;
+4. explicit confirmation that no test-unit predictor inspection occurred before
    freeze.
 
 ## 12. Current Status
 
-This manifest is not frozen yet because the execution script and its hash do
-not exist. The current state is:
+This manifest is not frozen yet because the execution script is implemented but
+its hash and frozen command have not yet been inserted. The current state is:
 
 ```text
 archive fixed
@@ -287,9 +293,15 @@ feature family fixed
 PCA orientation rule fixed
 model class fixed
 metrics fixed
+script path fixed
 script hash still open
 ```
 
-So the next clean move is implementation of the first FD001 execution script
-followed by a no-peek smoke / parser check that does not evaluate held-out
-performance.
+The no-peek parser / train-smoke step is now complete in:
+
+```text
+analysis/g4_cmapss_fd001_loss_only/train_smoke_note.md
+```
+
+So the next clean move is freeze completion, followed by a single held-out
+primary run.

@@ -265,12 +265,14 @@ Status update:
   `analysis/g4_cmapss_fd001_loss_only_preregistration_draft.md`.
 - C-MAPSS freeze-manifest draft now exists as
   `analysis/g4_cmapss_fd001_loss_only/freeze_manifest_draft.md`.
+- C-MAPSS no-peek train-side smoke now exists as
+  `analysis/g4_cmapss_fd001_loss_only/train_smoke_note.md`.
 
 So the next concrete order becomes:
 
 1. true outside Mixed-CSP rerun from the published package;
 2. true outside Exp43c rerun from the published handoff package;
-3. C-MAPSS FD001 execution-script implementation and freeze completion;
+3. C-MAPSS FD001 freeze completion and single held-out primary run;
 4. future repair-flow data acquisition under the candidate-criteria gate.
 
 This keeps the program moving on the actual open gaps rather than adding more
