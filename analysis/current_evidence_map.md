@@ -60,13 +60,13 @@ preregistered experiments.
 | G4 non-CSP | G4 v1/v2 minimal skeletons closed; repair-flow public dataset search paused; Backblaze loss-only branch now contains one closed no-support attempt and one same-domain support pass | Next clean move: keep both Backblaze outcomes visible without rescue language; use `analysis/backblaze_loss_only_v2/primary_report.md` as the reader-facing record of the Q3 2025 calibrated pass, while preserving `analysis/backblaze_loss_only/primary_report.md` as the Q4 2025 no-support record. The main open gap remains repair-flow / cross-domain non-CSP support, not further retroactive Backblaze tuning |
 | G5 prospective prediction | Supported by Exp40/41/42, Mixed-CSP, Exp43c | Another preregistered external-domain test |
 | G6 existing-theory mapping | G6-c iteration 1 closed | Optional iteration 2: positive recurrence / geometric ergodicity |
-| G7 independent replication | Open | External reviewer / independent run / public replication package |
+| G7 independent replication | Open | Public replication package, starting with Mixed-CSP via `analysis/g7_mixed_csp_replication_package_plan.md`, before threshold-local or observational branches |
 
 ## 7. Stress-Test / Falsification Layer
 
 | Artifact | Role | Current status | Boundary |
 |---|---|---|---|
-| `analysis/falsification_and_rival_frameworks.md` | Records how the program could still be overturned or weakened after several anchors succeed | Working stress-test memo | Not evidence for the theory |
+| `analysis/falsification_and_rival_frameworks.md` + `analysis/ldp_rate_function_comparison.md` + `analysis/cross_domain_sign_convention_table.md` | Records how the program could still be overturned or weakened after several anchors succeed, especially by rival-framework subsumption or hidden sign inconsistency | Working stress-test layer | Not evidence for the theory |
 
 Main stress-test routes:
 
@@ -82,7 +82,9 @@ Main stress-test routes:
   domain-native theories.
 
 The most urgent theoretical risk is rival-framework subsumption, especially by
-large-deviation / rate-function machinery on the Route A side.
+large-deviation / rate-function machinery on the Route A side. The current
+defensive package is therefore: falsification memo -> LDP comparison note ->
+cross-domain sign-convention table.
 
 ## 8. One-Line Current Position
 

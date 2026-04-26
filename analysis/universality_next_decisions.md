@@ -50,8 +50,8 @@ replication and, if needed, later theorem-wrapper polish.
 | Core theory | Consolidation | Stable theorem vocabulary and Lean anchors | Only wording / mapping refinements |
 | LLM domain | Verification | Exp.40 + Exp.42 support scope-as-repair and attribution-as-repair; Exp.41 width passed | Model-dependent failure-mode follow-up only if needed |
 | Route A / CSP | Mixed-CSP validated; Exp43c q-coloring primary validated; Exp44 calibration inconclusive | Mixed-CSP official primary passed: `L_plus_n` log loss 0.0970 < `raw_plus_n` 0.7525. Exp43c q-coloring primary passed under frozen threshold-local package: `fm_plus_n` log loss 0.440189 < best primary raw baseline 2.804019, with H1 direction passing for q=3/4/5 and q=5 narrow. Exp43c is now integrated into the Route A extension map / finite-CSP supplement. Exp44 smoke/pilot_v2/pilot_v3 are infrastructure-clean but pilot_v3 still failed the informative-band gate for M0/M1/M2 | Independent replication, optional Exp44b redesign, or G4/G6 non-CSP continuation |
-| G4 / non-CSP | G4 v1 closed; G4 v2 minimal skeleton implemented and supplement-integrated; Backblaze loss-only observational branch now has one no-support result and one same-domain calibrated support pass | Queueing / Foster-Lyapunov is the primary G4 v1 anchor; serial reliability and constant-fraction decay are loss-only controls. G4 v2 is scoped toward repair / maintenance reliability-fatigue balance, where \(g_t\) is explicit in a non-CSP open-system model. Public repair-flow dataset search found C1 Azure PdM leakage-risk and C2 MetroPT-3 weak-g, so repair-flow primary remains paused. Backblaze Q4 2025 loss-only primary was frozen and run; primary SMART model failed log-loss support (`1.779176` vs best baseline `0.157102`) and H2 sign consistency due `smart_199_raw`. Backblaze Q3 2025 v2 then ran under a separately frozen calibration-aware package and passed: calibrated primary log loss `0.007936` < best baseline `0.008801` (9.83% improvement), H2 passed on the five core SMART fields, and stage-1 AUC `0.882895` > best baseline `0.739014`. This counts only as same-domain observational loss-only support and does not erase the Q4 no-support result | Preserve both Backblaze outcomes, avoid same-domain overclaim, and treat the remaining non-CSP empirical gap as repair-flow / cross-domain support rather than further retroactive Backblaze rescue |
-| Formal tendency / rival-framework stress test | M1 completed; G6-c iteration 1 closed; falsification stress-test memo opened | Expectation-level target theorem 4 formally accessible via existing theorems; M2-A mapping-only fixed. `analysis/falsification_and_rival_frameworks.md` records the main ways the program could still be weakened, especially rival-framework subsumption by LDP / free-energy / contraction-style frameworks | Optional M2-B wrapper if paper needs named theorem aliases; focused LDP / rate-function comparison note |
+| G4 / non-CSP | G4 v1 closed; G4 v2 minimal skeleton implemented and supplement-integrated; Backblaze loss-only observational branch now has one no-support result and one same-domain calibrated support pass | Queueing / Foster-Lyapunov is the primary G4 v1 anchor; serial reliability and constant-fraction decay are loss-only controls. G4 v2 is scoped toward repair / maintenance reliability-fatigue balance, where \(g_t\) is explicit in a non-CSP open-system model. Public repair-flow dataset search found C1 Azure PdM leakage-risk and C2 MetroPT-3 weak-g, so repair-flow primary remains paused. Backblaze Q4 2025 loss-only primary was frozen and run; primary SMART model failed log-loss support (`1.779176` vs best baseline `0.157102`) and H2 sign consistency due `smart_199_raw`. Backblaze Q3 2025 v2 then ran under a separately frozen calibration-aware package and passed: calibrated primary log loss `0.007936` < best baseline `0.008801` (9.83% improvement), H2 passed on the five core SMART fields, and stage-1 AUC `0.882895` > best baseline `0.739014`. This counts only as same-domain observational loss-only support and does not erase the Q4 no-support result | Preserve both Backblaze outcomes, avoid same-domain overclaim, and treat the remaining non-CSP empirical gap as repair-flow / cross-domain support rather than further retroactive Backblaze rescue. Current execution order is recorded in `analysis/open_gates_execution_plan.md` |
+| Formal tendency / rival-framework stress test | M1 completed; G6-c iteration 1 closed; falsification stress-test memo opened | Expectation-level target theorem 4 formally accessible via existing theorems; M2-A mapping-only fixed. `analysis/falsification_and_rival_frameworks.md` records the main ways the program could still be weakened, especially rival-framework subsumption by LDP / free-energy / contraction-style frameworks. The first two concrete defenses now exist as `analysis/ldp_rate_function_comparison.md` and `analysis/cross_domain_sign_convention_table.md` | Optional M2-B wrapper if paper needs named theorem aliases; scope / silence catalog; theorem-transfer score |
 | External reception | Open | Internal reproducibility and OSF available | Independent review / replication |
 
 ## 3. Resolved Gates And Next Options
@@ -177,13 +177,19 @@ Short horizon:
    core-theory candidate. §1-8 now exist at
    `v2/5_構造持続の収支法則と崩壊傾向.md`; current control memo:
    `analysis/structural_balance_law_draft_plan.md`.
-5. Keep `analysis/falsification_and_rival_frameworks.md` visible as the
+5. Keep `analysis/falsification_and_rival_frameworks.md`,
+   `analysis/ldp_rate_function_comparison.md`, and
+   `analysis/cross_domain_sign_convention_table.md` visible as the
    stress-test layer for overclaim, sign inconsistency, silent-system scope,
-   and rival-framework subsumption. The clean next theory-defense move is a
-   focused LDP / rate-function comparison note.
-6. Treat q-coloring and Cardinality-SAT as optional Route A width extensions,
+   and rival-framework subsumption.
+6. Use `analysis/open_gates_execution_plan.md` to keep the four remaining open
+   gaps ordered: rival-framework defense -> G7 replication package ->
+   cross-domain non-CSP anchor -> repair-flow data acquisition.
+7. For G7, start with `analysis/g7_mixed_csp_replication_package_plan.md`
+   rather than the observational Backblaze branch.
+8. Treat q-coloring and Cardinality-SAT as optional Route A width extensions,
    not as required gates.
-7. For G4 v2, use `analysis/g4_v2_exploratory_dataset_scan.md` as the immediate
+9. For G4 v2, use `analysis/g4_v2_exploratory_dataset_scan.md` as the immediate
    operational track. The task is to inspect candidate maintenance / repair
    datasets for schema feasibility only. Do not treat this scan as validation,
    and do not generate maintenance-log primary evidence before a dataset, split,

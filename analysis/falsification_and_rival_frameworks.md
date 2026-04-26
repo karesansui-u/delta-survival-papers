@@ -406,25 +406,23 @@ The LDP / rate-function comparison note has been opened:
 analysis/ldp_rate_function_comparison.md
 ```
 
-The next clean move is:
+The cross-domain sign-convention table has also been opened:
 
 ```text
-Create the F1 cross-domain sign-convention table.
+analysis/cross_domain_sign_convention_table.md
 ```
 
-Minimum contents:
+The next clean move after those two artifacts is:
 
-1. anchor;
-2. maintained quantity \(Z_t\) or \(V_t\);
-3. \(\ell_t\);
-4. \(g_t\);
-5. what \(a_t>0\) means;
-6. what \(a_t<0\) means;
-7. whether any monotone transform or sign reversal is used;
-8. claim strength (Route A/B/C or G6 level).
+```text
+Keep the sign table synchronized with new anchors, then decide whether the next
+defensive layer should be the scope / silence catalog or a more explicit
+theorem-transfer score.
+```
 
-This is lower-risk than another empirical anchor and directly addresses the
-"unified language or merely a glossary?" objection.
+These are lower-risk than another empirical anchor and directly address the
+"unified language or merely a glossary?" objection and the LDP subsumption
+objection.
 
 ## 10. Non-Claims Of This Memo
 
