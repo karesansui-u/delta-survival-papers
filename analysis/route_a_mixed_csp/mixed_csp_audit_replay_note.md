@@ -38,8 +38,8 @@ Observed artifact hashes:
 | File | sha256 |
 |---|---|
 | `mixed_csp_primary_official_2026-04-22.jsonl` | `bcc01d7ddf74a898119eab69ce34a8a38b9005db8a89d1eb6206da6d9158e01c` |
-| `mixed_csp_results.json` | `9a7c32a3a4bc8442a39fea43d15ce75bb94d7dd9254e97153a21cb4053688e58` |
-| `mixed_csp_results_summary.md` | `1c48665cf42edb60fe024c0ec7b2e51c2f351fdd8f40ab2418ae78465dd6325b` |
+| `mixed_csp_results.json` | `1d49c63281eec9a78e1b2be1e4361fc4c657c1bf2edb31daa34dcef1762f8375` |
+| `mixed_csp_results_summary.md` | `e67025d9995ce13eed93abf22ed484134563eeccc7fe29cd8405ad1be4391136` |
 
 Observed official row count:
 
