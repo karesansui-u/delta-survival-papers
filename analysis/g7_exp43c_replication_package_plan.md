@@ -10,6 +10,8 @@ Level 2 local fresh rerun is now complete.
 See analysis/exp43_qcoloring/exp43c_level2_rerun_note.md.
 External handoff package is now complete.
 See analysis/exp43_qcoloring/exp43c_external_rerun_package.md.
+Published-remote outside-workspace rerun is now also complete.
+See analysis/exp43_qcoloring/exp43c_published_remote_rerun_note.md.
 External independent rerun remains open.
 ```
 

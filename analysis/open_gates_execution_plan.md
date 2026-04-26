@@ -39,7 +39,7 @@ Still open:
 
 - no repair-flow empirical primary;
 - no cross-domain non-CSP empirical support beyond drive reliability;
-- no external independent rerun result yet;
+- no true outside-group rerun result yet;
 - no completed reader-facing rival-framework comparison.
 
 New information:
@@ -155,8 +155,10 @@ failed theory test and not as a hidden support result.
 
 ### Current state
 
-The program now has real validated anchors, but still no external replication
-package.
+The program now has real validated anchors, a Mixed-CSP external package, an
+Exp43c external package, and published-remote outside-workspace reruns for
+both Route A packages. What remains open is true outside-group rerun, not
+project-side reproducibility.
 
 ### Principle
 

@@ -12,6 +12,8 @@ Level 2 local fresh rerun is now also complete.
 See analysis/route_a_mixed_csp/mixed_csp_level2_rerun_note.md.
 Fresh-clone outside-workspace rehearsal is now also complete.
 See analysis/route_a_mixed_csp/mixed_csp_outside_workspace_rerun_note.md.
+Published-remote outside-workspace rerun is now also complete.
+See analysis/route_a_mixed_csp/mixed_csp_published_remote_rerun_note.md.
 External independent rerun remains open.
 ```
 
