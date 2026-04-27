@@ -117,6 +117,14 @@ This closes exact local acquisition of the three large readout CSV files, so
 the remaining Scania pre-freeze work is label-grammar lock plus bridge-package
 freeze design rather than archive identity.
 
+That freeze-design stage now also has a dedicated note:
+
+- `analysis/g4_scania_component_x_freeze_design_note.md`
+
+This locks the held-out class grammar and chooses horizon-classification as the
+operational primary path, leaving survival / TTE as the conceptual secondary
+path.
+
 There is now also a narrow public-web rescan layer:
 
 - `analysis/g4_v2_public_repair_flow_rescan_2026-04-27.md`

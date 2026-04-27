@@ -133,24 +133,31 @@ That note records exact bytes, full-file sha256 values, line counts, and unique
 
 ### 5.2 Label grammar lock
 
-The meaning of the held-out class labels must be fixed explicitly before any
-preregistration:
+This gate is now closed by:
 
-- what each `class_label` value means;
-- whether it is a window-to-repair label, a failure-risk label, or a combined
-  event proximity label;
-- whether the label grammar is compatible with the primary path or only the
-  secondary path.
+- `analysis/g4_scania_component_x_freeze_design_note.md`
+
+That note fixes the held-out `class_label` grammar as an ordered five-class
+time-window target:
+
+- `0` = more than `48` time steps before failure / repair;
+- `1` = `48` to `24`;
+- `2` = `24` to `12`;
+- `3` = `12` to `6`;
+- `4` = `6` to `0`.
 
 ### 5.3 One primary path only
 
-The frozen package must choose one primary path:
+This gate is now closed by:
 
-1. survival / TTE bridge, or
-2. horizon-classification bridge.
+- `analysis/g4_scania_component_x_freeze_design_note.md`
 
-The other path may remain secondary or deferred, but both cannot remain
-co-primary.
+Current chosen direction:
+
+```text
+primary operational path = horizon-classification bridge
+secondary conceptual path = survival / TTE bridge
+```
 
 ### 5.4 Model and metric freeze
 
@@ -165,15 +172,15 @@ Before any validation run, the package must freeze:
 
 ## 6. Current Recommendation
 
-At the draft stage, the strongest reading is:
+At the current design stage, the strongest reading is:
 
 ```text
-Primary conceptual path: survival / TTE bridge.
-Secondary operational path: horizon classification bridge.
+Primary operational path: horizon classification bridge.
+Secondary conceptual path: survival / TTE bridge.
 ```
 
-This preserves the strongest law-side story without pretending the held-out
-classification labels are irrelevant.
+This preserves the strongest law-side story while choosing the public held-out
+classification route as the operational primary.
 
 ## 7. Non-Claims
 
@@ -181,8 +188,8 @@ This draft does not claim:
 
 1. Scania already closes the repair-flow empirical gap;
 2. Scania already has a direct logged \(g_t\);
-3. the survival / TTE path is already freeze-ready;
-4. horizon classification is already chosen as primary;
+3. the survival / TTE path is already freeze-ready as an executable package;
+4. the remaining model / metric / split details are already frozen;
 5. a public bridge package is stronger than partner/local directly logged
    maintenance data.
 
@@ -192,8 +199,8 @@ The clean current position is:
 
 ```text
 Scania Component X is ready for a bridge-package draft.
-It should be developed as a public stochastic reliability / TTE bridge, with
-horizon-classification as the practical secondary path. Full readout hashes are
-now fixed; the remaining pre-freeze work is label-grammar lock, primary-path
-choice, and package freeze design.
+It should be developed operationally as a horizon-classification bridge, while
+survival / TTE remains the conceptual law-side secondary path. Full readout
+hashes and held-out label grammar are now fixed; the remaining pre-freeze work
+is model / metric / split freeze design.
 ```
