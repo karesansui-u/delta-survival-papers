@@ -16,9 +16,11 @@ Published-remote outside-workspace rerun is now also complete.
 See analysis/route_a_mixed_csp/mixed_csp_published_remote_rerun_note.md.
 True outside-group rerun is now underway:
 `analysis/route_a_mixed_csp/mixed_csp_true_outside_rerun_01_katsumasa1234.md`
-records the first returned clean success, and
+records the first returned clean success,
+`analysis/route_a_mixed_csp/mixed_csp_true_outside_rerun_02_SCRAPRO.md`
+records the second returned clean success, and
 `analysis/route_a_mixed_csp/mixed_csp_true_outside_interim_report.md` records
-the interim state (`1/3` completed, `1/1` clean success, `2` pending).
+the interim state (`2/3` completed, `2/2` clean success, `1` pending).
 ```
 
 External package boundary notes:
@@ -38,8 +40,8 @@ the recommended first G7 package because it is:
 - simpler than threshold-local q-coloring calibration history.
 
 This note is a runbook for what a clean external rerun should contain. It now
-also has an interim returned-run companion for the first true outside-group
-success.
+also has interim returned-run companions for the first two true outside-group
+successes.
 
 ## 1. Scope
 
@@ -306,30 +308,32 @@ Current outside-group rerun status:
 
 ```text
 requested outside-group reruns: 3
-returned reruns: 1
-clean returned successes: 1
-pending reruns: 2
+returned reruns: 2
+clean returned successes: 2
+pending reruns: 1
 ```
 
-Returned run:
+Returned runs:
 
 - `analysis/route_a_mixed_csp/mixed_csp_true_outside_rerun_01_katsumasa1234.md`
+- `analysis/route_a_mixed_csp/mixed_csp_true_outside_rerun_02_SCRAPRO.md`
 
 Interim report:
 
 - `analysis/route_a_mixed_csp/mixed_csp_true_outside_interim_report.md`
 
-The first returned run used a WSL/Ubuntu environment, reported no workaround,
-returned the requested artifacts, completed `12000` primary rows, reproduced all
-four support flags, and matched the official primary on checked row-level core
-fields with `0` mismatches.
+The first returned run used a WSL/Ubuntu environment. The second returned run
+used Windows 11 Home without WSL. Both reported no workaround, returned the
+requested artifacts, completed `12000` primary rows, reproduced all four support
+flags, and matched the official primary on checked row-level core fields with
+`0` mismatches.
 
 The correct current wording is:
 
 ```text
-Mixed-CSP true outside-group rerun is underway. The first returned run completed
-cleanly and reproduced the official qualitative support decision; two requested
-reruns remain pending.
+Mixed-CSP true outside-group rerun is underway. The first two returned runs
+completed cleanly and reproduced the official qualitative support decision; one
+requested rerun remains pending.
 ```
 
 ## 12. Non-Claims
@@ -345,6 +349,6 @@ It claims only:
 
 ```text
 Mixed-CSP was the cleanest first external replication package and has now opened
-G7 with one clean returned outside-group run, while the requested return set and
+G7 with two clean returned outside-group runs, while the requested return set and
 Exp43c outside-group rerun remain open.
 ```

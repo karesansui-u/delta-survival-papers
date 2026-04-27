@@ -2,8 +2,8 @@
 
 Status: active program-execution memo after Backblaze v2 same-domain
 observational support, the first C-MAPSS FD001 cross-domain loss-only primary,
-Scania horizon-bridge no-support, and the first returned Mixed-CSP true
-outside-group rerun. This is not a freeze document, not validation evidence,
+Scania horizon-bridge no-support, and the first two returned Mixed-CSP true
+outside-group reruns. This is not a freeze document, not validation evidence,
 and not a new claim source.
 
 Purpose:
@@ -19,7 +19,7 @@ The four current gaps are:
 
 1. G4 non-CSP repair-flow / maintenance-flow empirical support;
 2. cross-domain non-CSP support beyond the Backblaze drive-reliability branch;
-3. G7 independent replication beyond the first returned Mixed-CSP success;
+3. G7 independent replication beyond the first two returned Mixed-CSP successes;
 4. rival-framework stress testing, especially LDP / rate-function subsumption.
 
 ## 1. Current Starting Position
@@ -40,9 +40,9 @@ Still open:
 
 - no repair-flow empirical primary;
 - no cross-domain non-CSP empirical support beyond drive reliability;
-- first true outside-group Mixed-CSP rerun result has returned cleanly, but the
-  requested Mixed-CSP outside-rerun set is still interim (`1/3` completed,
-  `1/1` clean success, `2` pending);
+- two true outside-group Mixed-CSP rerun results have returned cleanly, but the
+  requested Mixed-CSP outside-rerun set is still interim (`2/3` completed,
+  `2/2` clean success, `1` pending);
 - no completed reader-facing rival-framework comparison.
 
 New information:
@@ -51,9 +51,9 @@ New information:
   C-MAPSS FD001;
 - it produced a weakening outcome, not a support result:
   `H1 = true`, `H2 = false`, `H3 = true`, `primary_support = false`.
-- the first returned Mixed-CSP true outside-group rerun completed cleanly:
-  `12000` primary rows, `0` checked core mismatches, all four support flags
-  true, and no reported workaround.
+- the first two returned Mixed-CSP true outside-group reruns completed cleanly:
+  each has `12000` primary rows, `0` checked core mismatches, all four support
+  flags true, and no reported workaround.
 
 ## 2. Workstream A — G4 Repair-Flow Empirical Gap
 
@@ -231,8 +231,8 @@ failed theory test and not as a hidden support result.
 
 The program now has real validated anchors, a Mixed-CSP external package, an
 Exp43c external package, published-remote outside-workspace reruns for both
-Route A packages, final handoff checklists for both, one returned Mixed-CSP
-outside-group success, and an Exp43c sender-side zip packet. What remains open
+Route A packages, final handoff checklists for both, two returned Mixed-CSP
+outside-group successes, and an Exp43c sender-side zip packet. What remains open
 is outside-group return depth, not project-side reproducibility.
 
 ### Principle
@@ -257,11 +257,11 @@ Reason:
 
 ### Next artifact
 
-The plan and final handoff artifacts now exist, and the first Mixed-CSP return
-has landed cleanly. Exp43c now also has a sender-side zip packet. The next
-clean move is the current outside-rerun flow:
+The plan and final handoff artifacts now exist, and the first two Mixed-CSP
+returns have landed cleanly. Exp43c now also has a sender-side zip packet. The
+next clean move is the current outside-rerun flow:
 
-1. absorb the two pending Mixed-CSP outside-group returns when they arrive;
+1. absorb the one pending Mixed-CSP outside-group return when it arrives;
 2. keep the Mixed-CSP report interim until the requested set is resolved;
 3. send the Exp43c outside-group zip packet.
 
@@ -436,11 +436,13 @@ Status update:
   `analysis/g4_scania_component_x_horizon_bridge/primary_report.md`.
 - the first returned Mixed-CSP true outside-group rerun is now recorded in
   `analysis/route_a_mixed_csp/mixed_csp_true_outside_rerun_01_katsumasa1234.md`;
-  it completed `12000` rows with `0` checked core mismatches, all support flags
-  true, and no reported workaround.
+- the second returned Mixed-CSP true outside-group rerun is now recorded in
+  `analysis/route_a_mixed_csp/mixed_csp_true_outside_rerun_02_SCRAPRO.md`;
+  both returned runs completed `12000` rows with `0` checked core mismatches,
+  all support flags true, and no reported workaround.
 - the Mixed-CSP true outside-group rerun set now has an interim report at
   `analysis/route_a_mixed_csp/mixed_csp_true_outside_interim_report.md`, with
-  status `1/3` completed, `1/1` clean success, `2` pending.
+  status `2/3` completed, `2/2` clean success, `1` pending.
 - the Exp43c true outside-group sender-side packet now exists via
   `analysis/exp43_qcoloring/exp43c_true_outside_send_runbook.md`,
   `analysis/exp43_qcoloring/exp43c_true_outside_send_packet_ja.md`,
@@ -451,7 +453,7 @@ Status update:
 
 So the next concrete order becomes:
 
-1. absorb the two pending Mixed-CSP true outside-group returns when they arrive;
+1. absorb the one pending Mixed-CSP true outside-group return when it arrives;
 2. send the Exp43c outside-group zip packet and wait for the first return;
 3. decide whether to open a fresh-archive C-MAPSS v2 exploration note or move
    directly toward repair-flow data acquisition;
