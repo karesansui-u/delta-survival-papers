@@ -113,9 +113,9 @@ The public bridge route has also advanced one stage:
 
 - `analysis/g4_scania_component_x_large_readout_acquisition_note.md`
 
-This closes exact local acquisition of the three large readout CSV files, so
-the remaining Scania pre-freeze work is label-grammar lock plus bridge-package
-freeze design rather than archive identity.
+This closed exact local acquisition of the three large readout CSV files and
+moved the branch from archive-identity uncertainty into pre-freeze bridge
+design.
 
 That freeze-design stage now also has a dedicated note:
 
@@ -422,9 +422,10 @@ Status update:
   current public identity at version 3 / DOI `10.5878/bnh5-ka77`, while
   keeping the tier below repair-flow primary.
 - a Scania bridge-package draft now exists as
-  `analysis/g4_scania_component_x_bridge_package_draft.md` and keeps the
-  branch at public stochastic reliability / TTE bridge level, with full
-  readout hashes and label-grammar lock as the next freeze prerequisites.
+  `analysis/g4_scania_component_x_bridge_package_draft.md`, but it is now a
+  historical design layer: the live branch has already advanced through
+  freeze, validation-smoke, and a frozen primary no-support report under
+  `analysis/g4_scania_component_x_horizon_bridge/primary_report.md`.
 
 So the next concrete order becomes:
 
