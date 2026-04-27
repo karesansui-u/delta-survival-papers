@@ -1,6 +1,8 @@
 # G4 Scania Component X Horizon-Bridge Freeze Manifest Draft
 
-Status: draft freeze manifest. Not frozen. Not validation evidence.
+Status: frozen freeze manifest. Not validation evidence by itself. The held-out
+Scania test surface may now be evaluated once with the frozen script and
+command below.
 
 Date opened: 2026-04-27
 
@@ -263,16 +265,41 @@ analysis/g4_scania_component_x_horizon_bridge/scripts/evaluate_scania_component_
 Final script SHA256:
 
 ```text
-TO_BE_FILLED_AFTER_IMPLEMENTATION
+0b0d304f93f15be5c70fe6ff7d6aa37fa80dea67cbe0c91187dbbda48206500c
 ```
 
 ## 15. Local Data Path Slot
 
-Planned local staging root:
+Frozen local staging root:
 
 ```text
 analysis/g4_scania_component_x_horizon_bridge/data/
 ```
 
-Exact frozen local paths should be filled after the files are copied into the
-package-local data root.
+Frozen local file paths used for the primary run:
+
+- `analysis/g4_scania_component_x_horizon_bridge/data/train_operational_readouts.csv`
+- `analysis/g4_scania_component_x_horizon_bridge/data/train_tte.csv`
+- `analysis/g4_scania_component_x_horizon_bridge/data/train_specifications.csv`
+- `analysis/g4_scania_component_x_horizon_bridge/data/validation_operational_readouts.csv`
+- `analysis/g4_scania_component_x_horizon_bridge/data/validation_labels.csv`
+- `analysis/g4_scania_component_x_horizon_bridge/data/validation_specifications.csv`
+- `analysis/g4_scania_component_x_horizon_bridge/data/test_operational_readouts.csv`
+- `analysis/g4_scania_component_x_horizon_bridge/data/test_labels.csv`
+- `analysis/g4_scania_component_x_horizon_bridge/data/test_specifications.csv`
+
+The three `*_operational_readouts.csv` files are package-local symlinks to the
+already exact-acquired files under:
+
+```text
+/tmp/scania_component_x_v3_exact
+```
+
+## 16. Frozen Primary Command
+
+```bash
+python3 analysis/g4_scania_component_x_horizon_bridge/scripts/evaluate_scania_component_x_horizon_bridge.py \
+  --data-dir analysis/g4_scania_component_x_horizon_bridge/data \
+  --output analysis/g4_scania_component_x_horizon_bridge/data/primary_result.json \
+  --allow-primary-run
+```
