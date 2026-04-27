@@ -376,6 +376,10 @@ Status update:
   `analysis/g4_scania_component_x_archive_feasibility_note.md` and fixes the
   current public identity at version 3 / DOI `10.5878/bnh5-ka77`, while
   keeping the tier below repair-flow primary.
+- a Scania bridge-package draft now exists as
+  `analysis/g4_scania_component_x_bridge_package_draft.md` and keeps the
+  branch at public stochastic reliability / TTE bridge level, with full
+  readout hashes and label-grammar lock as the next freeze prerequisites.
 
 So the next concrete order becomes:
 
