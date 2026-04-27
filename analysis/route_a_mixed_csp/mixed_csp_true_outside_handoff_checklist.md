@@ -12,6 +12,7 @@ Upstream package notes:
 - `analysis/route_a_mixed_csp/mixed_csp_published_remote_rerun_note.md`
 - `analysis/route_a_mixed_csp/mixed_csp_true_outside_send_template.md`
 - `analysis/route_a_mixed_csp/mixed_csp_true_outside_send_runbook.md`
+- `analysis/route_a_mixed_csp/mixed_csp_true_outside_send_packet_ja.md`
 - `analysis/route_a_mixed_csp/mixed_csp_g7_replication_report_template.md`
 
 Purpose:

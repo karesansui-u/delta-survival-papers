@@ -71,6 +71,7 @@ Optional context:
 1. `analysis/route_a_mixed_csp/mixed_csp_published_remote_rerun_note.md`
 2. `analysis/g7_true_outside_handoff_overview.md`
 3. `analysis/route_a_mixed_csp/mixed_csp_g7_replication_report_template.md`
+4. `analysis/route_a_mixed_csp/mixed_csp_true_outside_send_packet_ja.md`
 
 ## 5. Message Fill-In
 
