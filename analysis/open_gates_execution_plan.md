@@ -102,6 +102,13 @@ The next practical move is now narrower:
 This is the document to hand to a partner, internal data owner, or outside
 collaborator before any dataset-specific freeze is even discussed.
 
+That practical move now has a send-ready companion:
+
+- `analysis/g4_v2_repair_flow_request_packet.md`
+
+Use the brief as the gate definition and the request packet as the actual
+partner / local-owner outreach artifact.
+
 There is now also a narrow public-web rescan layer:
 
 - `analysis/g4_v2_public_repair_flow_rescan_2026-04-27.md`
