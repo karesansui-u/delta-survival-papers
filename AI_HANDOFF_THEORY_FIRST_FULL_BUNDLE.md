@@ -145,7 +145,7 @@ cross-domain sign-convention table.
 
 ## 8. One-Line Current Position
 
-The program has a stable structural-balance core, Lean-backed algebraic
+The program has a stable structural-persistence balance core, Lean-backed algebraic
 embeddings, two validated Route A empirical anchors beyond the SAT-only core,
 and disciplined Route C observational support. Mixed-CSP now also has an
 interim true outside-group rerun layer with two clean returned successes and one
@@ -1888,7 +1888,7 @@ Lean 対応は次の範囲に限られる。
 | Paper 3 の主張 | Lean 側の対応 | 読み |
 |---|---|---|
 | one-step balance $b_t=\ell_t-g_t$ | `StructuralPersistenceBalancePrinciple.oneStepBalance_eq_loss_sub_gain` | 定義として証明済み |
-| structural balance amount $B_n=\sum_{t<n}b_t$ | `StructuralPersistenceBalancePrinciple.cumulativeBalance_eq_sum_oneStepBalance` | finite-prefix sum として証明済み |
+| structural persistence balance amount $B_n=\sum_{t<n}b_t$ | `StructuralPersistenceBalancePrinciple.cumulativeBalance_eq_sum_oneStepBalance` | finite-prefix sum として証明済み |
 | local balance | `StructuralPersistenceBalancePrinciple.local_exponential_balance` | positive mass assumptions の下で証明済み |
 | pathwise balance kernel | `StructuralPersistenceBalancePrinciple.pathwise_balance_exponential_kernel` | positive finite trajectory assumptions の下で証明済み |
 | loss-only 回収 | `StructuralPersistenceBalancePrinciple.pureContraction_recovers_loss_only_kernel` | pure contraction / zero gain の特例として証明済み |

@@ -145,7 +145,7 @@ cross-domain sign-convention table.
 
 ## 8. One-Line Current Position
 
-The program has a stable structural-balance core, Lean-backed algebraic
+The program has a stable structural-persistence balance core, Lean-backed algebraic
 embeddings, two validated Route A empirical anchors beyond the SAT-only core,
 and disciplined Route C observational support. Mixed-CSP now also has an
 interim true outside-group rerun layer with two clean returned successes and one
@@ -1888,7 +1888,7 @@ Lean 対応は次の範囲に限られる。
 | Paper 3 の主張 | Lean 側の対応 | 読み |
 |---|---|---|
 | one-step balance $b_t=\ell_t-g_t$ | `StructuralPersistenceBalancePrinciple.oneStepBalance_eq_loss_sub_gain` | 定義として証明済み |
-| structural balance amount $B_n=\sum_{t<n}b_t$ | `StructuralPersistenceBalancePrinciple.cumulativeBalance_eq_sum_oneStepBalance` | finite-prefix sum として証明済み |
+| structural persistence balance amount $B_n=\sum_{t<n}b_t$ | `StructuralPersistenceBalancePrinciple.cumulativeBalance_eq_sum_oneStepBalance` | finite-prefix sum として証明済み |
 | local balance | `StructuralPersistenceBalancePrinciple.local_exponential_balance` | positive mass assumptions の下で証明済み |
 | pathwise balance kernel | `StructuralPersistenceBalancePrinciple.pathwise_balance_exponential_kernel` | positive finite trajectory assumptions の下で証明済み |
 | loss-only 回収 | `StructuralPersistenceBalancePrinciple.pureContraction_recovers_loss_only_kernel` | pure contraction / zero gain の特例として証明済み |
@@ -6458,7 +6458,7 @@ G4 の目的は、構造持続の収支原理が情報・論理・CSP 系に閉�
 
 | criterion | 内容 |
 |---|---|
-| C1. balance-law fit | \(b_t=\ell_t-g_t\), \(B_n\), \(R_t=e^{-Z_t}\) へ自然に写るか |
+| C1. balance-principle fit | \(b_t=\ell_t-g_t\), \(B_n\), \(R_t=e^{-Z_t}\) へ自然に写るか |
 | C2. Lean-backed | 既存 Lean theorem が reader-facing claim を支えるか |
 | C3. non-CSP distance | SAT / CSP から十分に離れて見えるか |
 | C4. theorem humility | 既存分野の強い theorem を過剰に再主張せずに済むか |
@@ -6714,7 +6714,7 @@ Failure threshold を \(B\) とすると、remaining margin は
 
 `RepairMaintenanceBalance.lean` は、この最小 skeleton を形式化している。中心対応は次の通りである。
 
-| structural-balance reading | Lean theorem |
+| structural-persistence balance reading | Lean theorem |
 |---|---|
 | \(D_n=D_0+B_n\) | `damageLevel_eq_initial_plus_cumulative_net_action` |
 | \(M_n=(B-D_0)-B_n\) | `margin_eq_initial_margin_sub_cumulative_net_action` |

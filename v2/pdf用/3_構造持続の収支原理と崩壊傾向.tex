@@ -1795,7 +1795,7 @@ Lean 側の対応
 \bottomrule\noalign{}
 \endlastfoot
 one-step balance \(b_t=\ell_t-g_t\) & \texttt{StructuralPersistenceBalancePrinciple.oneStepBalance\_eq\_loss\_sub\_gain} & 定義として証明済み \\
-structural balance amount \(B_n=\sum_{t<n}b_t\) & \texttt{StructuralPersistenceBalancePrinciple.cumulativeBalance\_eq\_sum\_oneStepBalance} & finite-prefix sum として証明済み \\
+structural persistence balance amount \(B_n=\sum_{t<n}b_t\) & \texttt{StructuralPersistenceBalancePrinciple.cumulativeBalance\_eq\_sum\_oneStepBalance} & finite-prefix sum として証明済み \\
 local balance & \texttt{StructuralPersistenceBalancePrinciple.local\_exponential\_balance} & positive mass assumptions の下で証明済み \\
 pathwise balance kernel & \texttt{StructuralPersistenceBalancePrinciple.pathwise\_balance\_exponential\_kernel} & positive finite trajectory assumptions の下で証明済み \\
 loss-only 回収 & \texttt{StructuralPersistenceBalancePrinciple.pureContraction\_recovers\_loss\_only\_kernel} & pure contraction / zero gain の特例として証明済み \\
