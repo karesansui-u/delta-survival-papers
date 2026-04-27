@@ -10,6 +10,8 @@ Upstream package notes:
 - `analysis/g7_mixed_csp_replication_package_plan.md`
 - `analysis/route_a_mixed_csp/mixed_csp_external_rerun_package.md`
 - `analysis/route_a_mixed_csp/mixed_csp_published_remote_rerun_note.md`
+- `analysis/route_a_mixed_csp/mixed_csp_true_outside_send_template.md`
+- `analysis/route_a_mixed_csp/mixed_csp_g7_replication_report_template.md`
 
 Purpose:
 
@@ -75,12 +77,14 @@ Send the following files and nothing more unless requested:
 11. `analysis/route_a_mixed_csp/mixed_csp_external_rerun_package.md`
 12. `analysis/route_a_mixed_csp/mixed_csp_true_outside_handoff_checklist.md`
 13. `requirements.txt`
+14. `analysis/route_a_mixed_csp/mixed_csp_true_outside_send_template.md`
 
 Optional context only:
 
 1. `analysis/route_a_mixed_csp/mixed_csp_audit_replay_note.md`
 2. `analysis/route_a_mixed_csp/mixed_csp_level2_rerun_note.md`
 3. `analysis/route_a_mixed_csp/mixed_csp_published_remote_rerun_note.md`
+4. `analysis/route_a_mixed_csp/mixed_csp_g7_replication_report_template.md`
 
 Do not send:
 

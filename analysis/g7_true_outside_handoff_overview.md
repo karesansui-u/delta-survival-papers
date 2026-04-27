@@ -71,6 +71,8 @@ For Mixed-CSP, use:
 
 - `analysis/route_a_mixed_csp/mixed_csp_external_rerun_package.md`
 - `analysis/route_a_mixed_csp/mixed_csp_true_outside_handoff_checklist.md`
+- `analysis/route_a_mixed_csp/mixed_csp_true_outside_send_template.md`
+- `analysis/route_a_mixed_csp/mixed_csp_g7_replication_report_template.md`
 
 For Exp43c, use:
 

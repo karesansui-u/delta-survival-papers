@@ -218,6 +218,28 @@ G4 v1 の reader-facing claim は、次の Lean files に対応する。
 
 第四に、G4 v2 として repair / maintenance balance を追加する。これにより、非CSP側でも補償流 \(g_t\) が単なる比喩ではなく、repair event、maintenance schedule、replacement、redundancy activation などの operational variable として読めることを示す。
 
+9.1 条件つき law-side bridge
+
+本補論の strongest safe reading は、non-CSP 一般で universal law を宣言することではない。より正確には、queueing / Foster-Lyapunov drift と repairable stochastic system の一部に対して、構造収支律を **条件つき law-side bridge** として提示できる、ということである。
+
+この bridge が成立する最小条件は三つである。
+
+1. 自然な構造量または測度 \(m\) が事前固定されること。
+2. 補償流 \(g_t\) が domain-native な変数として観測できること。
+3. collapse / hitting boundary が明示的仮定の下で読めること。
+
+これに照らすと、本補論の anchors は次のように分かれる。
+
+| anchor | gate status |
+|---|---|
+| queueing / Foster-Lyapunov drift | conditional law-side bridge |
+| repair / maintenance balance | near-bridge open-system anchor |
+| serial reliability | loss-only control anchor |
+| constant-fraction decay | loss-only control anchor |
+| secondary skeletons | coverage only |
+
+重要なのは、この bridge claim が既存理論を置き換えるという意味ではないことである。queueing / reliability 側の theorem assumptions は保持される。本補論が言うのは、構造収支律の \(a_t,A_n,R_t,\ell_t,g_t\) という語彙が、それらの理論内部に自然に現れる、という限定的な主張である。
+
 
 10. 本補論が与えないもの
 
@@ -237,6 +259,8 @@ G4 v1 の reader-facing claim は、次の Lean files に対応する。
 \begin{quote}
 構造収支律は、非CSP古典例のうち、少なくとも queueing / Foster-Lyapunov drift に対して、\(a_t,A_n,R_t,\ell_t,g_t\) の最小代数的埋め込みを持つ。Serial reliability と constant-fraction decay は、同じ log-ratio exponential kernel が loss-only non-CSP 系にも現れることを示す control anchors である。Repair / maintenance balance は、補償流 \(g_t\) が非CSP open-system 系でも operational variable として読めることを示す G4 v2 anchor である。
 \end{quote}
+
+この statement を一歩だけ強く言い直すなら、queueing / Foster-Lyapunov drift は current program における最初の **conditional law-side bridge** であり、repair / maintenance balance はその open-system semantic range を広げる near-bridge anchor である。
 
 
 11. G4 v2: repair / maintenance balance
