@@ -1,9 +1,10 @@
 # Open Gates Execution Plan
 
 Status: active program-execution memo after Backblaze v2 same-domain
-observational support and the first C-MAPSS FD001 cross-domain loss-only
-primary. This is not a freeze document, not validation evidence, and not a
-new claim source.
+observational support, the first C-MAPSS FD001 cross-domain loss-only primary,
+Scania horizon-bridge no-support, and the first returned Mixed-CSP true
+outside-group rerun. This is not a freeze document, not validation evidence,
+and not a new claim source.
 
 Purpose:
 
@@ -18,7 +19,7 @@ The four current gaps are:
 
 1. G4 non-CSP repair-flow / maintenance-flow empirical support;
 2. cross-domain non-CSP support beyond the Backblaze drive-reliability branch;
-3. G7 independent replication;
+3. G7 independent replication beyond the first returned Mixed-CSP success;
 4. rival-framework stress testing, especially LDP / rate-function subsumption.
 
 ## 1. Current Starting Position
@@ -39,7 +40,9 @@ Still open:
 
 - no repair-flow empirical primary;
 - no cross-domain non-CSP empirical support beyond drive reliability;
-- no true outside-group rerun result yet;
+- first true outside-group Mixed-CSP rerun result has returned cleanly, but the
+  requested Mixed-CSP outside-rerun set is still interim (`1/3` completed,
+  `1/1` clean success, `2` pending);
 - no completed reader-facing rival-framework comparison.
 
 New information:
@@ -48,6 +51,9 @@ New information:
   C-MAPSS FD001;
 - it produced a weakening outcome, not a support result:
   `H1 = true`, `H2 = false`, `H3 = true`, `primary_support = false`.
+- the first returned Mixed-CSP true outside-group rerun completed cleanly:
+  `12000` primary rows, `0` checked core mismatches, all four support flags
+  true, and no reported workaround.
 
 ## 2. Workstream A — G4 Repair-Flow Empirical Gap
 
@@ -250,12 +256,12 @@ Reason:
 
 ### Next artifact
 
-The plan and final handoff artifacts now exist. The next clean move is the
-actual send order:
+The plan and final handoff artifacts now exist, and the first Mixed-CSP return
+has landed cleanly. The next clean move is the current outside-rerun flow:
 
-1. send Mixed-CSP first;
-2. wait for the outside-group rerun outcome;
-3. send Exp43c second.
+1. absorb the two pending Mixed-CSP outside-group returns when they arrive;
+2. keep the Mixed-CSP report interim until the requested set is resolved;
+3. move toward Exp43c outside-group handoff in parallel.
 
 ## 5. Workstream D — Rival-Framework Stress Test
 
@@ -426,10 +432,17 @@ Status update:
   historical design layer: the live branch has already advanced through
   freeze, validation-smoke, and a frozen primary no-support report under
   `analysis/g4_scania_component_x_horizon_bridge/primary_report.md`.
+- the first returned Mixed-CSP true outside-group rerun is now recorded in
+  `analysis/route_a_mixed_csp/mixed_csp_true_outside_rerun_01_katsumasa1234.md`;
+  it completed `12000` rows with `0` checked core mismatches, all support flags
+  true, and no reported workaround.
+- the Mixed-CSP true outside-group rerun set now has an interim report at
+  `analysis/route_a_mixed_csp/mixed_csp_true_outside_interim_report.md`, with
+  status `1/3` completed, `1/1` clean success, `2` pending.
 
 So the next concrete order becomes:
 
-1. true outside Mixed-CSP rerun from the published package;
+1. absorb the two pending Mixed-CSP true outside-group returns when they arrive;
 2. true outside Exp43c rerun from the published handoff package;
 3. decide whether to open a fresh-archive C-MAPSS v2 exploration note or move
    directly toward repair-flow data acquisition;

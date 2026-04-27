@@ -14,7 +14,11 @@ Fresh-clone outside-workspace rehearsal is now also complete.
 See analysis/route_a_mixed_csp/mixed_csp_outside_workspace_rerun_note.md.
 Published-remote outside-workspace rerun is now also complete.
 See analysis/route_a_mixed_csp/mixed_csp_published_remote_rerun_note.md.
-External independent rerun remains open.
+True outside-group rerun is now underway:
+`analysis/route_a_mixed_csp/mixed_csp_true_outside_rerun_01_katsumasa1234.md`
+records the first returned clean success, and
+`analysis/route_a_mixed_csp/mixed_csp_true_outside_interim_report.md` records
+the interim state (`1/3` completed, `1/1` clean success, `2` pending).
 ```
 
 External package boundary notes:
@@ -33,7 +37,9 @@ the recommended first G7 package because it is:
 - less interpretation-heavy than same-domain observational branches;
 - simpler than threshold-local q-coloring calibration history.
 
-This note is a runbook for what a clean external rerun should contain.
+This note is a runbook for what a clean external rerun should contain. It now
+also has an interim returned-run companion for the first true outside-group
+success.
 
 ## 1. Scope
 
@@ -166,7 +172,9 @@ Actions:
 3. run the held-out analysis;
 4. compare to the official reference.
 
-This is the preferred first true replication target.
+This was the preferred first true replication target. As of the first returned
+outside-group run, this target is no longer merely send-ready: it has one clean
+outside-group success and two requested returns still pending.
 
 ## 6. Clean Execution Order
 
@@ -292,7 +300,39 @@ deterministic Route A primary -> harder Route A threshold-local primary ->
 observational same-domain branch
 ```
 
-## 11. Non-Claims
+## 11. Interim True Outside-Group Status
+
+Current outside-group rerun status:
+
+```text
+requested outside-group reruns: 3
+returned reruns: 1
+clean returned successes: 1
+pending reruns: 2
+```
+
+Returned run:
+
+- `analysis/route_a_mixed_csp/mixed_csp_true_outside_rerun_01_katsumasa1234.md`
+
+Interim report:
+
+- `analysis/route_a_mixed_csp/mixed_csp_true_outside_interim_report.md`
+
+The first returned run used a WSL/Ubuntu environment, reported no workaround,
+returned the requested artifacts, completed `12000` primary rows, reproduced all
+four support flags, and matched the official primary on checked row-level core
+fields with `0` mismatches.
+
+The correct current wording is:
+
+```text
+Mixed-CSP true outside-group rerun is underway. The first returned run completed
+cleanly and reproduced the official qualitative support decision; two requested
+reruns remain pending.
+```
+
+## 12. Non-Claims
 
 This note does not claim:
 
@@ -304,6 +344,7 @@ This note does not claim:
 It claims only:
 
 ```text
-Mixed-CSP is the cleanest first external replication package and should be used
-to open G7 before more ambiguous observational branches.
+Mixed-CSP was the cleanest first external replication package and has now opened
+G7 with one clean returned outside-group run, while the requested return set and
+Exp43c outside-group rerun remain open.
 ```
