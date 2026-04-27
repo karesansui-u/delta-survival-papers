@@ -65,4 +65,6 @@ Latest OSF mirror (Bernoulli-CSP links are the v1.1 archive snapshot):
 - Lean formalization: [`lean/readme.md`](lean/readme.md)
 - Reader-facing theorem map: [`lean/PAPER_MAPPING.md`](lean/PAPER_MAPPING.md)
 
+Mixed-CSP の true outside-group rerun は現在 `2/3` 返送済みで、2 名の外部実行者がそれぞれ `12000` 行 primary run、`0` checked core mismatches、support flags 全 true を返している。現時点では interim status であり、詳細は [`analysis/route_a_mixed_csp/mixed_csp_true_outside_interim_report.md`](analysis/route_a_mixed_csp/mixed_csp_true_outside_interim_report.md) を参照。
+
 現在の Lean 側は `134 Survival modules`、`sorry = 0`、`axiom = 0` の状態で、最小形式、弱依存、粗視化、停止時刻崩壊、有限状態 Markov 例、SAT/k-SAT Chernoff-KL chain、固定割当 NAE-SAT / XOR-SAT exposure instance、固定 coloring の q-coloring edge exposure instance、finite-alphabet forbidden-pattern CSP instance、hypergraph-coloring specialization、multi-forbidden-pattern witness bridge、exactly-one-SAT witness specialization、exactly-`r` cardinality-SAT family specialization、at-most / at-least threshold cardinality-SAT specialization、さらに Route A 非CSP skeletons（指数型、線形過負荷型、累積容量型、臨界パラメータ型）までを含む。SAT/k-SAT の finite-horizon / iid Bernoulli bad-event exposure は **SAT chain v1.0**、横断的な Bernoulli-CSP 層は **Bernoulli CSP universality v1.2** としてローカルに凍結している。OSF mirror は現時点では v1.1 archive snapshot を指している。

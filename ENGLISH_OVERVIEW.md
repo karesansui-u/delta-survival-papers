@@ -103,3 +103,5 @@ The current claim is narrower:
 - the continual-learning results show limits of a specific update regime rather than all possible training regimes
 
 The framework only has empirical bite when the target structure, measure, stage boundaries, and time horizon are fixed in advance in a non-trivial and representationally stable way. If those are allowed to vary post hoc, the same mathematics can be made to fit arbitrary finite monotone sequences and the theory becomes vacuous. The value of the framework, at this stage, is that it offers a common language connecting theory, experiments, and architecture without hiding that scope condition.
+
+As of 2026-04-27, the Mixed-CSP package has also been rerun by two independent outside executors. Both returned clean 12,000-row primary runs with zero checked core-field mismatches and all support flags true. This is still an interim outside-group status (`2/3` requested returns completed), not a claim that the full replication program is closed.
