@@ -372,6 +372,10 @@ Status update:
   `analysis/g4_v2_public_repair_flow_rescan_2026-04-27.md` and currently
   points to Scania Component X as the strongest public stochastic reliability
   bridge candidate.
+- an exact Scania feasibility note now exists as
+  `analysis/g4_scania_component_x_archive_feasibility_note.md` and fixes the
+  current public identity at version 3 / DOI `10.5878/bnh5-ka77`, while
+  keeping the tier below repair-flow primary.
 
 So the next concrete order becomes:
 
