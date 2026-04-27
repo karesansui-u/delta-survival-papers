@@ -5,6 +5,10 @@ Date: 2026-04-27
 This folder contains the current distribution-facing Exp43c true outside-group
 rerun bundle.
 
+Send status: `exp43c_true_outside_bundle_1f05ff13211a.zip` has been sent.
+Do not overwrite this bundle in place. If a correction is needed, create a new
+commit-specific bundle with a new filename and sha256.
+
 ## Current Distribution-Facing Bundle
 
 - file:
@@ -117,4 +121,4 @@ required if `py -3` points to Python 3.10 or later.
 
 Do not rebuild, replace, or resend another Exp43c zip under this directory
 without first creating a new commit-specific filename and updating this locked
-bundle note.
+bundle note. The sent bundle is also recorded in `SENT_ARCHIVE_NOTE.md`.
