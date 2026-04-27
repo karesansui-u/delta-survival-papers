@@ -131,8 +131,7 @@ The Scania public bridge route now also has the first package-facing drafts:
 - `analysis/g4_scania_component_x_horizon_bridge/freeze_manifest_draft.md`
 
 These fix the censored-as-class-0 rule, the baseline ladder, the compressed
-`D_pc1` primary family, and the intended multiclass log-loss evaluation path,
-while still stopping short of a frozen script or execution package.
+`D_pc1` primary family, and the intended multiclass log-loss evaluation path.
 
 That gap is now partly closed by:
 
@@ -140,9 +139,12 @@ That gap is now partly closed by:
 - `analysis/g4_scania_component_x_horizon_bridge/validation_smoke_note.md`
 
 The first Scania public bridge script now exists, `--metadata-only` passes,
-and `--validation-smoke` passes without recording validation metrics or loading
-the held-out test surface. The route is now at pre-freeze execution readiness,
-not at frozen primary execution.
+and `--validation-smoke` passes without recording validation metrics or held-out
+test-label distribution. The package was then frozen and evaluated once on the
+held-out test surface. The first frozen Scania horizon-classification package
+did not pass H1, though it did pass H2 against the wide raw-readout baseline,
+so the current route is now a recorded public bridge no-support outcome rather
+than an open pre-freeze branch.
 
 There is now also a narrow public-web rescan layer:
 
