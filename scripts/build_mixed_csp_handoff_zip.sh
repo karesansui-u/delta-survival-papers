@@ -59,7 +59,23 @@ This bundle was exported from the exact published HEAD recorded above.
 EOF
 
 rm -f "$ZIP_PATH"
-(cd "$TMPDIR" && zip -qr "$ROOT/$ZIP_PATH" "$BUNDLE_DIR_NAME")
+ROOT_FOR_ZIP="$ROOT" TMPDIR_FOR_ZIP="$TMPDIR" BUNDLE_FOR_ZIP="$BUNDLE_DIR_NAME" ZIP_PATH_FOR_ZIP="$ZIP_PATH" python3 - <<'PY'
+import os
+from pathlib import Path
+import zipfile
+
+root = Path(os.environ["ROOT_FOR_ZIP"])
+tmpdir = Path(os.environ["TMPDIR_FOR_ZIP"])
+bundle = os.environ["BUNDLE_FOR_ZIP"]
+zip_path = Path(os.environ["ZIP_PATH_FOR_ZIP"])
+stage_root = tmpdir / bundle
+
+with zipfile.ZipFile(root / zip_path, "w", compression=zipfile.ZIP_DEFLATED) as zf:
+    zf.write(stage_root, arcname=bundle)
+    for path in sorted(stage_root.rglob("*")):
+        arcname = Path(bundle) / path.relative_to(stage_root)
+        zf.write(path, arcname=arcname)
+PY
 
 shasum -a 256 "$ZIP_PATH" > "$SHA_PATH"
 
