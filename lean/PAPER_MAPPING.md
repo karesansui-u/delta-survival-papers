@@ -95,7 +95,7 @@ machine-checked と読む。
 | Paper 3 claim | Lean entry point | Underlying theorem / object | Status |
 |---|---|---|---|
 | one-step balance \(b_t=\ell_t-g_t\) | `StructuralPersistenceBalancePrinciple.oneStepBalance_eq_loss_sub_gain` | `GeneralStateDynamics.stepNetAction` | proven by definition |
-| structural balance amount \(B_n=\sum_{t<n}b_t\) | `StructuralPersistenceBalancePrinciple.cumulativeBalance_eq_sum_oneStepBalance` | `GeneralStateDynamics.cumulativeNetAction` | proven by definition |
+| structural persistence balance amount \(B_n=\sum_{t<n}b_t\) | `StructuralPersistenceBalancePrinciple.cumulativeBalance_eq_sum_oneStepBalance` | `GeneralStateDynamics.cumulativeNetAction` | proven by definition |
 | local balance \(m(V^{t+1})=m(V^t)e^{-b_t}\) | `StructuralPersistenceBalancePrinciple.local_exponential_balance` | `feasibleMass_succ_eq_mass_mul_exp_neg_stepNetAction` | proven under positivity |
 | pathwise balance kernel \(m(V^n)=m(V^0)e^{-B_n}\) | `StructuralPersistenceBalancePrinciple.pathwise_balance_exponential_kernel` | `feasibleMass_eq_initial_mul_exp_neg_cumulativeNetAction` | proven under positive finite trajectory assumptions |
 | loss-only recovery | `StructuralPersistenceBalancePrinciple.pureContraction_recovers_loss_only_kernel` | `feasibleMass_eq_initial_mul_exp_neg_cumulativeLoss_of_pureContraction` | proven for pure contraction / zero gain |

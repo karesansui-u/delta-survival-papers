@@ -18,7 +18,7 @@ balance principle paper into a bounded formal-mapping draft:
 Foster-Lyapunov / queueing drift
   -> structural load Z_t
   -> one-step balance b_t = Z_{t+1} - Z_t
-  -> structural balance amount B_n = Z_n - Z_0
+  -> structural-persistence balance amount B_n = Z_n - Z_0
   -> relative maintenance R_t = exp(-Z_t)
   -> local balance R_{t+1} = R_t exp(-b_t)
 ```
@@ -35,7 +35,7 @@ grid calibration immediately risks looking like calibration chase.
 G6-c work has a different role:
 
 1. It does not depend on random-CSP threshold-window tuning.
-2. It clarifies how structural balance relates to existing stability theory.
+2. It clarifies how structural-persistence balance relates to existing stability theory.
 3. It helps choose future G4 non-CSP anchors, such as queueing, reliability,
    branching, or population dynamics.
 
@@ -97,7 +97,7 @@ Then:
   R_t e^{-b_t}.
 \]
 
-This is the same algebraic shape as the local structural balance identity.
+This is the same algebraic shape as the local structural-persistence balance identity.
 
 If one wants the two-flow sign convention of Paper §2.2, decompose:
 

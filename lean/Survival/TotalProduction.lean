@@ -47,7 +47,7 @@ def cumulativeRepairSlack {P : ProblemSpec X} (B : RepairBudget P) (n : ℕ) : �
 def stepTotalProduction {P : ProblemSpec X} (B : RepairBudget P) (t : ℕ) : ℝ :=
   stepNetAction P t + B.stepCost t
 
-/-- Cumulative total production `Σ_n = A_n + C_n`. -/
+/-- Cumulative total production `Σ_n = B_n + C_n`. -/
 def cumulativeTotalProduction {P : ProblemSpec X} (B : RepairBudget P) (n : ℕ) : ℝ :=
   cumulativeNetAction P n + cumulativeCost B n
 

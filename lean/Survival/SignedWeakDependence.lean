@@ -3,28 +3,28 @@ import Mathlib.Data.Real.Basic
 import Survival.WeakDependence
 
 /-!
-Signed Weak Dependence — Robust Exponential Bounds for Signed Action
-符号付き弱依存 — 符号付き作用に対する指数境界
+Signed Weak Dependence — Robust Exponential Bounds for Signed Balance
+符号付き弱依存 — 符号付き収支量に対する指数境界
 
-This module formalizes a cautious signed-action extension of
+This module formalizes a cautious signed-balance extension of
 `Survival.WeakDependence`.
 
-For a signed reference action `A_ref`, the natural perturbation scale is
-`ρ * |A_ref|`, not `ρ * A_ref`, because the latter changes sign when
-`A_ref < 0`.
+For a signed reference balance `B_ref`, the natural perturbation scale is
+`ρ * |B_ref|`, not `ρ * B_ref`, because the latter changes sign when
+`B_ref < 0`.
 
-If the effective action `A_eff` stays within that absolute envelope,
+If the effective balance `B_eff` stays within that absolute envelope,
 
-  |A_eff - A_ref| ≤ ρ * |A_ref|,
+  |B_eff - B_ref| ≤ ρ * |B_ref|,
 
-then the survival factor `exp (-A_eff)` is sandwiched between the signed
+then the survival factor `exp (-B_eff)` is sandwiched between the signed
 endpoints
 
-  exp (-(A_ref + ρ |A_ref|)) ≤ exp (-A_eff) ≤ exp (-(A_ref - ρ |A_ref|)).
+  exp (-(B_ref + ρ |B_ref|)) ≤ exp (-B_eff) ≤ exp (-(B_ref - ρ |B_ref|)).
 
-When `A_ref ≥ 0`, these reduce to the usual nonnegative bracket
+When `B_ref ≥ 0`, these reduce to the usual nonnegative bracket
 
-  exp (-(A_ref * (1 + ρ))) ≤ exp (-A_eff) ≤ exp (-(A_ref * (1 - ρ))).
+  exp (-(B_ref * (1 + ρ))) ≤ exp (-B_eff) ≤ exp (-(B_ref * (1 - ρ))).
 
 This is the mathematically safe form appropriate to the supplement's note
 that the signed weak-dependence extension is not identical to the
@@ -37,7 +37,7 @@ namespace Survival.SignedWeakDependence
 
 noncomputable section
 
-/-- Survival factor induced by a signed net action. -/
+/-- Survival factor induced by a signed balance amount. -/
 def signedSurvival (A : ℝ) : ℝ :=
   exp (-A)
 

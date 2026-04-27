@@ -92,7 +92,7 @@ There is no direct table or variable corresponding to:
 - rollback / redundancy activation;
 - any other explicit \(g_t\) event.
 
-For a structural-balance reading, the correct operational interpretation is:
+For a structural-persistence balance reading, the correct operational interpretation is:
 
 \[
 g_t = 0

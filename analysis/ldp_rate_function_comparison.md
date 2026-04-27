@@ -5,7 +5,7 @@ new empirical claim source.
 
 Purpose:
 
-Clarify how much of the structural-persistence balance / structural-persistence program is
+Clarify how much of the structural persistence balance principle program is
 already captured by large-deviation / rate-function machinery, and where the
 program still claims independent value.
 
@@ -82,7 +82,7 @@ across domains.
 ```
 
 That defense is strongest when it remains modest. The note should not argue
-that structural balance "goes beyond" LDP in asymptotic power. It should argue
+that structural-persistence balance "goes beyond" LDP in asymptotic power. It should argue
 that it does a different job.
 
 ## 4. Where LDP Is Clearly Stronger
@@ -106,7 +106,7 @@ Structural balance replaces LDP.
 It should say:
 
 ```text
-Route A often uses LDP-like mathematics locally, but structural balance asks a
+Route A often uses LDP-like mathematics locally, but structural-persistence balance asks a
 broader operational question: which structure is being maintained, what counts
 as loss or repair, how strong is the claim, and how is the coordinate tested?
 ```
@@ -180,7 +180,7 @@ move in this direction, but they do not yet end the objection.
 The clean current wording is:
 
 ```text
-On the Route A side, structural balance makes substantial use of classical
+On the Route A side, structural-persistence balance makes substantial use of classical
 exponential-rate machinery and should not be advertised as replacing large
 deviation theory. Its independent value lies in the operational discipline of
 pre-fixing maintained structure, separating loss from compensation, assigning
@@ -204,14 +204,14 @@ Recommended row for a comparison table:
 
 | Existing framework | Current status | Relation |
 |---|---|---|
-| Large deviation / rate-function machinery | local G6-b / partial Route A overlap | supplies much of the exponential tail mathematics; structural balance adds operational structure selection, loss/repair split, and evidence-tier discipline |
+| Large deviation / rate-function machinery | local G6-b / partial Route A overlap | supplies much of the exponential tail mathematics; structural-persistence balance adds operational structure selection, loss/repair split, and evidence-tier discipline |
 
 Avoid stronger wording such as:
 
 ```text
 Structural balance strictly generalizes LDP.
 Structural balance explains LDP.
-LDP is only a special case of structural balance.
+LDP is only a special case of structural-persistence balance.
 ```
 
 None of those claims is currently justified.
@@ -238,7 +238,7 @@ This note does not claim:
 
 1. LDP already defeats the structural-persistence balance program;
 2. Route A evidence is invalid because Chernoff / KL appears there;
-3. structural balance has no value if it reuses standard exponential-rate
+3. structural-persistence balance has no value if it reuses standard exponential-rate
    mathematics;
 4. non-CSP and observational anchors are irrelevant to the LDP question;
 5. the program has fully answered the rival-framework objection.

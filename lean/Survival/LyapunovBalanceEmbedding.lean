@@ -12,7 +12,7 @@ structural persistence balance principle:
 
 * a Lyapunov/load sequence `Z_t`,
 * its one-step balance `b_t = Z_{t+1} - Z_t`,
-* the structural balance amount `B_n = ∑_{t<n} b_t = Z_n - Z_0`,
+* the structural persistence balance amount `B_n = ∑_{t<n} b_t = Z_n - Z_0`,
 * the exponential maintenance coordinate `R_t = exp (-Z_t)`, with
   `R_{t+1} = R_t * exp (-b_t)`.
 
@@ -28,7 +28,7 @@ namespace Survival.LyapunovBalanceEmbedding
 
 noncomputable section
 
-/-- A one-step Lyapunov/load increment, read as one-step structural balance. -/
+/-- A one-step Lyapunov/load increment, read as one-step structural persistence balance. -/
 def increment (Z : ℕ → ℝ) (t : ℕ) : ℝ :=
   Z (t + 1) - Z t
 
@@ -66,7 +66,7 @@ theorem repairFlow_nonneg (Z : ℕ → ℝ) (t : ℕ) :
   unfold repairFlow
   exact le_max_right (-(increment Z t)) 0
 
-/-- The structural balance amount telescopes to final load minus initial load. -/
+/-- The structural persistence balance amount telescopes to final load minus initial load. -/
 theorem cumulativeAction_eq_load_diff (Z : ℕ → ℝ) (n : ℕ) :
     cumulativeAction Z n = Z n - Z 0 := by
   induction n with
@@ -122,7 +122,7 @@ theorem queue_increment_eq_excessDemand
   rw [Survival.QueueStability.backlog_succ]
   ring
 
-/-- Queue structural balance amount is the deterministic cumulative overload loss. -/
+/-- Queue structural persistence balance amount is the deterministic cumulative overload loss. -/
 theorem queue_cumulativeAction_eq_cumulativeOverloadLoss
     (Q : Survival.QueueStability.System) (initial : ℝ) (n : ℕ) :
     cumulativeAction (queueLoad Q initial) n =

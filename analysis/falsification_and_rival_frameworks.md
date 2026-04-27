@@ -4,8 +4,8 @@ Status: working stress-test memo, not a new evidence source.
 
 Purpose:
 
-This memo records how the structural persistence / structural balance-principle
-program could still be overturned or substantially weakened after several
+This memo records how the structural persistence balance principle program
+could still be overturned or substantially weakened after several
 domain anchors succeed. Its role is to prevent the program from drifting into
 an unfalsifiable "unified language" that can always reinterpret failures as
 domain-specific problems.
@@ -168,7 +168,7 @@ The program should not claim that every dynamical or structural phenomenon is
 best described by a scalar loss-repair balance. The following systems should be
 treated as scope tests, not as automatic failures.
 
-| System type | Why structural balance may be silent | Correct program response |
+| System type | Why structural-persistence balance may be silent | Correct program response |
 |---|---|---|
 | Critical phase transitions | Singular behavior, order-parameter discontinuity, symmetry breaking, or critical exponents may be the main object, not monotone loss / repair | Do not claim to explain critical exponents unless a concrete order parameter and measure are fixed |
 | Hopf bifurcation / limit cycles | \(b_t\) may oscillate and \(B_n\) may remain bounded while the important structure is a periodic orbit | Treat as outside finite-prefix collapse / recovery unless a maintained cycle basin is pre-fixed |

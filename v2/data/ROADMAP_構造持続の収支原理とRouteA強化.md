@@ -170,7 +170,7 @@ Interpretation:
 - $\ell_t$: loss flow / 構造損失流。
 - $g_t$: compensation, repair, support, resource flow / 補償・修復・資源流。
 - $b_t$: one-step balance / 一段収支。
-- $B_n$: structural balance amount / 構造持続収支量。
+- $B_n$: structural-persistence balance amount / 構造持続収支量。
 
 Minimal sections:
 

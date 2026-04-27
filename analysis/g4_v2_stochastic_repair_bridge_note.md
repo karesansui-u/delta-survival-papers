@@ -113,7 +113,7 @@ This is not yet an optimal maintenance theorem. It is the sign-level bridge.
 
 If \(b_t\) has bounded increments, or a suitable MGF / concentration condition
 holds, then finite-horizon collapse probabilities can be bounded through the
-structural balance amount \(B_n\).
+structural persistence balance amount \(B_n\).
 
 Reader-facing meaning:
 
