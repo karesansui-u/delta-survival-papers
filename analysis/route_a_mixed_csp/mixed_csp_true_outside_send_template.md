@@ -20,6 +20,10 @@ Please clone the current published repository HEAD at commit
 package using separate outputs only. Please do not overwrite the official
 artifacts.
 
+If git-based clone is inconvenient, an equivalent zip bundle exported from that
+exact published HEAD may be used instead, as long as the message also states
+the exact commit hash and zip sha256.
+
 The exact package instructions are:
 - analysis/route_a_mixed_csp/mixed_csp_external_rerun_package.md
 - analysis/route_a_mixed_csp/mixed_csp_true_outside_handoff_checklist.md

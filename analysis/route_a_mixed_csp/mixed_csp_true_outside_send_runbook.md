@@ -10,6 +10,23 @@ Purpose:
 Turn the existing Mixed-CSP handoff bundle into an actual outbound send without
 guesswork about hash capture, attachment identity, or message wording.
 
+Preferred handoff route:
+
+```text
+clone the published repository from the exact current HEAD
+```
+
+Acceptable practical fallback:
+
+```text
+send a zip bundle exported from that exact published HEAD
+```
+
+The repository-clone route is slightly cleaner for audit. The zip route is
+often easier for an outside replicator who does not usually work with git. If
+the zip is exported from the exact published HEAD and that commit hash is
+recorded in the message, the rerun still counts as an outside-project rerun.
+
 ## 1. Inputs
 
 Use these checked-in artifacts:
@@ -73,6 +90,34 @@ Optional context:
 3. `analysis/route_a_mixed_csp/mixed_csp_g7_replication_report_template.md`
 4. `analysis/route_a_mixed_csp/mixed_csp_true_outside_send_packet_ja.md`
 
+## 4A. Zip Fallback Bundle
+
+If the recipient is uncomfortable with git, create a zip bundle directly from
+the exact published HEAD:
+
+```bash
+SEND_COMMIT_HASH=$(git rev-parse --short=12 HEAD)
+git archive \
+  --format=zip \
+  --output "mixed_csp_true_outside_bundle_${SEND_COMMIT_HASH}.zip" \
+  HEAD \
+  analysis/route_a_mixed_csp \
+  requirements.txt
+shasum -a 256 "mixed_csp_true_outside_bundle_${SEND_COMMIT_HASH}.zip"
+```
+
+When using the zip route, include all of the following in the outbound
+message:
+
+1. exact published commit hash;
+2. zip filename;
+3. zip sha256;
+4. a statement that the zip was exported from that published HEAD without local
+   edits.
+
+The recipient can then unzip the bundle and run the same command order listed
+in `mixed_csp_external_rerun_package.md`.
+
 ## 5. Message Fill-In
 
 Use `mixed_csp_true_outside_send_template.md` and replace:
@@ -87,6 +132,8 @@ Keep these points unchanged:
 4. official artifacts must not be overwritten;
 5. return bundle should include hashes, row counts, support flags, held-out
    summary, environment note, and anomaly notes.
+6. if zip fallback is used, say explicitly that the zip was exported from the
+   published HEAD named in the message.
 
 ## 6. Local Send Log
 
