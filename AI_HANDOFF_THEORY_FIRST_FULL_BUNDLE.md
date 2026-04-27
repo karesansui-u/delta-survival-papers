@@ -2806,7 +2806,7 @@ Exp41 は、この結果が GPT-4.1-mini 固有であるかどうかを調べる
 
 したがって、Exp41 が支持する横断的な不変量は、subtle と structural の固定された順序ではない。より保守的な結論は、明示的に範囲づけられた scoped conflict が structural contradiction より高い論理一貫性維持率を保つ、という方向が、GPT-4.1-mini、GPT-4.1-nano、Gemini 3.1 Flash Lite の三モデルで観測された、という点である。scope-as-repair はモデル横断的に支持されたが、subtle / structural の相対的な構造消耗量と失敗様式はモデル依存である。
 
-なお、Exp40/42/41 は一つの算術課題ファミリにおける前向き検査であり、タスク横断の普遍性を単独で示すものではない。Exp42 は instruction-following 反論を弱め、scope-as-repair の内部に attribution、時間・データセット範囲、明示的命令という階層があることを GPT-4.1-mini 上で示したが、この階層が他モデルや他課題で同じ形を保つとはまだ主張しない。Exp41 は scoped-vs-structural の width を確認した一方、subtle / structural の ordering がモデル依存であることも示した。今後の検査では、より細かい attribution / temporal marker の dose-response、複数モデルでの failure-維持能力成分の分解、および算術以外の課題ファミリへの拡張が必要である。
+なお、Exp40/42/41 は一つの算術課題ファミリにおける前向き検査であり、タスク横断の普遍性を単独で示すものではない。Exp42 は instruction-following 反論を弱め、scope-as-repair の内部に attribution、時間・データセット範囲、明示的命令という階層があることを GPT-4.1-mini 上で示したが、この階層が他モデルや他課題で同じ形を保つとはまだ主張しない。Exp41 は scoped-vs-structural の width を確認した一方、subtle / structural の ordering がモデル依存であることも示した。今後の検査では、より細かい attribution / temporal marker の dose-response、複数モデルでの failure-mode 分解、および算術以外の課題ファミリへの拡張が必要である。
 
 §4で挙げた他の指標候補（構造的矛盾の数、指示の衝突数、参照元間の不整合密度など）を本稿の有効経路縮小の枠組みのもとで体系的に再定式化することは、今後の課題として残る。
 

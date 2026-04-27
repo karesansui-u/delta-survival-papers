@@ -94,7 +94,7 @@ m(V^{(n)}) = m(V^{(0)}) e^{-B_{n}}.
 
 \subsection{本稿の位置づけ}\label{ux672cux7a3fux306eux4f4dux7f6eux3065ux3051}
 
-本稿は、M 分解を普遍理論の中核に据えるものではない。資源項 \(M\) の mode 分解は、補論「構造持続における資源項 M の操作的定式化」で扱う operational mapping layer である。すなわち、現実ドメインで \(r_{t}\) や回復能力をどのように測るかを与える層であって、本稿の主理論核そのものではない。
+本稿は、M 分解を普遍理論の中核に据えるものではない。資源項 \(M\) の維持能力成分の分解は、補論「構造持続における資源項 M の操作的定式化」で扱う operational mapping layer である。すなわち、現実ドメインで \(r_{t}\) や回復能力をどのように測るかを与える層であって、本稿の主理論核そのものではない。
 
 本稿が主理論 spine に与える核は、Paper 1 の loss-only kernel を \(r_{t}=0\) の特例として回収しつつ、構造消耗量 \(d_{t}\) と回復量 \(r_{t}\) の差し引きが、構造維持可能領域の指数的変化を支配するという収支恒等式である。
 
@@ -139,7 +139,7 @@ m(V^{(n)}) = m(V^{(0)}) e^{-B_{n}}.
 \item
   Route C companion I / II の観察が、機構レベルで同一であるとは主張しない。
 \item
-  M の mode 分解が universal metric を与えるとは主張しない。
+  M の維持能力成分の分解が universal metric を与えるとは主張しない。
 \end{itemize}
 
 本稿が与えるのは、より限定された主張である。すなわち、事前固定された構造維持問題において、構造消耗量と回復量が同じ対数尺度で定義できるなら、その差し引き \(b_{t}\) の構造持続収支量 \(B_{n}\) に対して指数的な残存則が成り立つ。そして確率過程として扱う場合には、\(\mathbb E[b_{t}]\) の符号が傾向を与え、bounded increments や MGF などの追加条件があれば高確率境界へ進める、ということである。
@@ -1297,17 +1297,17 @@ F-multi & 0.367 & 0.500-0.750 & 0.500 \\
 \end{longtable}
 }
 
-LoRA 逐次更新は、パラメータを変えるため、partial adaptation としては働く。しかし主要結果は、その適応が dependency repair を十分に代替しないことであった。最初の前提更新後、旧知識保持は全条件で急減した。これは、パラメータ更新が新しい信号に反応して表現を変える一方で、既存の派生知識との整合を自律的に取り直す recovery amount が弱いことを示す。
+LoRA 逐次更新は、パラメータを変えるため、partial reconfiguration としては働く。しかし主要結果は、その再構成作用が dependency repair を十分に代替しないことであった。最初の前提更新後、旧知識保持は全条件で急減した。これは、パラメータ更新が新しい信号に反応して表現を変える一方で、既存の派生知識との整合を自律的に取り直す recovery amount が弱いことを示す。
 
 F-v2c は、前提と依存属性の関係を DAG として保持し、前提更新時に下流の依存属性だけを選択的に再提示する。これは、base LoRA update が持たない dependency repair を外部 controller が供給する条件である。依存整合性は E-lite の 0.189 から F-v2c の 0.333 へ改善した。一方、T5 時点の T1 保持は 0.000 であり、旧知識保持そのものは回復しなかった。
 
 したがって、F-v2c は「古いものを保存する」介入ではない。現在有効な前提に対して、下流知識を整合させ直す intervention である。構造持続の収支原理の語彙では、これは dependency-aware \(R_{\mathrm{obs}}^{\mathrm{rec}}\) の indicator であり、M 補論 §3 の語彙では \(M_{\mathrm{ext}\to\mathrm{recovery}}\) に近い。
 
-F-multi は、現在知識と過去知識を別々の adapter に分離する。これは repair というより、保持と更新の干渉を部分空間で分ける buffering / adaptation 的な回復である。T5 時点の T1 保持が 0.500 まで上がったことは、空間分離が保持と更新の衝突を緩和しうることを示す。ただし、これは理想振り分け条件で得た上界 indicator であり、実運用性能ではない。
+F-multi は、現在知識と過去知識を別々の adapter に分離する。これは repair というより、保持と更新の干渉を部分空間で分ける buffering / reconfiguration 的な回復である。T5 時点の T1 保持が 0.500 まで上がったことは、空間分離が保持と更新の衝突を緩和しうることを示す。ただし、これは理想振り分け条件で得た上界 indicator であり、実運用性能ではない。
 
-Route C companion II が Route C に与える教訓は、単なる adaptation と repair を分ける必要がある、という点である。LoRA は新しい信号に適応するが、依存構造を自律的に修復するとは限らない。F-v2c は依存整合性を改善するが、旧知識保持を回復しない。F-multi は保持を一部改善するが、完全な dependency repair ではない。したがって、\(r_{t}\) は単一の「資源量」ではなく、どの種類の回復がどの構造消耗に効いているかを区別して測る必要がある。
+Route C companion II が Route C に与える教訓は、単なる reconfiguration と repair を分ける必要がある、という点である。LoRA は新しい信号に反応して表現を再構成するが、依存構造を自律的に修復するとは限らない。F-v2c は依存整合性を改善するが、旧知識保持を回復しない。F-multi は保持を一部改善するが、完全な dependency repair ではない。したがって、\(r_{t}\) は単一の「資源量」ではなく、どの種類の回復がどの構造消耗に効いているかを区別して測る必要がある。
 
-これは Route C companion II §7.5 の三役分離、すなわち parametric adaptation / external metabolism / response fidelity を、構造持続の収支原理側から \(r_{t}\) の indicator 階層として読み直したものである。M 補論 §3.5 は、この三役分離を support-side mode decomposition として操作化する。
+これは Route C companion II §7.5 の三役分離、すなわち parametric reconfiguration / external metabolism / response fidelity を、構造持続の収支原理側から \(r_{t}\) の indicator 階層として読み直したものである。M 補論 §3.5 は、この三役分離を support-side component decomposition として操作化する。
 
 \subsection{Route C のまとめ}\label{route-c-ux306eux307eux3068ux3081}
 
@@ -1337,7 +1337,7 @@ Route C companion I Exp40 & unscoped conflict / structural contradiction & scope
 Route C companion I Exp42 & naked competing value & source / time / dataset attribution & wrong-sum adoption: \texttt{subtle} 25/40 mistakes -\textgreater{} \texttt{weak\_scope} 1/50 (1/8 mistakes) -\textgreater{} \texttt{medium/strong} 0/50 \\
 Route C companion I Exp41 & structural contradiction & scoped marker & \texttt{scoped\ \textgreater{}\ structural} in 2/2 primary models \\
 Route C companion I dialogue & unresolved contradictory updates & external metabolism & ON 73.3\% vs OFF 21.1\% in gemma3:27b \\
-Route C companion II LoRA & premise update with dependencies & parameter adaptation only & old retention collapse after first premise update \\
+Route C companion II LoRA & premise update with dependencies & parameter reconfiguration only & old retention collapse after first premise update \\
 Route C companion II F-v2c & dependency mismatch after premise update & DAG-based selective refresh & DC 0.189 -\textgreater{} 0.333 \\
 Route C companion II F-multi & update / retention interference & adapter separation & T1 retention 0.500 under ideal routing \\
 \end{longtable}

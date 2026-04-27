@@ -5319,7 +5319,7 @@ $M_{\mathrm{reconfiguration}}$ に関しては、本補論では以下の強い�
 $M_{\mathrm{reconfiguration}}$ は、target function $F$ を保つ範囲の再編に限定される。$\Sigma$ が別の $\Sigma'$ に置換されることを扱うが、置換後も $F$ は保持されていなければならない。$F$ 自体が変わる遷移は $M_{\mathrm{reconfiguration}}$ の対象外であり、別稿の課題として残す。
 \end{quote}
 
-この制限が必要なのは、適応を無制限に許すと理論が空虚化するためである。たとえば、ある企業が破綻後に別業種で存続した場合、それは元の target function を保ったのではなく、別の $F$ に乗り換えたのである。これを「適応して生き延びた」と扱うと、どんな結果でも事後的に適応で説明できてしまう。
+この制限が必要なのは、再編を無制限に許すと理論が空虚化するためである。たとえば、ある企業が破綻後に別業種で存続した場合、それは元の target function を保ったのではなく、別の $F$ に乗り換えたのである。これを「再編して生き延びた」と扱うと、どんな結果でも事後的に説明できてしまう。
 
 この制限は、Paper 1 §2 が「基体そのものの消滅ではなく、ある構造としての持続の失敗」を扱うと述べた立場と一貫する。$F$ 自体の遷移は、本補論の枠組みではなく、構造持続の集合値力学的表現 (別補論) の $R_t$ 作用のうち target structure 自体を書き換える部分として、将来の拡張対象となる。
 
@@ -5521,7 +5521,7 @@ Route C companion II は、前提更新を伴う LoRA ベース継続学習が�
 
 3.3.1 LoRA 逐次更新: partial $M_{\mathrm{reconfiguration}}$, weak $M_{\mathrm{recovery}}$
 
-LoRA はパラメータを変えるため、局所的には reconfigurative な作用を持つ。新しい課題や前提更新に反応して表現を変えるという意味で、これは partial $M_{\mathrm{reconfiguration}}$ に近い。しかし Route C companion II の主要結果は、その適応が repair / resolution を代替しないことであった。
+LoRA はパラメータを変えるため、局所的には reconfigurative な作用を持つ。新しい課題や前提更新に反応して表現を変えるという意味で、これは partial $M_{\mathrm{reconfiguration}}$ に近い。しかし Route C companion II の主要結果は、その再構成作用が repair / resolution を代替しないことであった。
 
 主要三条件の最終時点の結果は次である。
 
@@ -8520,7 +8520,7 @@ Exp41 は、この結果が GPT-4.1-mini 固有であるかどうかを調べる
 
 したがって、Exp41 が支持する横断的な不変量は、subtle と structural の固定された順序ではない。より保守的な結論は、明示的に範囲づけられた scoped conflict が structural contradiction より高い論理一貫性維持率を保つ、という方向が、GPT-4.1-mini、GPT-4.1-nano、Gemini 3.1 Flash Lite の三モデルで観測された、という点である。scope-as-repair はモデル横断的に支持されたが、subtle / structural の相対的な構造消耗量と失敗様式はモデル依存である。
 
-なお、Exp40/42/41 は一つの算術課題ファミリにおける前向き検査であり、タスク横断の普遍性を単独で示すものではない。Exp42 は instruction-following 反論を弱め、scope-as-repair の内部に attribution、時間・データセット範囲、明示的命令という階層があることを GPT-4.1-mini 上で示したが、この階層が他モデルや他課題で同じ形を保つとはまだ主張しない。Exp41 は scoped-vs-structural の width を確認した一方、subtle / structural の ordering がモデル依存であることも示した。今後の検査では、より細かい attribution / temporal marker の dose-response、複数モデルでの failure-維持能力成分の分解、および算術以外の課題ファミリへの拡張が必要である。
+なお、Exp40/42/41 は一つの算術課題ファミリにおける前向き検査であり、タスク横断の普遍性を単独で示すものではない。Exp42 は instruction-following 反論を弱め、scope-as-repair の内部に attribution、時間・データセット範囲、明示的命令という階層があることを GPT-4.1-mini 上で示したが、この階層が他モデルや他課題で同じ形を保つとはまだ主張しない。Exp41 は scoped-vs-structural の width を確認した一方、subtle / structural の ordering がモデル依存であることも示した。今後の検査では、より細かい attribution / temporal marker の dose-response、複数モデルでの failure-mode 分解、および算術以外の課題ファミリへの拡張が必要である。
 
 §4で挙げた他の指標候補（構造的矛盾の数、指示の衝突数、参照元間の不整合密度など）を本稿の有効経路縮小の枠組みのもとで体系的に再定式化することは、今後の課題として残る。
 
