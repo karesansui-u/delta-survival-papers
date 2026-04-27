@@ -8,20 +8,20 @@ rerun bundle.
 ## Current Distribution-Facing Bundle
 
 - file:
-  `exp43c_true_outside_bundle_40517dfb4b61.zip`
+  `exp43c_true_outside_bundle_72718ae0f9ff.zip`
 - sha256:
-  `9370031f6554a3da0f3dcb47dd4fb0e791749d0266de8120289f41c305efdc93`
+  `8e203bc5353a06771caf74c4228ac04ee80c94c7c87d66d1a48fe712a1c66bdc`
 - exported from commit short:
-  `40517dfb4b61`
+  `72718ae0f9ff`
 - exported from commit full:
-  `40517dfb4b61af72722a55281998408aaf1cbbe4`
+  `72718ae0f9ff126f15f8de04bc88e0bb94b93591`
 - approximate size:
   `1.1M`
 
 ## Sidecar Files
 
-- `exp43c_true_outside_bundle_40517dfb4b61.zip.sha256`
-- `exp43c_true_outside_bundle_40517dfb4b61.manifest.txt`
+- `exp43c_true_outside_bundle_72718ae0f9ff.zip.sha256`
+- `exp43c_true_outside_bundle_72718ae0f9ff.manifest.txt`
 
 ## Included Official Reference Artifacts
 
@@ -42,17 +42,44 @@ Reference hashes:
 The generated zip was unpacked under `/tmp` and checked with:
 
 ```text
+python3 --version
+python3 -c "from pathlib import Path; Path('analysis/exp43_qcoloring/external_outputs').mkdir(parents=True, exist_ok=True)"
 python3 analysis/exp43_qcoloring/src/primary_manifest.py --config analysis/exp43_qcoloring/config/exp43c_primary_config.json --output analysis/exp43_qcoloring/external_outputs/exp43c_primary_manifest_external.jsonl --check-only
 python3 analysis/exp43_qcoloring/src/pilot_runner.py --config analysis/exp43_qcoloring/config/exp43c_primary_config.json --output analysis/exp43_qcoloring/external_outputs/exp43c_primary_results_external.jsonl dry-run
+python3 analysis/exp43_qcoloring/src/primary_manifest.py --config analysis/exp43_qcoloring/config/exp43c_primary_config.json --output analysis/exp43_qcoloring/external_outputs/exp43c_primary_manifest_external.jsonl
+python3 analysis/exp43_qcoloring/src/evaluate_primary.py analysis/exp43_qcoloring/data/exp43c_primary_results.jsonl --output analysis/exp43_qcoloring/external_outputs/exp43c_primary_evaluation_from_reference_check.json
 ```
 
-Both passed and reported:
+The preflight commands passed and reported:
 
 ```text
 phase: exp43c_primary
 planned instances: 4000
 cells: 20
 ```
+
+The generated manifest hash matched the official manifest hash exactly:
+
+```text
+e0c0058fc0279de6dddace700d1929820e98c152382039051244faedcd0d0cf2
+```
+
+The evaluator run against the included official result JSONL reproduced the
+official evaluation JSON hash exactly:
+
+```text
+901a307be1cc14ef038388b14becc2536a7247e307bae87a8c6e14757cb96539
+```
+
+The full 4000-instance solver rerun was not re-executed during this bundle
+verification pass. It was already exercised in the earlier project-side
+published-remote rerun; the point of this verification pass was to check the
+distribution zip, command surface, manifest determinism, and evaluator path.
+
+One local command-surface issue was found and corrected before this bundle was
+created: on some systems `python` may point to Python 2.x. The receiver guide
+therefore now requires checking `python --version` and instructs plain Windows
+users to use `py -3` when needed, while WSL / macOS users can use `python3`.
 
 ## Operational Rule
 
