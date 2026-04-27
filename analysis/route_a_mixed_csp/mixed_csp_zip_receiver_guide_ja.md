@@ -34,14 +34,15 @@
 
 1. `手順書.md`
 2. `requirements.txt`
-3. `analysis/route_a_mixed_csp/run_mixed_csp.py`
-4. `analysis/route_a_mixed_csp/analyze_mixed_csp.py`
-5. `analysis/route_a_mixed_csp/debug_mixed_csp_encoding.py`
-6. `analysis/route_a_mixed_csp/mixed_csp_generator.py`
-7. `analysis/route_a_mixed_csp/mixed_csp_solvers.py`
-8. `analysis/route_a_mixed_csp/mixed_csp_primary_official_2026-04-22.jsonl`
-9. `analysis/route_a_mixed_csp/mixed_csp_results.json`
-10. `analysis/route_a_mixed_csp/mixed_csp_results_summary.md`
+3. `実行環境メモ_テンプレート.md`
+4. `analysis/route_a_mixed_csp/run_mixed_csp.py`
+5. `analysis/route_a_mixed_csp/analyze_mixed_csp.py`
+6. `analysis/route_a_mixed_csp/debug_mixed_csp_encoding.py`
+7. `analysis/route_a_mixed_csp/mixed_csp_generator.py`
+8. `analysis/route_a_mixed_csp/mixed_csp_solvers.py`
+9. `analysis/route_a_mixed_csp/mixed_csp_primary_official_2026-04-22.jsonl`
+10. `analysis/route_a_mixed_csp/mixed_csp_results.json`
+11. `analysis/route_a_mixed_csp/mixed_csp_results_summary.md`
 
 最後の 3 つは比較用の正式参照ファイルです。実行対象ではありません。
 
@@ -149,7 +150,19 @@ PY
 3. `analysis/route_a_mixed_csp/external_outputs/mixed_csp_primary_external_summary.md`
 4. 実行環境メモ
 5. 回避策の有無
-6. 一言でよいので「質的支持判定が再現したか」
+6. `support` の 4 つの真偽値
+7. 一言の結論
+
+実行環境メモは、zip ルートの `実行環境メモ_テンプレート.md` を埋めるだけ
+で大丈夫です。
+
+一言の結論は、自分で解釈して書く必要はありません。`mixed_csp_primary_external_results.json`
+の `support` を見て、次のどちらかをそのまま書いてください。
+
+1. 4 つすべて `true`:
+   `4つの支持フラグがすべて true だったので再現した`
+2. 1 つでも `false`:
+   `4つの支持フラグのうち少なくとも1つが false だったので再現しなかった`
 
 ## 6. 実行環境メモに入れてほしいこと
 

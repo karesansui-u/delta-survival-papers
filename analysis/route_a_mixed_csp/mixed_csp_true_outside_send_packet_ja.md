@@ -64,7 +64,7 @@ LLM の利用は **必須ではありません**。使えるなら手順整理�
 5. 実行後に以下を返す
    - 再実行出力のハッシュ
    - 行数
-   - 支持フラグ
+   - `support` の 4 つの真偽値
    - 保留テストの対数損失要約
    - 実行環境メモ
    - 回避策があればその記録
@@ -93,7 +93,8 @@ LLM の利用は **必須ではありません**。使えるなら手順整理�
 5. `analysis/route_a_mixed_csp/mixed_csp_results_summary.md`
 6. git の場合は `analysis/route_a_mixed_csp/requirements_mixed_csp.txt`
 7. zip の場合はルートの `requirements.txt`
-7. `analysis/route_a_mixed_csp/mixed_csp_zip_receiver_guide_ja.md`
+8. zip ルートの `手順書.md`
+9. zip ルートの `実行環境メモ_テンプレート.md`
 
 Git を使わない相手には、上の内容を含む zip 一式を送って構いません。
 その場合も、必ず
@@ -236,7 +237,25 @@ LLM の利用は必須ではありません。もし使えるなら、手順の�
 3. 再実行要約 MD
 4. 実行環境メモ
 5. 回避策の有無
-6. 一言でよいので「質的支持判定が再現したか」
+6. `support` の 4 つの真偽値
+7. 一言の結論
+
+実行環境メモは、zip の場合は `実行環境メモ_テンプレート.md` を埋めるだけ
+で十分です。
+
+一言の結論は、相手の解釈に任せず、次のルールで機械的に書いてもらえば十
+分です。
+
+1. `support.primary_supported = true`
+2. `support.strong_support = true`
+3. `support.theory_pure_support = true`
+4. `support.encoding_guardrail_passed = true`
+
+この 4 つがすべて `true` なら
+`4つの支持フラグがすべて true だったので再現した`
+
+1 つでも `false` があれば
+`4つの支持フラグのうち少なくとも1つが false だったので再現しなかった`
 
 ## 10. この依頼文が分かりやすいかを確認するためのチェック
 

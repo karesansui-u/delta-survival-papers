@@ -25,6 +25,7 @@ FILES=(
   analysis/route_a_mixed_csp/mixed_csp_generator.py
   analysis/route_a_mixed_csp/mixed_csp_solvers.py
   analysis/route_a_mixed_csp/debug_mixed_csp_encoding.py
+  analysis/route_a_mixed_csp/mixed_csp_execution_environment_note_template_ja.md
   analysis/route_a_mixed_csp/mixed_csp_primary_official_2026-04-22.jsonl
   analysis/route_a_mixed_csp/mixed_csp_results.json
   analysis/route_a_mixed_csp/mixed_csp_results_summary.md
@@ -37,6 +38,7 @@ done
 
 cp analysis/route_a_mixed_csp/requirements_mixed_csp.txt "${STAGE_DIR}/requirements.txt"
 cp analysis/route_a_mixed_csp/mixed_csp_zip_receiver_guide_ja.md "${STAGE_DIR}/手順書.md"
+cp analysis/route_a_mixed_csp/mixed_csp_execution_environment_note_template_ja.md "${STAGE_DIR}/実行環境メモ_テンプレート.md"
 
 cat > "${STAGE_DIR}/BUNDLE_INFO.txt" <<EOF
 Mixed-CSP true outside-group handoff bundle
