@@ -7,7 +7,7 @@ Structural Persistence Theory for LLM reasoning degradation, catastrophic forget
 ## Current Focus / 現在の主対象
 
 このリポジトリの主対象は、`v2` にある主理論 spine 3 本と Route C companion 2 本、および補論群です。
-理論 architecture を追う場合は `v2/1`、`v2/2`、`v2/3` を先に読む主理論 spine を基本とし、その後に `v2/Companion_RouteC_推論時の構造劣化.md`、`v2/Companion_RouteC_継続学習時の構造的忘却.md` を companion anchors として置いています。現在の証拠階層は [`analysis/current_evidence_map.md`](analysis/current_evidence_map.md) に整理しています。`v1/` は旧版アーカイブ、補論は補助資料です。
+論理依存としては `v2/1`、`v2/2`、`v2/3` が主理論 spine ですが、外向きの最短導線としては `v2/0_構造持続理論の統合版.md` から入り、続いて `v2/3_構造持続の収支法則と崩壊傾向.md` を主論文として読む構成を想定しています。そこから foundation を厳密に追いたい読者は `v2/1` と `v2/2` に降り、Route C の observational layer を見たい読者は `v2/Companion_RouteC_推論時の構造劣化.md`、`v2/Companion_RouteC_継続学習時の構造的忘却.md` を companion anchors として読むのが自然です。現在の証拠階層は [`analysis/current_evidence_map.md`](analysis/current_evidence_map.md) に整理しています。`v1/` は旧版アーカイブ、補論は補助資料です。
 
 ### English Entry Points
 
@@ -103,11 +103,20 @@ See [`PATENTS.md`](PATENTS.md) for a brief scope note.
 
 ## Recommended Reading Order / 推奨読書順
 
+### Public-facing shortest route
+
+1. [`v2/0_構造持続理論の統合版.md`](v2/0_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E7%90%86%E8%AB%96%E3%81%AE%E7%B5%B1%E5%90%88%E7%89%88.md)
+2. [`v2/3_構造持続の収支法則と崩壊傾向.md`](v2/3_構造持続の収支法則と崩壊傾向.md)
+3. [`v2/1_構造持続の最小形式.md`](v2/1_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%AE%E6%9C%80%E5%B0%8F%E5%BD%A2%E5%BC%8F.md)
+4. [`v2/2_構造持続の条件つき導出.md`](v2/2_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%AE%E6%9D%A1%E4%BB%B6%E3%81%A4%E3%81%8D%E5%B0%8E%E5%87%BA.md)
+5. [`v2/Companion_RouteC_推論時の構造劣化.md`](v2/Companion_RouteC_推論時の構造劣化.md)
+6. [`v2/Companion_RouteC_継続学習時の構造的忘却.md`](v2/Companion_RouteC_継続学習時の構造的忘却.md)
+
+### Logical dependency order
+
 1. [`v2/1_構造持続の最小形式.md`](v2/1_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%AE%E6%9C%80%E5%B0%8F%E5%BD%A2%E5%BC%8F.md)
 2. [`v2/2_構造持続の条件つき導出.md`](v2/2_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%AE%E6%9D%A1%E4%BB%B6%E3%81%A4%E3%81%8D%E5%B0%8E%E5%87%BA.md)
 3. [`v2/3_構造持続の収支法則と崩壊傾向.md`](v2/3_構造持続の収支法則と崩壊傾向.md)
-4. [`v2/Companion_RouteC_推論時の構造劣化.md`](v2/Companion_RouteC_推論時の構造劣化.md)
-5. [`v2/Companion_RouteC_継続学習時の構造的忘却.md`](v2/Companion_RouteC_継続学習時の構造的忘却.md)
 
 ## Supplements / 補論・補助資料
 
