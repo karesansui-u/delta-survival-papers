@@ -222,7 +222,12 @@ Short horizon:
    datasets for schema feasibility only. Do not treat this scan as validation,
    and do not generate maintenance-log primary evidence before a dataset, split,
    feature schema, and evaluation script are frozen.
-19. For the current cross-domain non-CSP public branch, treat
+19. For repair-flow escalation, separate the next move into two layers:
+    `analysis/g4_v2_repair_flow_acquisition_brief.md` for the practical
+    dataset request, and `analysis/g4_v2_stochastic_repair_bridge_note.md`
+    for the theorem-side half-step from near-bridge to stochastic bridge
+    target.
+20. For the current cross-domain non-CSP public branch, treat
     `analysis/g4_cmapss_loss_only_feasibility_note.md` as the candidate logic,
     `analysis/g4_cmapss_fd001_archive_note.md` as the exact-subset choice,
     `analysis/g4_cmapss_fd001_archive_feasibility_note.md` as the exact public

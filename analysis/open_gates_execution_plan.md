@@ -91,6 +91,17 @@ state the minimum acceptable fields before any ranking or freeze:
 This document should not rank actual datasets. It should define the gate any
 future dataset must pass.
 
+That gate now exists at:
+
+- `analysis/g4_v2_repair_flow_candidate_criteria.md`
+
+The next practical move is now narrower:
+
+- `analysis/g4_v2_repair_flow_acquisition_brief.md`
+
+This is the document to hand to a partner, internal data owner, or outside
+collaborator before any dataset-specific freeze is even discussed.
+
 ## 3. Workstream B — Cross-Domain Non-CSP Empirical Support
 
 ### Current state
@@ -261,6 +272,14 @@ the same three conditions fixed:
 1. natural pre-fixed \(m\);
 2. observable compensation flow \(g_t\);
 3. explicit collapse / hitting boundary under assumptions.
+
+The next theorem-side half-step is now recorded at:
+
+- `analysis/g4_v2_stochastic_repair_bridge_note.md`
+
+This note does not close the stochastic reliability side, but it states the
+reader-facing bridge target that would move repair / maintenance from
+near-bridge toward a fuller law-side bridge.
 
 ## 7. Recommended Execution Order
 
