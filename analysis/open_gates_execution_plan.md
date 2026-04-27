@@ -125,6 +125,15 @@ This locks the held-out class grammar and chooses horizon-classification as the
 operational primary path, leaving survival / TTE as the conceptual secondary
 path.
 
+The Scania public bridge route now also has the first package-facing drafts:
+
+- `analysis/g4_scania_component_x_horizon_bridge_preregistration_draft.md`
+- `analysis/g4_scania_component_x_horizon_bridge/freeze_manifest_draft.md`
+
+These fix the censored-as-class-0 rule, the baseline ladder, the compressed
+`D_pc1` primary family, and the intended multiclass log-loss evaluation path,
+while still stopping short of a frozen script or execution package.
+
 There is now also a narrow public-web rescan layer:
 
 - `analysis/g4_v2_public_repair_flow_rescan_2026-04-27.md`
