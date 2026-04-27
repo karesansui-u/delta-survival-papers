@@ -226,7 +226,7 @@ $\Phi$ は、少なくとも非負性と各 effective mode に関する単調非
 \]
 \end{definition}
 
-この式は Paper 1 の $S = M e^{-L}$ を否定するものではない。スカラー $M$ を $M_{\mathrm{eff}}$ で置き換え、$M_{\mathrm{eff}}$ を effective mode profile の集約として再構成しただけであり、スカラー $M$ は本式の粗視化として回収される。
+この式は Paper 1 の $S = M e^{-L}$ を否定するものではない。スカラー $M$ を $M_{\mathrm{eff}}$ で置き換え、$M_{\mathrm{eff}}$ を effective mode profile の集約として再構成しただけであり、スカラー $M$ は本式の低粒度の要約として回収される。
 
 2.6 補論 B との関係
 
