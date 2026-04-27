@@ -5403,7 +5403,7 @@ $\Phi$ は、少なくとも非負性と各 effective component に関する単�
 
 2.6 Lean で閉じている範囲
 
-本補論の維持能力成分の分解は、`Survival/MaintenanceComponentDecomposition.lean` で形式化されている。Lean 側で閉じているのは、経験的な proxy の妥当性ではなく、表現文法である。
+本補論の維持能力成分の分解は、`Survival/MaintenanceComponentDecomposition.lean` で形式化されている。Lean 側で閉じているのは、経験的な proxy の妥当性ではなく、M 側の表現文法と、M interface 上の表現定理である。
 
 Lean では、維持能力成分を
 \[
@@ -5414,6 +5414,8 @@ Lean では、維持能力成分を
   \{\mathrm{internal},\mathrm{external}\}
 \]
 の二値型として別に定義する。これにより、external は第四の維持能力成分ではなく、三つの成分を供給する channel であることが型レベルで固定される。
+
+さらに Lean では、任意の raw mechanism を直接分類するのではなく、それが M 側の観測 interface に入ったときの効果を component profile として扱う。したがって「第四成分が存在しない」という主張は、現実世界の原因機構が三種類しかないという主張ではない。正確には、M として観測される効果は $M_{\mathrm{buffer}},M_{\mathrm{recovery}},M_{\mathrm{reconfiguration}}$ の三座標に還元され、同じ三座標を持つ二つの mechanism を M interface 内部で区別する独立な第四座標は存在しない、という表現定理である。三座標で表現できない候補が現れた場合、それは第四の M 成分ではなく、対象構造・測度・環境・同一性条件など、M interface の外側に置くべき候補として扱う。
 
 対応する定理は次の通りである。
 
@@ -5427,15 +5429,22 @@ Lean では、維持能力成分を
 | `fromInternalExternal_eq_iff` | その internal/external 分解は一意である |
 | `effectiveProfile` | internal/external の供給を成分ごとに集約し、effective component profile を作る |
 | `effectiveMaintenance_nonneg` | 非負供給と非負性保存 aggregator のもとで、effective maintenance capacity は非負になる |
+| `MaintenanceInterface.everyMechanism_has_threeComponentRepresentation` | M interface に入った raw mechanism は三成分 profile として表現される |
+| `MaintenanceInterface.observationallyEquivalent_iff_three_coordinates` | M interface 上の観測同値性は三成分の一致と同値である |
+| `MaintenanceInterface.noFourthObservableCoordinate` | 三成分が一致する二つの mechanism を分ける第四 M 座標は interface 内部には存在しない |
+| `MaintenanceInterface.maintenanceReadout_eq_of_same_three_coordinates` | 任意の M-side readout は三成分が一致する mechanism を区別できない |
+| `MaintenanceInterface.outsideInterface_if_distinguishes_observationallyEquivalent` | 同じ三成分 profile を持つ mechanism を区別する追加量は M interface を factor しない |
+| `MaintenanceInterface.outsideInterface_if_distinguishes_same_three_coordinates` | 三成分が一致する mechanism を区別する追加量は M interface の外側に属する |
+| `PartialMaintenanceInterface.representable_or_outside` | 候補 mechanism は三成分 profile に表現されるか、M interface の外側に置かれる |
 
-この Lean 化が閉じるのは、「本補論の記法体系では、M 側の同列成分は三つであり、external はそれらを供給する channel である」という構文的・代数的事実である。したがって、次は Lean の範囲外に残す。
+この Lean 化が閉じるのは、「本補論の記法体系では、M 側の同列成分は三つであり、external はそれらを供給する channel である」という構文的・代数的事実に加えて、「M interface 上で観測される効果は三成分 profile によって完全に決まる」という表現定理である。したがって、次は Lean の範囲外に残す。
 
 - 各ドメインでこの三成分が自然に測れること。
 - $\gamma_i$、$A_j$、$\Phi$ の経験的に最良な形。
 - software / SaaS における component signal の妥当性。
 - 介入順位予測が実データで成立すること。
 
-つまり、Lean は本補論の「外部供給を第四成分にしない」という文法を閉じる。経験的価値は、§6 の事前固定 validation で判定する。
+つまり、Lean は本補論の「外部供給を第四成分にしない」という文法と、「M interface 内部では三成分以外の独立座標を持たない」という表現定理を閉じる。経験的価値は、§6 の事前固定 validation で判定する。
 
 2.7 補論 B との関係
 

@@ -117,7 +117,9 @@ Paper 3 non-claims remain outside Lean:
 M 補論の維持能力成分の分解は、
 `Survival/MaintenanceComponentDecomposition.lean` で形式化している。
 ここで Lean が閉じるのは、「external は第四成分ではなく供給 channel である」
-という表現文法であり、各ドメインの proxy 妥当性や \(\Phi\) の universal form ではない。
+という表現文法と、「M interface 上で観測される効果は三成分 profile によって完全に決まる」
+という interface-relative representation theorem である。各ドメインの proxy 妥当性や
+\(\Phi\) の universal form は Lean 範囲外に残す。
 
 | M supplement claim | Lean entry point | Status |
 |---|---|---|
@@ -129,6 +131,13 @@ M 補論の維持能力成分の分解は、
 | internal/external decomposition is unique | `fromInternalExternal_eq_iff` | proven by function extensionality |
 | external supply enters effective capacity component-wise | `effectiveProfile` / `effectiveProfile_apply` | proven by definition |
 | nonnegative supplies and nonnegative aggregators yield nonnegative effective maintenance | `effectiveMaintenance_nonneg` | proven under explicit nonnegativity-preservation assumptions |
+| a raw mechanism admitted to the M interface has a three-component representation | `MaintenanceInterface.everyMechanism_has_threeComponentRepresentation` | proven by interface definition |
+| M-observational equivalence is exactly equality of the three component coordinates | `MaintenanceInterface.observationallyEquivalent_iff_three_coordinates` | proven by component-profile extensionality |
+| there is no independent fourth observable coordinate inside the M interface | `MaintenanceInterface.noFourthObservableCoordinate` | proven by component-profile extensionality |
+| any M-side readout is fixed by the three component coordinates | `MaintenanceInterface.maintenanceReadout_eq_of_same_three_coordinates` | proven by readout factorization through the component profile |
+| an extra quantity that distinguishes M-equivalent mechanisms is outside the M interface | `MaintenanceInterface.outsideInterface_if_distinguishes_observationallyEquivalent` | proven as a factorization obstruction |
+| an extra quantity that distinguishes mechanisms with the same three coordinates is outside the M interface | `MaintenanceInterface.outsideInterface_if_distinguishes_same_three_coordinates` | proven as a factorization obstruction plus extensionality |
+| a candidate mechanism is represented or outside the M interface | `PartialMaintenanceInterface.representable_or_outside` | proven by `Option` case analysis |
 
 M supplement non-claims remain outside Lean:
 
@@ -352,7 +361,7 @@ drift は `log(2^k / allowed)` になる。部分二項和が \(0\) と \(2^k\) 
 
 | ファイル | 主定理 | 評価 |
 |---------|-------|------|
-| [`MaintenanceComponentDecomposition.lean`](Survival/MaintenanceComponentDecomposition.lean) | `MaintenanceComponent.exhaustive`, `SupplyChannel.exhaustive`, `componentProfile_ext`, `supplyProfile_ext`, `fromInternalExternal_eq_iff`, `effectiveMaintenance_nonneg` | buffer / recovery / reconfiguration と internal / external channel の分離を型レベルで固定。external を第四成分にしないための M 補論 grammar |
+| [`MaintenanceComponentDecomposition.lean`](Survival/MaintenanceComponentDecomposition.lean) | `MaintenanceComponent.exhaustive`, `SupplyChannel.exhaustive`, `componentProfile_ext`, `supplyProfile_ext`, `fromInternalExternal_eq_iff`, `effectiveMaintenance_nonneg`, `MaintenanceInterface.noFourthObservableCoordinate`, `MaintenanceInterface.maintenanceReadout_eq_of_same_three_coordinates`, `PartialMaintenanceInterface.representable_or_outside` | buffer / recovery / reconfiguration と internal / external channel の分離を型レベルで固定。M interface 上の観測効果は三成分 profile によって完全に決まる、という表現定理まで形式化 |
 
 ### H. マルコフ修復チェーン（3）— **Paper 4 §7 条件 (i) 最小形式モデル**
 

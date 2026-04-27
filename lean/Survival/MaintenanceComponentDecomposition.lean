@@ -19,6 +19,11 @@ This file is intentionally an operational grammar, not an empirical theorem:
 it does not claim that these coordinates are naturally measurable in every
 domain, that a particular aggregator `Φ` is universal, or that a given proxy is
 valid out of sample.
+
+The stronger representation result is interface-relative: any raw mechanism
+admitted to the M-side observation interface is represented by a
+three-component profile, and any extra readout that distinguishes two
+mechanisms with the same profile is outside that interface.
 -/
 
 namespace Survival.MaintenanceComponentDecomposition
@@ -123,6 +128,223 @@ theorem componentProfile_eq_three_coordinate_reconstruction
         | MaintenanceComponent.reconfiguration => p MaintenanceComponent.reconfiguration := by
   funext c
   cases c <;> rfl
+
+/-!
+## Observable maintenance interfaces
+
+The stronger "no fourth component" reading is not a claim that the real world
+contains only three kinds of mechanism.  Instead, it is a representation
+claim: once a raw mechanism is observed through the M-side maintenance
+interface, its M-relevant effect is a three-coordinate component profile.
+
+Any extra quantity that is a valid M-side readout must factor through that
+profile.  If a proposed fourth coordinate distinguishes two raw mechanisms
+with the same component profile, then it is outside this M interface rather
+than an independent fourth M component.
+-/
+
+/--
+An interface that observes raw mechanisms only through their M-side component
+profile.
+-/
+structure MaintenanceInterface (ι : Type u) (α : Type v) where
+  effect : ι → ComponentProfile α
+
+namespace MaintenanceInterface
+
+/-- The three-component profile representing a raw mechanism through the M interface. -/
+def representedProfile (I : MaintenanceInterface ι α) (u : ι) : ComponentProfile α :=
+  I.effect u
+
+@[simp] theorem representedProfile_eq_effect
+    (I : MaintenanceInterface ι α) (u : ι) :
+    representedProfile I u = I.effect u := rfl
+
+/-- Two raw mechanisms are equivalent when the M interface sees the same component profile. -/
+def ObservationallyEquivalent (I : MaintenanceInterface ι α) (u v : ι) : Prop :=
+  I.effect u = I.effect v
+
+/--
+Every raw mechanism admitted to a total M interface has a three-component
+representation.
+-/
+theorem everyMechanism_has_threeComponentRepresentation
+    (I : MaintenanceInterface ι α) (u : ι) :
+    ∃ p : ComponentProfile α, p = representedProfile I u :=
+  ⟨representedProfile I u, rfl⟩
+
+/-- The representation of a raw mechanism has no hidden fourth coordinate. -/
+theorem representedProfile_three_coordinate_reconstruction
+    (I : MaintenanceInterface ι α) (u : ι) :
+    representedProfile I u =
+      fun c =>
+        match c with
+        | MaintenanceComponent.buffer => representedProfile I u MaintenanceComponent.buffer
+        | MaintenanceComponent.recovery => representedProfile I u MaintenanceComponent.recovery
+        | MaintenanceComponent.reconfiguration =>
+            representedProfile I u MaintenanceComponent.reconfiguration :=
+  componentProfile_eq_three_coordinate_reconstruction (representedProfile I u)
+
+/--
+M-observational equivalence is exactly equality of the three component
+coordinates.
+-/
+theorem observationallyEquivalent_iff_three_coordinates
+    {I : MaintenanceInterface ι α} {u v : ι} :
+    ObservationallyEquivalent I u v ↔
+      I.effect u MaintenanceComponent.buffer =
+          I.effect v MaintenanceComponent.buffer ∧
+        I.effect u MaintenanceComponent.recovery =
+            I.effect v MaintenanceComponent.recovery ∧
+          I.effect u MaintenanceComponent.reconfiguration =
+            I.effect v MaintenanceComponent.reconfiguration := by
+  constructor
+  · intro h
+    exact
+      ⟨congrFun h MaintenanceComponent.buffer,
+        congrFun h MaintenanceComponent.recovery,
+        congrFun h MaintenanceComponent.reconfiguration⟩
+  · intro h
+    exact componentProfile_ext h.1 h.2.1 h.2.2
+
+/--
+If two mechanisms agree on buffer, recovery, and reconfiguration, there is no
+additional M-coordinate that separates them inside this interface.
+-/
+theorem noFourthObservableCoordinate
+    {I : MaintenanceInterface ι α} {u v : ι}
+    (hbuffer :
+      I.effect u MaintenanceComponent.buffer =
+        I.effect v MaintenanceComponent.buffer)
+    (hrecovery :
+      I.effect u MaintenanceComponent.recovery =
+        I.effect v MaintenanceComponent.recovery)
+    (hreconfiguration :
+      I.effect u MaintenanceComponent.reconfiguration =
+        I.effect v MaintenanceComponent.reconfiguration) :
+    ObservationallyEquivalent I u v :=
+  componentProfile_ext hbuffer hrecovery hreconfiguration
+
+/--
+A quantity is an M-side readout when it factors through the three-component
+profile.  Such a readout can be nonlinear or domain-specific; the only
+requirement is that it uses the M interface rather than hidden raw-mechanism
+data.
+-/
+def IsMaintenanceReadout
+    (I : MaintenanceInterface ι α) (obs : ι → β) : Prop :=
+  ∃ readout : ComponentProfile α → β, obs = fun u => readout (I.effect u)
+
+/--
+Any valid M-side readout is constant on M-observational equivalence classes.
+-/
+theorem maintenanceReadout_constant_on_observationalEquivalence
+    {I : MaintenanceInterface ι α} {obs : ι → β}
+    (hobs : IsMaintenanceReadout I obs)
+    {u v : ι} (huv : ObservationallyEquivalent I u v) :
+    obs u = obs v := by
+  rcases hobs with ⟨readout, rfl⟩
+  exact congrArg readout huv
+
+/--
+Any valid M-side readout is fixed by the three component coordinates.  Thus no
+M-side scalar, score, or downstream feature can separate two mechanisms that
+agree on buffer, recovery, and reconfiguration.
+-/
+theorem maintenanceReadout_eq_of_same_three_coordinates
+    {I : MaintenanceInterface ι α} {obs : ι → β}
+    (hobs : IsMaintenanceReadout I obs)
+    {u v : ι}
+    (hbuffer :
+      I.effect u MaintenanceComponent.buffer =
+        I.effect v MaintenanceComponent.buffer)
+    (hrecovery :
+      I.effect u MaintenanceComponent.recovery =
+        I.effect v MaintenanceComponent.recovery)
+    (hreconfiguration :
+      I.effect u MaintenanceComponent.reconfiguration =
+        I.effect v MaintenanceComponent.reconfiguration) :
+    obs u = obs v :=
+  maintenanceReadout_constant_on_observationalEquivalence hobs
+    (noFourthObservableCoordinate hbuffer hrecovery hreconfiguration)
+
+/--
+If a proposed extra quantity distinguishes two mechanisms that the M interface
+identifies, then that quantity does not factor through the M interface.
+-/
+theorem outsideInterface_if_distinguishes_observationallyEquivalent
+    {I : MaintenanceInterface ι α} {obs : ι → β} {u v : ι}
+    (huv : ObservationallyEquivalent I u v)
+    (hobs : obs u ≠ obs v) :
+    ¬ IsMaintenanceReadout I obs := by
+  intro hreadout
+  exact hobs (maintenanceReadout_constant_on_observationalEquivalence hreadout huv)
+
+/--
+If a proposed extra quantity distinguishes two mechanisms with the same three
+component coordinates, then it is not an M-side readout.  It may be useful, but
+it belongs outside the current M interface.
+-/
+theorem outsideInterface_if_distinguishes_same_three_coordinates
+    {I : MaintenanceInterface ι α} {obs : ι → β} {u v : ι}
+    (hbuffer :
+      I.effect u MaintenanceComponent.buffer =
+        I.effect v MaintenanceComponent.buffer)
+    (hrecovery :
+      I.effect u MaintenanceComponent.recovery =
+        I.effect v MaintenanceComponent.recovery)
+    (hreconfiguration :
+      I.effect u MaintenanceComponent.reconfiguration =
+        I.effect v MaintenanceComponent.reconfiguration)
+    (hobs : obs u ≠ obs v) :
+    ¬ IsMaintenanceReadout I obs :=
+  outsideInterface_if_distinguishes_observationallyEquivalent
+    (noFourthObservableCoordinate hbuffer hrecovery hreconfiguration) hobs
+
+end MaintenanceInterface
+
+/--
+A partial interface for candidate mechanisms.  A candidate either receives a
+three-component M profile or is not admitted to the M-side interface.
+-/
+structure PartialMaintenanceInterface (ι : Type u) (α : Type v) where
+  effect? : ι → Option (ComponentProfile α)
+
+namespace PartialMaintenanceInterface
+
+/-- The candidate mechanism is represented inside the M interface. -/
+def IsInside (I : PartialMaintenanceInterface ι α) (u : ι) : Prop :=
+  ∃ p : ComponentProfile α, I.effect? u = some p
+
+/-- The candidate mechanism is outside the M interface. -/
+def IsOutside (I : PartialMaintenanceInterface ι α) (u : ι) : Prop :=
+  I.effect? u = none
+
+/--
+Every candidate is either represented by a three-component profile or lies
+outside the M interface.
+-/
+theorem representable_or_outside
+    (I : PartialMaintenanceInterface ι α) (u : ι) :
+    IsInside I u ∨ IsOutside I u := by
+  unfold IsInside IsOutside
+  cases h : I.effect? u with
+  | none => exact Or.inr rfl
+  | some p => exact Or.inl ⟨p, rfl⟩
+
+/-- Any represented candidate is represented by exactly the three component coordinates. -/
+theorem inside_profile_three_coordinate_reconstruction
+    {I : PartialMaintenanceInterface ι α} {u : ι} {p : ComponentProfile α}
+    (_h : I.effect? u = some p) :
+    p =
+      fun c =>
+        match c with
+        | MaintenanceComponent.buffer => p MaintenanceComponent.buffer
+        | MaintenanceComponent.recovery => p MaintenanceComponent.recovery
+        | MaintenanceComponent.reconfiguration => p MaintenanceComponent.reconfiguration :=
+  componentProfile_eq_three_coordinate_reconstruction p
+
+end PartialMaintenanceInterface
 
 /--
 A full supply profile is fully determined by six coordinates:
