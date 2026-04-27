@@ -102,6 +102,18 @@ The next practical move is now narrower:
 This is the document to hand to a partner, internal data owner, or outside
 collaborator before any dataset-specific freeze is even discussed.
 
+There is now also a narrow public-web rescan layer:
+
+- `analysis/g4_v2_public_repair_flow_rescan_2026-04-27.md`
+
+Its current conclusion is intentionally limited:
+
+```text
+Scania Component X is the strongest public stochastic reliability bridge
+candidate; Azure PdM is still only a leakage-risk re-audit candidate; public
+web data still does not yet yield a clean repair-flow primary.
+```
+
 ## 3. Workstream B — Cross-Domain Non-CSP Empirical Support
 
 ### Current state
@@ -356,6 +368,10 @@ Status update:
 - C-MAPSS frozen primary report now exists as
   `analysis/g4_cmapss_fd001_loss_only/primary_report.md` and records the
   weakening outcome `H1/H3 pass, H2 fail`.
+- a public-web repair-flow rescan now exists as
+  `analysis/g4_v2_public_repair_flow_rescan_2026-04-27.md` and currently
+  points to Scania Component X as the strongest public stochastic reliability
+  bridge candidate.
 
 So the next concrete order becomes:
 
