@@ -146,6 +146,17 @@ one labeled last-readout row per vehicle from the official published files
 
 This asymmetry is accepted because it is the public challenge structure itself.
 
+Training rows are used exactly at row level after deterministic label
+construction.
+
+For this first public branch:
+
+```text
+no vehicle-balanced resampling;
+no per-vehicle reweighting;
+no downsampling.
+```
+
 ## 7. Predictors
 
 ### 7.1 Static and exposure predictors
@@ -214,6 +225,15 @@ C = 1.0
 max_iter = 2000
 class_weight = None
 random_state = 43001
+```
+
+Frozen numeric preprocessing for these models:
+
+```text
+standardize numeric predictor columns using training-row mean and population
+standard deviation only;
+leave one-hot specification indicators as 0/1 columns;
+do not apply vehicle-level balancing or sample weighting.
 ```
 
 Why `class_weight = None`:

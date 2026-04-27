@@ -134,6 +134,16 @@ These fix the censored-as-class-0 rule, the baseline ladder, the compressed
 `D_pc1` primary family, and the intended multiclass log-loss evaluation path,
 while still stopping short of a frozen script or execution package.
 
+That gap is now partly closed by:
+
+- `analysis/g4_scania_component_x_horizon_bridge/scripts/evaluate_scania_component_x_horizon_bridge.py`
+- `analysis/g4_scania_component_x_horizon_bridge/validation_smoke_note.md`
+
+The first Scania public bridge script now exists, `--metadata-only` passes,
+and `--validation-smoke` passes without recording validation metrics or loading
+the held-out test surface. The route is now at pre-freeze execution readiness,
+not at frozen primary execution.
+
 There is now also a narrow public-web rescan layer:
 
 - `analysis/g4_v2_public_repair_flow_rescan_2026-04-27.md`

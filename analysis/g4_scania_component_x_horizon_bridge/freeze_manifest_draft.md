@@ -104,6 +104,17 @@ censored-as-class-0 within observed study horizon
 
 This rule may not be changed after freeze.
 
+Training rows are used exactly at row level after deterministic label
+construction.
+
+Frozen anti-flexibility rule:
+
+```text
+no vehicle-balanced resampling;
+no per-vehicle weighting;
+no downsampling.
+```
+
 ## 7. Feature Families
 
 Static / exposure:
@@ -164,6 +175,15 @@ Specification handling:
 ```text
 one-hot encode training categories only
 handle_unknown = "ignore"
+```
+
+Frozen numeric preprocessing:
+
+```text
+standardize numeric predictor columns using training-row mean and population
+standard deviation only;
+leave one-hot specification indicators as 0/1 columns;
+apply no vehicle-level balancing or sample weighting.
 ```
 
 ## 11. Split Roles
