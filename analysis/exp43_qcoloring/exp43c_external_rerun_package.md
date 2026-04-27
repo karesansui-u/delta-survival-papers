@@ -27,13 +27,15 @@ Exp43c now has:
 2. local fresh rerun complete;
 3. exact manifest match to the official package;
 4. exact evaluation-JSON match to the official package;
-5. external independent rerun still open.
+5. published-remote outside-workspace rerun complete;
+6. sender-side true outside-group zip packet prepared;
+7. external independent rerun return still open.
 
 So the next clean G7 move is:
 
 ```text
-package Exp43c so an outside replicator can rerun the frozen threshold-local
-primary without touching official artifacts
+send the Exp43c zip packet so an outside replicator can rerun the frozen
+threshold-local primary without touching official artifacts
 ```
 
 Important boundary:

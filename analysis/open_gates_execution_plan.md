@@ -231,8 +231,9 @@ failed theory test and not as a hidden support result.
 
 The program now has real validated anchors, a Mixed-CSP external package, an
 Exp43c external package, published-remote outside-workspace reruns for both
-Route A packages, and final handoff checklists for both. What remains open is
-true outside-group rerun, not project-side reproducibility.
+Route A packages, final handoff checklists for both, one returned Mixed-CSP
+outside-group success, and an Exp43c sender-side zip packet. What remains open
+is outside-group return depth, not project-side reproducibility.
 
 ### Principle
 
@@ -257,11 +258,12 @@ Reason:
 ### Next artifact
 
 The plan and final handoff artifacts now exist, and the first Mixed-CSP return
-has landed cleanly. The next clean move is the current outside-rerun flow:
+has landed cleanly. Exp43c now also has a sender-side zip packet. The next
+clean move is the current outside-rerun flow:
 
 1. absorb the two pending Mixed-CSP outside-group returns when they arrive;
 2. keep the Mixed-CSP report interim until the requested set is resolved;
-3. move toward Exp43c outside-group handoff in parallel.
+3. send the Exp43c outside-group zip packet.
 
 ## 5. Workstream D — Rival-Framework Stress Test
 
@@ -439,11 +441,16 @@ Status update:
 - the Mixed-CSP true outside-group rerun set now has an interim report at
   `analysis/route_a_mixed_csp/mixed_csp_true_outside_interim_report.md`, with
   status `1/3` completed, `1/1` clean success, `2` pending.
+- the Exp43c true outside-group sender-side packet now exists via
+  `analysis/exp43_qcoloring/exp43c_true_outside_send_runbook.md`,
+  `analysis/exp43_qcoloring/exp43c_true_outside_send_packet_ja.md`,
+  `analysis/exp43_qcoloring/exp43c_zip_receiver_guide_ja.md`, and
+  `analysis/exp43_qcoloring/exp43c_g7_replication_report_template.md`.
 
 So the next concrete order becomes:
 
 1. absorb the two pending Mixed-CSP true outside-group returns when they arrive;
-2. true outside Exp43c rerun from the published handoff package;
+2. send the Exp43c outside-group zip packet and wait for the first return;
 3. decide whether to open a fresh-archive C-MAPSS v2 exploration note or move
    directly toward repair-flow data acquisition;
 4. future repair-flow data acquisition under the candidate-criteria gate.

@@ -31,11 +31,13 @@ checklist was assembled at 4a74e76.
 Important distinction:
 
 ```text
-The outside-group rerun should clone the current published HEAD at handoff
-time. Commit 5088a71 is the first post-rename send-ready published baseline.
-Commit 96de727 is the earlier published-remote rehearsal commit, and 4a74e76
-is the first commit where the final outside-group checklist itself was checked
-in. None of these should be confused with an unpublished local draft.
+The preferred practical handoff is now a locked zip bundle exported from the
+current published HEAD at handoff time, because the official Exp43c reference
+artifacts live under a gitignored data directory. Commit 5088a71 is the first
+post-rename send-ready published baseline. Commit 96de727 is the earlier
+published-remote rehearsal commit, and 4a74e76 is the first commit where the
+final outside-group checklist itself was checked in. None of these should be
+confused with an unpublished local draft.
 ```
 
 ## 2. Before-Send Checklist
@@ -53,7 +55,11 @@ Before sending the package, verify all of the following:
    separate-output commands.
 6. `analysis/exp43_qcoloring/exp43c_published_remote_rerun_note.md`
    confirms project-side published-remote reproducibility.
-7. The package text still explicitly says:
+7. `analysis/exp43_qcoloring/exp43c_true_outside_send_runbook.md`,
+   `analysis/exp43_qcoloring/exp43c_zip_receiver_guide_ja.md`, and
+   `analysis/exp43_qcoloring/exp43c_execution_environment_note_template_ja.md`
+   are available for the zip recipient.
+8. The package text still explicitly says:
    - already primary validated;
    - rerun is replication, not redesign;
    - observational branches sit below Exp43c in evidence tier.
@@ -78,7 +84,9 @@ Send the following files and nothing more unless requested:
 14. `requirements.txt`
 15. `analysis/exp43_qcoloring/exp43c_external_rerun_package.md`
 16. `analysis/exp43_qcoloring/exp43c_true_outside_handoff_checklist.md`
-17. attached official reference artifacts:
+17. `analysis/exp43_qcoloring/exp43c_zip_receiver_guide_ja.md`
+18. `analysis/exp43_qcoloring/exp43c_execution_environment_note_template_ja.md`
+19. attached official reference artifacts:
    - `analysis/exp43_qcoloring/data/exp43c_primary_manifest.jsonl`
    - `analysis/exp43_qcoloring/data/exp43c_primary_results.jsonl`
    - `analysis/exp43_qcoloring/data/exp43c_primary_evaluation.json`
@@ -87,6 +95,8 @@ Optional context only:
 
 1. `analysis/exp43_qcoloring/exp43c_level2_rerun_note.md`
 2. `analysis/exp43_qcoloring/exp43c_published_remote_rerun_note.md`
+3. `analysis/exp43_qcoloring/exp43c_true_outside_send_packet_ja.md`
+4. `analysis/exp43_qcoloring/exp43c_g7_replication_report_template.md`
 
 Do not send:
 

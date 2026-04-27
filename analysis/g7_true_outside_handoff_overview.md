@@ -56,7 +56,9 @@ Exp43c currently has:
 1. Level 2 local fresh rerun;
 2. external package note;
 3. published-remote outside-workspace rerun;
-4. final true outside-group handoff checklist.
+4. final true outside-group handoff checklist;
+5. sender-side runbook, Japanese send packet, zip receiver guide, environment
+   memo template, and return-report template.
 
 ## 3. What Still Counts As Open
 
@@ -64,7 +66,7 @@ The following remains open:
 
 1. two pending requested Mixed-CSP outside-group returns;
 2. a final Mixed-CSP G7 replication report after the requested returns resolve;
-3. Exp43c true outside-group rerun;
+3. Exp43c true outside-group rerun return;
 4. outside-group environment notes and returned artifact hashes for future
    returns.
 
@@ -93,14 +95,19 @@ For Exp43c, use:
 
 - `analysis/exp43_qcoloring/exp43c_external_rerun_package.md`
 - `analysis/exp43_qcoloring/exp43c_true_outside_handoff_checklist.md`
+- `analysis/exp43_qcoloring/exp43c_true_outside_send_runbook.md`
+- `analysis/exp43_qcoloring/exp43c_true_outside_send_packet_ja.md`
+- `analysis/exp43_qcoloring/exp43c_zip_receiver_guide_ja.md`
+- `analysis/exp43_qcoloring/exp43c_execution_environment_note_template_ja.md`
+- `analysis/exp43_qcoloring/exp43c_g7_replication_report_template.md`
 
 ## 5. Recommended Immediate Next Move
 
 The next clean move is:
 
 ```text
-absorb the two pending Mixed-CSP outside-group returns when they land while
-moving toward Exp43c outside-group handoff
+send the Exp43c outside-group zip packet while absorbing the two pending
+Mixed-CSP outside-group returns when they land
 ```
 
 This avoids idle waiting while preserving the first G7 face of the program on

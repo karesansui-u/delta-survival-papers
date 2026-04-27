@@ -12,7 +12,10 @@ External handoff package is now complete.
 See analysis/exp43_qcoloring/exp43c_external_rerun_package.md.
 Published-remote outside-workspace rerun is now also complete.
 See analysis/exp43_qcoloring/exp43c_published_remote_rerun_note.md.
-External independent rerun remains open.
+Sender-side true outside-group packet is now prepared.
+See analysis/exp43_qcoloring/exp43c_true_outside_send_runbook.md and
+analysis/exp43_qcoloring/handoff_exports/返信が来たらやること.md.
+External independent rerun return remains open.
 ```
 
 Purpose:
@@ -177,7 +180,8 @@ Actions:
 4. compare outcomes to the official report.
 
 This target is now complete locally and remains the next clean outside
-Route A rerun after Mixed-CSP.
+Route A rerun after Mixed-CSP. The sender-side zip packet is now prepared; the
+open step is actual outside execution and return.
 
 ## 6. Clean Execution Order
 
