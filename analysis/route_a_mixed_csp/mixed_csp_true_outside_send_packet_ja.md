@@ -90,6 +90,7 @@ LLM の利用は **必須ではありません**。使えるなら手順整理�
 4. `analysis/route_a_mixed_csp/mixed_csp_results.json`
 5. `analysis/route_a_mixed_csp/mixed_csp_results_summary.md`
 6. `requirements.txt`
+7. `analysis/route_a_mixed_csp/mixed_csp_zip_receiver_guide_ja.md`
 
 Git を使わない相手には、上の内容を含む zip 一式を送って構いません。
 その場合も、必ず
@@ -142,6 +143,7 @@ Git を使わない相手には、上の内容を含む zip 一式を送って�
 - mixed_csp_external_rerun_package.md
 - mixed_csp_true_outside_handoff_checklist.md
 - mixed_csp_true_outside_send_runbook.md
+- mixed_csp_zip_receiver_guide_ja.md
 
 もし可能でしたら、まず
 「この凍結済みパッケージをあなたの環境で再実行できるか」

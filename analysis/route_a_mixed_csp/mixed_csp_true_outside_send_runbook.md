@@ -82,6 +82,7 @@ Attach or link exactly these:
 4. `analysis/route_a_mixed_csp/mixed_csp_results.json`
 5. `analysis/route_a_mixed_csp/mixed_csp_results_summary.md`
 6. `requirements.txt`
+7. `analysis/route_a_mixed_csp/mixed_csp_zip_receiver_guide_ja.md`
 
 Optional context:
 

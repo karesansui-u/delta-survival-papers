@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+cd "$ROOT"
+
+SHORT_HASH="$(git rev-parse --short=12 HEAD)"
+FULL_HASH="$(git rev-parse HEAD)"
+OUTDIR="analysis/route_a_mixed_csp/handoff_exports"
+ZIP_NAME="mixed_csp_true_outside_bundle_${SHORT_HASH}.zip"
+ZIP_PATH="${OUTDIR}/${ZIP_NAME}"
+SHA_PATH="${ZIP_PATH}.sha256"
+MANIFEST_PATH="${OUTDIR}/mixed_csp_true_outside_bundle_${SHORT_HASH}.manifest.txt"
+
+mkdir -p "$OUTDIR"
+
+git archive \
+  --format=zip \
+  --output "$ZIP_PATH" \
+  HEAD \
+  analysis/route_a_mixed_csp/README.md \
+  analysis/route_a_mixed_csp/mixed_csp_preregistration.md \
+  analysis/route_a_mixed_csp/run_mixed_csp.py \
+  analysis/route_a_mixed_csp/analyze_mixed_csp.py \
+  analysis/route_a_mixed_csp/mixed_csp_generator.py \
+  analysis/route_a_mixed_csp/mixed_csp_solvers.py \
+  analysis/route_a_mixed_csp/debug_mixed_csp_encoding.py \
+  analysis/route_a_mixed_csp/mixed_csp_primary_official_2026-04-22.jsonl \
+  analysis/route_a_mixed_csp/mixed_csp_results.json \
+  analysis/route_a_mixed_csp/mixed_csp_results_summary.md \
+  analysis/route_a_mixed_csp/mixed_csp_external_rerun_package.md \
+  analysis/route_a_mixed_csp/mixed_csp_true_outside_handoff_checklist.md \
+  analysis/route_a_mixed_csp/mixed_csp_true_outside_send_template.md \
+  analysis/route_a_mixed_csp/mixed_csp_true_outside_send_runbook.md \
+  analysis/route_a_mixed_csp/mixed_csp_true_outside_send_packet_ja.md \
+  analysis/route_a_mixed_csp/mixed_csp_zip_receiver_guide_ja.md \
+  analysis/route_a_mixed_csp/mixed_csp_g7_replication_report_template.md \
+  requirements.txt
+
+shasum -a 256 "$ZIP_PATH" > "$SHA_PATH"
+
+cat > "$MANIFEST_PATH" <<EOF
+Mixed-CSP true outside-group handoff zip
+
+exported_from_commit_short: ${SHORT_HASH}
+exported_from_commit_full: ${FULL_HASH}
+zip_filename: ${ZIP_NAME}
+zip_sha256_file: $(basename "$SHA_PATH")
+
+This zip was exported from the exact published HEAD recorded above.
+It is intended for outside-project rerun by zip extraction, not redesign.
+EOF
+
+printf 'Created %s\n' "$ZIP_PATH"
+printf 'Created %s\n' "$SHA_PATH"
+printf 'Created %s\n' "$MANIFEST_PATH"

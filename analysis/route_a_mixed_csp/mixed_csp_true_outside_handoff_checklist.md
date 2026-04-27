@@ -84,6 +84,7 @@ Send the following files and nothing more unless requested:
 12. `analysis/route_a_mixed_csp/mixed_csp_true_outside_handoff_checklist.md`
 13. `requirements.txt`
 14. `analysis/route_a_mixed_csp/mixed_csp_true_outside_send_template.md`
+15. `analysis/route_a_mixed_csp/mixed_csp_zip_receiver_guide_ja.md`
 
 Optional context only:
 
