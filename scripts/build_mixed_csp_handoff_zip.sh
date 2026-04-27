@@ -12,31 +12,54 @@ ZIP_NAME="mixed_csp_true_outside_bundle_${SHORT_HASH}.zip"
 ZIP_PATH="${OUTDIR}/${ZIP_NAME}"
 SHA_PATH="${ZIP_PATH}.sha256"
 MANIFEST_PATH="${OUTDIR}/mixed_csp_true_outside_bundle_${SHORT_HASH}.manifest.txt"
+BUNDLE_DIR_NAME="mixed_csp_true_outside_bundle_${SHORT_HASH}"
+TMPDIR="$(mktemp -d)"
+STAGE_DIR="${TMPDIR}/${BUNDLE_DIR_NAME}"
 
 mkdir -p "$OUTDIR"
+mkdir -p "$STAGE_DIR"
 
-git archive \
-  --format=zip \
-  --output "$ZIP_PATH" \
-  HEAD \
-  analysis/route_a_mixed_csp/README.md \
-  analysis/route_a_mixed_csp/mixed_csp_preregistration.md \
-  analysis/route_a_mixed_csp/run_mixed_csp.py \
-  analysis/route_a_mixed_csp/analyze_mixed_csp.py \
-  analysis/route_a_mixed_csp/mixed_csp_generator.py \
-  analysis/route_a_mixed_csp/mixed_csp_solvers.py \
-  analysis/route_a_mixed_csp/debug_mixed_csp_encoding.py \
-  analysis/route_a_mixed_csp/requirements_mixed_csp.txt \
-  analysis/route_a_mixed_csp/mixed_csp_primary_official_2026-04-22.jsonl \
-  analysis/route_a_mixed_csp/mixed_csp_results.json \
-  analysis/route_a_mixed_csp/mixed_csp_results_summary.md \
-  analysis/route_a_mixed_csp/mixed_csp_external_rerun_package.md \
-  analysis/route_a_mixed_csp/mixed_csp_true_outside_handoff_checklist.md \
-  analysis/route_a_mixed_csp/mixed_csp_true_outside_send_template.md \
-  analysis/route_a_mixed_csp/mixed_csp_true_outside_send_runbook.md \
-  analysis/route_a_mixed_csp/mixed_csp_true_outside_send_packet_ja.md \
-  analysis/route_a_mixed_csp/mixed_csp_zip_receiver_guide_ja.md \
+FILES=(
+  analysis/route_a_mixed_csp/README.md
+  analysis/route_a_mixed_csp/mixed_csp_preregistration.md
+  analysis/route_a_mixed_csp/run_mixed_csp.py
+  analysis/route_a_mixed_csp/analyze_mixed_csp.py
+  analysis/route_a_mixed_csp/mixed_csp_generator.py
+  analysis/route_a_mixed_csp/mixed_csp_solvers.py
+  analysis/route_a_mixed_csp/debug_mixed_csp_encoding.py
+  analysis/route_a_mixed_csp/requirements_mixed_csp.txt
+  analysis/route_a_mixed_csp/mixed_csp_primary_official_2026-04-22.jsonl
+  analysis/route_a_mixed_csp/mixed_csp_results.json
+  analysis/route_a_mixed_csp/mixed_csp_results_summary.md
+  analysis/route_a_mixed_csp/mixed_csp_external_rerun_package.md
+  analysis/route_a_mixed_csp/mixed_csp_true_outside_handoff_checklist.md
+  analysis/route_a_mixed_csp/mixed_csp_true_outside_send_template.md
+  analysis/route_a_mixed_csp/mixed_csp_true_outside_send_runbook.md
+  analysis/route_a_mixed_csp/mixed_csp_true_outside_send_packet_ja.md
+  analysis/route_a_mixed_csp/mixed_csp_zip_receiver_guide_ja.md
   analysis/route_a_mixed_csp/mixed_csp_g7_replication_report_template.md
+)
+
+for file in "${FILES[@]}"; do
+  mkdir -p "${STAGE_DIR}/$(dirname "$file")"
+  cp "$file" "${STAGE_DIR}/${file}"
+done
+
+cp analysis/route_a_mixed_csp/requirements_mixed_csp.txt "${STAGE_DIR}/requirements.txt"
+cp analysis/route_a_mixed_csp/mixed_csp_zip_receiver_guide_ja.md "${STAGE_DIR}/START_HERE_ja.md"
+
+cat > "${STAGE_DIR}/BUNDLE_INFO.txt" <<EOF
+Mixed-CSP true outside-group handoff bundle
+
+exported_from_commit_short: ${SHORT_HASH}
+exported_from_commit_full: ${FULL_HASH}
+
+Use START_HERE_ja.md first if you received this bundle as a zip package.
+This bundle was exported from the exact published HEAD recorded above.
+EOF
+
+rm -f "$ZIP_PATH"
+(cd "$TMPDIR" && zip -qr "$ROOT/$ZIP_PATH" "$BUNDLE_DIR_NAME")
 
 shasum -a 256 "$ZIP_PATH" > "$SHA_PATH"
 
@@ -51,6 +74,8 @@ zip_sha256_file: $(basename "$SHA_PATH")
 This zip was exported from the exact published HEAD recorded above.
 It is intended for outside-project rerun by zip extraction, not redesign.
 EOF
+
+rm -rf "$TMPDIR"
 
 printf 'Created %s\n' "$ZIP_PATH"
 printf 'Created %s\n' "$SHA_PATH"

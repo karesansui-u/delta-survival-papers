@@ -32,9 +32,11 @@
 
 あわせて、次の資料が入っています。
 
-1. `analysis/route_a_mixed_csp/mixed_csp_external_rerun_package.md`
-2. `analysis/route_a_mixed_csp/mixed_csp_true_outside_handoff_checklist.md`
-3. `analysis/route_a_mixed_csp/mixed_csp_true_outside_send_packet_ja.md`
+1. `START_HERE_ja.md`
+2. `requirements.txt`
+3. `analysis/route_a_mixed_csp/mixed_csp_external_rerun_package.md`
+4. `analysis/route_a_mixed_csp/mixed_csp_true_outside_handoff_checklist.md`
+5. `analysis/route_a_mixed_csp/mixed_csp_true_outside_send_packet_ja.md`
 
 ## 3. 作業の流れ
 
@@ -58,7 +60,7 @@
 
 ```bash
 unzip mixed_csp_true_outside_bundle_<hash>.zip
-cd delta-survival-paper
+cd mixed_csp_true_outside_bundle_<hash>
 ```
 
 展開先のフォルダ名が違う場合は、2 行目はその名前に合わせてください。
@@ -66,7 +68,7 @@ cd delta-survival-paper
 ### 4-2. 依存関係
 
 ```bash
-python3 -m pip install -r analysis/route_a_mixed_csp/requirements_mixed_csp.txt
+python3 -m pip install -r requirements.txt
 ```
 
 ### 4-3. 出力先の作成
