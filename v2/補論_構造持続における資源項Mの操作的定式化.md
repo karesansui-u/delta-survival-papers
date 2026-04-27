@@ -240,6 +240,8 @@ Lean では、維持能力成分を
 
 さらに Lean では、任意の raw mechanism を直接分類するのではなく、それが M 側の観測 interface に入ったときの効果を component profile として扱う。したがって「第四成分が存在しない」という主張は、現実世界の原因機構が三種類しかないという主張ではない。正確には、M として観測される効果は $M_{\mathrm{buffer}},M_{\mathrm{recovery}},M_{\mathrm{reconfiguration}}$ の三座標に還元され、同じ三座標を持つ二つの mechanism を M interface 内部で区別する独立な第四座標は存在しない、という表現定理である。三座標で表現できない候補が現れた場合、それは第四の M 成分ではなく、対象構造・測度・環境・同一性条件など、M interface の外側に置くべき候補として扱う。
 
+この主張はさらに、標準商としても定式化される。Lean 側では、raw mechanism を「同じ三成分 profile を持つなら同一視する」同値関係で割った `ObservationQuotient` を作り、任意の M-side readout がこの標準商を一意に通ることを証明している。したがって三成分 profile は単なる便利な座標ではなく、M interface 上で識別可能な差分を失わない最小完全観測商として機能する。
+
 対応する定理は次の通りである。
 
 | Lean entry point | 内容 |
@@ -256,6 +258,11 @@ Lean では、維持能力成分を
 | `MaintenanceInterface.observationallyEquivalent_iff_three_coordinates` | M interface 上の観測同値性は三成分の一致と同値である |
 | `MaintenanceInterface.noFourthObservableCoordinate` | 三成分が一致する二つの mechanism を分ける第四 M 座標は interface 内部には存在しない |
 | `MaintenanceInterface.maintenanceReadout_eq_of_same_three_coordinates` | 任意の M-side readout は三成分が一致する mechanism を区別できない |
+| `MaintenanceInterface.factors_through_observationQuotient_iff_respects_equivalence` | 観測量が標準商を通ることと、M 観測同値性を尊重することは同値である |
+| `MaintenanceInterface.maintenanceReadout_factors_through_observationQuotient` | 任意の M-side readout は標準商 `ObservationQuotient` を通る |
+| `MaintenanceInterface.quotientFactor_unique` | 標準商を通る factorization は一意である |
+| `MaintenanceInterface.quotientProfile_injective` | 標準商の各クラスは三成分 profile によって忠実に表現される |
+| `MaintenanceInterface.quotientProfile_eq_iff` | 標準商上の等号は complete profile の等号と同値である |
 | `MaintenanceInterface.outsideInterface_if_distinguishes_observationallyEquivalent` | 同じ三成分 profile を持つ mechanism を区別する追加量は M interface を factor しない |
 | `MaintenanceInterface.outsideInterface_if_distinguishes_same_three_coordinates` | 三成分が一致する mechanism を区別する追加量は M interface の外側に属する |
 | `PartialMaintenanceInterface.representable_or_outside` | 候補 mechanism は三成分 profile に表現されるか、M interface の外側に置かれる |
@@ -267,7 +274,7 @@ Lean では、維持能力成分を
 - software / SaaS における component signal の妥当性。
 - 介入順位予測が実データで成立すること。
 
-つまり、Lean は本補論の「外部供給を第四成分にしない」という文法と、「M interface 内部では三成分以外の独立座標を持たない」という表現定理を閉じる。経験的価値は、§6 の事前固定 validation で判定する。
+つまり、Lean は本補論の「外部供給を第四成分にしない」という文法と、「M interface 内部では三成分以外の独立座標を持たない」という表現定理を閉じる。さらに、M interface 上の任意の valid readout は三成分 profile から作られる標準商を一意に通る。経験的価値は、§6 の事前固定 validation で判定する。
 
 2.7 補論 B との関係
 

@@ -24,6 +24,10 @@ The stronger representation result is interface-relative: any raw mechanism
 admitted to the M-side observation interface is represented by a
 three-component profile, and any extra readout that distinguishes two
 mechanisms with the same profile is outside that interface.
+
+The quotient layer makes this universal: the M-observation quotient is the
+canonical observable object, and every valid M-side readout factors uniquely
+through it.
 -/
 
 namespace Survival.MaintenanceComponentDecomposition
@@ -164,6 +168,118 @@ def representedProfile (I : MaintenanceInterface ι α) (u : ι) : ComponentProf
 def ObservationallyEquivalent (I : MaintenanceInterface ι α) (u v : ι) : Prop :=
   I.effect u = I.effect v
 
+/-- M-observational equivalence as a setoid on raw mechanisms. -/
+def observationalSetoid (I : MaintenanceInterface ι α) : Setoid ι where
+  r := ObservationallyEquivalent I
+  iseqv := by
+    constructor
+    · intro u
+      rfl
+    · intro u v h
+      exact h.symm
+    · intro u v w huv hvw
+      exact huv.trans hvw
+
+/--
+The canonical M-observation quotient: raw mechanisms modulo the equivalence
+relation of having the same three-component M profile.
+-/
+abbrev ObservationQuotient (I : MaintenanceInterface ι α) :=
+  Quotient (observationalSetoid I)
+
+/-- Send a raw mechanism to its M-observation equivalence class. -/
+def quotientOf (I : MaintenanceInterface ι α) (u : ι) : ObservationQuotient I :=
+  Quotient.mk (observationalSetoid I) u
+
+theorem quotientOf_eq_iff_observationallyEquivalent
+    (I : MaintenanceInterface ι α) (u v : ι) :
+    quotientOf I u = quotientOf I v ↔ ObservationallyEquivalent I u v := by
+  constructor
+  · intro h
+    exact Quotient.exact h
+  · intro h
+    exact Quotient.sound h
+
+/-- Lift a raw observation to the M-observation quotient when it respects M-equivalence. -/
+def quotientReadout
+    (I : MaintenanceInterface ι α) (obs : ι → β)
+    (hobs : ∀ u v, ObservationallyEquivalent I u v → obs u = obs v) :
+    ObservationQuotient I → β :=
+  Quotient.lift obs hobs
+
+@[simp] theorem quotientReadout_quotientOf
+    (I : MaintenanceInterface ι α) (obs : ι → β)
+    (hobs : ∀ u v, ObservationallyEquivalent I u v → obs u = obs v)
+    (u : ι) :
+    quotientReadout I obs hobs (quotientOf I u) = obs u := rfl
+
+/--
+Universal property of the M-observation quotient: an observation factors
+through the quotient iff it is invariant under M-observational equivalence.
+-/
+theorem factors_through_observationQuotient_iff_respects_equivalence
+    (I : MaintenanceInterface ι α) (obs : ι → β) :
+    (∃ qobs : ObservationQuotient I → β,
+        obs = fun u => qobs (quotientOf I u)) ↔
+      ∀ u v, ObservationallyEquivalent I u v → obs u = obs v := by
+  constructor
+  · intro h u v huv
+    rcases h with ⟨qobs, hqobs⟩
+    calc
+      obs u = qobs (quotientOf I u) := congrFun hqobs u
+      _ = qobs (quotientOf I v) := congrArg qobs (Quotient.sound huv)
+      _ = obs v := (congrFun hqobs v).symm
+  · intro hobs
+    exact ⟨quotientReadout I obs hobs, by funext u; rfl⟩
+
+/-- The quotient factorization, when it exists, is unique. -/
+theorem quotientFactor_unique
+    {I : MaintenanceInterface ι α} {obs : ι → β}
+    {qobs qobs' : ObservationQuotient I → β}
+    (hqobs : obs = fun u => qobs (quotientOf I u))
+    (hqobs' : obs = fun u => qobs' (quotientOf I u)) :
+    qobs = qobs' := by
+  funext q
+  revert q
+  refine Quotient.ind ?_
+  intro u
+  exact (congrFun hqobs u).symm.trans (congrFun hqobs' u)
+
+/-- The quotient still has a canonical complete three-component profile. -/
+def quotientProfile (I : MaintenanceInterface ι α) :
+    ObservationQuotient I → ComponentProfile α :=
+  quotientReadout I I.effect (by
+    intro u v huv
+    exact huv)
+
+@[simp] theorem quotientProfile_quotientOf
+    (I : MaintenanceInterface ι α) (u : ι) :
+    quotientProfile I (quotientOf I u) = I.effect u := rfl
+
+/--
+The three-component profile is a faithful representation of the M-observation
+quotient.  If two quotient classes have the same profile, they are the same
+M-observation class.
+-/
+theorem quotientProfile_injective
+    (I : MaintenanceInterface ι α) :
+    Function.Injective (quotientProfile I) := by
+  intro q r h
+  revert h
+  refine Quotient.inductionOn₂ q r ?_
+  intro u v h
+  exact Quotient.sound h
+
+/-- Equality in the M-observation quotient is exactly equality of the complete profile. -/
+theorem quotientProfile_eq_iff
+    (I : MaintenanceInterface ι α) (q r : ObservationQuotient I) :
+    quotientProfile I q = quotientProfile I r ↔ q = r := by
+  constructor
+  · intro h
+    exact quotientProfile_injective I h
+  · intro h
+    rw [h]
+
 /--
 Every raw mechanism admitted to a total M interface has a three-component
 representation.
@@ -245,6 +361,18 @@ theorem maintenanceReadout_constant_on_observationalEquivalence
     obs u = obs v := by
   rcases hobs with ⟨readout, rfl⟩
   exact congrArg readout huv
+
+/--
+Every M-side readout factors through the canonical M-observation quotient.
+-/
+theorem maintenanceReadout_factors_through_observationQuotient
+    {I : MaintenanceInterface ι α} {obs : ι → β}
+    (hobs : IsMaintenanceReadout I obs) :
+    ∃ qobs : ObservationQuotient I → β,
+      obs = fun u => qobs (quotientOf I u) :=
+  (factors_through_observationQuotient_iff_respects_equivalence I obs).2
+    (fun _ _ huv =>
+      maintenanceReadout_constant_on_observationalEquivalence hobs huv)
 
 /--
 Any valid M-side readout is fixed by the three component coordinates.  Thus no
