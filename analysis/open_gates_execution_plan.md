@@ -254,9 +254,10 @@ That gate is now explicit:
 The safe current claim is:
 
 ```text
-Non-CSP universality is still open, but restricted repairable stochastic
-systems already support a conditional law-side bridge for the structural
-balance law.
+Non-CSP universality is still open. The strongest current bridge is
+queueing / Foster-Lyapunov drift, which already supports a conditional
+law-side bridge. Repair / maintenance remains the next near-bridge
+open-system escalation path.
 ```
 
 ### Why this matters
