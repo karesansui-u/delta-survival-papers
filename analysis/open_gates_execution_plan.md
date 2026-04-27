@@ -446,6 +446,8 @@ Status update:
   `analysis/exp43_qcoloring/exp43c_true_outside_send_packet_ja.md`,
   `analysis/exp43_qcoloring/exp43c_zip_receiver_guide_ja.md`, and
   `analysis/exp43_qcoloring/exp43c_g7_replication_report_template.md`.
+- the locked Exp43c distribution bundle metadata now exists at
+  `analysis/exp43_qcoloring/handoff_exports/LOCKED_BUNDLE_NOTE.md`.
 
 So the next concrete order becomes:
 

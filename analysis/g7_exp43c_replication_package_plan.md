@@ -14,7 +14,7 @@ Published-remote outside-workspace rerun is now also complete.
 See analysis/exp43_qcoloring/exp43c_published_remote_rerun_note.md.
 Sender-side true outside-group packet is now prepared.
 See analysis/exp43_qcoloring/exp43c_true_outside_send_runbook.md and
-analysis/exp43_qcoloring/handoff_exports/返信が来たらやること.md.
+analysis/exp43_qcoloring/handoff_exports/LOCKED_BUNDLE_NOTE.md.
 External independent rerun return remains open.
 ```
 

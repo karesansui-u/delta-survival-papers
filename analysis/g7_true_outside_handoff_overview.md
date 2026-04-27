@@ -100,6 +100,9 @@ For Exp43c, use:
 - `analysis/exp43_qcoloring/exp43c_zip_receiver_guide_ja.md`
 - `analysis/exp43_qcoloring/exp43c_execution_environment_note_template_ja.md`
 - `analysis/exp43_qcoloring/exp43c_g7_replication_report_template.md`
+- `analysis/exp43_qcoloring/handoff_exports/LOCKED_BUNDLE_NOTE.md`
+- `analysis/exp43_qcoloring/handoff_exports/依頼文.md`
+- `analysis/exp43_qcoloring/handoff_exports/返信が来たらやること.md`
 
 ## 5. Recommended Immediate Next Move
 
