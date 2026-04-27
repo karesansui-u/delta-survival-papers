@@ -20,24 +20,14 @@ mkdir -p "$OUTDIR"
 mkdir -p "$STAGE_DIR"
 
 FILES=(
-  analysis/route_a_mixed_csp/README.md
-  analysis/route_a_mixed_csp/mixed_csp_preregistration.md
   analysis/route_a_mixed_csp/run_mixed_csp.py
   analysis/route_a_mixed_csp/analyze_mixed_csp.py
   analysis/route_a_mixed_csp/mixed_csp_generator.py
   analysis/route_a_mixed_csp/mixed_csp_solvers.py
   analysis/route_a_mixed_csp/debug_mixed_csp_encoding.py
-  analysis/route_a_mixed_csp/requirements_mixed_csp.txt
   analysis/route_a_mixed_csp/mixed_csp_primary_official_2026-04-22.jsonl
   analysis/route_a_mixed_csp/mixed_csp_results.json
   analysis/route_a_mixed_csp/mixed_csp_results_summary.md
-  analysis/route_a_mixed_csp/mixed_csp_external_rerun_package.md
-  analysis/route_a_mixed_csp/mixed_csp_true_outside_handoff_checklist.md
-  analysis/route_a_mixed_csp/mixed_csp_true_outside_send_template.md
-  analysis/route_a_mixed_csp/mixed_csp_true_outside_send_runbook.md
-  analysis/route_a_mixed_csp/mixed_csp_true_outside_send_packet_ja.md
-  analysis/route_a_mixed_csp/mixed_csp_zip_receiver_guide_ja.md
-  analysis/route_a_mixed_csp/mixed_csp_g7_replication_report_template.md
 )
 
 for file in "${FILES[@]}"; do

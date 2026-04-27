@@ -30,13 +30,20 @@
 2. 元になった公開コミット hash
 3. zip 自体の sha256
 
-あわせて、次の資料が入っています。
+この zip には、実行に必要なものだけが入っています。
 
 1. `手順書.md`
 2. `requirements.txt`
-3. `analysis/route_a_mixed_csp/mixed_csp_external_rerun_package.md`
-4. `analysis/route_a_mixed_csp/mixed_csp_true_outside_handoff_checklist.md`
-5. `analysis/route_a_mixed_csp/mixed_csp_true_outside_send_packet_ja.md`
+3. `analysis/route_a_mixed_csp/run_mixed_csp.py`
+4. `analysis/route_a_mixed_csp/analyze_mixed_csp.py`
+5. `analysis/route_a_mixed_csp/debug_mixed_csp_encoding.py`
+6. `analysis/route_a_mixed_csp/mixed_csp_generator.py`
+7. `analysis/route_a_mixed_csp/mixed_csp_solvers.py`
+8. `analysis/route_a_mixed_csp/mixed_csp_primary_official_2026-04-22.jsonl`
+9. `analysis/route_a_mixed_csp/mixed_csp_results.json`
+10. `analysis/route_a_mixed_csp/mixed_csp_results_summary.md`
+
+最後の 3 つは比較用の正式参照ファイルです。実行対象ではありません。
 
 ## 3. 作業の流れ
 
