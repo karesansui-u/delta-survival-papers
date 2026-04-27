@@ -219,20 +219,65 @@ The first two artifacts in this workstream now exist:
 - `analysis/ldp_rate_function_comparison.md`
 - `analysis/cross_domain_sign_convention_table.md`
 
-## 6. Recommended Execution Order
+## 6. Workstream E — Conditional Law-Side Bridge
+
+### Current state
+
+The program already had most of the raw ingredients for a non-CSP law-side
+bridge:
+
+- G6-c minimal Foster-Lyapunov embedding;
+- G4 v1 queueing / reliability / decay anchors;
+- G4 v2 repair-maintenance skeleton.
+
+What it lacked was a reader-facing gate that says when a non-CSP domain is
+allowed to count as more than an analogy.
+
+That gate is now explicit:
+
+- `analysis/law_side_upgrade_gate.md`
+- `analysis/non_csp_conditional_law_side_bridge.md`
+
+### Current claim
+
+The safe current claim is:
+
+```text
+Non-CSP universality is still open, but restricted repairable stochastic
+systems already support a conditional law-side bridge for the structural
+balance law.
+```
+
+### Why this matters
+
+This strengthens G4 / G6-c without pretending that Backblaze, C-MAPSS, or
+Route C have already become law-side domains.
+
+### Next artifact
+
+If this bridge is later promoted into a paper-facing supplement section, keep
+the same three conditions fixed:
+
+1. natural pre-fixed \(m\);
+2. observable compensation flow \(g_t\);
+3. explicit collapse / hitting boundary under assumptions.
+
+## 7. Recommended Execution Order
 
 Near-term order:
 
 1. close the rival-framework layer enough that the program can state how it is
    not merely a relabeling;
-2. package one clean G7 replication target;
-3. add one cross-domain non-CSP loss-only anchor candidate;
-4. only then reopen the harder repair-flow empirical path.
+2. keep the conditional law-side bridge fixed as the narrow non-CSP
+   interpretation ceiling;
+3. package one clean G7 replication target;
+4. add one cross-domain non-CSP loss-only anchor candidate;
+5. only then reopen the harder repair-flow empirical path.
 
 In other words:
 
 ```text
-theory-defense -> replication package -> cross-domain non-CSP -> repair-flow data acquisition
+theory-defense -> law-side bridge -> replication package -> cross-domain non-CSP -> repair-flow data acquisition
 ```
 
 This is cleaner than continuing same-domain tuning or adding more defensive

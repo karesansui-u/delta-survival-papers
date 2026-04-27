@@ -182,41 +182,47 @@ Short horizon:
    `analysis/cross_domain_sign_convention_table.md` visible as the
    stress-test layer for overclaim, sign inconsistency, silent-system scope,
    and rival-framework subsumption.
-6. Use `analysis/open_gates_execution_plan.md` to keep the four remaining open
-   gaps ordered: rival-framework defense -> G7 replication package ->
-   cross-domain non-CSP anchor -> repair-flow data acquisition.
-7. For the rival-framework layer, the first defensive quartet now exists:
+6. Keep the new non-CSP law-side framing narrow and explicit:
+   `analysis/law_side_upgrade_gate.md` defines when a domain may count as a
+   conditional law-side bridge, and
+   `analysis/non_csp_conditional_law_side_bridge.md` applies that gate to
+   queueing / Foster-Lyapunov, reliability controls, and repair-maintenance.
+7. Use `analysis/open_gates_execution_plan.md` to keep the remaining work
+   ordered: rival-framework defense -> conditional law-side bridge -> G7
+   replication package -> cross-domain non-CSP anchor -> repair-flow data
+   acquisition.
+8. For the rival-framework layer, the first defensive quartet now exists:
    falsification memo -> LDP note -> sign table -> scope/silence catalog.
-8. For G7, Mixed-CSP now has both a completed Level 1 replay note
+9. For G7, Mixed-CSP now has both a completed Level 1 replay note
    (`analysis/route_a_mixed_csp/mixed_csp_audit_replay_note.md`) and a
    completed Level 2 local rerun note
    (`analysis/route_a_mixed_csp/mixed_csp_level2_rerun_note.md`).
-9. Mixed-CSP also now has a fresh-clone outside-workspace rehearsal note at
+10. Mixed-CSP also now has a fresh-clone outside-workspace rehearsal note at
    `analysis/route_a_mixed_csp/mixed_csp_outside_workspace_rerun_note.md`
    and a published-remote outside-workspace rerun note at
    `analysis/route_a_mixed_csp/mixed_csp_published_remote_rerun_note.md`.
-10. The external handoff boundary for Mixed-CSP is now
+11. The external handoff boundary for Mixed-CSP is now
     `analysis/route_a_mixed_csp/mixed_csp_external_rerun_package.md`.
-11. Mixed-CSP now also has a final outside-group handoff checklist at
+12. Mixed-CSP now also has a final outside-group handoff checklist at
     `analysis/route_a_mixed_csp/mixed_csp_true_outside_handoff_checklist.md`.
-12. A short coordination note for the send order now exists at
+13. A short coordination note for the send order now exists at
     `analysis/g7_true_outside_handoff_overview.md`.
-13. Exp43c now has both a package-plan note, a completed local fresh rerun
+14. Exp43c now has both a package-plan note, a completed local fresh rerun
     note at `analysis/exp43_qcoloring/exp43c_level2_rerun_note.md`, and an
     outside handoff note at
     `analysis/exp43_qcoloring/exp43c_external_rerun_package.md`.
-14. Exp43c now also has a published-remote outside-workspace rerun note at
+15. Exp43c now also has a published-remote outside-workspace rerun note at
     `analysis/exp43_qcoloring/exp43c_published_remote_rerun_note.md`.
-15. Exp43c now also has a final outside-group handoff checklist at
+16. Exp43c now also has a final outside-group handoff checklist at
     `analysis/exp43_qcoloring/exp43c_true_outside_handoff_checklist.md`.
-16. Treat q-coloring and Cardinality-SAT as optional Route A width extensions,
+17. Treat q-coloring and Cardinality-SAT as optional Route A width extensions,
    not as required gates.
-17. For G4 v2, use `analysis/g4_v2_exploratory_dataset_scan.md` as the immediate
+18. For G4 v2, use `analysis/g4_v2_exploratory_dataset_scan.md` as the immediate
    operational track. The task is to inspect candidate maintenance / repair
    datasets for schema feasibility only. Do not treat this scan as validation,
    and do not generate maintenance-log primary evidence before a dataset, split,
    feature schema, and evaluation script are frozen.
-18. For the current cross-domain non-CSP public branch, treat
+19. For the current cross-domain non-CSP public branch, treat
     `analysis/g4_cmapss_loss_only_feasibility_note.md` as the candidate logic,
     `analysis/g4_cmapss_fd001_archive_note.md` as the exact-subset choice,
     `analysis/g4_cmapss_fd001_archive_feasibility_note.md` as the exact public
