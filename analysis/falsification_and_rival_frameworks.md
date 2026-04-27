@@ -4,7 +4,7 @@ Status: working stress-test memo, not a new evidence source.
 
 Purpose:
 
-This memo records how the structural persistence / structural balance-law
+This memo records how the structural persistence / structural balance-principle
 program could still be overturned or substantially weakened after several
 domain anchors succeed. Its role is to prevent the program from drifting into
 an unfalsifiable "unified language" that can always reinterpret failures as
@@ -13,10 +13,10 @@ domain-specific problems.
 The memo should be read together with:
 
 - `analysis/current_evidence_map.md`
-- `v2/3_構造持続の収支法則と崩壊傾向.md` §7-8
+- `v2/3_構造持続の収支原理と崩壊傾向.md` §7-8
 - `v2/補論_構造持続写像の標準手順.md`
 - `analysis/g6c_foster_lyapunov_embedding_draft.md`
-- `v2/補論_構造収支律とFoster-Lyapunovドリフトの形式的埋め込み.md`
+- `v2/補論_構造持続の収支原理とFoster-Lyapunovドリフトの形式的埋め込み.md`
 - `analysis/ldp_rate_function_comparison.md`
 
 ## 1. Core Risk
@@ -24,7 +24,7 @@ The memo should be read together with:
 The program becomes scientifically weak if it can always say:
 
 ```text
-The domain prediction failed, but the structural-balance language still applies.
+The domain prediction failed, but the structural-persistence balance language still applies.
 ```
 
 That move would convert the theory from a falsifiable framework into a
@@ -45,10 +45,10 @@ subsumption, and practical redundancy.
 
 | ID | Defeat mode | What would count as defeat | Current defense | Next needed artifact |
 |---|---|---|---|---|
-| F1 | Translation / sign inconsistency | The same symbol, especially \(a_t\), \(\ell_t\), \(g_t\), \(A_n\), or \(R_t\), has incompatible sign or semantic meaning across anchors | G6-c queueing and G4 v2 repair-maintenance keep \(a_t=\ell_t-g_t\) / overload-positive convention explicit | Cross-domain sign-convention table |
+| F1 | Translation / sign inconsistency | The same symbol, especially \(b_t\), \(\ell_t\), \(g_t\), \(B_n\), or \(R_t\), has incompatible sign or semantic meaning across anchors | G6-c queueing and G4 v2 repair-maintenance keep \(b_t=\ell_t-g_t\) / overload-positive convention explicit | Cross-domain sign-convention table |
 | F2 | Prediction / theorem content not preserved | Translation preserves notation but not nontrivial predictions, inequalities, thresholds, or theorem assumptions | Exp43c and Mixed-CSP test prediction coordinates; G6-c preserves algebraic identities | Non-triviality / theorem-transfer score per domain |
-| F3 | Scope overreach / silent systems | The theory claims to cover dynamical structure generally but cannot express phase transitions, cycles, heavy-tail criticality, or static structures | structural balance law paper §8 and Route A/B/C already limit claims; `analysis/scope_silence_catalog.md` now records the explicit silence boundary | Extend only if a new system family needs a sharper no-claim rule |
-| F4 | Rival framework subsumption | Large deviation theory, free-energy / stochastic thermodynamics, contraction analysis, or Lyapunov drift calculus does the same work with less extra vocabulary and more predictions | structural balance law paper §7 handles thermodynamics, Lyapunov, control, and information theory; `analysis/ldp_rate_function_comparison.md` opens the LDP / rate-function stress test | Extend to free-energy / contraction comparison if needed |
+| F3 | Scope overreach / silent systems | The theory claims to cover dynamical structure generally but cannot express phase transitions, cycles, heavy-tail criticality, or static structures | structural persistence balance principle paper §8 and Route A/B/C already limit claims; `analysis/scope_silence_catalog.md` now records the explicit silence boundary | Extend only if a new system family needs a sharper no-claim rule |
+| F4 | Rival framework subsumption | Large deviation theory, free-energy / stochastic thermodynamics, contraction analysis, or Lyapunov drift calculus does the same work with less extra vocabulary and more predictions | structural persistence balance principle paper §7 handles thermodynamics, Lyapunov, control, and information theory; `analysis/ldp_rate_function_comparison.md` opens the LDP / rate-function stress test | Extend to free-energy / contraction comparison if needed |
 | F5 | Practical redundancy | The translation is correct but less useful than reading each domain theory directly | Evidence map and Route classification reduce overclaim but do not prove usefulness | Reader-facing teaching / translation-efficiency document |
 
 These are not all equally urgent. F4 is the most dangerous near-term
@@ -62,10 +62,10 @@ best handled after the theoretical scope is stable.
 ### Failure Pattern
 
 The program is weakened if different domains require incompatible readings of
-the same structural-balance variables. The most important convention is:
+the same structural-persistence balance variables. The most important convention is:
 
 \[
-  a_t = \ell_t - g_t.
+  b_t = \ell_t - g_t.
 \]
 
 The intended sign convention is:
@@ -74,10 +74,10 @@ The intended sign convention is:
 |---|---|
 | \(\ell_t \ge 0\) | one-step structural loss, damage, obstruction, load, or bad-event action |
 | \(g_t \ge 0\) | one-step compensation, repair, service, support, or maintenance action |
-| \(a_t > 0\) | net overload / collapse tendency / damage accumulation |
-| \(a_t = 0\) | balance / maintenance tendency at the chosen coarse scale |
-| \(a_t < 0\) | recovery / repair-dominant tendency |
-| \(A_n=\sum_{t<n}a_t\) | cumulative net action |
+| \(b_t > 0\) | net overload / collapse tendency / damage accumulation |
+| \(b_t = 0\) | balance / maintenance tendency at the chosen coarse scale |
+| \(b_t < 0\) | recovery / repair-dominant tendency |
+| \(B_n=\sum_{t<n}b_t\) | cumulative one-step balance |
 | \(R_t=e^{-Z_t}\) or \(m(V_t)/m(V_0)\) | relative maintenance / feasible-structure ratio |
 
 If an anchor can only be made to fit by reversing these signs ad hoc, or by
@@ -88,13 +88,13 @@ the "unified language" claim fails.
 ### Current Defense
 
 - Queueing / Foster-Lyapunov:
-  \(a_t\) is queue load increment or arrival-minus-service in the queue wrapper.
-  Positive \(a_t\) means overload accumulation.
+  \(b_t\) is queue load increment or arrival-minus-service in the queue wrapper.
+  Positive \(b_t\) means overload accumulation.
 - Repair / maintenance:
-  \(a_t=d_t-g_t\). Positive \(a_t\) means net damage accumulation.
+  \(b_t=d_t-g_t\). Positive \(b_t\) means net damage accumulation.
 - Route A bad-event CSP:
   \(\ell_t\) is bad-event exposure loss. In loss-only mode, \(g_t=0\) and
-  \(A_n\) is cumulative structural loss.
+  \(B_n\) is cumulative structural loss.
 - Branching processes were deferred partly because the "population increases"
   reading can invert the naive sign convention unless the maintained structure
   is fixed carefully.
@@ -104,8 +104,8 @@ the "unified language" claim fails.
 Create a sign-convention table for all current anchors:
 
 ```text
-anchor, Z_t / maintained quantity, ell_t, g_t, a_t sign,
-what a_t > 0 means, what a_t < 0 means, whether any sign reversal is used.
+anchor, Z_t / maintained quantity, ell_t, g_t, b_t sign,
+what b_t > 0 means, what b_t < 0 means, whether any sign reversal is used.
 ```
 
 Passing condition:
@@ -119,7 +119,7 @@ monotone transform must state that transform before the conclusion is read.
 
 ### Failure Pattern
 
-The theory is weakened if translating a domain into structural-balance notation
+The theory is weakened if translating a domain into structural-persistence balance notation
 only preserves superficial algebra, while nontrivial predictions or theorem
 content disappear.
 
@@ -138,8 +138,8 @@ Use the following score when adding or auditing an anchor:
 | Score | Meaning | Example |
 |---|---|---|
 | T0 | Vocabulary only | Same words, no preserved equation |
-| T1 | Sign correspondence | \(a_t>0\) / \(a_t<0\) has the right qualitative direction |
-| T2 | Pathwise identity preserved | \(A_n=Z_n-Z_0\), \(D_n=D_0+\sum(d_t-g_t)\), or \(m(V_n)=m(V_0)e^{-A_n}\) |
+| T1 | Sign correspondence | \(b_t>0\) / \(b_t<0\) has the right qualitative direction |
+| T2 | Pathwise identity preserved | \(B_n=Z_n-Z_0\), \(D_n=D_0+\sum(d_t-g_t)\), or \(m(V_n)=m(V_0)e^{-B_n}\) |
 | T3 | Classical theorem assumptions preserved | Existing theorem can be read through the structural variables without dropping assumptions |
 | T4 | Predictive content preserved prospectively | Frozen structural coordinate beats preregistered baselines or transfers across a held-out family |
 
@@ -171,9 +171,9 @@ treated as scope tests, not as automatic failures.
 | System type | Why structural balance may be silent | Correct program response |
 |---|---|---|
 | Critical phase transitions | Singular behavior, order-parameter discontinuity, symmetry breaking, or critical exponents may be the main object, not monotone loss / repair | Do not claim to explain critical exponents unless a concrete order parameter and measure are fixed |
-| Hopf bifurcation / limit cycles | \(a_t\) may oscillate and \(A_n\) may remain bounded while the important structure is a periodic orbit | Treat as outside finite-prefix collapse / recovery unless a maintained cycle basin is pre-fixed |
-| Self-organized criticality / heavy tails | Mean drift can be misleading; tail events and avalanche distributions carry the main structure | Require tail / large-deviation layer before making structural-balance claims |
-| Static complexity classes | No natural time-indexed \(Z_t\), \(a_t\), or \(A_n\) may exist | Do not force into Route A/B/C unless an exposure or reduction path is pre-fixed |
+| Hopf bifurcation / limit cycles | \(b_t\) may oscillate and \(B_n\) may remain bounded while the important structure is a periodic orbit | Treat as outside finite-prefix collapse / recovery unless a maintained cycle basin is pre-fixed |
+| Self-organized criticality / heavy tails | Mean drift can be misleading; tail events and avalanche distributions carry the main structure | Require tail / large-deviation layer before making structural-persistence balance claims |
+| Static complexity classes | No natural time-indexed \(Z_t\), \(b_t\), or \(B_n\) may exist | Do not force into Route A/B/C unless an exposure or reduction path is pre-fixed |
 | Multi-attractor systems without a chosen target | "Maintenance" depends on which attractor or basin is treated as the target structure | Require target basin / maintained structure to be fixed before applying the theory |
 
 This catalog is not a retreat. It is a falsifiability guardrail:
@@ -205,17 +205,17 @@ Why this is dangerous:
 - Route A already uses Chernoff / KL / first-moment language.
 - \(R_t=e^{-Z_t}\) looks like an exponential-rate coordinate.
 - LDP handles rare events, threshold windows, tail behavior, and some phase-like
-  phenomena more naturally than a scalar balance law.
+  phenomena more naturally than a scalar balance principle.
 
 Possible defense:
 
 ```text
-Structural balance law is not primarily a new tail-asymptotic theory. Its
+Structural Persistence Balance Principle is not primarily a new tail-asymptotic theory. Its
 distinctive content is the operational discipline:
 
 1. pre-fixed maintained structure \(V\);
 2. pre-fixed measure \(m\) or path measure;
-3. explicit loss / repair split \(a_t=\ell_t-g_t\);
+3. explicit loss / repair split \(b_t=\ell_t-g_t\);
 4. Route A/B/C strength separation;
 5. preregistered baseline comparisons for empirical anchors.
 ```
@@ -238,7 +238,7 @@ Remaining next work:
 
 ```text
 If this line is promoted into the main paper, add an explicit LDP /
-rate-function row to structural balance law paper §7.8 and keep the wording as anti-overclaim
+rate-function row to structural persistence balance principle paper §7.8 and keep the wording as anti-overclaim
 calibration, not as a universal-law claim.
 
 Then decide whether free-energy / stochastic thermodynamic path ratios or
@@ -259,13 +259,13 @@ structure.
 Risk:
 
 ```text
-The balance law may be a rephrasing of free-energy input, entropy production,
+The balance principle may be a rephrasing of free-energy input, entropy production,
 or variational free-energy minimization.
 ```
 
 Current status:
 
-- structural balance law paper §7 treats thermodynamics and non-equilibrium thermodynamics as
+- structural persistence balance principle paper §7 treats thermodynamics and non-equilibrium thermodynamics as
   G6-a / G6-b.
 - The current program does not yet give a stochastic-thermodynamic path-ratio
   embedding.
@@ -273,7 +273,7 @@ Current status:
 Possible defense:
 
 ```text
-The structural-balance language does not claim to replace thermodynamics.
+The structural-persistence balance language does not claim to replace thermodynamics.
 It applies to pre-fixed maintained structures even when physical energy is not
 the natural conserved or minimized quantity. Its value is cross-domain
 operationalization, not thermodynamic depth.
@@ -324,7 +324,7 @@ Add contraction analysis to the G6 comparison table as either:
 Risk:
 
 ```text
-This is the closest existing-theory overlap. The structural balance law may be
+This is the closest existing-theory overlap. The structural persistence balance principle may be
 only a restatement of Lyapunov drift.
 ```
 
@@ -356,7 +356,7 @@ A theory can be correct and still unused.
 The program is practically weakened if:
 
 - each translation is longer than the original domain theory;
-- no reader can learn a new domain faster through the structural-balance
+- no reader can learn a new domain faster through the structural-persistence balance
   language;
 - the language does not suggest new diagnostics, baselines, or experiments;
 - the framework only renames existing quantities.
@@ -374,7 +374,7 @@ Required later artifact:
 ```text
 Write a short educational / onboarding note:
 
-"Four stability problems in one structural-balance coordinate system."
+"Four stability problems in one structural-persistence balance coordinate system."
 
 It should show whether the language reduces the cognitive cost of reading
 queueing, reliability, CSP feasibility, and maintenance logs.
@@ -428,7 +428,7 @@ objection.
 
 This memo does not claim:
 
-1. The structural-balance program is false.
+1. The structural-persistence balance program is false.
 2. Large deviation theory already subsumes the entire program.
 3. Free-energy or contraction frameworks are better.
 4. Four successful domains would establish a universal law.

@@ -12,15 +12,15 @@ This memo fixes the scope for the next G6-c work item after the Route A CSP
 calibration pause.
 
 The goal is to turn the strongest existing-theory connection in the structural
-balance law paper into a bounded formal-mapping draft:
+balance principle paper into a bounded formal-mapping draft:
 
 ```text
 Foster-Lyapunov / queueing drift
   -> structural load Z_t
-  -> net action a_t = Z_{t+1} - Z_t
-  -> cumulative action A_n = Z_n - Z_0
+  -> one-step balance b_t = Z_{t+1} - Z_t
+  -> structural balance amount B_n = Z_n - Z_0
   -> relative maintenance R_t = exp(-Z_t)
-  -> local balance R_{t+1} = R_t exp(-a_t)
+  -> local balance R_{t+1} = R_t exp(-b_t)
 ```
 
 This is a sequencing move, not a retreat. The point is to strengthen the
@@ -59,12 +59,12 @@ Setting:
 - process \(X_t\);
 - nonnegative Lyapunov / load function \(W\);
 - structural load \(Z_t := W(X_t)\);
-- net action \(a_t := Z_{t+1}-Z_t\).
+- one-step balance \(b_t := Z_{t+1}-Z_t\).
 
 Then:
 
 \[
-  A_n = \sum_{t<n} a_t = Z_n-Z_0.
+  B_n = \sum_{t<n} b_t = Z_n-Z_0.
 \]
 
 If
@@ -73,13 +73,13 @@ If
   \mathbb E[W(X_{t+1})-W(X_t)\mid X_t]\le -\epsilon
 \]
 
-outside a small / stable set, then in structural-balance notation:
+outside a small / stable set, then in structural-persistence balance notation:
 
 \[
-  \mathbb E[a_t\mid X_t]\le -\epsilon.
+  \mathbb E[b_t\mid X_t]\le -\epsilon.
 \]
 
-This is the recovery-tendency regime of the structural balance law.
+This is the recovery-tendency regime of the structural persistence balance principle.
 
 ### 3.2 Exponential maintenance coordinate
 
@@ -94,7 +94,7 @@ Then:
 \[
   R_{t+1}
   =
-  R_t e^{-a_t}.
+  R_t e^{-b_t}.
 \]
 
 This is the same algebraic shape as the local structural balance identity.
@@ -106,7 +106,7 @@ If one wants the two-flow sign convention of Paper §2.2, decompose:
   \qquad
   g_t := (Z_t-Z_{t+1})^+,
   \qquad
-  a_t=\ell_t-g_t.
+  b_t=\ell_t-g_t.
 \]
 
 The one-step Lyapunov increment is then exactly the net loss-minus-repair
@@ -124,8 +124,8 @@ where \(\lambda\) is arrival rate and \(\mu\) is service rate.
 
 Then:
 
-- \(\lambda \le \mu\): \(a_t \le 0\), maintenance / recovery tendency;
-- \(\lambda > \mu\): \(a_t > 0\), overload accumulation;
+- \(\lambda \le \mu\): \(b_t \le 0\), maintenance / recovery tendency;
+- \(\lambda > \mu\): \(b_t > 0\), overload accumulation;
 - finite threshold \(B\): \(Z_n \ge B\) gives a hitting-time / collapse
   reading.
 
@@ -150,7 +150,7 @@ balance variables with theorem assumptions preserved.
 It does not mean:
 
 ```text
-Structural balance law replaces queueing theory.
+Structural Persistence Balance Principle replaces queueing theory.
 ```
 
 The embedding is meaningful because it transfers the algebraic role of drift:
@@ -158,7 +158,7 @@ The embedding is meaningful because it transfers the algebraic role of drift:
 | Existing theory | Structural balance |
 |---|---|
 | Lyapunov load \(W(X_t)\) | structural load \(Z_t\) |
-| increment \(W(X_{t+1})-W(X_t)\) | net action \(a_t\) |
+| increment \(W(X_{t+1})-W(X_t)\) | one-step balance \(b_t\) |
 | negative drift | recovery / maintenance tendency |
 | positive drift | overload / collapse tendency |
 | stability theorem assumptions | inherited assumptions, not removed |
@@ -192,8 +192,8 @@ Optional Lean deliverable:
 
 1. add a lightweight `LyapunovBalanceEmbedding.lean` file;
 2. define `Z`, `a`, `A`, `R`;
-3. prove `A_n = Z_n - Z_0`;
-4. prove `R_{t+1} = R_t * exp (-a_t)`;
+3. prove `B_n = Z_n - Z_0`;
+4. prove `R_{t+1} = R_t * exp (-b_t)`;
 5. connect deterministic queue excess demand to this notation.
 
 If any Lean file is edited, run:
@@ -206,10 +206,10 @@ cd lean && lake build
 
 ```text
 Title:
-  構造収支律と Foster-Lyapunov drift の形式的埋め込み
+  構造持続の収支原理と Foster-Lyapunov drift の形式的埋め込み
 
 §1 Why this is G6-c, not analogy
-§2 Minimal embedding: Z_t, a_t, A_n, R_t
+§2 Minimal embedding: Z_t, b_t, B_n, R_t
 §3 Drift regimes: negative / zero / positive
 §4 Queueing fluid skeleton
 §5 Assumptions inherited from the original theorem

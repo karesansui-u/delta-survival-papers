@@ -10,19 +10,19 @@ the program is silently flipping meanings from domain to domain.
 The main convention under audit is:
 
 \[
-  a_t=\ell_t-g_t.
+  b_t=\ell_t-g_t.
 \]
 
 Intended reading:
 
 - \(\ell_t \ge 0\): one-step loss / damage / obstruction / collapse pressure;
 - \(g_t \ge 0\): one-step repair / compensation / service / maintenance;
-- \(a_t>0\): net overload / net damage / collapse tendency;
-- \(a_t<0\): net recovery / repair-dominant tendency.
+- \(b_t>0\): net overload / net damage / collapse tendency;
+- \(b_t<0\): net recovery / repair-dominant tendency.
 
 ## 1. Anchor Table
 
-| Anchor | Maintained quantity | \(\ell_t\) | \(g_t\) | What \(a_t>0\) means | What \(a_t<0\) means | Transform / reversal used? | Claim strength |
+| Anchor | Maintained quantity | \(\ell_t\) | \(g_t\) | What \(b_t>0\) means | What \(b_t<0\) means | Transform / reversal used? | Claim strength |
 |---|---|---|---|---|---|---|---|
 | Mixed-CSP / Bernoulli-CSP | feasible assignment mass or count proxy | bad-event exposure loss | 0 | cumulative feasibility loss / collapse pressure | not used in loss-only form | monotone log-ratio / first-moment coordinate, no sign reversal | Route A primary |
 | Exp43c q-coloring | first-moment feasible-coloring count proxy | edge-exposure loss \(L\) or its normalized first-moment coordinate | 0 | stronger pressure against q-colorability | not used in loss-only form | monotone first-moment transform, no sign reversal | Route A primary |
@@ -38,7 +38,7 @@ Intended reading:
 The encouraging result is simple:
 
 ```text
-No current anchor requires a hidden sign reversal to make a_t > 0 mean
+No current anchor requires a hidden sign reversal to make b_t > 0 mean
 "worse for the maintained structure."
 ```
 
@@ -51,7 +51,7 @@ There are monotone transforms, but they are visible transforms:
 These are not covert sign flips. They keep the same order:
 
 ```text
-more loss / worse structure -> larger Z_t or larger cumulative A_n
+more loss / worse structure -> larger Z_t or larger cumulative B_n
 ```
 
 ## 3. Where Caution Is Still Needed
@@ -60,7 +60,7 @@ Not all anchors are equally strong.
 
 | Anchor type | Main caution |
 |---|---|
-| Route A loss-only anchors | \(a_t<0\) is usually not exercised, because \(g_t=0\) in the primary reading |
+| Route A loss-only anchors | \(b_t<0\) is usually not exercised, because \(g_t=0\) in the primary reading |
 | Observational anchors | \(\ell_t\) and \(g_t\) are often proxies rather than directly measured flows |
 | Route C LLM anchors | the maintained structure is semantic / task-structural, not a physically measured quantity |
 | Damage-vs-margin dual views | one must state whether \(Z_t\) means accumulated damage or remaining margin before reading the sign |

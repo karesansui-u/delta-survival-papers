@@ -22,7 +22,7 @@ Main manuscripts:
 
 - `v2/1_構造持続の最小形式.md`
 - `v2/2_構造持続の条件つき導出.md`
-- `v2/3_構造持続の収支法則と崩壊傾向.md`
+- `v2/3_構造持続の収支原理と崩壊傾向.md`
 
 Route C companion notes:
 
@@ -33,7 +33,7 @@ Built PDFs:
 
 - `v2/pdf用/1_構造持続の最小形式.pdf`
 - `v2/pdf用/2_構造持続の条件つき導出.pdf`
-- `v2/pdf用/3_構造持続の収支法則と崩壊傾向.pdf`
+- `v2/pdf用/3_構造持続の収支原理と崩壊傾向.pdf`
 - `v2/pdf用/Companion_RouteC_推論時の構造劣化.pdf`
 - `v2/pdf用/Companion_RouteC_継続学習時の構造的忘却.pdf`
 

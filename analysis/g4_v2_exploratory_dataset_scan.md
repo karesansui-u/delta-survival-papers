@@ -46,7 +46,7 @@ The scan may not produce:
 - weakening outcomes;
 - pass / fail of H1-H5;
 - claims that repair-aware predictors beat baselines;
-- claims that the structural balance law is validated in maintenance logs.
+- claims that the structural persistence balance principle is validated in maintenance logs.
 
 ## 2. What We Are Looking For
 

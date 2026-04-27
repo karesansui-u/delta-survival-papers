@@ -134,7 +134,7 @@ compressed degradation-side coordinate(s) derived on the train split only,
 then evaluated against the held-out five-class horizon labels
 ```
 
-This keeps the bridge package aligned with structural-balance language while
+This keeps the bridge package aligned with structural-persistence balance language while
 still facing a strong wide-readout baseline.
 
 ## 7. Recommended Metrics

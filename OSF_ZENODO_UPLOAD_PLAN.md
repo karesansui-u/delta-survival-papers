@@ -159,7 +159,7 @@ Zenodo には、論文本体と英語入口を中心にした trimmed public bun
 | `00_structural_persistence_integrated_overview_ja_2026-04-19.pdf` | `v2/pdf用/0_構造持続理論の統合版.pdf` |
 | `01_structural_persistence_minimal_form_ja_2026-04-19.pdf` | `v2/pdf用/1_構造持続の最小形式.pdf` |
 | `02_structural_persistence_conditional_derivation_ja_2026-04-19.pdf` | `v2/pdf用/2_構造持続の条件つき導出.pdf` |
-| `03_structural_balance_law_ja_2026-04-19.pdf` | `v2/pdf用/3_構造持続の収支法則と崩壊傾向.pdf` |
+| `03_structural_persistence_balance_principle_ja_2026-04-19.pdf` | `v2/pdf用/3_構造持続の収支原理と崩壊傾向.pdf` |
 | `91_routec_reasoning_degradation_ja_2026-04-19.pdf` | `v2/pdf用/Companion_RouteC_推論時の構造劣化.pdf` |
 | `92_routec_catastrophic_forgetting_ja_2026-04-19.pdf` | `v2/pdf用/Companion_RouteC_継続学習時の構造的忘却.pdf` |
 | `90_structural_prediction_of_computational_cost_ja_2026-04-19.pdf` | `v2/pdf用/補論_計算コストの構造的予測.pdf` |

@@ -1,6 +1,6 @@
 補論_構造持続における資源項Mの操作的定式化
 構造持続における資源項 M の操作的定式化
-— 構造収支律のための operational resource mapping —
+— 構造持続の収支原理のための operational resource mapping —
 
 要旨
 
@@ -14,7 +14,7 @@
 
 本補論の役割は、普遍法則そのものを主張することではなく、損失流と補償流の収支を現実ドメインへ写すときの $M$ 側の操作化を与えることである。その操作的帰結として、同じ $L$、同じ raw resource $R$、同じ scalar $M_{\mathrm{total}}$ のもとでも、mode composition が異なれば、最初に強化すべき mode は異なる、という intervention-ranking 型の検査標的が得られる。本補論はこの標的を software / SaaS を最初の Route C ドメインとして具体化し、$\rho_i$、$\Phi$、$A_j$ の候補族に対する頑健性検査を含む、事前固定可能な経験的検証プロトコルを与える。
 
-本補論は新しい普遍法則の証明ではない。また、経験的 pilot を完了した論文でもない。本補論の位置づけは、構造収支律の補償流・資源流を実ドメインで測るための support-side operational mapping である。
+本補論は新しい普遍法則の証明ではない。また、経験的 pilot を完了した論文でもない。本補論の位置づけは、構造持続の収支原理の補償流・資源流を実ドメインで測るための support-side operational mapping である。
 
 
 1. はじめに
@@ -61,7 +61,7 @@ Paper 1 の最小形式 $S = M e^{-L}$ にはもう一つの側があり、そ�
 本補論の立場は、Paper 1–4 および補論群と整合するように、以下のように限定する。
 
 - 本補論は M の完全理論ではない。現行スカラー M を mode ベクトルへ分解するための分析フレームである。
-- 本補論は構造収支律の中核ではなく、その補償流・資源流を実ドメインへ写す操作化層である。
+- 本補論は構造持続の収支原理の中核ではなく、その補償流・資源流を実ドメインへ写す操作化層である。
 - 本補論では**介入順位予測**を、mode 分解の操作的帰結として一つの検査標的に置く。崩壊プロファイルや時間発展主張は後続の拡張とみなす。
 - 本補論は最初のドメインとしてソフトウェア / SaaS を置き、four-domain comparison や普遍理論の宣言には進まない。
 - 本補論は Paper 1 §3 の対数比の一意性定理と同じ設計原理 (Cauchy 関数方程式と連続性から一意関数形を強制する) を M 側に移植する候補を持つ。§2.5 では、この表現補題候補を本補論の短い theoretical pointer として置き、証明と公理列挙の詳細は別稿の補論に委ねる。
@@ -1142,4 +1142,4 @@ DeltaLint は、本補論の main validation ではない。DeltaLint が観測�
 
 本補論の固有の検査標的は、よりよい risk prediction そのものではなく、mode 分解にもとづく介入順位予測である。すなわち、同じ $L$、同じ raw resource $R$、同じ scalar $M_{\mathrm{total}}$ のもとでも、mode composition が異なれば、最初に強化すべき mode は異なる。本補論はこの標的を software / SaaS を最初の Route C ドメインとして具体化し、$\rho_i$, $\Phi$, $A_j$ の候補族に対する頑健性検査を含む、事前固定可能な経験的検証プロトコルを定式化した。実際の preregistration と pilot 実行は、本補論の外、別の empirical program として進める。
 
-本補論は新しい普遍法則の証明ではなく、また empirical pilot 完了論文でもない。本補論の位置づけは、構造収支律の補償流・資源流を実ドメインで測るための support-side operational mapping である。Paper 1 と Paper 2 が loss 側の対数比損失を特徴づけ、Route C companion I と II が loss / support の相互作用を経験的に観察したのに対し、本補論は support 側の操作的座標系を提供する。そこから自然に出てくる次段階は、準備された protocol を operational data に適用する経験的 pilot であり、それは本補論の外、別の empirical program として進める。
+本補論は新しい普遍法則の証明ではなく、また empirical pilot 完了論文でもない。本補論の位置づけは、構造持続の収支原理の補償流・資源流を実ドメインで測るための support-side operational mapping である。Paper 1 と Paper 2 が loss 側の対数比損失を特徴づけ、Route C companion I と II が loss / support の相互作用を経験的に観察したのに対し、本補論は support 側の操作的座標系を提供する。そこから自然に出てくる次段階は、準備された protocol を operational data に適用する経験的 pilot であり、それは本補論の外、別の empirical program として進める。

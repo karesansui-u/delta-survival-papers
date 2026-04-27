@@ -168,7 +168,7 @@ Backblaze Q4 2025 does not provide primary support for the preregistered
 loss-only non-CSP observational anchor.
 ```
 
-This is not a falsification of the structural balance law. It is a failed
+This is not a falsification of the structural persistence balance principle. It is a failed
 observational anchor under this archive, feature set, optimizer, horizon,
 split, and primary metric.
 

@@ -326,7 +326,7 @@ The core mapping is:
 
 | Informal target phrase | Existing Lean theorem | Gap |
 |---|---|---|
-| local balance law | `feasibleMass_succ_eq_mass_mul_exp_neg_stepNetAction` | none |
+| local balance identity | `feasibleMass_succ_eq_mass_mul_exp_neg_stepNetAction` | none |
 | cumulative exponential balance | `feasibleMass_eq_initial_mul_exp_neg_cumulativeNetAction` | none |
 | expected tendency from nonnegative production | `expectedCumulative_monotone_of_ae_nonnegative_stepTotalProduction` | naming / wrapper |
 | coarse expected tendency | `coarse_expectedCumulative_monotone_of_micro_*` | none / mapping |

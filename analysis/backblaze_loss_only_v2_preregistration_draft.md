@@ -448,7 +448,7 @@ This draft does not claim:
 
 1. that Backblaze validates repair flow \(g_t\);
 2. that a pass would erase the Q4 2025 no-support result;
-3. that the structural balance law is falsified if Q3 2025 fails;
+3. that the structural persistence balance principle is falsified if Q3 2025 fails;
 4. that `smart_199_raw` is universally irrelevant in all reliability systems;
 5. that the result would be equal in strength to Exp43c;
 6. that the result would automatically transfer to non-Backblaze industrial

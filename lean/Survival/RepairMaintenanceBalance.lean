@@ -11,15 +11,15 @@ finite-prefix algebraic model of accumulated damage with explicit repair:
 
 * damage flow `d_t`,
 * repair / maintenance flow `g_t`,
-* net action `a_t = d_t - g_t`,
-* cumulative action `A_n = ∑_{t<n} a_t`,
-* damage level `D_n = D_0 + A_n`,
+* one-step balance `b_t = d_t - g_t`,
+* cumulative balance `B_n = ∑_{t<n} b_t`,
+* damage level `D_n = D_0 + B_n`,
 * margin `M_n = B - D_n`,
 * optional exponential maintenance coordinate `R_t = exp (-D_t)`.
 
 It deliberately does not prove an optimal maintenance theorem, a stochastic
 reliability theorem, or a fatigue crack-growth law.  It only packages the
-loss-minus-repair finite-prefix identity needed by the structural balance law.
+loss-minus-repair finite-prefix identity needed by the structural persistence balance principle.
 -/
 
 open scoped BigOperators
@@ -28,11 +28,14 @@ namespace Survival.RepairMaintenanceBalance
 
 noncomputable section
 
-/-- One-step net structural action: damage minus repair / maintenance. -/
+/-- One-step repair balance: damage minus repair / maintenance.
+The definition name keeps the older internal `netAction` vocabulary for
+compatibility, while Paper 3 writes this quantity as `b_t`. -/
 def netAction (damage repair : ℕ → ℝ) (t : ℕ) : ℝ :=
   damage t - repair t
 
-/-- Cumulative net action over the finite prefix `0, ..., n-1`. -/
+/-- Cumulative repair balance over the finite prefix `0, ..., n-1`.
+Paper 3 writes this quantity as `B_n`. -/
 def cumulativeNetAction (damage repair : ℕ → ℝ) (n : ℕ) : ℝ :=
   ∑ t ∈ Finset.range n, netAction damage repair t
 
@@ -52,7 +55,7 @@ def ThresholdCrossed (B D0 : ℝ) (damage repair : ℕ → ℝ) (n : ℕ) : Prop
 def relativeMaintenance (D0 : ℝ) (damage repair : ℕ → ℝ) (n : ℕ) : ℝ :=
   Real.exp (-(damageLevel D0 damage repair n))
 
-/-- Damage-only cumulative action, used to compare with repaired dynamics. -/
+/-- Damage-only cumulative balance, used to compare with repaired dynamics. -/
 def cumulativeDamage (damage : ℕ → ℝ) (n : ℕ) : ℝ :=
   ∑ t ∈ Finset.range n, damage t
 
@@ -85,7 +88,7 @@ def damageOnlyMargin (B D0 : ℝ) (damage : ℕ → ℝ) (n : ℕ) : ℝ :=
     0 < relativeMaintenance D0 damage repair n := by
   exact Real.exp_pos _
 
-/-- Appending one step adds that step's net action. -/
+/-- Appending one step adds that step's one-step balance. -/
 theorem cumulativeNetAction_succ (damage repair : ℕ → ℝ) (n : ℕ) :
     cumulativeNetAction damage repair (n + 1) =
       cumulativeNetAction damage repair n + netAction damage repair n := by
@@ -99,13 +102,13 @@ theorem cumulativeDamage_succ (damage : ℕ → ℝ) (n : ℕ) :
   unfold cumulativeDamage
   rw [Finset.sum_range_succ]
 
-/-- Damage level is initial damage plus cumulative net action. -/
+/-- Damage level is initial damage plus cumulative balance. -/
 theorem damageLevel_eq_initial_plus_cumulative_net_action
     (D0 : ℝ) (damage repair : ℕ → ℝ) (n : ℕ) :
     damageLevel D0 damage repair n =
       D0 + cumulativeNetAction damage repair n := rfl
 
-/-- One more step updates damage by the net action `d_t - g_t`. -/
+/-- One more step updates damage by the one-step balance `d_t - g_t`. -/
 theorem damageLevel_succ_eq_damageLevel_add_netAction
     (D0 : ℝ) (damage repair : ℕ → ℝ) (n : ℕ) :
     damageLevel D0 damage repair (n + 1) =
@@ -114,7 +117,7 @@ theorem damageLevel_succ_eq_damageLevel_add_netAction
   rw [cumulativeNetAction_succ]
   ring
 
-/-- Margin is initial margin minus cumulative net action. -/
+/-- Margin is initial margin minus cumulative balance. -/
 theorem margin_eq_initial_margin_sub_cumulative_net_action
     (B D0 : ℝ) (damage repair : ℕ → ℝ) (n : ℕ) :
     margin B D0 damage repair n =
@@ -122,7 +125,7 @@ theorem margin_eq_initial_margin_sub_cumulative_net_action
   unfold margin damageLevel
   ring
 
-/-- One more step lowers margin by the net action. -/
+/-- One more step lowers margin by the one-step balance. -/
 theorem margin_succ_eq_margin_sub_netAction
     (B D0 : ℝ) (damage repair : ℕ → ℝ) (n : ℕ) :
     margin B D0 damage repair (n + 1) =
@@ -159,7 +162,7 @@ theorem thresholdCrossed_of_margin_nonpos
     ThresholdCrossed B D0 damage repair n := by
   exact (thresholdCrossed_iff_margin_nonpos B D0 damage repair n).2 hmargin
 
-/-- If cumulative net action exceeds initial margin, threshold crossing occurs. -/
+/-- If cumulative balance exceeds initial margin, threshold crossing occurs. -/
 theorem thresholdCrossed_of_initial_margin_le_cumulativeNetAction
     (B D0 : ℝ) (damage repair : ℕ → ℝ) (n : ℕ)
     (hcross : B - D0 ≤ cumulativeNetAction damage repair n) :
@@ -167,7 +170,7 @@ theorem thresholdCrossed_of_initial_margin_le_cumulativeNetAction
   unfold ThresholdCrossed damageLevel
   linarith
 
-/-- The exponential maintenance coordinate obeys the same local balance law. -/
+/-- The exponential maintenance coordinate obeys the same local balance identity. -/
 theorem relativeMaintenance_succ_eq_mul_exp_neg_netAction
     (D0 : ℝ) (damage repair : ℕ → ℝ) (n : ℕ) :
     relativeMaintenance D0 damage repair (n + 1) =
@@ -179,7 +182,7 @@ theorem relativeMaintenance_succ_eq_mul_exp_neg_netAction
   congr 1
   ring
 
-/-- Nonnegative repair makes one-step net action no larger than raw damage. -/
+/-- Nonnegative repair makes one-step balance no larger than raw damage. -/
 theorem netAction_le_damage_of_repair_nonneg
     (damage repair : ℕ → ℝ) (n : ℕ)
     (hrepair : 0 ≤ repair n) :
@@ -187,7 +190,7 @@ theorem netAction_le_damage_of_repair_nonneg
   unfold netAction
   linarith
 
-/-- If repair dominates damage, the one-step net action is nonpositive. -/
+/-- If repair dominates damage, the one-step balance is nonpositive. -/
 theorem netAction_nonpos_of_damage_le_repair
     (damage repair : ℕ → ℝ) (n : ℕ)
     (hdom : damage n ≤ repair n) :

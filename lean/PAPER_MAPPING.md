@@ -52,8 +52,8 @@ probability assumptions.
 
 | Paper phrase | Lean vocabulary | Lean theorem / object | Status |
 |---|---|---|---|
-| signed exponential balance | local net action / feasible mass | `feasibleMass_succ_eq_mass_mul_exp_neg_stepNetAction`; `feasibleMass_eq_initial_mul_exp_neg_cumulativeNetAction` | proven |
-| cumulative signed kernel \(m(V^{(n)}) = m(V^{(0)}) e^{-A_n}\) | cumulative net action | `feasibleMass_eq_initial_mul_exp_neg_cumulativeNetAction` | proven |
+| balance exponential kernel | local net balance / feasible mass | `feasibleMass_succ_eq_mass_mul_exp_neg_stepNetAction`; `feasibleMass_eq_initial_mul_exp_neg_cumulativeNetAction` | proven |
+| cumulative balance kernel \(m(V^{(n)}) = m(V^{(0)}) e^{-B_n}\) | cumulative net balance | `feasibleMass_eq_initial_mul_exp_neg_cumulativeNetAction` | proven |
 | repair/resource contribution dominates contraction loss | nonnegative step total production | `expectedCumulative_monotone_of_ae_nonnegative_stepTotalProduction` | proven; naming gap only |
 | deterministic total production tendency | deterministic step model | `deterministic_expectedCumulative_monotone` | proven |
 | coarse-grained typical nondecrease | coarse stochastic compatibility | `coarse_expectedCumulative_monotone_of_micro_nonnegative`; `coarse_expectedCumulative_monotone_of_micro_resourceBounded`; `coarse_expectedCumulative_monotone_of_micro_conditionalAzuma` | proven |
@@ -81,27 +81,27 @@ A thin wrapper file may still be added later for readability, but it is not
 mathematically required. If added, wrappers should be direct aliases of the
 existing theorems, with no new axioms and no strengthened empirical claim.
 
-## Paper 3 / Structural Balance Law Mapping
+## Paper 3 / Structural Persistence Balance Principle Mapping
 
 Paper 3 の pathwise algebraic kernel は、既存の
-`Survival/GeneralStateDynamics.lean` が証明している。`Survival/StructuralBalanceLaw.lean`
+`Survival/GeneralStateDynamics.lean` が証明している。`Survival/StructuralPersistenceBalancePrinciple.lean`
 は、この既存 theorem 群を Paper 3 の読者向け名称で束ねる薄い wrapper であり、新しい仮定や
 新しい普遍法則 claim は追加しない。
 
-重要な前提は positivity である。対数比で loss / gain / net action を定義するため、Lean 側では
+重要な前提は positivity である。対数比で loss / gain / one-step balance を定義するため、Lean 側では
 `PositiveTrajectory`、Paper 3 側では positive finite trajectory assumptions の下で
 machine-checked と読む。
 
 | Paper 3 claim | Lean entry point | Underlying theorem / object | Status |
 |---|---|---|---|
-| signed action \(a_t=\ell_t-g_t\) | `StructuralBalanceLaw.signedAction_eq_loss_sub_gain` | `GeneralStateDynamics.stepNetAction` | proven by definition |
-| cumulative action \(A_n=\sum_{t<n}a_t\) | `StructuralBalanceLaw.cumulativeSignedAction_eq_sum_signedAction` | `GeneralStateDynamics.cumulativeNetAction` | proven by definition |
-| local balance \(m(V^{t+1})=m(V^t)e^{-a_t}\) | `StructuralBalanceLaw.local_signed_exponential_balance` | `feasibleMass_succ_eq_mass_mul_exp_neg_stepNetAction` | proven under positivity |
-| pathwise signed kernel \(m(V^n)=m(V^0)e^{-A_n}\) | `StructuralBalanceLaw.pathwise_signed_exponential_kernel` | `feasibleMass_eq_initial_mul_exp_neg_cumulativeNetAction` | proven under positive finite trajectory assumptions |
-| loss-only recovery | `StructuralBalanceLaw.pureContraction_recovers_loss_only_kernel` | `feasibleMass_eq_initial_mul_exp_neg_cumulativeLoss_of_pureContraction` | proven for pure contraction / zero gain |
-| Foster-Lyapunov algebraic embedding | `StructuralBalanceLaw.lyapunov_*` wrappers | `LyapunovBalanceEmbedding.*` | proven as minimal algebraic embedding, not positive recurrence |
-| repair / maintenance finite-prefix balance | `StructuralBalanceLaw.repair_*` wrappers | `RepairMaintenanceBalance.*` | proven finite-prefix skeleton |
-| remaining margin \(B-D_n\) | `repair_remainingMargin_eq_initial_margin_sub_cumulative_signed_action` | `RepairMaintenanceBalance.margin` | proven; this is margin, not Paper 1 resource term `M` |
+| one-step balance \(b_t=\ell_t-g_t\) | `StructuralPersistenceBalancePrinciple.oneStepBalance_eq_loss_sub_gain` | `GeneralStateDynamics.stepNetAction` | proven by definition |
+| structural balance amount \(B_n=\sum_{t<n}b_t\) | `StructuralPersistenceBalancePrinciple.cumulativeBalance_eq_sum_oneStepBalance` | `GeneralStateDynamics.cumulativeNetAction` | proven by definition |
+| local balance \(m(V^{t+1})=m(V^t)e^{-b_t}\) | `StructuralPersistenceBalancePrinciple.local_exponential_balance` | `feasibleMass_succ_eq_mass_mul_exp_neg_stepNetAction` | proven under positivity |
+| pathwise balance kernel \(m(V^n)=m(V^0)e^{-B_n}\) | `StructuralPersistenceBalancePrinciple.pathwise_balance_exponential_kernel` | `feasibleMass_eq_initial_mul_exp_neg_cumulativeNetAction` | proven under positive finite trajectory assumptions |
+| loss-only recovery | `StructuralPersistenceBalancePrinciple.pureContraction_recovers_loss_only_kernel` | `feasibleMass_eq_initial_mul_exp_neg_cumulativeLoss_of_pureContraction` | proven for pure contraction / zero gain |
+| Foster-Lyapunov algebraic embedding | `StructuralPersistenceBalancePrinciple.lyapunov_*` wrappers | `LyapunovBalanceEmbedding.*` | proven as minimal algebraic embedding, not positive recurrence |
+| repair / maintenance finite-prefix balance | `StructuralPersistenceBalancePrinciple.repair_*` wrappers | `RepairMaintenanceBalance.*` | proven finite-prefix skeleton |
+| remaining margin \(B-D_n\) | `repair_remainingMargin_eq_initial_margin_sub_cumulative_balance` | `RepairMaintenanceBalance.margin` | proven; this is margin, not Paper 1 resource term `M` |
 
 Paper 3 non-claims remain outside Lean:
 
@@ -266,7 +266,7 @@ drift は `log(2^k / allowed)` になる。部分二項和が \(0\) と \(2^k\) 
 
 | ファイル | 主定理 | 評価 |
 |---------|-------|------|
-| [`LyapunovBalanceEmbedding.lean`](Survival/LyapunovBalanceEmbedding.lean) | Lyapunov/load sequence `Z_t` から `a_t = Z_{t+1}-Z_t`, `A_n = Z_n-Z_0`, `R_{t+1}=R_t exp(-a_t)`、queue excess demand への wrapper | G6-c。Foster-Lyapunov / queueing drift を構造収支律の expectation-level tendency へ埋め込む最小代数 skeleton |
+| [`LyapunovBalanceEmbedding.lean`](Survival/LyapunovBalanceEmbedding.lean) | Lyapunov/load sequence `Z_t` から `b_t = Z_{t+1}-Z_t`, `B_n = Z_n-Z_0`, `R_{t+1}=R_t exp(-b_t)`、queue excess demand への wrapper | G6-c。Foster-Lyapunov / queueing drift を構造持続の収支原理の expectation-level tendency へ埋め込む最小代数 skeleton |
 
 ### D. 表現安定性・粗視化（5）— Paper 1 §2 P5
 
@@ -290,7 +290,7 @@ drift は `log(2^k / allowed)` になる。部分二項和が \(0\) と \(2^k\) 
 | [`MartingaleDrift.lean`](Survival/MartingaleDrift.lean) | `expectedCumulative_eq_initial_of_martingaleLike` | ドリフト言語の foundation |
 | [`ConcentrationInterface.lean`](Survival/ConcentrationInterface.lean) | `collapseWithFailureBound_of_expected_center`, `largeDeviationFailureBound` | concentration interface 抽象化 |
 | [`ResourceBoundedConditionalAzuma.lean`](Survival/ResourceBoundedConditionalAzuma.lean) | conditional submartingale drift + bounded increments → stopped collapse | 確率的停止時刻崩壊 |
-| [`SignedWeakDependence.lean`](Survival/SignedWeakDependence.lean) | `signed_survival_sandwich`: \|A_eff - A_ref\| ≤ ρ\|A_ref\| で exp 境界 | **Paper 2 §4 の signed 厳密化、論文未掲載** |
+| [`SignedWeakDependence.lean`](Survival/SignedWeakDependence.lean) | `signed_survival_sandwich`: \|B_eff - B_ref\| ≤ ρ\|B_ref\| で exp 境界 | **Paper 2 §4 の signed 厳密化、論文未掲載** |
 | [`ProbabilityConnection.lean`](Survival/ProbabilityConnection.lean) | actual probability space → expected cumulative process | 基盤層 |
 | [`StochasticTotalProduction.lean`](Survival/StochasticTotalProduction.lean) | random net action + random cost → stochastic process、deterministic embedding | Paper 1 の確率拡張、論文未掲載 |
 | [`StochasticTotalProductionAzuma.lean`](Survival/StochasticTotalProductionAzuma.lean) | bounded increment Azuma witness → stopped collapse | total production × Azuma |
@@ -300,8 +300,8 @@ drift は `log(2^k / allowed)` になる。部分二項和が \(0\) と \(2^k\) 
 
 | ファイル | 主定理 | 評価 |
 |---------|-------|------|
-| [`CollapseTimeBound.lean`](Survival/CollapseTimeBound.lean) | A_n ≥ -log θ → mass ≤ θ | Paper 1 §5 決定論的版 |
-| [`StochasticCollapseTimeBound.lean`](Survival/StochasticCollapseTimeBound.lean) | A_n(ω) ≥ -log θ a.s. → 生存率 ≤ θ a.s. | 経路別上界 |
+| [`CollapseTimeBound.lean`](Survival/CollapseTimeBound.lean) | B_n ≥ -log θ → mass ≤ θ | Paper 1 §5 決定論的版 |
+| [`StochasticCollapseTimeBound.lean`](Survival/StochasticCollapseTimeBound.lean) | B_n(ω) ≥ -log θ a.s. → 生存率 ≤ θ a.s. | 経路別上界 |
 | [`HighProbabilityCollapse.lean`](Survival/HighProbabilityCollapse.lean) | 閾値越え事象 E → E で崩壊 | 失敗確率付き崩壊 |
 | [`TypicalNondecrease.lean`](Survival/TypicalNondecrease.lean) | E[drift_t] ≥ 0 → E[cum] monotone | 確率層の基盤 |
 | [`CliffWarning.lean`](Survival/CliffWarning.lean) | remainingMargin ≤ stepLoss - stepCost → 次ステップ確定崩壊 | **決定論的事前警告、論文未掲載** |

@@ -16,7 +16,7 @@ What is formalized here:
 * General state dynamics given by contraction `K_t` followed by repair `R_t`
 * Ratio-defined loss, gain, and net action
 * Proposition 1: net action is a start/end log-ratio
-* Proposition 2: local balance law
+* Proposition 2: local balance identity
 * Theorem 3: signed exponential kernel via telescoping
 * Corollary 4: pure contraction recovers the original shrinkage mode
 
@@ -178,7 +178,7 @@ theorem stepNetAction_eq_stageLoss (P : ProblemSpec X) (t : ℕ)
   simpa [Survival.TelescopingExp.stageLoss] using
     stepNetAction_eq_neg_log_feasible_ratio P t hfeas hcontract hnext
 
-/-- Proposition 2: local balance law. -/
+/-- Proposition 2: local balance identity. -/
 theorem feasibleMass_succ_eq_mass_mul_exp_neg_stepNetAction
     (P : ProblemSpec X) (t : ℕ)
     (hfeas : 0 < feasibleMass P t)

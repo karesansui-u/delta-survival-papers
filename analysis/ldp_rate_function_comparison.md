@@ -5,7 +5,7 @@ new empirical claim source.
 
 Purpose:
 
-Clarify how much of the structural-balance / structural-persistence program is
+Clarify how much of the structural-persistence balance / structural-persistence program is
 already captured by large-deviation / rate-function machinery, and where the
 program still claims independent value.
 
@@ -20,7 +20,7 @@ The danger is not that LDP shares mathematics with the program. The danger is:
 
 ```text
 If every successful anchor can be read as a straightforward rate-function
-special case, and the structural-balance layer contributes no additional
+special case, and the structural-persistence balance layer contributes no additional
 operational discipline, then the program becomes a rephrasing rather than an
 independent framework.
 ```
@@ -28,7 +28,7 @@ independent framework.
 The comparison must therefore answer two questions separately:
 
 1. Where is the overlap real?
-2. What is still added by the structural-balance language?
+2. What is still added by the structural-persistence balance language?
 
 ## 2. Where The Overlap Is Real
 
@@ -45,7 +45,7 @@ The overlap is strongest on the Route A / finite-CSP side.
 This is not an embarrassment. It is already visible in the papers:
 
 - Route A uses first moment, MGF, Chernoff, and KL profiles openly;
-- The structural balance law paper already says the Route A high-probability layer is stronger than the
+- The structural persistence balance principle paper already says the Route A high-probability layer is stronger than the
   expectation-only layer precisely because extra exponential-rate structure is
   available there.
 
@@ -67,7 +67,7 @@ The extra structure is operational rather than purely asymptotic.
 |---|---|
 | pre-fixed maintained structure \(V\) | LDP can analyze tails once an object is fixed, but it does not itself choose what structure is "maintained" |
 | pre-fixed measure \(m\) or path measure | LDP assumes a probability structure; it does not provide the cross-domain operational discipline for selecting it |
-| explicit split \(a_t=\ell_t-g_t\) | rate functions usually track deviations or costs, not a domain-agnostic loss/repair decomposition |
+| explicit split \(b_t=\ell_t-g_t\) | rate functions usually track deviations or costs, not a domain-agnostic loss/repair decomposition |
 | Route A / B / C strength separation | LDP is a mathematical framework, not an evidence-tier policy |
 | preregistered baseline comparisons | LDP does not tell us how to test whether a structural coordinate beats raw baselines out of sample |
 | cross-domain operationalization | LDP does not by itself tell us how to read maintenance logs, queueing load, SMART degradation, or scope-repair prompts through one shared variable set |
@@ -93,7 +93,7 @@ There are areas where LDP remains the more natural language.
 |---|---|
 | rare-event asymptotics | rate functions are designed for precise exponential decay regimes |
 | path-space tail geometry | LDP naturally handles full trajectory deviation structure |
-| heavy-tail / criticality-adjacent questions | balance-law scalar drift can be too coarse |
+| heavy-tail / criticality-adjacent questions | balance-principle scalar drift can be too coarse |
 | optimizer structure of exponential bounds | rate-function calculus explains why the exponent has its particular form |
 | asymptotic scaling theorems | LDP is built for \(n\to\infty\) language; the program is mostly finite-prefix and operational |
 
@@ -136,7 +136,7 @@ The program should treat the following as a real weakening outcome:
 
 ```text
 Every successful Route A anchor can be read as an ordinary rate-function
-special case, and the remaining structural-balance layer adds no stable
+special case, and the remaining structural-persistence balance layer adds no stable
 cross-domain operational discipline beyond relabeling.
 ```
 
@@ -236,7 +236,7 @@ Reason:
 
 This note does not claim:
 
-1. LDP already defeats the structural-balance program;
+1. LDP already defeats the structural-persistence balance program;
 2. Route A evidence is invalid because Chernoff / KL appears there;
 3. structural balance has no value if it reuses standard exponential-rate
    mathematics;

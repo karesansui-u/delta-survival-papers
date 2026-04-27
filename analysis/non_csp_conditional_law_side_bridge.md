@@ -34,17 +34,17 @@ In a restricted non-CSP class where
   (i) the structural quantity is naturally fixed,
   (ii) compensation flow is operationally observable, and
   (iii) a collapse or hitting boundary is available under explicit assumptions,
-the structural balance law may be read as a conditional law-side embedding of
+the structural persistence balance principle may be read as a conditional law-side embedding of
 existing stability theory.
 ```
 
-This is not the claim that structural balance law is a new complete theory of
+This is not the claim that structural persistence balance principle is a new complete theory of
 queueing, reliability, or stochastic stability. It is the claim that the core
 balance variables
 
 \[
-  a_t=\ell_t-g_t,\qquad
-  A_n=\sum_{t<n} a_t,\qquad
+  b_t=\ell_t-g_t,\qquad
+  B_n=\sum_{t<n} b_t,\qquad
   R_t=e^{-Z_t}
 \]
 
@@ -71,10 +71,10 @@ Queueing and discrete-time drift theory are the strongest current bridge.
 
 The map is direct:
 
-| domain-native quantity | structural-balance reading |
+| domain-native quantity | structural-persistence balance reading |
 |---|---|
 | Lyapunov load \(W(X_t)\) or backlog \(Z_t\) | structural load |
-| \(W(X_{t+1})-W(X_t)\) | net action \(a_t\) |
+| \(W(X_{t+1})-W(X_t)\) | one-step balance \(b_t\) |
 | negative drift | maintenance / recovery tendency |
 | positive drift | overload / collapse tendency |
 | load threshold or unstable region | collapse / hitting boundary |
@@ -151,7 +151,7 @@ C-MAPSS:
 - still weaker than the preregistered wide raw-sensor baseline.
 
 These are good non-CSP empirical steps. They are not yet the place where
-existing stochastic stability theory is recovered as a structural-balance law.
+existing stochastic stability theory is recovered as a structural persistence balance principle.
 
 ## 8. What This Changes
 

@@ -21,7 +21,7 @@ Which parts are genuinely future work?
 The key calibration is:
 
 ```text
-The project is not merely at balance-law level.
+The project is not merely at balance-principle level.
 Several expectation-level tendency layers are already proven.
 What is still missing is a single reader-facing target theorem 4 package
 that connects the paper language to the existing Lean theorem names.
@@ -84,10 +84,10 @@ Interpretation:
 These prove the signed exponential kernel and resource accounting identities:
 
 ```text
-m(V_n) = m(V_0) exp(-A_n)
+m(V_n) = m(V_0) exp(-B_n)
 ```
 
-and related total-production decompositions. They are balance laws, not yet
+and related total-production decompositions. They are balance identities, not yet
 tendency laws.
 
 ### 3.2 Generic Expectation-Level Tendency
@@ -248,7 +248,7 @@ This section should include a table:
 
 | Paper phrase | Lean vocabulary | Lean theorem | Status |
 |---|---|---|---|
-| signed exponential balance | local net action / feasible mass | `feasibleMass_eq_initial_mul_exp_neg_cumulativeNetAction` | proven |
+| signed exponential balance | local one-step balance / feasible mass | `feasibleMass_eq_initial_mul_exp_neg_cumulativeNetAction` | proven |
 | repair dominates contraction | nonnegative step total production | `expectedCumulative_monotone_of_ae_nonnegative_stepTotalProduction` | proven |
 | coarse-grained typical nondecrease | coarse stochastic compatibility | `coarse_expectedCumulative_monotone_of_micro_nonnegative` | proven |
 | resource-bounded coarse tendency | resource-bounded micro dynamics | `coarse_expectedCumulative_monotone_of_micro_resourceBounded` | proven |

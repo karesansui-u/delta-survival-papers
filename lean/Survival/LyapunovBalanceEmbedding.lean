@@ -8,17 +8,17 @@ import Survival.QueueStability
 # Lyapunov Balance Embedding
 
 This module records the minimal G6-c formal embedding described in the
-structural-balance draft:
+structural persistence balance principle:
 
 * a Lyapunov/load sequence `Z_t`,
-* its one-step net action `a_t = Z_{t+1} - Z_t`,
-* the cumulative action `A_n = ∑_{t<n} a_t = Z_n - Z_0`,
+* its one-step balance `b_t = Z_{t+1} - Z_t`,
+* the structural balance amount `B_n = ∑_{t<n} b_t = Z_n - Z_0`,
 * the exponential maintenance coordinate `R_t = exp (-Z_t)`, with
-  `R_{t+1} = R_t * exp (-a_t)`.
+  `R_{t+1} = R_t * exp (-b_t)`.
 
 It is deliberately narrow.  It does not formalize the Foster--Lyapunov
 positive-recurrence theorem; it only packages the algebraic embedding that lets
-Lyapunov drift conditions be read as expectation-level structural-balance
+Lyapunov drift conditions be read as expectation-level structural-persistence balance
 tendencies.
 -/
 
@@ -28,11 +28,11 @@ namespace Survival.LyapunovBalanceEmbedding
 
 noncomputable section
 
-/-- A one-step Lyapunov/load increment, read as net structural action. -/
+/-- A one-step Lyapunov/load increment, read as one-step structural balance. -/
 def increment (Z : ℕ → ℝ) (t : ℕ) : ℝ :=
   Z (t + 1) - Z t
 
-/-- Cumulative net action over the finite prefix `0, ..., n-1`. -/
+/-- Structural balance amount over the finite prefix `0, ..., n-1`. -/
 def cumulativeAction (Z : ℕ → ℝ) (n : ℕ) : ℝ :=
   ∑ t ∈ Finset.range n, increment Z t
 
@@ -66,7 +66,7 @@ theorem repairFlow_nonneg (Z : ℕ → ℝ) (t : ℕ) :
   unfold repairFlow
   exact le_max_right (-(increment Z t)) 0
 
-/-- The cumulative action telescopes to final load minus initial load. -/
+/-- The structural balance amount telescopes to final load minus initial load. -/
 theorem cumulativeAction_eq_load_diff (Z : ℕ → ℝ) (n : ℕ) :
     cumulativeAction Z n = Z n - Z 0 := by
   induction n with
@@ -113,7 +113,7 @@ theorem increment_eq_lossFlow_sub_repairFlow (Z : ℕ → ℝ) (t : ℕ) :
 def queueLoad (Q : Survival.QueueStability.System) (initial : ℝ) : ℕ → ℝ :=
   fun n => Survival.QueueStability.backlog Q initial n
 
-/-- Queue one-step net action is exactly arrival minus service. -/
+/-- Queue one-step balance is exactly arrival minus service. -/
 theorem queue_increment_eq_excessDemand
     (Q : Survival.QueueStability.System) (initial : ℝ) (n : ℕ) :
     increment (queueLoad Q initial) n =
@@ -122,7 +122,7 @@ theorem queue_increment_eq_excessDemand
   rw [Survival.QueueStability.backlog_succ]
   ring
 
-/-- Queue cumulative action is the deterministic cumulative overload loss. -/
+/-- Queue structural balance amount is the deterministic cumulative overload loss. -/
 theorem queue_cumulativeAction_eq_cumulativeOverloadLoss
     (Q : Survival.QueueStability.System) (initial : ℝ) (n : ℕ) :
     cumulativeAction (queueLoad Q initial) n =
@@ -133,7 +133,7 @@ theorem queue_cumulativeAction_eq_cumulativeOverloadLoss
   rw [Survival.QueueStability.backlog_zero]
   ring
 
-/-- Stable fluid queue: the structural action is nonpositive. -/
+/-- Stable fluid queue: the one-step balance is nonpositive. -/
 theorem queue_increment_nonpos_of_stable
     (Q : Survival.QueueStability.System) (initial : ℝ) (n : ℕ)
     (hstable : Q.arrivalRate ≤ Q.serviceRate) :

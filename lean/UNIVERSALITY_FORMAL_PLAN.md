@@ -11,7 +11,7 @@ simpler baselines. The formal axis asks a different question:
 Under which assumptions does a balance identity become a law of tendency?
 ```
 
-This is the route from the signed exponential kernel / balance law to
+This is the route from the signed exponential kernel / balance principle to
 expectation-level or high-probability monotone tendency statements.
 
 ## Existing Anchors

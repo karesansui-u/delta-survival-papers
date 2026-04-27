@@ -136,7 +136,7 @@ Unexpected secondary finding:
 Purpose:
 
 ```text
-Upgrade balance-law language to reusable tendency theorem language.
+Upgrade balance-principle language to reusable tendency theorem language.
 ```
 
 M1 output:
@@ -175,10 +175,10 @@ Short horizon:
    theorem names.
 3. Keep M resource operationalization as a supplement-level mapping layer, not
    as the next main-theory paper.
-4. Review and polish the structural balance law / 構造収支律 draft as the next
+4. Review and polish the structural persistence balance principle / 構造持続の収支原理 draft as the next
    core-theory candidate. §1-8 now exist at
-   `v2/3_構造持続の収支法則と崩壊傾向.md`; current control memo:
-   `analysis/structural_balance_law_draft_plan.md`.
+   `v2/3_構造持続の収支原理と崩壊傾向.md`; current control memo:
+   `analysis/structural_persistence_balance_principle_draft_plan.md`.
 5. Keep `analysis/falsification_and_rival_frameworks.md`,
    `analysis/ldp_rate_function_comparison.md`, and
    `analysis/cross_domain_sign_convention_table.md` visible as the
@@ -252,7 +252,7 @@ Rationale:
 - Mixed-CSP and Exp.41 are now complete and passed.
 - Lean M1 is now complete and reduced the formal gate to mapping / wording.
 - The remaining work is no longer a hidden core-definition gate; it is
-  propagation, optional wrappers, structural-balance-law review / freeze,
+  propagation, optional wrappers, structural persistence balance principle review / freeze,
   G4 v2 exploratory dataset scanning, width extension, and external
   replication.
 
@@ -263,7 +263,7 @@ Estimated timelines, assuming no unexpected gates:
 | M1 propagation to public docs | 30-60 min |
 | Optional M2-B wrapper, if needed | 1-2 hours + `lake build` |
 | M operationalization supplement cleanup | 30-60 min |
-| Structural balance law §1-8 review pass | 1 focused session |
+| Structural Persistence Balance Principle §1-8 review pass | 1 focused session |
 | G4 v2 exploratory maintenance-log dataset scan | 1 focused session |
 | Optional Exp44b / Cardinality-SAT redesign | 1 focused session |
 

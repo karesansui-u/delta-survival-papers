@@ -1,12 +1,12 @@
-# ROADMAP: 構造収支律と Route A 強化
+# ROADMAP: 構造持続の収支原理と Route A 強化
 
 Status: working roadmap for humans / other LLMs.
 
 Purpose:
 
-このメモは、構造持続理論を「普遍理論候補」として強化するための次ステップを、他の LLM / agent が読んでも迷わないように整理する。現時点の方針は、M 分解を universal core にしないこと。core は **構造収支律 / structural balance law** に置き、M 分解は補償流・資源流を実ドメインで測る operational mapping layer として扱う。
+このメモは、構造持続理論を「普遍理論候補」として強化するための次ステップを、他の LLM / agent が読んでも迷わないように整理する。現時点の方針は、M 分解を universal core にしないこと。core は **構造持続の収支原理 / structural persistence balance principle** に置き、M 分解は補償流・資源流を実ドメインで測る operational mapping layer として扱う。
 
-注意: `v2/data/` はローカル作業メモ置き場で、`.gitignore` 対象である。コミットしたい場合は `git add -f v2/data/ROADMAP_構造収支律とRouteA強化.md` が必要。
+注意: `v2/data/` はローカル作業メモ置き場で、`.gitignore` 対象である。コミットしたい場合は `git add -f v2/data/ROADMAP_構造持続の収支原理とRouteA強化.md` が必要。
 
 ## 1. 現在地
 
@@ -14,7 +14,7 @@ Architecture:
 
 ```text
 Core theory candidate:
-  構造収支律 / structural balance law
+  構造持続の収支原理 / structural persistence balance principle
 
 Operational supplement:
   M mode decomposition / intervention-ranking protocol
@@ -39,7 +39,7 @@ Operational supplement:
 
 | Gate | 目的 | 通ったら何が強くなるか |
 |---|---|---|
-| G1. Core law | 構造収支律を main theory として書く | 分類ではなく一般形式になる |
+| G1. Core law | 構造持続の収支原理を main theory として書く | 分類ではなく一般形式になる |
 | G2. Formal spine | Lean theorem map / wrapper で主張と定理を対応づける | 数学的骨格が検証可能になる |
 | G3. Route A width | SAT 以外の独立 family に通す | SAT 専用ではないと言える |
 | G4. Non-CSP anchors | 信頼性・減衰・待ち行列・反応系などに還元する | 情報・計算系だけの理論ではないと言える |
@@ -51,12 +51,12 @@ Current state:
 
 | Gate | Status |
 |---|---|
-| G1 | draft complete。`v2/3_構造持続の収支法則と崩壊傾向.md` §1-8 が作成済み |
+| G1 | draft complete。`v2/3_構造持続の収支原理と崩壊傾向.md` §1-8 が作成済み |
 | G2 | expectation-level tendency と high-probability schema は §3-4 に対応済み。詳細 theorem map の polish は未整理 |
 | G3 | Lean 上は q-coloring / XOR / NAE / cardinality まで水平展開済み。empirical primary は Mixed-CSP に加え、Exp43c q-coloring が freeze 済み threshold-local validation として通過 |
-| G4 | G4 v1 reader-facing supplement complete。`v2/補論_非CSP古典例における構造収支律の最小アンカー.md` で queueing / Foster-Lyapunov を primary、serial reliability / constant-fraction decay を loss-only controls として整理。G4 v2 は repair / maintenance reliability-fatigue balance に scope lock し、`RepairMaintenanceBalance.lean` で finite-prefix skeleton を実装、同補論 §11 に reader-facing section として統合済み。Operational pilot draft は `analysis/g4_v2_operational_pilot_preregistration_draft.md` |
+| G4 | G4 v1 reader-facing supplement complete。`v2/補論_非CSP古典例における構造持続の収支原理の最小アンカー.md` で queueing / Foster-Lyapunov を primary、serial reliability / constant-fraction decay を loss-only controls として整理。G4 v2 は repair / maintenance reliability-fatigue balance に scope lock し、`RepairMaintenanceBalance.lean` で finite-prefix skeleton を実装、同補論 §11 に reader-facing section として統合済み。Operational pilot draft は `analysis/g4_v2_operational_pilot_preregistration_draft.md` |
 | G5 | LLM / Mixed-CSP の内部 prospective はある。外部・異質ドメインでは未達 |
-| G6 | G6-c iteration 1 closed。Foster-Lyapunov / queueing drift の minimal algebraic embedding は `v2/補論_構造収支律とFoster-Lyapunovドリフトの形式的埋め込み.md` と `lean/Survival/LyapunovBalanceEmbedding.lean` で reader-facing / Lean formalized。positive recurrence / geometric ergodicity theorem は iteration 2 に defer。加えて `analysis/falsification_and_rival_frameworks.md` で、LDP / free-energy / contraction などに吸収されるリスクを stress-test として明示 |
+| G6 | G6-c iteration 1 closed。Foster-Lyapunov / queueing drift の minimal algebraic embedding は `v2/補論_構造持続の収支原理とFoster-Lyapunovドリフトの形式的埋め込み.md` と `lean/Survival/LyapunovBalanceEmbedding.lean` で reader-facing / Lean formalized。positive recurrence / geometric ergodicity theorem は iteration 2 に defer。加えて `analysis/falsification_and_rival_frameworks.md` で、LDP / free-energy / contraction などに吸収されるリスクを stress-test として明示 |
 | G7 | 未達。外部再現待ち |
 
 Gate interaction:
@@ -67,7 +67,7 @@ Most important immediate pair:
 
 ```text
 G1 + G2:
-  構造収支律を main paper 化し、
+  構造持続の収支原理を main paper 化し、
   Lean theorem map と対応づける。
 ```
 
@@ -79,7 +79,7 @@ G3:
 
 G4:
   reliability / decay / queueing などの non-CSP skeleton を、単なる例示から
-  balance-law reduction として整理する。
+  balance-principle reduction として整理する。
   G4 v2 iteration 1 は repair / maintenance finite-prefix skeleton として
   閉じた。次の operational route は、maintenance / repair log dataset の
   eligibility screen から始める。理由は \(g_t\) を実ログの予測変数として
@@ -89,7 +89,7 @@ G4:
 「これができたら確実」に最も近い bundle:
 
 ```text
-1. 構造収支律 paper が完成する。
+1. 構造持続の収支原理 paper が完成する。
 2. その主要 claim が Lean theorem map に接続される。
 3. q-coloring など SAT 以外の Route A empirical/prospective test が通る。
 4. non-CSP の古典例 2-3 個に formal mapping できる。
@@ -119,7 +119,7 @@ machinery との関係を focused note として整理すること。
 この bundle が通れば、まだ「普遍法則が確立した」とは言わないが、かなり強く次のように言える。
 
 ```text
-構造持続理論は、形式化された構造収支律を核に持ち、
+構造持続理論は、形式化された構造持続の収支原理を核に持ち、
 複数の独立 family と古典例に写る universal-law candidate である。
 ```
 
@@ -127,10 +127,10 @@ machinery との関係を focused note として整理すること。
 
 読む順番:
 
-1. `analysis/structural_balance_law_draft_plan.md`
-   - 構造収支律の draft plan。
-2. `v2/3_構造持続の収支法則と崩壊傾向.md`
-   - 構造収支律の main draft。§1-8 は作成済み。
+1. `analysis/structural_persistence_balance_principle_draft_plan.md`
+   - 構造持続の収支原理の draft plan。
+2. `v2/3_構造持続の収支原理と崩壊傾向.md`
+   - 構造持続の収支原理の main draft。§1-8 は作成済み。
 3. `v2/補論_構造持続における資源項Mの操作的定式化.md`
    - M 分解を補論として再配置した integrated draft。
 4. `v2/補論_有限CSPにおける構造持続の予測力.md`
@@ -144,39 +144,39 @@ machinery との関係を focused note として整理すること。
 8. `analysis/HANDOFF_2026-04-22.md`
    - 最新 handoff。
 
-## 4. Step 1: 構造収支律 Paper をレビューして固定候補にする
+## 4. Step 1: 構造持続の収支原理 Paper をレビューして固定候補にする
 
 Goal:
 
-`v2/3_構造持続の収支法則と崩壊傾向.md` は作成済み。M 補論ではなく、この paper が次の main-theory slot を取る。次に行うのは、§1-8 の整合レビュー、必要な小修正、freeze / commit 判断である。
+`v2/3_構造持続の収支原理と崩壊傾向.md` は作成済み。M 補論ではなく、この paper が次の main-theory slot を取る。次に行うのは、§1-8 の整合レビュー、必要な小修正、freeze / commit 判断である。
 
 Tentative title:
 
 ```text
-構造持続の収支法則と崩壊傾向
-— 損失流と補償流の累積作用 —
+構造持続の収支原理と崩壊傾向
+— 損失流と補償流の構造持続収支量 —
 ```
 
 Core identity:
 
 \[
-  a_t = \ell_t - g_t,\qquad
-  A_n = \sum_{t<n} a_t,\qquad
-  m(V_n)=m(V_0)\exp(-A_n).
+  b_t = \ell_t - g_t,\qquad
+  B_n = \sum_{t<n} b_t,\qquad
+  m(V_n)=m(V_0)\exp(-B_n).
 \]
 
 Interpretation:
 
 - $\ell_t$: loss flow / 構造損失流。
 - $g_t$: compensation, repair, support, resource flow / 補償・修復・資源流。
-- $a_t$: net action / 正味作用。
-- $A_n$: cumulative action / 累積作用。
+- $b_t$: one-step balance / 一段収支。
+- $B_n$: structural balance amount / 構造持続収支量。
 
 Minimal sections:
 
 1. 問題設定: loss-only 収縮から open-system compensation へ。
-2. 最小収支恒等式: $a_t$, $A_n$, signed exponential kernel。
-3. expectation-level tendency: $\mathbb{E}[a_t]$ の符号で collapse / maintenance / recovery を分ける。
+2. 最小収支恒等式: $b_t$, $B_n$, signed exponential kernel。
+3. expectation-level tendency: $\mathbb{E}[b_t]$ の符号で collapse / maintenance / recovery を分ける。
 4. high-probability bounds: bounded increments / MGF があると Azuma / Chernoff / hitting-time bounds が出る。
 5. Route A anchors: SAT, Mixed-CSP, finite CSP。
 6. Route C anchors: Route C companion I / II の repair / external metabolism / adaptation。
@@ -185,7 +185,7 @@ Minimal sections:
 
 Do not:
 
-- 「均衡法則」と訳さない。日本語は「収支律」。
+- 「均衡法則」と訳さない。日本語は「収支原理」。
 - M mode decomposition を core にしない。
 - software / SaaS を Route A と呼ばない。
 - high-probability stopped-collapse を expectation-level tendency と混同しない。
@@ -194,7 +194,7 @@ Do not:
 
 Goal:
 
-構造収支律 paper の主張を Lean の既存 theorem map に対応づける。新 theorem を無理に大量追加するより、既存定理が何を支えるかを明示する。
+構造持続の収支原理 paper の主張を Lean の既存 theorem map に対応づける。新 theorem を無理に大量追加するより、既存定理が何を支えるかを明示する。
 
 Minimum mapping:
 
@@ -493,12 +493,12 @@ G6 pass levels:
 | Level | 内容 | 評価 |
 |---|---|---|
 | G6-a analogy | 既存理論との語彙的類似を述べる | introductory motivation only |
-| G6-b correspondence | $\ell_t$, $g_t$, $a_t$ などの項目対応表を作る | useful but not decisive |
-| G6-c formal reduction / embedding | 構造収支律から既存理論の一部を導く、または既存理論の drift / balance 条件を構造収支律の特例として埋め込む | minimum pass for Level 3 credibility |
+| G6-b correspondence | $\ell_t$, $g_t$, $b_t$ などの項目対応表を作る | useful but not decisive |
+| G6-c formal reduction / embedding | 構造持続の収支原理から既存理論の一部を導く、または既存理論の drift / balance 条件を構造持続の収支原理の特例として埋め込む | minimum pass for Level 3 credibility |
 
 Important:
 
-G6-a / G6-b はすでに前書きや比較節でできる。Level 3 に効くのは G6-c のみ。たとえば queueing Lyapunov drift、reliability product law、constant-fraction decay、または stochastic control drift condition のどれかを、構造収支律の特例または逆向きの embedding として明示できれば G6-c の候補になる。
+G6-a / G6-b はすでに前書きや比較節でできる。Level 3 に効くのは G6-c のみ。たとえば queueing Lyapunov drift、reliability product law、constant-fraction decay、または stochastic control drift condition のどれかを、構造持続の収支原理の特例または逆向きの embedding として明示できれば G6-c の候補になる。
 
 Existing non-CSP skeletons:
 
@@ -517,11 +517,11 @@ G6-c iteration 1 is closed at the minimal algebraic embedding level:
 
 - `analysis/g6c_formal_mapping_scope.md` fixes the scope boundary.
 - `analysis/g6c_foster_lyapunov_embedding_draft.md` records the prose embedding and non-claims.
-- `v2/補論_構造収支律とFoster-Lyapunovドリフトの形式的埋め込み.md` is the reader-facing supplement.
+- `v2/補論_構造持続の収支原理とFoster-Lyapunovドリフトの形式的埋め込み.md` is the reader-facing supplement.
 - `lean/Survival/LyapunovBalanceEmbedding.lean` formalizes:
-  - \(A_n = Z_n - Z_0\) telescoping;
-  - \(R_{t+1}=R_t e^{-a_t}\);
-  - \(a_t=\ell_t-g_t\) via positive / negative parts;
+  - \(B_n = Z_n - Z_0\) telescoping;
+  - \(R_{t+1}=R_t e^{-b_t}\);
+  - \(b_t=\ell_t-g_t\) via positive / negative parts;
   - queue excess-demand wrappers against `QueueStability.lean`.
 
 This is not a proof of positive recurrence or geometric ergodicity. Those
@@ -533,7 +533,7 @@ G4 v1 selection:
 - Primary anchor: queueing / Foster-Lyapunov drift.
 - Loss-only control anchors: serial reliability and constant-fraction decay.
 - Rationale and non-claims: `analysis/g4_non_csp_anchor_selection.md`.
-- Reader-facing supplement: `v2/補論_非CSP古典例における構造収支律の最小アンカー.md`.
+- Reader-facing supplement: `v2/補論_非CSP古典例における構造持続の収支原理の最小アンカー.md`.
 - Branching, fatigue, consensus, buckling, and percolation remain secondary /
   coverage skeletons until richer theorem or intervention structure is added.
 
@@ -542,7 +542,7 @@ G4 v2 selection:
 - Scope memo: `analysis/g4_v2_repair_maintenance_scope.md`.
 - Selected direction: repair / maintenance reliability-fatigue balance.
 - Lean skeleton: `lean/Survival/RepairMaintenanceBalance.lean`.
-- Reader-facing section: `v2/補論_非CSP古典例における構造収支律の最小アンカー.md`
+- Reader-facing section: `v2/補論_非CSP古典例における構造持続の収支原理の最小アンカー.md`
   §11.
 - Reason: expose \(g_t\) as an explicit compensation / maintenance flow in a
   non-CSP open-system anchor.
@@ -570,9 +570,9 @@ Route A threshold-local re-entry:
 If another LLM continues, do this:
 
 ```text
-1. Read analysis/structural_balance_law_draft_plan.md.
+1. Read analysis/structural_persistence_balance_principle_draft_plan.md.
 2. Read this roadmap.
-3. Read v2/3_構造持続の収支法則と崩壊傾向.md §1-8.
+3. Read v2/3_構造持続の収支原理と崩壊傾向.md §1-8.
 4. Read analysis/exp43_qcoloring/pilot_v1_addendum.md.
 5. Read analysis/exp43_qcoloring/pilot_v2_summary.md.
 6. Treat early Exp43 / Exp43b as exploration / pilot calibration, not
@@ -595,11 +595,11 @@ If another LLM continues, do this:
 Suggested commit message when ready:
 
 ```text
-Reclassify M operationalization as supplement and plan structural balance law
+Reclassify M operationalization as supplement and plan structural persistence balance principle
 ```
 
 If including this roadmap despite `v2/data/` being ignored:
 
 ```bash
-git add -f v2/data/ROADMAP_構造収支律とRouteA強化.md
+git add -f v2/data/ROADMAP_構造持続の収支原理とRouteA強化.md
 ```

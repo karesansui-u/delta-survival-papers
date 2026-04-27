@@ -11,7 +11,7 @@ Upstream source:
 Purpose:
 
 List the kinds of systems where the structural persistence / structural
-balance-law language should stay silent unless additional structure is fixed in
+balance-principle language should stay silent unless additional structure is fixed in
 advance. The goal is to prevent the program from drifting into:
 
 ```text
@@ -41,7 +41,7 @@ If those are not fixed, silence is healthier than forced translation.
 | Critical phase transitions | The main object is often singular behavior, symmetry breaking, or critical exponents, not monotone loss / repair balance | A concrete order parameter, maintained phase, and measure fixed before interpretation |
 | Hopf bifurcation / limit cycles | Net action may oscillate while the real object is a stable cycle, not collapse or maintenance of a scalar load | A pre-fixed cycle basin or amplitude-based maintained structure |
 | Self-organized criticality / heavy-tail avalanche systems | Mean drift can be misleading; tail structure matters more than average one-step balance | Tail / large-deviation layer and explicit rare-event target |
-| Static complexity-class statements | There may be no natural time-indexed \(Z_t\), \(a_t\), or \(A_n\) at all | An exposure or reduction path with a genuine sequential index |
+| Static complexity-class statements | There may be no natural time-indexed \(Z_t\), \(b_t\), or \(B_n\) at all | An exposure or reduction path with a genuine sequential index |
 | Multi-attractor systems without a chosen target basin | "Maintenance" is undefined until one basin or attractor is privileged | Target basin / structure declared before analysis |
 | Objective-switching or regime-switching systems | Loss and repair semantics change with the objective, making one scalar balance ambiguous | Piecewise target definition with explicit regime segmentation |
 
@@ -52,7 +52,7 @@ Silence does not mean the theory is false in those domains.
 It means:
 
 ```text
-the current structural-balance vocabulary is under-specified there
+the current structural-persistence balance vocabulary is under-specified there
 ```
 
 That is a healthy outcome, because it keeps the program falsifiable. The bad

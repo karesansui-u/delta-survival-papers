@@ -7,7 +7,7 @@ Structural Persistence Theory for LLM reasoning degradation, catastrophic forget
 ## Current Focus / 現在の主対象
 
 このリポジトリの主対象は、`v2` にある主理論 spine 3 本と Route C companion 2 本、および補論群です。
-論理依存としては `v2/1`、`v2/2`、`v2/3` が主理論 spine ですが、外向きの最短導線としては `v2/0_構造持続理論の統合版.md` から入り、続いて `v2/3_構造持続の収支法則と崩壊傾向.md` を主論文として読む構成を想定しています。そこから foundation を厳密に追いたい読者は `v2/1` と `v2/2` に降り、Route C の observational layer を見たい読者は `v2/Companion_RouteC_推論時の構造劣化.md`、`v2/Companion_RouteC_継続学習時の構造的忘却.md` を companion anchors として読むのが自然です。現在の証拠階層は [`analysis/current_evidence_map.md`](analysis/current_evidence_map.md) に整理しています。`v1/` は旧版アーカイブ、補論は補助資料です。
+論理依存としては `v2/1`、`v2/2`、`v2/3` が主理論 spine ですが、外向きの最短導線としては `v2/0_構造持続理論の統合版.md` から入り、続いて `v2/3_構造持続の収支原理と崩壊傾向.md` を主論文として読む構成を想定しています。そこから foundation を厳密に追いたい読者は `v2/1` と `v2/2` に降り、Route C の observational layer を見たい読者は `v2/Companion_RouteC_推論時の構造劣化.md`、`v2/Companion_RouteC_継続学習時の構造的忘却.md` を companion anchors として読むのが自然です。現在の証拠階層は [`analysis/current_evidence_map.md`](analysis/current_evidence_map.md) に整理しています。`v1/` は旧版アーカイブ、補論は補助資料です。
 
 ### English Entry Points
 
@@ -57,11 +57,11 @@ Route A の非CSP skeletons は、信頼性・減衰・待ち行列・疲労・�
 - PDF: [`v2/pdf用/2_構造持続の条件つき導出.pdf`](v2/pdf%E7%94%A8/2_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%AE%E6%9D%A1%E4%BB%B6%E3%81%A4%E3%81%8D%E5%B0%8E%E5%87%BA.pdf)
 - OSF mirror: [paper2_conditional_derivation_ja_2026-04-14.pdf](https://osf.io/mdh7b/files/osfstorage/69dde4faa17296e9bb3e7a3b)
 
-### Paper 3 — 構造持続の収支法則と崩壊傾向
+### Paper 3 — 構造持続の収支原理と崩壊傾向
 
-主理論 spine の第三層。損失流と補償流の差し引きを構造収支律として定式化し、pathwise identity、expectation-level tendency、finite-horizon concentration schema、Route A / Route C anchors、既存理論との接続強度を整理する中心 draft です。
+主理論 spine の第三層。損失流と補償流の差し引きを構造持続の収支原理として定式化し、pathwise identity、expectation-level tendency、finite-horizon concentration schema、Route A / Route C anchors、既存理論との接続強度を整理する中心 draft です。
 
-- Markdown: [`v2/3_構造持続の収支法則と崩壊傾向.md`](v2/3_構造持続の収支法則と崩壊傾向.md)
+- Markdown: [`v2/3_構造持続の収支原理と崩壊傾向.md`](v2/3_構造持続の収支原理と崩壊傾向.md)
 
 ### Route C Companion I — 推論時の構造劣化
 
@@ -106,7 +106,7 @@ See [`PATENTS.md`](PATENTS.md) for a brief scope note.
 ### Public-facing shortest route
 
 1. [`v2/0_構造持続理論の統合版.md`](v2/0_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E7%90%86%E8%AB%96%E3%81%AE%E7%B5%B1%E5%90%88%E7%89%88.md)
-2. [`v2/3_構造持続の収支法則と崩壊傾向.md`](v2/3_構造持続の収支法則と崩壊傾向.md)
+2. [`v2/3_構造持続の収支原理と崩壊傾向.md`](v2/3_構造持続の収支原理と崩壊傾向.md)
 3. [`v2/1_構造持続の最小形式.md`](v2/1_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%AE%E6%9C%80%E5%B0%8F%E5%BD%A2%E5%BC%8F.md)
 4. [`v2/2_構造持続の条件つき導出.md`](v2/2_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%AE%E6%9D%A1%E4%BB%B6%E3%81%A4%E3%81%8D%E5%B0%8E%E5%87%BA.md)
 5. [`v2/Companion_RouteC_推論時の構造劣化.md`](v2/Companion_RouteC_推論時の構造劣化.md)
@@ -116,7 +116,7 @@ See [`PATENTS.md`](PATENTS.md) for a brief scope note.
 
 1. [`v2/1_構造持続の最小形式.md`](v2/1_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%AE%E6%9C%80%E5%B0%8F%E5%BD%A2%E5%BC%8F.md)
 2. [`v2/2_構造持続の条件つき導出.md`](v2/2_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%AE%E6%9D%A1%E4%BB%B6%E3%81%A4%E3%81%8D%E5%B0%8E%E5%87%BA.md)
-3. [`v2/3_構造持続の収支法則と崩壊傾向.md`](v2/3_構造持続の収支法則と崩壊傾向.md)
+3. [`v2/3_構造持続の収支原理と崩壊傾向.md`](v2/3_構造持続の収支原理と崩壊傾向.md)
 
 ## Supplements / 補論・補助資料
 
@@ -124,8 +124,8 @@ See [`PATENTS.md`](PATENTS.md) for a brief scope note.
 
 - [`v2/補論_計算コストの構造的予測.md`](v2/%E8%A3%9C%E8%AB%96_%E8%A8%88%E7%AE%97%E3%82%B3%E3%82%B9%E3%83%88%E3%81%AE%E6%A7%8B%E9%80%A0%E7%9A%84%E4%BA%88%E6%B8%AC.md)
 - [`v2/補論_有限CSPにおける構造持続の予測力.md`](v2/%E8%A3%9C%E8%AB%96_%E6%9C%89%E9%99%90CSP%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%AE%E4%BA%88%E6%B8%AC%E5%8A%9B.md)
-- [`v2/補論_構造収支律とFoster-Lyapunovドリフトの形式的埋め込み.md`](v2/補論_構造収支律とFoster-Lyapunovドリフトの形式的埋め込み.md)
-- [`v2/補論_非CSP古典例における構造収支律の最小アンカー.md`](v2/補論_非CSP古典例における構造収支律の最小アンカー.md)
+- [`v2/補論_構造持続の収支原理とFoster-Lyapunovドリフトの形式的埋め込み.md`](v2/補論_構造持続の収支原理とFoster-Lyapunovドリフトの形式的埋め込み.md)
+- [`v2/補論_非CSP古典例における構造持続の収支原理の最小アンカー.md`](v2/補論_非CSP古典例における構造持続の収支原理の最小アンカー.md)
 - [`v2/補論_構造持続における資源項Mの操作的定式化.md`](v2/補論_構造持続における資源項Mの操作的定式化.md)
 - [`v2/補論_構造持続写像の標準手順.md`](v2/%E8%A3%9C%E8%AB%96_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E5%86%99%E5%83%8F%E3%81%AE%E6%A8%99%E6%BA%96%E6%89%8B%E9%A0%86.md)
 - [`v2/補論_持続的支援知能の設計原理.md`](v2/%E8%A3%9C%E8%AB%96_%E6%8C%81%E7%B6%9A%E7%9A%84%E6%94%AF%E6%8F%B4%E7%9F%A5%E8%83%BD%E3%81%AE%E8%A8%AD%E8%A8%88%E5%8E%9F%E7%90%86.md)
@@ -166,7 +166,7 @@ The current core layering includes:
 - `ThresholdCardinalitySATChernoffCollapse.lean`: at-most / at-least threshold cardinality-SAT を同じ witness bridge に載せる family-level specialization
 - `ExactlyOneSATChernoffCollapse.lean`: exactly-one-SAT を multi-forbidden-pattern witness として表現する specialization
 - `BernoulliCSPUniversality.lean`: k-SAT / NAE-SAT / XOR-SAT / q-coloring / forbidden-pattern / hypergraph-coloring / cardinality-SAT / threshold-cardinality-SAT CSP を同一 Bernoulli-CSP interface に束ねる wrapper
-- `LyapunovBalanceEmbedding.lean`: Foster-Lyapunov / queueing drift を構造収支律の \(a_t,A_n,R_t,\ell_t,g_t\) へ埋め込む G6-c minimal algebraic embedding
+- `LyapunovBalanceEmbedding.lean`: Foster-Lyapunov / queueing drift を構造持続の収支原理の \(b_t,B_n,R_t,\ell_t,g_t\) へ埋め込む G6-c minimal algebraic embedding
 - Route A non-CSP skeletons: 11 small Lean modules grouped into five finite-prefix forms: multiplicative/exponential survival, linear overload, cumulative-capacity thresholds, critical-parameter thresholds, and explicit repair / maintenance balance. Detailed module-to-claim mapping is kept in [`lean/PAPER_MAPPING.md`](lean/PAPER_MAPPING.md).
 
 The cross-domain Bernoulli-CSP layer is frozen locally as **Bernoulli CSP

@@ -256,7 +256,7 @@ Therefore even a passing v2 should be reported conservatively:
 This note does not claim:
 
 1. that Q4 2025 was secretly supportive because AUC was high;
-2. that the structural balance law was falsified by Q4 2025;
+2. that the structural persistence balance principle was falsified by Q4 2025;
 3. that Backblaze v2 will pass;
 4. that Platt scaling is already chosen or frozen;
 5. that `smart_199_raw` will be excluded;

@@ -87,7 +87,7 @@ Conceptual mapping:
 - unit / time: `vehicle_id`, `time_step`;
 - event process: replacement / repair time in `train_tte.csv`;
 - bridge question:
-  can the structural-balance vocabulary be attached to a public
+  can the structural-persistence balance vocabulary be attached to a public
   time-to-event / stochastic reliability prediction task?
 
 Why this is the preferred conceptual path:

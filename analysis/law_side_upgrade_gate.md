@@ -6,7 +6,7 @@ and not a universal-law declaration.
 ## 1. Purpose
 
 This note fixes the minimal gate for when a non-CSP domain may be described as
-a **conditional law-side bridge** for the structural balance law, rather than
+a **conditional law-side bridge** for the structural persistence balance principle, rather than
 only as a suggestive framework or observational analogy.
 
 The point is not to blur the boundary between the current program state and a
@@ -67,12 +67,12 @@ This does not require an unconditional theorem. It does require a clear path
 from
 
 \[
-  a_t=\ell_t-g_t,\qquad A_n=\sum_{t<n} a_t
+  b_t=\ell_t-g_t,\qquad B_n=\sum_{t<n} b_t
 \]
 
 to some boundary reading such as:
 
-- \(A_n\) crosses a threshold;
+- \(B_n\) crosses a threshold;
 - \(Z_n\) hits an overload region;
 - a remaining margin \(M_n\) reaches zero;
 - a stopping / collapse probability is bounded under stated assumptions.
@@ -95,7 +95,7 @@ The gate produces four qualitatively different statuses.
 | Loss-only control anchor | \(m\) and a loss-side boundary are available, but \(g_t\) is absent or intentionally zero |
 | Observational / companion layer | one or more of \(m\), \(g_t\), boundary remain proxy-level or domain-weak |
 
-This gate is intentionally stronger than “can be written in structural-balance
+This gate is intentionally stronger than “can be written in structural-persistence balance
 notation?” Many domains can be written that way. Fewer can be elevated toward
 law-side status.
 
@@ -197,7 +197,7 @@ The strongest safe claim at present is:
 ```text
 The program is not yet entitled to a non-CSP universal-law declaration.
 However, in repairable stochastic systems and drift-based stability models,
-the structural balance law can already be presented as a conditional
+the structural persistence balance principle can already be presented as a conditional
 law-side bridge to existing stability theory.
 ```
 

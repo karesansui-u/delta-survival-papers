@@ -4,28 +4,44 @@
 \begin{document}
 
 \PaperTitleBlock
-  {構造持続の収支法則と崩壊傾向}
-  {— 損失流と補償流の累積作用 —}
+  {構造持続の収支原理と崩壊傾向}
+  {— 構造持続収支量 Bn と維持ポテンシャル Sn —}
   {2026年4月12日}
 
 \begin{abstract}
 構造持続の最小形式は、これまで主として loss-only の収縮モードとして定式化されてきた。そこでは、構造を維持できる状態集合の縮小を対数比で測る loss kernel が与えられ、残存可能性が指数核で表される。しかし、現実の多くの系は閉じた収縮系ではない。修復、学習、冗長化、外部支援、ロールバックのように、構造維持可能領域を再拡大する作用が同時に働く。
 
-本稿は、この開いた構造系を扱うために、構造持続の最小核を「損失量」から「損失流と補償流の収支」へ移す。各時刻の損失流を \(\ell_{t}\)、補償流を \(g_{t}\)、その差を
+本稿は、この開いた構造系を扱うために、構造持続の最小核を「損失量」から「損失流と補償流の収支」へ移す。各時刻の損失流を \(\ell_{t}\)、補償流を \(g_{t}\)、一段収支を
 
 \[
-a_{t} := \ell_{t} - g_{t}
+b_{t} := \ell_{t} - g_{t}
 \]
 
-と置き、累積作用 \(A_{n} := \sum_{t<n} a_{t}\) に対して
+と置く。構造持続収支量を
 
 \[
-m(V^{(n)}) = m(V^{(0)}) e^{-A_{n}}
+B_{n} := \sum_{t<n} b_{t}
 \]
 
-が成り立つことを最小収支恒等式として述べる。ここで \(a_{t}>0\) は損失優位、\(a_{t}=0\) は維持、\(a_{t}<0\) は補償優位を表す。したがって、本稿でいう「収支」は equilibrium を意味しない。崩壊・維持・回復の三つの傾向を、同じ差し引き量の符号として扱うための収支 \((accounting)\) の法則である。
+とすれば、読者向けの表の形は
 
-本稿の役割は、構造持続理論が普遍法則として確立したと宣言することではない。むしろ、Paper 1 の loss-only kernel、Paper 2 の条件つき導出と層分離、集合値力学補論の符号付き指数核、Lean 形式化における expectation-level tendency、Mixed-CSP の有限時間 concentration、および Route C companion I / II の repair / external metabolism の観察を、単一の「構造収支律」として読み直すための主理論 spine の第三層を与えることである。論理依存としては 1 → 2 → 3 だが、読者導線としては Paper 0 から本稿へ入り、必要に応じて Paper 1 / Paper 2 に降りる読み方を想定している。
+\[
+\begin{aligned}
+R_{n} &= e^{-B_{n}}, \\
+\qquad \\
+S_{n} &= M_{n} R_{n} = M_{n} e^{-B_{n}}
+\end{aligned}
+\]
+
+である。ここで \(R_{n}\) は構造維持可能性の残存比、\(M_{n}\) はその時点で明示的に追跡する維持資源、\(S_{n}\) は構造持続ポテンシャルである。集合値核だけを見る場合には、この式は
+
+\[
+m(V^{(n)}) = m(V^{(0)}) e^{-B_{n}}
+\]
+
+という最小収支恒等式になる。ここで \(b_{t}>0\) は損失優位、\(b_{t}=0\) は維持、\(b_{t}<0\) は補償優位を表す。したがって、本稿でいう「収支」は equilibrium を意味しない。崩壊・維持・回復の三つの傾向を、同じ差し引き量の符号として扱うための収支 \((accounting)\) の原理である。
+
+本稿の役割は、構造持続理論が普遍法則として確立したと宣言することではない。むしろ、Paper 1 の loss-only kernel、Paper 2 の条件つき導出と層分離、集合値力学補論の符号付き指数核、Lean 形式化における expectation-level tendency、Mixed-CSP の有限時間 concentration、および Route C companion I / II の repair / external metabolism の観察を、単一の「構造持続の収支原理」として読み直すための主理論 spine の第三層を与えることである。論理依存としては 1 → 2 → 3 だが、読者導線としては Paper 0 から本稿へ入り、必要に応じて Paper 1 / Paper 2 に降りる読み方を想定している。
 \end{abstract}
 
 \section{はじめに}\label{ux306fux3058ux3081ux306b}
@@ -36,7 +52,7 @@ m(V^{(n)}) = m(V^{(0)}) e^{-A_{n}}
 
 このとき問うべき量は、損失そのものだけではない。損失がどれだけ発生し、それに対してどれだけ補償が入ったか、その差し引きである。
 
-本稿では、この差し引きを \textbf{構造収支律} と呼ぶ。英語では structural balance law と呼ぶ。ただし、ここでの balance は equilibrium ではなく、収支、すなわち流入・流出の accounting を意味する。したがって「均衡法則」とは訳さない。収支が正であれば損失が優位であり、収支が負であれば補償が優位である。維持はその中間の一つの regime にすぎない。
+本稿では、この差し引きを \textbf{構造持続の収支原理} と呼ぶ。英語では structural persistence balance principle と呼ぶ。ただし、ここでの balance は equilibrium ではなく、収支、すなわち流入・流出の accounting を意味する。したがって「均衡法則」とは訳さない。収支が正であれば損失が優位であり、収支が負であれば補償が優位である。維持はその中間の一つの regime にすぎない。
 
 \subsection{本稿の問い}\label{ux672cux7a3fux306eux554fux3044}
 
@@ -48,19 +64,33 @@ m(V^{(n)}) = m(V^{(0)}) e^{-A_{n}}
 
 この問いは、閉じた系の収縮則を否定するものではない。むしろ、収縮則を \(g_{t}=0\) の特例として回収する。そのうえで、repair, learning, redundancy, external support, rollback のような再拡大作用を、同じ対数尺度上の補償流 \(g_{t}\) として導入する。
 
-本稿の基本形は次である。
+本稿の基本形は次である。まず一段収支と構造持続収支量を
 
 \[
 \begin{aligned}
-a_{t} &= \ell_{t} - g_{t}, \\
+b_{t} &= \ell_{t} - g_{t}, \\
 \qquad \\
-A_{n} &= \sum_{t=0}^{n-1} a_{t}, \\
-\qquad \\
-m(V^{(n)}) &= m(V^{(0)}) e^{-A_{n}}.
+B_{n} &= \sum_{t=0}^{n-1} b_{t}
 \end{aligned}
 \]
 
-ここで \(\ell_{t}\) は構造損失流、\(g_{t}\) は補償流、\(a_{t}\) は正味作用、\(A_{n}\) は累積作用である。この式は、閉じた収縮系では \(\ell_{t}\ge 0, g_{t}=0\) によって Paper 1 の \(L_{n}\) へ戻る。開いた系では \(g_{t}\) が正でありうるため、\(A_{n}\) は増えるとは限らない。
+と置く。そのうえで、残存比と構造持続ポテンシャルを
+
+\[
+\begin{aligned}
+R_{n} &= e^{-B_{n}}, \\
+\qquad \\
+S_{n} &= M_{n} R_{n} = M_{n} e^{-B_{n}}
+\end{aligned}
+\]
+
+と書く。集合値核だけを取り出せば、
+
+\[
+m(V^{(n)}) = m(V^{(0)}) e^{-B_{n}}.
+\]
+
+ここで \(\ell_{t}\) は構造損失流、\(g_{t}\) は補償流、\(b_{t}\) は一段収支、\(B_{n}\) は構造持続収支量である。この表記にすると、Paper 1 の \(S=Me^{-L}\) は、閉じた収縮系で \(g_{t}=0\)、したがって \(B_{n}=L_{n}\) となる特例として回収される。開いた系では \(g_{t}\) が正でありうるため、\(B_{n}\) は増えるとは限らない。
 
 \subsection{本稿の位置づけ}\label{ux672cux7a3fux306eux4f4dux7f6eux3065ux3051}
 
@@ -79,7 +109,7 @@ m(V^{(n)}) &= m(V^{(0)}) e^{-A_{n}}.
 \item
   Paper 2 は、指数表現がどの条件で恒等式となり、どの条件で境界として安定化するかを与える。
 \item
-  集合値力学補論は、収縮作用 \(K_{t}\) と再拡大作用 \(R_{t}\) の合成から、符号付き作用 \(A_{n}\) に対する指数核を与える。
+  集合値力学補論は、収縮作用 \(K_{t}\) と再拡大作用 \(R_{t}\) の合成から、符号付き収支量 \(B_{n}\) に対する指数核を与える。
 \item
   Lean M1 は、expectation-level tendency が既存 theorem map によって支えられることを示す。
 \item
@@ -90,7 +120,7 @@ m(V^{(n)}) &= m(V^{(0)}) e^{-A_{n}}.
   M 補論は、補償流・資源流を実ドメインで測るための operational coordinate を与える。
 \end{itemize}
 
-したがって本稿は、既存結果の上に新しい万能法則を宣言するのではなく、散在していた収縮・修復・資源・確率境界の層を、「構造収支律」という一つの主導線に沿って再配置する。
+したがって本稿は、既存結果の上に新しい万能法則を宣言するのではなく、散在していた収縮・修復・資源・確率境界の層を、「構造持続の収支原理」という一つの主導線に沿って再配置する。
 
 \subsection{本稿が主張しないこと}\label{ux672cux7a3fux304cux4e3bux5f35ux3057ux306aux3044ux3053ux3068}
 
@@ -112,11 +142,11 @@ m(V^{(n)}) &= m(V^{(0)}) e^{-A_{n}}.
   M の mode 分解が universal metric を与えるとは主張しない。
 \end{itemize}
 
-本稿が与えるのは、より限定された主張である。すなわち、事前固定された構造維持問題において、損失流と補償流が同じ対数尺度で定義できるなら、その差し引き \(a_{t}\) の累積作用 \(A_{n}\) に対して指数的な残存則が成り立つ。そして確率過程として扱う場合には、\(\mathbb E[a_{t}]\) の符号が傾向を与え、bounded increments や MGF などの追加条件があれば高確率境界へ進める、ということである。
+本稿が与えるのは、より限定された主張である。すなわち、事前固定された構造維持問題において、損失流と補償流が同じ対数尺度で定義できるなら、その差し引き \(b_{t}\) の構造持続収支量 \(B_{n}\) に対して指数的な残存則が成り立つ。そして確率過程として扱う場合には、\(\mathbb E[b_{t}]\) の符号が傾向を与え、bounded increments や MGF などの追加条件があれば高確率境界へ進める、ということである。
 
 \section{最小収支形式}\label{ux6700ux5c0fux53ceux652fux5f62ux5f0f}
 
-本節では、構造収支律の最小形式を定義する。ここでの目的は、最も一般的な repair theory を完成させることではない。閉じた収縮モードと開いた補償モードを、同じ指数核で扱うための最小恒等式を切り出すことである。
+本節では、構造持続の収支原理の最小形式を定義する。ここでの目的は、最も一般的な repair theory を完成させることではない。閉じた収縮モードと開いた補償モードを、同じ指数核で扱うための最小恒等式を切り出すことである。
 
 \subsection{構造維持可能集合と二段階更新}\label{ux69cbux9020ux7dadux6301ux53efux80fdux96c6ux5408ux3068ux4e8cux6bb5ux968eux66f4ux65b0}
 
@@ -162,11 +192,11 @@ V^{(t+1)} :&= R_{t}(V_{t}^-)
 
 で定める。\(V_{t}^-\) は収縮直後の集合、\(V^{(t+1)}\) は補償後の集合である。
 
-現実の系では、収縮と補償が同時または相互作用的に起きる場合がある。本稿ではそれを、観測単位ごとの coarse-grained discrete step の内部で \(K_{t}\) と \(R_{t}\) の合成として畳み込む。
+現実の系では、収縮と補償が同時または相互作用的に起きる場合がある。本稿ではそれを、観測単位ごとの構造粒度を落とした discrete step の内部で \(K_{t}\) と \(R_{t}\) の合成として畳み込む。
 
 以後、考える有限時間地平の範囲で、\(m(V^{(t)})\) および \(m(V_{t}^-)\) は有限かつ正であると仮定する。この仮定は、以下の対数比が well-defined であるために必要である。
 
-\subsection{損失流・補償流・正味作用}\label{ux640dux5931ux6d41ux88dcux511fux6d41ux6b63ux5473ux4f5cux7528}
+\subsection{損失流・補償流・一段収支}\label{ux640dux5931ux6d41ux88dcux511fux6d41ux4e00ux6bb5ux53ceux652f}
 
 各時刻 \(t\) の損失流を
 
@@ -186,11 +216,11 @@ g_{t} := \log \frac{m(V^{(t+1)})}{m(V_{t}^-)}
 
 ここで重要なのは、\(\ell_{t}\) と \(g_{t}\) がどちらも質量比の対数で測られていることである。これにより、損失と補償を同じ尺度で差し引ける。
 
-\begin{definition}[正味作用]
-各時刻 $t$ の正味作用を
+\begin{definition}[一段収支]
+各時刻 $t$ の一段収支を
 
 $$
-a_{t} := \ell_{t} - g_{t}
+b_{t} := \ell_{t} - g_{t}
 $$
 
 と定義する。
@@ -204,20 +234,20 @@ L_{n} :&= \sum_{t=0}^{n-1} \ell_{t}, \\
 \qquad \\
 G_{n} :&= \sum_{t=0}^{n-1} g_{t}, \\
 \qquad \\
-A_{n} :&= \sum_{t=0}^{n-1} a_{t} = L_{n} - G_{n}
+B_{n} :&= \sum_{t=0}^{n-1} b_{t} = L_{n} - G_{n}
 \end{aligned}
 \]
 
-と定める。\(L_{n}\) は累積損失、\(G_{n}\) は累積補償、\(A_{n}\) は累積正味作用である。
+と定める。\(L_{n}\) は累積損失、\(G_{n}\) は累積補償、\(B_{n}\) は構造持続収支量である。
 
-\subsection{ネット作用の対数比表現}\label{ux30cdux30c3ux30c8ux4f5cux7528ux306eux5bfeux6570ux6bd4ux8868ux73fe}
+\subsection{一段収支の対数比表現}\label{ux4e00ux6bb5ux53ceux652fux306eux5bfeux6570ux6bd4ux8868ux73fe}
 
-収縮と補償を別々に定義しても、正味作用は局所的には始点と終点の対数比だけで表される。
+収縮と補償を別々に定義しても、一段収支は局所的には始点と終点の対数比だけで表される。
 
-命題 1（ネット作用の対数比表現）。 各時刻 \(t\) について
+命題 1（一段収支の対数比表現）。 各時刻 \(t\) について
 
 \[
-a_{t} = -\log \frac{m(V^{(t+1)})}{m(V^{(t)})}
+b_{t} = -\log \frac{m(V^{(t+1)})}{m(V^{(t)})}
 \]
 
 が成り立つ。
@@ -227,7 +257,7 @@ a_{t} = -\log \frac{m(V^{(t+1)})}{m(V^{(t)})}
 \[
 \begin{aligned}
 \begin{aligned} \\
-a_{t} \\
+b_{t} \\
 &&= \\
 \ell_{t} - g_{t} \\ \\
 &&= \\
@@ -242,7 +272,7 @@ a_{t} \\
 
 中間集合 \(V_{t}^-\) の質量が打ち消し合うため、主張が従う。証明終。
 
-この命題は、損失流と補償流の分解が domain-specific であっても、局所的に残る正味量はなお対数比として一意に読めることを示す。したがって、Paper 1 の対数比核は、開いた補償系においても失われない。
+この命題は、損失流と補償流の分解が domain-specific であっても、局所的に残る差し引き量はなお対数比として一意に読めることを示す。したがって、Paper 1 の対数比核は、開いた補償系においても失われない。
 
 \subsection{局所収支則}\label{ux5c40ux6240ux53ceux652fux5247}
 
@@ -251,7 +281,7 @@ a_{t} \\
 命題 2（局所収支則）。 各時刻 \(t\) について
 
 \[
-m(V^{(t+1)}) = m(V^{(t)}) e^{-a_{t}}
+m(V^{(t+1)}) = m(V^{(t)}) e^{-b_{t}}
 \]
 
 が成り立つ。
@@ -259,7 +289,7 @@ m(V^{(t+1)}) = m(V^{(t)}) e^{-a_{t}}
 証明。 命題 1 より
 
 \[
-e^{-a_{t}} = \frac{m(V^{(t+1)})}{m(V^{(t)})}
+e^{-b_{t}} = \frac{m(V^{(t+1)})}{m(V^{(t)})}
 \]
 
 である。両辺に \(m(V^{(t)})\) を掛ければよい。証明終。
@@ -269,23 +299,23 @@ e^{-a_{t}} = \frac{m(V^{(t+1)})}{m(V^{(t)})}
 \begin{itemize}
 \tightlist
 \item
-  \(a_{t}>0\): 損失流が補償流を上回り、構造維持可能領域は縮小する。
+  \(b_{t}>0\): 損失流が補償流を上回り、構造維持可能領域は縮小する。
 \item
-  \(a_{t}=0\): 損失流と補償流が釣り合い、測度上の維持が起きる。
+  \(b_{t}=0\): 損失流と補償流が釣り合い、測度上の維持が起きる。
 \item
-  \(a_{t}<0\): 補償流が損失流を上回り、構造維持可能領域は拡大する。
+  \(b_{t}<0\): 補償流が損失流を上回り、構造維持可能領域は拡大する。
 \end{itemize}
 
-ここで \(a_{t}=0\) は一つの regime であって、本稿の理論全体を equilibrium に還元するものではない。構造収支律は、三つの regime を同じ符号付き量で扱うための法則である。
+ここで \(b_{t}=0\) は一つの regime であって、本稿の理論全体を equilibrium に還元するものではない。構造持続の収支原理は、三つの regime を同じ符号付き量で扱うための原理である。
 
 \subsection{符号付き指数核}\label{ux7b26ux53f7ux4ed8ux304dux6307ux6570ux6838}
 
-局所収支則を時間方向に積み上げると、構造収支律の中心恒等式が得られる。
+局所収支則を時間方向に積み上げると、構造持続の収支原理の中心恒等式が得られる。
 
-定理 1（構造収支律の最小指数核）。 任意の \(n\ge 0\) について
+定理 1（構造持続の収支原理の最小指数核）。 任意の \(n\ge 0\) について
 
 \[
-m(V^{(n)}) = m(V^{(0)}) e^{-A_{n}}
+m(V^{(n)}) = m(V^{(0)}) e^{-B_{n}}
 \]
 
 が成り立つ。
@@ -293,27 +323,41 @@ m(V^{(n)}) = m(V^{(0)}) e^{-A_{n}}
 証明。 命題 2 を \(t=0,\ldots,n-1\) にわたって掛け合わせると
 
 \[
-\frac{m(V^{(n)})}{m(V^{(0)})} = \prod_{t=0}^{n-1} e^{-a_{t}} = e^{-\sum_{t=0}^{n-1} a_{t}} = e^{-A_{n}}.
+\frac{m(V^{(n)})}{m(V^{(0)})} = \prod_{t=0}^{n-1} e^{-b_{t}} = e^{-\sum_{t=0}^{n-1} b_{t}} = e^{-B_{n}}.
 \]
 
 したがって
 
 \[
-m(V^{(n)}) = m(V^{(0)}) e^{-A_{n}}
+m(V^{(n)}) = m(V^{(0)}) e^{-B_{n}}
 \]
 
 である。証明終。
 
-この定理は、指数型が loss-only 収縮モードに限られないことを示す。損失流と補償流を同じ対数尺度で測れる限り、残存量は累積正味作用 \(A_{n}\) に対して指数型で表される。
+この定理は、指数型が loss-only 収縮モードに限られないことを示す。損失流と補償流を同じ対数尺度で測れる限り、残存量は構造持続収支量 \(B_{n}\) に対して指数型で表される。
+
+資源項を明示的に追跡する場合には、残存比
+
+\[
+R_{n} := e^{-B_{n}}
+\]
+
+を用いて
+
+\[
+S_{n} := M_{n} R_{n} = M_{n} e^{-B_{n}}
+\]
+
+と書く。この \(S_{n}\) 表記は Paper 1 の \(S=Me^{-L}\) と同じ顔を持つ。違いは、閉じた系の累積損失 \(L_{n}\) が、開いた系では補償流を差し引いた構造持続収支量 \(B_{n}=L_{n}-G_{n}\) に置き換わる点である。
 
 \subsection{収縮モードの回収}\label{ux53ceux7e2eux30e2ux30fcux30c9ux306eux56deux53ce}
 
-Paper 1 の最小形式は、構造収支律の特例として回収される。
+Paper 1 の最小形式は、構造持続の収支原理の特例として回収される。
 
 命題 3（loss-only 収縮モード）。 すべての時刻で補償流が存在しない、すなわち \(g_{t}=0\) であるなら、
 
 \[
-A_{n} = L_{n}
+B_{n} = L_{n}
 \]
 
 であり、定理 1 は
@@ -324,11 +368,11 @@ m(V^{(n)}) = m(V^{(0)}) e^{-L_{n}}
 
 に一致する。
 
-証明。 \(g_{t}=0\) なら各 \(t\) で \(a_{t}=\ell_{t}\) である。したがって
+証明。 \(g_{t}=0\) なら各 \(t\) で \(b_{t}=\ell_{t}\) である。したがって
 
 \[
 \begin{aligned}
-A_{n} &= \sum_{t=0}^{n-1} a_{t} \\
+B_{n} &= \sum_{t=0}^{n-1} b_{t} \\
 &= \sum_{t=0}^{n-1} \ell_{t} \\
 &= L_{n}.
 \end{aligned}
@@ -336,28 +380,28 @@ A_{n} &= \sum_{t=0}^{n-1} a_{t} \\
 
 これを定理 1 に代入すればよい。証明終。
 
-したがって、構造収支律は Paper 1 の loss-only 理論を置き換えるものではない。むしろ、loss-only 理論を \(g_{t}=0\) の閉じた収縮系として含む、より一般の形式である。
+したがって、構造持続の収支原理は Paper 1 の loss-only 理論を置き換えるものではない。むしろ、loss-only 理論を \(g_{t}=0\) の閉じた収縮系として含む、より一般の形式である。
 
 \subsection{次節への接続}\label{ux6b21ux7bc0ux3078ux306eux63a5ux7d9a}
 
 本節で示したのは、定義と対数比から従う恒等式である。ここまでは確率的独立性も、martingale 条件も、concentration も必要ない。
 
-次に必要になるのは、\(a_{t}\) を確率過程として見たとき、その期待値の符号がどのような傾向を意味するかである。直観的には、
+次に必要になるのは、\(b_{t}\) を確率過程として見たとき、その期待値の符号がどのような傾向を意味するかである。直観的には、
 
 \[
-\mathbb E[a_{t}] > 0
+\mathbb E[b_{t}] > 0
 \]
 
 なら損失優位の collapse tendency、
 
 \[
-\mathbb E[a_{t}] \approx 0
+\mathbb E[b_{t}] \approx 0
 \]
 
 なら maintenance tendency、
 
 \[
-\mathbb E[a_{t}] < 0
+\mathbb E[b_{t}] < 0
 \]
 
 なら recovery tendency を表す。
@@ -366,46 +410,46 @@ A_{n} &= \sum_{t=0}^{n-1} a_{t} \\
 
 \section{期待値レベルの傾向律}\label{ux671fux5f85ux5024ux30ecux30d9ux30ebux306eux50beux5411ux5f8b}
 
-前節の構造収支律は、各実現経路に対する恒等式である。そこには確率は入っていない。本節では、損失流と補償流が確率的に生成される場合に、どのような意味で「崩壊傾向」「維持傾向」「回復傾向」を言えるかを切り分ける。
+前節の構造持続の収支原理は、各実現経路に対する恒等式である。そこには確率は入っていない。本節では、損失流と補償流が確率的に生成される場合に、どのような意味で「崩壊傾向」「維持傾向」「回復傾向」を言えるかを切り分ける。
 
-重要なのは、期待値レベルの傾向律と、高確率の崩壊境界を混同しないことである。期待値の符号は、累積作用の中心がどちらへ動くかを与える。しかし、それだけで個々の経路が高確率に崩壊する、または崩壊しない、とは言えない。高確率主張には、4節で述べる concentration 条件が別に必要である。
+重要なのは、期待値レベルの傾向律と、高確率の崩壊境界を混同しないことである。期待値の符号は、構造持続収支量の中心がどちらへ動くかを与える。しかし、それだけで個々の経路が高確率に崩壊する、または崩壊しない、とは言えない。高確率主張には、4節で述べる concentration 条件が別に必要である。
 
-\subsection{確率的構造収支過程}\label{ux78baux7387ux7684ux69cbux9020ux53ceux652fux904eux7a0b}
+\subsection{構造持続の確率的収支過程}\label{ux69cbux9020ux6301ux7d9aux306eux78baux7387ux7684ux53ceux652fux904eux7a0b}
 
-確率空間 \((\Omega,\mathcal F,\mathbb P)\) 上で、各時刻の損失流 \(\ell_{t}(\omega)\)、補償流 \(g_{t}(\omega)\)、正味作用
+確率空間 \((\Omega,\mathcal F,\mathbb P)\) 上で、各時刻の損失流 \(\ell_{t}(\omega)\)、補償流 \(g_{t}(\omega)\)、一段収支
 
 \[
-a_{t}(\omega) := \ell_{t}(\omega)-g_{t}(\omega)
+b_{t}(\omega) := \ell_{t}(\omega)-g_{t}(\omega)
 \]
 
-が定義されているとする。累積作用を
+が定義されているとする。構造持続収支量を
 
 \[
-A_{n}(\omega) := \sum_{t=0}^{n-1} a_{t}(\omega)
+B_{n}(\omega) := \sum_{t=0}^{n-1} b_{t}(\omega)
 \]
 
 と置く。各 \(\omega\) で前節の集合値更新が well-defined であるなら、経路ごとに
 
 \[
-m(V^{(n)}(\omega)) = m(V^{(0)}(\omega)) e^{-A_{n}(\omega)}
+m(V^{(n)}(\omega)) = m(V^{(0)}(\omega)) e^{-B_{n}(\omega)}
 \]
 
 が成り立つ。
 
-この式は pathwise identity であり、確率的独立性を仮定しない。確率が関与するのは、\(A_{n}\) の分布、期待値、集中、停止時刻を問う段階からである。
+この式は pathwise identity であり、確率的独立性を仮定しない。確率が関与するのは、\(B_{n}\) の分布、期待値、集中、停止時刻を問う段階からである。
 
 \subsection{期待中心}\label{ux671fux5f85ux4e2dux5fc3}
 
-各 \(a_{t}\) が可積分であるとする。このとき累積作用の期待中心を
+各 \(b_{t}\) が可積分であるとする。このとき構造持続収支量の期待中心を
 
 \[
-\bar A_{n} := \mathbb E[A_{n}]
+\bar B_{n} := \mathbb E[B_{n}]
 \]
 
 と書く。線形性により
 
 \[
-\bar A_{n} = \sum_{t=0}^{n-1} \mathbb E[a_{t}]
+\bar B_{n} = \sum_{t=0}^{n-1} \mathbb E[b_{t}]
 \]
 
 である。
@@ -413,19 +457,19 @@ m(V^{(n)}(\omega)) = m(V^{(0)}(\omega)) e^{-A_{n}(\omega)}
 したがって、各時刻で
 
 \[
-\mathbb E[a_{t}] \ge 0
+\mathbb E[b_{t}] \ge 0
 \]
 
-なら、\(\bar A_{n}\) は \(n\) に関して非減少である。さらに、ある \(\alpha>0\) について
+なら、\(\bar B_{n}\) は \(n\) に関して非減少である。さらに、ある \(\alpha>0\) について
 
 \[
-\mathbb E[a_{t}] \ge \alpha
+\mathbb E[b_{t}] \ge \alpha
 \]
 
 がすべての \(t\) で成り立つなら、
 
 \[
-\bar A_{n} \ge n\alpha
+\bar B_{n} \ge n\alpha
 \]
 
 であり、期待中心は線形に増加する。
@@ -433,13 +477,13 @@ m(V^{(n)}(\omega)) = m(V^{(0)}(\omega)) e^{-A_{n}(\omega)}
 逆に、
 
 \[
-\mathbb E[a_{t}] \le 0
+\mathbb E[b_{t}] \le 0
 \]
 
 なら、期待中心は非増加方向へ向かう。ある \(\alpha>0\) について
 
 \[
-\mathbb E[a_{t}] \le -\alpha
+\mathbb E[b_{t}] \le -\alpha
 \]
 
 なら、期待中心は少なくとも線形に減少する。
@@ -465,23 +509,23 @@ interpretation
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-collapse tendency & \(\mathbb E[a_t] > 0\) & 損失流が補償流を上回る \\
-maintenance tendency & \(\mathbb E[a_t] \approx 0\) & 損失流と補償流が釣り合う \\
-recovery tendency & \(\mathbb E[a_t] < 0\) & 補償流が損失流を上回る \\
+collapse tendency & \(\mathbb E[b_t] > 0\) & 損失流が補償流を上回る \\
+maintenance tendency & \(\mathbb E[b_t] \approx 0\) & 損失流と補償流が釣り合う \\
+recovery tendency & \(\mathbb E[b_t] < 0\) & 補償流が損失流を上回る \\
 \end{longtable}
 }
 
-ここで「tendency」と呼ぶのは、期待中心 \(\bar A_{n}\) の向きを述べているからである。これは、個々の経路の単調性ではない。また、\(m(V^{(n)})\) の期待値がただちに \(m(V^{(0)})e^{-\bar A_{n}}\) に等しいという主張でもない。一般に
+ここで「tendency」と呼ぶのは、期待中心 \(\bar B_{n}\) の向きを述べているからである。これは、個々の経路の単調性ではない。また、\(m(V^{(n)})\) の期待値がただちに \(m(V^{(0)})e^{-\bar B_{n}}\) に等しいという主張でもない。一般に
 
 \[
 \begin{aligned}
-\mathbb E[e^{-A_{n}}] \\
+\mathbb E[e^{-B_{n}}] \\
 \ne \\
-e^{-\mathbb E[A_{n}]}
+e^{-\mathbb E[B_{n}]}
 \end{aligned}
 \]
 
-である。したがって、本節の主張は、まず累積正味作用 \(A_{n}\) の期待中心に関するものである。
+である。したがって、本節の主張は、まず構造持続収支量 \(B_{n}\) の期待中心に関するものである。
 
 この注意は重要である。期待値レベルの傾向律を、残存量そのものの平均に関する厳密な式や、高確率な collapse / non-collapse と混同すると、主張が過剰になる。本稿では、その混同を避ける。
 
@@ -506,7 +550,7 @@ Lean 側の語彙・定理
 局所収支則 & \texttt{feasibleMass\_succ\_eq\_mass\_mul\_exp\_neg\_stepNetAction} \\
 累積指数核 & \texttt{feasibleMass\_eq\_initial\_mul\_exp\_neg\_cumulativeNetAction} \\
 非負 one-step production からの期待単調性 & \texttt{expectedCumulative\_monotone\_of\_ae\_nonnegative\_stepTotalProduction} \\
-coarse-grained expectation tendency & \texttt{coarse\_expectedCumulative\_monotone\_of\_micro\_*} \\
+構造粒度変換後の expectation tendency & \texttt{coarse\_expectedCumulative\_monotone\_of\_micro\_*} \\
 SAT state-dependent expected tendency & \texttt{expectedCumulative\_monotone\_stepModel} \\
 \end{longtable}
 }
@@ -523,15 +567,15 @@ At the expectation level, a law-of-tendency theorem is available when one-step n
 
 本節で言えるのは、次である。
 
-第一に、構造収支律の正味作用 \(a_{t}=\ell_{t}-g_{t}\) を確率変数として扱うと、その期待値の符号は累積作用 \(A_{n}\) の期待中心の向きを決める。
+第一に、構造持続の収支原理の一段収支 \(b_{t}=\ell_{t}-g_{t}\) を確率変数として扱うと、その期待値の符号は構造持続収支量 \(B_{n}\) の期待中心の向きを決める。
 
-第二に、損失優位、維持、補償優位という三 regime は、同じ収支量 \(a_{t}\) の符号として定義できる。
+第二に、損失優位、維持、補償優位という三 regime は、同じ収支量 \(b_{t}\) の符号として定義できる。
 
 第三に、これは high-probability statement ではない。有限時間で崩壊確率や停止時刻確率を述べるには、次節の concentration layer が必要である。
 
 \section{有限時間境界と停止時刻}\label{ux6709ux9650ux6642ux9593ux5883ux754cux3068ux505cux6b62ux6642ux523b}
 
-期待値レベルの傾向律は、構造収支律の方向を与える。しかし、実際に有限時間内で崩壊するか、あるいは閾値を越えないかを述べるには、分布のばらつきを制御しなければならない。本節では、そのための最小 schema を述べる。
+期待値レベルの傾向律は、構造持続の収支原理の方向を与える。しかし、実際に有限時間内で崩壊するか、あるいは閾値を越えないかを述べるには、分布のばらつきを制御しなければならない。本節では、そのための最小 schema を述べる。
 
 \subsection{崩壊閾値}\label{ux5d29ux58caux95beux5024}
 
@@ -541,10 +585,10 @@ At the expectation level, a law-of-tendency theorem is available when one-step n
 R_{n} := \frac{m(V^{(n)})}{m(V^{(0)})}
 \]
 
-と置く。構造収支律より
+と置く。構造持続の収支原理より
 
 \[
-R_{n} = e^{-A_{n}}
+R_{n} = e^{-B_{n}}
 \]
 
 である。
@@ -564,22 +608,22 @@ R_{n} \le \theta
 は
 
 \[
-A_{n} \ge B_\theta
+B_{n} \ge B_\theta
 \]
 
-と同値である。したがって、有限時間 collapse event は、累積正味作用 \(A_{n}\) が閾値 \(B_\theta\) を越える事象として表せる。
+と同値である。したがって、有限時間 collapse event は、構造持続収支量 \(B_{n}\) が閾値 \(B_\theta\) を越える事象として表せる。
 
 \subsection{固定時刻での高確率崩壊 schema}\label{ux56faux5b9aux6642ux523bux3067ux306eux9ad8ux78baux7387ux5d29ux58ca-schema}
 
-固定時刻 \(n\) で、期待中心または deterministic center を \(c_{n}\) とする。たとえば \(c_{n}=\mathbb E[A_{n}]\) と置いてよい。
+固定時刻 \(n\) で、期待中心または deterministic center を \(c_{n}\) とする。たとえば \(c_{n}=\mathbb E[B_{n}]\) と置いてよい。
 
 ある failure profile \(\delta_{n}(r)\) があり、すべての \(r\ge 0\) について
 
 \[
-\mathbb P(A_{n} < c_{n}-r) \le \delta_{n}(r)
+\mathbb P(B_{n} < c_{n}-r) \le \delta_{n}(r)
 \]
 
-が成り立つとする。これは \(A_{n}\) の lower-tail concentration である。
+が成り立つとする。これは \(B_{n}\) の lower-tail concentration である。
 
 もし
 
@@ -590,13 +634,13 @@ c_{n}-r \ge B_\theta
 なら、補集合
 
 \[
-\{A_{n} < B_\theta\}
+\{B_{n} < B_\theta\}
 \]
 
-は \(\{A_{n} < c_{n}-r\}\) に含まれる。したがって
+は \(\{B_{n} < c_{n}-r\}\) に含まれる。したがって
 
 \[
-\mathbb P(R_{n} > \theta) = \mathbb P(A_{n} < B_\theta) \le \delta_{n}(r).
+\mathbb P(R_{n} > \theta) = \mathbb P(B_{n} < B_\theta) \le \delta_{n}(r).
 \]
 
 同値に、
@@ -614,7 +658,7 @@ c_{n}-r \ge B_\theta
 崩壊閾値 \(\theta\) に対する hitting time を
 
 \[
-\tau_\theta := \inf\{n \ge 0 : A_{n} \ge B_\theta\}
+\tau_\theta := \inf\{n \ge 0 : B_{n} \ge B_\theta\}
 \]
 
 と定める。これは、相対残存量 \(R_{n}\) が \(\theta\) 以下になった最初の時刻である。
@@ -625,7 +669,7 @@ c_{n}-r \ge B_\theta
 \tau_\theta < N
 \]
 
-を示したい場合、単一の時刻 \(n\) で \(A_{n}\ge B_\theta\) が高確率に成り立てば十分である。より精密には、各時刻 \(j<N\) に対する lower-tail bound を組み合わせることで、hitting-time event の確率上界または下界を得る。
+を示したい場合、単一の時刻 \(n\) で \(B_{n}\ge B_\theta\) が高確率に成り立てば十分である。より精密には、各時刻 \(j<N\) に対する lower-tail bound を組み合わせることで、hitting-time event の確率上界または下界を得る。
 
 Lean 側では、この層は stopped-collapse / hitting-time theorem 群としてすでに分離されている。重要なのは、停止時刻境界が expectation-level tendency そのものではなく、concentration と margin を追加した第二層だという点である。
 
@@ -694,7 +738,7 @@ SAT Chernoff-KL closed form & \texttt{SATStateDependentCountChernoffKLAlgebra.le
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  expectation-level tendency: \(\mathbb E[a_{t}]\) または one-step production 条件から、累積作用の期待中心の向きを得る。
+  expectation-level tendency: \(\mathbb E[b_{t}]\) または one-step production 条件から、構造持続収支量の期待中心の向きを得る。
 \item
   high-probability finite-horizon bound: bounded increments, MGF, Chernoff / KL, margin 条件を追加して、collapse / stopped-collapse / hitting-time の確率境界を得る。
 \end{enumerate}
@@ -703,12 +747,12 @@ SAT Chernoff-KL closed form & \texttt{SATStateDependentCountChernoffKLAlgebra.le
 
 \subsection{次節への接続}\label{ux6b21ux7bc0ux3078ux306eux63a5ux7d9a-1}
 
-ここまでで、構造収支律の主理論層は次の形に整理された。
+ここまでで、構造持続の収支原理の主理論層は次の形に整理された。
 
 \begin{itemize}
 \tightlist
 \item
-  §2: pathwise identity としての構造収支律。
+  §2: pathwise identity としての構造持続の収支原理。
 \item
   §3: expectation-level tendency。
 \item
@@ -736,7 +780,7 @@ SAT Chernoff-KL closed form & \texttt{SATStateDependentCountChernoffKLAlgebra.le
 
 以下では本論文の主鎖に必要な部分だけを述べる。family 別の Lean file inventory、実装上の verifier / solver guardrail、補助的な stress extension の詳細は、有限CSP補論、各 experiment README、対応する primary report に譲る。
 
-この条件を満たすと、構造収支律は単なる分類語ではなく、実際に予測量を返す。すなわち、各制約または exposure の drift を
+この条件を満たすと、構造持続の収支原理は単なる分類語ではなく、実際に予測量を返す。すなわち、各制約または exposure の drift を
 
 \[
 \ell_{i} = -\log(1-p_{i})
@@ -788,7 +832,7 @@ Route A が強いのは、ここで止まらない点にある。bad-event expos
 \mathbb E[\#\mathrm{SAT}] = 2^n(7/8)^m = \exp(n\log 2 - m\log(8/7))
 \]
 
-となる。これは、構造収支律の loss-only 特例
+となる。これは、構造持続の収支原理の loss-only 特例
 
 \[
 A_{m}=L_{m}=m\log(8/7)
@@ -1025,7 +1069,7 @@ Exp44 Cardinality-SAT の pilot calibration も、solver / verifier / runtime pa
 
 \subsection{Route A anchor の限界}\label{route-a-anchor-ux306eux9650ux754c}
 
-Route A anchor は構造収支律の中で最も硬い証拠層である。しかし、次の限界を持つ。
+Route A anchor は構造持続の収支原理の中で最も硬い証拠層である。しかし、次の限界を持つ。
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -1045,16 +1089,16 @@ Route A anchor は構造収支律の中で最も硬い証拠層である。し�
 したがって、本節の正確な結論は次である。
 
 \begin{quote}
-SAT / Bernoulli-CSP、Mixed-CSP、Exp43c q-coloring は、構造収支律が自然測度と bad-event exposure の上で強く閉じる Route A universality-class candidate を与える。Cardinality-SAT は、その幅をさらに広げるための proposed stress extension であり、現時点では threshold-local validation design を必要とする calibration-stage anchor である。
+SAT / Bernoulli-CSP、Mixed-CSP、Exp43c q-coloring は、構造持続の収支原理が自然測度と bad-event exposure の上で強く閉じる Route A universality-class candidate を与える。Cardinality-SAT は、その幅をさらに広げるための proposed stress extension であり、現時点では threshold-local validation design を必要とする calibration-stage anchor である。
 \end{quote}
 
-これは「普遍法則の完成」ではない。しかし、構造収支律が単なる比喩や分類ではなく、仕様から drift を計算し、finite-horizon bound と empirical prediction に接続できる一般形式であることを示す。
+これは「普遍法則の完成」ではない。しかし、構造持続の収支原理が単なる比喩や分類ではなく、仕様から drift を計算し、finite-horizon bound と empirical prediction に接続できる一般形式であることを示す。
 
 5.8 次節への接続
 
 Route A では、測度、drift、MGF product が比較的自然に与えられる。これに対して、LLM 推論、継続学習、software / SaaS のような Route C ドメインでは、自然測度や path PMF は直ちには得られない。
 
-しかし、それは構造収支律が使えないという意味ではない。むしろ、Route C では \(g_{t}\) や repair flow の observable indicator を慎重に設計し、期待値レベルまたは prospective prediction の形で検査する必要がある。次節では、Route C companion I / II の scope-as-repair, external metabolism, dependency-aware replay を、補償流 \(g_{t}\) の Route C anchor として整理する。
+しかし、それは構造持続の収支原理が使えないという意味ではない。むしろ、Route C では \(g_{t}\) や repair flow の observable indicator を慎重に設計し、期待値レベルまたは prospective prediction の形で検査する必要がある。次節では、Route C companion I / II の scope-as-repair, external metabolism, dependency-aware replay を、補償流 \(g_{t}\) の Route C anchor として整理する。
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -1066,10 +1110,10 @@ Route A では、測度、drift、MGF product が比較的自然に与えられ�
 
 §5 の Route A anchor では、自然測度、bad-event probability、path PMF、MGF product が問題仕様から与えられた。これに対して、LLM 推論、継続学習、software / SaaS のようなドメインでは、構造維持可能集合 \(V\) や測度 \(m\) を同じ強度で直接数えることは難しい。
 
-本節では、このようなドメインを Route C と呼ぶ。Route C では、構造収支律
+本節では、このようなドメインを Route C と呼ぶ。Route C では、構造持続の収支原理
 
 \[
-A_{n}=L_{n}-G_{n}
+B_{n}=L_{n}-G_{n}
 \]
 
 を、pathwise に完全測定された恒等式としてではなく、観測可能な loss indicator と repair indicator を通じて検査する。
@@ -1089,17 +1133,17 @@ A_{n}=L_{n}-G_{n}
   repair indicator を含む structure-aware model が、quality-blind / raw-count / loss-only baseline より out-of-sample に予測力を持つかを検査する。
 \end{enumerate}
 
-したがって、Route C の証拠は Route A より弱い。Route C は、MGF product から高確率 bound を出す層ではない。むしろ、構造収支律が「何を loss とし、何を compensation として測るべきか」を予測し、その予測が観測量に対して基準モデルを上回るかを調べる層である。
+したがって、Route C の証拠は Route A より弱い。Route C は、MGF product から高確率 bound を出す層ではない。むしろ、構造持続の収支原理が「何を loss とし、何を compensation として測るべきか」を予測し、その予測が観測量に対して基準モデルを上回るかを調べる層である。
 
 \subsection{Route C の証拠形式}\label{route-c-ux306eux8a3cux62e0ux5f62ux5f0f}
 
 Route C では、次のような操作的モデルを置く。
 
 \[
-A_{\mathrm{eff}} = L_{\mathrm{obs}} - G_{\mathrm{obs}},
+B_{\mathrm{eff}} = L_{\mathrm{obs}} - G_{\mathrm{obs}},
 \]
 
-ここで \(L_{\mathrm{obs}}\) は観測された損失指標、\(G_{\mathrm{obs}}\) は観測された補償指標である。\(A_{\mathrm{eff}}\) は、§2 の \(A_{n}\) と同じ強度の pathwise quantity ではない。あくまで、観測可能な代理量である。
+ここで \(L_{\mathrm{obs}}\) は観測された損失指標、\(G_{\mathrm{obs}}\) は観測された補償指標である。\(B_{\mathrm{eff}}\) は、§2 の \(B_{n}\) と同じ強度の pathwise quantity ではない。あくまで、観測可能な代理量である。
 
 Route C の最小検査は、次の形になる。
 
@@ -1131,7 +1175,7 @@ L_{\mathrm{obs}}\text{ だけ、または quality-blind baseline を上回るか
   observational support を causal effect と同一視しない。
 \end{enumerate}
 
-この節の目的は、Route C companion I / II の結果を、構造収支律の \(g_{t}\) 側の observational anchor として位置づけることである。
+この節の目的は、Route C companion I / II の結果を、構造持続の収支原理の \(g_{t}\) 側の observational anchor として位置づけることである。
 
 \subsection{Route C companion I: scope-as-repair}\label{route-c-companion-i-scope-as-repair}
 
@@ -1156,7 +1200,7 @@ condition & correct \\
 
 ここで重要なのは、\texttt{scoped} が矛盾らしき情報を含むにもかかわらず、\texttt{zero\_sanity} と同水準に戻った点である。quality-blind model は \texttt{scoped}, \texttt{subtle}, \texttt{structural} をいずれも contradiction-present として扱う。一方、structure-aware model は、\texttt{scoped} を repaired / zero-like、\texttt{subtle} を mild unscoped loss、\texttt{structural} を severe structural loss として扱う。leave-one-target-out の primary log loss は、quality-blind 0.6944 に対し、structure-aware 0.2763 であった。
 
-構造収支律の語彙では、\texttt{subtle} や \texttt{structural} は loss-side indicator である。これに対して \texttt{scoped} は、競合値を task 外へ範囲づける in-context repair indicator として読める。つまり、同じ「矛盾らしき文」が存在しても、その衝突がどの範囲に属するかを整理することで、有効な \(G_{\mathrm{obs}}\) が増え、正味作用 \(A_{\mathrm{eff}}\) が下がる、という読みである。
+構造持続の収支原理の語彙では、\texttt{subtle} や \texttt{structural} は loss-side indicator である。これに対して \texttt{scoped} は、競合値を task 外へ範囲づける in-context repair indicator として読める。つまり、同じ「矛盾らしき文」が存在しても、その衝突がどの範囲に属するかを整理することで、有効な \(G_{\mathrm{obs}}\) が増え、観測収支 \(B_{\mathrm{eff}}\) が下がる、という読みである。
 
 ただし、Exp40 は scoped condition の内部機構を同定したわけではない。scoped の改善が、明示命令への追従、source separation、dataset separation、または別の prompt feature によるものかは、Exp40 単独では分からない。
 
@@ -1185,7 +1229,7 @@ condition & correct & exact wrong-sum adoption \\
 
 したがって、Exp42 が示す Route C 的な中核は、scope-as-repair のなかでも attribution-as-repair が大きな成分を担う、という点である。すなわち、競合値を「どの source から来たものか」として分離するだけでも、未整理上書きとして取り込まれる失敗が減る。
 
-この結果は、構造収支律の \(g_{t}\) 側に対して次の示唆を与える。
+この結果は、構造持続の収支原理の \(g_{t}\) 側に対して次の示唆を与える。
 
 \[
 \begin{aligned}
@@ -1195,7 +1239,7 @@ condition & correct & exact wrong-sum adoption \\
 \quad\Rightarrow\quad \\
 G_{\mathrm{obs}}\text{ の増加} \\
 \quad\Rightarrow\quad \\
-A_{\mathrm{eff}}\text{ の低下}.
+B_{\mathrm{eff}}\text{ の低下}.
 \end{aligned}
 \]
 
@@ -1227,7 +1271,7 @@ OFF & 21.1\% \\
 
 ON vs OFF は \(p=0.0004\), Cohen's \(d=8.80\) であった。qwen3.5:27b の 30 ターン追試でも、全体正答率は ON 64.4\%、OFF 44.4\% となり、同じ方向が確認された。さらに、100 ターンの長期実験では、代謝あり条件で論理一貫性が長期にわたって安定し、単調な崩壊は観測されなかった。
 
-構造収支律の語彙では、外部代謝は \(G_{\mathrm{obs}}\) を外部 channel から供給する intervention である。M 補論 §3 の語彙では、これは \(M_{x\to r}\)、すなわち external channel が repair / resolution を供給する場合に対応する。
+構造持続の収支原理の語彙では、外部代謝は \(G_{\mathrm{obs}}\) を外部 channel から供給する intervention である。M 補論 §3 の語彙では、これは \(M_{x\to r}\)、すなわち external channel が repair / resolution を供給する場合に対応する。
 
 ただし、外部代謝 ON/OFF は、Exp40/42 の in-context scope-as-repair と同一機構ではない。共通しているのは、未整理な衝突を整理し、task-relevant な状態へ再配置するという観測上の帰結である。供給階層は異なる。
 
@@ -1257,17 +1301,17 @@ LoRA 逐次更新は、パラメータを変えるため、partial adaptation �
 
 F-v2c は、前提と依存属性の関係を DAG として保持し、前提更新時に下流の依存属性だけを選択的に再提示する。これは、base LoRA update が持たない dependency repair を外部 controller が供給する条件である。依存整合性は E-lite の 0.189 から F-v2c の 0.333 へ改善した。一方、T5 時点の T1 保持は 0.000 であり、旧知識保持そのものは回復しなかった。
 
-したがって、F-v2c は「古いものを保存する」介入ではない。現在有効な前提に対して、下流知識を整合させ直す intervention である。構造収支律の語彙では、これは dependency-aware \(G_{\mathrm{obs}}\) の indicator であり、M 補論 §3 の語彙では \(M_{x\to r}\) に近い。
+したがって、F-v2c は「古いものを保存する」介入ではない。現在有効な前提に対して、下流知識を整合させ直す intervention である。構造持続の収支原理の語彙では、これは dependency-aware \(G_{\mathrm{obs}}\) の indicator であり、M 補論 §3 の語彙では \(M_{x\to r}\) に近い。
 
 F-multi は、現在知識と過去知識を別々の adapter に分離する。これは repair というより、保持と更新の干渉を部分空間で分ける buffering / adaptation 的な補償である。T5 時点の T1 保持が 0.500 まで上がったことは、空間分離が保持と更新の衝突を緩和しうることを示す。ただし、これは理想振り分け条件で得た上界 indicator であり、実運用性能ではない。
 
 Route C companion II が Route C に与える教訓は、単なる adaptation と repair を分ける必要がある、という点である。LoRA は新しい信号に適応するが、依存構造を自律的に修復するとは限らない。F-v2c は依存整合性を改善するが、旧知識保持を回復しない。F-multi は保持を一部改善するが、完全な dependency repair ではない。したがって、\(g_{t}\) は単一の「資源量」ではなく、どの種類の補償がどの loss に効いているかを区別して測る必要がある。
 
-これは Route C companion II §7.5 の三役分離、すなわち parametric adaptation / external metabolism / response fidelity を、構造収支律側から \(g_{t}\) の indicator 階層として読み直したものである。M 補論 §3.5 は、この三役分離を support-side mode decomposition として操作化する。
+これは Route C companion II §7.5 の三役分離、すなわち parametric adaptation / external metabolism / response fidelity を、構造持続の収支原理側から \(g_{t}\) の indicator 階層として読み直したものである。M 補論 §3.5 は、この三役分離を support-side mode decomposition として操作化する。
 
 \subsection{Route C のまとめ}\label{route-c-ux306eux307eux3068ux3081}
 
-Route C companion I / II は、Route A のような自然測度・MGF product を持たない。しかし、構造収支律の観点から見ると、どちらも同じ形の検査を行っている。
+Route C companion I / II は、Route A のような自然測度・MGF product を持たない。しかし、構造持続の収支原理の観点から見ると、どちらも同じ形の検査を行っている。
 
 {\def\LTcaptype{table} % do not increment counter
 \begin{longtable}[]{@{}
@@ -1302,7 +1346,7 @@ Route C companion II F-multi & update / retention interference & adapter separat
 この表から得られる保守的な結論は次である。
 
 \begin{quote}
-Route C では、構造収支律は pathwise concentration theorem としてではなく、loss indicator と repair indicator の組が観測量を予測するかを検査する方法論として働く。
+Route C では、構造持続の収支原理は pathwise concentration theorem としてではなく、loss indicator と repair indicator の組が観測量を予測するかを検査する方法論として働く。
 \end{quote}
 
 これは、Route C を弱く見せるための制限ではない。むしろ、自然測度や path PMF がないドメインで主張強度を誤らないための規律である。Route C の価値は、次の形で現れる。
@@ -1313,14 +1357,14 @@ Route C では、構造収支律は pathwise concentration theorem としてで�
 \item
   loss-only / quality-blind baseline では説明しにくい逆転を予測できる。
 \item
-  repair indicator を追加した structure-aware model が out-of-sample に改善する。
+  repair indicator を追加した baseline + SP model が、domain baseline に対する out-of-sample 予測力の増分を持つかを検査できる。
 \item
   介入の種類によって、どの \(g_{t}\) がどの loss に効くかを区別できる。
 \item
   Route A の定理層とは別に、実ドメインでの compensation design を導ける。
 \end{enumerate}
 
-第四点は、単なる実装上の含意ではない。構造収支律は、loss localization、repair-flow preservation、margin preservation、alternative-path preservation を共通座標に置くため、あるドメインで効いた維持設計を別ドメインの candidate intervention へ翻訳できる。たとえば、LLM の scope-as-repair は組織やソフトウェアでの責任境界・変更範囲の明示へ、継続学習の dependency-aware replay は制度変更や企業判断での下流再同期へ、repair / maintenance の margin は SaaS や運用系の局所復元余地へ転用できる。ただし、この転用は support ではない。転用先ドメインで写像と介入を凍結し、別データまたは future surface で検証して初めて support になる。
+第四点は、単なる実装上の含意ではない。構造持続の収支原理は、loss localization、repair-flow preservation、margin preservation、alternative-path preservation を共通座標に置くため、あるドメインで効いた維持設計を別ドメインの candidate intervention へ翻訳できる。たとえば、LLM の scope-as-repair は組織やソフトウェアでの責任境界・変更範囲の明示へ、継続学習の dependency-aware replay は制度変更や企業判断での下流再同期へ、repair / maintenance の margin は SaaS や運用系の局所復元余地へ転用できる。ただし、この転用は support ではない。転用先ドメインで写像と介入を凍結し、別データまたは future surface で検証して初めて support になる。
 
 §6.1 の非主張をまとめ直すと、Route C だけからは次を言ってはならない。
 
@@ -1341,11 +1385,11 @@ Route C では、構造収支律は pathwise concentration theorem としてで�
 
 これと別に、non-CSP empirical 側には loss-only observational branch がある。Backblaze drive reliability の Q4 2025 v1 は高い ranking signal を持ちながら frozen log-loss rule では no-support で終わった。一方、Q3 2025 v2 は、fresh untouched archive 上の calibration-aware redesign として separately frozen され、same-domain observational loss-only support を通った。ただしこれは repair-flow evidence ではなく、Route C の scope / metabolism anchors とも別 tier である。ここで増えたのは「industrial reliability domain で loss-only operationalization が観測可能である」という限定的な support であって、non-CSP empirical gate 全体の閉鎖ではない。
 
-この意味で、Route A と Route C は競合しない。Route A は、自然測度と exposure law がある領域で構造収支律を強く閉じる。Route C は、自然測度が直ちに得られない領域で、どの loss / repair indicator が予測力を持つかを検査する。
+この意味で、Route A と Route C は競合しない。Route A は、自然測度と exposure law がある領域で構造持続の収支原理を強く閉じる。Route C は、自然測度が直ちに得られない領域で、どの loss / repair indicator が予測力を持つかを検査する。
 
 \subsection{次節への接続}\label{ux6b21ux7bc0ux3078ux306eux63a5ux7d9a-2}
 
-§5 と §6 によって、構造収支律の二つの適用層が分かれた。
+§5 と §6 によって、構造持続の収支原理の二つの適用層が分かれた。
 
 \begin{itemize}
 \tightlist
@@ -1355,13 +1399,13 @@ Route C では、構造収支律は pathwise concentration theorem としてで�
   Route C: observable loss / repair indicator から prospective prediction へ進む。
 \end{itemize}
 
-次に必要なのは、この構造収支律が既存理論とどう関係するかを整理することである。非平衡熱力学、散逸構造、queueing theory の Lyapunov drift、確率制御、情報理論はいずれも、loss / compensation / resource / drift を扱う既存枠組みを持つ。§7 では、これらとの同じ点と違う点を、単なる analogy ではなく、correspondence と formal reduction の強度差を明示しながら整理する。
+次に必要なのは、この構造持続の収支原理が既存理論とどう関係するかを整理することである。非平衡熱力学、散逸構造、queueing theory の Lyapunov drift、確率制御、情報理論はいずれも、loss / compensation / resource / drift を扱う既存枠組みを持つ。§7 では、これらとの同じ点と違う点を、単なる analogy ではなく、correspondence と formal reduction の強度差を明示しながら整理する。
 
 \section{既存理論との差分}\label{ux65e2ux5b58ux7406ux8ad6ux3068ux306eux5deeux5206}
 
-構造収支律は、既存理論と無関係な新語を作るものではない。むしろ、熱力学、非平衡系、queueing theory、確率制御、情報理論にすでに現れている「損失、補償、流入、ドリフト、対数比」の構造を、構造維持可能性という一つの操作的座標に並べ直す試みである。
+構造持続の収支原理は、既存理論と無関係な新語を作るものではない。むしろ、熱力学、非平衡系、queueing theory、確率制御、情報理論にすでに現れている「損失、補償、流入、ドリフト、対数比」の構造を、構造維持可能性という一つの操作的座標に並べ直す試みである。
 
-したがって、本節の目的は二つある。第一に、どの部分が既存理論と同じなのかを明示する。第二に、どの部分が本稿群の独自の operational discipline なのかを明示する。これを行わないと、構造収支律は、熱力学や Lyapunov drift の単なる言い換えに見える危険がある。
+したがって、本節の目的は二つある。第一に、どの部分が既存理論と同じなのかを明示する。第二に、どの部分が本稿群の独自の operational discipline なのかを明示する。これを行わないと、構造持続の収支原理は、熱力学や Lyapunov drift の単なる言い換えに見える危険がある。
 
 \subsection{三つの接続強度}\label{ux4e09ux3064ux306eux63a5ux7d9aux5f37ux5ea6}
 
@@ -1393,21 +1437,21 @@ G6-c & formal reduction / embedding & 一方の定理が他方の特例として
 \end{longtable}
 }
 
-本稿では、既存理論との接続をこの三段階で区別する。analogy だけでは理論的接続としては弱い。correspondence は有用だが、まだ theorem transfer を保証しない。formal reduction または embedding がある場合にのみ、既存理論の定理を構造収支律の一部として読むことができる。
+本稿では、既存理論との接続をこの三段階で区別する。analogy だけでは理論的接続としては弱い。correspondence は有用だが、まだ theorem transfer を保証しない。formal reduction または embedding がある場合にのみ、既存理論の定理を構造持続の収支原理の一部として読むことができる。
 
-この区別は重要である。構造収支律が熱力学に「似ている」ことは、それだけでは何も証明しない。一方、queueing theory の Lyapunov drift 条件のように、符号つき累積作用として直接書き換えられるものは、より強い意味で構造収支律の特例または埋め込みとして扱える。
+この区別は重要である。構造持続の収支原理が熱力学に「似ている」ことは、それだけでは何も証明しない。一方、queueing theory の Lyapunov drift 条件のように、符号つき構造持続収支量として直接書き換えられるものは、より強い意味で構造持続の収支原理の特例または埋め込みとして扱える。
 
 \subsection{熱力学との関係}\label{ux71b1ux529bux5b66ux3068ux306eux95a2ux4fc2}
 
-閉じた系の熱力学第二法則は、孤立系でエントロピーが減少しない、という方向性を述べる。構造収支律の loss-only 形式は、これと似た形を持つ。
+閉じた系の熱力学第二法則は、孤立系でエントロピーが減少しない、という方向性を述べる。構造持続の収支原理の loss-only 形式は、これと似た形を持つ。
 
 \[
 \begin{aligned}
 g_{t}&=0, \\
 \qquad \\
-a_{t}&=\ell_{t}\ge 0, \\
+b_{t}&=\ell_{t}\ge 0, \\
 \qquad \\
-A_{n}&=L_{n}\ge 0.
+B_{n}&=L_{n}\ge 0.
 \end{aligned}
 \]
 
@@ -1419,7 +1463,7 @@ m(V^{(n)})=m(V^{(0)})e^{-L_{n}}
 
 に従って縮小する。
 
-この対応は、G6-a の analogy としては明確である。閉じた loss-only 系では、一方向の累積量が増え、構造維持可能性が下がる。開いた系では、補償流 \(g_{t}\) が入り、\(a_{t}=\ell_{t}-g_{t}\) の符号によって崩壊、維持、回復の三 regime が分かれる。この点は、開放系が外部から自由エネルギーや資源を取り入れて秩序構造を維持するという直感と対応する。
+この対応は、G6-a の analogy としては明確である。閉じた loss-only 系では、一方向の累積量が増え、構造維持可能性が下がる。開いた系では、補償流 \(g_{t}\) が入り、\(b_{t}=\ell_{t}-g_{t}\) の符号によって崩壊、維持、回復の三 regime が分かれる。この点は、開放系が外部から自由エネルギーや資源を取り入れて秩序構造を維持するという直感と対応する。
 
 しかし、これは熱力学第二法則そのものではない。差分は次である。
 
@@ -1431,14 +1475,14 @@ m(V^{(n)})=m(V^{(0)})e^{-L_{n}}
 \begin{minipage}[b]{\linewidth}\raggedright
 熱力学
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-構造収支律
+構造持続の収支原理
 \end{minipage} \\
 \midrule\noalign{}
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
 物理状態、熱、仕事、温度、エネルギー保存を扱う & 事前固定された構造維持可能集合と測度を扱う \\
-エントロピーは物理的状態量である & \(A_n\) は構造維持可能性の対数比である \\
+エントロピーは物理的状態量である & \(B_n\) は構造維持可能性の対数比である \\
 \(k_B\) など物理単位を持つ & 単位は測度 \(m\) と対数比の規約に依存する \\
 孤立系・熱浴・可逆性などの物理仮定を持つ & 適用前に対象構造、測度、時間地平を固定する \\
 open system の維持は具体的な物理流に依存する & \(g_t\) は補償流の抽象座標であり、物理量とは限らない \\
@@ -1449,7 +1493,7 @@ open system の維持は具体的な物理流に依存する & \(g_t\) は補償
 
 \subsection{非平衡熱力学・散逸構造との関係}\label{ux975eux5e73ux8861ux71b1ux529bux5b66ux6563ux9038ux69cbux9020ux3068ux306eux95a2ux4fc2}
 
-非平衡熱力学や散逸構造の語彙では、開いた系が外部との流れを通じて秩序を維持する。これは、構造収支律の問い
+非平衡熱力学や散逸構造の語彙では、開いた系が外部との流れを通じて秩序を維持する。これは、構造持続の収支原理の問い
 
 \[
 \ell_{t} \text{ を } g_{t} \text{ がどれだけ補えるか}
@@ -1467,7 +1511,7 @@ open system の維持は具体的な物理流に依存する & \(g_t\) は補償
 \begin{minipage}[b]{\linewidth}\raggedright
 非平衡系の語彙
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-構造収支律の語彙
+構造持続の収支原理の語彙
 \end{minipage} \\
 \midrule\noalign{}
 \endhead
@@ -1475,19 +1519,19 @@ open system の維持は具体的な物理流に依存する & \(g_t\) は補償
 \endlastfoot
 dissipative loss / entropy production & loss flow \(\ell_t\) \\
 external driving / resource throughput & compensation flow \(g_t\) \\
-steady state & \(\mathbb E[a_t]\approx 0\) の maintenance regime \\
-instability / transition & \(A_n\) が collapse threshold を越える event \\
-driven recovery & \(\mathbb E[a_t]<0\) の recovery tendency \\
+steady state & \(\mathbb E[b_t]\approx 0\) の maintenance regime \\
+instability / transition & \(B_n\) が collapse threshold を越える event \\
+driven recovery & \(\mathbb E[b_t]<0\) の recovery tendency \\
 \end{longtable}
 }
 
 この correspondence は有用である。しかし、非平衡熱力学は物理的保存則、局所詳細釣り合い、熱浴、化学ポテンシャルなどの具体的構造を持つ。本稿の \(g_{t}\) は、それらをすべて抽象化した補償座標であり、それ自体が物理的流量であるとは限らない。
 
-したがって、非平衡熱力学との関係も、一般には G6-b までである。G6-c に進むには、具体的な stochastic thermodynamics model を取り、path probability ratio や entropy production の式を、§2 の \(A_{n}=L_{n}-G_{n}\) に明示的に埋め込む必要がある。これは自然な次段階だが、本稿の範囲外である。
+したがって、非平衡熱力学との関係も、一般には G6-b までである。G6-c に進むには、具体的な stochastic thermodynamics model を取り、path probability ratio や entropy production の式を、§2 の \(B_{n}=L_{n}-G_{n}\) に明示的に埋め込む必要がある。これは自然な次段階だが、本稿の範囲外である。
 
 \subsection{Queueing theory と Lyapunov drift}\label{queueing-theory-ux3068-lyapunov-drift}
 
-既存理論の中で、構造収支律と最も直接に接続できるのは、queueing theory や Markov chain stability における Foster-Lyapunov drift 条件である。
+既存理論の中で、構造持続の収支原理と最も直接に接続できるのは、queueing theory や Markov chain stability における Foster-Lyapunov drift 条件である。
 
 確率過程 \(X_{t}\) と非負の Lyapunov 関数 \(W(X_{t})\) を考える。通常の drift 条件は、たとえばある領域の外で
 
@@ -1497,7 +1541,7 @@ driven recovery & \(\mathbb E[a_t]<0\) の recovery tendency \\
 
 が成り立つ、という形を取る。これは、負のドリフトによって過程が高負荷状態から戻る傾向を述べる。
 
-構造収支律側では、負荷座標を
+構造持続の収支原理側では、負荷座標を
 
 \[
 Z_{t} := W(X_{t})
@@ -1506,19 +1550,19 @@ Z_{t} := W(X_{t})
 と置き、
 
 \[
-a_{t} := Z_{t+1}-Z_{t}
+b_{t} := Z_{t+1}-Z_{t}
 \]
 
 と定義する。このとき
 
 \[
-A_{n} = \sum_{t=0}^{n-1} a_{t} = Z_{n}-Z_0
+B_{n} = \sum_{t=0}^{n-1} b_{t} = Z_{n}-Z_0
 \]
 
 であり、Foster-Lyapunov drift 条件はそのまま
 
 \[
-\mathbb E[a_{t}\mid X_{t}]\le -\epsilon
+\mathbb E[b_{t}\mid X_{t}]\le -\epsilon
 \]
 
 という recovery tendency に書き換えられる。
@@ -1532,31 +1576,31 @@ R_{t} := e^{-Z_{t}}
 と置けば、
 
 \[
-R_{t+1}=R_{t} e^{-a_{t}}
+R_{t+1}=R_{t} e^{-b_{t}}
 \]
 
 となり、これは §2 の局所収支恒等式と同じ形である。
 
-§2.2 の \(\ell_{t},g_{t}\ge 0\) という二段階 sign convention に合わせて読むなら、\(Z_{t}\) の増加分を損失流 \(\ell_{t}\)、減少分を補償流 \(g_{t}\) に分ければよい。その差し引きが、ここで直接定義した \(a_{t}=Z_{t+1}-Z_{t}\) に一致する。
+§2.2 の \(\ell_{t},g_{t}\ge 0\) という二段階 sign convention に合わせて読むなら、\(Z_{t}\) の増加分を損失流 \(\ell_{t}\)、減少分を補償流 \(g_{t}\) に分ければよい。その差し引きが、ここで直接定義した \(b_{t}=Z_{t+1}-Z_{t}\) に一致する。
 
-この意味で、Lyapunov drift calculus は構造収支律の G6-c formal embedding として扱える。より正確には、任意の Lyapunov drift process は、\(Z_{t}\) を構造負荷、\(R_{t}=e^{-Z_{t}}\) を相対維持量と読むことで、構造収支律の expectation-level tendency 層に埋め込める。この最小代数的埋め込みは、補論「構造収支律と Foster-Lyapunov ドリフトの形式的埋め込み」および Lean file \texttt{Survival/LyapunovBalanceEmbedding.lean} で reader-facing / machine-checked に記録されている。
+この意味で、Lyapunov drift calculus は構造持続の収支原理の G6-c formal embedding として扱える。より正確には、任意の Lyapunov drift process は、\(Z_{t}\) を構造負荷、\(R_{t}=e^{-Z_{t}}\) を相対維持量と読むことで、構造持続の収支原理の expectation-level tendency 層に埋め込める。この最小代数的埋め込みは、補論「構造持続の収支原理と Foster-Lyapunov ドリフトの形式的埋め込み」および Lean file \texttt{Survival/LyapunovBalanceEmbedding.lean} で reader-facing / machine-checked に記録されている。
 
-ただし、ここにも限界がある。queueing theory の安定性定理をそのまま構造収支律の定理として使うには、Markov 性、irreducibility、petite set、moment 条件など、元の theorem が要求する仮定を保持しなければならない。構造収支律がそれらを不要にするわけではない。したがって本稿が主張できるのは、drift 条件の形式的埋め込みであり、queueing stability theorem 全体の無条件な再証明ではない。
+ただし、ここにも限界がある。queueing theory の安定性定理をそのまま構造持続の収支原理の定理として使うには、Markov 性、irreducibility、petite set、moment 条件など、元の theorem が要求する仮定を保持しなければならない。構造持続の収支原理がそれらを不要にするわけではない。したがって本稿が主張できるのは、drift 条件の形式的埋め込みであり、queueing stability theorem 全体の無条件な再証明ではない。
 
-この接続は重要である。なぜなら、構造収支律が単なる熱力学的比喩ではなく、既存の確率過程安定性理論と同じ drift algebra を共有していることを示すからである。
+この接続は重要である。なぜなら、構造持続の収支原理が単なる熱力学的比喩ではなく、既存の確率過程安定性理論と同じ drift algebra を共有していることを示すからである。
 
 \subsection{確率制御との関係}\label{ux78baux7387ux5236ux5fa1ux3068ux306eux95a2ux4fc2}
 
-確率制御では、制御入力 \(u_{t}\) によって状態遷移やコストを変え、ある Lyapunov 関数や value function の drift を望ましい向きに保つ。構造収支律で言えば、制御入力は補償流 \(g_{t}\) を変える作用として読める。
+確率制御では、制御入力 \(u_{t}\) によって状態遷移やコストを変え、ある Lyapunov 関数や value function の drift を望ましい向きに保つ。構造持続の収支原理で言えば、制御入力は補償流 \(g_{t}\) を変える作用として読める。
 
 \[
-a_{t}(u_{t})=\ell_{t}-g_{t}(u_{t}).
+b_{t}(u_{t})=\ell_{t}-g_{t}(u_{t}).
 \]
 
 このとき制御問題は、制約やコストのもとで
 
 \[
-\mathbb E[a_{t}(u_{t})]
+\mathbb E[b_{t}(u_{t})]
 \]
 
 を小さく保つ、あるいは collapse threshold に達しないようにする問題として書ける。
@@ -1566,16 +1610,16 @@ a_{t}(u_{t})=\ell_{t}-g_{t}(u_{t}).
 {\def\LTcaptype{table} % do not increment counter
 \begin{longtable}[]{@{}ll@{}}
 \toprule\noalign{}
-確率制御 & 構造収支律 \\
+確率制御 & 構造持続の収支原理 \\
 \midrule\noalign{}
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
 control input \(u_t\) & repair / support intervention \\
 cost of control & compensation cost \\
-Lyapunov drift & \(\mathbb E[a_t]\) \\
+Lyapunov drift & \(\mathbb E[b_t]\) \\
 safety constraint / barrier & collapse threshold \(B_\theta\) \\
-stabilizing policy & \(\mathbb E[a_t]\le 0\) を保つ policy \\
+stabilizing policy & \(\mathbb E[b_t]\le 0\) を保つ policy \\
 \end{longtable}
 }
 
@@ -1585,7 +1629,7 @@ stabilizing policy & \(\mathbb E[a_t]\le 0\) を保つ policy \\
 
 \subsection{情報理論との関係}\label{ux60c5ux5831ux7406ux8ad6ux3068ux306eux95a2ux4fc2}
 
-構造収支律は、情報理論とも深く関係する。理由は、中心量が対数比だからである。Paper 1 では、加法性、単調性、正規化などの公理から、損失量が
+構造持続の収支原理は、情報理論とも深く関係する。理由は、中心量が対数比だからである。Paper 1 では、加法性、単調性、正規化などの公理から、損失量が
 
 \[
 -\log \frac{m(V')}{m(V)}
@@ -1595,12 +1639,12 @@ stabilizing policy & \(\mathbb E[a_t]\le 0\) を保つ policy \\
 
 また、SAT / Bernoulli-CSP の Chernoff-KL 出口では、MGF 最適化から Bernoulli relative entropy が現れる。これは、Route A では単なる比喩ではなく、Lean 上でも閉じた実際の情報理論的計算である。
 
-しかし、構造収支律は情報理論そのものではない。情報理論は、通信、符号化、不確実性、分布間距離を扱う。構造収支律は、事前固定された対象構造を維持できる状態集合の比を扱う。両者は対数比という共通形式を持つが、何を測っているかが異なる。
+しかし、構造持続の収支原理は情報理論そのものではない。情報理論は、通信、符号化、不確実性、分布間距離を扱う。構造持続の収支原理は、事前固定された対象構造を維持できる状態集合の比を扱う。両者は対数比という共通形式を持つが、何を測っているかが異なる。
 
 {\def\LTcaptype{table} % do not increment counter
 \begin{longtable}[]{@{}ll@{}}
 \toprule\noalign{}
-情報理論 & 構造収支律 \\
+情報理論 & 構造持続の収支原理 \\
 \midrule\noalign{}
 \endhead
 \bottomrule\noalign{}
@@ -1617,7 +1661,7 @@ entropy of uncertainty & 構造維持可能性の残存量とは別物 \\
 
 \subsection{本稿の独自性: operational discipline}\label{ux672cux7a3fux306eux72ecux81eaux6027-operational-discipline}
 
-以上を見ると、構造収支律の多くの成分は既存理論にすでに現れている。対数比、ドリフト、補償、安定性、制御、KL bound は、いずれも古典的な道具である。
+以上を見ると、構造持続の収支原理の多くの成分は既存理論にすでに現れている。対数比、ドリフト、補償、安定性、制御、KL bound は、いずれも古典的な道具である。
 
 本稿の独自性は、それらの道具を発明したことではない。独自性は、次の operational discipline にある。
 
@@ -1640,9 +1684,9 @@ entropy of uncertainty & 構造維持可能性の残存量とは別物 \\
   universal law declaration を、独立再現と formal mapping なしに行わない。
 \end{enumerate}
 
-この discipline によって、構造収支律は単なる比喩ではなくなる。どの対象構造について、何を損失とし、何を補償とし、どの強度の主張をしているのかを、適用前に固定するからである。
+この discipline によって、構造持続の収支原理は単なる比喩ではなくなる。どの対象構造について、何を損失とし、何を補償とし、どの強度の主張をしているのかを、適用前に固定するからである。
 
-逆に言えば、この discipline を外すと、構造収支律は空虚になる。後から都合のよい \(V\), \(m\), \(g_{t}\) を選べば、ほとんど任意の現象を説明できてしまう。本稿が繰り返し非主張を置くのは、その空虚化を避けるためである。
+逆に言えば、この discipline を外すと、構造持続の収支原理は空虚になる。後から都合のよい \(V\), \(m\), \(g_{t}\) を選べば、ほとんど任意の現象を説明できてしまう。本稿が繰り返し非主張を置くのは、その空虚化を避けるためである。
 
 \subsection{まとめ}\label{ux307eux3068ux3081}
 
@@ -1667,51 +1711,51 @@ entropy of uncertainty & 構造維持可能性の残存量とは別物 \\
 \endlastfoot
 熱力学第二法則 & G6-a / G6-b & closed loss-only と open compensation の強い analogy / correspondence \\
 非平衡熱力学・散逸構造 & G6-b & 外部流による維持という correspondence \\
-queueing / Foster-Lyapunov drift & G6-c (minimal algebraic embedding) & \(a_t=W(X_{t+1})-W(X_t)\) による formal embedding \\
+queueing / Foster-Lyapunov drift & G6-c (minimal algebraic embedding) & \(b_t=W(X_{t+1})-W(X_t)\) による formal embedding \\
 確率制御 & G6-b、具体モデルでは G6-c 可能 & \(g_t(u_t)\) を制御入力として読む correspondence \\
 情報理論 & G6-b、Bernoulli-CSP では局所的 G6-c & 対数比と Chernoff-KL 出口 \\
 \end{longtable}
 }
 
-このうち queueing / Foster-Lyapunov drift は、G6-c の minimal algebraic embedding であると同時に、G4 v1 の primary non-CSP anchor でもある。これは double-counting ではない。G6 は既存理論との formal-mapping credibility を測る gate であり、G4 は非CSP domain coverage を測る gate である。同一の artifact が両方に寄与するのは、構造収支律の \(a_{t},A_{n},R_{t},\ell_{t},g_{t}\) が既存 drift calculus と自然に噛み合うことの帰結である。
+このうち queueing / Foster-Lyapunov drift は、G6-c の minimal algebraic embedding であると同時に、G4 v1 の primary non-CSP anchor でもある。これは double-counting ではない。G6 は既存理論との formal-mapping credibility を測る gate であり、G4 は非CSP domain coverage を測る gate である。同一の artifact が両方に寄与するのは、構造持続の収支原理の \(b_{t},B_{n},R_{t},\ell_{t},g_{t}\) が既存 drift calculus と自然に噛み合うことの帰結である。
 
-この G4 v1 / v2 の reader-facing 整理は、補論「非CSP古典例における構造収支律の最小アンカー」に置く。そこでは queueing / Foster-Lyapunov を G4 v1 primary anchor、serial reliability と constant-fraction decay を loss-only control anchors として扱う。さらに G4 v2 として、repair / maintenance reliability-fatigue balance を追加し、\texttt{RepairMaintenanceBalance.lean} によって damage flow \(d_{t}\) と repair flow \(g_{t}\) の差し引きが accumulated damage、remaining margin、relative maintenance を決めることを形式化する。branching、fatigue、consensus、buckling、percolation は secondary / coverage skeleton として位置づける。
+この G4 v1 / v2 の reader-facing 整理は、補論「非CSP古典例における構造持続の収支原理の最小アンカー」に置く。そこでは queueing / Foster-Lyapunov を G4 v1 primary anchor、serial reliability と constant-fraction decay を loss-only control anchors として扱う。さらに G4 v2 として、repair / maintenance reliability-fatigue balance を追加し、\texttt{RepairMaintenanceBalance.lean} によって damage flow \(d_{t}\) と repair flow \(g_{t}\) の差し引きが accumulated damage、remaining margin、relative maintenance を決めることを形式化する。branching、fatigue、consensus、buckling、percolation は secondary / coverage skeleton として位置づける。
 
-ここで強調すべきなのは、non-CSP 側の最も強い言い方は universal law declaration ではなく、\textbf{conditional law-side bridge} だという点である。すなわち、\((i)\) 自然な測度または構造量 \(m\) が事前固定され、\((ii)\) 補償流 \(g_{t}\) が domain-native な変数として観測でき、\((iii)\) collapse / hitting boundary が明示的仮定の下で読める場合に限り、構造収支律は既存の stochastic stability theory の内部へ law-side に近い形で埋め込まれる。queueing / Foster-Lyapunov drift は現在この条件を最も強く満たす。一方、repair / maintenance balance は near-bridge open-system anchor であり、Backblaze や C-MAPSS の observational loss-only branches、Route C companion I / II はまだこの law-side bridge を閉じない。
+ここで強調すべきなのは、non-CSP 側の最も強い言い方は universal law declaration ではなく、\textbf{conditional law-side bridge} だという点である。すなわち、\((i)\) 自然な測度または構造量 \(m\) が事前固定され、\((ii)\) 補償流 \(g_{t}\) が domain-native な変数として観測でき、\((iii)\) collapse / hitting boundary が明示的仮定の下で読める場合に限り、構造持続の収支原理は既存の stochastic stability theory の内部へ law-side に近い形で埋め込まれる。queueing / Foster-Lyapunov drift は現在この条件を最も強く満たす。一方、repair / maintenance balance は near-bridge open-system anchor であり、Backblaze や C-MAPSS の observational loss-only branches、Route C companion I / II はまだこの law-side bridge を閉じない。
 
-この表から分かるように、構造収支律は既存理論の外に立つ完全に新しい数学ではない。むしろ、既存理論に散在する drift / compensation / log-ratio の構造を、構造維持可能性という対象に向けて再配置する枠組みである。
+この表から分かるように、構造持続の収支原理は既存理論の外に立つ完全に新しい数学ではない。むしろ、既存理論に散在する drift / compensation / log-ratio の構造を、構造維持可能性という対象に向けて再配置する枠組みである。
 
 本稿の正確な位置づけは次である。
 
 \begin{quote}
-構造収支律は、熱力学や情報理論を置き換えるものではない。対象構造を事前固定したうえで、損失流と補償流の差し引きが構造維持可能性をどう支配するかを記述する、cross-domain な drift-and-balance framework である。
+構造持続の収支原理は、熱力学や情報理論を置き換えるものではない。対象構造を事前固定したうえで、損失流と補償流の差し引きが構造維持可能性をどう支配するかを記述する、cross-domain な drift-and-balance framework である。
 \end{quote}
 
 この位置づけにより、§5 の Route A anchor、§6 の Route C anchor、そして本節の既存理論対応は、一つの階層に収まる。すなわち、Route A では formal theorem に近づき、Route C では observational prediction に留まり、既存理論との関係では analogy / correspondence / formal reduction を明示的に分ける。
 
 \section{限界と次段階}\label{ux9650ux754cux3068ux6b21ux6bb5ux968e}
 
-本稿は、構造持続理論を「損失のみの収縮則」から「損失流と補償流の収支律」へ再配置した。しかし、この再配置は普遍法則の最終確立ではない。本節では、本稿で確定した部分、まだ条件つきまたは経験的にしか言えない部分、そして次に必要な gate を整理する。
+本稿は、構造持続理論を「損失のみの収縮則」から「損失流と補償流の収支原理」へ再配置した。しかし、この再配置は普遍法則の最終確立ではない。本節では、本稿で確定した部分、まだ条件つきまたは経験的にしか言えない部分、そして次に必要な gate を整理する。
 
 \subsection{本稿で確定した部分}\label{ux672cux7a3fux3067ux78baux5b9aux3057ux305fux90e8ux5206}
 
 本稿で確定したのは、次の階層である。
 
-第一に、pathwise identity としての構造収支律である。構造維持可能集合 \(V^{(t)}\)、測度 \(m\)、収縮作用 \(K_{t}\)、再拡大作用 \(R_{t}\) が事前に固定され、対数比が well-defined なら、
+第一に、pathwise identity としての構造持続の収支原理である。構造維持可能集合 \(V^{(t)}\)、測度 \(m\)、収縮作用 \(K_{t}\)、再拡大作用 \(R_{t}\) が事前に固定され、対数比が well-defined なら、
 
 \[
 \begin{aligned}
-a_{t}&=\ell_{t}-g_{t}, \\
+b_{t}&=\ell_{t}-g_{t}, \\
 \qquad \\
-A_{n}&=\sum_{t<n}a_{t}, \\
+B_{n}&=\sum_{t<n}b_{t}, \\
 \qquad \\
-m(V^{(n)})&=m(V^{(0)})e^{-A_{n}}
+m(V^{(n)})&=m(V^{(0)})e^{-B_{n}}
 \end{aligned}
 \]
 
 が成り立つ。これは定義と望遠鏡積から従う恒等式である。
 
-第二に、expectation-level tendency である。\(a_{t}\) を確率変数として扱えるなら、\(\mathbb E[a_{t}]\) の符号は、累積作用の期待中心がどちらへ動くかを与える。これは high-probability collapse ではなく、中心の方向に関する主張である。
+第二に、expectation-level tendency である。\(b_{t}\) を確率変数として扱えるなら、\(\mathbb E[b_{t}]\) の符号は、構造持続収支量の期待中心がどちらへ動くかを与える。これは high-probability collapse ではなく、中心の方向に関する主張である。
 
 第三に、concentration 条件つきの finite-horizon bound である。bounded increments、MGF product、Chernoff / KL profile、margin 条件などが追加される場合には、collapse / stopped-collapse / hitting-time の確率境界へ進める。これは Route A で強く閉じるが、Route C では一般に得られない。
 
@@ -1719,17 +1763,17 @@ m(V^{(n)})&=m(V^{(0)})e^{-A_{n}}
 
 8.1.1 Lean で閉じている部分
 
-本稿の pathwise algebraic kernel は、Lean 側では \texttt{Survival/GeneralStateDynamics.lean} によってすでに machine-checked である。そこでは、収縮後集合、修復後集合、feasible mass、stage loss、stage gain、signed net action、cumulative net action が定義され、positive finite trajectory assumptions の下で
+本稿の pathwise algebraic kernel は、Lean 側では \texttt{Survival/GeneralStateDynamics.lean} によってすでに machine-checked である。そこでは、収縮後集合、修復後集合、feasible mass、stage loss、stage gain、one-step balance、cumulative balance が定義され、positive finite trajectory assumptions の下で
 
 \[
 \begin{aligned}
-m(V^{(t+1)})&=m(V^{(t)})e^{-a_{t}}, \\
+m(V^{(t+1)})&=m(V^{(t)})e^{-b_{t}}, \\
 \qquad \\
-m(V^{(n)})&=m(V^{(0)})e^{-A_{n}}
+m(V^{(n)})&=m(V^{(0)})e^{-B_{n}}
 \end{aligned}
 \]
 
-が証明されている。追加した \texttt{Survival/StructuralBalanceLaw.lean} は、この既存 theorem 群を Paper 3 の読者向け名称で束ねる薄い wrapper であり、新しい数学的仮定を追加するものではない。
+が証明されている。追加した \texttt{Survival/StructuralPersistenceBalancePrinciple.lean} は、この既存 theorem 群を Paper 3 の読者向け名称で束ねる薄い wrapper であり、新しい数学的仮定を追加するものではない。
 
 Lean 対応は次の範囲に限られる。
 
@@ -1750,13 +1794,13 @@ Lean 側の対応
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-signed action definition & \texttt{StructuralBalanceLaw.signedAction\_eq\_loss\_sub\_gain} & 定義として証明済み \\
-cumulative signed action & \texttt{StructuralBalanceLaw.cumulativeSignedAction\_eq\_sum\_signedAction} & finite-prefix sum として証明済み \\
-local balance & \texttt{StructuralBalanceLaw.local\_signed\_exponential\_balance} & positive mass assumptions の下で証明済み \\
-pathwise signed kernel & \texttt{StructuralBalanceLaw.pathwise\_signed\_exponential\_kernel} & positive finite trajectory assumptions の下で証明済み \\
-loss-only 回収 & \texttt{StructuralBalanceLaw.pureContraction\_recovers\_loss\_only\_kernel} & pure contraction / zero gain の特例として証明済み \\
-Lyapunov drift embedding & \texttt{StructuralBalanceLaw.lyapunov\_*} wrappers & 最小代数的埋め込みとして証明済み \\
-repair / maintenance balance & \texttt{StructuralBalanceLaw.repair\_*} wrappers & finite-prefix damage-minus-repair skeleton として証明済み \\
+one-step balance \(b_t=\ell_t-g_t\) & \texttt{StructuralPersistenceBalancePrinciple.oneStepBalance\_eq\_loss\_sub\_gain} & 定義として証明済み \\
+structural balance amount \(B_n=\sum_{t<n}b_t\) & \texttt{StructuralPersistenceBalancePrinciple.cumulativeBalance\_eq\_sum\_oneStepBalance} & finite-prefix sum として証明済み \\
+local balance & \texttt{StructuralPersistenceBalancePrinciple.local\_exponential\_balance} & positive mass assumptions の下で証明済み \\
+pathwise balance kernel & \texttt{StructuralPersistenceBalancePrinciple.pathwise\_balance\_exponential\_kernel} & positive finite trajectory assumptions の下で証明済み \\
+loss-only 回収 & \texttt{StructuralPersistenceBalancePrinciple.pureContraction\_recovers\_loss\_only\_kernel} & pure contraction / zero gain の特例として証明済み \\
+Lyapunov drift embedding & \texttt{StructuralPersistenceBalancePrinciple.lyapunov\_*} wrappers & 最小代数的埋め込みとして証明済み \\
+repair / maintenance balance & \texttt{StructuralPersistenceBalancePrinciple.repair\_*} wrappers & finite-prefix damage-minus-repair skeleton として証明済み \\
 \end{longtable}
 }
 
@@ -1764,7 +1808,7 @@ repair / maintenance balance & \texttt{StructuralBalanceLaw.repair\_*} wrappers 
 
 また、repair / maintenance 側の \texttt{margin} は \(B-D_{n}\) という remaining margin であり、Paper 1 の資源項 \(M\) と同一ではない。この区別を消すと、finite-prefix damage balance と operational resource mapping が混同される。
 
-したがって Lean が閉じているのは、構造収支律の代数核である。任意ドメインで自然な \(m\) が一意に定まること、\(g_{t}\) が観測可能であること、Route C の repair-like effects が因果機構として同定されること、あるいは構造収支律が普遍法則として確立したことは、Lean の主張範囲外である。
+したがって Lean が閉じているのは、構造持続の収支原理の代数核である。任意ドメインで自然な \(m\) が一意に定まること、\(g_{t}\) が観測可能であること、Route C の repair-like effects が因果機構として同定されること、あるいは構造持続の収支原理が普遍法則として確立したことは、Lean の主張範囲外である。
 
 \subsection{本稿が確定していない部分}\label{ux672cux7a3fux304cux78baux5b9aux3057ux3066ux3044ux306aux3044ux90e8ux5206}
 
@@ -1791,9 +1835,9 @@ repair / maintenance balance & \texttt{StructuralBalanceLaw.repair\_*} wrappers 
   熱力学、情報理論、queueing theory、確率制御を置き換えるとは主張しない。 \# 探索的に発見された対象構造、測度、損失流、補償流の候補を、そのまま support と呼ばない。
 \end{enumerate}
 
-これらは弱さの列挙ではなく、理論を空虚化しないための境界である。構造収支律は、どの層で何を仮定しているかを明示する限りで意味を持つ。
+これらは弱さの列挙ではなく、理論を空虚化しないための境界である。構造持続の収支原理は、どの層で何を仮定しているかを明示する限りで意味を持つ。
 
-とくに、理論核と写像発見は分けて扱う。構造収支律の核は、事前固定された構造維持問題における損失流と補償流の会計である。一方、現実ドメインでは、何を loss indicator とし、何を repair / compensation indicator とするかを探索的に発見する段階がある。この探索は許されるが、その結果は candidate mapping であって support ではない。support と呼べるのは、写像を凍結した後に、holdout / future / fresh archive / outside rerun で事前に定めた比較を通った場合に限られる。
+とくに、理論核と写像発見は分けて扱う。構造持続の収支原理の核は、事前固定された構造維持問題における損失流と補償流の会計である。一方、現実ドメインでは、何を loss indicator とし、何を repair / compensation indicator とするかを探索的に発見する段階がある。この探索は許されるが、その結果は candidate mapping であって support ではない。support と呼べるのは、写像を凍結した後に、holdout / future / fresh archive / outside rerun で事前に定めた比較を通った場合に限られる。
 
 8.3 反証可能性
 
@@ -1801,7 +1845,7 @@ repair / maintenance balance & \texttt{StructuralBalanceLaw.repair\_*} wrappers 
 
 第一に、Route A では、drift-weighted coordinate が raw count や encoding-size baseline を上回らない独立 family が見つかれば、Bernoulli-CSP universality-class claim は弱まる。Exp43c q-coloring ではこの反証経路を実際に primary validation として検査し、\texttt{fm\_plus\_n} が raw / density / CNF-size baselines を上回った。したがって q-coloring は現在では positive support である。一方、Cardinality-SAT の threshold-local test はまだ calibration-stage extension であり、validation evidence ではない。
 
-第二に、Route C では、loss condition を揃えたうえで repair indicator が観測量 \(Y\) を改善しない、または structure-aware model が quality-blind baseline を out-of-sample に上回らないなら、そのドメインでの \(G_{\mathrm{obs}}\) 読みは失敗する。より強い検査では、SP-only model が simple baseline を上回るだけでなく、既存専門モデルまたは強い domain baseline に構造持続指標を加えた baseline + SP が、domain baseline 単独を out-of-sample に改善するかを見る。ここで SP は structural persistence coordinate、すなわち本稿の loss / compensation / margin 指標群を指す。構造収支律の経験的価値は、各ドメインの最強モデルを置き換えることではなく、既存予測枠組みに対して追加的な loss / compensation 座標を与えることにある。
+第二に、Route C では、loss condition を揃えたうえで repair indicator が観測量 \(Y\) を改善しない、または structure-aware model が quality-blind baseline を out-of-sample に上回らないなら、そのドメインでの \(G_{\mathrm{obs}}\) 読みは失敗する。より強い検査では、SP-only model が simple baseline を上回るだけでなく、既存専門モデルまたは強い domain baseline に構造持続指標を加えた baseline + SP が、domain baseline 単独を out-of-sample に改善するかを見る。ここで SP は structural persistence coordinate、すなわち本稿の loss / compensation / margin 指標群を指す。構造持続の収支原理の経験的価値は、各ドメインの最強モデルを置き換えることではなく、既存予測枠組みに対して追加的な loss / compensation 座標を与えることにある。したがって、外向けの価値は「凍結検証」そのものではなく、凍結された写像による予測力の増分検証である。
 
 第三に、既存理論との対応では、formal reduction と呼んだものが元理論の仮定を保持していない、または単なる記号置換にすぎないと判明すれば、G6-c claim は G6-b correspondence へ下げなければならない。
 
@@ -1816,7 +1860,7 @@ repair / maintenance balance & \texttt{StructuralBalanceLaw.repair\_*} wrappers 
 \item
   threshold-local Route A extension の継続。 SAT / NAE mixed CSP の次に、Exp43c q-coloring は、drift-weighted / first-moment coordinate が raw edge count / density / encoding-size baseline を上回るかを検査し、primary validation として通過した。次に Route A width をさらに広げる場合は、Cardinality-SAT のような family で同じ基準を検査する。ただし、random CSP の sharp threshold を粗い grid で見る設計は避け、calibration / freeze / validation を分離した threshold-local protocol を維持する必要がある。
 \item
-  G4 non-CSP anchors の次 iteration。 queueing / Foster-Lyapunov drift の最小代数的埋め込みは、補論と Lean file \texttt{Survival/LyapunovBalanceEmbedding.lean} によって G6-c iteration 1 として閉じている。これを受けて、G4 v1 では queueing / Foster-Lyapunov を primary anchor、serial reliability と constant-fraction decay を loss-only control anchors として置く。この G4 v1 package は補論「非CSP古典例における構造収支律の最小アンカー」に整理されている。さらに G4 v2 iteration 1 として、repair / maintenance reliability-fatigue balance を \texttt{RepairMaintenanceBalance.lean} と同補論 §11 に整理した。次に進む場合は、positive recurrence / geometric ergodicity への G6-c iteration 2、stochastic reliability / optimal maintenance theorem への拡張、または maintenance log を用いた operational pilot を、明示的に scope lock する必要がある。 ここで reader-facing に追加された gate は、non-CSP domain を law-side に近い bridge と呼べる条件を明示することである。現在の program では、\texttt{analysis/law\_side\_upgrade\_gate.md} がその 3 条件、すなわち自然な \(m\)、観測可能な \(g_{t}\)、条件つき collapse / hitting boundary を固定している。これに照らすと、queueing / Foster-Lyapunov は conditional law-side bridge、repair / maintenance balance は near-bridge open-system anchor、serial reliability と constant-fraction decay は loss-only controls、Backblaze / C-MAPSS / Route C companion は observational tier に留まる。この整理により、G4 / G6-c は ``何でも収支語彙で言い換えられる'' という弱い枠組みではなく、既存安定性理論にどこまで law-side に近づけるかを段階的に評価する gate として読める。 loss-only observational 側では、Backblaze drive reliability に対する二つの frozen run が現在の reference point である。Q4 2025 v1 は高い ranking signal を持ちながら preregistered log-loss support を通らず、closed no-support となった。これに対して Q3 2025 v2 は、fresh untouched archive 上の calibration-aware same-domain redesign として separately frozen され、loss-only primary support を通った。ただし、これは same-domain second attempt の observational support であり、repair-flow evidence でも、Q4 2025 no-support を erase する evidence でもない。したがって、現時点で増えたのは「non-CSP loss-only observational anchor が一つ立った」という事実であって、non-CSP empirical gate 全体が解けたわけではない。
+  G4 non-CSP anchors の次 iteration。 queueing / Foster-Lyapunov drift の最小代数的埋め込みは、補論と Lean file \texttt{Survival/LyapunovBalanceEmbedding.lean} によって G6-c iteration 1 として閉じている。これを受けて、G4 v1 では queueing / Foster-Lyapunov を primary anchor、serial reliability と constant-fraction decay を loss-only control anchors として置く。この G4 v1 package は補論「非CSP古典例における構造持続の収支原理の最小アンカー」に整理されている。さらに G4 v2 iteration 1 として、repair / maintenance reliability-fatigue balance を \texttt{RepairMaintenanceBalance.lean} と同補論 §11 に整理した。次に進む場合は、positive recurrence / geometric ergodicity への G6-c iteration 2、stochastic reliability / optimal maintenance theorem への拡張、または maintenance log を用いた operational pilot を、明示的に scope lock する必要がある。 ここで reader-facing に追加された gate は、non-CSP domain を law-side に近い bridge と呼べる条件を明示することである。現在の program では、\texttt{analysis/law\_side\_upgrade\_gate.md} がその 3 条件、すなわち自然な \(m\)、観測可能な \(g_{t}\)、条件つき collapse / hitting boundary を固定している。これに照らすと、queueing / Foster-Lyapunov は conditional law-side bridge、repair / maintenance balance は near-bridge open-system anchor、serial reliability と constant-fraction decay は loss-only controls、Backblaze / C-MAPSS / Route C companion は observational tier に留まる。この整理により、G4 / G6-c は ``何でも収支語彙で言い換えられる'' という弱い枠組みではなく、既存安定性理論にどこまで law-side に近づけるかを段階的に評価する gate として読める。 loss-only observational 側では、Backblaze drive reliability に対する二つの frozen run が現在の reference point である。Q4 2025 v1 は高い ranking signal を持ちながら preregistered log-loss support を通らず、closed no-support となった。これに対して Q3 2025 v2 は、fresh untouched archive 上の calibration-aware same-domain redesign として separately frozen され、loss-only primary support を通った。ただし、これは same-domain second attempt の observational support であり、repair-flow evidence でも、Q4 2025 no-support を erase する evidence でもない。したがって、現時点で増えたのは「non-CSP loss-only observational anchor が一つ立った」という事実であって、non-CSP empirical gate 全体が解けたわけではない。
 \item
   Lean theorem map の reader-facing 整理。 既存 Lean theorem がどの paper claim を支えるかを、命名、表、wrapper theorem として読みやすくする。新 theorem を増やすことより、主張と仮定の対応を明確にすることが重要である。
 \item
@@ -1829,7 +1873,7 @@ repair / maintenance balance & \texttt{StructuralBalanceLaw.repair\_*} wrappers 
 
 本稿が成立すると、統合版 Paper 0 の architecture は更新されるべきである。従来は Paper 1 / Paper 2 の loss-only 形式から、Route C companion I / II の LLM / 継続学習応用へ進む読み方が中心であった。
 
-構造収支律を中心に置くなら、依存順は次のようになる。
+構造持続の収支原理を中心に置くなら、依存順は次のようになる。
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -1839,7 +1883,7 @@ repair / maintenance balance & \texttt{StructuralBalanceLaw.repair\_*} wrappers 
 \item
   Paper 2: 条件つき導出と弱依存境界。
 \item
-  本稿: loss flow と compensation flow の構造収支律。
+  本稿: loss flow と compensation flow の構造持続の収支原理。
 \item
   Route A 補論群: SAT / Bernoulli-CSP / Mixed-CSP / Exp43c q-coloring、および Cardinality-SAT などの proposed stress extensions。
 \item
@@ -1850,7 +1894,7 @@ repair / maintenance balance & \texttt{StructuralBalanceLaw.repair\_*} wrappers 
   M 補論: \(g_{t}\) や補償能力を実ドメインで測る operational mapping。
 \end{enumerate}
 
-この順序により、M 分解は universal core ではなく、構造収支律を現実ドメインへ写すための測定層として位置づく。
+この順序により、M 分解は universal core ではなく、構造持続の収支原理を現実ドメインへ写すための測定層として位置づく。
 
 8.6 結論
 
@@ -1858,15 +1902,15 @@ repair / maintenance balance & \texttt{StructuralBalanceLaw.repair\_*} wrappers 
 
 \[
 \begin{aligned}
-a_{t}&=\ell_{t}-g_{t}, \\
+b_{t}&=\ell_{t}-g_{t}, \\
 \qquad \\
-A_{n}&=\sum_{t<n}a_{t}, \\
+B_{n}&=\sum_{t<n}b_{t}, \\
 \qquad \\
-m(V^{(n)})&=m(V^{(0)})e^{-A_{n}}.
+m(V^{(n)})&=m(V^{(0)})e^{-B_{n}}.
 \end{aligned}
 \]
 
-この式は、閉じた loss-only 系を \(g_{t}=0\) の特例として回収し、開いた系では補償流 \(g_{t}\) によって崩壊、維持、回復の三 regime を同じ座標上で扱う。期待値レベルでは \(\mathbb E[a_{t}]\) の符号が傾向を与え、追加の concentration 条件があれば finite-horizon collapse / hitting-time bound へ進める。
+この式は、閉じた loss-only 系を \(g_{t}=0\) の特例として回収し、開いた系では補償流 \(g_{t}\) によって崩壊、維持、回復の三 regime を同じ座標上で扱う。期待値レベルでは \(\mathbb E[b_{t}]\) の符号が傾向を与え、追加の concentration 条件があれば finite-horizon collapse / hitting-time bound へ進める。
 
 Route A では、SAT / Bernoulli-CSP / Mixed-CSP / Exp43c q-coloring が、自然測度と bad-event exposure の上でこの構造を強く閉じる。Cardinality-SAT は、この幅をさらに広げるための proposed stress extension であり、現時点では threshold-local validation design を必要とする calibration-stage anchor である。Route C では、Route C companion I / II の scope-as-repair、external metabolism、dependency-aware replay が、補償流の observable indicator として働く。ただし、Route C は high-probability theorem ではなく、observational prediction の層である。
 
@@ -1874,9 +1918,9 @@ Route A では、SAT / Bernoulli-CSP / Mixed-CSP / Exp43c q-coloring が、自�
 
 この framework は、設計原理としても読める。すなわち、崩壊しない系を無条件に作るのではなく、崩壊しにくく、改修可能性を失いにくく、局所的に修復できる系を作るための会計座標である。具体的には、loss を局所化し、repair flow を残し、margin を使い切らず、代替経路を保持する。ソフトウェア工学の冗長性、クリーンアーキテクチャ、rollback、observability は、この設計原理の一つの実践例として読めるが、それを別ドメインへ移す場合は candidate intervention として扱い、凍結検証によってのみ support とする。
 
-この非CSP側の最も強い安全な言い方は、queueing / Foster-Lyapunov drift を中心とする restricted drift-based stability class における \textbf{conditional law-side bridge} である。これは、構造収支律が一般 non-CSP universal law だと言うことではない。むしろ、自然な \(m\)、観測可能な \(g_{t}\)、条件つき collapse / hitting boundary が揃う限定クラスでは、構造収支律が既存安定性理論の内部に law-side に近い形で埋め込まれる、と言うのである。Repair / maintenance balance は、その class を empirical \(g_{t}\) 側へ広げる near-bridge open-system anchor である。
+この非CSP側の最も強い安全な言い方は、queueing / Foster-Lyapunov drift を中心とする restricted drift-based stability class における \textbf{conditional law-side bridge} である。これは、構造持続の収支原理が一般 non-CSP universal law だと言うことではない。むしろ、自然な \(m\)、観測可能な \(g_{t}\)、条件つき collapse / hitting boundary が揃う限定クラスでは、構造持続の収支原理が既存安定性理論の内部に law-side に近い形で埋め込まれる、と言うのである。Repair / maintenance balance は、その class を empirical \(g_{t}\) 側へ広げる near-bridge open-system anchor である。
 
-非CSP empirical 側では、Backblaze v2 が calibration-aware loss-only design として same-domain observational support を与えた一方、Backblaze v1 は closed no-support のまま残っている。この組は、構造収支律の loss-only operationalization が industrial reliability domain でも観測可能であることを示すが、その証拠の重みは Route A primary や独立再現と同じではない。ここで重要なのは、v1 を消すことではなく、calibration を明示した frozen redesign が fresh archive では通りうることを記録することである。
+非CSP empirical 側では、Backblaze v2 が calibration-aware loss-only design として same-domain observational support を与えた一方、Backblaze v1 は closed no-support のまま残っている。この組は、構造持続の収支原理の loss-only operationalization が industrial reliability domain でも観測可能であることを示すが、その証拠の重みは Route A primary や独立再現と同じではない。ここで重要なのは、v1 を消すことではなく、calibration を明示した frozen redesign が fresh archive では通りうることを記録することである。
 
 したがって、本稿は普遍法則の最終宣言ではない。より正確には、構造持続理論を universal-law candidate として強化するための主理論層である。Exp43c q-coloring により、SAT 以外に見える Route A family への幅は一段広がった。また、Mixed-CSP package については、2 名の外部実行者による独立再実行が 2/2 clean success を返しており、著者環境外でも qualitative support decision が再現されることを示している。今後の決定的な進展は、残りの outside return、Exp43c の outside-group rerun、さらなる異質 family、non-CSP formal embedding、および Route C の前向き検査によって与えられる。
 \end{document}

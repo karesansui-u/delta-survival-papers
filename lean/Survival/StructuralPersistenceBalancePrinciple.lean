@@ -3,12 +3,12 @@ import Survival.LyapunovBalanceEmbedding
 import Survival.RepairMaintenanceBalance
 
 /-!
-# Structural Balance Law
+# Structural Persistence Balance Principle
 
-Reader-facing Lean wrappers for Paper 3, "Structural Balance Law and Collapse
+Reader-facing Lean wrappers for Paper 3, "Structural Persistence Balance Principle and Collapse
 Tendency".
 
-This file deliberately adds no new mathematical substance.  The pathwise signed
+This file deliberately adds no new mathematical substance.  The pathwise balance
 exponential kernel is proved in `Survival.GeneralStateDynamics`; the
 Foster--Lyapunov algebraic embedding is proved in
 `Survival.LyapunovBalanceEmbedding`; and the repair / maintenance finite-prefix
@@ -23,7 +23,7 @@ recurrence, geometric ergodicity, or any universal-law claim.
 open scoped BigOperators
 open Survival.GeneralStateDynamics
 
-namespace Survival.StructuralBalanceLaw
+namespace Survival.StructuralPersistenceBalancePrinciple
 
 noncomputable section
 
@@ -36,20 +36,21 @@ abbrev StructuralSystem (X : Type*) := ProblemSpec X
 abbrev PositiveFiniteTrajectory (P : StructuralSystem X) (n : ℕ) :=
   PositiveTrajectory P n
 
-/-- Paper 3 notation: signed action is contraction loss minus repair gain. -/
-theorem signedAction_eq_loss_sub_gain
+/-- Paper 3 notation: one-step balance is contraction loss minus repair gain. -/
+theorem oneStepBalance_eq_loss_sub_gain
     (P : StructuralSystem X) (t : ℕ) :
     stepNetAction P t = stepLoss P t - stepGain P t := rfl
 
-/-- Paper 3 notation: cumulative signed action is the finite-prefix sum. -/
-theorem cumulativeSignedAction_eq_sum_signedAction
+/-- Paper 3 notation: cumulative balance is the finite-prefix sum of one-step
+balances. -/
+theorem cumulativeBalance_eq_sum_oneStepBalance
     (P : StructuralSystem X) (n : ℕ) :
     cumulativeNetAction P n =
       ∑ t ∈ Finset.range n, stepNetAction P t := rfl
 
-/-- Paper 3 local balance law, checked under positive finite-trajectory
+/-- Paper 3 local balance identity, checked under positive finite-trajectory
 assumptions. -/
-theorem local_signed_exponential_balance
+theorem local_exponential_balance
     (P : StructuralSystem X) (t : ℕ)
     (hfeas : 0 < feasibleMass P t)
     (hcontract : 0 < contractedMass P t)
@@ -58,8 +59,8 @@ theorem local_signed_exponential_balance
       feasibleMass P t * Real.exp (-(stepNetAction P t)) :=
   feasibleMass_succ_eq_mass_mul_exp_neg_stepNetAction P t hfeas hcontract hnext
 
-/-- Paper 3 pathwise signed exponential kernel. -/
-theorem pathwise_signed_exponential_kernel
+/-- Paper 3 pathwise balance exponential kernel. -/
+theorem pathwise_balance_exponential_kernel
     (P : StructuralSystem X) (n : ℕ)
     (hpos : PositiveFiniteTrajectory P n) :
     feasibleMass P n =
@@ -74,8 +75,8 @@ theorem pureContraction_stepGain_eq_zero
     stepGain P t = 0 :=
   stepGain_eq_zero_of_pureContraction P t hpure hcontract
 
-/-- In pure contraction mode the signed action reduces to cumulative loss. -/
-theorem pureContraction_cumulativeSignedAction_eq_cumulativeLoss
+/-- In pure contraction mode the cumulative balance reduces to cumulative loss. -/
+theorem pureContraction_cumulativeBalance_eq_cumulativeLoss
     (P : StructuralSystem X) (n : ℕ)
     (hpure : PureContraction P.D)
     (hpos : PositiveFiniteTrajectory P n) :
@@ -99,8 +100,8 @@ theorem lyapunov_increment_eq_lossFlow_sub_repairFlow
         Survival.LyapunovBalanceEmbedding.repairFlow Z t :=
   Survival.LyapunovBalanceEmbedding.increment_eq_lossFlow_sub_repairFlow Z t
 
-/-- Foster--Lyapunov cumulative action telescopes to final load minus initial
-load. -/
+/-- Foster--Lyapunov cumulative load increment telescopes to final load minus
+initial load. -/
 theorem lyapunov_cumulativeAction_eq_load_diff
     (Z : ℕ → ℝ) (n : ℕ) :
     Survival.LyapunovBalanceEmbedding.cumulativeAction Z n = Z n - Z 0 :=
@@ -115,7 +116,7 @@ theorem lyapunov_relativeMaintenance_local_balance
   Survival.LyapunovBalanceEmbedding.relativeMaintenance_succ_eq_mul_exp_neg_increment Z t
 
 /-- Repair / maintenance finite-prefix damage balance. -/
-theorem repair_damageLevel_eq_initial_plus_cumulative_signed_action
+theorem repair_damageLevel_eq_initial_plus_cumulative_balance
     (D0 : ℝ) (damage repair : ℕ → ℝ) (n : ℕ) :
     Survival.RepairMaintenanceBalance.damageLevel D0 damage repair n =
       D0 + Survival.RepairMaintenanceBalance.cumulativeNetAction damage repair n :=
@@ -124,7 +125,7 @@ theorem repair_damageLevel_eq_initial_plus_cumulative_signed_action
 
 /-- Remaining margin is threshold minus accumulated damage.  This is a margin
 coordinate, not the Paper 1 resource term `M`. -/
-theorem repair_remainingMargin_eq_initial_margin_sub_cumulative_signed_action
+theorem repair_remainingMargin_eq_initial_margin_sub_cumulative_balance
     (B D0 : ℝ) (damage repair : ℕ → ℝ) (n : ℕ) :
     Survival.RepairMaintenanceBalance.margin B D0 damage repair n =
       (B - D0) - Survival.RepairMaintenanceBalance.cumulativeNetAction damage repair n :=
@@ -161,4 +162,4 @@ theorem repair_nonnegative_flow_improves_remainingMargin
 
 end
 
-end Survival.StructuralBalanceLaw
+end Survival.StructuralPersistenceBalancePrinciple

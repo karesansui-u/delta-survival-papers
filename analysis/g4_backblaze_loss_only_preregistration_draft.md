@@ -392,7 +392,7 @@ This preregistration does not claim:
 3. Drive failure prediction is causal.
 4. This result identifies an optimal intervention policy.
 5. A passing result is equal in strength to Exp43c.
-6. A failing result falsifies the structural balance law.
+6. A failing result falsifies the structural persistence balance principle.
 7. Failure of one archive implies all Backblaze archives would fail.
 8. The result transfers automatically to other industrial reliability systems.
 

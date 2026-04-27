@@ -170,7 +170,7 @@ Exp43b threshold-local calibration succeeded at locating informative windows,
 but failed the current strict all-cell timeout gate.
 ```
 
-This is not evidence against the structural balance law and not evidence for
+This is not evidence against the structural persistence balance principle and not evidence for
 Route A q-coloring support. It is an exploration result about the feasibility
 of the current Exp43b calibration design.
 

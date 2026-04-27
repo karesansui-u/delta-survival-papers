@@ -6,11 +6,11 @@ Date: 2026-04-23
 
 ## 1. Purpose
 
-G4 の目的は、構造収支律が SAT / Bernoulli-CSP / Mixed-CSP の内部だけで閉じた理論ではなく、古典的な非CSP系にも歪めず写ることを示すことである。
+G4 の目的は、構造持続の収支原理が SAT / Bernoulli-CSP / Mixed-CSP の内部だけで閉じた理論ではなく、古典的な非CSP系にも歪めず写ることを示すことである。
 
-ただし、G4 は新しい queueing theorem や reliability theorem を主張する場ではない。既存分野の定理を置き換えるのではなく、構造収支律の語彙
+ただし、G4 は新しい queueing theorem や reliability theorem を主張する場ではない。既存分野の定理を置き換えるのではなく、構造持続の収支原理の語彙
 \[
-  Z_t,\quad a_t,\quad A_n,\quad R_t,\quad \ell_t,\quad g_t
+  Z_t,\quad b_t,\quad B_n,\quad R_t,\quad \ell_t,\quad g_t
 \]
 へ、どの古典例が最も自然に写るかを選ぶ。
 
@@ -30,7 +30,7 @@ Serial reliability と constant-fraction decay は loss-only control anchor と�
 
 | criterion | 内容 |
 |---|---|
-| C1. balance-law fit | \(a_t=\ell_t-g_t\), \(A_n\), \(R_t=e^{-Z_t}\) へ自然に写るか |
+| C1. balance-principle fit | \(b_t=\ell_t-g_t\), \(B_n\), \(R_t=e^{-Z_t}\) へ自然に写るか |
 | C2. Lean-backed | 既存 Lean theorem が reader-facing claim を支えるか |
 | C3. non-CSP distance | SAT / CSP から十分に離れて見えるか |
 | C4. theorem humility | 既存分野の強い theorem を過剰に再主張せずに済むか |
@@ -43,7 +43,7 @@ G4 では C1 と C2 を最重視する。C3 は rhetorical value、C4 は overcl
 
 | candidate | Lean file | fit | status |
 |---|---|---|---|
-| queueing / Foster-Lyapunov drift | `QueueStability.lean`, `LyapunovBalanceEmbedding.lean` | \(a_t\) が excess demand / Lyapunov increment として直接出る | primary G4 v1 anchor |
+| queueing / Foster-Lyapunov drift | `QueueStability.lean`, `LyapunovBalanceEmbedding.lean` | \(b_t\) が excess demand / Lyapunov increment として直接出る | primary G4 v1 anchor |
 | serial reliability | `SerialReliability.lean` | \(R=\prod p_i=\exp(-L)\) の loss-only kernel | loss-only control anchor |
 | constant-fraction decay | `ConstantFractionDecay.lean` | \(q^n=\exp(-n(-\log q))\) の textbook exponential kernel | loss-only control anchor |
 | branching expectation | `BranchingProcessExtinction.lean` | subcritical mean \(m^n\) を exponential loss として読む | secondary; expectation-level only |
@@ -55,7 +55,7 @@ G4 では C1 と C2 を最重視する。C3 は rhetorical value、C4 は overcl
 
 ### 4.1 Primary: Queueing / Foster-Lyapunov Drift
 
-Queueing / Foster-Lyapunov を主 anchor にする理由は、構造収支律の open-system balance と最も直接に対応するからである。
+Queueing / Foster-Lyapunov を主 anchor にする理由は、構造持続の収支原理の open-system balance と最も直接に対応するからである。
 
 `QueueStability.lean` では、deterministic fluid skeleton として
 \[
@@ -67,15 +67,15 @@ Queueing / Foster-Lyapunov を主 anchor にする理由は、構造収支律の
 \]
 が形式化されている。ここで
 \[
-  a_t=\lambda-\mu
+  b_t=\lambda-\mu
 \]
 と読める。到着率がサービス率を上回れば overload tendency、サービス率が到着率を上回れば recovery tendency である。
 
 さらに `LyapunovBalanceEmbedding.lean` では、任意の load sequence \(Z_t\) に対して
 \[
-  a_t=Z_{t+1}-Z_t,\qquad
-  A_n=Z_n-Z_0,\qquad
-  R_{t+1}=R_t e^{-a_t}
+  b_t=Z_{t+1}-Z_t,\qquad
+  B_n=Z_n-Z_0,\qquad
+  R_{t+1}=R_t e^{-b_t}
 \]
 を形式化している。これにより、queueing / Foster-Lyapunov drift は G6-c iteration 1 と G4 の交点になる。
 
@@ -83,13 +83,13 @@ Queueing / Foster-Lyapunov を主 anchor にする理由は、構造収支律の
 
 この anchor が言えること:
 
-- \(a_t\) が古典的な excess demand / Lyapunov increment と一致する。
-- overload / maintenance / recovery の三 regime が \(\mathbb E[a_t]\) または deterministic \(a_t\) の符号として読める。
-- 構造収支律は、open-system stability theory と同じ drift algebra を共有する。
+- \(b_t\) が古典的な excess demand / Lyapunov increment と一致する。
+- overload / maintenance / recovery の三 regime が \(\mathbb E[b_t]\) または deterministic \(b_t\) の符号として読める。
+- 構造持続の収支原理は、open-system stability theory と同じ drift algebra を共有する。
 
 この anchor が言えないこと:
 
-- positive recurrence が構造収支律だけから従う。
+- positive recurrence が構造持続の収支原理だけから従う。
 - reflected stochastic queue の安定性定理を新たに証明した。
 - geometric ergodicity や \(R_n\le R_0e^{-cn}\) 型境界を得た。
 
@@ -116,7 +116,7 @@ Serial reliability は、loss-only kernel の non-CSP control として置く。
 
 これは Paper 1 / Paper 2 の loss-only kernel が、SAT ではなく信頼性工学の textbook model にもそのまま現れることを示す。open-system compensation \(g_t\) は出ないが、closed / loss-only control として非常に読みやすい。
 
-G4 v1 では、serial reliability を primary anchor にしない。理由は、構造収支律の新しい要素である補償流 \(g_t\) や recovery tendency を含まないからである。しかし、queueing anchor と並べることで、
+G4 v1 では、serial reliability を primary anchor にしない。理由は、構造持続の収支原理の新しい要素である補償流 \(g_t\) や recovery tendency を含まないからである。しかし、queueing anchor と並べることで、
 
 \[
   \text{loss-only exponential kernel}
@@ -137,7 +137,7 @@ Constant-fraction decay は、放射性崩壊、Beer-Lambert attenuation、一�
 \]
 が形式化されている。
 
-これは非常に古典的で、数学的新規性はない。しかし、その古典性が利点でもある。構造収支律の指数核が、CSP や LLM 固有の構文ではなく、既存の textbook exponential decay と同じ log-ratio algebra を共有することを示す。
+これは非常に古典的で、数学的新規性はない。しかし、その古典性が利点でもある。構造持続の収支原理の指数核が、CSP や LLM 固有の構文ではなく、既存の textbook exponential decay と同じ log-ratio algebra を共有することを示す。
 
 G4 v1 では、constant-fraction decay を serial reliability と同じく control anchor とする。
 
@@ -160,7 +160,7 @@ G4 v1 では、constant-fraction decay を serial reliability と同じく contr
 \[
   \sum d_i \ge C
 \]
-型の threshold bookkeeping であり、構造収支律の \(R_t=e^{-Z_t}\) や \(a_t=\ell_t-g_t\) との接続は queueing ほど強くない。
+型の threshold bookkeeping であり、構造持続の収支原理の \(R_t=e^{-Z_t}\) や \(b_t=\ell_t-g_t\) との接続は queueing ほど強くない。
 
 したがって、G4 v1 の primary にはしない。後続の G4 v2 で、repair / maintenance intervention を含めた richer model に拡張する候補である。
 
@@ -178,13 +178,13 @@ G4 v1 では、constant-fraction decay を serial reliability と同じく contr
 G4 v1 の正しい言い方:
 
 \begin{quote}
-構造収支律は、非CSP古典例のうち、少なくとも queueing / Foster-Lyapunov drift に対して、\(a_t,A_n,R_t,\ell_t,g_t\) の最小代数的埋め込みを持つ。Serial reliability と constant-fraction decay は、同じ log-ratio exponential kernel が loss-only non-CSP 系にも現れることを示す control anchors である。
+構造持続の収支原理は、非CSP古典例のうち、少なくとも queueing / Foster-Lyapunov drift に対して、\(b_t,B_n,R_t,\ell_t,g_t\) の最小代数的埋め込みを持つ。Serial reliability と constant-fraction decay は、同じ log-ratio exponential kernel が loss-only non-CSP 系にも現れることを示す control anchors である。
 \end{quote}
 
 避けるべき言い方:
 
-- 構造収支律が queueing stability theorem を証明した。
-- 構造収支律が信頼性理論や分岐過程を置き換える。
+- 構造持続の収支原理が queueing stability theorem を証明した。
+- 構造持続の収支原理が信頼性理論や分岐過程を置き換える。
 - non-CSP skeletons が full empirical validation である。
 - percolation / buckling の本格的 threshold theorem が Lean 化済みである。
 
@@ -193,7 +193,7 @@ G4 v1 の正しい言い方:
 
 G4 v1 の次作業は、次の順で進めるのがよい。
 
-1. structural balance law paper §7 / §8 と G6-c 補論から、queueing / Foster-Lyapunov を primary non-CSP anchor として明示する。これは `v2/3_構造持続の収支法則と崩壊傾向.md` と `v2/補論_非CSP古典例における構造収支律の最小アンカー.md` に反映済みである。
+1. structural persistence balance principle paper §7 / §8 と G6-c 補論から、queueing / Foster-Lyapunov を primary non-CSP anchor として明示する。これは `v2/3_構造持続の収支原理と崩壊傾向.md` と `v2/補論_非CSP古典例における構造持続の収支原理の最小アンカー.md` に反映済みである。
 2. `SerialReliability.lean` と `ConstantFractionDecay.lean` を loss-only control anchors として theorem map にまとめる。これは `lean/PAPER_MAPPING.md` の C2 / C3 と README の formalization section に反映済みである。
 3. G4 v2 は、fatigue / reliability の repair intervention を含む
    open-system model へ進む。scope は

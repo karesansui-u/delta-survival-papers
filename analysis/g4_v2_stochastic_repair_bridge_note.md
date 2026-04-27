@@ -24,13 +24,13 @@ Consider a filtered process \((\mathcal F_t)\) with:
 - accumulated damage \(D_t\);
 - one-step damage increment \(d_t\);
 - one-step repair / maintenance increment \(g_t\);
-- net action
+- one-step balance
   \[
-    a_t := d_t-g_t;
+    b_t := d_t-g_t;
   \]
-- cumulative net action
+- cumulative one-step balance
   \[
-    A_n := \sum_{t<n} a_t;
+    B_n := \sum_{t<n} b_t;
   \]
 - failure threshold \(B\);
 - remaining margin
@@ -41,9 +41,9 @@ Consider a filtered process \((\mathcal F_t)\) with:
 Then the finite-prefix identity is
 
 \[
-  D_n = D_0 + A_n,
+  D_n = D_0 + B_n,
   \qquad
-  M_n = M_0 - A_n.
+  M_n = M_0 - B_n.
 \]
 
 Collapse occurs at the stopping time
@@ -63,7 +63,7 @@ The bridge claim is conditional:
 ```text
 If a repairable stochastic system admits a natural damage / margin quantity,
 an observable repair flow, and a stopping boundary, then its stability
-question can be written in structural-balance form.
+question can be written in structural-persistence balance form.
 ```
 
 That is stronger than a metaphor and weaker than a new universal theorem.
@@ -75,7 +75,7 @@ That is stronger than a metaphor and weaker than a new universal theorem.
 If
 
 \[
-  \mathbb E[a_t \mid \mathcal F_t] \ge \varepsilon > 0
+  \mathbb E[b_t \mid \mathcal F_t] \ge \varepsilon > 0
 \]
 
 while the process remains below the failure threshold, then the expected margin
@@ -94,7 +94,7 @@ This is the repairable analog of overload drift in queueing.
 If
 
 \[
-  \mathbb E[a_t \mid \mathcal F_t] \le -\varepsilon < 0
+  \mathbb E[b_t \mid \mathcal F_t] \le -\varepsilon < 0
 \]
 
 outside a critical set, then the expected margin increases and the process has
@@ -111,14 +111,14 @@ This is not yet an optimal maintenance theorem. It is the sign-level bridge.
 
 ### 4.3 Bounded-increment stopping / concentration
 
-If \(a_t\) has bounded increments, or a suitable MGF / concentration condition
+If \(b_t\) has bounded increments, or a suitable MGF / concentration condition
 holds, then finite-horizon collapse probabilities can be bounded through the
-cumulative action \(A_n\).
+structural balance amount \(B_n\).
 
 Reader-facing meaning:
 
 ```text
-Once a repairable system has a frozen margin variable and bounded net action,
+Once a repairable system has a frozen margin variable and bounded one-step balance,
 collapse risk over a horizon can be controlled by standard drift /
 concentration tools.
 ```
@@ -179,7 +179,7 @@ the following were added.
 1. a reader-facing stopping / hitting proposition under explicit bounded-drift
    assumptions;
 2. a reliability-style theorem that preserves the original domain assumptions
-   and is rewritten in \(a_t, A_n, M_t\) notation;
+   and is rewritten in \(b_t, B_n, M_t\) notation;
 3. a frozen maintenance-log primary where \(g_t\) is a direct logged
    intervention quantity rather than a proxy.
 
