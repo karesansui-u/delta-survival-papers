@@ -257,7 +257,7 @@ $\Phi$ は、少なくとも非負性と各 effective component に関する単�
 
 3.1 対応の原則: 成分と担い手を分ける
 
-本節で最も重要なのは、維持能力成分と担い手を混同しないことである。$M_{\mathrm{buffer}}, M_{\mathrm{recovery}}, M_{\mathrm{reconfiguration}}$ は「どの様式で持続するか」を表す。これに対して、その様式を担うのが base system 自身なのか、prompt 内の表現なのか、外部プロセスなのかは別問題である。§2 の formal notation では、外部供給分を $M_{\mathrm{ext}\to\mathrm{buffer}}, M_{\mathrm{ext}\to\mathrm{recovery}}, M_{\mathrm{ext}\to\mathrm{reconfiguration}}$ と書く。
+本節で最も重要なのは、維持能力成分と担い手を混同しないことである。$M_{\mathrm{buffer}}, M_{\mathrm{recovery}}, M_{\mathrm{reconfiguration}}$ は「どの維持能力成分が働くか」を表す。これに対して、その成分を担うのが base system 自身なのか、prompt 内の表現なのか、外部プロセスなのかは別問題である。§2 の formal notation では、外部供給分を $M_{\mathrm{ext}\to\mathrm{buffer}}, M_{\mathrm{ext}\to\mathrm{recovery}}, M_{\mathrm{ext}\to\mathrm{reconfiguration}}$ と書く。
 
 したがって、外部システムが repair 型の作用を供給する場合、本補論ではこれを
 \[

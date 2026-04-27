@@ -436,7 +436,8 @@ empirical universality support != formal law-of-tendency theorem
 Paper 5's resource decomposition:
 
 ```text
-M = (M_{\mathrm{buffer}}, M_{\mathrm{recovery}}, M_{\mathrm{reconfiguration}}, M_{\mathrm{external}})
+M_int = (M_buffer, M_recovery, M_reconfiguration)
+M_external = (M_ext->buffer, M_ext->recovery, M_ext->reconfiguration)
 ```
 
 is relevant to target theorem 4 because it gives operational content to the
@@ -487,4 +488,3 @@ assumptions.
 
 The Bernoulli-CSP layer should be described as a finite-horizon bad-event
 collapse / drift tendency interface, not as a repair-dominance theorem.
-

@@ -167,8 +167,9 @@ This gives an intervention-ranking bridge:
 - a schedule is useful only relative to the loss profile \(d_t\).
 
 This is the non-CSP version of the M supplement's operational mapping layer.
-In the M supplement's \(M_{\mathrm{buffer}} / M_{\mathrm{recovery}} / M_{\mathrm{reconfiguration}} / M_{\mathrm{external}}\) decomposition, preventive
-maintenance schedules instantiate the \(M_{\mathrm{recovery}}\) recovery component with
+In the M supplement's internal-component / external-channel decomposition,
+preventive maintenance schedules instantiate the \(M_{\mathrm{recovery}}\)
+recovery component with
 operationally observable semantics: repair events are scheduled, logged, and
 cost-accounted.
 

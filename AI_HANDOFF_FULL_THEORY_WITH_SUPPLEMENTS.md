@@ -5277,11 +5277,7 @@ Paper 1 の最小形式 $S = M e^{-L}$ にはもう一つの側があり、そ�
 
 2.2 維持能力成分と供給 channel の定義
 
-本補論では、$M$ をスカラーではなく、維持能力成分と供給 channel に分けて扱う。初期の shorthand として
-\[
-  M = (M_{\mathrm{buffer}}, M_{\mathrm{recovery}}, M_{\mathrm{reconfiguration}}, M_{\mathrm{external}})
-\]
-と書くことはあるが、集約関数 $\Phi$ が直接受け取る同列の座標は $M_{\mathrm{buffer}}, M_{\mathrm{recovery}}, M_{\mathrm{reconfiguration}}$ の三つである。$M_{\mathrm{external}}$ は第四の維持能力成分ではなく、外部から他成分を供給する channel / externalization profile として扱う。以下では、記号を短くするため $\mathrm{external}$ を $\mathrm{ext}$ と略記する。
+本補論では、$M$ をスカラーではなく、内部の維持能力成分と外部供給 channel に分けて扱う。集約関数 $\Phi$ が直接受け取る同列の座標は $M_{\mathrm{buffer}}, M_{\mathrm{recovery}}, M_{\mathrm{reconfiguration}}$ の三つである。外部供給は第四の維持能力成分ではなく、外部から他成分を供給する channel / externalization profile として扱う。以下では、記号を短くするため $\mathrm{external}$ を $\mathrm{ext}$ と略記する。
 
 \begin{definition}[維持能力成分と外部供給 channel]
 \[
@@ -5438,13 +5434,13 @@ $\Phi$ は、少なくとも非負性と各 effective component に関する単�
 
 3.1 対応の原則: 成分と担い手を分ける
 
-本節で最も重要なのは、維持能力成分と担い手を混同しないことである。$M_{\mathrm{buffer}}, M_{\mathrm{recovery}}, M_{\mathrm{reconfiguration}}$ は「どの様式で持続するか」を表す。これに対して、その様式を担うのが base system 自身なのか、prompt 内の表現なのか、外部プロセスなのかは別問題である。§2 の formal notation では、外部供給分を $M_{\mathrm{ext}\to\mathrm{buffer}}, M_{\mathrm{ext}\to\mathrm{recovery}}, M_{\mathrm{ext}\to\mathrm{reconfiguration}}$ と書く。
+本節で最も重要なのは、維持能力成分と担い手を混同しないことである。$M_{\mathrm{buffer}}, M_{\mathrm{recovery}}, M_{\mathrm{reconfiguration}}$ は「どの維持能力成分が働くか」を表す。これに対して、その成分を担うのが base system 自身なのか、prompt 内の表現なのか、外部プロセスなのかは別問題である。§2 の formal notation では、外部供給分を $M_{\mathrm{ext}\to\mathrm{buffer}}, M_{\mathrm{ext}\to\mathrm{recovery}}, M_{\mathrm{ext}\to\mathrm{reconfiguration}}$ と書く。
 
 したがって、外部システムが repair 型の作用を供給する場合、本補論ではこれを
 \[
   M_{\mathrm{ext}\to\mathrm{recovery}}
 \]
-と書く。これは「外部 channel が recovery 成分を供給している」ことを表す記法である。$M_{\mathrm{external}}$ は外部支援の channel を表し、$M_{\mathrm{recovery}}$ は供給される維持能力成分を表す。つまり、
+と書く。これは「外部 channel が recovery 成分を供給している」ことを表す記法である。$\mathrm{ext}$ は外部支援の channel を表し、$M_{\mathrm{recovery}}$ は供給される維持能力成分を表す。つまり、
 
 - in-context $M_{\mathrm{recovery}}$: base system 内の $\gamma_{\mathrm{recovery}}$ を prompt design によって誘導する。
 - $M_{\mathrm{ext}\to\mathrm{recovery}}$: 外部プロセスが repair / resolution を担い、その結果を base system に供給する。
@@ -5503,7 +5499,7 @@ ON vs OFF は `p = 0.0004`, Cohen's `d = 8.80` であった。qwen3.5:27b の追
 
 この効果は in-context marker とは階層が異なる。代謝 pipeline が、古い情報と新しい情報の衝突を検出し、旧値 -> 新値という範囲づけられた形へ変換してから base system に供給している。本補論の語彙では、これは $M_{\mathrm{ext}\to\mathrm{recovery}}$ の indicator である。
 
-ここで $M_{\mathrm{external}}$ は「外部に助けられている」という channel を表し、$M_{\mathrm{recovery}}$ は「供給されている作用が repair / resolution 型である」ことを表す。同じ外部支援でも、冗長サーバを供給するなら $M_{\mathrm{ext}\to\mathrm{buffer}}$、依存再編を供給するなら $M_{\mathrm{ext}\to\mathrm{recovery}}$ と読むべきである。
+ここで $\mathrm{ext}$ は「外部に助けられている」という channel を表し、$M_{\mathrm{recovery}}$ は「供給されている作用が repair / resolution 型である」ことを表す。同じ外部支援でも、冗長サーバを供給するなら $M_{\mathrm{ext}\to\mathrm{buffer}}$、依存再編を供給するなら $M_{\mathrm{ext}\to\mathrm{recovery}}$ と読むべきである。
 
 さらに、qwen3.5:9b の代謝あり 100 ターン実験では、規則適用と矛盾検出が 87-100% の範囲で振動し、検索成功率は 96% で安定していた。これは単独では強い検証ではないが、$M_{\mathrm{ext}\to\mathrm{recovery}}$ が機能し続ける限り、長期の制約蓄積がただちに単調崩壊へ向かわないことの示唆的 indicator である。
 
@@ -5724,7 +5720,7 @@ Software / SaaS における $M_i$ は、内部の維持能力成分と外部供
 | $M_{\mathrm{ext}\to\mathrm{recovery}}$ | 外部から供給される repair | vendor incident response, external SRE, managed rollback support, upstream maintainer fix |
 | $M_{\mathrm{ext}\to\mathrm{reconfiguration}}$ | 外部から供給される reconfiguration | consultant-led migration, upstream architectural change, external refactoring support |
 
-§3 の区別に従えば、$M_{\mathrm{external}}$ は同列の第四成分ではなく、外部から他成分を供給する channel / externalization profile である。たとえば、vendor support が incident rollback を支援するなら $M_{\mathrm{ext}\to\mathrm{recovery}}$、managed service が redundancy を提供するなら $M_{\mathrm{ext}\to\mathrm{buffer}}$、external consultant が boundary redesign を支援するなら $M_{\mathrm{ext}\to\mathrm{reconfiguration}}$ と読む。
+§3 の区別に従えば、外部供給は同列の第四成分ではなく、外部から他成分を供給する channel / externalization profile である。たとえば、vendor support が incident rollback を支援するなら $M_{\mathrm{ext}\to\mathrm{recovery}}$、managed service が redundancy を提供するなら $M_{\mathrm{ext}\to\mathrm{buffer}}$、external consultant が boundary redesign を支援するなら $M_{\mathrm{ext}\to\mathrm{reconfiguration}}$ と読む。
 
 有効成分は、
 
