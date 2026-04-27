@@ -6,7 +6,7 @@
 
 本補論は、構造持続の収支原理が SAT / Bernoulli-CSP / Mixed-CSP の内部だけで閉じた理論ではなく、非CSPの古典的構造にも歪めず写ることを示すための G4 anchor package を定める。
 
-結論は三つである。第一に、G4 v1 の primary anchor は queueing / Foster-Lyapunov drift とする。これは、構造持続の収支原理の一段収支 \(b_t\) が、excess demand や Lyapunov increment として直接読めるためである。第二に、serial reliability と constant-fraction decay を loss-only control anchors とする。これらは、構造持続の収支原理の指数核
+結論は三つである。第一に、G4 v1 の primary anchor は queueing / Foster-Lyapunov drift とする。これは、構造持続の収支原理の純消耗量 \(b_t\) が、excess demand や Lyapunov increment として直接読めるためである。第二に、serial reliability と constant-fraction decay を loss-only control anchors とする。これらは、構造持続の収支原理の指数核
 \[
   R=\exp(-L)
 \]
@@ -85,7 +85,7 @@ Queueing / Foster-Lyapunov を primary anchor にする理由は、構造持続�
 \]
 が形式化されている。ここで \(\lambda\) は arrival rate、\(\mu\) は service rate である。
 
-一段収支は
+純消耗量は
 \[
   b_t=\lambda-\mu
 \]
@@ -312,7 +312,7 @@ M 補論の語彙で言えば、preventive maintenance schedule は \(M_{\mathrm
 この G4 v2 anchor が言えること:
 
 - 回復量 \(r_t\) は非CSPの reliability / fatigue 系でも自然に出る。
-- 構造持続の収支原理は loss-only exponential kernel だけでなく、consumption-minus-recovery balance も非CSP側に持つ。
+- 構造持続の収支原理は loss-only exponential kernel だけでなく、consumption-minus-recovery accounting も非CSP側に持つ。
 - repair / maintenance は \(B_n\) を下げ、remaining margin を damage-only dynamics より改善する。
 
 この G4 v2 anchor が言えないこと:

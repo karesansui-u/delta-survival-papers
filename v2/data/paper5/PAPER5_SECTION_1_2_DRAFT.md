@@ -29,7 +29,7 @@ Scope of this draft: §1 はじめに と §2 最小形式 のみ。§3 以降�
 
 本稿は新しい普遍法則の証明ではない。本稿は、支える側の操作的座標系である。
 Paper 1/2 が与えた structural loss $L$、および Paper 3/4 で経験的に観察された
-loss / support の相互作用を前提として、どの maintenance mode を最初に強化すべきかを問う。
+構造消耗と支援の相互作用を前提として、どの maintenance mode を最初に強化すべきかを問う。
 本稿の固有の主張は、よりよい risk prediction そのものではなく、mode 分解にもとづく
 intervention ranking である。
 

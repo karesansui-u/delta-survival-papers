@@ -52,8 +52,8 @@ probability assumptions.
 
 | Paper phrase | Lean vocabulary | Lean theorem / object | Status |
 |---|---|---|---|
-| balance exponential kernel | local net balance / feasible mass | `feasibleMass_succ_eq_mass_mul_exp_neg_stepNetAction`; `feasibleMass_eq_initial_mul_exp_neg_cumulativeNetAction` | proven |
-| cumulative balance kernel \(m(V^{(n)}) = m(V^{(0)}) e^{-B_n}\) | cumulative net balance | `feasibleMass_eq_initial_mul_exp_neg_cumulativeNetAction` | proven |
+| net-consumption exponential kernel | local net-consumption identity / feasible mass | `feasibleMass_succ_eq_mass_mul_exp_neg_stepNetAction`; `feasibleMass_eq_initial_mul_exp_neg_cumulativeNetAction` | proven |
+| cumulative net consumption kernel \(m(V^{(n)}) = m(V^{(0)}) e^{-B_n}\) | cumulative net-consumption coordinate | `feasibleMass_eq_initial_mul_exp_neg_cumulativeNetAction` | proven |
 | repair/resource contribution dominates contraction loss | nonnegative step total production | `expectedCumulative_monotone_of_ae_nonnegative_stepTotalProduction` | proven; naming gap only |
 | deterministic total production tendency | deterministic step model | `deterministic_expectedCumulative_monotone` | proven |
 | coarse-grained typical nondecrease | coarse stochastic compatibility | `coarse_expectedCumulative_monotone_of_micro_nonnegative`; `coarse_expectedCumulative_monotone_of_micro_resourceBounded`; `coarse_expectedCumulative_monotone_of_micro_conditionalAzuma` | proven |
@@ -88,20 +88,20 @@ Paper 3 の pathwise algebraic kernel は、既存の
 は、この既存 theorem 群を Paper 3 の読者向け名称で束ねる薄い wrapper であり、新しい仮定や
 新しい普遍法則 claim は追加しない。
 
-重要な前提は positivity である。対数比で loss / gain / one-step balance を定義するため、Lean 側では
+重要な前提は positivity である。対数比で loss / gain / net consumption amount を定義するため、Lean 側では
 `PositiveTrajectory`、Paper 3 側では positive finite trajectory assumptions の下で
 machine-checked と読む。
 
 | Paper 3 claim | Lean entry point | Underlying theorem / object | Status |
 |---|---|---|---|
-| one-step balance \(b_t=d_t-r_t\) | `StructuralPersistenceBalancePrinciple.oneStepBalance_eq_consumption_sub_recovery` | `GeneralStateDynamics.stepNetAction` | proven by definition |
-| structural persistence balance amount \(B_n=\sum_{t<n}b_t\) | `StructuralPersistenceBalancePrinciple.cumulativeBalance_eq_sum_oneStepBalance` | `GeneralStateDynamics.cumulativeNetAction` | proven by definition |
-| local balance \(m(V^{t+1})=m(V^t)e^{-b_t}\) | `StructuralPersistenceBalancePrinciple.local_exponential_balance` | `feasibleMass_succ_eq_mass_mul_exp_neg_stepNetAction` | proven under positivity |
-| pathwise balance kernel \(m(V^n)=m(V^0)e^{-B_n}\) | `StructuralPersistenceBalancePrinciple.pathwise_balance_exponential_kernel` | `feasibleMass_eq_initial_mul_exp_neg_cumulativeNetAction` | proven under positive finite trajectory assumptions |
+| net consumption amount \(b_t=d_t-r_t\) | `StructuralPersistenceBalancePrinciple.netConsumptionAmount_eq_consumption_sub_recovery` | `GeneralStateDynamics.stepNetAction` | proven by definition |
+| cumulative net consumption amount \(B_n=\sum_{t<n}b_t\) | `StructuralPersistenceBalancePrinciple.cumulativeNetConsumption_eq_sum_netConsumptionAmount` | `GeneralStateDynamics.cumulativeNetAction` | proven by definition |
+| local net-consumption identity \(m(V^{t+1})=m(V^t)e^{-b_t}\) | `StructuralPersistenceBalancePrinciple.local_exponential_netConsumption_identity` | `feasibleMass_succ_eq_mass_mul_exp_neg_stepNetAction` | proven under positivity |
+| pathwise net-consumption kernel \(m(V^n)=m(V^0)e^{-B_n}\) | `StructuralPersistenceBalancePrinciple.pathwise_netConsumption_exponential_kernel` | `feasibleMass_eq_initial_mul_exp_neg_cumulativeNetAction` | proven under positive finite trajectory assumptions |
 | loss-only kernel recovery | `StructuralPersistenceBalancePrinciple.pureContraction_recovers_loss_only_kernel` | `feasibleMass_eq_initial_mul_exp_neg_cumulativeLoss_of_pureContraction` | proven for pure contraction / zero gain |
 | Foster-Lyapunov algebraic embedding | `StructuralPersistenceBalancePrinciple.lyapunov_*` wrappers | `LyapunovBalanceEmbedding.*` | proven as minimal algebraic embedding, not positive recurrence |
-| repair / maintenance finite-prefix balance | `StructuralPersistenceBalancePrinciple.repair_*` wrappers | `RepairMaintenanceBalance.*` | proven finite-prefix skeleton |
-| remaining margin \(B-D_n\) | `repair_remainingMargin_eq_initial_margin_sub_cumulative_balance` | `RepairMaintenanceBalance.margin` | proven; this is margin, not Paper 1 resource term `M` |
+| repair / maintenance finite-prefix net-consumption skeleton | `StructuralPersistenceBalancePrinciple.repair_*` wrappers | `RepairMaintenanceBalance.*` | proven finite-prefix skeleton |
+| remaining margin \(B-D_n\) | `repair_remainingMargin_eq_initial_margin_sub_cumulative_netConsumption` | `RepairMaintenanceBalance.margin` | proven; this is margin, not Paper 1 resource term `M` |
 
 Paper 3 non-claims remain outside Lean:
 
@@ -111,6 +111,32 @@ Paper 3 non-claims remain outside Lean:
 - Backblaze / C-MAPSS / Scania empirical outcomes;
 - Foster-Lyapunov positive recurrence, geometric ergodicity, or optimal maintenance theorem;
 - any universal-law declaration.
+
+## M 補論 / Maintenance Component Decomposition Mapping
+
+M 補論の維持能力成分の分解は、
+`Survival/MaintenanceComponentDecomposition.lean` で形式化している。
+ここで Lean が閉じるのは、「external は第四成分ではなく供給 channel である」
+という表現文法であり、各ドメインの proxy 妥当性や \(\Phi\) の universal form ではない。
+
+| M supplement claim | Lean entry point | Status |
+|---|---|---|
+| maintenance components are exactly buffer / recovery / reconfiguration | `MaintenanceComponent.exhaustive` | proven by finite inductive type elimination |
+| supply channels are exactly internal / external | `SupplyChannel.exhaustive` | proven by finite inductive type elimination |
+| component profile is determined by three coordinates | `componentProfile_ext` | proven by extensionality over `MaintenanceComponent` |
+| supply profile is determined by internal/external × three components | `supplyProfile_ext` | proven by extensionality over channel × component |
+| any supply profile decomposes into internal and external component profiles | `fromInternalExternal_internalProfile_externalProfile` | proven by definition |
+| internal/external decomposition is unique | `fromInternalExternal_eq_iff` | proven by function extensionality |
+| external supply enters effective capacity component-wise | `effectiveProfile` / `effectiveProfile_apply` | proven by definition |
+| nonnegative supplies and nonnegative aggregators yield nonnegative effective maintenance | `effectiveMaintenance_nonneg` | proven under explicit nonnegativity-preservation assumptions |
+
+M supplement non-claims remain outside Lean:
+
+- naturality or observability of \(M_{\mathrm{buffer}},M_{\mathrm{recovery}},M_{\mathrm{reconfiguration}}\) in arbitrary domains;
+- empirical validity of component signals in software / SaaS;
+- the best form of \(\gamma_i\), \(A_j\), or \(\Phi\);
+- intervention-ranking support in operational data;
+- a universal metric for the M-side resource term.
 
 ## Lean で閉じている範囲
 
@@ -190,7 +216,7 @@ drift は `log(2^k / allowed)` になる。部分二項和が \(0\) と \(2^k\) 
 | Paper 1 §3.1 B1–B4 公理 | 損失尺度 f の公理系 | `LogUniqueness.lean` | 形式化済・論文掲載 |
 | Paper 1 §3.2 対数比一意性 | f(r) = -k ln r 一意強制 | `LogUniqueness.lean`, `CauchyExponential.lean` | 形式化済・論文掲載 |
 | Paper 1 §4 命題1 望遠鏡積 | m(V⁽ⁿ⁾) = m(V⁽⁰⁾)e⁻ᴸ 恒等式 | `TelescopingExp.lean` | 形式化済・論文掲載 |
-| Paper 1 §5 S = Me⁻ᴸ, S_c 閾値 | 構造持続ポテンシャル | `FullFormula.lean`, `Penalty.lean`, `Basic.lean` | 形式化済（3因子分解まで） |
+| Paper 1 §5 S = Me⁻ᴸ, S_c 閾値 | 構造持続量 | `FullFormula.lean`, `Penalty.lean`, `Basic.lean` | 形式化済（3因子分解まで） |
 | Paper 1 §5 崩壊 S < S_c | 崩壊条件 | `CollapseTimeBound.lean`, `StochasticCollapseTimeBound.lean`, `HighProbabilityCollapse.lean` | **確率版まで拡張済（論文未掲載）** |
 | Paper 2 §2 A1/A2/A3 | 三条件の分離 | `AxiomsToExp.lean` | 形式化済・論文掲載 |
 | Paper 2 §3 恒等式 A1–A2 のみ | 独立性不要 | `TelescopingExp.lean` | 形式化済・論文掲載 |
@@ -321,6 +347,12 @@ drift は `log(2^k / allowed)` になる。部分二項和が \(0\) と \(2^k\) 
 | [`ResourceBoundedDynamics.lean`](Survival/ResourceBoundedDynamics.lean) | resource-bounded → Σ 単調 | Paper 3 §9.2 長期安定性、Paper 4 §7 の基礎 |
 | [`ResourceBoundedStochasticCollapse.lean`](Survival/ResourceBoundedStochasticCollapse.lean) | initial margin → high-probability stopped collapse | **最重要の高確率層、論文未掲載** |
 | [`GeneralStateDynamics.lean`](Survival/GeneralStateDynamics.lean) | `feasibleMass_eq_initial_mul_exp_neg_cumulativeNetAction`: 符号付き指数カーネル | **Paper 1 の暗黙核定理を形式化** |
+
+### G2. M 側の維持能力成分分解（1）— **M 補論の表現文法**
+
+| ファイル | 主定理 | 評価 |
+|---------|-------|------|
+| [`MaintenanceComponentDecomposition.lean`](Survival/MaintenanceComponentDecomposition.lean) | `MaintenanceComponent.exhaustive`, `SupplyChannel.exhaustive`, `componentProfile_ext`, `supplyProfile_ext`, `fromInternalExternal_eq_iff`, `effectiveMaintenance_nonneg` | buffer / recovery / reconfiguration と internal / external channel の分離を型レベルで固定。external を第四成分にしないための M 補論 grammar |
 
 ### H. マルコフ修復チェーン（3）— **Paper 4 §7 条件 (i) 最小形式モデル**
 

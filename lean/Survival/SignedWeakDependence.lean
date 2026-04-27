@@ -4,7 +4,7 @@ import Survival.WeakDependence
 
 /-!
 Signed Weak Dependence — Robust Exponential Bounds for Signed Balance
-符号付き弱依存 — 符号付き収支量に対する指数境界
+符号付き弱依存 — 符号付き純消耗量に対する指数境界
 
 This module formalizes a cautious signed-balance extension of
 `Survival.WeakDependence`.
@@ -37,7 +37,7 @@ namespace Survival.SignedWeakDependence
 
 noncomputable section
 
-/-- Survival factor induced by a signed balance amount. -/
+/-- Survival factor induced by a signed net-consumption amount. -/
 def signedSurvival (A : ℝ) : ℝ :=
   exp (-A)
 

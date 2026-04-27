@@ -4,7 +4,7 @@ Status: working roadmap for humans / other LLMs.
 
 Purpose:
 
-このメモは、構造持続理論を「普遍理論候補」として強化するための次ステップを、他の LLM / agent が読んでも迷わないように整理する。現時点の方針は、M 分解を universal core にしないこと。core は **構造持続の収支原理 / structural persistence balance principle** に置き、M 分解は回復量・資源流を実ドメインで測る operational mapping layer として扱う。
+このメモは、構造持続理論を「普遍理論候補」として強化するための次ステップを、他の LLM / agent が読んでも迷わないように整理する。現時点の方針は、M 分解を universal core にしないこと。core は **構造持続の収支原理 / structural persistence balance principle** に置き、M 分解は回復量・資源入力を実ドメインで測る operational mapping layer として扱う。
 
 注意: `v2/data/` はローカル作業メモ置き場で、`.gitignore` 対象である。コミットしたい場合は `git add -f v2/data/ROADMAP_構造持続の収支原理とRouteA強化.md` が必要。
 
@@ -154,7 +154,7 @@ Tentative title:
 
 ```text
 構造持続の収支原理と崩壊傾向
-— 構造消耗量と回復量の構造持続収支量 —
+— 構造消耗量と回復量の累積純消耗量 —
 ```
 
 Core identity:
@@ -169,8 +169,8 @@ Interpretation:
 
 - $d_t$: structural consumption amount / 構造消耗量。
 - $r_t$: recovery, repair, support, resource input / 回復・修復・資源入力。
-- $b_t$: one-step balance / 一段収支。
-- $B_n$: structural-persistence balance amount / 構造持続収支量。
+- $b_t$: net consumption amount / 純消耗量。
+- $B_n$: cumulative net consumption amount / 累積純消耗量。
 
 Minimal sections:
 

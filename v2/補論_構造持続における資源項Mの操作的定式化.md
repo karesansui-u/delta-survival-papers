@@ -4,9 +4,9 @@
 
 要旨
 
-本補論は、構造持続の最小形式 $S = M e^{-L}$ のうち、資源項 $M$ を単一スカラーとして扱うのをやめ、維持能力成分と外部供給 channel に分ける枠組みを与える。Paper 1 と Paper 2 が loss 側の累積構造消耗量 $L$ を対数比の構造消耗として特徴づけ、Route C companion I と II が LLM 推論と継続学習における loss / support の相互作用を経験的に観察したのに対し、本補論は support 側の操作的座標系を提供する。
+本補論は、構造持続の最小形式 $S = M e^{-L}$ のうち、資源項 $M$ を単一スカラーとして扱うのをやめ、維持能力成分と外部供給 channel に分ける枠組みを与える。Paper 1 と Paper 2 が構造消耗側の累積構造消耗量 $L$ を対数比の構造消耗として特徴づけ、Route C companion I と II が LLM 推論と継続学習における構造消耗と支援の相互作用を経験的に観察したのに対し、本補論は支える側の操作的座標系を提供する。
 
-具体的には、内部の維持能力成分を $M^{\mathrm{int}} = (M_{\mathrm{buffer}}^{\mathrm{int}}, M_{\mathrm{recovery}}^{\mathrm{int}}, M_{\mathrm{reconfiguration}}^{\mathrm{int}})$、外部供給 channel を $M^{\mathrm{external}} = (M_{\mathrm{ext}\to\mathrm{buffer}}, M_{\mathrm{ext}\to\mathrm{recovery}}, M_{\mathrm{ext}\to\mathrm{reconfiguration}})$ と分け、raw resource $R$ から維持能力成分への写像 $\gamma_i$、内部能力と外部供給を合わせる集約 $\widetilde M_j = A_j(M^{\mathrm{int}}_j, M_{\mathrm{ext}\to j})$、複数の effective component を結合する $\Phi$ を通じて、系の構造持続ポテンシャルを
+具体的には、内部の維持能力成分を $M^{\mathrm{int}} = (M_{\mathrm{buffer}}^{\mathrm{int}}, M_{\mathrm{recovery}}^{\mathrm{int}}, M_{\mathrm{reconfiguration}}^{\mathrm{int}})$、外部供給 channel を $M^{\mathrm{external}} = (M_{\mathrm{ext}\to\mathrm{buffer}}, M_{\mathrm{ext}\to\mathrm{recovery}}, M_{\mathrm{ext}\to\mathrm{reconfiguration}})$ と分け、raw resource $R$ から維持能力成分への写像 $\gamma_i$、内部能力と外部供給を合わせる集約 $\widetilde M_j = A_j(M^{\mathrm{int}}_j, M_{\mathrm{ext}\to j})$、複数の effective component を結合する $\Phi$ を通じて、系の構造持続量を
 \[
   S = \Phi(\widetilde M_{\mathrm{buffer}}, \widetilde M_{\mathrm{recovery}}, \widetilde M_{\mathrm{reconfiguration}}) \, e^{-L}
 \]
@@ -14,7 +14,7 @@
 
 本補論の役割は、普遍法則そのものを主張することではなく、構造消耗量と回復量の収支を現実ドメインへ写すときの $M$ 側の操作化を与えることである。その操作的帰結として、同じ $L$、同じ raw resource $R$、同じ scalar $M_{\mathrm{total}}$ のもとでも、維持能力成分の構成が異なれば、最初に強化すべき成分は異なる、という intervention-ranking 型の検査標的が得られる。本補論はこの標的を software / SaaS を最初の Route C ドメインとして具体化し、$\rho_i$、$\Phi$、$A_j$ の候補族に対する頑健性検査を含む、事前固定可能な経験的検証プロトコルを与える。
 
-本補論は新しい普遍法則の証明ではない。また、経験的 pilot を完了した論文でもない。本補論の位置づけは、構造持続の収支原理の回復量・資源流を実ドメインで測るための support-side operational mapping である。
+本補論は新しい普遍法則の証明ではない。また、経験的 pilot を完了した論文でもない。本補論の位置づけは、構造持続の収支原理の回復量・資源入力を実ドメインで測るための support-side operational mapping である。
 
 
 1. はじめに
@@ -27,7 +27,7 @@
 
 これらはいずれも L という「削られる側」の座標を具体化する方向に集中している。
 
-本補論は新しい普遍法則の証明ではない。本補論は、支える側の操作的座標系である。Paper 1/2 が与えた structural loss $L$、および Route C companion I/II で経験的に観察された loss / support の相互作用を前提として、構造消耗を回復する資源・修復入力を実ドメインでどう記録するかを問う。維持能力成分の分解にもとづく intervention ranking は、その操作化から得られる検査標的であって、普遍理論の中核そのものではない。
+本補論は新しい普遍法則の証明ではない。本補論は、支える側の操作的座標系である。Paper 1/2 が与えた structural consumption \(L\)、および Route C companion I/II で経験的に観察された構造消耗と支援の相互作用を前提として、構造消耗を回復する資源・修復入力を実ドメインでどう記録するかを問う。維持能力成分の分解にもとづく intervention ranking は、その操作化から得られる検査標的であって、普遍理論の中核そのものではない。
 
 Paper 1 の最小形式 $S = M e^{-L}$ にはもう一つの側があり、それが有効維持資源 M である。M は「L と独立に、構造がどれだけ持ちこたえられるか」を担う量として導入されたが、既存分冊ではその内部構造はほとんど議論されていない。補論「構造持続写像の標準手順」(以下 補論B と呼ぶ) は運用展開
 \[
@@ -61,7 +61,7 @@ Paper 1 の最小形式 $S = M e^{-L}$ にはもう一つの側があり、そ�
 本補論の立場は、Paper 1–4 および補論群と整合するように、以下のように限定する。
 
 - 本補論は M の完全理論ではない。現行スカラー M を維持能力成分ベクトルへ分解するための分析フレームである。
-- 本補論は構造持続の収支原理の中核ではなく、その回復量・資源流を実ドメインへ写す操作化層である。
+- 本補論は構造持続の収支原理の中核ではなく、その回復量・資源入力を実ドメインへ写す操作化層である。
 - 本補論では**介入順位予測**を、維持能力成分の分解の操作的帰結として一つの検査標的に置く。崩壊プロファイルや時間発展主張は後続の拡張とみなす。
 - 本補論は最初のドメインとしてソフトウェア / SaaS を置き、four-domain comparison や普遍理論の宣言には進まない。
 - 本補論は Paper 1 §3 の対数比の一意性定理と同じ設計原理 (Cauchy 関数方程式と連続性から一意関数形を強制する) を M 側に移植する候補を持つ。§2.5 では、この表現補題候補を本補論の短い theoretical pointer として置き、証明と公理列挙の詳細は別稿の補論に委ねる。
@@ -224,7 +224,43 @@ $\Phi$ は、少なくとも非負性と各 effective component に関する単�
 
 この式は Paper 1 の $S = M e^{-L}$ を否定するものではない。スカラー $M$ を $M_{\mathrm{eff}}$ で置き換え、$M_{\mathrm{eff}}$ を effective component profile の集約として再構成しただけであり、スカラー $M$ は本式の低粒度の要約として回収される。
 
-2.6 補論 B との関係
+2.6 Lean で閉じている範囲
+
+本補論の維持能力成分の分解は、`Survival/MaintenanceComponentDecomposition.lean` で形式化されている。Lean 側で閉じているのは、経験的な proxy の妥当性ではなく、表現文法である。
+
+Lean では、維持能力成分を
+\[
+  \{\mathrm{buffer},\mathrm{recovery},\mathrm{reconfiguration}\}
+\]
+の三値型として定義し、供給 channel を
+\[
+  \{\mathrm{internal},\mathrm{external}\}
+\]
+の二値型として別に定義する。これにより、external は第四の維持能力成分ではなく、三つの成分を供給する channel であることが型レベルで固定される。
+
+対応する定理は次の通りである。
+
+| Lean entry point | 内容 |
+|---|---|
+| `MaintenanceComponent.exhaustive` | 維持能力成分は buffer / recovery / reconfiguration の三つで尽きる |
+| `SupplyChannel.exhaustive` | 供給 channel は internal / external の二つで尽きる |
+| `componentProfile_ext` | component profile は三成分の値で一意に決まる |
+| `supplyProfile_ext` | supply profile は internal/external × 三成分の六座標で一意に決まる |
+| `fromInternalExternal_internalProfile_externalProfile` | 任意の supply profile は internal profile と external profile に分解できる |
+| `fromInternalExternal_eq_iff` | その internal/external 分解は一意である |
+| `effectiveProfile` | internal/external の供給を成分ごとに集約し、effective component profile を作る |
+| `effectiveMaintenance_nonneg` | 非負供給と非負性保存 aggregator のもとで、effective maintenance capacity は非負になる |
+
+この Lean 化が閉じるのは、「本補論の記法体系では、M 側の同列成分は三つであり、external はそれらを供給する channel である」という構文的・代数的事実である。したがって、次は Lean の範囲外に残す。
+
+- 各ドメインでこの三成分が自然に測れること。
+- $\gamma_i$、$A_j$、$\Phi$ の経験的に最良な形。
+- software / SaaS における component signal の妥当性。
+- 介入順位予測が実データで成立すること。
+
+つまり、Lean は本補論の「外部供給を第四成分にしない」という文法を閉じる。経験的価値は、§6 の事前固定 validation で判定する。
+
+2.7 補論 B との関係
 
 本補論の枠組みが補論 B の運用展開
 \[
@@ -1134,8 +1170,8 @@ DeltaLint は、本補論の main validation ではない。DeltaLint が観測�
 
 8. 結論
 
-本補論は、構造持続の最小形式 $S = M e^{-L}$ の右辺のうち、支える側の資源項 $M$ を単一スカラーとして扱うのをやめ、維持能力成分と外部供給 channel に分ける枠組みを与えた。内部の維持能力成分を $M_{\mathrm{buffer}}^{\mathrm{int}}, M_{\mathrm{recovery}}^{\mathrm{int}}, M_{\mathrm{reconfiguration}}^{\mathrm{int}}$ に分け、外部供給 channel を $M_{\mathrm{ext}\to\mathrm{buffer}}, M_{\mathrm{ext}\to\mathrm{recovery}}, M_{\mathrm{ext}\to\mathrm{reconfiguration}}$ として、それぞれの実効能力を $\widetilde M_j = A_j(M_j^{\mathrm{int}}, M_{\mathrm{ext}\to j})$ に集約する。そのうえで、$\Phi$ による effective maintenance capacity $M_{\mathrm{eff}} = \Phi(\widetilde M_{\mathrm{buffer}}, \widetilde M_{\mathrm{recovery}}, \widetilde M_{\mathrm{reconfiguration}})$ を通じて、構造持続ポテンシャルを書き直した。
+本補論は、構造持続の最小形式 $S = M e^{-L}$ の右辺のうち、支える側の資源項 $M$ を単一スカラーとして扱うのをやめ、維持能力成分と外部供給 channel に分ける枠組みを与えた。内部の維持能力成分を $M_{\mathrm{buffer}}^{\mathrm{int}}, M_{\mathrm{recovery}}^{\mathrm{int}}, M_{\mathrm{reconfiguration}}^{\mathrm{int}}$ に分け、外部供給 channel を $M_{\mathrm{ext}\to\mathrm{buffer}}, M_{\mathrm{ext}\to\mathrm{recovery}}, M_{\mathrm{ext}\to\mathrm{reconfiguration}}$ として、それぞれの実効能力を $\widetilde M_j = A_j(M_j^{\mathrm{int}}, M_{\mathrm{ext}\to j})$ に集約する。そのうえで、$\Phi$ による effective maintenance capacity $M_{\mathrm{eff}} = \Phi(\widetilde M_{\mathrm{buffer}}, \widetilde M_{\mathrm{recovery}}, \widetilde M_{\mathrm{reconfiguration}})$ を通じて、構造持続量を書き直した。
 
 本補論の固有の検査標的は、よりよい risk prediction そのものではなく、維持能力成分の分解にもとづく介入順位予測である。すなわち、同じ $L$、同じ raw resource $R$、同じ scalar $M_{\mathrm{total}}$ のもとでも、維持能力成分の構成が異なれば、最初に強化すべき成分は異なる。本補論はこの標的を software / SaaS を最初の Route C ドメインとして具体化し、$\rho_i$, $\Phi$, $A_j$ の候補族に対する頑健性検査を含む、事前固定可能な経験的検証プロトコルを定式化した。実際の preregistration と pilot 実行は、本補論の外、別の empirical program として進める。
 
-本補論は新しい普遍法則の証明ではなく、また empirical pilot 完了論文でもない。本補論の位置づけは、構造持続の収支原理の回復量・資源流を実ドメインで測るための support-side operational mapping である。Paper 1 と Paper 2 が loss 側の対数比の構造消耗を特徴づけ、Route C companion I と II が loss / support の相互作用を経験的に観察したのに対し、本補論は support 側の操作的座標系を提供する。そこから自然に出てくる次段階は、準備された protocol を operational data に適用する経験的 pilot であり、それは本補論の外、別の empirical program として進める。
+本補論は新しい普遍法則の証明ではなく、また empirical pilot 完了論文でもない。本補論の位置づけは、構造持続の収支原理の回復量・資源入力を実ドメインで測るための support-side operational mapping である。Paper 1 と Paper 2 が構造消耗側の対数比の構造消耗を特徴づけ、Route C companion I と II が構造消耗と支援の相互作用を経験的に観察したのに対し、本補論は support 側の操作的座標系を提供する。そこから自然に出てくる次段階は、準備された protocol を operational data に適用する経験的 pilot であり、それは本補論の外、別の empirical program として進める。

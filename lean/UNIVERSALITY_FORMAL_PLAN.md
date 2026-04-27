@@ -42,7 +42,7 @@ This should be phrased as a reusable theorem schema rather than a domain claim.
 ## Work Packages
 
 1. Map theorem names currently available for:
-   - local balance;
+   - local net-consumption identity;
    - expectation-level nondecrease;
    - coarse-grained typical nondecrease;
    - high-probability stopped collapse.

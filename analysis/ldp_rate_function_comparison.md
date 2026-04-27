@@ -11,7 +11,7 @@ program still claims independent value.
 
 This note is deliberately anti-overclaim. If the answer is "part of Route A is
 already standard exponential-rate calculus", that is allowed. The defeat occurs
-only if the remaining structure adds no real domain-selection, loss/repair, or
+only if the remaining structure adds no real domain-selection, consumption/recovery, or
 testing discipline beyond ordinary LDP language.
 
 ## 1. The Core Risk
@@ -204,7 +204,7 @@ Recommended row for a comparison table:
 
 | Existing framework | Current status | Relation |
 |---|---|---|
-| Large deviation / rate-function machinery | local G6-b / partial Route A overlap | supplies much of the exponential tail mathematics; structural-persistence balance adds operational structure selection, loss/repair split, and evidence-tier discipline |
+| Large deviation / rate-function machinery | local G6-b / partial Route A overlap | supplies much of the exponential tail mathematics; structural-persistence balance adds operational structure selection, consumption/recovery split, and evidence-tier discipline |
 
 Avoid stronger wording such as:
 

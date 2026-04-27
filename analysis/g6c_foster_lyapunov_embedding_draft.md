@@ -15,7 +15,7 @@ Date: 2026-04-23
 \]
 のような負の drift 条件が成り立つとき、過程は高負荷状態から戻る傾向を持つ。
 
-構造持続の収支原理側では、この \(W(X_t)\) を構造負荷 \(Z_t\) と読み替え、一段の差分を一段収支
+構造持続の収支原理側では、この \(W(X_t)\) を構造負荷 \(Z_t\) と読み替え、一段の差分を純消耗量
 \[
   b_t=Z_{t+1}-Z_t
 \]
@@ -25,7 +25,7 @@ Date: 2026-04-23
 \]
 という recovery tendency になる。
 
-この対応は、G6-c iteration 1 の minimal algebraic embedding として閉じた。理由は、語彙の類似ではなく、構造持続収支量と指数的維持量の恒等式が同じ形で書けるからである。
+この対応は、G6-c iteration 1 の minimal algebraic embedding として閉じた。理由は、語彙の類似ではなく、累積純消耗量と指数的維持量の恒等式が同じ形で書けるからである。
 
 ## 2. G6-a/b/c の中での位置
 
@@ -42,7 +42,7 @@ Date: 2026-04-23
 本 draft が主張するのは、次の限定された命題である。
 
 \begin{quote}
-Foster-Lyapunov drift calculus の負荷差分は、構造持続の収支原理の一段収支 \(b_t\) として読める。したがって、その expectation-level drift 条件は、構造持続の収支原理の recovery / collapse tendency の特例として埋め込める。
+Foster-Lyapunov drift calculus の負荷差分は、構造持続の収支原理の純消耗量 \(b_t\) として読める。したがって、その expectation-level drift 条件は、構造持続の収支原理の recovery / collapse tendency の特例として埋め込める。
 \end{quote}
 
 ## 3. 最小埋め込み
@@ -53,11 +53,11 @@ Foster-Lyapunov drift calculus の負荷差分は、構造持続の収支原理�
 \]
 と定義する。
 
-一段収支を
+純消耗量を
 \[
   b_t:=Z_{t+1}-Z_t
 \]
-と置く。構造持続収支量は
+と置く。累積純消耗量は
 \[
   B_n:=\sum_{t=0}^{n-1}b_t
 \]
@@ -72,7 +72,7 @@ Foster-Lyapunov drift calculus の負荷差分は、構造持続の収支原理�
   Z_n-Z_0.
 \]
 
-これは構造持続の収支原理の構造持続収支量と同じ形式である。\(Z_t\) が増えると、構造負荷が増える。\(Z_t\) が減ると、回復が勝っている。
+これは構造持続の収支原理の累積純消耗量と同じ形式である。\(Z_t\) が増えると、構造負荷が増える。\(Z_t\) が減ると、回復が勝っている。
 
 ## 4. 指数的維持量
 
@@ -107,7 +107,7 @@ Foster-Lyapunov drift calculus の負荷差分は、構造持続の収支原理�
 
 ## 5. \(d_t,r_t\) への分解
 
-構造持続の収支原理の標準形では、一段収支を
+構造持続の収支原理の標準形では、純消耗量を
 \[
   b_t=d_t-r_t
 \]
@@ -134,7 +134,7 @@ Lyapunov 差分 \(\Delta Z_t:=Z_{t+1}-Z_t\) から、次のように分解でき
 
 したがって、負荷が増えるステップは structural consumption amount として、負荷が減るステップは recovery amount として読める。
 
-この読み替えは、物理的資源流を同定したという意味ではない。あくまで、Lyapunov 負荷の増減を構造持続の収支原理の符号つき収支量へ写す最小的な分解である。
+この読み替えは、物理的資源入力を同定したという意味ではない。あくまで、Lyapunov 負荷の増減を構造持続の収支原理の符号つき純消耗量へ写す最小的な分解である。
 
 ## 6. Drift regime の対応
 
@@ -164,7 +164,7 @@ Foster-Lyapunov drift 条件は、構造負荷 \(Z_t=W(X_t)\) を用いること
 \]
 である。
 
-このとき一段収支は
+このとき純消耗量は
 \[
   b_t=Z_{t+1}-Z_t=\lambda-\mu
 \]
@@ -237,7 +237,7 @@ Foster-Lyapunov theorem は通常、単なる代数恒等式だけでは成立�
 2. queueing stability theorem を新たに証明した。
 3. positive recurrence が構造持続の収支原理だけから従う。
 4. 任意の開いた構造系が Markov chain stability 問題である。
-5. 物理的な資源流 \(r_t\) が Lyapunov 負荷の減少と一意に同定される。
+5. 物理的な資源入力 \(r_t\) が Lyapunov 負荷の減少と一意に同定される。
 6. continuous-time generator や stochastic thermodynamics まで同時に扱った。
 7. G6-c が成立したので universal law が確立した。
 

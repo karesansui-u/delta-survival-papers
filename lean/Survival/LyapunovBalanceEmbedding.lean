@@ -11,14 +11,14 @@ This module records the minimal G6-c formal embedding described in the
 structural persistence balance principle:
 
 * a Lyapunov/load sequence `Z_t`,
-* its one-step balance `b_t = Z_{t+1} - Z_t`,
-* the structural persistence balance amount `B_n = ∑_{t<n} b_t = Z_n - Z_0`,
+* its net consumption amount `b_t = Z_{t+1} - Z_t`,
+* the cumulative net consumption amount `B_n = ∑_{t<n} b_t = Z_n - Z_0`,
 * the exponential maintenance coordinate `R_t = exp (-Z_t)`, with
   `R_{t+1} = R_t * exp (-b_t)`.
 
 It is deliberately narrow.  It does not formalize the Foster--Lyapunov
 positive-recurrence theorem; it only packages the algebraic embedding that lets
-Lyapunov drift conditions be read as expectation-level structural-persistence balance
+Lyapunov drift conditions be read as expectation-level structural-persistence net-consumption
 tendencies.
 -/
 
@@ -28,11 +28,11 @@ namespace Survival.LyapunovBalanceEmbedding
 
 noncomputable section
 
-/-- A one-step Lyapunov/load increment, read as one-step structural persistence balance. -/
+/-- A one-step Lyapunov/load increment, read as a one-step net-consumption amount. -/
 def increment (Z : ℕ → ℝ) (t : ℕ) : ℝ :=
   Z (t + 1) - Z t
 
-/-- Structural balance amount over the finite prefix `0, ..., n-1`. -/
+/-- Structural net-consumption amount over the finite prefix `0, ..., n-1`. -/
 def cumulativeAction (Z : ℕ → ℝ) (n : ℕ) : ℝ :=
   ∑ t ∈ Finset.range n, increment Z t
 
@@ -44,7 +44,7 @@ def relativeMaintenance (Z : ℕ → ℝ) (t : ℕ) : ℝ :=
 def consumptionAmount (Z : ℕ → ℝ) (t : ℕ) : ℝ :=
   max (increment Z t) 0
 
-/-- Negative part of the load increment, read as repair / recovery amount. -/
+/-- Negative part of the load increment, read as a recovery / maintenance amount. -/
 def recoveryAmount (Z : ℕ → ℝ) (t : ℕ) : ℝ :=
   max (-(increment Z t)) 0
 
@@ -66,7 +66,7 @@ theorem recoveryAmount_nonneg (Z : ℕ → ℝ) (t : ℕ) :
   unfold recoveryAmount
   exact le_max_right (-(increment Z t)) 0
 
-/-- The structural persistence balance amount telescopes to final load minus initial load. -/
+/-- The cumulative net consumption amount telescopes to final load minus initial load. -/
 theorem cumulativeAction_eq_load_diff (Z : ℕ → ℝ) (n : ℕ) :
     cumulativeAction Z n = Z n - Z 0 := by
   induction n with
@@ -78,7 +78,7 @@ theorem cumulativeAction_eq_load_diff (Z : ℕ → ℝ) (n : ℕ) :
       unfold increment
       ring
 
-/-- The exponential maintenance coordinate obeys the local balance update. -/
+/-- The exponential maintenance coordinate obeys the local net-consumption update. -/
 theorem relativeMaintenance_succ_eq_mul_exp_neg_increment
     (Z : ℕ → ℝ) (t : ℕ) :
     relativeMaintenance Z (t + 1) =
@@ -113,7 +113,7 @@ theorem increment_eq_consumptionAmount_sub_recoveryAmount (Z : ℕ → ℝ) (t :
 def queueLoad (Q : Survival.QueueStability.System) (initial : ℝ) : ℕ → ℝ :=
   fun n => Survival.QueueStability.backlog Q initial n
 
-/-- Queue one-step balance is exactly arrival minus service. -/
+/-- Queue net consumption amount is exactly arrival minus service. -/
 theorem queue_increment_eq_excessDemand
     (Q : Survival.QueueStability.System) (initial : ℝ) (n : ℕ) :
     increment (queueLoad Q initial) n =
@@ -122,7 +122,7 @@ theorem queue_increment_eq_excessDemand
   rw [Survival.QueueStability.backlog_succ]
   ring
 
-/-- Queue structural persistence balance amount is the deterministic cumulative overload loss. -/
+/-- Queue cumulative net consumption amount is the deterministic cumulative overload loss. -/
 theorem queue_cumulativeAction_eq_cumulativeOverloadLoss
     (Q : Survival.QueueStability.System) (initial : ℝ) (n : ℕ) :
     cumulativeAction (queueLoad Q initial) n =
@@ -133,7 +133,7 @@ theorem queue_cumulativeAction_eq_cumulativeOverloadLoss
   rw [Survival.QueueStability.backlog_zero]
   ring
 
-/-- Stable fluid queue: the one-step balance is nonpositive. -/
+/-- Stable fluid queue: the net consumption amount is nonpositive. -/
 theorem queue_increment_nonpos_of_stable
     (Q : Survival.QueueStability.System) (initial : ℝ) (n : ℕ)
     (hstable : Q.arrivalRate ≤ Q.serviceRate) :

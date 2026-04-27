@@ -17,10 +17,10 @@ balance principle paper into a bounded formal-mapping draft:
 ```text
 Foster-Lyapunov / queueing drift
   -> structural load Z_t
-  -> one-step balance b_t = Z_{t+1} - Z_t
-  -> structural-persistence balance amount B_n = Z_n - Z_0
+  -> net consumption amount b_t = Z_{t+1} - Z_t
+  -> cumulative net consumption amount B_n = Z_n - Z_0
   -> relative maintenance R_t = exp(-Z_t)
-  -> local balance R_{t+1} = R_t exp(-b_t)
+  -> local net-consumption identity R_{t+1} = R_t exp(-b_t)
 ```
 
 This is a sequencing move, not a retreat. The point is to strengthen the
@@ -59,7 +59,7 @@ Setting:
 - process \(X_t\);
 - nonnegative Lyapunov / load function \(W\);
 - structural load \(Z_t := W(X_t)\);
-- one-step balance \(b_t := Z_{t+1}-Z_t\).
+- net consumption amount \(b_t := Z_{t+1}-Z_t\).
 
 Then:
 
@@ -109,8 +109,7 @@ If one wants the two-flow sign convention of Paper §2.2, decompose:
   b_t=d_t-r_t.
 \]
 
-The one-step Lyapunov increment is then exactly the net consumption-minus-recovery
-action.
+The one-step Lyapunov increment is then exactly the net-consumption amount.
 
 ### 3.3 Queueing positive / overload regimes
 
@@ -158,7 +157,7 @@ The embedding is meaningful because it transfers the algebraic role of drift:
 | Existing theory | Structural balance |
 |---|---|
 | Lyapunov load \(W(X_t)\) | structural load \(Z_t\) |
-| increment \(W(X_{t+1})-W(X_t)\) | one-step balance \(b_t\) |
+| increment \(W(X_{t+1})-W(X_t)\) | net consumption amount \(b_t\) |
 | negative drift | recovery / maintenance tendency |
 | positive drift | overload / collapse tendency |
 | stability theorem assumptions | inherited assumptions, not removed |

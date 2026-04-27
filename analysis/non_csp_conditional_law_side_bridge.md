@@ -74,7 +74,7 @@ The map is direct:
 | domain-native quantity | structural-persistence balance reading |
 |---|---|
 | Lyapunov load \(W(X_t)\) or backlog \(Z_t\) | structural load |
-| \(W(X_{t+1})-W(X_t)\) | one-step balance \(b_t\) |
+| \(W(X_{t+1})-W(X_t)\) | net consumption amount \(b_t\) |
 | negative drift | maintenance / recovery tendency |
 | positive drift | overload / collapse tendency |
 | load threshold or unstable region | collapse / hitting boundary |
@@ -82,7 +82,7 @@ The map is direct:
 This is why G4 v1 and G6-c meet here so naturally.
 
 The point is not novelty in queueing theory. The point is that the
-consumption-minus-recovery vocabulary is not foreign to a classical stability
+net-consumption vocabulary is not foreign to a classical stability
 domain. It is already there, just under different names.
 
 ## 5. Repair / Maintenance Reliability-Fatigue

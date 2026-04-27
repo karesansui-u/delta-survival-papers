@@ -77,7 +77,7 @@ The intended sign convention is:
 | \(b_t > 0\) | net overload / collapse tendency / damage accumulation |
 | \(b_t = 0\) | balance / maintenance tendency at the chosen coarse scale |
 | \(b_t < 0\) | recovery / repair-dominant tendency |
-| \(B_n=\sum_{t<n}b_t\) | cumulative one-step balance |
+| \(B_n=\sum_{t<n}b_t\) | cumulative net consumption |
 | \(R_t=e^{-Z_t}\) or \(m(V_t)/m(V_0)\) | relative maintenance / feasible-structure ratio |
 
 If an anchor can only be made to fit by reversing these signs ad hoc, or by
@@ -250,7 +250,7 @@ Allowed outcome:
 ```text
 It is acceptable if the theory is partly a disciplined operational interface to
 LDP. The defeat occurs only if LDP supplies the same domain-selection,
-loss/repair, Route-strength, and preregistration discipline with less extra
+consumption/recovery, Route-strength, and preregistration discipline with less extra
 structure.
 ```
 

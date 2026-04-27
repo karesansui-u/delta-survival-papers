@@ -40,7 +40,7 @@ If those are not fixed, silence is healthier than forced translation.
 |---|---|---|
 | Critical phase transitions | The main object is often singular behavior, symmetry breaking, or critical exponents, not monotone loss / repair balance | A concrete order parameter, maintained phase, and measure fixed before interpretation |
 | Hopf bifurcation / limit cycles | Net action may oscillate while the real object is a stable cycle, not collapse or maintenance of a scalar load | A pre-fixed cycle basin or amplitude-based maintained structure |
-| Self-organized criticality / heavy-tail avalanche systems | Mean drift can be misleading; tail structure matters more than average one-step balance | Tail / large-deviation layer and explicit rare-event target |
+| Self-organized criticality / heavy-tail avalanche systems | Mean drift can be misleading; tail structure matters more than average net consumption amount | Tail / large-deviation layer and explicit rare-event target |
 | Static complexity-class statements | There may be no natural time-indexed \(Z_t\), \(b_t\), or \(B_n\) at all | An exposure or reduction path with a genuine sequential index |
 | Multi-attractor systems without a chosen target basin | "Maintenance" is undefined until one basin or attractor is privileged | Target basin / structure declared before analysis |
 | Objective-switching or regime-switching systems | Loss and repair semantics change with the objective, making one scalar balance ambiguous | Piecewise target definition with explicit regime segmentation |

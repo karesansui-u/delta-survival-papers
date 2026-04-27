@@ -22,13 +22,13 @@ look like in a repairable stochastic system.
 Consider a filtered process \((\mathcal F_t)\) with:
 
 - accumulated damage \(D_t\);
-- one-step damage increment \(d_t\);
-- one-step repair / maintenance increment \(r_t\);
-- one-step balance
+- one-step structural consumption / damage increment \(d_t\);
+- one-step recovery / maintenance amount \(r_t\);
+- net consumption amount
   \[
     b_t := d_t-r_t;
   \]
-- cumulative one-step balance
+- cumulative net consumption
   \[
     B_n := \sum_{t<n} b_t;
   \]
@@ -113,12 +113,12 @@ This is not yet an optimal maintenance theorem. It is the sign-level bridge.
 
 If \(b_t\) has bounded increments, or a suitable MGF / concentration condition
 holds, then finite-horizon collapse probabilities can be bounded through the
-structural persistence balance amount \(B_n\).
+cumulative net consumption amount \(B_n\).
 
 Reader-facing meaning:
 
 ```text
-Once a repairable system has a frozen margin variable and bounded one-step balance,
+Once a repairable system has a frozen margin variable and bounded net consumption amount,
 collapse risk over a horizon can be controlled by standard drift /
 concentration tools.
 ```

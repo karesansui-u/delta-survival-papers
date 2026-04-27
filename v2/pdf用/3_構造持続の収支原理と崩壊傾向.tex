@@ -5,19 +5,19 @@
 
 \PaperTitleBlock
   {構造持続の収支原理と崩壊傾向}
-  {— 構造持続収支量 Bn と維持ポテンシャル Sn —}
+  {— 累積純消耗量 Bn と構造持続量 Sn —}
   {2026年4月12日}
 
 \begin{abstract}
 構造持続の最小形式は、これまで主として loss-only の収縮モードとして定式化されてきた。そこでは、構造を維持できる状態集合の縮小を対数比で測る loss kernel が与えられ、残存可能性が指数核で表される。しかし、現実の多くの系は閉じた収縮系ではない。修復、学習、冗長化、外部支援、ロールバックのように、構造維持可能領域を再拡大する作用が同時に働く。
 
-本稿は、この開いた構造系を扱うために、構造持続の最小核を「構造消耗量」から「構造消耗量と回復量の収支」へ移す。各時刻の構造消耗量を \(d_{t}\)、回復量を \(r_{t}\)、一段収支を
+本稿は、この開いた構造系を扱うために、構造持続の最小核を「構造消耗量」から「構造消耗量と回復量の収支」へ移す。各時刻の構造消耗量を \(d_{t}\)、回復量を \(r_{t}\)、純消耗量を
 
 \[
 b_{t} := d_{t} - r_{t}
 \]
 
-と置く。構造持続収支量を
+と置く。累積純消耗量を
 
 \[
 B_{n} := \sum_{t<n} b_{t}
@@ -33,7 +33,7 @@ S_{n} &= M_{n} R_{n} = M_{n} e^{-B_{n}}
 \end{aligned}
 \]
 
-である。ここで \(R_{n}\) は構造維持可能性の残存比、\(M_{n}\) はその時点で明示的に追跡する維持資源、\(S_{n}\) は構造持続ポテンシャルである。集合値核だけを見る場合には、この式は
+である。ここで \(R_{n}\) は構造維持可能性の持続率（残存比）、\(M_{n}\) はその時点で明示的に追跡する維持資源、\(S_{n}\) は構造持続量である。集合値核だけを見る場合には、この式は
 
 \[
 m(V^{(n)}) = m(V^{(0)}) e^{-B_{n}}
@@ -64,7 +64,7 @@ m(V^{(n)}) = m(V^{(0)}) e^{-B_{n}}
 
 この問いは、閉じた系の収縮則を否定するものではない。むしろ、収縮則を \(r_{t}=0\) の特例として回収する。そのうえで、repair, learning, redundancy, external support, rollback のような再拡大作用を、同じ対数尺度上の回復量 \(r_{t}\) として導入する。
 
-本稿の基本形は次である。まず一段収支と構造持続収支量を
+本稿の基本形は次である。まず純消耗量と累積純消耗量を
 
 \[
 \begin{aligned}
@@ -74,7 +74,7 @@ B_{n} &= \sum_{t=0}^{n-1} b_{t}
 \end{aligned}
 \]
 
-と置く。そのうえで、残存比と構造持続ポテンシャルを
+と置く。そのうえで、持続率（残存比）と構造持続量を
 
 \[
 \begin{aligned}
@@ -90,7 +90,7 @@ S_{n} &= M_{n} R_{n} = M_{n} e^{-B_{n}}
 m(V^{(n)}) = m(V^{(0)}) e^{-B_{n}}.
 \]
 
-ここで \(d_{t}\) は構造消耗量、\(r_{t}\) は回復量、\(b_{t}\) は一段収支、\(B_{n}\) は構造持続収支量である。この表記にすると、Paper 1 の \(S=Me^{-L}\) は、閉じた収縮系で \(r_{t}=0\)、したがって \(B_{n}=L_{n}\) となる特例として回収される。開いた系では \(r_{t}\) が正でありうるため、\(B_{n}\) は増えるとは限らない。
+ここで \(d_{t}\) は構造消耗量、\(r_{t}\) は回復量、\(b_{t}\) は純消耗量、\(B_{n}\) は累積純消耗量である。この表記にすると、Paper 1 の \(S=Me^{-L}\) は、閉じた収縮系で \(r_{t}=0\)、したがって \(B_{n}=L_{n}\) となる特例として回収される。言い換えると、回復がない場合、累積純消耗量は Paper 1 の累積情報損失、または累積構造消耗量に一致する。開いた系では \(r_{t}\) が正でありうるため、\(B_{n}\) は増えるとは限らない。
 
 \subsection{本稿の位置づけ}\label{ux672cux7a3fux306eux4f4dux7f6eux3065ux3051}
 
@@ -109,7 +109,7 @@ m(V^{(n)}) = m(V^{(0)}) e^{-B_{n}}.
 \item
   Paper 2 は、指数表現がどの条件で恒等式となり、どの条件で境界として安定化するかを与える。
 \item
-  集合値力学補論は、収縮作用 \(K_{t}\) と再拡大作用 \(R_{t}\) の合成から、符号付き収支量 \(B_{n}\) に対する指数核を与える。
+  集合値力学補論は、収縮作用 \(K_{t}\) と再拡大作用 \(R_{t}\) の合成から、符号付き純消耗量 \(B_{n}\) に対する指数核を与える。
 \item
   Lean M1 は、expectation-level tendency が既存 theorem map によって支えられることを示す。
 \item
@@ -117,7 +117,7 @@ m(V^{(n)}) = m(V^{(0)}) e^{-B_{n}}.
 \item
   Route C companion I / II は、scope-as-repair, external metabolism, dependency-aware replay などを回復量の Route C indicator として与える companion anchors である。
 \item
-  M 補論は、回復量・資源流を実ドメインで測るための operational coordinate を与える。
+  M 補論は、回復量・資源入力を実ドメインで測るための operational coordinate を与える。
 \end{itemize}
 
 したがって本稿は、既存結果の上に新しい万能法則を宣言するのではなく、散在していた収縮・修復・資源・確率境界の層を、「構造持続の収支原理」という一つの主導線に沿って再配置する。
@@ -142,7 +142,7 @@ m(V^{(n)}) = m(V^{(0)}) e^{-B_{n}}.
   M の維持能力成分の分解が universal metric を与えるとは主張しない。
 \end{itemize}
 
-本稿が与えるのは、より限定された主張である。すなわち、事前固定された構造維持問題において、構造消耗量と回復量が同じ対数尺度で定義できるなら、その差し引き \(b_{t}\) の構造持続収支量 \(B_{n}\) に対して指数的な残存則が成り立つ。そして確率過程として扱う場合には、\(\mathbb E[b_{t}]\) の符号が傾向を与え、bounded increments や MGF などの追加条件があれば高確率境界へ進める、ということである。
+本稿が与えるのは、より限定された主張である。すなわち、事前固定された構造維持問題において、構造消耗量と回復量が同じ対数尺度で定義できるなら、その差し引き \(b_{t}\) の累積純消耗量 \(B_{n}\) に対して指数的な残存則が成り立つ。そして確率過程として扱う場合には、\(\mathbb E[b_{t}]\) の符号が傾向を与え、bounded increments や MGF などの追加条件があれば高確率境界へ進める、ということである。
 
 \section{最小収支形式}\label{ux6700ux5c0fux53ceux652fux5f62ux5f0f}
 
@@ -196,7 +196,7 @@ V^{(t+1)} :&= R_{t}(V_{t}^-)
 
 以後、考える有限時間地平の範囲で、\(m(V^{(t)})\) および \(m(V_{t}^-)\) は有限かつ正であると仮定する。この仮定は、以下の対数比が well-defined であるために必要である。
 
-\subsection{構造消耗量・回復量・一段収支}\label{ux69cbux9020ux6d88ux8017ux91cfux56deux5fa9ux91cfux4e00ux6bb5ux53ceux652f}
+\subsection{構造消耗量・回復量・純消耗量}\label{ux69cbux9020ux6d88ux8017ux91cfux56deux5fa9ux91cfux7d14ux6d88ux8017ux91cf}
 
 各時刻 \(t\) の構造消耗量を
 
@@ -216,8 +216,8 @@ r_{t} := \log \frac{m(V^{(t+1)})}{m(V_{t}^-)}
 
 ここで重要なのは、\(d_{t}\) と \(r_{t}\) がどちらも質量比の対数で測られていることである。これにより、構造消耗と回復を同じ尺度で差し引ける。
 
-\begin{definition}[一段収支]
-各時刻 $t$ の一段収支を
+\begin{definition}[純消耗量]
+各時刻 $t$ の純消耗量を
 
 $$
 b_{t} := d_{t} - r_{t}
@@ -238,13 +238,13 @@ B_{n} :&= \sum_{t=0}^{n-1} b_{t} = L_{n} - R_{n}^{\mathrm{rec}}
 \end{aligned}
 \]
 
-と定める。\(L_{n}\) は累積構造消耗量、\(R_{n}^{\mathrm{rec}}\) は累積回復量、\(B_{n}\) は構造持続収支量である。
+と定める。\(L_{n}\) は loss-only での累積情報損失、または本稿の語彙での累積構造消耗量である。\(R_{n}^{\mathrm{rec}}\) は累積回復量、\(B_{n}\) は累積純消耗量である。
 
-\subsection{一段収支の対数比表現}\label{ux4e00ux6bb5ux53ceux652fux306eux5bfeux6570ux6bd4ux8868ux73fe}
+\subsection{純消耗量の対数比表現}\label{ux7d14ux6d88ux8017ux91cfux306eux5bfeux6570ux6bd4ux8868ux73fe}
 
-収縮と回復を別々に定義しても、一段収支は局所的には始点と終点の対数比だけで表される。
+収縮と回復を別々に定義しても、純消耗量は局所的には始点と終点の対数比だけで表される。
 
-命題 1（一段収支の対数比表現）。 各時刻 \(t\) について
+命題 1（純消耗量の対数比表現）。 各時刻 \(t\) について
 
 \[
 b_{t} = -\log \frac{m(V^{(t+1)})}{m(V^{(t)})}
@@ -334,7 +334,7 @@ m(V^{(n)}) = m(V^{(0)}) e^{-B_{n}}
 
 である。証明終。
 
-この定理は、指数型が loss-only 収縮モードに限られないことを示す。構造消耗量と回復量を同じ対数尺度で測れる限り、残存量は構造持続収支量 \(B_{n}\) に対して指数型で表される。
+この定理は、指数型が loss-only 収縮モードに限られないことを示す。構造消耗量と回復量を同じ対数尺度で測れる限り、残存量は累積純消耗量 \(B_{n}\) に対して指数型で表される。
 
 資源項を明示的に追跡する場合には、残存比
 
@@ -348,7 +348,7 @@ R_{n} := e^{-B_{n}}
 S_{n} := M_{n} R_{n} = M_{n} e^{-B_{n}}
 \]
 
-と書く。この \(S_{n}\) 表記は Paper 1 の \(S=Me^{-L}\) と同じ顔を持つ。違いは、閉じた系の累積構造消耗量 \(L_{n}\) が、開いた系では回復量を差し引いた構造持続収支量 \(B_{n}=L_{n}-R_{n}^{\mathrm{rec}}\) に置き換わる点である。
+と書く。この \(S_{n}\) 表記は Paper 1 の \(S=Me^{-L}\) と同じ顔を持つ。違いは、閉じた系の累積構造消耗量 \(L_{n}\) が、開いた系では回復量を差し引いた累積純消耗量 \(B_{n}=L_{n}-R_{n}^{\mathrm{rec}}\) に置き換わる点である。
 
 \subsection{収縮モードの回収}\label{ux53ceux7e2eux30e2ux30fcux30c9ux306eux56deux53ce}
 
@@ -412,17 +412,17 @@ B_{n} &= \sum_{t=0}^{n-1} b_{t} \\
 
 前節の構造持続の収支原理は、各実現経路に対する恒等式である。そこには確率は入っていない。本節では、構造消耗量と回復量が確率的に生成される場合に、どのような意味で「崩壊傾向」「維持傾向」「回復傾向」を言えるかを切り分ける。
 
-重要なのは、期待値レベルの傾向律と、高確率の崩壊境界を混同しないことである。期待値の符号は、構造持続収支量の中心がどちらへ動くかを与える。しかし、それだけで個々の経路が高確率に崩壊する、または崩壊しない、とは言えない。高確率主張には、4節で述べる concentration 条件が別に必要である。
+重要なのは、期待値レベルの傾向律と、高確率の崩壊境界を混同しないことである。期待値の符号は、累積純消耗量の中心がどちらへ動くかを与える。しかし、それだけで個々の経路が高確率に崩壊する、または崩壊しない、とは言えない。高確率主張には、4節で述べる concentration 条件が別に必要である。
 
 \subsection{構造持続の確率的収支過程}\label{ux69cbux9020ux6301ux7d9aux306eux78baux7387ux7684ux53ceux652fux904eux7a0b}
 
-確率空間 \((\Omega,\mathcal F,\mathbb P)\) 上で、各時刻の構造消耗量 \(d_{t}(\omega)\)、回復量 \(r_{t}(\omega)\)、一段収支
+確率空間 \((\Omega,\mathcal F,\mathbb P)\) 上で、各時刻の構造消耗量 \(d_{t}(\omega)\)、回復量 \(r_{t}(\omega)\)、純消耗量
 
 \[
 b_{t}(\omega) := d_{t}(\omega)-r_{t}(\omega)
 \]
 
-が定義されているとする。構造持続収支量を
+が定義されているとする。累積純消耗量を
 
 \[
 B_{n}(\omega) := \sum_{t=0}^{n-1} b_{t}(\omega)
@@ -440,7 +440,7 @@ m(V^{(n)}(\omega)) = m(V^{(0)}(\omega)) e^{-B_{n}(\omega)}
 
 \subsection{期待中心}\label{ux671fux5f85ux4e2dux5fc3}
 
-各 \(b_{t}\) が可積分であるとする。このとき構造持続収支量の期待中心を
+各 \(b_{t}\) が可積分であるとする。このとき累積純消耗量の期待中心を
 
 \[
 \bar B_{n} := \mathbb E[B_{n}]
@@ -525,7 +525,7 @@ e^{-\mathbb E[B_{n}]}
 \end{aligned}
 \]
 
-である。したがって、本節の主張は、まず構造持続収支量 \(B_{n}\) の期待中心に関するものである。
+である。したがって、本節の主張は、まず累積純消耗量 \(B_{n}\) の期待中心に関するものである。
 
 この注意は重要である。期待値レベルの傾向律を、残存量そのものの平均に関する厳密な式や、高確率な collapse / non-collapse と混同すると、主張が過剰になる。本稿では、その混同を避ける。
 
@@ -567,9 +567,9 @@ At the expectation level, a law-of-tendency theorem is available when one-step n
 
 本節で言えるのは、次である。
 
-第一に、構造持続の収支原理の一段収支 \(b_{t}=d_{t}-r_{t}\) を確率変数として扱うと、その期待値の符号は構造持続収支量 \(B_{n}\) の期待中心の向きを決める。
+第一に、構造持続の収支原理の純消耗量 \(b_{t}=d_{t}-r_{t}\) を確率変数として扱うと、その期待値の符号は累積純消耗量 \(B_{n}\) の期待中心の向きを決める。
 
-第二に、構造消耗優位、維持、回復優位という三 regime は、同じ収支量 \(b_{t}\) の符号として定義できる。
+第二に、構造消耗優位、維持、回復優位という三 regime は、同じ純消耗量 \(b_{t}\) の符号として定義できる。
 
 第三に、これは high-probability statement ではない。有限時間で崩壊確率や停止時刻確率を述べるには、次節の concentration layer が必要である。
 
@@ -611,7 +611,7 @@ R_{n} \le \theta
 B_{n} \ge B_\theta
 \]
 
-と同値である。したがって、有限時間 collapse event は、構造持続収支量 \(B_{n}\) が閾値 \(B_\theta\) を越える事象として表せる。
+と同値である。したがって、有限時間 collapse event は、累積純消耗量 \(B_{n}\) が閾値 \(B_\theta\) を越える事象として表せる。
 
 \subsection{固定時刻での高確率崩壊 schema}\label{ux56faux5b9aux6642ux523bux3067ux306eux9ad8ux78baux7387ux5d29ux58ca-schema}
 
@@ -738,7 +738,7 @@ SAT Chernoff-KL closed form & \texttt{SATStateDependentCountChernoffKLAlgebra.le
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  expectation-level tendency: \(\mathbb E[b_{t}]\) または one-step production 条件から、構造持続収支量の期待中心の向きを得る。
+  expectation-level tendency: \(\mathbb E[b_{t}]\) または one-step production 条件から、累積純消耗量の期待中心の向きを得る。
 \item
   high-probability finite-horizon bound: bounded increments, MGF, Chernoff / KL, margin 条件を追加して、collapse / stopped-collapse / hitting-time の確率境界を得る。
 \end{enumerate}
@@ -1126,7 +1126,7 @@ B_{n}=D_{\mathrm{obs}}-R_{\mathrm{obs}}^{\mathrm{rec}}
 \item
   未整理矛盾、裸の競合値、前提更新、依存不整合などを reduction-side indicator として置く。
 \item
-  scope marker、source attribution、外部代謝、依存 DAG controller、空間分離などを repair / recovery-side indicator として置く。
+  scope marker、source attribution、外部代謝、依存 DAG controller、空間分離などを recovery-side indicator として置く。
 \item
   観測量 \(Y\) を、論理一貫性維持率、依存整合性、旧知識保持、更新成功率などとして事前固定する。
 \item
@@ -1439,7 +1439,7 @@ G6-c & formal reduction / embedding & 一方の定理が他方の特例として
 
 本稿では、既存理論との接続をこの三段階で区別する。analogy だけでは理論的接続としては弱い。correspondence は有用だが、まだ theorem transfer を保証しない。formal reduction または embedding がある場合にのみ、既存理論の定理を構造持続の収支原理の一部として読むことができる。
 
-この区別は重要である。構造持続の収支原理が熱力学に「似ている」ことは、それだけでは何も証明しない。一方、queueing theory の Lyapunov drift 条件のように、符号つき構造持続収支量として直接書き換えられるものは、より強い意味で構造持続の収支原理の特例または埋め込みとして扱える。
+この区別は重要である。構造持続の収支原理が熱力学に「似ている」ことは、それだけでは何も証明しない。一方、queueing theory の Lyapunov drift 条件のように、符号つき累積純消耗量として直接書き換えられるものは、より強い意味で構造持続の収支原理の特例または埋め込みとして扱える。
 
 \subsection{熱力学との関係}\label{ux71b1ux529bux5b66ux3068ux306eux95a2ux4fc2}
 
@@ -1755,7 +1755,7 @@ m(V^{(n)})&=m(V^{(0)})e^{-B_{n}}
 
 が成り立つ。これは定義と望遠鏡積から従う恒等式である。
 
-第二に、expectation-level tendency である。\(b_{t}\) を確率変数として扱えるなら、\(\mathbb E[b_{t}]\) の符号は、構造持続収支量の期待中心がどちらへ動くかを与える。これは high-probability collapse ではなく、中心の方向に関する主張である。
+第二に、expectation-level tendency である。\(b_{t}\) を確率変数として扱えるなら、\(\mathbb E[b_{t}]\) の符号は、累積純消耗量の期待中心がどちらへ動くかを与える。これは high-probability collapse ではなく、中心の方向に関する主張である。
 
 第三に、concentration 条件つきの finite-horizon bound である。bounded increments、MGF product、Chernoff / KL profile、margin 条件などが追加される場合には、collapse / stopped-collapse / hitting-time の確率境界へ進める。これは Route A で強く閉じるが、Route C では一般に得られない。
 
@@ -1763,7 +1763,7 @@ m(V^{(n)})&=m(V^{(0)})e^{-B_{n}}
 
 8.1.1 Lean で閉じている部分
 
-本稿の pathwise algebraic kernel は、Lean 側では \texttt{Survival/GeneralStateDynamics.lean} によってすでに machine-checked である。そこでは、収縮後集合、修復後集合、feasible mass、stage loss、stage gain、one-step balance、cumulative balance が定義され、positive finite trajectory assumptions の下で
+本稿の pathwise algebraic kernel は、Lean 側では \texttt{Survival/GeneralStateDynamics.lean} によってすでに machine-checked である。そこでは、収縮後集合、修復後集合、feasible mass、stage loss、stage gain、net consumption amount、cumulative net consumption が定義され、positive finite trajectory assumptions の下で
 
 \[
 \begin{aligned}
@@ -1794,10 +1794,10 @@ Lean 側の対応
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-one-step balance \(b_t=d_t-r_t\) & \texttt{StructuralPersistenceBalancePrinciple.oneStepBalance\_eq\_consumption\_sub\_recovery} & 定義として証明済み \\
-structural persistence balance amount \(B_n=\sum_{t<n}b_t\) & \texttt{StructuralPersistenceBalancePrinciple.cumulativeBalance\_eq\_sum\_oneStepBalance} & finite-prefix sum として証明済み \\
-local balance & \texttt{StructuralPersistenceBalancePrinciple.local\_exponential\_balance} & positive mass assumptions の下で証明済み \\
-pathwise balance kernel & \texttt{StructuralPersistenceBalancePrinciple.pathwise\_balance\_exponential\_kernel} & positive finite trajectory assumptions の下で証明済み \\
+net consumption amount \(b_t=d_t-r_t\) & \texttt{StructuralPersistenceBalancePrinciple.netConsumptionAmount\_eq\_consumption\_sub\_recovery} & 定義として証明済み \\
+cumulative net consumption amount \(B_n=\sum_{t<n}b_t\) & \texttt{StructuralPersistenceBalancePrinciple.cumulativeNetConsumption\_eq\_sum\_netConsumptionAmount} & finite-prefix sum として証明済み \\
+local net-consumption identity & \texttt{StructuralPersistenceBalancePrinciple.local\_exponential\_netConsumption\_identity} & positive mass assumptions の下で証明済み \\
+pathwise net-consumption kernel & \texttt{StructuralPersistenceBalancePrinciple.pathwise\_netConsumption\_exponential\_kernel} & positive finite trajectory assumptions の下で証明済み \\
 loss-only 回収 & \texttt{StructuralPersistenceBalancePrinciple.pureContraction\_recovers\_loss\_only\_kernel} & pure contraction / zero gain の特例として証明済み \\
 Lyapunov drift embedding & \texttt{StructuralPersistenceBalancePrinciple.lyapunov\_*} wrappers & 最小代数的埋め込みとして証明済み \\
 repair / maintenance balance & \texttt{StructuralPersistenceBalancePrinciple.repair\_*} wrappers & finite-prefix damage-minus-repair skeleton として証明済み \\

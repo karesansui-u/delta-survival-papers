@@ -248,7 +248,7 @@ This section should include a table:
 
 | Paper phrase | Lean vocabulary | Lean theorem | Status |
 |---|---|---|---|
-| signed exponential balance | local one-step balance / feasible mass | `feasibleMass_eq_initial_mul_exp_neg_cumulativeNetAction` | proven |
+| signed net-consumption exponential kernel | local net consumption amount / feasible mass | `feasibleMass_eq_initial_mul_exp_neg_cumulativeNetAction` | proven |
 | repair dominates contraction | nonnegative step total production | `expectedCumulative_monotone_of_ae_nonnegative_stepTotalProduction` | proven |
 | coarse-grained typical nondecrease | coarse stochastic compatibility | `coarse_expectedCumulative_monotone_of_micro_nonnegative` | proven |
 | resource-bounded coarse tendency | resource-bounded micro dynamics | `coarse_expectedCumulative_monotone_of_micro_resourceBounded` | proven |

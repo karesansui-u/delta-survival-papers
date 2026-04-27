@@ -16,11 +16,11 @@ Purpose:
   m(V_n)=m(V_0)\exp(-B_n).
 \]
 
-ここで $d_t$ は構造消耗量、$r_t$ は回復・修復・資源入力、$b_t$ は one-step balance である。日本語では **構造持続の収支原理**、英語では **structural persistence balance principle** と呼ぶ。「均衡法則」は equilibrium と誤読されやすいため使わない。
+ここで $d_t$ は構造消耗量、$r_t$ は回復・修復・資源入力、$b_t$ は net consumption amount である。日本語では **構造持続の収支原理**、英語では **structural persistence balance principle** と呼ぶ。「均衡法則」は equilibrium と誤読されやすいため使わない。
 
 ## 1. Core Claim To Test
 
-主張の核は、開いた構造系が持続するには、構造消耗量を回復する入力が必要であり、その差し引きが構造持続収支量として残存可能性を指数的に支配する、という点である。
+主張の核は、開いた構造系が持続するには、構造消耗量を回復する入力が必要であり、その差し引きが累積純消耗量として残存可能性を指数的に支配する、という点である。
 
 Three regimes:
 
@@ -40,7 +40,7 @@ Three regimes:
 - `v2/補論_有限CSPにおける構造持続の予測力.md`: Mixed-CSP の finite-horizon concentration / feasibility evidence。
 - `v2/Companion_RouteC_推論時の構造劣化.md`: LLM における scope-as-repair / external metabolism の Route C anchor。
 - `v2/Companion_RouteC_継続学習時の構造的忘却.md`: 継続学習における repair / reconfiguration 分離の Route C anchor。
-- `v2/補論_構造持続における資源項Mの操作的定式化.md`: 回復量・資源流を実ドメインへ写す operational mapping。
+- `v2/補論_構造持続における資源項Mの操作的定式化.md`: 回復量・資源入力を実ドメインへ写す operational mapping。
 
 ## 3. Proposed Main Paper Shape
 
@@ -48,7 +48,7 @@ Tentative title:
 
 ```text
 構造持続の収支原理と崩壊傾向
-— 構造消耗量と回復量の構造持続収支量 —
+— 構造消耗量と回復量の累積純消耗量 —
 ```
 
 Draft sections:
@@ -77,4 +77,4 @@ Draft sections:
 2. Exp43 q-coloring cross-q feasibility の preregistration draft を設計する。
 3. §7 の G6-a/b/c（analogy / correspondence / formal reduction）整理を、Lean theorem map / roadmap に反映する。
 4. Paper 0 統合版の architecture を、Paper 1 -> Paper 2 -> 構造持続の収支原理 -> Route C companion I/II -> M 補論、という依存順に更新する。
-5. M 補論は「回復量・資源流の測定層」として参照し、主理論の代替として扱わない。
+5. M 補論は「回復量・資源入力の測定層」として参照し、主理論の代替として扱わない。

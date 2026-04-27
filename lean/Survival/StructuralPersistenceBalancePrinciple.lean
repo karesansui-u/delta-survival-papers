@@ -36,21 +36,21 @@ abbrev StructuralSystem (X : Type*) := ProblemSpec X
 abbrev PositiveFiniteTrajectory (P : StructuralSystem X) (n : ℕ) :=
   PositiveTrajectory P n
 
-/-- Paper 3 notation: one-step balance is structural consumption minus recovery. -/
-theorem oneStepBalance_eq_consumption_sub_recovery
+/-- Paper 3 notation: net consumption amount is structural consumption minus recovery. -/
+theorem netConsumptionAmount_eq_consumption_sub_recovery
     (P : StructuralSystem X) (t : ℕ) :
     stepNetAction P t = stepLoss P t - stepGain P t := rfl
 
-/-- Paper 3 notation: cumulative balance is the finite-prefix sum of one-step
-balances. -/
-theorem cumulativeBalance_eq_sum_oneStepBalance
+/-- Paper 3 notation: cumulative net consumption is the finite-prefix sum of one-step
+net-consumption amounts. -/
+theorem cumulativeNetConsumption_eq_sum_netConsumptionAmount
     (P : StructuralSystem X) (n : ℕ) :
     cumulativeNetAction P n =
       ∑ t ∈ Finset.range n, stepNetAction P t := rfl
 
-/-- Paper 3 local balance identity, checked under positive finite-trajectory
+/-- Paper 3 local exponential identity, checked under positive finite-trajectory
 assumptions. -/
-theorem local_exponential_balance
+theorem local_exponential_netConsumption_identity
     (P : StructuralSystem X) (t : ℕ)
     (hfeas : 0 < feasibleMass P t)
     (hcontract : 0 < contractedMass P t)
@@ -59,8 +59,8 @@ theorem local_exponential_balance
       feasibleMass P t * Real.exp (-(stepNetAction P t)) :=
   feasibleMass_succ_eq_mass_mul_exp_neg_stepNetAction P t hfeas hcontract hnext
 
-/-- Paper 3 pathwise balance exponential kernel. -/
-theorem pathwise_balance_exponential_kernel
+/-- Paper 3 pathwise net-consumption exponential kernel. -/
+theorem pathwise_netConsumption_exponential_kernel
     (P : StructuralSystem X) (n : ℕ)
     (hpos : PositiveFiniteTrajectory P n) :
     feasibleMass P n =
@@ -75,8 +75,8 @@ theorem pureContraction_stepGain_eq_zero
     stepGain P t = 0 :=
   stepGain_eq_zero_of_pureContraction P t hpure hcontract
 
-/-- In pure contraction mode the cumulative balance reduces to cumulative loss. -/
-theorem pureContraction_cumulativeBalance_eq_cumulativeLoss
+/-- In pure contraction mode the cumulative net consumption reduces to cumulative loss. -/
+theorem pureContraction_cumulativeNetConsumption_eq_cumulativeLoss
     (P : StructuralSystem X) (n : ℕ)
     (hpure : PureContraction P.D)
     (hpos : PositiveFiniteTrajectory P n) :
@@ -108,7 +108,7 @@ theorem lyapunov_cumulativeAction_eq_load_diff
     Survival.LyapunovBalanceEmbedding.cumulativeAction Z n = Z n - Z 0 :=
   Survival.LyapunovBalanceEmbedding.cumulativeAction_eq_load_diff Z n
 
-/-- Foster--Lyapunov local balance in the exponential maintenance coordinate. -/
+/-- Foster--Lyapunov local net-consumption identity in the exponential maintenance coordinate. -/
 theorem lyapunov_relativeMaintenance_local_balance
     (Z : ℕ → ℝ) (t : ℕ) :
     Survival.LyapunovBalanceEmbedding.relativeMaintenance Z (t + 1) =
@@ -116,8 +116,8 @@ theorem lyapunov_relativeMaintenance_local_balance
         Real.exp (-(Survival.LyapunovBalanceEmbedding.increment Z t)) :=
   Survival.LyapunovBalanceEmbedding.relativeMaintenance_succ_eq_mul_exp_neg_increment Z t
 
-/-- Repair / maintenance finite-prefix damage balance. -/
-theorem repair_damageLevel_eq_initial_plus_cumulative_balance
+/-- Repair / maintenance finite-prefix damage identity. -/
+theorem repair_damageLevel_eq_initial_plus_cumulative_netConsumption
     (D0 : ℝ) (damage repair : ℕ → ℝ) (n : ℕ) :
     Survival.RepairMaintenanceBalance.damageLevel D0 damage repair n =
       D0 + Survival.RepairMaintenanceBalance.cumulativeNetAction damage repair n :=
@@ -126,14 +126,14 @@ theorem repair_damageLevel_eq_initial_plus_cumulative_balance
 
 /-- Remaining margin is threshold minus accumulated damage.  This is a margin
 coordinate, not the Paper 1 resource term `M`. -/
-theorem repair_remainingMargin_eq_initial_margin_sub_cumulative_balance
+theorem repair_remainingMargin_eq_initial_margin_sub_cumulative_netConsumption
     (B D0 : ℝ) (damage repair : ℕ → ℝ) (n : ℕ) :
     Survival.RepairMaintenanceBalance.margin B D0 damage repair n =
       (B - D0) - Survival.RepairMaintenanceBalance.cumulativeNetAction damage repair n :=
   Survival.RepairMaintenanceBalance.margin_eq_initial_margin_sub_cumulative_net_action
     B D0 damage repair n
 
-/-- Repair / maintenance local balance in the exponential maintenance
+/-- Repair / maintenance local net-consumption identity in the exponential maintenance
 coordinate. -/
 theorem repair_relativeMaintenance_local_balance
     (D0 : ℝ) (damage repair : ℕ → ℝ) (n : ℕ) :

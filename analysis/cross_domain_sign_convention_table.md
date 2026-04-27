@@ -15,9 +15,9 @@ The main convention under audit is:
 
 Intended reading:
 
-- \(d_t \ge 0\): one-step loss / damage / obstruction / collapse pressure;
-- \(r_t \ge 0\): one-step repair / recovery / service / maintenance;
-- \(b_t>0\): net overload / net damage / collapse tendency;
+- \(d_t \ge 0\): one-step structural consumption / damage / obstruction / collapse pressure;
+- \(r_t \ge 0\): one-step recovery / maintenance / service amount;
+- \(b_t>0\): net consumption / net overload / collapse tendency;
 - \(b_t<0\): net recovery / repair-dominant tendency.
 
 ## 1. Anchor Table

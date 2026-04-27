@@ -68,10 +68,10 @@ variables.
 | symbol | meaning |
 |---|---|
 | \(D_t\) | accumulated damage / load / unrepaired degradation |
-| \(d_t\) | one-step damage or loss increment |
-| \(r_t\) | one-step repair / maintenance / recovery |
-| \(b_t=d_t-r_t\) | one-step balance |
-| \(B_n=\sum_{t<n}b_t\) | cumulative one-step balance |
+| \(d_t\) | one-step structural consumption / damage increment |
+| \(r_t\) | one-step recovery / maintenance amount |
+| \(b_t=d_t-r_t\) | net consumption amount |
+| \(B_n=\sum_{t<n}b_t\) | cumulative net consumption |
 | \(B\) | collapse / failure threshold |
 | \(M_t=B-D_t\) | remaining margin |
 | \(R_t=\exp(-D_t)\) | optional relative maintenance coordinate |
@@ -120,7 +120,7 @@ Minimal model:
 
 Here \(d_t\) is component degradation or risk accumulation, while \(r_t\) is
 maintenance effort. The primary claim is not a new reliability theorem. The
-claim is that repairable reliability has the same consumption-minus-recovery accounting
+claim is that repairable reliability has the same net-consumption accounting
 as the structural persistence balance principle.
 
 ### 4.2 Fatigue Damage With Repair
@@ -223,7 +223,7 @@ lean/Survival/RepairMaintenanceBalance.lean
 Implemented contents:
 
 - finite sequences of damage \(d_t\) and repair \(r_t\);
-- cumulative one-step balance;
+- cumulative net consumption;
 - damage after \(n\) steps;
 - remaining margin;
 - threshold crossing predicates;
@@ -259,7 +259,7 @@ Correct wording:
 \begin{quote}
 Repairable reliability and fatigue models provide a non-CSP open-system
 anchor for the structural persistence balance principle: accumulated damage is governed by a
-consumption-minus-recovery finite-prefix identity. This shows that the \(r_t\)
+net-consumption finite-prefix identity. This shows that the \(r_t\)
 recovery term is not merely an LLM / software metaphor, while leaving
 domain-specific reliability and fatigue theorems intact.
 \end{quote}
