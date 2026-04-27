@@ -33,14 +33,16 @@
 この zip には、実行に必要なものだけが入っています。
 
 1. `手順書.md`
-2. `requirements.txt`
-3. `実行環境メモ_テンプレート.md`
-4. `BUNDLE_INFO.txt`
-5. `analysis/exp43_qcoloring/config/exp43c_primary_config.json`
-6. `analysis/exp43_qcoloring/src/*.py`
-7. `analysis/exp43_qcoloring/data/exp43c_primary_manifest.jsonl`
-8. `analysis/exp43_qcoloring/data/exp43c_primary_results.jsonl`
-9. `analysis/exp43_qcoloring/data/exp43c_primary_evaluation.json`
+2. `RUN_INSTRUCTIONS_JA.md`
+3. `requirements.txt`
+4. `実行環境メモ_テンプレート.md`
+5. `ENVIRONMENT_NOTE_TEMPLATE_JA.md`
+6. `BUNDLE_INFO.txt`
+7. `analysis/exp43_qcoloring/config/exp43c_primary_config.json`
+8. `analysis/exp43_qcoloring/src/*.py`
+9. `analysis/exp43_qcoloring/data/exp43c_primary_manifest.jsonl`
+10. `analysis/exp43_qcoloring/data/exp43c_primary_results.jsonl`
+11. `analysis/exp43_qcoloring/data/exp43c_primary_evaluation.json`
 
 最後の 3 つは比較用の正式参照ファイルです。上書きしないでください。
 
@@ -61,9 +63,34 @@
 
 ## 4. 実行コマンド
 
-Windows の `cmd` / PowerShell では、`.py` を直接実行せず、必ず `python`
-経由で実行してください。WSL / Ubuntu / macOS では `python` を `python3`
-に読み替えても大丈夫です。
+Windows の `cmd` / PowerShell では、`.py` を直接実行せず、必ず Python
+起動コマンド経由で実行してください。
+
+以下のコマンド例では、仮想環境を有効化済みで `python` が Python 3 を指し
+ている前提で書きます。最初に必ず確認してください。
+
+```bash
+python --version
+```
+
+ここで `Python 3.10` 以上が出れば、そのまま下の `python ...` コマンドを
+使ってください。
+
+もし `python` が見つからない、または Python 2.x を指している場合は、下の
+コマンド中の `python` を次のように読み替えてください。
+
+1. plain Windows `cmd` / PowerShell: `py -3`
+2. WSL / Ubuntu / macOS: `python3`
+
+例:
+
+```bash
+py -3 --version
+python3 --version
+```
+
+重要: `python --version` が Python 2.x のままなら、そのまま進めず
+`py -3` または `python3` に置き換えてください。
 
 ### 4-1. zip 展開
 
@@ -85,10 +112,22 @@ PowerShell / cmd を開いても大丈夫です。
 python -m pip install -r requirements.txt
 ```
 
+plain Windows で `python` が Python 3 ではない場合:
+
+```bash
+py -3 -m pip install -r requirements.txt
+```
+
 ### 4-3. 出力先の作成
 
 ```bash
 python -c "from pathlib import Path; Path('analysis/exp43_qcoloring/external_outputs').mkdir(parents=True, exist_ok=True)"
+```
+
+plain Windows で `python` が Python 3 ではない場合:
+
+```bash
+py -3 -c "from pathlib import Path; Path('analysis/exp43_qcoloring/external_outputs').mkdir(parents=True, exist_ok=True)"
 ```
 
 ### 4-4. manifest 生成の事前確認
@@ -112,6 +151,10 @@ cells: 20
 ```bash
 python analysis/exp43_qcoloring/src/pilot_runner.py --config analysis/exp43_qcoloring/config/exp43c_primary_config.json --output analysis/exp43_qcoloring/external_outputs/exp43c_primary_results_external.jsonl dry-run
 ```
+
+もしここで `SyntaxError` が出た場合は、Python 2.x で実行されている可能性が
+高いです。`python --version` を確認し、Windows では `py -3 ...`、WSL /
+macOS では `python3 ...` に置き換えてください。
 
 ### 4-6. manifest 生成
 
