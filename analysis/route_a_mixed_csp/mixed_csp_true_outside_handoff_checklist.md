@@ -24,20 +24,22 @@ Package to hand off:
 
 ```text
 Mixed-CSP frozen primary package as shipped in the current published handoff
-bundle at send time. The first post-rename send-ready published baseline is
-5088a71. The project-side published-remote rerun was exercised earlier from
-commit 96de727, and the first send-ready outside-group checklist was
-assembled at 4a74e76.
+bundle at send time. Record the exact published commit hash in the outbound
+message. Historical references:
+- 5088a71 = first post-rename send-ready baseline
+- 55bef7f = first baseline that included the send/report templates
+- 96de727 = earlier published-remote rehearsal
+- 4a74e76 = first send-ready outside-group checklist
 ```
 
 Important distinction:
 
 ```text
 The outside-group rerun should clone the current published HEAD at handoff
-time. Commit 5088a71 is the first post-rename send-ready published baseline.
-Commit 96de727 is the earlier published-remote rehearsal commit, and 4a74e76
-is the first commit where the final outside-group checklist itself was checked
-in. None of these should be confused with an unpublished local draft.
+time. The sender should include that exact commit hash in the email or message
+body. Commits 5088a71, 55bef7f, 96de727, and 4a74e76 are audit references for
+how the package matured; they should not override the actual published HEAD at
+send time. None of them should be confused with an unpublished local draft.
 ```
 
 ## 2. Before-Send Checklist

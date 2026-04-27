@@ -15,9 +15,10 @@ Hello,
 I am sending a frozen rerun package for an already validated Mixed-CSP primary
 result. This is a replication request, not a redesign request.
 
-Please clone the current published repository HEAD, install from
-requirements.txt, and run the Mixed-CSP package using separate outputs only.
-Please do not overwrite the official artifacts.
+Please clone the current published repository HEAD at commit
+`<SEND_COMMIT_HASH>`, install from requirements.txt, and run the Mixed-CSP
+package using separate outputs only. Please do not overwrite the official
+artifacts.
 
 The exact package instructions are:
 - analysis/route_a_mixed_csp/mixed_csp_external_rerun_package.md
@@ -31,6 +32,11 @@ What we are asking you to report back:
 - any runtime anomaly notes
 - a short environment note
 
+Official reference artifacts attached / included:
+- mixed_csp_primary_official_2026-04-22.jsonl
+- mixed_csp_results.json
+- mixed_csp_results_summary.md
+
 The qualitative question is simply whether the already validated support
 decision reproduces under your environment.
 
@@ -40,7 +46,8 @@ Thank you.
 ## 2. Longer Cover Note
 
 ```text
-This package corresponds to an already validated Mixed-CSP Route A primary.
+This package corresponds to an already validated Mixed-CSP Route A primary at
+published commit `<SEND_COMMIT_HASH>`.
 Project-side reproducibility is already strong: we have an internal Level 1
 audit replay, a separate-output Level 2 fresh rerun, a fresh-clone rehearsal,
 and a rerun from a fresh clone of the published remote. What remains open is a

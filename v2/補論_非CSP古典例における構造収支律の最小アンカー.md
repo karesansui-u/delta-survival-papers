@@ -220,7 +220,7 @@ G4 v1 の reader-facing claim は、次の Lean files に対応する。
 
 9.1 条件つき law-side bridge
 
-本補論の strongest safe reading は、non-CSP 一般で universal law を宣言することではない。より正確には、queueing / Foster-Lyapunov drift と repairable stochastic system の一部に対して、構造収支律を **条件つき law-side bridge** として提示できる、ということである。
+本補論の strongest safe reading は、non-CSP 一般で universal law を宣言することではない。より正確には、queueing / Foster-Lyapunov drift を中心とする drift-based stability class に対して、構造収支律を **条件つき law-side bridge** として提示できる、ということである。repair / maintenance balance は、その bridge を empirical \(g_t\) 側へ押し広げる near-bridge open-system anchor として置く。
 
 この bridge が成立する最小条件は三つである。
 
