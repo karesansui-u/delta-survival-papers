@@ -8,20 +8,20 @@ rerun bundle.
 ## Current Distribution-Facing Bundle
 
 - file:
-  `exp43c_true_outside_bundle_72718ae0f9ff.zip`
+  `exp43c_true_outside_bundle_1f05ff13211a.zip`
 - sha256:
-  `8e203bc5353a06771caf74c4228ac04ee80c94c7c87d66d1a48fe712a1c66bdc`
+  `a294a1e9aa6c639fe20412c98c412a5d2d858761513b4c48b8c37108a4b67570`
 - exported from commit short:
-  `72718ae0f9ff`
+  `1f05ff13211a`
 - exported from commit full:
-  `72718ae0f9ff126f15f8de04bc88e0bb94b93591`
+  `1f05ff13211acddf5246c758c1411197933f31e1`
 - approximate size:
   `1.1M`
 
 ## Sidecar Files
 
-- `exp43c_true_outside_bundle_72718ae0f9ff.zip.sha256`
-- `exp43c_true_outside_bundle_72718ae0f9ff.manifest.txt`
+- `exp43c_true_outside_bundle_1f05ff13211a.zip.sha256`
+- `exp43c_true_outside_bundle_1f05ff13211a.manifest.txt`
 
 ## Included Official Reference Artifacts
 
@@ -102,15 +102,16 @@ JSONL hash because runtime-sensitive fields are regenerated on rerun, but the
 checked core fields matched row-by-row:
 
 ```text
-external result sha256: 008fb19a272190535d17131ee786966f1a220829629558dc653bd6d9b7c2e5f4
+external result sha256: 13844494a3e4fdf9bb858b8aa9011fff1658cb20dd2f8702ed08bdf177edc7f2
 official result sha256: 37e6381c876c20dbcdb5d7114a791453dabc6a778207097e83490ba7511a863b
 checked fields: instance_id, q, n, rho_fm, seed_digest, edge_list_hash, q_colorable, status, coloring_verified
 ```
 
-One local command-surface issue was found and corrected before this bundle was
-created: on some systems `python` may point to Python 2.x. The receiver guide
-therefore now requires checking `python --version` and instructs plain Windows
-users to use `py -3` when needed, while WSL / macOS users can use `python3`.
+This hardened bundle keeps `手順書.md` as the primary receiver entry point,
+keeps `RUN_INSTRUCTIONS_JA.md` only as an ASCII filename copy, explicitly tells
+recipients to run each command as one line, and supports plain Windows
+`cmd` / PowerShell through `py -3` when `python` is not Python 3. WSL is not
+required if `py -3` points to Python 3.10 or later.
 
 ## Operational Rule
 
