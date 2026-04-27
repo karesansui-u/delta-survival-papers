@@ -30,11 +30,11 @@ future failure better than metadata-only or activity-only baselines.
 This is a loss-only branch:
 
 ```text
-g_t = 0
+r_t = 0
 ```
 
-It does not test repair flow, compensation flow, preventive maintenance, or
-operational \(M_r\). The G4 v2 repair-flow primary search remains paused.
+It does not test recovery amount, preventive maintenance, or
+operational \(M_{\mathrm{recovery}}\). The G4 v2 repair-flow primary search remains paused.
 
 ## 2. Evidence Tier
 
@@ -387,7 +387,7 @@ No outcome permits a repair-flow claim.
 
 This preregistration does not claim:
 
-1. Backblaze validates repair flow \(g_t\).
+1. Backblaze validates recovery amount \(r_t\).
 2. SMART degradation is the universal loss variable.
 3. Drive failure prediction is causal.
 4. This result identifies an optimal intervention policy.

@@ -4,7 +4,7 @@ Status: working roadmap for humans / other LLMs.
 
 Purpose:
 
-このメモは、構造持続理論を「普遍理論候補」として強化するための次ステップを、他の LLM / agent が読んでも迷わないように整理する。現時点の方針は、M 分解を universal core にしないこと。core は **構造持続の収支原理 / structural persistence balance principle** に置き、M 分解は補償流・資源流を実ドメインで測る operational mapping layer として扱う。
+このメモは、構造持続理論を「普遍理論候補」として強化するための次ステップを、他の LLM / agent が読んでも迷わないように整理する。現時点の方針は、M 分解を universal core にしないこと。core は **構造持続の収支原理 / structural persistence balance principle** に置き、M 分解は回復量・資源流を実ドメインで測る operational mapping layer として扱う。
 
 注意: `v2/data/` はローカル作業メモ置き場で、`.gitignore` 対象である。コミットしたい場合は `git add -f v2/data/ROADMAP_構造持続の収支原理とRouteA強化.md` が必要。
 
@@ -82,7 +82,7 @@ G4:
   balance-principle reduction として整理する。
   G4 v2 iteration 1 は repair / maintenance finite-prefix skeleton として
   閉じた。次の operational route は、maintenance / repair log dataset の
-  eligibility screen から始める。理由は \(g_t\) を実ログの予測変数として
+  eligibility screen から始める。理由は \(r_t\) を実ログの予測変数として
   扱えるかを検査するため。
 ```
 
@@ -154,27 +154,27 @@ Tentative title:
 
 ```text
 構造持続の収支原理と崩壊傾向
-— 損失流と補償流の構造持続収支量 —
+— 構造消耗量と回復量の構造持続収支量 —
 ```
 
 Core identity:
 
 \[
-  b_t = \ell_t - g_t,\qquad
+  b_t = d_t - r_t,\qquad
   B_n = \sum_{t<n} b_t,\qquad
   m(V_n)=m(V_0)\exp(-B_n).
 \]
 
 Interpretation:
 
-- $\ell_t$: loss flow / 構造損失流。
-- $g_t$: compensation, repair, support, resource flow / 補償・修復・資源流。
+- $d_t$: structural consumption amount / 構造消耗量。
+- $r_t$: recovery, repair, support, resource input / 回復・修復・資源入力。
 - $b_t$: one-step balance / 一段収支。
 - $B_n$: structural-persistence balance amount / 構造持続収支量。
 
 Minimal sections:
 
-1. 問題設定: loss-only 収縮から open-system compensation へ。
+1. 問題設定: loss-only 収縮から open-system recovery へ。
 2. 最小収支恒等式: $b_t$, $B_n$, signed exponential kernel。
 3. expectation-level tendency: $\mathbb{E}[b_t]$ の符号で collapse / maintenance / recovery を分ける。
 4. high-probability bounds: bounded increments / MGF があると Azuma / Chernoff / hitting-time bounds が出る。
@@ -493,7 +493,7 @@ G6 pass levels:
 | Level | 内容 | 評価 |
 |---|---|---|
 | G6-a analogy | 既存理論との語彙的類似を述べる | introductory motivation only |
-| G6-b correspondence | $\ell_t$, $g_t$, $b_t$ などの項目対応表を作る | useful but not decisive |
+| G6-b correspondence | $d_t$, $r_t$, $b_t$ などの項目対応表を作る | useful but not decisive |
 | G6-c formal reduction / embedding | 構造持続の収支原理から既存理論の一部を導く、または既存理論の drift / balance 条件を構造持続の収支原理の特例として埋め込む | minimum pass for Level 3 credibility |
 
 Important:
@@ -521,7 +521,7 @@ G6-c iteration 1 is closed at the minimal algebraic embedding level:
 - `lean/Survival/LyapunovBalanceEmbedding.lean` formalizes:
   - \(B_n = Z_n - Z_0\) telescoping;
   - \(R_{t+1}=R_t e^{-b_t}\);
-  - \(b_t=\ell_t-g_t\) via positive / negative parts;
+  - \(b_t=d_t-r_t\) via positive / negative parts;
   - queue excess-demand wrappers against `QueueStability.lean`.
 
 This is not a proof of positive recurrence or geometric ergodicity. Those
@@ -544,7 +544,7 @@ G4 v2 selection:
 - Lean skeleton: `lean/Survival/RepairMaintenanceBalance.lean`.
 - Reader-facing section: `v2/補論_非CSP古典例における構造持続の収支原理の最小アンカー.md`
   §11.
-- Reason: expose \(g_t\) as an explicit compensation / maintenance flow in a
+- Reason: expose \(r_t\) as an explicit recovery / maintenance flow in a
   non-CSP open-system anchor.
 - Deferred direction: branching-process almost-sure extinction / generating
   function strengthening.

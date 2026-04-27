@@ -9,9 +9,9 @@ import Mathlib.Tactic.Ring
 This module records the minimal G4 v2 non-CSP open-system skeleton.  It is a
 finite-prefix algebraic model of accumulated damage with explicit repair:
 
-* damage flow `d_t`,
-* repair / maintenance flow `g_t`,
-* one-step balance `b_t = d_t - g_t`,
+* damage amount `d_t`,
+* repair / maintenance flow `r_t`,
+* one-step balance `b_t = d_t - r_t`,
 * cumulative balance `B_n = ∑_{t<n} b_t`,
 * damage level `D_n = D_0 + B_n`,
 * margin `M_n = B - D_n`,
@@ -19,7 +19,8 @@ finite-prefix algebraic model of accumulated damage with explicit repair:
 
 It deliberately does not prove an optimal maintenance theorem, a stochastic
 reliability theorem, or a fatigue crack-growth law.  It only packages the
-loss-minus-repair finite-prefix identity needed by the structural persistence balance principle.
+consumption-minus-recovery finite-prefix identity needed by the structural
+persistence balance principle.
 -/
 
 open scoped BigOperators
@@ -108,7 +109,7 @@ theorem damageLevel_eq_initial_plus_cumulative_net_action
     damageLevel D0 damage repair n =
       D0 + cumulativeNetAction damage repair n := rfl
 
-/-- One more step updates damage by the one-step balance `d_t - g_t`. -/
+/-- One more step updates damage by the one-step balance `d_t - r_t`. -/
 theorem damageLevel_succ_eq_damageLevel_add_netAction
     (D0 : ℝ) (damage repair : ℕ → ℝ) (n : ℕ) :
     damageLevel D0 damage repair (n + 1) =

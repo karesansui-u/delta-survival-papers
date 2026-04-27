@@ -314,7 +314,7 @@ loss-only structural-persistence design in the Backblaze reliability domain.
 Forbidden:
 
 ```text
-Backblaze validates repair flow g_t.
+Backblaze validates recovery amount r_t.
 Backblaze completes G4 v2 repair / maintenance operational validation.
 Backblaze v2 erases the Q4 2025 no-support result.
 Backblaze evidence is equal in strength to Exp43c.

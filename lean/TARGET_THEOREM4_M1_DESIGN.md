@@ -436,7 +436,7 @@ empirical universality support != formal law-of-tendency theorem
 Paper 5's resource decomposition:
 
 ```text
-M = (M_b, M_r, M_a, M_x)
+M = (M_{\mathrm{buffer}}, M_{\mathrm{recovery}}, M_{\mathrm{reconfiguration}}, M_{\mathrm{external}})
 ```
 
 is relevant to target theorem 4 because it gives operational content to the

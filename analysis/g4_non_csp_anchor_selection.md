@@ -10,7 +10,7 @@ G4 の目的は、構造持続の収支原理が SAT / Bernoulli-CSP / Mixed-CSP
 
 ただし、G4 は新しい queueing theorem や reliability theorem を主張する場ではない。既存分野の定理を置き換えるのではなく、構造持続の収支原理の語彙
 \[
-  Z_t,\quad b_t,\quad B_n,\quad R_t,\quad \ell_t,\quad g_t
+  Z_t,\quad b_t,\quad B_n,\quad R_t,\quad d_t,\quad r_t
 \]
 へ、どの古典例が最も自然に写るかを選ぶ。
 
@@ -30,7 +30,7 @@ Serial reliability と constant-fraction decay は loss-only control anchor と�
 
 | criterion | 内容 |
 |---|---|
-| C1. balance-principle fit | \(b_t=\ell_t-g_t\), \(B_n\), \(R_t=e^{-Z_t}\) へ自然に写るか |
+| C1. balance-principle fit | \(b_t=d_t-r_t\), \(B_n\), \(R_t=e^{-Z_t}\) へ自然に写るか |
 | C2. Lean-backed | 既存 Lean theorem が reader-facing claim を支えるか |
 | C3. non-CSP distance | SAT / CSP から十分に離れて見えるか |
 | C4. theorem humility | 既存分野の強い theorem を過剰に再主張せずに済むか |
@@ -104,7 +104,7 @@ Serial reliability は、loss-only kernel の non-CSP control として置く。
 \[
   R_n=\prod_{i<n}p_i
 \]
-と累積損失
+と累積構造消耗量
 \[
   L_n=\sum_{i<n}-\log p_i
 \]
@@ -114,9 +114,9 @@ Serial reliability は、loss-only kernel の non-CSP control として置く。
 \]
 が形式化されている。
 
-これは Paper 1 / Paper 2 の loss-only kernel が、SAT ではなく信頼性工学の textbook model にもそのまま現れることを示す。open-system compensation \(g_t\) は出ないが、closed / loss-only control として非常に読みやすい。
+これは Paper 1 / Paper 2 の loss-only kernel が、SAT ではなく信頼性工学の textbook model にもそのまま現れることを示す。open-system recovery \(r_t\) は出ないが、closed / loss-only control として非常に読みやすい。
 
-G4 v1 では、serial reliability を primary anchor にしない。理由は、構造持続の収支原理の新しい要素である補償流 \(g_t\) や recovery tendency を含まないからである。しかし、queueing anchor と並べることで、
+G4 v1 では、serial reliability を primary anchor にしない。理由は、構造持続の収支原理の新しい要素である回復量 \(r_t\) や recovery tendency を含まないからである。しかし、queueing anchor と並べることで、
 
 \[
   \text{loss-only exponential kernel}
@@ -160,7 +160,7 @@ G4 v1 では、constant-fraction decay を serial reliability と同じく contr
 \[
   \sum d_i \ge C
 \]
-型の threshold bookkeeping であり、構造持続の収支原理の \(R_t=e^{-Z_t}\) や \(b_t=\ell_t-g_t\) との接続は queueing ほど強くない。
+型の threshold bookkeeping であり、構造持続の収支原理の \(R_t=e^{-Z_t}\) や \(b_t=d_t-r_t\) との接続は queueing ほど強くない。
 
 したがって、G4 v1 の primary にはしない。後続の G4 v2 で、repair / maintenance intervention を含めた richer model に拡張する候補である。
 
@@ -178,7 +178,7 @@ G4 v1 では、constant-fraction decay を serial reliability と同じく contr
 G4 v1 の正しい言い方:
 
 \begin{quote}
-構造持続の収支原理は、非CSP古典例のうち、少なくとも queueing / Foster-Lyapunov drift に対して、\(b_t,B_n,R_t,\ell_t,g_t\) の最小代数的埋め込みを持つ。Serial reliability と constant-fraction decay は、同じ log-ratio exponential kernel が loss-only non-CSP 系にも現れることを示す control anchors である。
+構造持続の収支原理は、非CSP古典例のうち、少なくとも queueing / Foster-Lyapunov drift に対して、\(b_t,B_n,R_t,d_t,r_t\) の最小代数的埋め込みを持つ。Serial reliability と constant-fraction decay は、同じ log-ratio exponential kernel が loss-only non-CSP 系にも現れることを示す control anchors である。
 \end{quote}
 
 避けるべき言い方:

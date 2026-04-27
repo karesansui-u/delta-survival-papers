@@ -35,7 +35,7 @@ Route A の有限 CSP 側では、Mixed-SAT/NAE-SAT の事前登録済み primar
 
 形式層では、Lean M1 gap analysis により、目標定理 4 の期待値レベル tendency schema が既存定理で formally accessible であることを確認しました。さらに G6-c iteration 1 として、Foster-Lyapunov / queueing drift の最小代数的埋め込みを `Survival/LyapunovBalanceEmbedding.lean` で形式化しました。対応表は [`lean/PAPER_MAPPING.md`](lean/PAPER_MAPPING.md) にまとめています。残る formal work は、必要に応じた reader-facing wrapper の追加と、高確率 stopped-collapse schema を期待値版 tendency schema から分離して維持することです。
 
-Route A の非CSP skeletons は、信頼性・減衰・待ち行列・疲労・合意・臨界閾値などの古典例を同じ最小語彙で歪めず表せるかを見る sanity / coverage benchmark です。G4 v1 では queueing / Foster-Lyapunov drift を primary anchor、serial reliability と constant-fraction decay を loss-only control anchors として扱います。G4 v2 では repair / maintenance を持つ reliability / fatigue 系へ進め、`RepairMaintenanceBalance.lean` で補償流 \(g_t\) を非CSP open-system anchor として明示しました。これらは各分野の新しい本命定理を主張するものではなく、今後の operational theorem がどこへ波及しうるかを示すための射程確認として扱います。
+Route A の非CSP skeletons は、信頼性・減衰・待ち行列・疲労・合意・臨界閾値などの古典例を同じ最小語彙で歪めず表せるかを見る sanity / coverage benchmark です。G4 v1 では queueing / Foster-Lyapunov drift を primary anchor、serial reliability と constant-fraction decay を loss-only control anchors として扱います。G4 v2 では repair / maintenance を持つ reliability / fatigue 系へ進め、`RepairMaintenanceBalance.lean` で回復量 \(r_t\) を非CSP open-system anchor として明示しました。これらは各分野の新しい本命定理を主張するものではなく、今後の operational theorem がどこへ波及しうるかを示すための射程確認として扱います。
 
 非CSP の observational 側では、Backblaze drive reliability の loss-only branch に closed Q4 2025 no-support と Q3 2025 same-domain calibrated support の両方があります。Q4 2025 v1 は高い AUC を持ちながら frozen log-loss rule で失敗しましたが、Q3 2025 v2 は別 archive 上の calibration-aware redesign として通りました（0.007936 vs best baseline 0.008801、9.83% improvement）。ただしこれは repair-flow evidence ではなく、same-domain second attempt の loss-only observational support に限定して扱います。
 
@@ -59,13 +59,13 @@ Route A の非CSP skeletons は、信頼性・減衰・待ち行列・疲労・�
 
 ### Paper 3 — 構造持続の収支原理と崩壊傾向
 
-主理論 spine の第三層。損失流と補償流の差し引きを構造持続の収支原理として定式化し、pathwise identity、expectation-level tendency、finite-horizon concentration schema、Route A / Route C anchors、既存理論との接続強度を整理する中心 draft です。
+主理論 spine の第三層。構造消耗量と回復量の差し引きを構造持続の収支原理として定式化し、pathwise identity、expectation-level tendency、finite-horizon concentration schema、Route A / Route C anchors、既存理論との接続強度を整理する中心 draft です。
 
 - Markdown: [`v2/3_構造持続の収支原理と崩壊傾向.md`](v2/3_構造持続の収支原理と崩壊傾向.md)
 
 ### Route C Companion I — 推論時の構造劣化
 
-Route C companion anchor 1。主理論 spine そのものではなく、未整理矛盾や external metabolism が loss-side / repair-side indicator として観測量を予測するかを検査する観測的アンカーです。
+Route C companion anchor 1。主理論 spine そのものではなく、未整理矛盾や external metabolism が reduction-side / recovery-side indicator として観測量を予測するかを検査する観測的アンカーです。
 
 推論時の未整理矛盾や上書きが、論理一貫性を保てる経路を削るという具体例。現時点の主張は、外部代謝が未整理の矛盾放置より良い、という点に絞っている。
 
@@ -166,7 +166,7 @@ The current core layering includes:
 - `ThresholdCardinalitySATChernoffCollapse.lean`: at-most / at-least threshold cardinality-SAT を同じ witness bridge に載せる family-level specialization
 - `ExactlyOneSATChernoffCollapse.lean`: exactly-one-SAT を multi-forbidden-pattern witness として表現する specialization
 - `BernoulliCSPUniversality.lean`: k-SAT / NAE-SAT / XOR-SAT / q-coloring / forbidden-pattern / hypergraph-coloring / cardinality-SAT / threshold-cardinality-SAT CSP を同一 Bernoulli-CSP interface に束ねる wrapper
-- `LyapunovBalanceEmbedding.lean`: Foster-Lyapunov / queueing drift を構造持続の収支原理の \(b_t,B_n,R_t,\ell_t,g_t\) へ埋め込む G6-c minimal algebraic embedding
+- `LyapunovBalanceEmbedding.lean`: Foster-Lyapunov / queueing drift を構造持続の収支原理の \(b_t,B_n,R_t,d_t,r_t\) へ埋め込む G6-c minimal algebraic embedding
 - Route A non-CSP skeletons: 11 small Lean modules grouped into five finite-prefix forms: multiplicative/exponential survival, linear overload, cumulative-capacity thresholds, critical-parameter thresholds, and explicit repair / maintenance balance. Detailed module-to-claim mapping is kept in [`lean/PAPER_MAPPING.md`](lean/PAPER_MAPPING.md).
 
 The cross-domain Bernoulli-CSP layer is frozen locally as **Bernoulli CSP

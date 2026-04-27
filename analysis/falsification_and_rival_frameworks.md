@@ -45,7 +45,7 @@ subsumption, and practical redundancy.
 
 | ID | Defeat mode | What would count as defeat | Current defense | Next needed artifact |
 |---|---|---|---|---|
-| F1 | Translation / sign inconsistency | The same symbol, especially \(b_t\), \(\ell_t\), \(g_t\), \(B_n\), or \(R_t\), has incompatible sign or semantic meaning across anchors | G6-c queueing and G4 v2 repair-maintenance keep \(b_t=\ell_t-g_t\) / overload-positive convention explicit | Cross-domain sign-convention table |
+| F1 | Translation / sign inconsistency | The same symbol, especially \(b_t\), \(d_t\), \(r_t\), \(B_n\), or \(R_t\), has incompatible sign or semantic meaning across anchors | G6-c queueing and G4 v2 repair-maintenance keep \(b_t=d_t-r_t\) / overload-positive convention explicit | Cross-domain sign-convention table |
 | F2 | Prediction / theorem content not preserved | Translation preserves notation but not nontrivial predictions, inequalities, thresholds, or theorem assumptions | Exp43c and Mixed-CSP test prediction coordinates; G6-c preserves algebraic identities | Non-triviality / theorem-transfer score per domain |
 | F3 | Scope overreach / silent systems | The theory claims to cover dynamical structure generally but cannot express phase transitions, cycles, heavy-tail criticality, or static structures | structural persistence balance principle paper §8 and Route A/B/C already limit claims; `analysis/scope_silence_catalog.md` now records the explicit silence boundary | Extend only if a new system family needs a sharper no-claim rule |
 | F4 | Rival framework subsumption | Large deviation theory, free-energy / stochastic thermodynamics, contraction analysis, or Lyapunov drift calculus does the same work with less extra vocabulary and more predictions | structural persistence balance principle paper §7 handles thermodynamics, Lyapunov, control, and information theory; `analysis/ldp_rate_function_comparison.md` opens the LDP / rate-function stress test | Extend to free-energy / contraction comparison if needed |
@@ -65,15 +65,15 @@ The program is weakened if different domains require incompatible readings of
 the same structural-persistence balance variables. The most important convention is:
 
 \[
-  b_t = \ell_t - g_t.
+  b_t = d_t - r_t.
 \]
 
 The intended sign convention is:
 
 | Quantity | Intended cross-domain meaning |
 |---|---|
-| \(\ell_t \ge 0\) | one-step structural loss, damage, obstruction, load, or bad-event action |
-| \(g_t \ge 0\) | one-step compensation, repair, service, support, or maintenance action |
+| \(d_t \ge 0\) | one-step structural loss, damage, obstruction, load, or bad-event action |
+| \(r_t \ge 0\) | one-step recovery, repair, service, support, or maintenance action |
 | \(b_t > 0\) | net overload / collapse tendency / damage accumulation |
 | \(b_t = 0\) | balance / maintenance tendency at the chosen coarse scale |
 | \(b_t < 0\) | recovery / repair-dominant tendency |
@@ -91,9 +91,9 @@ the "unified language" claim fails.
   \(b_t\) is queue load increment or arrival-minus-service in the queue wrapper.
   Positive \(b_t\) means overload accumulation.
 - Repair / maintenance:
-  \(b_t=d_t-g_t\). Positive \(b_t\) means net damage accumulation.
+  \(b_t=d_t-r_t\). Positive \(b_t\) means net damage accumulation.
 - Route A bad-event CSP:
-  \(\ell_t\) is bad-event exposure loss. In loss-only mode, \(g_t=0\) and
+  \(d_t\) is bad-event exposure loss. In loss-only mode, \(r_t=0\) and
   \(B_n\) is cumulative structural loss.
 - Branching processes were deferred partly because the "population increases"
   reading can invert the naive sign convention unless the maintained structure
@@ -104,7 +104,7 @@ the "unified language" claim fails.
 Create a sign-convention table for all current anchors:
 
 ```text
-anchor, Z_t / maintained quantity, ell_t, g_t, b_t sign,
+anchor, Z_t / maintained quantity, d_t, r_t, b_t sign,
 what b_t > 0 means, what b_t < 0 means, whether any sign reversal is used.
 ```
 
@@ -139,7 +139,7 @@ Use the following score when adding or auditing an anchor:
 |---|---|---|
 | T0 | Vocabulary only | Same words, no preserved equation |
 | T1 | Sign correspondence | \(b_t>0\) / \(b_t<0\) has the right qualitative direction |
-| T2 | Pathwise identity preserved | \(B_n=Z_n-Z_0\), \(D_n=D_0+\sum(d_t-g_t)\), or \(m(V_n)=m(V_0)e^{-B_n}\) |
+| T2 | Pathwise identity preserved | \(B_n=Z_n-Z_0\), \(D_n=D_0+\sum(d_t-r_t)\), or \(m(V_n)=m(V_0)e^{-B_n}\) |
 | T3 | Classical theorem assumptions preserved | Existing theorem can be read through the structural variables without dropping assumptions |
 | T4 | Predictive content preserved prospectively | Frozen structural coordinate beats preregistered baselines or transfers across a held-out family |
 
@@ -215,7 +215,7 @@ distinctive content is the operational discipline:
 
 1. pre-fixed maintained structure \(V\);
 2. pre-fixed measure \(m\) or path measure;
-3. explicit loss / repair split \(b_t=\ell_t-g_t\);
+3. explicit consumption / recovery split \(b_t=d_t-r_t\);
 4. Route A/B/C strength separation;
 5. preregistered baseline comparisons for empirical anchors.
 ```
@@ -306,7 +306,7 @@ Possible defense:
 ```text
 Contraction analysis is strongest when a natural metric and dynamics are given.
 Structural balance is more modest: it asks whether a maintained structure,
-measure, loss flow, and compensation flow can be pre-fixed and tested.
+measure, structural consumption amount, and recovery amount can be pre-fixed and tested.
 ```
 
 Required next work:
@@ -366,7 +366,7 @@ Current defense:
 - Exp43c and Mixed-CSP show that theory-specified coordinates can outperform
   naive baselines.
 - Route A/B/C prevents all examples from being claimed at equal strength.
-- The G4 v2 operational pilot draft turns \(g_t\) into a measurable design
+- The G4 v2 operational pilot draft turns \(r_t\) into a measurable design
   problem rather than a metaphor.
 
 Required later artifact:

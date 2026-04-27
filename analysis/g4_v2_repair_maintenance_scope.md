@@ -15,10 +15,10 @@ G4 v1 fixed the minimal non-CSP anchor package:
 
 G4 v2 should not merely add another loss-only example. The next most valuable
 step is to show a non-CSP open-system model in which repair / maintenance is
-explicitly represented as a compensation flow \(g_t\).
+explicitly represented as a recovery amount \(r_t\).
 
-Queueing already instantiates \(b_t\) with implicit compensation through the
-service rate \(\mu\). G4 v2 extends the semantic range of \(g_t\) to
+Queueing already instantiates \(b_t\) with implicit recovery through the
+service rate \(\mu\). G4 v2 extends the semantic range of \(r_t\) to
 schedule-driven intervention, preventive replacement, redundancy activation,
 and repair events, none of which are naturally represented in the
 constant-rate queueing gloss.
@@ -32,7 +32,7 @@ not a branching-process strengthening, for the next iteration.
 
 The reason is architectural. The structural persistence balance principle is strongest when it
 explains how open systems persist by paying compensatory flows. A repairable
-reliability or fatigue model makes that \(g_t\) term visible in a classical
+reliability or fatigue model makes that \(r_t\) term visible in a classical
 non-CSP domain.
 
 
@@ -69,8 +69,8 @@ variables.
 |---|---|
 | \(D_t\) | accumulated damage / load / unrepaired degradation |
 | \(d_t\) | one-step damage or loss increment |
-| \(g_t\) | one-step repair / maintenance / compensation |
-| \(b_t=d_t-g_t\) | one-step balance |
+| \(r_t\) | one-step repair / maintenance / recovery |
+| \(b_t=d_t-r_t\) | one-step balance |
 | \(B_n=\sum_{t<n}b_t\) | cumulative one-step balance |
 | \(B\) | collapse / failure threshold |
 | \(M_t=B-D_t\) | remaining margin |
@@ -83,7 +83,7 @@ The finite-prefix balance identity is
   =
   D_0 + B_n
   =
-  D_0 + \sum_{t<n}(d_t-g_t).
+  D_0 + \sum_{t<n}(d_t-r_t).
 \]
 
 Collapse occurs when
@@ -94,7 +94,7 @@ Collapse occurs when
 
 or equivalently when \(M_n\le 0\).
 
-This is the same structural persistence balance principle, but now the compensation term has an
+This is the same structural persistence balance principle, but now the recovery term has an
 operational reading: replacement, repair, inspection, redundancy activation,
 cooling, patching, or scheduled maintenance.
 
@@ -115,12 +115,12 @@ the system crosses a failure boundary.
 Minimal model:
 
 \[
-  D_{t+1}=D_t+d_t-g_t.
+  D_{t+1}=D_t+d_t-r_t.
 \]
 
-Here \(d_t\) is component degradation or risk accumulation, while \(g_t\) is
+Here \(d_t\) is component degradation or risk accumulation, while \(r_t\) is
 maintenance effort. The primary claim is not a new reliability theorem. The
-claim is that repairable reliability has the same loss-minus-repair accounting
+claim is that repairable reliability has the same consumption-minus-recovery accounting
 as the structural persistence balance principle.
 
 ### 4.2 Fatigue Damage With Repair
@@ -134,24 +134,24 @@ The existing fatigue skeleton is threshold bookkeeping:
 The G4 v2 extension is to add repair:
 
 \[
-  \sum_{t<n}(d_t-g_t) \ge C.
+  \sum_{t<n}(d_t-r_t) \ge C.
 \]
 
 This is a clean open-system version of cumulative damage. It also maps well to
 engineering language: damage accumulation, healing / annealing / maintenance,
 remaining useful life, and failure threshold.
 
-The closed case \(g_t\equiv 0\) recovers the Miner-rule style skeleton
-\(\sum d_t\ge C\). The open extension with \(g_t\) matches engineering
+The closed case \(r_t\equiv 0\) recovers the Miner-rule style skeleton
+\(\sum d_t\ge C\). The open extension with \(r_t\) matches engineering
 practices such as re-annealing, crack repair, and scheduled component
 replacement, each of which restores a portion of accumulated fatigue life.
 
 ### 4.3 Preventive Maintenance Schedule
 
-A schedule \(g_t\) can be deterministic:
+A schedule \(r_t\) can be deterministic:
 
 \[
-  g_t =
+  r_t =
   \begin{cases}
     r, & t \in S,\\
     0, & t \notin S,
@@ -162,13 +162,13 @@ where \(S\) is a maintenance schedule.
 
 This gives an intervention-ranking bridge:
 
-- increasing \(g_t\) lowers \(B_n\);
+- increasing \(r_t\) lowers \(B_n\);
 - moving maintenance earlier can increase the minimum margin \(M_t\);
 - a schedule is useful only relative to the loss profile \(d_t\).
 
 This is the non-CSP version of the M supplement's operational mapping layer.
-In the M supplement's \(M_b / M_r / M_a / M_x\) decomposition, preventive
-maintenance schedules instantiate the \(M_r\) recovery component with
+In the M supplement's \(M_{\mathrm{buffer}} / M_{\mathrm{recovery}} / M_{\mathrm{reconfiguration}} / M_{\mathrm{external}}\) decomposition, preventive
+maintenance schedules instantiate the \(M_{\mathrm{recovery}}\) recovery component with
 operationally observable semantics: repair events are scheduled, logged, and
 cost-accounted.
 
@@ -180,13 +180,13 @@ G4 v2 should stay finite-prefix and algebraic in the first iteration.
 Target 1:
 
 \[
-  D_n = D_0 + \sum_{t<n}(d_t-g_t).
+  D_n = D_0 + \sum_{t<n}(d_t-r_t).
 \]
 
 Target 2:
 
 \[
-  M_n = B-D_n = M_0-\sum_{t<n}(d_t-g_t).
+  M_n = B-D_n = M_0-\sum_{t<n}(d_t-r_t).
 \]
 
 Target 3:
@@ -201,7 +201,7 @@ horizon \(n\).
 Optional target:
 
 \[
-  R_{t+1}=R_t\exp(-(d_t-g_t))
+  R_{t+1}=R_t\exp(-(d_t-r_t))
 \]
 
 for \(R_t=\exp(-D_t)\).
@@ -221,14 +221,14 @@ lean/Survival/RepairMaintenanceBalance.lean
 
 Implemented contents:
 
-- finite sequences of damage \(d_t\) and repair \(g_t\);
+- finite sequences of damage \(d_t\) and repair \(r_t\);
 - cumulative one-step balance;
 - damage after \(n\) steps;
 - remaining margin;
 - threshold crossing predicates;
 - telescoping identities.
 - exponential maintenance update
-  \(R_{t+1}=R_t\exp(-(d_t-g_t))\);
+  \(R_{t+1}=R_t\exp(-(d_t-r_t))\);
 - comparison with damage-only dynamics under nonnegative repair.
 
 This should reuse the style of:
@@ -249,7 +249,7 @@ G4 v2 must not claim:
 2. a new fatigue crack-growth theorem;
 3. an optimal maintenance policy theorem;
 4. a stochastic proof of failure probability bounds;
-5. that \(g_t\) is directly measurable in all engineering systems;
+5. that \(r_t\) is directly measurable in all engineering systems;
 6. that repair cost is free;
 7. that this anchor establishes a universal law.
 
@@ -258,8 +258,8 @@ Correct wording:
 \begin{quote}
 Repairable reliability and fatigue models provide a non-CSP open-system
 anchor for the structural persistence balance principle: accumulated damage is governed by a
-loss-minus-repair finite-prefix identity. This shows that the \(g_t\)
-compensation term is not merely an LLM / software metaphor, while leaving
+consumption-minus-recovery finite-prefix identity. This shows that the \(r_t\)
+recovery term is not merely an LLM / software metaphor, while leaving
 domain-specific reliability and fatigue theorems intact.
 \end{quote}
 

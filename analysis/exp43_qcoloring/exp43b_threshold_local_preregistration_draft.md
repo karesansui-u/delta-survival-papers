@@ -37,7 +37,7 @@ The primary claim is:
 
 \begin{quote}
 Inside a threshold-local window selected by precommitted calibration rules and
-frozen before primary data, the first-moment / drift coordinate predicts
+frozen before primary data, the first-moment / structural-consumption coordinate predicts
 held-out q-colorability better than raw edge-count, density, and CNF-size
 baselines.
 \end{quote}
@@ -48,9 +48,9 @@ The threshold window location is calibration output, not theory evidence.
 
 Let
 \[
-  \ell_q=\log\frac{q}{q-1},
+  d_q=\log\frac{q}{q-1},
   \qquad
-  L=m\ell_q,
+  L=md_q,
   \qquad
   F=n\log q-L.
 \]

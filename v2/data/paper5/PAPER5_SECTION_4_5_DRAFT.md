@@ -25,7 +25,7 @@ Software / SaaS は、SAT や Mixed-CSP のような Route A ドメインでは�
 Route C としての勝ち筋は次である。
 
 \begin{quote}
-事前固定した代理損失 $\hat L$ と mode predictor が、raw size / age / churn / incident count などの基準モデルより、held-out outcome をよく予測するかを見る。
+事前固定した代理構造消耗 $\hat L$ と mode predictor が、raw size / age / churn / incident count などの基準モデルより、held-out outcome をよく予測するかを見る。
 \end{quote}
 
 したがって、§4-5 は定理的閉包ではなく、実証可能な写像を定義する節である。ここでの目標は、後続の §6 で validation protocol を置けるだけの $F,\Sigma,R,\hat L,M_i,I_i$ を事前に固定することである。
@@ -99,13 +99,13 @@ Software / SaaS の $R$ は raw stock であり、それ自体はまだ有効維
 
 この区別が、Paper 5 の中心である。
 
-### 4.5 代理損失 $\hat L$
+### 4.5 代理構造消耗 $\hat L$
 
-Software では真の $L$ を直接測るのが難しいため、最初は代理損失 $\hat L$ を事前固定する。
+Software では真の $L$ を直接測るのが難しいため、最初は代理構造消耗 $\hat L$ を事前固定する。
 
 候補は次である。
 
-| proxy | 定義の例 | 対応する損失 |
+| proxy | 定義の例 | 対応する構造消耗 |
 |---|---|---|
 | boundary-crossing count | 1 change が横断する module / service / ownership boundary 数 | 影響範囲の拡大 |
 | rollback-impossibility rate | 失敗時に即時 rollback できない change の比率 | 回復経路の喪失 |

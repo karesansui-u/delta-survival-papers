@@ -9,7 +9,7 @@ The current G4 v2 bottleneck is no longer theoretical notation. It is data
 acquisition.
 
 The next useful dataset is not simply “maintenance-like data.” It must support
-an operationally meaningful compensation flow \(g_t\) that can be frozen
+an operationally meaningful recovery amount \(r_t\) that can be frozen
 before validation.
 
 This brief is the one-page practical packet to hand to a partner, external
@@ -97,9 +97,9 @@ Do not proceed toward preregistration if any of the following is true.
 
 These are not minor inconveniences. They are structural blockers.
 
-## 5. What “Observable \(g_t\)” Means Here
+## 5. What “Observable \(r_t\)” Means Here
 
-For G4 v2, an observable compensation flow is stronger than “some repair-ish
+For G4 v2, an observable recovery amount is stronger than “some repair-ish
 column exists.”
 
 The preferred situation is:
@@ -110,7 +110,7 @@ evaluation, under a schema that distinguishes preventive / scheduled action
 from reactive response.
 ```
 
-That is strong enough to freeze a candidate \(g_t\) definition later.
+That is strong enough to freeze a candidate \(r_t\) definition later.
 
 The weak situation is:
 
@@ -168,7 +168,7 @@ The current program already has:
 - a near-bridge repair / maintenance skeleton;
 - loss-only observational anchors below repair-flow status.
 
-What would change the picture is a dataset where \(g_t\) is not just a symbol
+What would change the picture is a dataset where \(r_t\) is not just a symbol
 or a proxy, but a direct logged intervention variable that can be frozen before
 validation.
 

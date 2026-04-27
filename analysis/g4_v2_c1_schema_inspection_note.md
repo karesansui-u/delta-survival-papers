@@ -153,7 +153,7 @@ This is sufficient to define a future-failure endpoint after freeze.
 No overlap statistics between `PdM_maint.csv` and `PdM_failures.csv` were
 computed in this pass.
 
-### Q5. Is there enough preventive maintenance before failures to make g_t meaningful?
+### Q5. Is there enough preventive maintenance before failures to make r_t meaningful?
 
 Not assessable without outcome coupling.
 
@@ -193,7 +193,7 @@ preventive / reactive repair status would have to be inferred from failure
 overlap or failure proximity.
 ```
 
-That inference would couple the compensation variable \(g_t\) to the endpoint.
+That inference would couple the recovery variable \(r_t\) to the endpoint.
 It would therefore weaken the observational pilot exactly where the pilot needs
 discipline most.
 

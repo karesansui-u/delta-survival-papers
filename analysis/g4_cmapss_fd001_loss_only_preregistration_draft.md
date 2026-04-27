@@ -30,10 +30,10 @@ baselines and remains competitive with a wider raw-sensor baseline
 This branch stays strictly loss-only:
 
 ```text
-g_t = 0
+r_t = 0
 ```
 
-It does not test repair flow, preventive maintenance, operational \(M_r\), or
+It does not test recovery amount, preventive maintenance, operational \(M_{\mathrm{recovery}}\), or
 G4 v2 repair / maintenance validation.
 
 ## 2. Evidence Tier
@@ -203,7 +203,7 @@ D_{\mathrm{pc1}}(u,t)
 \]
 
 This is a preregistered unsupervised degradation coordinate. It uses only the
-loss-side sensor structure and no outcome labels.
+reduction-side sensor structure and no outcome labels.
 
 ## 7. Baselines And Primary Model
 

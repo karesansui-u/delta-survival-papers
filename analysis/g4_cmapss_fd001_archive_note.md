@@ -117,9 +117,9 @@ The intended first structural reading for FD001 is:
 |---|---|
 | engine id | repeated unit |
 | cycle | time index |
-| sensor / setting trajectories | loss-side / degradation covariates |
+| sensor / setting trajectories | reduction-side / degradation covariates |
 | RUL / run-to-failure target | future endpoint |
-| repair events | absent, so \(g_t=0\) |
+| repair events | absent, so \(r_t=0\) |
 
 This keeps the branch explicitly loss-only.
 

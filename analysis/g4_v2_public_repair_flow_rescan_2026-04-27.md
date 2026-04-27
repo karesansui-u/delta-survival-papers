@@ -6,8 +6,8 @@ and not validation evidence.
 ## 1. Purpose
 
 The current repair-flow bottleneck is no longer notation alone. It is whether a
-publicly accessible dataset can carry a directly logged compensation signal
-\(g_t\) strongly enough for a real G4 v2 pilot.
+publicly accessible dataset can carry a directly logged recovery signal
+\(r_t\) strongly enough for a real G4 v2 pilot.
 
 This note rescans a small set of public-web candidates after the acquisition
 brief and stochastic repair bridge note were written. The goal is narrower than
@@ -16,7 +16,7 @@ strongest for one of three tiers:
 
 1. repair-flow primary candidate;
 2. public stochastic reliability bridge candidate;
-3. weak-g / maintenance-boundary / loss-side control.
+3. weak-g / maintenance-boundary / reduction-side control.
 
 ## 2. Screening Question
 
@@ -24,7 +24,7 @@ Each candidate is judged against three practical questions.
 
 1. Does it support repeated units, time-stamped interventions, and a future
    endpoint?
-2. Is the intervention signal direct enough to freeze a candidate \(g_t\)
+2. Is the intervention signal direct enough to freeze a candidate \(r_t\)
    without outcome-coupled inference?
 3. If not a full repair-flow primary, is it still strong enough for a public
    stochastic reliability bridge or maintenance-boundary bridge?
@@ -33,10 +33,10 @@ Each candidate is judged against three practical questions.
 
 | Candidate | Public source | Strongest plausible tier now | Main blocker for full repair-flow primary | Next clean action |
 |---|---|---|---|---|
-| Scania Component X | Researchdata.se + Scientific Data | strongest public stochastic reliability bridge candidate | repair information is time-to-event / first-repair oriented, not yet a clean preventive/reactive logged \(g_t\) with post-intervention recovery semantics | create exact feasibility note for stochastic reliability bridge |
+| Scania Component X | Researchdata.se + Scientific Data | strongest public stochastic reliability bridge candidate | repair information is time-to-event / first-repair oriented, not yet a clean preventive/reactive logged \(r_t\) with post-intervention recovery semantics | create exact feasibility note for stochastic reliability bridge |
 | Microsoft Azure Predictive Maintenance | Kaggle mirror + prior schema note | leakage-risk re-audit candidate | public schema still lacks a direct preventive/reactive field; repair class would still be inferred from failure overlap unless stronger documentation emerges | only revisit if documentation-based direct rule can be frozen |
 | MetroPT-3 | UCI + Scientific Data + prior schema note | weak-g real operational control | effectively single-system and maintenance semantics live in sparse report metadata rather than a structured event table | keep as weak-g control, not primary |
-| HSE filter dataset | Kaggle dataset page | maintenance-boundary / censored reliability candidate | preventive replacement exists, but the public description looks closer to preventive-to-predictive transition / censored RUL than to a direct repair-flow primary | inspect only if pursuing censored maintenance bridge, not direct \(g_t\) pilot |
+| HSE filter dataset | Kaggle dataset page | maintenance-boundary / censored reliability candidate | preventive replacement exists, but the public description looks closer to preventive-to-predictive transition / censored RUL than to a direct repair-flow primary | inspect only if pursuing censored maintenance bridge, not direct \(r_t\) pilot |
 
 ## 4. Candidate Notes
 
@@ -68,7 +68,7 @@ Why it is not yet a clean public repair-flow primary:
   not obviously toward repeated preventive vs reactive intervention classes;
 - the current public documentation is stronger on repair occurrence timing than
   on direct post-intervention margin recovery semantics;
-- a direct frozen \(g_t\) would still need a careful interpretation note.
+- a direct frozen \(r_t\) would still need a careful interpretation note.
 
 Current verdict:
 
@@ -79,7 +79,7 @@ Not yet a clean public repair-flow primary candidate.
 
 This is the best public-web route if the immediate goal is to move repair /
 maintenance from near-bridge toward a public non-CSP stochastic bridge without
-overclaiming direct empirical \(g_t\) support.
+overclaiming direct empirical \(r_t\) support.
 
 ### 4.2 Microsoft Azure Predictive Maintenance
 
@@ -106,7 +106,7 @@ Why it remains unsafe as a public repair-flow primary:
   `datetime`, `machineID`, and `comp`;
 - no direct preventive/reactive column exists in the exposed schema;
 - unless a documentation-grounded direct repair-class rule exists outside the
-  row overlap with failures, \(g_t\) would still be outcome-coupled.
+  row overlap with failures, \(r_t\) would still be outcome-coupled.
 
 Current verdict:
 
@@ -138,7 +138,7 @@ Why it remains weak for repair-flow primary:
 - maintenance semantics come from company maintenance reports, not from a clean
   repeated-unit intervention table;
 - this makes it a useful real operational weak-g or anomaly-control case, but
-  not a clean direct-\(g_t\) primary.
+  not a clean direct-\(r_t\) primary.
 
 Current verdict:
 
@@ -167,7 +167,7 @@ Why it is interesting:
 - it looks naturally compatible with maintenance-boundary or censored
   reliability framing.
 
-Why it is not yet a clean direct-\(g_t\) primary:
+Why it is not yet a clean direct-\(r_t\) primary:
 
 - the public description is stronger on censoring / RUL / replacement regime
   than on repeated-unit operational logs with directly observed intervention
@@ -179,7 +179,7 @@ Current verdict:
 
 ```text
 Interesting maintenance-boundary / censored reliability candidate.
-Not yet a clean direct-\(g_t\) public primary.
+Not yet a clean direct-\(r_t\) public primary.
 ```
 
 ## 5. What This Changes
@@ -209,7 +209,7 @@ The clean next order is now:
    bridge package;
 3. keep Azure PdM in reserve only for documentation-based re-audit;
 4. in parallel, continue partner / local acquisition for the stronger target:
-   directly logged empirical \(g_t\).
+   directly logged empirical \(r_t\).
 
 ## 7. Bottom Line
 

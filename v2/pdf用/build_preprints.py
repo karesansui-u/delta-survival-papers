@@ -21,6 +21,12 @@ TARGET_FILES = [
     V2_DIR / "Companion_RouteC_推論時の構造劣化.md",
     V2_DIR / "Companion_RouteC_継続学習時の構造的忘却.md",
     V2_DIR / "補論_計算コストの構造的予測.md",
+    V2_DIR / "補論_構造持続における資源項Mの操作的定式化.md",
+    V2_DIR / "補論_構造持続の集合値力学的表現と符号付き指数核.md",
+    V2_DIR / "補論_構造持続写像の標準手順.md",
+    V2_DIR / "補論_構造持続の収支原理とFoster-Lyapunovドリフトの形式的埋め込み.md",
+    V2_DIR / "補論_非CSP古典例における構造持続の収支原理の最小アンカー.md",
+    V2_DIR / "補論_有限CSPにおける構造持続の予測力.md",
 ]
 
 CJK = "一-龯ぁ-んァ-ヶ々ー"

@@ -159,7 +159,7 @@ The current program already has:
 - repair / maintenance as a near-bridge open-system anchor;
 - public loss-only anchors below repair-flow status.
 
-What it still lacks is a directly logged empirical \(g_t\) that can be frozen
+What it still lacks is a directly logged empirical \(r_t\) that can be frozen
 before validation.
 
 That is why this packet exists.

@@ -15,7 +15,7 @@ Tier boundary:
 
 ```text
 C3 is loss-only / weak-g only.
-It is not repair-flow \(g_t\) evidence.
+It is not repair-flow \(r_t\) evidence.
 It does not complete or rescue the paused G4 v2 repair-flow primary search.
 ```
 
@@ -147,7 +147,7 @@ No.
 
 The current schema does not expose direct maintenance, repair, replacement, or
 preventive intervention fields. Failed drives leave the observed drive panel,
-but replacement is not a per-drive preventive \(g_t\) event.
+but replacement is not a per-drive preventive \(r_t\) event.
 
 Therefore C3 is strictly loss-only / weak-g for the present program.
 
@@ -180,7 +180,7 @@ for a loss-only empirical anchor:
 damage / degradation indicators -> future failure endpoint
 ```
 
-It should not be used to claim repair-flow or compensation-flow evidence.
+It should not be used to claim repair-flow or recovery-flow evidence.
 
 If developed further, C3 can support a separate loss-only branch:
 
@@ -201,7 +201,7 @@ draft a separate loss-only Backblaze preregistration.
 
 That preregistration should explicitly state:
 
-1. It is not a repair-flow \(g_t\) study.
+1. It is not a repair-flow \(r_t\) study.
 2. It tests only loss/degradation-to-failure prediction in a repeated-unit
    industrial panel.
 3. It should be reported below Exp43c in evidence strength, because Backblaze is

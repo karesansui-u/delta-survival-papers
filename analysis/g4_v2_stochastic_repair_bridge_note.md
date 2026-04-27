@@ -8,7 +8,7 @@ theory.
 
 Queueing / Foster-Lyapunov currently gives the strongest non-CSP conditional
 law-side bridge. Repair / maintenance balance is one step behind: it already
-has a finite-prefix skeleton and an operationally meaningful \(g_t\), but not
+has a finite-prefix skeleton and an operationally meaningful \(r_t\), but not
 yet a reader-facing stochastic bridge statement.
 
 This note fixes that next half-step.
@@ -23,10 +23,10 @@ Consider a filtered process \((\mathcal F_t)\) with:
 
 - accumulated damage \(D_t\);
 - one-step damage increment \(d_t\);
-- one-step repair / maintenance increment \(g_t\);
+- one-step repair / maintenance increment \(r_t\);
 - one-step balance
   \[
-    b_t := d_t-g_t;
+    b_t := d_t-r_t;
   \]
 - cumulative one-step balance
   \[
@@ -62,7 +62,7 @@ The bridge claim is conditional:
 
 ```text
 If a repairable stochastic system admits a natural damage / margin quantity,
-an observable repair flow, and a stopping boundary, then its stability
+an observable recovery amount, and a stopping boundary, then its stability
 question can be written in structural-persistence balance form.
 ```
 
@@ -136,13 +136,13 @@ regimes. Repair / maintenance currently has:
 - finite-prefix balance identity;
 - threshold crossing semantics;
 - repair dominance over damage-only;
-- clear operational meaning for \(g_t\).
+- clear operational meaning for \(r_t\).
 
 What it does not yet have in the checked-in reader-facing layer is:
 
 - a standard stochastic reliability theorem stated in this notation;
 - a hitting-probability or stopping-time result written out end-to-end;
-- an empirical dataset where \(g_t\) is directly logged and frozen before
+- an empirical dataset where \(r_t\) is directly logged and frozen before
   validation.
 
 So the current status remains:
@@ -180,7 +180,7 @@ the following were added.
    assumptions;
 2. a reliability-style theorem that preserves the original domain assumptions
    and is rewritten in \(b_t, B_n, M_t\) notation;
-3. a frozen maintenance-log primary where \(g_t\) is a direct logged
+3. a frozen maintenance-log primary where \(r_t\) is a direct logged
    intervention quantity rather than a proxy.
 
 The third item is the empirical bottleneck. The first two are theorem-side
@@ -194,7 +194,7 @@ The strongest current safe statement is:
 Queueing already gives the program a conditional law-side bridge.
 Repair / maintenance now gives the program a reader-facing stochastic bridge
 target: the same collapse / maintenance question, but with an operationally
-meaningful repair flow.
+meaningful recovery amount.
 ```
 
 That is why repair / maintenance is the right next non-CSP escalation path.

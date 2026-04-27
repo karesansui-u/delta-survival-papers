@@ -16,7 +16,7 @@ skeleton is proved in `Survival.RepairMaintenanceBalance`.
 
 The purpose of this module is naming: it gives Paper 3 a single Lean entry point
 whose theorem names match the paper-level claims.  It does not formalize
-domain-natural choice of `m`, empirical observability of `g_t`, positive
+domain-natural choice of `m`, empirical observability of `r_t`, positive
 recurrence, geometric ergodicity, or any universal-law claim.
 -/
 
@@ -36,8 +36,8 @@ abbrev StructuralSystem (X : Type*) := ProblemSpec X
 abbrev PositiveFiniteTrajectory (P : StructuralSystem X) (n : ℕ) :=
   PositiveTrajectory P n
 
-/-- Paper 3 notation: one-step balance is contraction loss minus repair gain. -/
-theorem oneStepBalance_eq_loss_sub_gain
+/-- Paper 3 notation: one-step balance is structural consumption minus recovery. -/
+theorem oneStepBalance_eq_consumption_sub_recovery
     (P : StructuralSystem X) (t : ℕ) :
     stepNetAction P t = stepLoss P t - stepGain P t := rfl
 
@@ -92,13 +92,14 @@ theorem pureContraction_recovers_loss_only_kernel
       feasibleMass P 0 * Real.exp (-(cumulativeLoss P n)) :=
   feasibleMass_eq_initial_mul_exp_neg_cumulativeLoss_of_pureContraction P n hpure hpos
 
-/-- Foster--Lyapunov/load increments decompose as loss flow minus repair flow. -/
-theorem lyapunov_increment_eq_lossFlow_sub_repairFlow
+/-- Foster--Lyapunov/load increments decompose as structural consumption amount
+minus recovery amount. -/
+theorem lyapunov_increment_eq_consumptionAmount_sub_recoveryAmount
     (Z : ℕ → ℝ) (t : ℕ) :
     Survival.LyapunovBalanceEmbedding.increment Z t =
-      Survival.LyapunovBalanceEmbedding.lossFlow Z t -
-        Survival.LyapunovBalanceEmbedding.repairFlow Z t :=
-  Survival.LyapunovBalanceEmbedding.increment_eq_lossFlow_sub_repairFlow Z t
+      Survival.LyapunovBalanceEmbedding.consumptionAmount Z t -
+        Survival.LyapunovBalanceEmbedding.recoveryAmount Z t :=
+  Survival.LyapunovBalanceEmbedding.increment_eq_consumptionAmount_sub_recoveryAmount Z t
 
 /-- Foster--Lyapunov cumulative load increment telescopes to final load minus
 initial load. -/

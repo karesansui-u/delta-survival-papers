@@ -40,12 +40,12 @@ def cumulativeAction (Z : ℕ → ℝ) (n : ℕ) : ℝ :=
 def relativeMaintenance (Z : ℕ → ℝ) (t : ℕ) : ℝ :=
   Real.exp (-(Z t))
 
-/-- Positive part of the load increment, read as loss flow. -/
-def lossFlow (Z : ℕ → ℝ) (t : ℕ) : ℝ :=
+/-- Positive part of the load increment, read as structural consumption amount. -/
+def consumptionAmount (Z : ℕ → ℝ) (t : ℕ) : ℝ :=
   max (increment Z t) 0
 
-/-- Negative part of the load increment, read as repair / compensation flow. -/
-def repairFlow (Z : ℕ → ℝ) (t : ℕ) : ℝ :=
+/-- Negative part of the load increment, read as repair / recovery amount. -/
+def recoveryAmount (Z : ℕ → ℝ) (t : ℕ) : ℝ :=
   max (-(increment Z t)) 0
 
 @[simp] theorem cumulativeAction_zero (Z : ℕ → ℝ) :
@@ -56,14 +56,14 @@ def repairFlow (Z : ℕ → ℝ) (t : ℕ) : ℝ :=
     0 < relativeMaintenance Z t := by
   exact Real.exp_pos _
 
-theorem lossFlow_nonneg (Z : ℕ → ℝ) (t : ℕ) :
-    0 ≤ lossFlow Z t := by
-  unfold lossFlow
+theorem consumptionAmount_nonneg (Z : ℕ → ℝ) (t : ℕ) :
+    0 ≤ consumptionAmount Z t := by
+  unfold consumptionAmount
   exact le_max_right (increment Z t) 0
 
-theorem repairFlow_nonneg (Z : ℕ → ℝ) (t : ℕ) :
-    0 ≤ repairFlow Z t := by
-  unfold repairFlow
+theorem recoveryAmount_nonneg (Z : ℕ → ℝ) (t : ℕ) :
+    0 ≤ recoveryAmount Z t := by
+  unfold recoveryAmount
   exact le_max_right (-(increment Z t)) 0
 
 /-- The structural persistence balance amount telescopes to final load minus initial load. -/
@@ -104,9 +104,9 @@ lemma max_self_zero_sub_max_neg_self_zero_eq_self (x : ℝ) :
     ring
 
 /-- Positive/negative part decomposition of a Lyapunov increment. -/
-theorem increment_eq_lossFlow_sub_repairFlow (Z : ℕ → ℝ) (t : ℕ) :
-    increment Z t = lossFlow Z t - repairFlow Z t := by
-  unfold lossFlow repairFlow
+theorem increment_eq_consumptionAmount_sub_recoveryAmount (Z : ℕ → ℝ) (t : ℕ) :
+    increment Z t = consumptionAmount Z t - recoveryAmount Z t := by
+  unfold consumptionAmount recoveryAmount
   exact (max_self_zero_sub_max_neg_self_zero_eq_self (increment Z t)).symm
 
 /-- Queue backlog as the Lyapunov/load sequence for the fluid skeleton. -/

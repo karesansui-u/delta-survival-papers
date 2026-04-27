@@ -44,7 +44,7 @@ direct repair-flow empirical support
 ```
 
 The current design does not reinterpret `in_study_repair` as direct pre-cutoff
-`g_t`.
+`r_t`.
 
 ## 3. Label-Grammar Lock
 

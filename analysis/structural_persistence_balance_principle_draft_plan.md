@@ -8,39 +8,39 @@ existing-theory differences, and close with limitations / next steps.
 
 Purpose:
 
-この draft は、構造持続理論を「M の分解」ではなく、損失流と補償流の収支として再集約するための設計メモである。M 分解はこの収支原理を現実ドメインで測るための operational mapping として補論へ下げ、普遍理論の中核は次の balance identity に置く。
+この draft は、構造持続理論を「M の分解」ではなく、構造消耗量と回復量の収支として再集約するための設計メモである。M 分解はこの収支原理を現実ドメインで測るための operational mapping として補論へ下げ、普遍理論の中核は次の balance identity に置く。
 
 \[
-  b_t = \ell_t - g_t,\qquad
+  b_t = d_t - r_t,\qquad
   B_n = \sum_{t<n} b_t,\qquad
   m(V_n)=m(V_0)\exp(-B_n).
 \]
 
-ここで $\ell_t$ は構造損失流、$g_t$ は補償・修復・資源流、$b_t$ は one-step balance である。日本語では **構造持続の収支原理**、英語では **structural persistence balance principle** と呼ぶ。「均衡法則」は equilibrium と誤読されやすいため使わない。
+ここで $d_t$ は構造消耗量、$r_t$ は回復・修復・資源入力、$b_t$ は one-step balance である。日本語では **構造持続の収支原理**、英語では **structural persistence balance principle** と呼ぶ。「均衡法則」は equilibrium と誤読されやすいため使わない。
 
 ## 1. Core Claim To Test
 
-主張の核は、開いた構造系が持続するには、損失流を補償する流れが必要であり、その差し引きが構造持続収支量として残存可能性を指数的に支配する、という点である。
+主張の核は、開いた構造系が持続するには、構造消耗量を回復する入力が必要であり、その差し引きが構造持続収支量として残存可能性を指数的に支配する、という点である。
 
 Three regimes:
 
 | regime | condition | tendency |
 |---|---|---|
-| collapse tendency | $\mathbb{E}[b_t] > 0$ | loss dominates compensation |
-| stationary / maintenance | $\mathbb{E}[b_t] \approx 0$ | compensation balances loss |
-| recovery tendency | $\mathbb{E}[b_t] < 0$ | compensation exceeds loss |
+| collapse tendency | $\mathbb{E}[b_t] > 0$ | consumption dominates recovery |
+| stationary / maintenance | $\mathbb{E}[b_t] \approx 0$ | recovery balances consumption |
+| recovery tendency | $\mathbb{E}[b_t] < 0$ | recovery exceeds consumption |
 
 この表は equilibrium の主張ではない。$b_t$ の符号で崩壊・維持・回復の傾向を分ける収支の主張である。
 
 ## 2. Source Anchors
 
-- `v2/補論_構造持続の集合値力学的表現と符号付き指数核.md`: $b_t=\ell_t^- - g_t$ と signed exponential kernel の既存 formalism。
+- `v2/補論_構造持続の集合値力学的表現と符号付き指数核.md`: $b_t=d_t - r_t$ と signed exponential kernel の既存 formalism。
 - `lean/UNIVERSALITY_GAP_MAP.md`: expectation-level tendency が Lean 既存定理へ写ることの M1 mapping。
 - `lean/PAPER_MAPPING.md`: verified theorem map。
 - `v2/補論_有限CSPにおける構造持続の予測力.md`: Mixed-CSP の finite-horizon concentration / feasibility evidence。
 - `v2/Companion_RouteC_推論時の構造劣化.md`: LLM における scope-as-repair / external metabolism の Route C anchor。
-- `v2/Companion_RouteC_継続学習時の構造的忘却.md`: 継続学習における repair / adaptation 分離の Route C anchor。
-- `v2/補論_構造持続における資源項Mの操作的定式化.md`: 補償流・資源流を実ドメインへ写す operational mapping。
+- `v2/Companion_RouteC_継続学習時の構造的忘却.md`: 継続学習における repair / reconfiguration 分離の Route C anchor。
+- `v2/補論_構造持続における資源項Mの操作的定式化.md`: 回復量・資源流を実ドメインへ写す operational mapping。
 
 ## 3. Proposed Main Paper Shape
 
@@ -48,23 +48,23 @@ Tentative title:
 
 ```text
 構造持続の収支原理と崩壊傾向
-— 損失流と補償流の構造持続収支量 —
+— 構造消耗量と回復量の構造持続収支量 —
 ```
 
 Draft sections:
 
-1. 問題設定: 閉じた収縮系から開いた補償系へ。
-2. 最小収支恒等式: $\ell_t$, $g_t$, $b_t$, $B_n$, exponential identity。
+1. 問題設定: 閉じた収縮系から開いた回復系へ。
+2. 最小収支恒等式: $d_t$, $r_t$, $b_t$, $B_n$, exponential identity。
 3. 期待値レベルの傾向律: $\mathbb{E}[b_t]$ の符号による collapse / maintenance / recovery。
 4. 有限時間・高確率境界: bounded increments, Azuma / Chernoff, hitting-time bounds。
 5. Route A anchors: SAT / Mixed-CSP / finite CSP での collapse tendency。
-6. Route C anchors: Route C companion I / II の repair / external metabolism / adaptation indicators。
+6. Route C anchors: Route C companion I / II の repair / external metabolism / reconfiguration indicators。
 7. 既存理論との差分: 非平衡熱力学、Prigogine、queueing Lyapunov drift、確率制御との同じ点と違う点。
-8. 限界: 無限地平線、因果的 repair identification、M-mode の universal metric は未主張。
+8. 限界: 無限地平線、因果的 repair identification、M-component の universal metric は未主張。
 
 ## 4. Non-Goals
 
-- M mode decomposition を普遍法則の中核にしない。
+- M component decomposition を普遍法則の中核にしない。
 - 単一の $\Phi$, $\rho_i$, $A_j$ を全ドメインで正しいとは主張しない。
 - software / SaaS を Route A と呼ばない。
 - empirical pilot なしに intervention-ranking を実証済みとは呼ばない。
@@ -77,4 +77,4 @@ Draft sections:
 2. Exp43 q-coloring cross-q feasibility の preregistration draft を設計する。
 3. §7 の G6-a/b/c（analogy / correspondence / formal reduction）整理を、Lean theorem map / roadmap に反映する。
 4. Paper 0 統合版の architecture を、Paper 1 -> Paper 2 -> 構造持続の収支原理 -> Route C companion I/II -> M 補論、という依存順に更新する。
-5. M 補論は「補償流・資源流の測定層」として参照し、主理論の代替として扱わない。
+5. M 補論は「回復量・資源流の測定層」として参照し、主理論の代替として扱わない。

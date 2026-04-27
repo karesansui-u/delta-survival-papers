@@ -1,0 +1,375 @@
+\documentclass[12pt,a4paper]{article}
+\input{survival_whitepaper_preamble.tex}
+
+\begin{document}
+
+\PaperTitleBlock
+  {構造持続の収支原理と Foster-Lyapunov ドリフトの形式的埋め込み}
+  {— G6-c formal embedding の最小補論 —}
+  {2026年4月12日}
+
+\begin{abstract}
+本補論は、構造持続の収支原理が既存理論と単に「似ている」のではなく、少なくとも一つの古典的 drift calculus を構造持続の収支原理の変数へ形式的に埋め込めることを示す。
+
+対象にするのは、離散時間過程に対する Foster-Lyapunov drift 条件である。確率過程 \(X_{t}\) と非負関数 \(W\) に対して、負荷
+
+\[
+Z_{t} := W(X_{t})
+\]
+
+を置き、一段の差分を
+
+\[
+b_{t} := Z_{t+1}-Z_{t}
+\]
+
+と定義すると、構造持続収支量は
+
+\[
+B_{n} = \sum_{t=0}^{n-1} b_{t} = Z_{n}-Z_0
+\]
+
+となる。また、相対的維持量を
+
+\[
+R_{t} := e^{-Z_{t}}
+\]
+
+と置けば、
+
+\[
+R_{t+1}=R_{t} e^{-b_{t}}
+\]
+
+が成り立つ。これは、構造持続の収支原理の局所更新と同じ algebraic shape を持つ。
+
+本補論の主張は限定的である。Foster-Lyapunov theorem の正再帰性定理や幾何的エルゴード性を再証明するものではない。Markov 性、irreducibility、小集合条件、moment 条件など、元理論の仮定はそのまま保持される。本補論が示すのは、Foster-Lyapunov drift calculus の負荷差分が、構造持続の収支原理の一段収支 \(b_{t}\) として読める、という最小の G6-c formal embedding である。
+
+この最小埋め込みは Lean 側でも \texttt{Survival/LyapunovBalanceEmbedding.lean} として形式化されている。Lean が証明しているのは、望遠鏡和、指数的維持量の局所恒等式、正負部分による \(b_{t}=d_{t}-r_{t}\) 分解、および \texttt{QueueStability.lean} の excess demand を一段収支として読む wrapper である。positive recurrence や \(R_{n} \le R_0 e^{-cn}\) 型の指数減衰境界は、次の iteration の対象であり、本補論の範囲外である。
+\end{abstract}
+
+\section{目的と位置づけ}\label{ux76eeux7684ux3068ux4f4dux7f6eux3065ux3051}
+
+構造持続の収支原理は、構造消耗量 \(d_{t}\) と回復量 \(r_{t}\) の差し引きを
+
+\[
+b_{t} = d_{t} - r_{t}
+\]
+
+と置き、その構造持続収支量
+
+\[
+B_{n} = \sum_{t=0}^{n-1} b_{t}
+\]
+
+によって構造維持量の変化を記述する枠組みである。
+
+Paper 3「構造持続の収支原理と崩壊傾向」では、既存理論との接続を G6-a / G6-b / G6-c の三段階に分けた。熱力学や情報理論との対応は、多くの場合 G6-a または G6-b に留まる。一方、queueing theory や Markov chain stability に現れる Foster-Lyapunov drift 条件は、構造持続の収支原理の一段収支 \(b_{t}\) へ直接埋め込める。
+
+本補論の目的は、その最小埋め込みを reader-facing artifact として独立に記録することである。これは既存理論の置き換えではない。むしろ、既存理論の drift 部分が構造持続の収支原理の expectation-level tendency 層へどう写るかを明示する。
+
+\section{G6-a / G6-b / G6-c の中での位置}\label{g6-a-g6-b-g6-c-ux306eux4e2dux3067ux306eux4f4dux7f6e}
+
+本稿群では、既存理論との接続強度を次の三段階に分ける。
+
+{\def\LTcaptype{table} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+level
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+内容
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+本補論での扱い
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+G6-a analogy & 直感や語彙が似ている & 目的ではない \\
+G6-b correspondence & 量と符号の対応表が作れる & §6 で整理する \\
+G6-c formal embedding & 既存の drift / balance 条件が構造持続の収支原理の変数へ埋め込める & 本補論の中心 \\
+\end{longtable}
+}
+
+ここでの G6-c は、Foster-Lyapunov theorem 全体を構造持続の収支原理から無条件に導く、という意味ではない。G6-c として主張するのは、次の限定命題である。
+
+\begin{quote}
+Foster-Lyapunov drift calculus の負荷差分は、構造持続の収支原理の一段収支 $b_{t}$ として読める。したがって、その expectation-level drift 条件は、構造持続の収支原理の recovery / collapse tendency の特例として埋め込める。
+\end{quote}
+
+この限定は重要である。formal embedding は、仮定の省略ではない。元の安定性定理が必要とする条件は、そのまま保持される。
+
+\section{最小埋め込み}\label{ux6700ux5c0fux57cbux3081ux8fbcux307f}
+
+離散時間過程 \(X_{t}\) と、非負関数
+
+\[
+W:\mathcal X\to [0,\infty)
+\]
+
+を考える。構造負荷を
+
+\[
+Z_{t} := W(X_{t})
+\]
+
+と定義する。
+
+一段収支を
+
+\[
+b_{t} := Z_{t+1}-Z_{t}
+\]
+
+と置く。構造持続収支量は
+
+\[
+B_{n} := \sum_{t=0}^{n-1} b_{t}
+\]
+
+である。
+
+このとき、望遠鏡和により
+
+\[
+\begin{aligned}
+B_{n} \\
+&= \sum_{t=0}^{n-1}(Z_{t+1}-Z_{t}) \\
+&= Z_{n}-Z_0.
+\end{aligned}
+\]
+
+これは構造持続の収支原理の構造持続収支量と同じ形式である。\(Z_{t}\) が増えると、負荷が増える。\(Z_{t}\) が減ると、回復が勝っている。
+
+\section{指数的維持量}\label{ux6307ux6570ux7684ux7dadux6301ux91cf}
+
+構造維持の相対量を
+
+\[
+R_{t} := e^{-Z_{t}}
+\]
+
+と定義する。
+
+すると、
+
+\[
+\begin{aligned}
+R_{t+1} \\
+&= e^{-Z_{t+1}} \\
+&= e^{-Z_{t}}e^{-(Z_{t+1}-Z_{t})} \\
+&= R_{t} e^{-b_{t}}.
+\end{aligned}
+\]
+
+したがって、局所更新は
+
+\[
+R_{t+1}=R_{t} e^{-b_{t}}
+\]
+
+である。
+
+これは、構造持続の収支原理の
+
+\[
+m(V^{(t+1)})=m(V^{(t)})e^{-b_{t}}
+\]
+
+と同じ algebraic shape を持つ。ただし、ここでの \(R_{t}\) は実際の feasible set measure そのものではない。これは Lyapunov 負荷から作った相対的維持座標である。この違いを消してはならない。
+
+\section{(d\_t,r\_t) への分解}\label{d_tr_t-ux3078ux306eux5206ux89e3}
+
+構造持続の収支原理の標準形では、一段収支を
+
+\[
+b_{t}=d_{t}-r_{t}
+\]
+
+と書く。ここで \(d_{t}\ge 0\) は構造消耗量、\(r_{t}\ge 0\) は回復量である。
+
+Lyapunov 差分
+
+\[
+\Delta Z_{t}:=Z_{t+1}-Z_{t}
+\]
+
+から、次のように分解できる。
+
+\[
+\begin{aligned}
+d_{t} :&= (\Delta Z_{t})^+, \\
+\qquad \\
+r_{t} :&= (-\Delta Z_{t})^+,
+\end{aligned}
+\]
+
+ただし \(x^+=\max(x,0)\) である。
+
+このとき
+
+\[
+\begin{aligned}
+d_{t}-r_{t} \\
+&= (\Delta Z_{t})^+ - (-\Delta Z_{t})^+ \\
+&= \Delta Z_{t} \\
+&= b_{t}.
+\end{aligned}
+\]
+
+したがって、負荷が増えるステップは structural consumption amount として、負荷が減るステップは recovery amount として読める。
+
+この読み替えは、物理的資源流を同定したという意味ではない。あくまで、Lyapunov 負荷の増減を構造持続の収支原理の符号つき収支量へ写す最小的な分解である。
+
+\section{Drift regime の対応}\label{drift-regime-ux306eux5bfeux5fdc}
+
+Foster-Lyapunov 条件は、\(b_{t}\) の条件付き期待値の符号として読める。
+
+Foster-Lyapunov 側で \(\mathbb E[Z_{t+1}-Z_{t}\mid X_{t}]\le -\epsilon\) なら、 構造持続の収支原理側では \(\mathbb E[b_{t}\mid X_{t}]\le -\epsilon\) であり、 これは recovery tendency と読む。
+
+Foster-Lyapunov 側で \(\mathbb E[Z_{t+1}-Z_{t}\mid X_{t}]\approx 0\) なら、 構造持続の収支原理側では \(\mathbb E[b_{t}\mid X_{t}]\approx 0\) であり、 これは maintenance regime と読む。
+
+Foster-Lyapunov 側で \(\mathbb E[Z_{t+1}-Z_{t}\mid X_{t}]\ge \epsilon\) なら、 構造持続の収支原理側では \(\mathbb E[b_{t}\mid X_{t}]\ge \epsilon\) であり、 これは overload / collapse tendency と読む。
+
+ここで重要なのは、構造持続の収支原理が drift theorem を置き換えるのではなく、drift theorem が扱う負荷差分を構造持続の収支原理の \(b_{t}\) として読む点である。
+
+\section{Queueing fluid skeleton}\label{queueing-fluid-skeleton}
+
+既存 Lean file \texttt{Survival.QueueStability} は、反射境界を持つ完全な stochastic queue ではなく、決定論的 fluid skeleton を扱う。
+
+到着率を \(\lambda\)、サービス率を \(\mu\)、初期 backlog を \(Z_0\) とする。backlog は
+
+\[
+Z_{n}=Z_0+n(\lambda-\mu)
+\]
+
+である。
+
+このとき一段収支は
+
+\[
+b_{t}=Z_{t+1}-Z_{t}=\lambda-\mu
+\]
+
+で一定である。したがって、
+
+\[
+\begin{aligned}
+B_{n}&=n(\lambda-\mu), \\
+\qquad \\
+Z_{n}&=Z_0+B_{n}.
+\end{aligned}
+\]
+
+三つの regime は次のように分かれる。
+
+\(\lambda<\mu\) なら \(b_{t}<0\) であり、service が arrival を上回る recovery tendency と読む。 \(\lambda=\mu\) なら \(b_{t}=0\) であり、critical / maintenance boundary と読む。 \(\lambda>\mu\) なら \(b_{t}>0\) であり、excess demand が累積する overload tendency と読む。
+
+有限閾値 \(B\) を置けば、
+
+\[
+Z_{n}\ge B
+\]
+
+は overload threshold event である。Lean 側では、これは \texttt{ThresholdExceeded} として skeleton 化されている。
+
+この例は小さいが、G6-c にとって重要である。構造持続の収支原理の \(b_{t}=d_{t}-r_{t}\) が、queueing の arrival minus service という古典的 balance と同じ符号構造を持つことを示すからである。
+
+\section{Lean 対応}\label{lean-ux5bfeux5fdc}
+
+本補論の最小埋め込みは、Lean 側では \texttt{Survival/LyapunovBalanceEmbedding.lean} に対応する。
+
+Lean 側では、\(B_{n}=Z_{n}-Z_0\) の望遠鏡和を \texttt{cumulativeAction\_eq\_load\_diff} が、 \(R_{t+1}=R_{t} e^{-b_{t}}\) を \texttt{relativeMaintenance\_succ\_eq\_mul\_exp\_neg\_increment} が、 \(b_{t}=d_{t}-r_{t}\) の正負部分分解を \texttt{increment\_eq\_consumptionAmount\_sub\_recoveryAmount} が支える。 また、queue excess demand を \(b_{t}\) として読む対応は \texttt{queue\_increment\_eq\_excessDemand}、 queue の構造持続収支量と累積 overload loss の対応は \texttt{queue\_cumulativeAction\_eq\_cumulativeOverloadLoss}、 \(\mu\ge\lambda\) 側の一段収支は \texttt{queue\_increment\_nonpos\_of\_stable}、 \(\lambda<\mu\) でない側の一段収支は \texttt{queue\_increment\_pos\_of\_overloaded} に対応する。
+
+この Lean file は意図的に狭い。Foster-Lyapunov の positive recurrence theorem を Lean 化していない。また、geometric ergodicity や \(R_{n}\le R_0e^{-cn}\) 型の指数減衰境界も主張していない。証明しているのは、構造持続の収支原理の \(b_{t},B_{n},R_{t},d_{t},r_{t}\) が Lyapunov drift の代数にどう対応するかである。
+
+\section{theorem assumption の継承}\label{theorem-assumption-ux306eux7d99ux627f}
+
+Foster-Lyapunov theorem は通常、単なる代数恒等式だけでは成立しない。たとえば、次のような仮定が必要になる。
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Markov 性。
+\item
+  状態空間の可測構造。
+\item
+  irreducibility。
+\item
+  small set / petite set 条件。
+\item
+  moment 条件。
+\item
+  drift 条件が成り立つ領域の指定。
+\item
+  再帰性や正再帰性を結論するための追加条件。
+\end{enumerate}
+
+構造持続の収支原理への埋め込みは、これらの仮定を消さない。したがって、正しい言い方は
+
+\[
+\text{Foster-Lyapunov theorem の仮定を満たすなら、その drift 部分は構造持続の収支原理へ埋め込める}
+\]
+
+であり、
+
+\[
+\text{構造持続の収支原理だけから queueing stability が無条件に従う}
+\]
+
+ではない。
+
+この discipline を守ることで、G6-c は「既存理論の再発見」や「仮定の隠蔽」ではなく、既存理論との形式的接続として読める。
+
+\section{この埋め込みが与えるもの}\label{ux3053ux306eux57cbux3081ux8fbcux307fux304cux4e0eux3048ux308bux3082ux306e}
+
+この G6-c 埋め込みが与える価値は三つある。
+
+第一に、構造持続の収支原理が熱力学的比喩だけではなく、既存の確率過程安定性理論と同じ drift algebra を共有していることを示す。
+
+第二に、Route A CSP calibration とは別の方向で、構造持続の収支原理の generality を強化する。random CSP の threshold-local grid に依存せず、負荷、回復入力、過負荷という語彙を既存の安定性理論へ接続できる。
+
+第三に、次の G4 non-CSP anchor を選ぶ基準を与える。すなわち、queueing、reliability、branching process、population dynamics などは、いずれも \(Z_{t}\), \(b_{t}\), \(B_{n}\), \(R_{t}\) の形に落とせるかどうかで比較できる。
+
+\section{この埋め込みが与えないもの}\label{ux3053ux306eux57cbux3081ux8fbcux307fux304cux4e0eux3048ux306aux3044ux3082ux306e}
+
+本補論は、次を主張しない。
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  構造持続の収支原理が Foster-Lyapunov theorem を置き換える。
+\item
+  queueing stability theorem を新たに証明した。
+\item
+  positive recurrence が構造持続の収支原理だけから従う。
+\item
+  任意の開いた構造系が Markov chain stability 問題である。
+\item
+  物理的な資源流 \(r_{t}\) が Lyapunov 負荷の減少と一意に同定される。
+\item
+  continuous-time generator や stochastic thermodynamics まで同時に扱った。
+\item
+  G6-c iteration 1 が閉じたので universal law が確立した。
+\end{enumerate}
+
+本補論の主張は限定的である。
+
+\begin{quote}
+Foster-Lyapunov drift calculus は、構造持続の収支原理の expectation-level tendency 層へ形式的に埋め込める。その際、既存 theorem の仮定は保存される。
+\end{quote}
+
+\section{結論}\label{ux7d50ux8ad6}
+
+本補論は、構造持続の収支原理の G6-c iteration 1 を reader-facing な形で閉じる。閉じたのは、Foster-Lyapunov drift calculus の最小代数的埋め込みである。すなわち、Lyapunov 負荷 \(Z_{t}\)、一段収支 \(b_{t}\)、構造持続収支量 \(B_{n}\)、相対維持量 \(R_{t}\)、構造消耗量 \(d_{t}\)、回復量 \(r_{t}\) の対応である。
+
+この最小埋め込みにより、構造持続の収支原理は既存理論との接続において、単なる analogy から一段進む。ただし、それは正再帰性や幾何的エルゴード性を新たに証明したという意味ではない。そこへ進むには、元理論の仮定を保持したうえで、drift theorem 自体を明示的に移植する必要がある。
+
+したがって、本補論の位置づけは明確である。G6-c iteration 1 は閉じており、G6-c iteration 2 は開いている。次に進むべき方向は、positive recurrence / geometric ergodicity の theorem 移植ではなく、まずこの埋め込みを基準として G4 non-CSP anchor を選ぶことである。候補は queueing、reliability、branching process、population dynamics であり、いずれも \(Z_{t},b_{t},B_{n},R_{t}\) の形へ歪めず写せるかどうかが最初の検査点になる。
+\end{document}

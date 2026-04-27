@@ -255,7 +255,7 @@ persistence in a non-CSP industrial reliability panel.
 Forbidden:
 
 ```text
-Backblaze validates repair flow g_t.
+Backblaze validates recovery amount r_t.
 Backblaze completes G4 v2 repair / maintenance operational validation.
 Backblaze evidence is equal in strength to Exp43c.
 ```

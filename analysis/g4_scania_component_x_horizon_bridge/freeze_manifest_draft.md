@@ -251,7 +251,7 @@ logloss(primary) <= 1.10 * logloss(B3)
 H3:
 
 ```text
-No result permits a direct repair-flow or direct g_t claim.
+No result permits a direct repair-flow or direct r_t claim.
 ```
 
 ## 14. Execution Script Slot

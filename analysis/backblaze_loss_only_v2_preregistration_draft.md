@@ -27,10 +27,10 @@ non-SMART baselines on a fresh untouched archive
 This is still a loss-only branch:
 
 ```text
-g_t = 0
+r_t = 0
 ```
 
-It does not test repair flow, preventive maintenance, operational \(M_r\), or
+It does not test recovery amount, preventive maintenance, operational \(M_{\mathrm{recovery}}\), or
 G4 v2 repair / maintenance validation.
 
 ## 2. Evidence Tier
@@ -446,7 +446,7 @@ No outcome permits a repair-flow claim.
 
 This draft does not claim:
 
-1. that Backblaze validates repair flow \(g_t\);
+1. that Backblaze validates recovery amount \(r_t\);
 2. that a pass would erase the Q4 2025 no-support result;
 3. that the structural persistence balance principle is falsified if Q3 2025 fails;
 4. that `smart_199_raw` is universally irrelevant in all reliability systems;

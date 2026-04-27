@@ -48,7 +48,7 @@ This tier is below:
 
 - Route A randomized primaries;
 - true repair-flow empirical bridge;
-- any claim that a direct logged \(g_t\) has already been frozen.
+- any claim that a direct logged \(r_t\) has already been frozen.
 
 ## 3. Structural Reading
 
@@ -67,7 +67,7 @@ Critical boundary:
 
 ```text
 in_study_repair is currently treated as endpoint/event semantics, not as a
-direct pre-cutoff compensation-flow variable g_t.
+direct pre-cutoff recovery-flow variable r_t.
 ```
 
 That is why this branch is a stochastic reliability bridge and not a repair-flow
@@ -95,7 +95,7 @@ Why this is the preferred conceptual path:
 1. it is closest to the current queueing / Foster-Lyapunov law-side bridge;
 2. it uses the dataset's strongest public semantics: event-time / replacement
    timing;
-3. it stays safely below any claim of direct empirical \(g_t\).
+3. it stays safely below any claim of direct empirical \(r_t\).
 
 ### 4.2 Secondary operational path: horizon classification bridge
 
@@ -187,7 +187,7 @@ classification route as the operational primary.
 This draft does not claim:
 
 1. Scania already closes the repair-flow empirical gap;
-2. Scania already has a direct logged \(g_t\);
+2. Scania already has a direct logged \(r_t\);
 3. the survival / TTE path is already freeze-ready as an executable package;
 4. the remaining model / metric / split details are already frozen;
 5. a public bridge package is stronger than partner/local directly logged

@@ -55,7 +55,7 @@ Route A の普遍法則宣言ではない。
 
 §4-6 で用いる $\hat L_{\mathrm{pilot}}$ は、boundary-crossing count,
 rollback-impossibility rate などから作る実用 proxy である。
-これは Paper 1 の対数比損失 $L$ そのものではない。
+これは Paper 1 の対数比の構造消耗 $L$ そのものではない。
 
 この違いは重要である。
 
@@ -145,7 +145,7 @@ S = Phi(M) e^{-L}
 
 動的拡張では、少なくとも次を扱う必要がある。
 
-- $\dot L$: 構造損失がどの速度で増えるか。
+- $\dot L$: 構造消耗がどの速度で増えるか。
 - $\dot M_j$: 各 mode が介入によってどの速度で変化するか。
 - 外部供給が内部能力の形成を促進するか、代替してしまうか。
 - collapse / recovery の time profile。

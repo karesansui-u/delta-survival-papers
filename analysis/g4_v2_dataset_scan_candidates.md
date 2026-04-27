@@ -12,7 +12,7 @@ pilot. This file only asks whether each dataset appears to contain enough schema
 structure to define:
 
 ```text
-unit, time, damage indicator, repair indicator, and future degradation / failure endpoint.
+unit, time, consumption indicator, recovery indicator, and future degradation / failure endpoint.
 ```
 
 No model performance is inspected here. No candidate is selected for primary
@@ -26,9 +26,9 @@ validation by this note.
 | C2 | MetroPT-3 Air Production Unit | UCI / Scientific Data | weak-g | Schema inspection found a real single-system time series, but repeated units and direct repair-flow event structure are too weak for primary validation |
 | C3 | Backblaze Drive Stats | Backblaze public hard-drive test data | loss-only | Schema inspection confirms repeated drive-day panel with SMART degradation and failure endpoint, but no direct repair / preventive maintenance signal |
 | C4 | NASA C-MAPSS turbofan degradation | NASA / PHM benchmark mirrors | weak-g | Strong unit-time degradation and RUL endpoint, but no repair / maintenance flow |
-| C5 | Microsoft Fabric predictive maintenance tutorial dataset | Microsoft Learn / Azure Open Datasets example | weak-g | Has machine parameters and failure label, but appears row-based and lacks explicit repair flow |
+| C5 | Microsoft Fabric predictive maintenance tutorial dataset | Microsoft Learn / Azure Open Datasets example | weak-g | Has machine parameters and failure label, but appears row-based and lacks explicit recovery amount |
 | C6 | ServiceNow IT incident log | Kaggle mirror of incident management process log | unclear | Rich incident lifecycle and change-request fields, but stable unit and future failure endpoint are not confirmed |
-| C7 | TravisTorrent / CI failure history | Travis CI / software engineering datasets | leakage-risk | Build failures and fixes may be reconstructible, but repair \(g_t\) would be derived and leakage risk is high |
+| C7 | TravisTorrent / CI failure history | Travis CI / software engineering datasets | leakage-risk | Build failures and fixes may be reconstructible, but repair \(r_t\) would be derived and leakage risk is high |
 
 Label note:
 
@@ -135,7 +135,7 @@ Main concerns:
 
 - Unit structure may be weak if the dataset centers on one APU rather than many
   repeated units.
-- Maintenance events may be few, making \(g_t\) difficult to estimate.
+- Maintenance events may be few, making \(r_t\) difficult to estimate.
 - Could be better as a single-system case study or exploratory visualization
   than as a primary predictive validation dataset.
 
@@ -164,7 +164,7 @@ Tier boundary before inspection:
 
 ```text
 C3 is loss-only / weak-g only.
-It does not count as repair-flow \(g_t\) evidence.
+It does not count as repair-flow \(r_t\) evidence.
 It cannot rescue the paused G4 v2 repair-flow primary search.
 ```
 
@@ -196,7 +196,7 @@ Why useful:
 Main concern:
 
 - Repair / preventive maintenance is not cleanly logged. Failed drives leave the
-  fleet, but replacement is not a per-drive preventive \(g_t\) signal.
+  fleet, but replacement is not a per-drive preventive \(r_t\) signal.
 
 Provisional label:
 
@@ -336,7 +336,7 @@ Why potentially useful:
 
 Main concerns:
 
-- Repair \(g_t\) is derived from commit semantics, not directly logged.
+- Repair \(r_t\) is derived from commit semantics, not directly logged.
 - Leakage risk is high if "fix" is identified using later failure labels.
 - Considerable extraction work is needed before any freeze design.
 

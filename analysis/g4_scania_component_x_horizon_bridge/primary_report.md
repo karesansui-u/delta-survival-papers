@@ -3,7 +3,7 @@
 Status: primary validation completed under the frozen Scania public bridge
 package. Primary support did not pass. This is a public stochastic reliability
 bridge no-support result. It is not repair-flow evidence and it does not
-support a direct empirical `g_t`.
+support a direct empirical `r_t`.
 
 Date run: 2026-04-27
 
@@ -43,7 +43,7 @@ baseline.
 
 It does not test:
 
-- repair flow \(g_t\);
+- recovery amount \(r_t\);
 - direct pre-cutoff intervention recovery;
 - empirical maintenance-log support;
 - universal-law closure;
@@ -237,7 +237,7 @@ What this result supports:
 What this result does not support:
 
 - public bridge support under the current horizon-classification package;
-- direct repair-flow or direct `g_t` evidence;
+- direct repair-flow or direct `r_t` evidence;
 - stronger evidence than the existing Route A randomized primaries;
 - retroactive same-archive redesign after seeing the frozen result.
 

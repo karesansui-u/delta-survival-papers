@@ -28,7 +28,7 @@ At minimum, the program needs a pre-fixed answer to:
 
 1. what structure is being maintained;
 2. what counts as loss;
-3. what counts as compensation;
+3. what counts as recovery;
 4. what the time index is;
 5. what outcome or boundary is being predicted.
 
@@ -81,7 +81,7 @@ Before opening a new anchor, ask:
 
 1. Is the maintained structure explicit?
 2. Is loss defined without looking at the outcome?
-3. Is compensation defined without looking at the outcome?
+3. Is recovery defined without looking at the outcome?
 4. Is the target event or regime fixed before analysis?
 5. If not, should the program stay silent here?
 

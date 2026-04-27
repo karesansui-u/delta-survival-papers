@@ -6,7 +6,7 @@ Modes:
 - --validation-smoke: train + validation pipeline integration; no validation metrics
 - --allow-primary-run: held-out test evaluation after freeze
 
-This script intentionally does not make repair-flow or direct g_t claims.
+This script intentionally does not make repair-flow or direct r_t claims.
 """
 
 from __future__ import annotations

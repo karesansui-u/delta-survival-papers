@@ -43,7 +43,7 @@ compression guardrail against a wide raw-sensor model.
 
 It does not test:
 
-- repair flow \(g_t\);
+- recovery amount \(r_t\);
 - preventive maintenance;
 - live operational maintenance logs;
 - G4 v2 repair / maintenance validation;
@@ -243,7 +243,7 @@ What this result supports:
 
 What this result does not support:
 
-- repair-flow \(g_t\) or maintenance evidence;
+- repair-flow \(r_t\) or maintenance evidence;
 - live operational-log support;
 - closure of the cross-domain non-CSP gap;
 - evidence equal in strength to Route A randomized primaries or even the

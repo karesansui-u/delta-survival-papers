@@ -32,7 +32,7 @@ The bridge claim is deliberately narrow:
 ```text
 In a restricted non-CSP class where
   (i) the structural quantity is naturally fixed,
-  (ii) compensation flow is operationally observable, and
+  (ii) recovery amount is operationally observable, and
   (iii) a collapse or hitting boundary is available under explicit assumptions,
 the structural persistence balance principle may be read as a conditional law-side embedding of
 existing stability theory.
@@ -43,7 +43,7 @@ queueing, reliability, or stochastic stability. It is the claim that the core
 balance variables
 
 \[
-  b_t=\ell_t-g_t,\qquad
+  b_t=d_t-r_t,\qquad
   B_n=\sum_{t<n} b_t,\qquad
   R_t=e^{-Z_t}
 \]
@@ -55,7 +55,7 @@ appear naturally inside those existing theories.
 The gate used here is the one defined in
 `analysis/law_side_upgrade_gate.md`.
 
-| domain | \(m\) natural? | \(g_t\) observable? | collapse / hitting boundary? | current role |
+| domain | \(m\) natural? | \(r_t\) observable? | collapse / hitting boundary? | current role |
 |---|---|---|---|---|
 | queueing / Foster-Lyapunov drift | yes | yes | yes, under drift assumptions | conditional law-side bridge |
 | repair / maintenance reliability-fatigue | yes | yes | partially, finite-prefix and threshold-level | near-bridge open-system anchor |
@@ -82,18 +82,18 @@ The map is direct:
 This is why G4 v1 and G6-c meet here so naturally.
 
 The point is not novelty in queueing theory. The point is that the
-loss-minus-compensation vocabulary is not foreign to a classical stability
+consumption-minus-recovery vocabulary is not foreign to a classical stability
 domain. It is already there, just under different names.
 
 ## 5. Repair / Maintenance Reliability-Fatigue
 
 Repair-maintenance systems are the cleanest route to a future empirical
-\(g_t\).
+\(r_t\).
 
 The map is again direct:
 
 \[
-  D_n = D_0 + \sum_{t<n}(d_t-g_t),
+  D_n = D_0 + \sum_{t<n}(d_t-r_t),
   \qquad
   M_n = B-D_n.
 \]
@@ -101,11 +101,11 @@ The map is again direct:
 Here:
 
 - \(d_t\) is damage / degradation increment;
-- \(g_t\) is repair, replacement, maintenance input, or redundancy
+- \(r_t\) is repair, replacement, maintenance input, or redundancy
   activation;
 - \(M_n\) is remaining margin to collapse.
 
-This domain matters because it shows that compensation is not merely a
+This domain matters because it shows that recovery is not merely a
 metaphor. It can be a schedule, a maintenance log, a repair event, or an
 explicit resource input.
 
@@ -126,7 +126,7 @@ They show:
 
 They do not show:
 
-- explicit compensation flow;
+- explicit recovery amount;
 - maintenance-versus-overload balance;
 - a genuine open-system bridge.
 
@@ -142,7 +142,7 @@ Backblaze:
 
 - same-domain second attempt;
 - loss-only observational support;
-- no empirical \(g_t\).
+- no empirical \(r_t\).
 
 C-MAPSS:
 
@@ -190,7 +190,7 @@ The claim remains conditional, domain-restricted, and assumption-preserving.
 The clean follow-up order is:
 
 1. keep queueing / Foster-Lyapunov as the canonical law-side bridge;
-2. continue the repair-maintenance route until a real empirical \(g_t\) can be
+2. continue the repair-maintenance route until a real empirical \(r_t\) can be
    measured;
 3. only then ask whether a broader non-CSP law-side package is justified.
 

@@ -36,9 +36,9 @@ future drive failure over preregistered metadata / exposure baselines.
 
 It does not test:
 
-- repair flow \(g_t\);
+- recovery amount \(r_t\);
 - preventive maintenance;
-- operational \(M_r\);
+- operational \(M_{\mathrm{recovery}}\);
 - G4 v2 repair / maintenance validation;
 - universal-law status.
 

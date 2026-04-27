@@ -398,7 +398,7 @@ Paper 5 should not claim:
 
 ### 1. Problem Setting
 
-From loss-side theory to support-side operationalization.
+From reduction-side theory to support-side operationalization.
 
 ### 2. Scalar `M` Is Too Coarse
 

@@ -40,9 +40,9 @@ exposure baselines.
 
 It does not test:
 
-- repair flow \(g_t\);
+- recovery amount \(r_t\);
 - preventive maintenance;
-- operational \(M_r\);
+- operational \(M_{\mathrm{recovery}}\);
 - G4 v2 repair / maintenance validation;
 - universal-law status;
 - retroactive cancellation of the Q4 2025 no-support result.
@@ -217,14 +217,14 @@ What this result supports:
 
 - a calibration-aware SMART loss-only design can beat preregistered
   metadata / fleet / exposure baselines on a fresh untouched Backblaze archive;
-- the five-field core SMART vector carries directionally consistent loss-side
+- the five-field core SMART vector carries directionally consistent reduction-side
   signal in this archive;
 - the signal survives both calibrated log-loss evaluation and the stage-1 AUC
   guardrail.
 
 What this result does not support:
 
-- repair-flow \(g_t\) or maintenance evidence;
+- repair-flow \(r_t\) or maintenance evidence;
 - cancellation of the Q4 2025 no-support result;
 - non-CSP universality on its own;
 - evidence equal in strength to a first-attempt randomized Route A primary.

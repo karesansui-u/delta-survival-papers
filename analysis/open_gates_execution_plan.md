@@ -209,7 +209,7 @@ Reason:
 - explicit time axis;
 - strong degradation signals;
 - public and reproducible;
-- no temptation to overclaim repair flow, because \(g_t=0\) is obvious.
+- no temptation to overclaim recovery amount, because \(r_t=0\) is obvious.
 
 MetroPT-3 remains useful as a single-system weak-g control, but it is weaker as
 a cross-domain primary anchor because unit repetition is limited.
@@ -336,7 +336,7 @@ If this bridge is later promoted into a paper-facing supplement section, keep
 the same three conditions fixed:
 
 1. natural pre-fixed \(m\);
-2. observable compensation flow \(g_t\);
+2. observable recovery amount \(r_t\);
 3. explicit collapse / hitting boundary under assumptions.
 
 The next theorem-side half-step is now recorded at:

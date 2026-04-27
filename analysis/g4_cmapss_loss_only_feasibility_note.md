@@ -64,13 +64,13 @@ At the benchmark-design level, C-MAPSS has the following clean structure:
 | time index | flight cycle |
 | loss / degradation side | operating settings and sensor trajectories over cycles |
 | endpoint | run-to-failure in training; held-out test units with provided RUL targets |
-| repair flow | absent |
+| recovery amount | absent |
 
 The benchmark is therefore naturally legible as:
 
 ```text
 unit-level degradation over time with a future failure / remaining-life target
-and no direct compensation flow g_t
+and no direct recovery amount r_t
 ```
 
 This makes it a good fit for a loss-only anchor and a poor fit for a G4 v2
@@ -90,12 +90,12 @@ There is no direct table or variable corresponding to:
 - scheduled replacement;
 - reactive repair;
 - rollback / redundancy activation;
-- any other explicit \(g_t\) event.
+- any other explicit \(r_t\) event.
 
 For a structural-persistence balance reading, the correct operational interpretation is:
 
 \[
-g_t = 0
+r_t = 0
 \]
 
 for the benchmarked trajectories.
@@ -123,7 +123,7 @@ cross-domain loss-only study because it provides:
 4. a standard future endpoint family;
 5. public and reproducible benchmark access.
 
-The clean later-freeze question is not "can we define \(g_t\)?" but:
+The clean later-freeze question is not "can we define \(r_t\)?" but:
 
 ```text
 Can a preregistered loss-only coordinate outperform simple raw / exposure /
@@ -164,7 +164,7 @@ G4 v2 repair-flow primary candidate: not feasible
 More explicitly:
 
 - feasible because unit / time / degradation / endpoint structure is clean;
-- not repair-flow because no direct compensation or maintenance events exist;
+- not repair-flow because no direct recovery or maintenance events exist;
 - useful because it adds a domain very different from drive reliability while
   staying honest about the loss-only boundary.
 

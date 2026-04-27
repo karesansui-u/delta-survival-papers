@@ -67,7 +67,7 @@ The extra structure is operational rather than purely asymptotic.
 |---|---|
 | pre-fixed maintained structure \(V\) | LDP can analyze tails once an object is fixed, but it does not itself choose what structure is "maintained" |
 | pre-fixed measure \(m\) or path measure | LDP assumes a probability structure; it does not provide the cross-domain operational discipline for selecting it |
-| explicit split \(b_t=\ell_t-g_t\) | rate functions usually track deviations or costs, not a domain-agnostic loss/repair decomposition |
+| explicit split \(b_t=d_t-r_t\) | rate functions usually track deviations or costs, not a domain-agnostic consumption/recovery decomposition |
 | Route A / B / C strength separation | LDP is a mathematical framework, not an evidence-tier policy |
 | preregistered baseline comparisons | LDP does not tell us how to test whether a structural coordinate beats raw baselines out of sample |
 | cross-domain operationalization | LDP does not by itself tell us how to read maintenance logs, queueing load, SMART degradation, or scope-repair prompts through one shared variable set |
@@ -77,7 +77,7 @@ This suggests the cleanest defense:
 ```text
 Structural balance is not primarily a competing tail-asymptotic theory.
 Its independent content is an operational discipline for fixing the maintained
-structure, separating loss from compensation, and assigning claim strength
+structure, separating loss from recovery, and assigning claim strength
 across domains.
 ```
 
@@ -119,7 +119,7 @@ The overlap is not uniform across the program.
 |---|---|---|
 | Route A / Bernoulli-CSP | high | partial subsumption of the tail mathematics is real |
 | G6-c queueing / Lyapunov drift | low-to-moderate | closer to drift calculus than to LDP proper |
-| G4 repair-maintenance algebra | low | operational split \(d_t-g_t\) is the central object, not a rate function |
+| G4 repair-maintenance algebra | low | operational split \(d_t-r_t\) is the central object, not a rate function |
 | Backblaze / operational observational anchors | low | calibration, baselines, and dataset discipline are not LDP contributions |
 | Route C LLM observational anchors | low | observational repair/collapse structure is not naturally framed as an LDP result |
 
@@ -142,7 +142,7 @@ cross-domain operational discipline beyond relabeling.
 
 More concretely, defeat would look like:
 
-1. the loss / repair split is unnecessary in every successful anchor;
+1. the consumption / recovery split is unnecessary in every successful anchor;
 2. the maintained-structure choice can always be recovered after the fact from
    a standard LDP setup;
 3. Route A / B / C claim-strength separation does no real work;
@@ -166,7 +166,7 @@ That survival claim becomes more believable when the program shows:
 
 1. at least one non-CSP empirical anchor where the key issue is not tail
    asymptotics but operationalization;
-2. at least one explicit \(g_t\) anchor where compensation matters and the
+2. at least one explicit \(r_t\) anchor where recovery matters and the
    language is not just rare-event counting;
 3. a consistent sign convention across domains;
 4. empirical baseline comparisons that matter even when no asymptotic theorem
@@ -183,7 +183,7 @@ The clean current wording is:
 On the Route A side, structural-persistence balance makes substantial use of classical
 exponential-rate machinery and should not be advertised as replacing large
 deviation theory. Its independent value lies in the operational discipline of
-pre-fixing maintained structure, separating loss from compensation, assigning
+pre-fixing maintained structure, separating loss from recovery, assigning
 claim strength across Route A/B/C, and testing structural coordinates against
 preregistered baselines across multiple domains.
 ```

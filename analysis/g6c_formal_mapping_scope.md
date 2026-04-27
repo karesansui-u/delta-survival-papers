@@ -102,14 +102,14 @@ This is the same algebraic shape as the local structural-persistence balance ide
 If one wants the two-flow sign convention of Paper §2.2, decompose:
 
 \[
-  \ell_t := (Z_{t+1}-Z_t)^+,
+  d_t := (Z_{t+1}-Z_t)^+,
   \qquad
-  g_t := (Z_t-Z_{t+1})^+,
+  r_t := (Z_t-Z_{t+1})^+,
   \qquad
-  b_t=\ell_t-g_t.
+  b_t=d_t-r_t.
 \]
 
-The one-step Lyapunov increment is then exactly the net loss-minus-repair
+The one-step Lyapunov increment is then exactly the net consumption-minus-recovery
 action.
 
 ### 3.3 Queueing positive / overload regimes

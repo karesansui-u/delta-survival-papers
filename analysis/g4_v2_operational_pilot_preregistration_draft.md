@@ -12,7 +12,7 @@ G4 v2 closed a finite-prefix algebraic skeleton for repair / maintenance
 balance:
 
 \[
-  D_n = D_0 + \sum_{t<n}(d_t-g_t),
+  D_n = D_0 + \sum_{t<n}(d_t-r_t),
   \qquad
   M_n = B-D_n.
 \]
@@ -20,13 +20,13 @@ balance:
 The next operational question is narrower:
 
 \begin{quote}
-Given real maintenance / repair logs, does a lagged repair-aware coordinate
-predict future degradation or failure better than damage-only and activity-only
+Given real maintenance / repair logs, does a lagged recovery-aware coordinate
+predict future degradation or failure better than consumption-only and activity-only
 baselines?
 \end{quote}
 
 This is an operational validation design, not a new theorem. It tests whether
-the compensation flow \(g_t\) can be made observable enough to improve
+the recovery amount \(r_t\) can be made observable enough to improve
 prospective prediction in a non-CSP open-system domain.
 
 
@@ -75,16 +75,16 @@ Examples of eligible endpoints:
 
 Examples of ineligible endpoints:
 
-- repair event itself, if used as both \(g_t\) and outcome;
+- repair event itself, if used as both \(r_t\) and outcome;
 - labels created using information after \(t+H\);
 - subjective severity labels assigned after seeing model outputs.
 
 
-## 4. Damage and Repair Indicators
+## 4. Consumption and Recovery Indicators
 
-The pilot separates loss-side and compensation-side signals.
+The pilot separates consumption-side and recovery-side signals.
 
-Damage-side indicators \(d_{i,u}\) may include:
+Consumption-side indicators \(d_{i,u}\) may include:
 
 - load, utilization, cycles, temperature, vibration, latency, error rate;
 - incident count, failure count, test failure count;
@@ -92,7 +92,7 @@ Damage-side indicators \(d_{i,u}\) may include:
 - age since deployment or age since last replacement;
 - change size or exposure count.
 
-Repair-side indicators \(g_{i,u}\) may include:
+Recovery-side indicators \(r_{i,u}\) may include:
 
 - preventive maintenance;
 - component replacement;
@@ -101,15 +101,15 @@ Repair-side indicators \(g_{i,u}\) may include:
 - inspection with completed corrective action;
 - repair drill / restore drill that is tied to the unit.
 
-Repair signals must be timestamped before the prediction cutoff \(t\). Events
+Recovery signals must be timestamped before the prediction cutoff \(t\). Events
 after \(t\) cannot be used as features for predicting \(Y_{i,t,H}\).
 
 
 ## 5. Leakage and Confounding Controls
 
-Repair is not automatically protective in observational data. Units that are
-already fragile often receive more repair. Without controls, \(g_t\) can look
-like a risk marker rather than compensation.
+Recovery is not automatically protective in observational data. Units that are
+already fragile often receive more repair. Without controls, \(r_t\) can look
+like a risk marker rather than recovery.
 
 This draft therefore commits to four controls.
 
@@ -119,15 +119,15 @@ This draft therefore commits to four controls.
 
 2. Outcome blackout:
    repair events inside \((t,t+H]\) are not predictors. If they are logged as
-   responses to the outcome, they are excluded from \(g_t\).
+   responses to the outcome, they are excluded from \(r_t\).
 
 3. Repair class split:
    preventive / scheduled repair is separated from reactive repair when the
-   logs allow it. Preventive repair is the preferred primary \(g_t\) signal.
+   logs allow it. Preventive repair is the preferred primary \(r_t\) signal.
 
 4. Activity control:
    generic activity volume, such as number of tickets, log entries, maintenance
-   records, or inspections, is included as a baseline. A repair-aware model must
+   records, or inspections, is included as a baseline. A recovery-aware model must
    beat this activity-only explanation.
 
 These controls do not identify a causal effect. They only make the predictive
@@ -139,7 +139,7 @@ test less vulnerable to obvious leakage and confounding-by-indication.
 For each unit \(i\) and cutoff \(t\), define lagged summaries over
 \([t-W,t)\).
 
-Damage summary:
+Consumption summary:
 
 \[
   D^{\mathrm{obs}}_{i,t}
@@ -147,17 +147,17 @@ Damage summary:
   \sum_{u\in[t-W,t)} w_d(u)\,d_{i,u}.
 \]
 
-Repair summary:
+Recovery summary:
 
 \[
-  G^{\mathrm{obs}}_{i,t}
+  R_{\mathrm{obs}}^{\mathrm{rec}}{}_{i,t}
   =
-  \sum_{u\in[t-W,t)} w_g(u)\,g_{i,u}.
+  \sum_{u\in[t-W,t)} w_r(u)\,r_{i,u}.
 \]
 
 The default primary model is the non-commensurable vector model
-\((D^{\mathrm{obs}},G^{\mathrm{obs}})\). Real maintenance logs usually do not
-put damage and repair in the same physical unit.
+\((D^{\mathrm{obs}},R_{\mathrm{obs}}^{\mathrm{rec}})\). Real maintenance logs usually do not
+put consumption and recovery in the same physical unit.
 
 The net-action proxy
 
@@ -166,17 +166,17 @@ The net-action proxy
   =
   D^{\mathrm{obs}}_{i,t}
   -
-  G^{\mathrm{obs}}_{i,t}.
+  R_{\mathrm{obs}}^{\mathrm{rec}}{}_{i,t}.
 \]
 
 may be used as primary only if the dataset already contains a pre-existing
-engineering or operational standard that converts damage and repair into the
-same damage-equivalent unit. This conversion rule must exist before this pilot;
+engineering or operational standard that converts consumption and recovery into the
+same consumption-equivalent unit. This conversion rule must exist before this pilot;
 it cannot be fitted from validation outcomes or chosen after seeing predictive
 performance.
 
-If no such pre-existing standard exists, the primary repair-aware model uses
-separate features \((D^{\mathrm{obs}},G^{\mathrm{obs}})\), and support requires
+If no such pre-existing standard exists, the primary recovery-aware model uses
+separate features \((D^{\mathrm{obs}},R_{\mathrm{obs}}^{\mathrm{rec}})\), and support requires
 both predictive improvement and the pre-specified coefficient-sign check in
 §10.
 
@@ -189,11 +189,11 @@ time period.
 | model | features | role |
 |---|---|---|
 | B0 exposure-only | unit age, exposure, calendar time, base-rate controls | minimal baseline |
-| B1 damage-only | B0 + \(D^{\mathrm{obs}}\) | primary baseline |
+| B1 consumption-only | B0 + \(D^{\mathrm{obs}}\) | primary baseline |
 | B2 activity-only | B0 + generic activity count | confounding / logging baseline |
-| B3 repair-only | B0 + \(G^{\mathrm{obs}}\) | diagnostic, not support by itself |
-| S1 net-action | B0 + \(A^{\mathrm{obs}}\) | primary only with pre-existing damage-equivalent units |
-| S2 repair-aware vector | B0 + \((D^{\mathrm{obs}},G^{\mathrm{obs}})\) as separate features | default primary model |
+| B3 recovery-only | B0 + \(R_{\mathrm{obs}}^{\mathrm{rec}}\) | diagnostic, not support by itself |
+| S1 net-action | B0 + \(A^{\mathrm{obs}}\) | primary only with pre-existing consumption-equivalent units |
+| S2 recovery-aware vector | B0 + \((D^{\mathrm{obs}},R_{\mathrm{obs}}^{\mathrm{rec}})\) as separate features | default primary model |
 
 The default model class is L2-regularized logistic regression for binary
 endpoints. If the endpoint is time-to-event rather than binary horizon risk,
@@ -228,7 +228,7 @@ The primary split must be fixed before validation.
 
 A dataset is eligible only if it satisfies all of the following before freeze.
 
-1. Timestamps exist for damage, repair, and outcome events.
+1. Timestamps exist for consumption, recovery, and outcome events.
 2. Unit identifiers are stable across time.
 3. Repair events can be placed before or after the prediction cutoff.
 4. At least one repair class is not merely a label for the outcome itself.
@@ -248,11 +248,11 @@ theory failure.
 
 H1 primary predictive support:
 
-The primary repair-aware model beats the best damage / activity baseline on
+The primary recovery-aware model beats the best consumption / activity baseline on
 held-out log loss:
 
 \[
-  \mathrm{LL}(\mathrm{repair\mbox{-}aware})
+  \mathrm{LL}(\mathrm{recovery\mbox{-}aware})
   <
   0.95
   \cdot
@@ -265,7 +265,7 @@ held-out log loss:
 H2 strong predictive support:
 
 \[
-  \mathrm{LL}(\mathrm{repair\mbox{-}aware})
+  \mathrm{LL}(\mathrm{recovery\mbox{-}aware})
   <
   0.90
   \cdot
@@ -277,10 +277,10 @@ H2 strong predictive support:
 
 H3 sign discipline:
 
-- damage coefficient must have risk-increasing sign in the primary model;
+- consumption coefficient must have risk-increasing sign in the primary model;
 - preventive repair coefficient must have risk-decreasing sign when repair is
   separated from reactive repair;
-- if using \(A^{\mathrm{obs}}=D^{\mathrm{obs}}-G^{\mathrm{obs}}\), the
+- if using \(A^{\mathrm{obs}}=D^{\mathrm{obs}}-R_{\mathrm{obs}}^{\mathrm{rec}}\), the
   coefficient on \(A^{\mathrm{obs}}\) must be risk-increasing.
 
 H4 leakage robustness:
@@ -291,9 +291,9 @@ likely to be reactive to already-visible failure.
 
 H5 ranking diagnostic:
 
-Among units with similar damage summary \(D^{\mathrm{obs}}\), units with higher
-preventive \(G^{\mathrm{obs}}\) should have lower predicted failure risk under
-the repair-aware model. This is diagnostic only; it is not causal evidence.
+Among units with similar consumption summary \(D^{\mathrm{obs}}\), units with higher
+preventive \(R_{\mathrm{obs}}^{\mathrm{rec}}\) should have lower predicted failure risk under
+the recovery-aware model. This is diagnostic only; it is not causal evidence.
 
 
 ## 11. Decision Rules
@@ -302,7 +302,7 @@ Primary support requires:
 
 1. H1 passes on the primary time-held-out split.
 2. H3 sign discipline passes.
-3. The activity-only baseline B2 does not beat the repair-aware model.
+3. The activity-only baseline B2 does not beat the recovery-aware model.
 4. No leakage violation is discovered after freeze.
 
 Strong support requires:
@@ -315,10 +315,10 @@ Weakening outcomes:
 
 | outcome | interpretation |
 |---|---|
-| repair-aware improves log loss but sign discipline fails | predictive signal exists, but not interpretable as \(g_t\) compensation |
+| recovery-aware improves log loss but sign discipline fails | predictive signal exists, but not interpretable as \(r_t\) recovery |
 | sign discipline passes but log loss does not improve | algebraic reading may be plausible, but operational predictor is weak |
 | activity-only baseline wins | signal may be logging / attention intensity, not repair |
-| only reactive repair is available | \(g_t\) operationalization is not clean; dataset is weak for G4 v2 |
+| only reactive repair is available | \(r_t\) operationalization is not clean; dataset is weak for G4 v2 |
 | dataset ineligible | no validation claim |
 
 
@@ -328,7 +328,7 @@ This pilot must not claim:
 
 1. repair causally reduces failure;
 2. an optimal maintenance policy has been found;
-3. \(g_t\) is uniquely measurable in all domains;
+3. \(r_t\) is uniquely measurable in all domains;
 4. the same repair coefficient transfers across datasets;
 5. stochastic reliability theory has been replaced;
 6. safety-critical deployment decisions can be made from the pilot alone;
@@ -344,11 +344,11 @@ Before validation, the freeze commit must contain:
 3. endpoint definition \(Y_{i,t,H}\);
 4. feature window \(W\);
 5. prediction horizon \(H\);
-6. damage indicators and weights;
-7. repair indicators and weights;
+6. consumption indicators and weights;
+7. recovery indicators and weights;
 8. preventive vs reactive repair rule;
 9. commensurability decision: S2 default, or S1 only with a pre-existing
-   damage-equivalent unit standard;
+   consumption-equivalent unit standard;
 10. blackout interval, if used;
 11. missingness / censoring rules;
 12. primary train / validation split;
@@ -427,7 +427,7 @@ q-coloring primary validation.
 | evidence tier | Route A primary validation | Route C / operational observational support |
 
 Therefore, a passing G4 v2 operational pilot should be reported as
-observational support for operationalizing \(g_t\), not as evidence equal in
+observational support for operationalizing \(r_t\), not as evidence equal in
 strength to a randomized Route A primary.
 
 

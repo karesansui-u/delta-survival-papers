@@ -10,7 +10,7 @@ usable for the G4 v2 operational pilot. The only current goal is schema
 feasibility:
 
 ```text
-Can we define unit, time, damage indicator, repair indicator, and future
+Can we define unit, time, consumption indicator, recovery indicator, and future
 degradation / failure endpoint without leaking future information?
 ```
 
@@ -37,7 +37,7 @@ Therefore, the scan may produce:
 - candidate list;
 - eligibility / ineligibility notes;
 - schema feasibility notes;
-- reasons a dataset is weak for \(g_t\);
+- reasons a dataset is weak for \(r_t\);
 - suggestions for a later freeze design.
 
 The scan may not produce:
@@ -45,7 +45,7 @@ The scan may not produce:
 - primary support;
 - weakening outcomes;
 - pass / fail of H1-H5;
-- claims that repair-aware predictors beat baselines;
+- claims that recovery-aware predictors beat baselines;
 - claims that the structural persistence balance principle is validated in maintenance logs.
 
 ## 2. What We Are Looking For
@@ -57,9 +57,9 @@ An ideal dataset has all of the following:
 | stable unit identifiers | needed for repeated prediction cutoffs |
 | timestamps | needed to define lagged features and future horizon |
 | damage / degradation signals | candidate \(d_t\) |
-| repair / maintenance / compensation events | candidate \(g_t\) |
+| repair / maintenance / recovery events | candidate \(r_t\) |
 | future failure / degradation endpoint | candidate \(Y_{i,t,H}\) |
-| preventive or scheduled repair class | cleaner \(g_t\), less reactive leakage |
+| preventive or scheduled repair class | cleaner \(r_t\), less reactive leakage |
 | enough events | log loss / Brier estimates are meaningful |
 | public or reproducible access | later validation can be audited |
 
@@ -91,7 +91,7 @@ For each candidate dataset, record:
 | reason | one sentence |
 
 This checklist is exploratory. It is allowed to look at rough base rates for
-feasibility, but not to compare repair-aware models against baselines.
+feasibility, but not to compare recovery-aware models against baselines.
 
 ## 4. Candidate Categories
 
@@ -101,7 +101,7 @@ the theory.
 | Category | Why it might work | Common weakness |
 |---|---|---|
 | predictive maintenance / PHM datasets | rich damage signals and failure endpoints | repair events often absent |
-| fleet / component maintenance logs | repair and replacement are natural \(g_t\) candidates | public access may be limited |
+| fleet / component maintenance logs | repair and replacement are natural \(r_t\) candidates | public access may be limited |
 | IT incident / outage logs | incidents, fixes, rollbacks, patches may be timestamped | public datasets often lack clean unit histories |
 | software repository / CI logs | commits, failures, fixes, rollbacks, tests are available | repair may be reactive and confounded with activity |
 | reliability / degradation sensor datasets | clean damage trajectory | usually loss-only, not open-system repair |
@@ -109,7 +109,7 @@ the theory.
 
 Loss-only datasets are not useless. They can be G4 controls. But they are not
 the primary target for G4 v2, because G4 v2 is specifically about making
-compensation flow \(g_t\) operational.
+recovery amount \(r_t\) operational.
 
 ## 5. Eligibility Labels During Exploration
 
@@ -118,7 +118,7 @@ Use lightweight labels only:
 | Label | Meaning |
 |---|---|
 | promising | likely enough fields for a future frozen pilot |
-| weak-g | damage and endpoint exist, but repair \(g_t\) is missing or reactive only |
+| weak-g | damage and endpoint exist, but repair \(r_t\) is missing or reactive only |
 | weak-y | repair and damage exist, but future endpoint is unclear |
 | leakage-risk | repair or labels appear to use future outcome information |
 | access-risk | dataset may not be reproducible or shareable |
@@ -134,7 +134,7 @@ Move to a freeze design only when at least one candidate has:
 1. stable units;
 2. usable timestamps;
 3. candidate \(d_t\);
-4. candidate \(g_t\);
+4. candidate \(r_t\);
 5. future endpoint \(Y_{i,t,H}\);
 6. plausible activity baseline;
 7. manageable leakage risk;

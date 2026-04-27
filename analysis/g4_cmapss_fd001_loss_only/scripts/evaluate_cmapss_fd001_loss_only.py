@@ -554,7 +554,7 @@ def markdown_report(payload: dict) -> str:
             "",
             "## Boundary",
             "",
-            "- This branch is loss-only (`g_t = 0`).",
+            "- This branch is loss-only (`r_t = 0`).",
             "- It is not repair-flow evidence.",
             "- It is not evidence equal in strength to randomized Route A primaries.",
         ]

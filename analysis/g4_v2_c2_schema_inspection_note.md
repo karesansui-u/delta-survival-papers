@@ -142,7 +142,7 @@ maintenance_type, repair_class, preventive, reactive, scheduled, unscheduled
 ```
 
 Because the maintenance timestamps are embedded in failure report metadata,
-using them as \(g_t\) would require careful manual event extraction and would
+using them as \(r_t\) would require careful manual event extraction and would
 remain too sparse for a robust primary observational validation.
 
 ### Q3. Can a lagged window [t-W,t) be defined without using future failures?
@@ -162,7 +162,7 @@ future failure endpoint could therefore be defined after freeze.
 
 No failure-proximity statistics were computed in this schema pass.
 
-### Q5. Is there enough directly observed maintenance before failures to make g_t meaningful?
+### Q5. Is there enough directly observed maintenance before failures to make r_t meaningful?
 
 Probably not for primary validation.
 

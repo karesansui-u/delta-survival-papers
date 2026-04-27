@@ -65,16 +65,16 @@ The primary semantic types are:
 The local count is theory-specified:
 
 \[
-  \ell_j = \log(2^4 / a_j),
+  d_j = \log(2^4 / a_j),
 \]
 
 where \(a_j\) is the number of allowed truth patterns for type \(j\).
 
 The type selection is deliberately heterogeneous:
 
-- `AL1_4` is close to ordinary 4-SAT and has small drift with tiny CNF footprint.
-- `EX2_4` has medium drift and large CNF footprint.
-- `EX1_4` has high drift and large CNF footprint.
+- `AL1_4` is close to ordinary 4-SAT and has small structural consumption with tiny CNF footprint.
+- `EX2_4` has medium structural consumption and large CNF footprint.
+- `EX1_4` has high structural consumption and large CNF footprint.
 
 This creates the intended pressure test:
 
@@ -90,20 +90,20 @@ For each cell:
 1. Choose \(n\).
 2. Choose a mixture vector \(w = (w_{\mathrm{AL1}}, w_{\mathrm{EX2}}, w_{\mathrm{EX1}})\).
 3. Choose \(\rho_{\mathrm{fm}}\).
-4. Compute the average drift:
+4. Compute the average structural consumption amount:
 
 \[
-  \bar\ell(w) =
-    w_{\mathrm{AL1}}\ell_{\mathrm{AL1}}
-    + w_{\mathrm{EX2}}\ell_{\mathrm{EX2}}
-    + w_{\mathrm{EX1}}\ell_{\mathrm{EX1}}.
+  \bar d(w) =
+    w_{\mathrm{AL1}}d_{\mathrm{AL1}}
+    + w_{\mathrm{EX2}}d_{\mathrm{EX2}}
+    + w_{\mathrm{EX1}}d_{\mathrm{EX1}}.
 \]
 
 5. Set total semantic constraint count:
 
 \[
   m = \mathrm{round}\left(
-    \frac{\rho_{\mathrm{fm}} \, n \log 2}{\bar\ell(w)}
+    \frac{\rho_{\mathrm{fm}} \, n \log 2}{\bar d(w)}
   \right).
 \]
 
@@ -118,9 +118,9 @@ The expected first-moment log count is:
 \[
   \mathrm{FM}
     = n\log 2
-      - m_{\mathrm{AL1}}\ell_{\mathrm{AL1}}
-      - m_{\mathrm{EX2}}\ell_{\mathrm{EX2}}
-      - m_{\mathrm{EX1}}\ell_{\mathrm{EX1}}.
+      - m_{\mathrm{AL1}}d_{\mathrm{AL1}}
+      - m_{\mathrm{EX2}}d_{\mathrm{EX2}}
+      - m_{\mathrm{EX1}}d_{\mathrm{EX1}}.
 \]
 
 ## 5. Candidate grids
@@ -466,7 +466,7 @@ The strongest allowed wording after a clean pass is:
 
 ```text
 Exp44 provides another internal Route A width anchor showing that a
-theory-specified first-moment / drift coordinate predicts feasibility better
+theory-specified first-moment / structural-consumption coordinate predicts feasibility better
 than raw semantic count and CNF-size baselines in a heterogeneous
 Cardinality-SAT family.
 ```

@@ -43,7 +43,7 @@ Scope of this draft: §3 Paper 3 / Paper 4 の mode 対応のみ。§4 以降の
 
 Paper 3 は、LLM 推論における未整理矛盾の効果を扱った。Paper 5 の観点から見ると、Paper 3 は主に次の二つを示している。
 
-第一に、未整理矛盾は L 側の損失として働く。第二に、その損失を抑えるには、矛盾を範囲づける repair 型の作用が必要である。この repair は、prompt 内で誘導される場合もあれば、外部代謝プロセスによって供給される場合もある。
+第一に、未整理矛盾は L 側の構造消耗として働く。第二に、その構造消耗を抑えるには、矛盾を範囲づける repair 型の作用が必要である。この repair は、prompt 内で誘導される場合もあれば、外部代謝プロセスによって供給される場合もある。
 
 #### 3.2.1 Scope-as-repair / attribution-as-repair: in-context $M_r$
 

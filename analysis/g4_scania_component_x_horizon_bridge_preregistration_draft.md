@@ -31,7 +31,7 @@ readout baseline
 ```
 
 This branch does not test direct repair-flow support. It does not claim a
-direct logged `g_t`.
+direct logged `r_t`.
 
 ## 2. Evidence Tier
 
@@ -46,7 +46,7 @@ It must not be reported as:
 
 ```text
 repair-flow evidence;
-direct empirical g_t support;
+direct empirical r_t support;
 evidence stronger than Route A randomized primaries;
 universal-law closure.
 ```
@@ -317,7 +317,7 @@ logloss(primary) <= 1.10 * logloss(B3)
 H3:
 
 ```text
-No result permits a direct repair-flow or direct g_t claim.
+No result permits a direct repair-flow or direct r_t claim.
 ```
 
 ## 13. Non-Claims

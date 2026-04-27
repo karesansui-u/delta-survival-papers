@@ -30,14 +30,14 @@
 
 本補論の主張は限定的である。Foster-Lyapunov theorem の正再帰性定理や幾何的エルゴード性を再証明するものではない。Markov 性、irreducibility、小集合条件、moment 条件など、元理論の仮定はそのまま保持される。本補論が示すのは、Foster-Lyapunov drift calculus の負荷差分が、構造持続の収支原理の一段収支 \(b_t\) として読める、という最小の G6-c formal embedding である。
 
-この最小埋め込みは Lean 側でも `Survival/LyapunovBalanceEmbedding.lean` として形式化されている。Lean が証明しているのは、望遠鏡和、指数的維持量の局所恒等式、正負部分による \(b_t=\ell_t-g_t\) 分解、および `QueueStability.lean` の excess demand を一段収支として読む wrapper である。positive recurrence や \(R_n \le R_0 e^{-cn}\) 型の指数減衰境界は、次の iteration の対象であり、本補論の範囲外である。
+この最小埋め込みは Lean 側でも `Survival/LyapunovBalanceEmbedding.lean` として形式化されている。Lean が証明しているのは、望遠鏡和、指数的維持量の局所恒等式、正負部分による \(b_t=d_t-r_t\) 分解、および `QueueStability.lean` の excess demand を一段収支として読む wrapper である。positive recurrence や \(R_n \le R_0 e^{-cn}\) 型の指数減衰境界は、次の iteration の対象であり、本補論の範囲外である。
 
 
 1. 目的と位置づけ
 
-構造持続の収支原理は、損失流 \(\ell_t\) と補償流 \(g_t\) の差し引きを
+構造持続の収支原理は、構造消耗量 \(d_t\) と回復量 \(r_t\) の差し引きを
 \[
-  b_t = \ell_t - g_t
+  b_t = d_t - r_t
 \]
 と置き、その構造持続収支量
 \[
@@ -94,13 +94,11 @@ Foster-Lyapunov drift calculus の負荷差分は、構造持続の収支原理�
 このとき、望遠鏡和により
 \[
   B_n
-  =
-  \sum_{t=0}^{n-1}(Z_{t+1}-Z_t)
-  =
-  Z_n-Z_0.
+  = \sum_{t=0}^{n-1}(Z_{t+1}-Z_t)
+  = Z_n-Z_0.
 \]
 
-これは構造持続の収支原理の構造持続収支量と同じ形式である。\(Z_t\) が増えると、負荷が増える。\(Z_t\) が減ると、補償または回復が勝っている。
+これは構造持続の収支原理の構造持続収支量と同じ形式である。\(Z_t\) が増えると、負荷が増える。\(Z_t\) が減ると、回復が勝っている。
 
 
 4. 指数的維持量
@@ -114,12 +112,9 @@ Foster-Lyapunov drift calculus の負荷差分は、構造持続の収支原理�
 すると、
 \[
   R_{t+1}
-  =
-  e^{-Z_{t+1}}
-  =
-  e^{-Z_t}e^{-(Z_{t+1}-Z_t)}
-  =
-  R_t e^{-b_t}.
+  = e^{-Z_{t+1}}
+  = e^{-Z_t}e^{-(Z_{t+1}-Z_t)}
+  = R_t e^{-b_t}.
 \]
 
 したがって、局所更新は
@@ -135,13 +130,13 @@ Foster-Lyapunov drift calculus の負荷差分は、構造持続の収支原理�
 と同じ algebraic shape を持つ。ただし、ここでの \(R_t\) は実際の feasible set measure そのものではない。これは Lyapunov 負荷から作った相対的維持座標である。この違いを消してはならない。
 
 
-5. \(\ell_t,g_t\) への分解
+5. \(d_t,r_t\) への分解
 
 構造持続の収支原理の標準形では、一段収支を
 \[
-  b_t=\ell_t-g_t
+  b_t=d_t-r_t
 \]
-と書く。ここで \(\ell_t\ge 0\) は損失流、\(g_t\ge 0\) は補償流である。
+と書く。ここで \(d_t\ge 0\) は構造消耗量、\(r_t\ge 0\) は回復量である。
 
 Lyapunov 差分
 \[
@@ -149,24 +144,21 @@ Lyapunov 差分
 \]
 から、次のように分解できる。
 \[
-  \ell_t := (\Delta Z_t)^+,
+  d_t := (\Delta Z_t)^+,
   \qquad
-  g_t := (-\Delta Z_t)^+,
+  r_t := (-\Delta Z_t)^+,
 \]
 ただし \(x^+=\max(x,0)\) である。
 
 このとき
 \[
-  \ell_t-g_t
-  =
-  (\Delta Z_t)^+ - (-\Delta Z_t)^+
-  =
-  \Delta Z_t
-  =
-  b_t.
+  d_t-r_t
+  = (\Delta Z_t)^+ - (-\Delta Z_t)^+
+  = \Delta Z_t
+  = b_t.
 \]
 
-したがって、負荷が増えるステップは loss flow として、負荷が減るステップは compensation / recovery flow として読める。
+したがって、負荷が増えるステップは structural consumption amount として、負荷が減るステップは recovery amount として読める。
 
 この読み替えは、物理的資源流を同定したという意味ではない。あくまで、Lyapunov 負荷の増減を構造持続の収支原理の符号つき収支量へ写す最小的な分解である。
 
@@ -175,11 +167,17 @@ Lyapunov 差分
 
 Foster-Lyapunov 条件は、\(b_t\) の条件付き期待値の符号として読める。
 
-| Foster-Lyapunov 側 | 構造持続の収支原理側 | 読み |
-|---|---|---|
-| \(\mathbb E[Z_{t+1}-Z_t\mid X_t]\le -\epsilon\) | \(\mathbb E[b_t\mid X_t]\le -\epsilon\) | recovery tendency |
-| \(\mathbb E[Z_{t+1}-Z_t\mid X_t]\approx 0\) | \(\mathbb E[b_t\mid X_t]\approx 0\) | maintenance regime |
-| \(\mathbb E[Z_{t+1}-Z_t\mid X_t]\ge \epsilon\) | \(\mathbb E[b_t\mid X_t]\ge \epsilon\) | overload / collapse tendency |
+Foster-Lyapunov 側で \(\mathbb E[Z_{t+1}-Z_t\mid X_t]\le -\epsilon\) なら、
+構造持続の収支原理側では \(\mathbb E[b_t\mid X_t]\le -\epsilon\) であり、
+これは recovery tendency と読む。
+
+Foster-Lyapunov 側で \(\mathbb E[Z_{t+1}-Z_t\mid X_t]\approx 0\) なら、
+構造持続の収支原理側では \(\mathbb E[b_t\mid X_t]\approx 0\) であり、
+これは maintenance regime と読む。
+
+Foster-Lyapunov 側で \(\mathbb E[Z_{t+1}-Z_t\mid X_t]\ge \epsilon\) なら、
+構造持続の収支原理側では \(\mathbb E[b_t\mid X_t]\ge \epsilon\) であり、
+これは overload / collapse tendency と読む。
 
 ここで重要なのは、構造持続の収支原理が drift theorem を置き換えるのではなく、drift theorem が扱う負荷差分を構造持続の収支原理の \(b_t\) として読む点である。
 
@@ -207,11 +205,9 @@ Foster-Lyapunov 条件は、\(b_t\) の条件付き期待値の符号として�
 
 三つの regime は次のように分かれる。
 
-| 条件 | \(b_t\) | 構造持続の収支原理の読み |
-|---|---:|---|
-| \(\lambda<\mu\) | \(b_t<0\) | service が arrival を上回り、recovery tendency |
-| \(\lambda=\mu\) | \(b_t=0\) | critical / maintenance boundary |
-| \(\lambda>\mu\) | \(b_t>0\) | excess demand が累積し、overload tendency |
+\(\lambda<\mu\) なら \(b_t<0\) であり、service が arrival を上回る recovery tendency と読む。
+\(\lambda=\mu\) なら \(b_t=0\) であり、critical / maintenance boundary と読む。
+\(\lambda>\mu\) なら \(b_t>0\) であり、excess demand が累積する overload tendency と読む。
 
 有限閾値 \(B\) を置けば、
 \[
@@ -219,24 +215,22 @@ Foster-Lyapunov 条件は、\(b_t\) の条件付き期待値の符号として�
 \]
 は overload threshold event である。Lean 側では、これは `ThresholdExceeded` として skeleton 化されている。
 
-この例は小さいが、G6-c にとって重要である。構造持続の収支原理の \(b_t=\ell_t-g_t\) が、queueing の arrival minus service という古典的 balance と同じ符号構造を持つことを示すからである。
+この例は小さいが、G6-c にとって重要である。構造持続の収支原理の \(b_t=d_t-r_t\) が、queueing の arrival minus service という古典的 balance と同じ符号構造を持つことを示すからである。
 
 
 8. Lean 対応
 
 本補論の最小埋め込みは、Lean 側では `Survival/LyapunovBalanceEmbedding.lean` に対応する。
 
-| 内容 | Lean 側の対応 |
-|---|---|
-| \(B_n=Z_n-Z_0\) の望遠鏡和 | `cumulativeAction_eq_load_diff` |
-| \(R_{t+1}=R_t e^{-b_t}\) | `relativeMaintenance_succ_eq_mul_exp_neg_increment` |
-| \(b_t=\ell_t-g_t\) の正負部分分解 | `increment_eq_lossFlow_sub_repairFlow` |
-| queue excess demand を \(b_t\) として読む | `queue_increment_eq_excessDemand` |
-| queue の構造持続収支量と累積 overload loss | `queue_cumulativeAction_eq_cumulativeOverloadLoss` |
-| \(\mu\ge\lambda\) 側の一段収支 | `queue_increment_nonpos_of_stable` |
-| \(\lambda<\mu\) でない側の一段収支 | `queue_increment_pos_of_overloaded` |
+Lean 側では、\(B_n=Z_n-Z_0\) の望遠鏡和を `cumulativeAction_eq_load_diff` が、
+\(R_{t+1}=R_t e^{-b_t}\) を `relativeMaintenance_succ_eq_mul_exp_neg_increment` が、
+\(b_t=d_t-r_t\) の正負部分分解を `increment_eq_consumptionAmount_sub_recoveryAmount` が支える。
+また、queue excess demand を \(b_t\) として読む対応は `queue_increment_eq_excessDemand`、
+queue の構造持続収支量と累積 overload loss の対応は `queue_cumulativeAction_eq_cumulativeOverloadLoss`、
+\(\mu\ge\lambda\) 側の一段収支は `queue_increment_nonpos_of_stable`、
+\(\lambda<\mu\) でない側の一段収支は `queue_increment_pos_of_overloaded` に対応する。
 
-この Lean file は意図的に狭い。Foster-Lyapunov の positive recurrence theorem を Lean 化していない。また、geometric ergodicity や \(R_n\le R_0e^{-cn}\) 型の指数減衰境界も主張していない。証明しているのは、構造持続の収支原理の \(b_t,B_n,R_t,\ell_t,g_t\) が Lyapunov drift の代数にどう対応するかである。
+この Lean file は意図的に狭い。Foster-Lyapunov の positive recurrence theorem を Lean 化していない。また、geometric ergodicity や \(R_n\le R_0e^{-cn}\) 型の指数減衰境界も主張していない。証明しているのは、構造持続の収支原理の \(b_t,B_n,R_t,d_t,r_t\) が Lyapunov drift の代数にどう対応するかである。
 
 
 9. theorem assumption の継承
@@ -270,7 +264,7 @@ Foster-Lyapunov theorem は通常、単なる代数恒等式だけでは成立�
 
 第一に、構造持続の収支原理が熱力学的比喩だけではなく、既存の確率過程安定性理論と同じ drift algebra を共有していることを示す。
 
-第二に、Route A CSP calibration とは別の方向で、構造持続の収支原理の generality を強化する。random CSP の threshold-local grid に依存せず、負荷、補償、回復、過負荷という語彙を既存の安定性理論へ接続できる。
+第二に、Route A CSP calibration とは別の方向で、構造持続の収支原理の generality を強化する。random CSP の threshold-local grid に依存せず、負荷、回復入力、過負荷という語彙を既存の安定性理論へ接続できる。
 
 第三に、次の G4 non-CSP anchor を選ぶ基準を与える。すなわち、queueing、reliability、branching process、population dynamics などは、いずれも \(Z_t\), \(b_t\), \(B_n\), \(R_t\) の形に落とせるかどうかで比較できる。
 
@@ -283,7 +277,7 @@ Foster-Lyapunov theorem は通常、単なる代数恒等式だけでは成立�
 2. queueing stability theorem を新たに証明した。
 3. positive recurrence が構造持続の収支原理だけから従う。
 4. 任意の開いた構造系が Markov chain stability 問題である。
-5. 物理的な資源流 \(g_t\) が Lyapunov 負荷の減少と一意に同定される。
+5. 物理的な資源流 \(r_t\) が Lyapunov 負荷の減少と一意に同定される。
 6. continuous-time generator や stochastic thermodynamics まで同時に扱った。
 7. G6-c iteration 1 が閉じたので universal law が確立した。
 
@@ -296,7 +290,7 @@ Foster-Lyapunov drift calculus は、構造持続の収支原理の expectation-
 
 12. 結論
 
-本補論は、構造持続の収支原理の G6-c iteration 1 を reader-facing な形で閉じる。閉じたのは、Foster-Lyapunov drift calculus の最小代数的埋め込みである。すなわち、Lyapunov 負荷 \(Z_t\)、一段収支 \(b_t\)、構造持続収支量 \(B_n\)、相対維持量 \(R_t\)、損失流 \(\ell_t\)、補償流 \(g_t\) の対応である。
+本補論は、構造持続の収支原理の G6-c iteration 1 を reader-facing な形で閉じる。閉じたのは、Foster-Lyapunov drift calculus の最小代数的埋め込みである。すなわち、Lyapunov 負荷 \(Z_t\)、一段収支 \(b_t\)、構造持続収支量 \(B_n\)、相対維持量 \(R_t\)、構造消耗量 \(d_t\)、回復量 \(r_t\) の対応である。
 
 この最小埋め込みにより、構造持続の収支原理は既存理論との接続において、単なる analogy から一段進む。ただし、それは正再帰性や幾何的エルゴード性を新たに証明したという意味ではない。そこへ進むには、元理論の仮定を保持したうえで、drift theorem 自体を明示的に移植する必要がある。
 

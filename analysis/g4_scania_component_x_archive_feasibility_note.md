@@ -174,7 +174,7 @@ The current exact reading is:
 |---|---|
 | `vehicle_id` | repeated unit |
 | `time_step` | time axis |
-| `*_operational_readouts.csv` | loss-side covariates / degradation history |
+| `*_operational_readouts.csv` | reduction-side covariates / degradation history |
 | `*_specifications.csv` | static unit metadata |
 | `train_tte.csv` | training time-to-event / repair endpoint table |
 | `validation_labels.csv`, `test_labels.csv` | held-out classification endpoint labels |
@@ -210,7 +210,7 @@ Concretely:
 - validation/test labels are time-window classes for the last simulated
   readout;
 - the published files do not, at this stage, expose a separate repeated
-  intervention-event table that could be frozen directly as \(g_t\).
+  intervention-event table that could be frozen directly as \(r_t\).
 
 So a repair-flow primary claim would overread the public structure.
 
@@ -252,7 +252,7 @@ If this branch is continued, the clean next move is:
 1. decide whether to open a Scania bridge package as
    - survival / time-to-event bridge, or
    - horizon-classification bridge;
-2. keep all wording below direct repair-flow \(g_t\) support;
+2. keep all wording below direct repair-flow \(r_t\) support;
 3. continue partner/local acquisition in parallel for the stronger target:
    directly logged pre-cutoff intervention variables.
 
@@ -261,7 +261,7 @@ If this branch is continued, the clean next move is:
 This note does not claim:
 
 1. Scania Component X already closes the repair-flow empirical gap;
-2. `train_tte.csv` is a direct \(g_t\) series;
+2. `train_tte.csv` is a direct \(r_t\) series;
 3. Azure PdM or MetroPT-3 should be discarded permanently;
 4. public-web data are enough by themselves to close G4 v2.
 

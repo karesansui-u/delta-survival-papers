@@ -15,7 +15,7 @@ public-scan pattern:
   failure-overlap inference;
 - C2 MetroPT-3: real operational time series exists, but repeated-unit and
   repair-event structure are too weak;
-- C3 Backblaze: excellent loss-only panel, but no repair flow.
+- C3 Backblaze: excellent loss-only panel, but no recovery amount.
 
 So the problem is no longer "we have not looked yet". It is:
 
@@ -67,9 +67,9 @@ At minimum, the dataset needs:
 - a future failure / degradation endpoint;
 - enough temporal resolution to define lagged windows.
 
-### Criterion 3. Direct loss-side observables
+### Criterion 3. Direct reduction-side observables
 
-There must be plausible \(d_t\) / \(\ell_t\)-side variables such as:
+There must be plausible \(d_t\) / \(d_t\)-side variables such as:
 
 - load;
 - degradation;
@@ -82,9 +82,9 @@ There must be plausible \(d_t\) / \(\ell_t\)-side variables such as:
 These do not need to be perfect causal measures, but they must be directly
 observed rather than reconstructed from future outcomes.
 
-### Criterion 4. Direct repair / compensation events
+### Criterion 4. Direct repair / recovery events
 
-There must be directly observed candidate \(g_t\) events such as:
+There must be directly observed candidate \(r_t\) events such as:
 
 - maintenance;
 - replacement;
@@ -93,7 +93,7 @@ There must be directly observed candidate \(g_t\) events such as:
 - redundancy activation;
 - inspection plus confirmed restoration.
 
-If \(g_t\) would have to be inferred from proximity to failure, the dataset
+If \(r_t\) would have to be inferred from proximity to failure, the dataset
 fails the primary gate.
 
 ### Criterion 5. Pre-failure repair-class distinction
@@ -138,7 +138,7 @@ such as:
 - prior intervention count;
 - unit age or usage burden.
 
-This is needed to separate repair-aware signal from mere "high activity"
+This is needed to separate recovery-aware signal from mere "high activity"
 confounding.
 
 ### Criterion 8. Reproducible reporting path
@@ -175,8 +175,8 @@ Once a dataset is screened, it should be placed into one of four tiers.
 | Tier | Meaning |
 |---|---|
 | repair-flow primary candidate | passes all hard criteria above |
-| weak-g control | has real operational structure but repair flow is too sparse / reactive / single-system |
-| loss-only control | has unit, time, degradation, endpoint, but effectively \(g_t=0\) |
+| weak-g control | has real operational structure but recovery amount is too sparse / reactive / single-system |
+| loss-only control | has unit, time, degradation, endpoint, but effectively \(r_t=0\) |
 | leakage-risk / ineligible | fails by inferred repair class, no endpoint, or no usable unit/time structure |
 
 This tiering is deliberately conservative.

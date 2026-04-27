@@ -37,15 +37,15 @@ What fails this condition:
   nearby alternatives;
 - mixing multiple incompatible measures without a pre-specified rule.
 
-### 2.2 Compensation condition: \(g_t\) is observable
+### 2.2 Recovery condition: \(r_t\) is observable
 
-The domain must expose a compensation flow that can be identified without
+The domain must expose a recovery amount that can be identified without
 theory-rescuing reinterpretation:
 
 - service rate, repair rate, maintenance input, redundancy activation, or
   logged intervention;
 - a quantity recorded or defined before the collapse outcome is known;
-- a domain-local meaning that distinguishes compensation from mere activity.
+- a domain-local meaning that distinguishes recovery from mere activity.
 
 What fails this condition:
 
@@ -67,7 +67,7 @@ This does not require an unconditional theorem. It does require a clear path
 from
 
 \[
-  b_t=\ell_t-g_t,\qquad B_n=\sum_{t<n} b_t
+  b_t=d_t-r_t,\qquad B_n=\sum_{t<n} b_t
 \]
 
 to some boundary reading such as:
@@ -90,10 +90,10 @@ The gate produces four qualitatively different statuses.
 
 | status | meaning |
 |---|---|
-| Conditional law-side bridge | \(m\), \(g_t\), and a collapse boundary are all available under explicit assumptions |
-| Near-bridge open-system anchor | \(m\) and \(g_t\) are available, but the boundary statement is finite-prefix or only partially developed |
-| Loss-only control anchor | \(m\) and a loss-side boundary are available, but \(g_t\) is absent or intentionally zero |
-| Observational / companion layer | one or more of \(m\), \(g_t\), boundary remain proxy-level or domain-weak |
+| Conditional law-side bridge | \(m\), \(r_t\), and a collapse boundary are all available under explicit assumptions |
+| Near-bridge open-system anchor | \(m\) and \(r_t\) are available, but the boundary statement is finite-prefix or only partially developed |
+| Loss-only control anchor | \(m\) and a reduction-side boundary are available, but \(r_t\) is absent or intentionally zero |
+| Observational / companion layer | one or more of \(m\), \(r_t\), boundary remain proxy-level or domain-weak |
 
 This gate is intentionally stronger than “can be written in structural-persistence balance
 notation?” Many domains can be written that way. Fewer can be elevated toward
@@ -112,7 +112,7 @@ Conditional law-side bridge
 Why:
 
 - \(m\): natural load / Lyapunov quantity / slack quantity;
-- \(g_t\): service or compensatory capacity is observable;
+- \(r_t\): service or compensatory capacity is observable;
 - boundary: overload, stability, and hitting-style interpretations already
   exist in the underlying theory.
 
@@ -131,11 +131,11 @@ Near-bridge open-system anchor
 Why:
 
 - \(m\): damage, remaining margin, or threshold slack can be fixed naturally;
-- \(g_t\): repair / maintenance / replacement is operationally meaningful;
+- \(r_t\): repair / maintenance / replacement is operationally meaningful;
 - boundary: finite-prefix threshold crossing is available, but a full
   stochastic reliability theorem is not yet reader-facing.
 
-This is the cleanest route to a future empirical \(g_t\), but it is not yet a
+This is the cleanest route to a future empirical \(r_t\), but it is not yet a
 completed law-side bridge.
 
 ### 4.3 Serial reliability / constant-fraction decay
@@ -149,7 +149,7 @@ Loss-only control anchors
 Why:
 
 - \(m\): survival / remaining quantity is natural;
-- \(g_t\): intentionally absent or zero;
+- \(r_t\): intentionally absent or zero;
 - boundary: decay or survival threshold readings are straightforward.
 
 These anchors matter because they show the loss-only kernel outside CSP, but
@@ -167,7 +167,7 @@ Why:
 
 - Backblaze v2 gives same-domain observational loss-only support;
 - C-MAPSS FD001 gives a weakening outcome with real compressed-signal value;
-- neither provides an empirical \(g_t\);
+- neither provides an empirical \(r_t\);
 - neither is the right place to claim a non-CSP law-side bridge.
 
 These results remain valuable. They just belong to a different evidence tier.
@@ -183,7 +183,7 @@ Observational / companion layer
 Why:
 
 - \(m\) is still proxy-heavy;
-- \(g_t\) is observable mainly as indicator-level repair or scope variables;
+- \(r_t\) is observable mainly as indicator-level repair or scope variables;
 - collapse boundaries are predictive / observational rather than domain-native
   stability theorems.
 
@@ -214,7 +214,7 @@ This gate does not claim:
 2. that a law-side bridge replaces the original domain theory;
 3. that a natural \(m\) for queueing automatically gives a natural \(m\) for
    LLMs, organizations, or software systems;
-4. that empirical \(g_t\) has already been captured in the current public
+4. that empirical \(r_t\) has already been captured in the current public
    datasets;
 5. that expectation-level tendency automatically yields universal
    concentration or collapse laws.

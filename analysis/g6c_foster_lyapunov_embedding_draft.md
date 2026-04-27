@@ -72,7 +72,7 @@ Foster-Lyapunov drift calculus の負荷差分は、構造持続の収支原理�
   Z_n-Z_0.
 \]
 
-これは構造持続の収支原理の構造持続収支量と同じ形式である。\(Z_t\) が増えると、構造負荷が増える。\(Z_t\) が減ると、補償または回復が勝っている。
+これは構造持続の収支原理の構造持続収支量と同じ形式である。\(Z_t\) が増えると、構造負荷が増える。\(Z_t\) が減ると、回復が勝っている。
 
 ## 4. 指数的維持量
 
@@ -105,25 +105,25 @@ Foster-Lyapunov drift calculus の負荷差分は、構造持続の収支原理�
 \]
 と同じ algebraic shape を持つ。ただしここでの \(R_t\) は、実際の feasible set measure そのものではなく、Lyapunov 負荷から作った相対的維持座標である。この違いは明示しておく必要がある。
 
-## 5. \(\ell_t,g_t\) への分解
+## 5. \(d_t,r_t\) への分解
 
 構造持続の収支原理の標準形では、一段収支を
 \[
-  b_t=\ell_t-g_t
+  b_t=d_t-r_t
 \]
-と書く。ここで \(\ell_t\ge 0\) は損失流、\(g_t\ge 0\) は補償流である。
+と書く。ここで \(d_t\ge 0\) は構造消耗量、\(r_t\ge 0\) は回復量である。
 
 Lyapunov 差分 \(\Delta Z_t:=Z_{t+1}-Z_t\) から、次のように分解できる。
 \[
-  \ell_t := (\Delta Z_t)^+,
+  d_t := (\Delta Z_t)^+,
   \qquad
-  g_t := (-\Delta Z_t)^+,
+  r_t := (-\Delta Z_t)^+,
 \]
 ただし \(x^+=\max(x,0)\) である。
 
 このとき
 \[
-  \ell_t-g_t
+  d_t-r_t
   =
   (\Delta Z_t)^+ - (-\Delta Z_t)^+
   =
@@ -132,7 +132,7 @@ Lyapunov 差分 \(\Delta Z_t:=Z_{t+1}-Z_t\) から、次のように分解でき
   b_t.
 \]
 
-したがって、負荷が増えるステップは loss flow として、負荷が減るステップは compensation / recovery flow として読める。
+したがって、負荷が増えるステップは structural consumption amount として、負荷が減るステップは recovery amount として読める。
 
 この読み替えは、物理的資源流を同定したという意味ではない。あくまで、Lyapunov 負荷の増減を構造持続の収支原理の符号つき収支量へ写す最小的な分解である。
 
@@ -191,7 +191,7 @@ Foster-Lyapunov drift 条件は、構造負荷 \(Z_t=W(X_t)\) を用いること
 \]
 は overload threshold event である。Lean 側では、これは `ThresholdExceeded` として skeleton 化されている。
 
-この例は小さいが、G6-c にとって重要である。なぜなら、構造持続の収支原理の \(b_t=\ell_t-g_t\) が、queueing の arrival minus service という古典的 balance と同じ符号構造を持つことを示すからである。
+この例は小さいが、G6-c にとって重要である。なぜなら、構造持続の収支原理の \(b_t=d_t-r_t\) が、queueing の arrival minus service という古典的 balance と同じ符号構造を持つことを示すからである。
 
 ## 8. theorem assumption の継承
 
@@ -225,7 +225,7 @@ Foster-Lyapunov theorem は通常、単なる代数恒等式だけでは成立�
 
 第一に、構造持続の収支原理が熱力学的比喩だけではなく、既存の確率過程安定性理論と同じ drift algebra を共有していることを示す。
 
-第二に、Route A CSP calibration とは別の方向で、構造持続の収支原理の generality を強化する。random CSP の threshold-local grid に依存せず、負荷、補償、回復、過負荷という語彙を既存の安定性理論へ接続できる。
+第二に、Route A CSP calibration とは別の方向で、構造持続の収支原理の generality を強化する。random CSP の threshold-local grid に依存せず、負荷、回復入力、過負荷という語彙を既存の安定性理論へ接続できる。
 
 第三に、次の G4 non-CSP anchor を選ぶ基準を与える。すなわち、queueing、reliability、branching process、population dynamics などは、いずれも \(Z_t\), \(b_t\), \(B_n\), \(R_t\) の形に落とせるかどうかで比較できる。
 
@@ -237,7 +237,7 @@ Foster-Lyapunov theorem は通常、単なる代数恒等式だけでは成立�
 2. queueing stability theorem を新たに証明した。
 3. positive recurrence が構造持続の収支原理だけから従う。
 4. 任意の開いた構造系が Markov chain stability 問題である。
-5. 物理的な資源流 \(g_t\) が Lyapunov 負荷の減少と一意に同定される。
+5. 物理的な資源流 \(r_t\) が Lyapunov 負荷の減少と一意に同定される。
 6. continuous-time generator や stochastic thermodynamics まで同時に扱った。
 7. G6-c が成立したので universal law が確立した。
 
@@ -257,7 +257,7 @@ Foster-Lyapunov drift calculus は、構造持続の収支原理の expectation-
 2. Lean 側の最小 theorem は `lean/Survival/LyapunovBalanceEmbedding.lean` に実装済みである。
    - `cumulativeAction_eq_load_diff`: \(B_n = Z_n-Z_0\)。
    - `relativeMaintenance_succ_eq_mul_exp_neg_increment`: \(R_{t+1}=R_t e^{-b_t}\)。
-   - `increment_eq_lossFlow_sub_repairFlow`: \(b_t=\ell_t-g_t\)。
+   - `increment_eq_consumptionAmount_sub_recoveryAmount`: \(b_t=d_t-r_t\)。
    - `queue_increment_eq_excessDemand`,
      `queue_cumulativeAction_eq_cumulativeOverloadLoss`,
      `queue_increment_nonpos_of_stable`,

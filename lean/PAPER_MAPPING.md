@@ -94,19 +94,19 @@ machine-checked と読む。
 
 | Paper 3 claim | Lean entry point | Underlying theorem / object | Status |
 |---|---|---|---|
-| one-step balance \(b_t=\ell_t-g_t\) | `StructuralPersistenceBalancePrinciple.oneStepBalance_eq_loss_sub_gain` | `GeneralStateDynamics.stepNetAction` | proven by definition |
+| one-step balance \(b_t=d_t-r_t\) | `StructuralPersistenceBalancePrinciple.oneStepBalance_eq_consumption_sub_recovery` | `GeneralStateDynamics.stepNetAction` | proven by definition |
 | structural persistence balance amount \(B_n=\sum_{t<n}b_t\) | `StructuralPersistenceBalancePrinciple.cumulativeBalance_eq_sum_oneStepBalance` | `GeneralStateDynamics.cumulativeNetAction` | proven by definition |
 | local balance \(m(V^{t+1})=m(V^t)e^{-b_t}\) | `StructuralPersistenceBalancePrinciple.local_exponential_balance` | `feasibleMass_succ_eq_mass_mul_exp_neg_stepNetAction` | proven under positivity |
 | pathwise balance kernel \(m(V^n)=m(V^0)e^{-B_n}\) | `StructuralPersistenceBalancePrinciple.pathwise_balance_exponential_kernel` | `feasibleMass_eq_initial_mul_exp_neg_cumulativeNetAction` | proven under positive finite trajectory assumptions |
-| loss-only recovery | `StructuralPersistenceBalancePrinciple.pureContraction_recovers_loss_only_kernel` | `feasibleMass_eq_initial_mul_exp_neg_cumulativeLoss_of_pureContraction` | proven for pure contraction / zero gain |
+| loss-only kernel recovery | `StructuralPersistenceBalancePrinciple.pureContraction_recovers_loss_only_kernel` | `feasibleMass_eq_initial_mul_exp_neg_cumulativeLoss_of_pureContraction` | proven for pure contraction / zero gain |
 | Foster-Lyapunov algebraic embedding | `StructuralPersistenceBalancePrinciple.lyapunov_*` wrappers | `LyapunovBalanceEmbedding.*` | proven as minimal algebraic embedding, not positive recurrence |
 | repair / maintenance finite-prefix balance | `StructuralPersistenceBalancePrinciple.repair_*` wrappers | `RepairMaintenanceBalance.*` | proven finite-prefix skeleton |
 | remaining margin \(B-D_n\) | `repair_remainingMargin_eq_initial_margin_sub_cumulative_balance` | `RepairMaintenanceBalance.margin` | proven; this is margin, not Paper 1 resource term `M` |
 
 Paper 3 non-claims remain outside Lean:
 
-- naturality or uniqueness of \(V,m,\ell_t,g_t\) in arbitrary domains;
-- empirical observability of \(g_t\);
+- naturality or uniqueness of \(V,m,d_t,r_t\) in arbitrary domains;
+- empirical observability of \(r_t\);
 - Route C causal mechanism identification;
 - Backblaze / C-MAPSS / Scania empirical outcomes;
 - Foster-Lyapunov positive recurrence, geometric ergodicity, or optimal maintenance theorem;
@@ -250,13 +250,13 @@ drift は `log(2^k / allowed)` になる。部分二項和が \(0\) と \(2^k\) 
 
 | ファイル | 主定理 | 評価 |
 |---------|-------|------|
-| [`SerialReliability.lean`](Survival/SerialReliability.lean) | 直列系信頼度 `R = ∏ p_i` と累積損失 `L = Σ -log p_i` から `R = exp(-L)`、および `L ≥ -log θ → R ≤ θ` | A08。B3 の独立部分加法性を SAT 以外の教科書的工学例で補強 |
+| [`SerialReliability.lean`](Survival/SerialReliability.lean) | 直列系信頼度 `R = ∏ p_i` と累積構造消耗量 `L = Σ -log p_i` から `R = exp(-L)`、および `L ≥ -log θ → R ≤ θ` | A08。B3 の独立部分加法性を SAT 以外の教科書的工学例で補強 |
 | [`ConstantFractionDecay.lean`](Survival/ConstantFractionDecay.lean) | 一定割合 `q` の残存過程で `q^n = exp(-n(-log q))`、および `L ≥ -log θ → q^n ≤ θ` | A02/A03/A04/A16。放射性崩壊・吸収・一次反応・一次薬物動態の共通指数減衰核 |
 | [`BranchingProcessExtinction.lean`](Survival/BranchingProcessExtinction.lean) | 平均子孫数 `m ≤ 1` の分岐過程 expectation skeleton で `m^n = exp(-n(-log m))`、subcritical なら `-log m > 0` | A13。絶滅閾値の期待値レベル最小モデル |
 | [`QueueStability.lean`](Survival/QueueStability.lean) | fluid queue で `backlog_n = initial + n(arrival-service)`、安定時は増えず、過負荷時は線形に閾値到達 | A07/A28。処理資源を超えた負荷の累積崩壊 skeleton |
 | [`BinarySymmetricChannel.lean`](Survival/BinarySymmetricChannel.lean) | 独立 binary channel で block success `(1-p)^n = exp(-n(-log(1-p)))`、loss 閾値から block failure 下界を導く | A06/A19。通信路・誤り訂正側の指数的復元失敗 skeleton |
 | [`FatigueDamage.lean`](Survival/FatigueDamage.lean) | 応力サイクル損傷 `D_n = Σ_{i<n} d_i` が capacity を超えると破断、一定損傷では `D_n = n d` | A23。材料疲労・Miner 則型の累積閾値 skeleton |
-| [`RepairMaintenanceBalance.lean`](Survival/RepairMaintenanceBalance.lean) | damage flow `d_t` と repair / maintenance flow `g_t` から `D_n = D_0 + Σ(d_t-g_t)`、`M_n = B-D_n`、`R_{t+1}=R_t exp(-(d_t-g_t))`、非負 repair による margin 改善を形式化 | G4 v2。補償流 \(g_t\) を非CSP open-system reliability / fatigue 側で明示する有限 prefix skeleton |
+| [`RepairMaintenanceBalance.lean`](Survival/RepairMaintenanceBalance.lean) | damage amount `d_t` と repair / maintenance amount `r_t` から `D_n = D_0 + Σ(d_t-r_t)`、`M_n = B-D_n`、`R_{t+1}=R_t exp(-(d_t-r_t))`、非負 repair による margin 改善を形式化 | G4 v2。回復量 \(r_t\) を非CSP open-system reliability / fatigue 側で明示する有限 prefix skeleton |
 | [`ConsensusFaultThreshold.lean`](Survival/ConsensusFaultThreshold.lean) | 累積故障数 `F_n = Σ_{i<n} f_i` が fault budget を超えると合意不能、一定故障流では `F_n = n f` | A25。分散合意の故障閾値 skeleton |
 | [`MemoryThrashing.lean`](Survival/MemoryThrashing.lean) | working set が physical memory を超えると `faultPressure_n = initial + n(workingSet-memory)` が線形増加し閾値到達 | A27。メモリ階層・スラッシングの working-set overflow skeleton |
 | [`BucklingThreshold.lean`](Survival/BucklingThreshold.lean) | load ramp `P_n = P_0 + n ΔP` が critical load `Pcr` に到達/超過すると座屈閾値到達 | A10。機械構造体の critical-load threshold skeleton |
@@ -379,7 +379,7 @@ drift は `log(2^k / allowed)` になる。部分二項和が \(0\) と \(2^k\) 
 これは抽象的な相対誤差仮定に留まっている。
 
 **Lean 側で既に形式化されている代替:**
-`AzumaHoeffding.lean` + `BoundedAzumaConstruction.lean` + `ConditionalMartingale.lean` により、段階損失 l_i が bounded increments を満たす conditional martingale なら、Azuma-Hoeffding 不等式から `exp(-r²/(2V_n))` の具体的な指数境界が得られる。
+`AzumaHoeffding.lean` + `BoundedAzumaConstruction.lean` + `ConditionalMartingale.lean` により、段階構造消耗 l_i が bounded increments を満たす conditional martingale なら、Azuma-Hoeffding 不等式から `exp(-r²/(2V_n))` の具体的な指数境界が得られる。
 
 **論文への反映案:**
 Paper 2 §4 に「§4.1 真の martingale concentration による厳密化」を追加し、SignedWeakDependence + ConditionalMartingale + AzumaHoeffding を引用することで、弱依存の扱いを「相対誤差 ρ を仮定」から「bounded martingale increments → 具体的 variance proxy」へ格上げできる。

@@ -20,7 +20,7 @@ Related exploration history:
 Exp43c is a fresh threshold-local q-coloring preregistration. It replaces the
 Exp43b design rather than amending it after calibration outcomes.
 
-Exp43c tests whether the Route A first-moment / drift coordinate predicts
+Exp43c tests whether the Route A first-moment / structural-consumption coordinate predicts
 q-colorability better than raw edge count, density, and CNF encoding-size
 baselines inside a frozen threshold-local window.
 
@@ -63,7 +63,7 @@ The primary claim is:
 
 \begin{quote}
 Inside a threshold-local window selected by precommitted calibration rules and
-frozen before primary data, the first-moment / drift coordinate predicts
+frozen before primary data, the first-moment / structural-consumption coordinate predicts
 held-out q-colorability better than raw edge-count, density, and CNF-size
 baselines.
 \end{quote}
@@ -74,9 +74,9 @@ The threshold window location is calibration output, not theory evidence.
 
 Let
 \[
-  \ell_q=\log\frac{q}{q-1},
+  d_q=\log\frac{q}{q-1},
   \qquad
-  L=m\ell_q,
+  L=md_q,
   \qquad
   F=n\log q-L.
 \]

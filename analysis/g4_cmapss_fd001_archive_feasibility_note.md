@@ -136,9 +136,9 @@ The clean first reading remains:
 |---|---|
 | engine id | repeated unit |
 | cycle | time index |
-| settings / sensors | loss-side covariates |
+| settings / sensors | reduction-side covariates |
 | provided RUL targets | future endpoint |
-| repair events | absent, so \(g_t = 0\) |
+| repair events | absent, so \(r_t = 0\) |
 
 This stays strictly below repair-flow evidence.
 
