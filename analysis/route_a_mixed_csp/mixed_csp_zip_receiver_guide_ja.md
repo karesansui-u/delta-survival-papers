@@ -32,7 +32,7 @@
 
 あわせて、次の資料が入っています。
 
-1. `START_HERE_ja.md`
+1. `手順書.md`
 2. `requirements.txt`
 3. `analysis/route_a_mixed_csp/mixed_csp_external_rerun_package.md`
 4. `analysis/route_a_mixed_csp/mixed_csp_true_outside_handoff_checklist.md`

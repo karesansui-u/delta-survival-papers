@@ -46,7 +46,7 @@ for file in "${FILES[@]}"; do
 done
 
 cp analysis/route_a_mixed_csp/requirements_mixed_csp.txt "${STAGE_DIR}/requirements.txt"
-cp analysis/route_a_mixed_csp/mixed_csp_zip_receiver_guide_ja.md "${STAGE_DIR}/START_HERE_ja.md"
+cp analysis/route_a_mixed_csp/mixed_csp_zip_receiver_guide_ja.md "${STAGE_DIR}/手順書.md"
 
 cat > "${STAGE_DIR}/BUNDLE_INFO.txt" <<EOF
 Mixed-CSP true outside-group handoff bundle
@@ -54,7 +54,7 @@ Mixed-CSP true outside-group handoff bundle
 exported_from_commit_short: ${SHORT_HASH}
 exported_from_commit_full: ${FULL_HASH}
 
-Use START_HERE_ja.md first if you received this bundle as a zip package.
+Use 手順書.md first if you received this bundle as a zip package.
 This bundle was exported from the exact published HEAD recorded above.
 EOF
 
