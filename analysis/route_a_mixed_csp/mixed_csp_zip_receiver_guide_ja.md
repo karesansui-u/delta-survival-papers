@@ -40,9 +40,13 @@
 6. `analysis/route_a_mixed_csp/debug_mixed_csp_encoding.py`
 7. `analysis/route_a_mixed_csp/mixed_csp_generator.py`
 8. `analysis/route_a_mixed_csp/mixed_csp_solvers.py`
-9. `analysis/route_a_mixed_csp/mixed_csp_primary_official_2026-04-22.jsonl`
-10. `analysis/route_a_mixed_csp/mixed_csp_results.json`
-11. `analysis/route_a_mixed_csp/mixed_csp_results_summary.md`
+9. `analysis/route_a_mixed_csp/mixed_csp_aborted_primary_attempt_2026-04-22_0338.jsonl`
+10. `analysis/route_a_mixed_csp/mixed_csp_primary_official_2026-04-22.jsonl`
+11. `analysis/route_a_mixed_csp/mixed_csp_results.json`
+12. `analysis/route_a_mixed_csp/mixed_csp_results_summary.md`
+
+`mixed_csp_aborted_primary_attempt_2026-04-22_0338.jsonl` は regression 診断
+で使う参照ファイルです。
 
 最後の 3 つは比較用の正式参照ファイルです。実行対象ではありません。
 
@@ -155,6 +159,11 @@ PY
 
 実行環境メモは、zip ルートの `実行環境メモ_テンプレート.md` を埋めるだけ
 で大丈夫です。
+
+書き方:
+
+1. 各項目は `:` の後ろに記入する
+2. 最後の `記入欄:` の下に、一言の結論を 1 行だけ書く
 
 一言の結論は、自分で解釈して書く必要はありません。`mixed_csp_primary_external_results.json`
 の `support` を見て、次のどちらかをそのまま書いてください。
