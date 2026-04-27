@@ -13,7 +13,7 @@ domain-specific problems.
 The memo should be read together with:
 
 - `analysis/current_evidence_map.md`
-- `v2/5_構造持続の収支法則と崩壊傾向.md` §7-8
+- `v2/3_構造持続の収支法則と崩壊傾向.md` §7-8
 - `v2/補論_構造持続写像の標準手順.md`
 - `analysis/g6c_foster_lyapunov_embedding_draft.md`
 - `v2/補論_構造収支律とFoster-Lyapunovドリフトの形式的埋め込み.md`
@@ -47,8 +47,8 @@ subsumption, and practical redundancy.
 |---|---|---|---|---|
 | F1 | Translation / sign inconsistency | The same symbol, especially \(a_t\), \(\ell_t\), \(g_t\), \(A_n\), or \(R_t\), has incompatible sign or semantic meaning across anchors | G6-c queueing and G4 v2 repair-maintenance keep \(a_t=\ell_t-g_t\) / overload-positive convention explicit | Cross-domain sign-convention table |
 | F2 | Prediction / theorem content not preserved | Translation preserves notation but not nontrivial predictions, inequalities, thresholds, or theorem assumptions | Exp43c and Mixed-CSP test prediction coordinates; G6-c preserves algebraic identities | Non-triviality / theorem-transfer score per domain |
-| F3 | Scope overreach / silent systems | The theory claims to cover dynamical structure generally but cannot express phase transitions, cycles, heavy-tail criticality, or static structures | Paper 5 §8 and Route A/B/C already limit claims; `analysis/scope_silence_catalog.md` now records the explicit silence boundary | Extend only if a new system family needs a sharper no-claim rule |
-| F4 | Rival framework subsumption | Large deviation theory, free-energy / stochastic thermodynamics, contraction analysis, or Lyapunov drift calculus does the same work with less extra vocabulary and more predictions | Paper 5 §7 handles thermodynamics, Lyapunov, control, and information theory; `analysis/ldp_rate_function_comparison.md` opens the LDP / rate-function stress test | Extend to free-energy / contraction comparison if needed |
+| F3 | Scope overreach / silent systems | The theory claims to cover dynamical structure generally but cannot express phase transitions, cycles, heavy-tail criticality, or static structures | structural balance law paper §8 and Route A/B/C already limit claims; `analysis/scope_silence_catalog.md` now records the explicit silence boundary | Extend only if a new system family needs a sharper no-claim rule |
+| F4 | Rival framework subsumption | Large deviation theory, free-energy / stochastic thermodynamics, contraction analysis, or Lyapunov drift calculus does the same work with less extra vocabulary and more predictions | structural balance law paper §7 handles thermodynamics, Lyapunov, control, and information theory; `analysis/ldp_rate_function_comparison.md` opens the LDP / rate-function stress test | Extend to free-energy / contraction comparison if needed |
 | F5 | Practical redundancy | The translation is correct but less useful than reading each domain theory directly | Evidence map and Route classification reduce overclaim but do not prove usefulness | Reader-facing teaching / translation-efficiency document |
 
 These are not all equally urgent. F4 is the most dangerous near-term
@@ -238,7 +238,7 @@ Remaining next work:
 
 ```text
 If this line is promoted into the main paper, add an explicit LDP /
-rate-function row to Paper 5 §7.8 and keep the wording as anti-overclaim
+rate-function row to structural balance law paper §7.8 and keep the wording as anti-overclaim
 calibration, not as a universal-law claim.
 
 Then decide whether free-energy / stochastic thermodynamic path ratios or
@@ -265,7 +265,7 @@ or variational free-energy minimization.
 
 Current status:
 
-- Paper 5 §7 treats thermodynamics and non-equilibrium thermodynamics as
+- structural balance law paper §7 treats thermodynamics and non-equilibrium thermodynamics as
   G6-a / G6-b.
 - The current program does not yet give a stochastic-thermodynamic path-ratio
   embedding.

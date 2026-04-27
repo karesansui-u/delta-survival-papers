@@ -45,7 +45,7 @@ The overlap is strongest on the Route A / finite-CSP side.
 This is not an embarrassment. It is already visible in the papers:
 
 - Route A uses first moment, MGF, Chernoff, and KL profiles openly;
-- Paper 5 already says the Route A high-probability layer is stronger than the
+- The structural balance law paper already says the Route A high-probability layer is stronger than the
   expectation-only layer precisely because extra exponential-rate structure is
   available there.
 

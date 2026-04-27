@@ -117,7 +117,7 @@ Passed: scoped > structural in both primary new models.
 ```
 
 Interpretation:
-  Paper 3 becomes substantially more defensible as a model-width claim.
+  Route C companion I becomes substantially more defensible as a model-width claim.
   The invariant is scoped protection, not a fixed subtle/structural ordering.
 
 Unexpected secondary finding:
@@ -175,7 +175,7 @@ Short horizon:
    as the next main-theory paper.
 4. Review and polish the structural balance law / 構造収支律 draft as the next
    core-theory candidate. §1-8 now exist at
-   `v2/5_構造持続の収支法則と崩壊傾向.md`; current control memo:
+   `v2/3_構造持続の収支法則と崩壊傾向.md`; current control memo:
    `analysis/structural_balance_law_draft_plan.md`.
 5. Keep `analysis/falsification_and_rival_frameworks.md`,
    `analysis/ldp_rate_function_comparison.md`, and

@@ -6,8 +6,8 @@ Structural Persistence Theory for LLM reasoning degradation, catastrophic forget
 
 ## Current Focus / 現在の主対象
 
-このリポジトリの主対象は、`v2` にある Paper 1–5 draft と補論群です。
-理論 architecture を追う場合は `v2/1`、`v2/2`、`v2/5` を先に読み、応用層として `v2/3`、`v2/4` へ進む構成です。現在の証拠階層は [`analysis/current_evidence_map.md`](analysis/current_evidence_map.md) に整理しています。`v1/` は旧版アーカイブ、補論は補助資料です。
+このリポジトリの主対象は、`v2` にある主理論 spine 3 本と Route C companion 2 本、および補論群です。
+理論 architecture を追う場合は `v2/1`、`v2/2`、`v2/3` を先に読む主理論 spine を基本とし、その後に `v2/Companion_RouteC_推論時の構造劣化.md`、`v2/Companion_RouteC_継続学習時の構造的忘却.md` を companion anchors として置いています。現在の証拠階層は [`analysis/current_evidence_map.md`](analysis/current_evidence_map.md) に整理しています。`v1/` は旧版アーカイブ、補論は補助資料です。
 
 ### English Entry Points
 
@@ -39,7 +39,7 @@ Route A の非CSP skeletons は、信頼性・減衰・待ち行列・疲労・�
 
 非CSP の observational 側では、Backblaze drive reliability の loss-only branch に closed Q4 2025 no-support と Q3 2025 same-domain calibrated support の両方があります。Q4 2025 v1 は高い AUC を持ちながら frozen log-loss rule で失敗しましたが、Q3 2025 v2 は別 archive 上の calibration-aware redesign として通りました（0.007936 vs best baseline 0.008801、9.83% improvement）。ただしこれは repair-flow evidence ではなく、same-domain second attempt の loss-only observational support に限定して扱います。
 
-## Main Preprints (v2) / メインプレプリント
+## Core and Companion Papers (v2) / 主理論核と companion papers
 
 ### Paper 1 — 構造持続の最小形式
 
@@ -57,27 +57,31 @@ Route A の非CSP skeletons は、信頼性・減衰・待ち行列・疲労・�
 - PDF: [`v2/pdf用/2_構造持続の条件つき導出.pdf`](v2/pdf%E7%94%A8/2_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%AE%E6%9D%A1%E4%BB%B6%E3%81%A4%E3%81%8D%E5%B0%8E%E5%87%BA.pdf)
 - OSF mirror: [paper2_conditional_derivation_ja_2026-04-14.pdf](https://osf.io/mdh7b/files/osfstorage/69dde4faa17296e9bb3e7a3b)
 
-### Paper 3 — 構造持続と推論性能の劣化
+### Paper 3 — 構造持続の収支法則と崩壊傾向
+
+主理論 spine の第三層。損失流と補償流の差し引きを構造収支律として定式化し、pathwise identity、expectation-level tendency、finite-horizon concentration schema、Route A / Route C anchors、既存理論との接続強度を整理する中心 draft です。
+
+- Markdown: [`v2/3_構造持続の収支法則と崩壊傾向.md`](v2/3_構造持続の収支法則と崩壊傾向.md)
+
+### Route C Companion I — 推論時の構造劣化
+
+Route C companion anchor 1。主理論 spine そのものではなく、未整理矛盾や external metabolism が loss-side / repair-side indicator として観測量を予測するかを検査する観測的アンカーです。
 
 推論時の未整理矛盾や上書きが、論理一貫性を保てる経路を削るという具体例。現時点の主張は、外部代謝が未整理の矛盾放置より良い、という点に絞っている。
 
-- Markdown: [`v2/3_構造持続と推論性能の劣化.md`](v2/3_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%A8%E6%8E%A8%E8%AB%96%E6%80%A7%E8%83%BD%E3%81%AE%E5%8A%A3%E5%8C%96.md)
-- PDF: [`v2/pdf用/3_構造持続と推論性能の劣化.pdf`](v2/pdf%E7%94%A8/3_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%A8%E6%8E%A8%E8%AB%96%E6%80%A7%E8%83%BD%E3%81%AE%E5%8A%A3%E5%8C%96.pdf)
+- Markdown: [`v2/Companion_RouteC_推論時の構造劣化.md`](v2/Companion_RouteC_推論時の構造劣化.md)
+- PDF: [`v2/pdf用/Companion_RouteC_推論時の構造劣化.pdf`](v2/pdf用/Companion_RouteC_推論時の構造劣化.pdf)
 - OSF mirror: [paper3_logical_consistency_ja_2026-04-14.pdf](https://osf.io/mdh7b/files/osfstorage/69dde3bde1158f542e3e7aec)
 
-### Paper 4 — 構造持続と継続学習における破滅的忘却
+### Route C Companion II — 継続学習時の構造的忘却
+
+Route C companion anchor 2。主理論 spine の証明ではなく、前提更新と依存再編の失敗がどのように structural forgetting として現れるかを観測的に示す companion layer です。
 
 継続学習における前提更新と依存知識の崩れを、構造持続の別相として扱う。
 
-- Markdown: [`v2/4_構造持続と継続学習における破滅的忘却.md`](v2/4_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%A8%E7%B6%99%E7%B6%9A%E5%AD%A6%E7%BF%92%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E7%A0%B4%E6%BB%85%E7%9A%84%E5%BF%98%E5%8D%B4.md)
-- PDF: [`v2/pdf用/4_構造持続と継続学習における破滅的忘却.pdf`](v2/pdf%E7%94%A8/4_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%A8%E7%B6%99%E7%B6%9A%E5%AD%A6%E7%BF%92%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E7%A0%B4%E6%BB%85%E7%9A%84%E5%BF%98%E5%8D%B4.pdf)
+- Markdown: [`v2/Companion_RouteC_継続学習時の構造的忘却.md`](v2/Companion_RouteC_継続学習時の構造的忘却.md)
+- PDF: [`v2/pdf用/Companion_RouteC_継続学習時の構造的忘却.pdf`](v2/pdf用/Companion_RouteC_継続学習時の構造的忘却.pdf)
 - OSF mirror: [paper4_catastrophic_forgetting_ja_2026-04-14.pdf](https://osf.io/mdh7b/files/osfstorage/69dde3c0cc45911aa117d84c)
-
-### Paper 5 — 構造持続の収支法則と崩壊傾向
-
-損失流と補償流の差し引きを構造収支律として定式化し、pathwise identity、expectation-level tendency、finite-horizon concentration schema、Route A / Route C anchors、既存理論との接続強度を整理するレビュー中の主理論 draft。
-
-- Markdown: [`v2/5_構造持続の収支法則と崩壊傾向.md`](v2/5_構造持続の収支法則と崩壊傾向.md)
 
 ## Status / ステータス
 
@@ -85,9 +89,9 @@ Route A の非CSP skeletons は、信頼性・減衰・待ち行列・疲労・�
 |---|---|
 | v2 Paper 1 | Main preprint |
 | v2 Paper 2 | Main preprint |
-| v2 Paper 3 | Main preprint |
-| v2 Paper 4 | Main preprint |
-| v2 Paper 5 | Main preprint draft |
+| v2 Paper 3 | Main theory draft |
+| Route C Companion I | Companion preprint |
+| Route C Companion II | Companion preprint |
 | Lean 4 formalization | Complete (`136 Survival modules`, `sorry = 0`, `axiom = 0`) |
 | OSF project | [osf.io/mdh7b/overview](https://osf.io/mdh7b/overview) |
 | Raw data and summaries | [DATA.md](DATA.md) |
@@ -101,9 +105,9 @@ See [`PATENTS.md`](PATENTS.md) for a brief scope note.
 
 1. [`v2/1_構造持続の最小形式.md`](v2/1_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%AE%E6%9C%80%E5%B0%8F%E5%BD%A2%E5%BC%8F.md)
 2. [`v2/2_構造持続の条件つき導出.md`](v2/2_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%AE%E6%9D%A1%E4%BB%B6%E3%81%A4%E3%81%8D%E5%B0%8E%E5%87%BA.md)
-3. [`v2/5_構造持続の収支法則と崩壊傾向.md`](v2/5_構造持続の収支法則と崩壊傾向.md)
-4. [`v2/3_構造持続と推論性能の劣化.md`](v2/3_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%A8%E6%8E%A8%E8%AB%96%E6%80%A7%E8%83%BD%E3%81%AE%E5%8A%A3%E5%8C%96.md)
-5. [`v2/4_構造持続と継続学習における破滅的忘却.md`](v2/4_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%A8%E7%B6%99%E7%B6%9A%E5%AD%A6%E7%BF%92%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E7%A0%B4%E6%BB%85%E7%9A%84%E5%BF%98%E5%8D%B4.md)
+3. [`v2/3_構造持続の収支法則と崩壊傾向.md`](v2/3_構造持続の収支法則と崩壊傾向.md)
+4. [`v2/Companion_RouteC_推論時の構造劣化.md`](v2/Companion_RouteC_推論時の構造劣化.md)
+5. [`v2/Companion_RouteC_継続学習時の構造的忘却.md`](v2/Companion_RouteC_継続学習時の構造的忘却.md)
 
 ## Supplements / 補論・補助資料
 
@@ -121,7 +125,7 @@ See [`PATENTS.md`](PATENTS.md) for a brief scope note.
 
 ```text
 delta-survival-paper/
-  v2/             main preprints (1-5), supplements, PDF sources
+  v2/             core papers, companion papers, supplements, PDF sources
   v1/             older archived versions
   lean/           Lean 4 formal verification
   analysis/       SAT / LLM / frontier experiment analyses

@@ -45,7 +45,7 @@
 \]
 によって構造維持量の変化を記述する枠組みである。
 
-Paper 5「構造持続の収支法則と崩壊傾向」では、既存理論との接続を G6-a / G6-b / G6-c の三段階に分けた。熱力学や情報理論との対応は、多くの場合 G6-a または G6-b に留まる。一方、queueing theory や Markov chain stability に現れる Foster-Lyapunov drift 条件は、構造収支律の正味作用 \(a_t\) へ直接埋め込める。
+Paper 3「構造持続の収支法則と崩壊傾向」では、既存理論との接続を G6-a / G6-b / G6-c の三段階に分けた。熱力学や情報理論との対応は、多くの場合 G6-a または G6-b に留まる。一方、queueing theory や Markov chain stability に現れる Foster-Lyapunov drift 条件は、構造収支律の正味作用 \(a_t\) へ直接埋め込める。
 
 本補論の目的は、その最小埋め込みを reader-facing artifact として独立に記録することである。これは既存理論の置き換えではない。むしろ、既存理論の drift 部分が構造収支律の expectation-level tendency 層へどう写るかを明示する。
 

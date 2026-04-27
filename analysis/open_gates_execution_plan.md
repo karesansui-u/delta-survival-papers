@@ -28,7 +28,7 @@ The program is not starting from zero.
 Already closed or strengthened:
 
 - Route A primary anchors: Mixed-CSP and Exp43c q-coloring;
-- Route C observational anchors: Exp.40 / 41 / 42 and Paper 4;
+- Route C observational anchors: Exp.40 / 41 / 42 and Route C companion II;
 - G6-c iteration 1: minimal Foster-Lyapunov algebraic embedding;
 - G4 v1 and G4 v2 algebraic non-CSP skeletons;
 - Backblaze loss-only branch:

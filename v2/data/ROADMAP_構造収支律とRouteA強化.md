@@ -51,7 +51,7 @@ Current state:
 
 | Gate | Status |
 |---|---|
-| G1 | draft complete。`v2/5_構造持続の収支法則と崩壊傾向.md` §1-8 が作成済み |
+| G1 | draft complete。`v2/3_構造持続の収支法則と崩壊傾向.md` §1-8 が作成済み |
 | G2 | expectation-level tendency と high-probability schema は §3-4 に対応済み。詳細 theorem map の polish は未整理 |
 | G3 | Lean 上は q-coloring / XOR / NAE / cardinality まで水平展開済み。empirical primary は Mixed-CSP に加え、Exp43c q-coloring が freeze 済み threshold-local validation として通過 |
 | G4 | G4 v1 reader-facing supplement complete。`v2/補論_非CSP古典例における構造収支律の最小アンカー.md` で queueing / Foster-Lyapunov を primary、serial reliability / constant-fraction decay を loss-only controls として整理。G4 v2 は repair / maintenance reliability-fatigue balance に scope lock し、`RepairMaintenanceBalance.lean` で finite-prefix skeleton を実装、同補論 §11 に reader-facing section として統合済み。Operational pilot draft は `analysis/g4_v2_operational_pilot_preregistration_draft.md` |
@@ -129,7 +129,7 @@ machinery との関係を focused note として整理すること。
 
 1. `analysis/structural_balance_law_draft_plan.md`
    - 構造収支律の draft plan。
-2. `v2/5_構造持続の収支法則と崩壊傾向.md`
+2. `v2/3_構造持続の収支法則と崩壊傾向.md`
    - 構造収支律の main draft。§1-8 は作成済み。
 3. `v2/補論_構造持続における資源項Mの操作的定式化.md`
    - M 分解を補論として再配置した integrated draft。
@@ -148,7 +148,7 @@ machinery との関係を focused note として整理すること。
 
 Goal:
 
-`v2/5_構造持続の収支法則と崩壊傾向.md` は作成済み。M 補論ではなく、この paper が次の main-theory slot を取る。次に行うのは、§1-8 の整合レビュー、必要な小修正、freeze / commit 判断である。
+`v2/3_構造持続の収支法則と崩壊傾向.md` は作成済み。M 補論ではなく、この paper が次の main-theory slot を取る。次に行うのは、§1-8 の整合レビュー、必要な小修正、freeze / commit 判断である。
 
 Tentative title:
 
@@ -179,7 +179,7 @@ Minimal sections:
 3. expectation-level tendency: $\mathbb{E}[a_t]$ の符号で collapse / maintenance / recovery を分ける。
 4. high-probability bounds: bounded increments / MGF があると Azuma / Chernoff / hitting-time bounds が出る。
 5. Route A anchors: SAT, Mixed-CSP, finite CSP。
-6. Route C anchors: Paper 3 / Paper 4 の repair / external metabolism / adaptation。
+6. Route C anchors: Route C companion I / II の repair / external metabolism / adaptation。
 7. 既存理論との差分: thermodynamics, stochastic thermodynamics, queueing Lyapunov drift, control, information theory。
 8. 限界: universal law ではなく universal-law candidate。
 
@@ -572,7 +572,7 @@ If another LLM continues, do this:
 ```text
 1. Read analysis/structural_balance_law_draft_plan.md.
 2. Read this roadmap.
-3. Read v2/5_構造持続の収支法則と崩壊傾向.md §1-8.
+3. Read v2/3_構造持続の収支法則と崩壊傾向.md §1-8.
 4. Read analysis/exp43_qcoloring/pilot_v1_addendum.md.
 5. Read analysis/exp43_qcoloring/pilot_v2_summary.md.
 6. Treat early Exp43 / Exp43b as exploration / pilot calibration, not

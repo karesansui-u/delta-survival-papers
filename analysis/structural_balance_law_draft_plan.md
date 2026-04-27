@@ -1,7 +1,7 @@
 # 構造収支律 Draft Plan
 
 Status: design draft. The main preprint draft has started at
-`v2/5_構造持続の収支法則と崩壊傾向.md`; §1-8 currently establish the minimal
+`v2/3_構造持続の収支法則と崩壊傾向.md`; §1-8 currently establish the minimal
 balance identity, signed exponential kernel, expectation-level tendency,
 finite-horizon concentration schema, Route A anchors, Route C anchors, and
 existing-theory differences, and close with limitations / next steps.
@@ -38,8 +38,8 @@ Three regimes:
 - `lean/UNIVERSALITY_GAP_MAP.md`: expectation-level tendency が Lean 既存定理へ写ることの M1 mapping。
 - `lean/PAPER_MAPPING.md`: verified theorem map。
 - `v2/補論_有限CSPにおける構造持続の予測力.md`: Mixed-CSP の finite-horizon concentration / feasibility evidence。
-- `v2/3_構造持続と推論性能の劣化.md`: LLM における scope-as-repair / external metabolism の Route C anchor。
-- `v2/4_構造持続と継続学習における破滅的忘却.md`: 継続学習における repair / adaptation 分離の Route C anchor。
+- `v2/Companion_RouteC_推論時の構造劣化.md`: LLM における scope-as-repair / external metabolism の Route C anchor。
+- `v2/Companion_RouteC_継続学習時の構造的忘却.md`: 継続学習における repair / adaptation 分離の Route C anchor。
 - `v2/補論_構造持続における資源項Mの操作的定式化.md`: 補償流・資源流を実ドメインへ写す operational mapping。
 
 ## 3. Proposed Main Paper Shape
@@ -58,7 +58,7 @@ Draft sections:
 3. 期待値レベルの傾向律: $\mathbb{E}[a_t]$ の符号による collapse / maintenance / recovery。
 4. 有限時間・高確率境界: bounded increments, Azuma / Chernoff, hitting-time bounds。
 5. Route A anchors: SAT / Mixed-CSP / finite CSP での collapse tendency。
-6. Route C anchors: Paper 3 / Paper 4 の repair / external metabolism / adaptation indicators。
+6. Route C anchors: Route C companion I / II の repair / external metabolism / adaptation indicators。
 7. 既存理論との差分: 非平衡熱力学、Prigogine、queueing Lyapunov drift、確率制御との同じ点と違う点。
 8. 限界: 無限地平線、因果的 repair identification、M-mode の universal metric は未主張。
 
@@ -73,8 +73,8 @@ Draft sections:
 
 ## 5. Immediate Next Edits
 
-1. `v2/5_構造持続の収支法則と崩壊傾向.md` §1-8 をレビューし、重複・節番号・cross-reference を整える。
+1. `v2/3_構造持続の収支法則と崩壊傾向.md` §1-8 をレビューし、重複・節番号・cross-reference を整える。
 2. Exp43 q-coloring cross-q feasibility の preregistration draft を設計する。
 3. §7 の G6-a/b/c（analogy / correspondence / formal reduction）整理を、Lean theorem map / roadmap に反映する。
-4. Paper 0 統合版の architecture を、Paper 1 -> Paper 2 -> 構造収支律 -> Paper 3/4 -> M 補論、という依存順に更新する。
+4. Paper 0 統合版の architecture を、Paper 1 -> Paper 2 -> 構造収支律 -> Route C companion I/II -> M 補論、という依存順に更新する。
 5. M 補論は「補償流・資源流の測定層」として参照し、主理論の代替として扱わない。

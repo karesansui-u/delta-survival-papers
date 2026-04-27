@@ -25,7 +25,7 @@ information that simpler unweighted baselines miss.
 
 | Axis | Question | Proposed experiment | Primary contribution |
 |---|---|---|---|
-| Width | Does the scoped-vs-structural direction survive across models? | Exp.41 | Paper 3 defensibility |
+| Width | Does the scoped-vs-structural direction survive across models? | Exp.41 | Route C companion I defensibility |
 | Gradient | Does scope strength produce an ordered response? | Exp.42 | Blocks the "just instruction following" objection |
 | Route A replication | Does drift-weighted `L` beat raw count in a hard domain? | Mixed-CSP empirical | Empirical universality-class anchor |
 | Formal | Under which assumptions does balance become tendency? | Lean theorem work | Law-strength upgrade |
@@ -38,7 +38,7 @@ information that simpler unweighted baselines miss.
 4. Formal work proceeds in parallel because it does not consume API budget.
 
 This is an execution order, not a scientific-priority order. Exp.41 is first
-because it is cheap and raises the defensive floor for Paper 3 width claims.
+because it is cheap and raises the defensive floor for Route C companion I width claims.
 Exp.42 and Mixed-CSP carry the core prospective content for universality.
 
 ## Key Guardrail

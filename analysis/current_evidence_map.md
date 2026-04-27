@@ -13,7 +13,7 @@ preregistered experiments.
 | Layer | Artifact | Current strength | Supports | Does not support |
 |---|---|---|---|---|
 | Loss-only minimal form | Paper 1 / Paper 2 | Main theoretical core | Log-ratio / exponential representation under fixed structure and measure | Universal applicability without pre-fixed \(V,m\) |
-| Structural balance law | `v2/5_構造持続の収支法則と崩壊傾向.md` | Central theory layer | \(a_t=\ell_t-g_t\), \(A_n=\sum a_t\), collapse / maintenance / recovery regimes | Universal-law declaration |
+| Structural balance law | `v2/3_構造持続の収支法則と崩壊傾向.md` | Central theory layer | \(a_t=\ell_t-g_t\), \(A_n=\sum a_t\), collapse / maintenance / recovery regimes | Universal-law declaration |
 | Set-valued signed kernel | `v2/補論_構造持続の集合値力学的表現と符号付き指数核.md` | Formal supplement | Loss and repair as signed exponential action | Empirical validation |
 | M operationalization | `v2/補論_構造持続における資源項Mの操作的定式化.md` | Operational mapping layer | How to measure or decompose support-side resources | Universal resource metric |
 
@@ -41,7 +41,7 @@ preregistered experiments.
 | Exp40 scope-as-repair | Preregistered primary support | Structure-aware coding beats quality-blind contradiction coding | Does not identify internal mechanism |
 | Exp42 attribution-as-repair | Preregistered decomposition | Source attribution carries much of the repair signal | Model-internal causal mechanism not proven |
 | Exp41 width | Preregistered width check | `scoped > structural` replicated across primary models | `subtle` / `structural` ordering is model-dependent |
-| Paper 4 dependency-aware repair | Observational / designed comparison | External DAG replay and adapter separation expose different compensation modes | Not a universal continual-learning theorem |
+| Route C companion II dependency-aware repair | Observational / designed comparison | External DAG replay and adapter separation expose different compensation modes | Not a universal continual-learning theorem |
 
 ## 5. G4 Non-CSP Anchors
 

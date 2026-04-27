@@ -1,7 +1,8 @@
 # Reproduction Guide
 
-This repository currently centers on the `v2` preprints (`1` through `4`),
-their PDF builds, the supporting experiment code, and the Lean formalization.
+This repository currently centers on the `v2` main theory spine (`1` through `3`),
+the Route C companion notes, their PDF builds, the supporting experiment code,
+and the Lean formalization.
 
 Raw data, logs, and PDF mirrors are available at [osf.io/mdh7b](https://osf.io/mdh7b).
 
@@ -21,22 +22,26 @@ Main manuscripts:
 
 - `v2/1_構造持続の最小形式.md`
 - `v2/2_構造持続の条件つき導出.md`
-- `v2/3_構造持続と推論性能の劣化.md`
-- `v2/4_構造持続と継続学習における破滅的忘却.md`
+- `v2/3_構造持続の収支法則と崩壊傾向.md`
+
+Route C companion notes:
+
+- `v2/Companion_RouteC_推論時の構造劣化.md`
+- `v2/Companion_RouteC_継続学習時の構造的忘却.md`
 
 Built PDFs:
 
 - `v2/pdf用/1_構造持続の最小形式.pdf`
 - `v2/pdf用/2_構造持続の条件つき導出.pdf`
-- `v2/pdf用/3_構造持続と推論性能の劣化.pdf`
-- `v2/pdf用/4_構造持続と継続学習における破滅的忘却.pdf`
+- `v2/pdf用/Companion_RouteC_推論時の構造劣化.pdf`
+- `v2/pdf用/Companion_RouteC_継続学習時の構造的忘却.pdf`
 
 Current OSF mirrors:
 
 - Paper 1: <https://osf.io/mdh7b/files/osfstorage/69dde399e43067989d1187e1>
 - Paper 2: <https://osf.io/mdh7b/files/osfstorage/69dde4faa17296e9bb3e7a3b>
-- Paper 3: <https://osf.io/mdh7b/files/osfstorage/69dde3bde1158f542e3e7aec>
-- Paper 4: <https://osf.io/mdh7b/files/osfstorage/69dde3c0cc45911aa117d84c>
+- Route C companion I (former Paper 3): <https://osf.io/mdh7b/files/osfstorage/69dde3bde1158f542e3e7aec>
+- Route C companion II (former Paper 4): <https://osf.io/mdh7b/files/osfstorage/69dde3c0cc45911aa117d84c>
 
 ## SAT Experiments (no API key needed)
 

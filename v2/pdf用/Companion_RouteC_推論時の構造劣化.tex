@@ -5,11 +5,13 @@
 
 \PaperTitleBlock
   {構造持続と推論性能の劣化}
-  {— 論理一貫性維持の記述と最初の実験 —}
+  {— 論理一貫性維持の記述と検証プログラム —}
   {2026年4月12日}
 
 \begin{abstract}
 大規模言語モデルでは、対話が長くなるにつれて矛盾や未整理の更新が蓄積し、自己矛盾なく推論を完了することが難しくなることがある。本稿では、この劣化を「論理一貫性を保って最後まで到達できる推論経路の集合が、制約の蓄積によって縮小していく過程」として記述する。ここで扱うのは推論性能全般ではなく、与えられた前提や規則のもとで論理一貫性を維持できるかという、より限定された問題である。
+
+単発推論課題では、文脈長、矛盾の種類、矛盾密度、矛盾どうしの独立性、および prospective な replication を段階的に操作した。Exp35 では、\(\delta=0\)条件が複数モデルで高い正答率を保つ一方、\(\delta>0\)条件では大きな劣化が観測された。Exp36 では、3 モデル × 3 δ水準 × 3 文脈長 × \(n=30\)、合計 810 試行により、構造的矛盾が単なる長文フィラーより強い崩壊要因になりうることを示した。Exp39 では、この方向を \(2\times2\)の prospective comparison として再検査し、32K の構造矛盾条件が 256K の filler-only 条件を大きく下回ることを確認した。さらに Exp40 では、32K に固定した事前登録実験として、矛盾の有無ではなく矛盾の範囲づけの有無を比較し、scoped 条件が filler-only と同水準へ戻る一方、unscoped な subtle / structural 条件では大きく低下することを確認した。Exp42 では、この scope-as-repair 効果を強・中・弱・subtle の四段階に分解し、明示的な命令文を含まない時間・データセット範囲づけでもほぼ同程度の repair が生じること、および最小の参照元ラベルだけでも大きな改善が生じることを確認した。Exp41 では、この \(scoped > structural\)の方向を GPT-4.1-nano と Gemini 3.1 Flash Lite に前向きに再検査し、2/2 モデルで成立することを確認した。ただし subtle と structural の相対順序はモデル依存であった。
 
 対話実験では、外部代謝パイプラインを備えた条件（ON）が、備えない条件（OFF）に対して論理一貫性維持率を上回る方向が観測された。ここで ON とは、矛盾する更新を外部で検出し、「旧値 -\textgreater{} 新値」の時間ラベルつき対として整理・保持する条件である。OFF とは、同じ矛盾を注入するが、その整理を行わず、古い情報と新しい情報を未整理のまま混在させる条件である。gemma3:27b（\(n=3\)、ON/OFF/NC の三条件、180 ターン）では、規則＋事実の合算で ON 73.3\%、NC 56.7\%、OFF 21.1\% となった（\(ON vs OFF p = 0.0004\), \(d = 8.80\); \(ON vs NC p = 0.031\), \(d = 2.67\)）。qwen3.5:27b（\(n=1\)、ON/OFF、30 ターン、§8.3 の実装前提を満たす条件、ON の代謝 LLM は Claude Sonnet）でも、全体正答率は ON 64.4\%、OFF 44.4\% となり、同じ方向が確認された。加えて、100ターンの長期実験（qwen3.5:9b、代謝あり条件）では、論理一貫性は長期にわたって安定し、単調な崩壊は観測されなかった。
 \end{abstract}
@@ -246,6 +248,40 @@ $(ii)$ 系は、prompt に提示された情報の範囲内でしか状態を更
 
 本稿では、z を主として「未整理の上書きの数」として具体化し、その最小検査系として「範囲づけあり更新」と「範囲づけなし更新」の比較を置く。
 
+\subsection{実験群の全体像}\label{ux5b9fux9a13ux7fa4ux306eux5168ux4f53ux50cf}
+
+本稿の経験的検証は、単一のデモではなく、三つの問いに分けて設計されている。
+
+{\def\LTcaptype{table} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+系列
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+問い
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+対応実験
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+本稿での役割
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+単発推論の制御実験 & 文脈長だけでなく、制約の質が Y を支配するか & Exp35, Exp36, Exp39, Exp40, Exp42, Exp41 & 主たる経験的証拠 \\
+機構検査 & 矛盾密度・独立性・相互作用はどのように効くか & Exp37, Exp38 & 補助的な機構検査 \\
+対話介入 & 未整理の矛盾を外部代謝で範囲づけると Y は改善するか & ON/OFF/NC 対話実験、100ターン安定性実験 & 介入証拠 \\
+\end{longtable}
+}
+
+Exp35 は、\(\delta=0\)と \(\delta>0\)を複数モデル・複数文脈長で比較し、「長文そのもの」と「構造矛盾を含む長文」を分ける最初の広域検査である。Exp36 は、\(\delta=zero\)、\(\delta=subtle\)、\(\delta=structural\)の三水準を、32K、128K、256K の三つの文脈長と交差させた主実験である。Exp37 は、構造矛盾の密度を変えた dose-response 検査であり、少なくとも GPT-4.1-nano では低密度から急激な崩壊が生じることを示す。Exp38 は、二種類の矛盾を単独および同時に入れ、加法性が成立するかを調べる独立性検査である。Exp39 は、Exp36 の中心的方向を \(2\times2\)の prospective comparison として再検査する。Exp40 は、矛盾の有無を揃えたうえで、範囲づけされた矛盾と未範囲づけの矛盾を事前登録された基準モデル比較として検査する。Exp42 は、Exp40 の scoped 条件を、明示的命令を含む強い範囲づけ、命令を含まない時間・データセット範囲づけ、参照元ラベルのみ、裸の競合値に分解し、scope-as-repair が単なる instruction following で説明できるかを前向きに検査する。Exp41 は、Exp40/42 後の cross-model width replication として、scoped が structural を上回るという狭い方向を二つの追加モデルで検査する。
+
+この整理により、本稿の主証拠と補助証拠を分離する。主張の中心は、構造矛盾が単なるフィラー長より強い崩壊要因になりうること、および未整理の矛盾を外部で範囲づけると対話系の一貫性が改善する方向が観測されることである。Exp37/38 は、この主張を強めるための機構検査であって、それだけで強い一般法則を主張するものではない。
+
 目的 未整理の上書きが論理一貫性をどの程度強く崩すかを直接に見る。
 
 条件
@@ -286,7 +322,7 @@ NC & なし & （対象なし） & 矛盾がない場合の基準線 \\
 
 この実験は、仮定Bの最小検査系として設計されている。ON/OFF の比較は代謝介入の効果を、OFF/NC の比較は矛盾の存在そのものの効果を、それぞれ切り分ける。
 
-\subsection{実験1: 対話実験}\label{ux5b9fux9a131-ux5bfeux8a71ux5b9fux9a13}
+\subsection{実験1: 外部代謝 ON/OFF/NC 対話実験}\label{ux5b9fux9a131-ux5916ux90e8ux4ee3ux8b1d-onoffnc-ux5bfeux8a71ux5b9fux9a13}
 
 外部代謝パイプラインを組み込んだ対話系において、§9 で定めた三条件を比較した。ここでの違いは単なる「メモリあり / なし」ではない。ON では、矛盾する更新を外部代謝が検出し、「いつ」「何が」「何に変わったか」を時間ラベルつきで整理して検索可能な形に保持する。OFF では、同じ矛盾を注入するが、この整理を行わないため、古い情報と新しい情報が未整理のまま混在する。NC では矛盾そのものを注入しない。実験は二つのモデルで実施している。gemma3:27b では ON/OFF/NC の三条件を各 \(n=3\)試行・180 ターンで比較した。この実験では代謝 LLM に gemma3:27b 自身を使用しており、対話 LLM と代謝 LLM は同一である（自己代謝）。qwen3.5:27b では §8.3 の実装レベルの前提 \((p3)\) を満たした条件のもとで ON/OFF を各 \(n=1\)試行・30 ターンで比較した（以下、後者を「追試1」と呼ぶ）。追試1 では代謝 LLM に Claude Sonnet を使用しており、対話 LLM（qwen3.5:27b）とは異なる外部モデルである（外部代謝）。両モデルとも strict 判定、すなわち外部の大規模モデルによる意味照合判定で評価している。
 
@@ -365,7 +401,7 @@ T100 & 93\% & 93\% & 96\% \\
 
 この結果は弱い命題の棄却を意味しない。代謝あり条件は範囲づけあり更新に相当し、制約の蓄積を代謝が逐次解消しているため、実効的な z の蓄積が抑えられている。弱い命題は「z が増えるにつれて Y が悪化する」と述べるが、代謝によって z の増加自体が抑制されている条件では、Y の安定は予測と整合する。
 
-\subsection{解釈}\label{ux89e3ux91c8}
+\subsection{対話実験の解釈}\label{ux5bfeux8a71ux5b9fux9a13ux306eux89e3ux91c8}
 
 実験1 の三つの条件は、構造持続の異なる局面を照らしている。
 
@@ -381,7 +417,9 @@ OFF vs NC: 矛盾があり代謝がない（OFF）条件と、矛盾がない（
 
 ただし、これらの結果には次の限界がある。第一に、代謝なし条件の100ターン実験はまだ実施されていない。第二に、実験1 の二つのモデルの観測（gemma3:27b の \(n=3\)、qwen3.5:27b の \(n=1\)）は単発観測の積み上げにとどまり、単独では補助命題の方向性を強く支持するには不足する。複数モデル・複数試行での積み上げが今後必要である。第三に、事実再現率は応答生成層の問題によって両モデルとも絶対値は必ずしも高くなく、論理一貫性維持率のすべてが範囲づけだけで決まるわけではない。第四に、追試1 の ON 条件では外部の代謝経路に生成モデルよりも大規模な教師モデル（Claude Sonnet）を用いており、生成モデル単独で代謝経路を賄う場合との差は分離されていない。gemma3:27b は自己代謝（対話 LLM と代謝 LLM が同一）であり交絡がないが、追試1 は外部代謝であるため、ON の高い性能が代謝 LLM の品質に依存している可能性がある。第五に、ON と NC の相対関係は設定依存の記述にとどまり、本稿の主張には含めない。第六に、追試1 の qwen3.5:27b では rule が OFF 条件で 100\% に達しており（天井効果）、代謝の効果が測定不能であった。ON-OFF 差の比較は、OFF が天井から十分に離れているカテゴリ（contra、fact）に限定される。補助命題の対象となる条件 (i)(ii) はいずれの観測でも満たされており、実装前提 (p1)(p2)(p3)(p4) が揃った測定のみを対象として方向性が観察された、と位置づけるのが正確である。
 
-制約の質は、その個数や文脈の長さよりも強く崩壊を支配しうる。制御実験として、多段算術課題（a + b + c の合計を算出）に対し、コンテキスト長と制約の質を独立に操作した 2 要因実験（各条件 \(n=30\)、温度 1.0）の結果を示す。δ 条件は三水準である。\(\delta=zero\)はフィラー文のみで矛盾を含まない。\(\delta=subtle\)は変数の値を別の情報源として 1 件だけ差し替える（「別の測定では \(a=349\)と記録されている」）。\(\delta=structural\)は自己参照的パラドックスを文脈の約 30\% の密度で注入する（「a の定義は、a+1 と等しくなる値である」等）。
+\subsection{実験3: 文脈長と構造矛盾の制御実験}\label{ux5b9fux9a133-ux6587ux8108ux9577ux3068ux69cbux9020ux77dbux76feux306eux5236ux5fa1ux5b9fux9a13}
+
+制約の質は、その個数や文脈の長さよりも強く崩壊を支配しうる。制御実験として、多段算術課題（a + b + c の合計を算出）に対し、コンテキスト長と制約の質を独立に操作した 2 要因実験（Exp36、各条件 \(n=30\)、温度 1.0）の結果を示す。δ 条件は三水準である。\(\delta=zero\)はフィラー文のみで矛盾を含まない。\(\delta=subtle\)は変数の値を別の情報源として 1 件だけ差し替える（「別の測定では \(a=349\)と記録されている」）。\(\delta=structural\)は自己参照的パラドックスを文脈の約 30\% の密度で注入する（「a の定義は、a+1 と等しくなる値である」等）。
 
 {\def\LTcaptype{table} % do not increment counter
 \begin{longtable}[]{@{}llll@{}}
@@ -409,6 +447,68 @@ OFF vs NC: 矛盾があり代謝がない（OFF）条件と、矛盾がない（
 
 ここで、基準モデルとの比較を明示する。基準モデルを「制約の個数や文脈の長さなど、質を区別しない単純な数え上げ」（第一稿 §4）とする。基準モデルは質を区別しないため、256K トークンのフィラー（数千件の事実文）が構造的矛盾（自己参照パラドックス）より大きな累積損失を与えると予測する。しかし、上の観測はこの予測と逆転している。GPT-4.1-mini では、256K フィラーのみでは正答率 97\% を維持するのに対し、32K の文脈に構造的矛盾を加えただけで 0\% に崩壊する。この逆転は、制約の個数や文脈長だけを数えるモデルでは予測できない。制約ごとの縮小率 \(l_{i}\) が質的に異なること------すなわち、自己参照的パラドックスが事実の差し替えとは比較にならない大きさで有効経路集合を削ること------を認めなければ、この結果を説明できない。したがって、本結果は、構造持続の枠組みが基準モデルに対して追加の予測力を持つことの経験的証拠を与える。3 モデル × 810 試行にわたり、この方向は一貫して保たれている。
 
+Exp35 はこの方向の先行検査である。GPT-4o-mini では、128K の API アーティファクトを除外すると、\(\delta=0\)条件は 270/270 = 100.0\% であったのに対し、\(\delta>0\)条件は 28/270 = 10.4\% であった。Claude Sonnet 4、Gemini 2.5 Flash、Gemini 3.1 Flash Lite でも \(\delta=0\)は 100\% を保ち、\(\delta>0\)はモデルごとに 0\% から 74\% まで低下した。したがって、Exp35 は「フィラー長のみでは保たれるが、矛盾を入れると落ちる」という粗い方向を、複数ベンダー・複数モデルで確認した予備的広域検査として位置づけられる。
+
+Exp37 は、構造矛盾の密度を変えた機構検査である。GPT-4.1-nano の 32K 条件では、\(\delta=0\)で正答率 1.0 を保つ一方、構造矛盾密度 0.03 以上で正答率が 0 に落ちた。この結果は、少なくともこのモデル・課題では、崩壊が滑らかな長さ依存ではなく、低密度の構造矛盾に対して閾値的に起こりうることを示している。ただし、これはモデル・課題依存の機構検査であり、普遍的な閾値を主張するものではない。
+
+Exp38 は、矛盾どうしの加法性を調べる独立性検査である。GPT-4.1-nano の 960 試行では、矛盾が 1 個のときには二種類の矛盾がやや超加法的に効いたが、3、5、10 個では相互作用は劣加法的になった。これは、矛盾の効果が単純な独立和ではなく、飽和や冗長性を伴うことを示唆する。したがって、構造持続の実験的モデル化では、単に矛盾数を足し上げるだけではなく、制約の重なりや相互作用を扱う必要がある。
+
+Exp39 は、Exp36 の中心的方向を \(2\times2\)の prospective comparison として再検査したものである。GPT-4.1-nano、各セル \(n=30\)において、zero/32K は 29/30、zero/256K は 19/30、structural/32K は 0/30、structural/256K は 0/30 であった。事前に置いた主比較は \[
+accuracy(32K structural) < accuracy(256K zero)
+\]
+
+であり、観測された差は 0.633、Fisher exact test では \(p = 2.672e-08\)であった。この結果は、文脈長が無害であることを示すものではない。実際、zero 条件でも 32K から 256K で 29/30 から 19/30 へ低下している。支持される主張はより狭く、構造矛盾は、少なくともこの比較では、はるかに長い filler-only 文脈より強い崩壊要因として働いた、という点である。
+
+\subsection{Exp40/42/41: 基準モデル比較と事前登録された scope-as-repair 検査}\label{exp404241-ux57faux6e96ux30e2ux30c7ux30ebux6bd4ux8f03ux3068ux4e8bux524dux767bux9332ux3055ux308cux305f-scope-as-repair-ux691cux67fb}
+
+前節までの Exp36/39 は、矛盾の質が文脈長より強い崩壊要因になりうることを示した。この観察を、基準モデル比較の形でより鋭く検査する。
+
+Exp36 と Exp39 の trial-level データを用いて、基準モデル比較を行った。比較したのは、\((i)\) 文脈長のみを使う token-only モデル、\((ii)\) 矛盾の有無だけを使い、矛盾の種類を区別しない quality-blind モデル、\((iii)\) subtle と structural を別の指標として持つ structure-aware モデルである。この比較の目的は、構造持続の語彙が単なる事後説明ではなく、より単純な基準モデルに対して追加予測力を持つかを検査することにある。
+
+Exp36 の leave-one-model-out では、log loss は token-only 0.7191、quality-blind 0.5627、structure-aware 0.4963 であった。leave-one-context-out でも、token-only 0.6951、quality-blind 0.5004、structure-aware 0.3893 となった。Exp36 で学習し Exp39 に外挿した場合、Exp39 の log loss は token-only 0.6983、quality-blind 0.4899、structure-aware 0.3090 であり、主比較の方向を token-only は外したが、quality-blind と structure-aware は正しく予測した。structure-aware が最良であった一方、quality-blind も強いことは、矛盾の存在そのものが大きな情報を持つことを示す。したがって、より決定的な検査では、矛盾の有無を揃えたうえで、scoped、subtle、structural の質的差を事前固定して比較する必要がある。
+
+この方針に従い、Exp40 では文脈長を 32K に固定し、zero\_sanity、scoped、subtle、structural の四条件を各 \(n=50\)で比較した。実験設計、符号化、判定基準、Fisher exact test の報告方針は、データ取得前に事前登録した。ここで scoped は、矛盾に見える値を明示的に別文脈・別データセットへ範囲づける条件である。事前登録では、quality-blind モデルは scoped、subtle、structural をすべて contradiction-present として扱う。一方、structure-aware モデルは scoped を repaired / zero-like、subtle を mild unscoped loss、structural を severe structural loss として符号化する。したがって、Exp40 の主比較は、単に矛盾が存在するかどうかではなく、その矛盾がタスクから構造的に範囲づけられているかどうかを検査する。
+
+結果は zero\_sanity 50/50、scoped 50/50、subtle 23/50、structural 0/50 であった。事前登録された順序 \[
+accuracy(zero_{sanity}) ≈ accuracy(scoped) > accuracy(subtle) > accuracy(structural)
+\]
+
+は満たされ、strong support 条件もすべて満たされた。具体的には、\(zero_{sanity}-scoped gap \le 0.10\)、\(scoped-subtle gap \ge 0.20\)、\(subtle-structural gap \ge 0.20\)という基準に対し、観測値はそれぞれ 0.00、0.54、0.46 であった。scoped と subtle の Fisher exact test は \(p = 5.635e-11\)、subtle と structural は \(p = 4.345e-09\)である。zero\_sanity と scoped の差は 0.0 であり、二側 Fisher exact test でも \(p = 1.0\)であった。さらに、leave-one-target-out の primary log loss は quality-blind 0.6944 に対し structure-aware 0.2763 であった。これは、quality-blind モデルが scoped を unscoped contradiction と同じものとして扱ったために大きく外し、structure-aware モデルが scoped を repaired / zero-like として扱ったために適合した、という形の前向きな基準モデル差である。
+
+この結果は、scoped 条件の内部機構が外部代謝と同一であることを主張するものではない。より慎重には、in-context の範囲づけ標識が、外部代謝で期待される「衝突をタスク外へ分離する」という観測上の帰結を再現した、という結果である。したがって、Exp40 が支持するのは、矛盾らしき文が文脈に存在するかどうかだけではなく、その衝突がタスクから範囲づけられているかどうかが、論理一貫性維持率の予測に寄与する、という限定された主張である。
+
+Exp40 に残る主要な反論は、scoped 条件の改善が「明示的に無視せよ」「この定義だけを使え」といった instruction following だけで説明できるのではないか、というものである。この反論を切り分けるため、Exp42 では同じ 32K の算術課題を用い、競合値の提示形式を四段階に分解した。strong\_scope は Exp40 型の明示的範囲づけを含む。medium\_scope は時間・データセット範囲だけを示し、``do not use''、``ignore''、``must not override''、``use only'' のような命令表現を含まない。weak\_scope は ``Source B reports \ldots{}'' のような参照元ラベルだけを持つ。subtle は参照元・時間・データセットを明示しない裸の競合値である。診断条件として、矛盾を含まない zero\_sanity と、自己参照的な structural\_anchor も置いた。
+
+結果は、strong\_scope 50/50、medium\_scope 49/50、weak\_scope 42/50、subtle 10/50、zero\_sanity 20/20、structural\_anchor 0/20 であった。事前登録された primary ordering \[
+accuracy(strong_{scope}) > accuracy(medium_{scope}) > accuracy(weak_{scope})
+\]
+
+は満たされた。一方、strong support として事前登録した隣接差 10pt 以上の基準は満たされなかった。理由は strong\_scope と medium\_scope が天井付近に張りついたためであり、strong\_scope - medium\_scope は 0.02 にとどまった。これは否定的結果としてではなく、明示的命令を取り除いても medium\_scope がほぼ完全に repair したことを示す天井効果として解釈するのが妥当である。実際、medium\_scope の唯一のミスは \(expected=690\)、\(wrong_{sum}=685\)、\(answer=775\)であり、競合値を採用した誤答ではなく算術または抽出の単発エラーであった。
+
+隣接 Fisher exact test では、strong\_scope と medium\_scope の差は \(p = 0.500\)と有意ではなかったが、medium\_scope と weak\_scope の差は \(p = 0.015\)、weak\_scope と subtle の差は \(p = 6.19e-11\)であった。また、leave-one-target-out の基準モデル比較では、scope\_gradient の log loss が 0.2646、binary\_scoped が 0.3012、quality\_blind が 0.5577 となり、四段階の scope 強度を使うモデルが最良であった。したがって、Exp42 は、Exp40 の scoped 効果を「命令に従っただけ」として片づける説明を弱める。命令を含まない medium\_scope でもほぼ同じ改善が生じたからである。
+
+さらに、row-level analysis は repair の機構をより細かく示す。保守的な contradiction-taking の proxy として「モデルの答えが、注入された wrong value を使った wrong\_sum と完全一致すること」を用いると、subtle では 40 ミス中 25 件（0.625）が exact wrong-sum adoption であった。一方、weak\_scope では 8 ミス中 1 件（0.125）に低下し、medium\_scope と strong\_scope では 0 件であった。これは、最小の参照元ラベルだけで、裸の競合値がそのまま上書きとして取り込まれる失敗が大きく減ることを示す。すなわち、Exp42 が示した主要な機構的発見は、scope-as-repair のうち、参照元 attribution が大きな成分を担うという点である。時間・データセット範囲づけはさらに改善を与え、明示的命令は本実験ではほぼ天井上の追加にとどまった。
+
+なお、subtle 条件には補助的な交互作用も観測された。subtle 全体の正答率 10/50 は、注入変数 a の部分的保持（10/23）に集中し、b と c では 0/12、0/15 であった。また、subtle template と変数の間にも相互作用があり、``A later record contains \ldots{}'' と ``A later note lists \ldots{}'' は a を一部保持したが、``A later entry gives \ldots{}'' と ``A later note records \ldots{}'' は a でも崩壊した。したがって、subtle 条件の表面形には位置・変数・語彙の交互作用が残る。ただし、target ごとの subtle 正答率はすべて 2/10 であり、特定 target の難易度が結果を支配したわけではない。structural\_anchor の失敗様式も質的に異なり、20 件中 18 件は数値を返さなかった。これは、裸の競合値が誤った数値として取り込まれる subtle/weak\_scope の失敗とは異なり、自己参照的な構造矛盾が出力形式そのものの崩壊または拒否を誘発することを示唆する。
+
+Exp41 は、この結果が GPT-4.1-mini 固有であるかどうかを調べるための cross-model width replication である。事前登録された primary claim は意図的に狭く、 \[
+accuracy(scoped) > accuracy(structural)
+\]
+
+が GPT-4.1-nano と Gemini 3.1 Flash Lite の両方で成立するかに限定した。gpt-4.1-mini は Exp40 の既存陽性結果を参照し、Exp41 の primary 判定を rescue する positive control としては用いない設計である。
+
+結果は、GPT-4.1-nano で scoped 27/30、subtle 30/30、structural 1/30、zero\_sanity 10/10、Gemini 3.1 Flash Lite で scoped 30/30、subtle 12/30、structural 14/30、zero\_sanity 10/10 であった。したがって、事前登録された primary width claim は 2/2 モデルで成立した。scoped と structural の one-sided Fisher exact test は、nano で \(p = 1.18e-12\)、Gemini で \(p = 9.72e-07\)である。記述的な leave-one-(model,target)-out 比較でも、structure\_aware\_ordered の log loss は 0.4715、quality\_blind は 0.6588 であり、scope と structural を区別する符号化が有利であった。
+
+一方で、secondary ordering \[
+accuracy(scoped) >= accuracy(subtle) >= accuracy(structural)
+\]
+
+は両モデルで成立しなかった。ただし、失敗の理由はモデルごとに異なる。nano では subtle が 30/30 と天井に張りつき、Exp36 で観測されていた subtle-insensitive な挙動が再現された。Gemini では subtle 12/30 に対し structural 14/30 となり、subtle と structural の相対順序が反転した。row-level に見ると、Gemini の subtle 失敗 18 件中 14 件は、注入された wrong value を使った wrong\_sum と完全一致していた。一方、Gemini の structural 失敗 16 件はすべて別の数値誤答であり、数値を返さない refusal は 0 件であった。これは、未範囲づけの alternate-source 値が competing evidence として取り込まれやすい一方、自己参照的な structural paradox への耐性や失敗様式はモデルにより大きく異なることを示す。
+
+したがって、Exp41 が支持する横断的な不変量は、subtle と structural の固定された順序ではない。より保守的な結論は、明示的に範囲づけられた scoped conflict が structural contradiction より高い論理一貫性維持率を保つ、という方向が、GPT-4.1-mini、GPT-4.1-nano、Gemini 3.1 Flash Lite の三モデルで観測された、という点である。scope-as-repair はモデル横断的に支持されたが、subtle / structural の相対的な損失量と失敗様式はモデル依存である。
+
+なお、Exp40/42/41 は一つの算術課題ファミリにおける前向き検査であり、タスク横断の普遍性を単独で示すものではない。Exp42 は instruction-following 反論を弱め、scope-as-repair の内部に attribution、時間・データセット範囲、明示的命令という階層があることを GPT-4.1-mini 上で示したが、この階層が他モデルや他課題で同じ形を保つとはまだ主張しない。Exp41 は scoped-vs-structural の width を確認した一方、subtle / structural の ordering がモデル依存であることも示した。今後の検査では、より細かい attribution / temporal marker の dose-response、複数モデルでの failure-mode 分解、および算術以外の課題ファミリへの拡張が必要である。
+
 §4で挙げた他の指標候補（構造的矛盾の数、指示の衝突数、参照元間の不整合密度など）を本稿の有効経路縮小の枠組みのもとで体系的に再定式化することは、今後の課題として残る。
 
 \section{限界}\label{ux9650ux754c}
@@ -421,5 +521,7 @@ OFF vs NC: 矛盾があり代謝がない（OFF）条件と、矛盾がない（
 
 本稿では、大規模言語モデルにおける論理一貫性維持を、構造持続の最初の具体例として記述した。論理一貫性を保てる推論経路の集合を置き、制約の蓄積をその縮小として表すと、有効経路の残り方は累積損失に対して指数型で記述される。そのうえで、構造を保てたならそのための経路が必要であること、観測指標が経路の残り方を反映すること、制約が縮小方向に働くことを前提すれば、観測される論理一貫性維持率は指標の増加にともなって悪化すると予想される。
 
-本稿が与える経験的主張は、未整理の矛盾や上書きが有効経路を削り、外部整理プロセスがそれに対して改善方向を与える、という一点にある。実験が支持しているのは、ON が OFF を上回り、OFF が NC を大きく下回るという一次の方向である。したがって本稿の主張は、stateless な推論系において外部代謝が未整理の矛盾放置より構造持続を保つ、というより単純で再現的な命題に置かれる。後付けの合理化や、推論時計算量を増やしても性能が安定して向上しない現象など、他の問題を同じ枠組みでどこまで記述できるかは、今後の課題として残る。
+本稿が与える経験的主張は二つの軸に分かれる。第一に、単発推論課題では、構造的矛盾が単なる文脈長やフィラー量より強い崩壊要因になりうる。Exp35、Exp36、Exp39 はこの方向を異なる設計で支持し、Exp37/38 はその密度依存性と相互作用を調べる機構検査として位置づけられる。さらに Exp40 は、矛盾の有無だけを数える quality-blind モデルに対し、範囲づけの有無を区別する structure-aware モデルが前向き検査で大きく勝ることを示した。Exp42 はその scope-as-repair 効果を分解し、明示的命令を除いた範囲づけでもほぼ完全な repair が生じること、最小の参照元 attribution だけでも wrong-value uptake が大きく減ることを示した。Exp41 は、\(scoped > structural\)という狭い width claim が二つの追加モデルでも成立することを示した。ただし、subtle と structural の相対順序はモデル依存であり、本稿の横断的主張は固定された ordering ではなく、範囲づけが未整理な衝突の損失を抑えるという方向に置かれる。第二に、対話運用では、未整理の矛盾や上書きが有効経路を削り、外部整理プロセスがそれに対して改善方向を与える。ON/OFF/NC 実験が支持しているのは、ON が OFF を上回り、OFF が NC を大きく下回るという一次の方向である。
+
+したがって本稿の主張は、stateless な推論系において、構造矛盾は文脈長だけでは説明しにくい追加の崩壊要因であり、外部代謝や in-context scope marker のような、衝突を適切に範囲づける操作は、その未整理な蓄積を抑える介入として働きうる、という限定された命題に置かれる。後付けの合理化や、推論時計算量を増やしても性能が安定して向上しない現象など、他の問題を同じ枠組みでどこまで記述できるかは、今後の課題として残る。
 \end{document}
