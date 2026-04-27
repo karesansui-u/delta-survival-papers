@@ -20,6 +20,12 @@ and metadata screening only.
 
 ## 2. One-Paragraph Request
 
+Suggested subject line:
+
+```text
+Schema-only question about maintenance / repair log feasibility
+```
+
 Use this short version when first contacting a data owner:
 
 ```text
@@ -46,7 +52,7 @@ failure, a future failure or degradation endpoint, pre-intervention state
 variables, and a generic activity baseline. If those conditions hold, the next
 step would be a later frozen schema and evaluation plan. If they do not hold,
 the dataset may still be useful as a weaker control, but we would not treat it
-as a repair-flow primary candidate.
+as a repair-flow primary candidate. Raw data are not needed at this stage.
 ```
 
 ## 4. Minimum Metadata Packet To Request
@@ -143,6 +149,7 @@ Ask the data owner to reply with:
 7. whether a later frozen audit trail is possible
 
 This is enough to decide whether the candidate deserves a real feasibility note.
+Raw rows are not needed for this first screening step.
 
 ## 8. Why This Packet Exists
 
