@@ -71,10 +71,41 @@ official evaluation JSON hash exactly:
 901a307be1cc14ef038388b14becc2536a7247e307bae87a8c6e14757cb96539
 ```
 
-The full 4000-instance solver rerun was not re-executed during this bundle
-verification pass. It was already exercised in the earlier project-side
-published-remote rerun; the point of this verification pass was to check the
-distribution zip, command surface, manifest determinism, and evaluator path.
+After the command-surface correction, the generated zip was also unpacked under
+`/tmp` and exercised through the full 4000-instance solver rerun with:
+
+```text
+python3 analysis/exp43_qcoloring/src/pilot_runner.py --config analysis/exp43_qcoloring/config/exp43c_primary_config.json --output analysis/exp43_qcoloring/external_outputs/exp43c_primary_results_external.jsonl run --execute
+python3 analysis/exp43_qcoloring/src/evaluate_primary.py analysis/exp43_qcoloring/external_outputs/exp43c_primary_results_external.jsonl --output analysis/exp43_qcoloring/external_outputs/exp43c_primary_evaluation_external.json
+```
+
+The full local bundle rerun completed with:
+
+```text
+manifest rows: 4000
+result rows: 4000
+SAT: 2003
+UNSAT: 1997
+core-field mismatches against official results: 0
+```
+
+The generated external manifest and evaluation matched the official reference
+hashes exactly:
+
+```text
+manifest sha256: e0c0058fc0279de6dddace700d1929820e98c152382039051244faedcd0d0cf2
+evaluation sha256: 901a307be1cc14ef038388b14becc2536a7247e307bae87a8c6e14757cb96539
+```
+
+The generated external result JSONL hash differed from the official result
+JSONL hash because runtime-sensitive fields are regenerated on rerun, but the
+checked core fields matched row-by-row:
+
+```text
+external result sha256: 008fb19a272190535d17131ee786966f1a220829629558dc653bd6d9b7c2e5f4
+official result sha256: 37e6381c876c20dbcdb5d7114a791453dabc6a778207097e83490ba7511a863b
+checked fields: instance_id, q, n, rho_fm, seed_digest, edge_list_hash, q_colorable, status, coloring_verified
+```
 
 One local command-surface issue was found and corrected before this bundle was
 created: on some systems `python` may point to Python 2.x. The receiver guide
