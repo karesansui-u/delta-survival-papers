@@ -10,6 +10,14 @@ Purpose:
 Summarize what is now ready to hand to an outside replicator, and in what
 order.
 
+Current published handoff baseline:
+
+```text
+Use the current published HEAD at send time. The first post-rename
+send-ready baseline is 5088a71. Earlier project-side published-remote rerun
+rehearsals were exercised from 96de727.
+```
+
 ## 1. Current Ready-To-Handoff Order
 
 The Route A handoff order remains:

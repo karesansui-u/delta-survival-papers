@@ -34,6 +34,7 @@
 
 - [`v2/pdf用/1_構造持続の最小形式.pdf`](v2/pdf%E7%94%A8/1_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%AE%E6%9C%80%E5%B0%8F%E5%BD%A2%E5%BC%8F.pdf)
 - [`v2/pdf用/2_構造持続の条件つき導出.pdf`](v2/pdf%E7%94%A8/2_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%AE%E6%9D%A1%E4%BB%B6%E3%81%A4%E3%81%8D%E5%B0%8E%E5%87%BA.pdf)
+- [`v2/pdf用/3_構造持続の収支法則と崩壊傾向.pdf`](v2/pdf%E7%94%A8/3_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%AE%E5%8F%8E%E6%94%AF%E6%B3%95%E5%89%87%E3%81%A8%E5%B4%A9%E5%A3%8A%E5%82%BE%E5%90%91.pdf)
 - [`v2/pdf用/Companion_RouteC_推論時の構造劣化.pdf`](v2/pdf用/Companion_RouteC_推論時の構造劣化.pdf)
 - [`v2/pdf用/Companion_RouteC_継続学習時の構造的忘却.pdf`](v2/pdf用/Companion_RouteC_継続学習時の構造的忘却.pdf)
 
