@@ -55,6 +55,18 @@ Expected sender judgment:
 
 If either condition fails, do not send yet.
 
+## 2.5 Bundle Build Command
+
+After the receiver guide / environment template are final and the repository is
+committed, create the locked zip with:
+
+```bash
+scripts/build_exp43c_handoff_zip.sh
+```
+
+The generated receiver entry point is `手順書.md`. `RUN_INSTRUCTIONS_JA.md` is
+kept only as an ASCII filename copy of the same instructions.
+
 ## 3. Exact Commit Hash To Put In The Message
 
 Capture:

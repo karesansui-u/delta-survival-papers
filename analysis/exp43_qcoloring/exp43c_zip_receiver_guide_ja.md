@@ -9,6 +9,10 @@
 
 この作業は **再現実行** です。
 
+この zip では、まず `手順書.md` を読んでください。
+`RUN_INSTRUCTIONS_JA.md` は同じ内容の ASCII ファイル名コピーです。どちらを
+読んでも構いませんが、迷った場合は `手順書.md` を主入口にしてください。
+
 してほしいこと:
 
 1. zip を展開する
@@ -66,6 +70,9 @@
 Windows の `cmd` / PowerShell では、`.py` を直接実行せず、必ず Python
 起動コマンド経由で実行してください。
 
+重要: 以下のコマンドは、各ブロックを **1 行ずつ** コピーして実行してくだ
+さい。途中で改行して分割しないでください。
+
 以下のコマンド例では、仮想環境を有効化済みで `python` が Python 3 を指し
 ている前提で書きます。最初に必ず確認してください。
 
@@ -91,6 +98,9 @@ python3 --version
 
 重要: `python --version` が Python 2.x のままなら、そのまま進めず
 `py -3` または `python3` に置き換えてください。
+plain Windows `cmd` / PowerShell でも、`py -3` が Python 3.10 以上を指して
+いれば WSL は不要です。その場合は、下のすべてのコマンド先頭の `python` だ
+けを `py -3` に置き換えてください。
 
 ### 4-1. zip 展開
 
@@ -177,6 +187,22 @@ python analysis/exp43_qcoloring/src/pilot_runner.py --config analysis/exp43_qcol
 python analysis/exp43_qcoloring/src/evaluate_primary.py analysis/exp43_qcoloring/external_outputs/exp43c_primary_results_external.jsonl --output analysis/exp43_qcoloring/external_outputs/exp43c_primary_evaluation_external.json
 ```
 
+### 4-9. 返送前チェック
+
+可能であれば、最後に次のコマンドを実行し、表示された hash と行数を実行環
+境メモに貼ってください。難しければ、結果ファイルだけ返送していただければ
+こちらで確認できます。
+
+```bash
+python -c "from pathlib import Path; import hashlib; files=[Path('analysis/exp43_qcoloring/external_outputs/exp43c_primary_manifest_external.jsonl'), Path('analysis/exp43_qcoloring/external_outputs/exp43c_primary_results_external.jsonl'), Path('analysis/exp43_qcoloring/external_outputs/exp43c_primary_evaluation_external.json')]; [print(str(p), 'sha256=', hashlib.sha256(p.read_bytes()).hexdigest(), 'rows=', sum(1 for _ in p.open(encoding='utf-8')) if p.suffix == '.jsonl' else 'json') for p in files]"
+```
+
+plain Windows で `py -3` を使っている場合:
+
+```bash
+py -3 -c "from pathlib import Path; import hashlib; files=[Path('analysis/exp43_qcoloring/external_outputs/exp43c_primary_manifest_external.jsonl'), Path('analysis/exp43_qcoloring/external_outputs/exp43c_primary_results_external.jsonl'), Path('analysis/exp43_qcoloring/external_outputs/exp43c_primary_evaluation_external.json')]; [print(str(p), 'sha256=', hashlib.sha256(p.read_bytes()).hexdigest(), 'rows=', sum(1 for _ in p.open(encoding='utf-8')) if p.suffix == '.jsonl' else 'json') for p in files]"
+```
+
 ## 5. 返送してほしいもの
 
 最低限、次のものを返送してください。
@@ -185,8 +211,9 @@ python analysis/exp43_qcoloring/src/evaluate_primary.py analysis/exp43_qcoloring
 2. `analysis/exp43_qcoloring/external_outputs/exp43c_primary_results_external.jsonl`
 3. `analysis/exp43_qcoloring/external_outputs/exp43c_primary_evaluation_external.json`
 4. 実行環境メモ
-5. 回避策の有無
-6. 一言の結論
+5. 返送前チェックで表示された hash / 行数（可能な場合）
+6. 回避策の有無
+7. 一言の結論
 
 実行環境メモは、zip ルートの `実行環境メモ_テンプレート.md` を埋めるだけ
 で大丈夫です。
