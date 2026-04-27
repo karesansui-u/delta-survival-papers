@@ -154,14 +154,20 @@ Tentative title:
 
 ```text
 構造持続の収支原理と崩壊傾向
-— 構造消耗量と回復量の累積純消耗量 —
+— 閉じた系 S = M exp(-L) から開いた系 S = M exp(-B) へ —
 ```
 
 Core identity:
 
 \[
-  b_t = d_t - r_t,\qquad
-  B_n = \sum_{t<n} b_t,\qquad
+  S = M e^{-B},\qquad
+  B = \sum_t(d_t-r_t).
+\]
+
+Finite-prefix / set-valued kernel:
+
+\[
+  B_n=\sum_{t<n}(d_t-r_t),\qquad
   m(V_n)=m(V_0)\exp(-B_n).
 \]
 
@@ -170,12 +176,12 @@ Interpretation:
 - $d_t$: structural consumption amount / 構造消耗量。
 - $r_t$: recovery, repair, support, resource input / 回復・修復・資源入力。
 - $b_t$: net consumption amount / 純消耗量。
-- $B_n$: cumulative net consumption amount / 累積純消耗量。
+- $B$ / $B_n$: cumulative net consumption amount / 累積純消耗量。
 
 Minimal sections:
 
 1. 問題設定: loss-only 収縮から open-system recovery へ。
-2. 最小収支恒等式: $b_t$, $B_n$, signed exponential kernel。
+2. 最小収支恒等式: $S=Me^{-B}$, $B_n$, signed exponential kernel。
 3. expectation-level tendency: $\mathbb{E}[b_t]$ の符号で collapse / maintenance / recovery を分ける。
 4. high-probability bounds: bounded increments / MGF があると Azuma / Chernoff / hitting-time bounds が出る。
 5. Route A anchors: SAT, Mixed-CSP, finite CSP。

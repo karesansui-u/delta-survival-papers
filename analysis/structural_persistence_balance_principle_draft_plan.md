@@ -11,12 +11,11 @@ Purpose:
 この draft は、構造持続理論を「M の分解」ではなく、構造消耗量と回復量の収支として再集約するための設計メモである。M 分解はこの収支原理を現実ドメインで測るための operational mapping として補論へ下げ、普遍理論の中核は次の balance identity に置く。
 
 \[
-  b_t = d_t - r_t,\qquad
-  B_n = \sum_{t<n} b_t,\qquad
-  m(V_n)=m(V_0)\exp(-B_n).
+  S = M e^{-B},\qquad
+  B = \sum_t(d_t-r_t).
 \]
 
-ここで $d_t$ は構造消耗量、$r_t$ は回復・修復・資源入力、$b_t$ は net consumption amount である。日本語では **構造持続の収支原理**、英語では **structural persistence balance principle** と呼ぶ。「均衡法則」は equilibrium と誤読されやすいため使わない。
+厳密な finite-prefix 表記では $B_n=\sum_{t<n}(d_t-r_t)$, $S_n=M_n e^{-B_n}$ と書き、集合値核だけを見る場合には $m(V_n)=m(V_0)\exp(-B_n)$ と書く。ここで $d_t$ は構造消耗量、$r_t$ は回復・修復・資源入力、$B$ は累積純消耗量である。日本語では **構造持続の収支原理**、英語では **structural persistence balance principle** と呼ぶ。「均衡法則」は equilibrium と誤読されやすいため使わない。
 
 ## 1. Core Claim To Test
 
@@ -48,13 +47,13 @@ Tentative title:
 
 ```text
 構造持続の収支原理と崩壊傾向
-— 構造消耗量と回復量の累積純消耗量 —
+— 閉じた系 S = M exp(-L) から開いた系 S = M exp(-B) へ —
 ```
 
 Draft sections:
 
 1. 問題設定: 閉じた収縮系から開いた回復系へ。
-2. 最小収支恒等式: $d_t$, $r_t$, $b_t$, $B_n$, exponential identity。
+2. 最小収支恒等式: $S=Me^{-B}$, $d_t$, $r_t$, $B_n$, exponential identity。
 3. 期待値レベルの傾向律: $\mathbb{E}[b_t]$ の符号による collapse / maintenance / recovery。
 4. 有限時間・高確率境界: bounded increments, Azuma / Chernoff, hitting-time bounds。
 5. Route A anchors: SAT / Mixed-CSP / finite CSP での collapse tendency。

@@ -59,7 +59,7 @@ Route A の非CSP skeletons は、信頼性・減衰・待ち行列・疲労・�
 
 ### Paper 3 — 構造持続の収支原理と崩壊傾向
 
-主理論 spine の第三層。構造消耗量と回復量の差し引きを構造持続の収支原理として定式化し、pathwise identity、expectation-level tendency、finite-horizon concentration schema、Route A / Route C anchors、既存理論との接続強度を整理する中心 draft です。
+主理論 spine の第三層。閉じた系の `S = M e^{-L}` を、回復量を含む開いた系の `S = M e^{-B}` へ拡張し、pathwise identity、expectation-level tendency、finite-horizon concentration schema、Route A / Route C anchors、既存理論との接続強度を整理する中心 draft です。
 
 - Markdown: [`v2/3_構造持続の収支原理と崩壊傾向.md`](v2/3_構造持続の収支原理と崩壊傾向.md)
 
