@@ -14,7 +14,7 @@ Execution script:
 
 - `analysis/g4_scania_component_x_horizon_bridge/scripts/evaluate_scania_component_x_horizon_bridge.py`
 - current script sha256:
-  `ec685027940259fe0785127f27569a2dc2385a8174209423d393c54b11beadd7`
+  `0b0d304f93f15be5c70fe6ff7d6aa37fa80dea67cbe0c91187dbbda48206500c`
 
 ## 1. Purpose
 
@@ -74,12 +74,10 @@ Fixed structural facts recovered:
   - `2`: `14`
   - `3`: `30`
   - `4`: `76`
-- test label counts:
-  - `0`: `4903`
-  - `1`: `26`
-  - `2`: `15`
-  - `3`: `41`
-  - `4`: `60`
+- held-out test labels were treated here only as a public file-identity fact:
+  - expected label rows: `5045`
+
+The metadata-only stage did not record the held-out test class distribution.
 
 ## 4. Validation-Smoke Result
 
@@ -99,6 +97,12 @@ Deterministic training-label counts under the frozen rule:
 - `2`: `6179`
 - `3`: `3200`
 - `4`: `3858`
+
+Additional train-side integrity check:
+
+- the script asserts that rows with `in_study_repair = 1` satisfy `delta >= 0`
+  before class assignment;
+- no negative repaired-row delta was observed in this smoke run.
 
 Compressed coordinate diagnostic:
 
@@ -140,6 +144,14 @@ This note records only that the pipeline:
 - fit all preregistered bridge models; and
 - produced shape-correct validation probabilities without touching the held-out
   test surface.
+
+More precisely:
+
+- the held-out test surface was not loaded in `--validation-smoke`;
+- the metadata-only stage verified public test-label file identity and row
+  count only;
+- no held-out test label distribution, metrics, or predictions are recorded
+  here.
 
 Current no-peek status from the script output:
 

@@ -248,7 +248,6 @@ def read_readout_columns(data_dir: Path) -> list[str]:
 def metadata_payload(data_dir: Path, identities: dict[str, FileIdentity]) -> dict:
     train_tte = read_small_csv(data_dir / "train_tte.csv")
     validation_labels = read_small_csv(data_dir / "validation_labels.csv")
-    test_labels = read_small_csv(data_dir / "test_labels.csv")
     train_specs = read_small_csv(data_dir / "train_specifications.csv")
     validation_specs = read_small_csv(data_dir / "validation_specifications.csv")
     test_specs = read_small_csv(data_dir / "test_specifications.csv")
@@ -256,12 +255,12 @@ def metadata_payload(data_dir: Path, identities: dict[str, FileIdentity]) -> dic
     for name, frame in (
         ("train_tte.csv", train_tte),
         ("validation_labels.csv", validation_labels),
-        ("test_labels.csv", test_labels),
         ("train_specifications.csv", train_specs),
         ("validation_specifications.csv", validation_specs),
         ("test_specifications.csv", test_specs),
     ):
         validate_row_count(name, len(frame))
+    validate_row_count("test_labels.csv", EXPECTED_FILES["test_labels.csv"]["rows"])
 
     readout_cols = read_readout_columns(data_dir)
     spec_cols = [c for c in train_specs.columns if c != "vehicle_id"]
@@ -293,7 +292,6 @@ def metadata_payload(data_dir: Path, identities: dict[str, FileIdentity]) -> dic
                 for k, v in train_tte["in_study_repair"].value_counts().sort_index().to_dict().items()
             },
             "validation_label_counts": class_counts_dict(validation_labels["class_label"].to_numpy(dtype=np.int8)),
-            "test_label_counts": class_counts_dict(test_labels["class_label"].to_numpy(dtype=np.int8)),
             "expected_readout_row_counts": {
                 "train": EXPECTED_FILES["train_operational_readouts.csv"]["rows"],
                 "validation": EXPECTED_FILES["validation_operational_readouts.csv"]["rows"],
@@ -304,6 +302,7 @@ def metadata_payload(data_dir: Path, identities: dict[str, FileIdentity]) -> dic
                 "validation": EXPECTED_FILES["validation_operational_readouts.csv"]["vehicles"],
                 "test": EXPECTED_FILES["test_operational_readouts.csv"]["vehicles"],
             },
+            "held_out_test_label_rows_only": EXPECTED_FILES["test_labels.csv"]["rows"],
         },
     }
 
@@ -334,6 +333,11 @@ def load_surfaces(data_dir: Path, include_validation: bool, include_test: bool) 
         dtype=np.float64
     )
     in_study_repair = joined_tte["in_study_repair"].to_numpy(dtype=np.int8)
+    if np.any((in_study_repair == 1) & (delta < 0.0)):
+        raise SystemExit(
+            "Observed repaired training rows with negative delta. The first Scania bridge package "
+            "assumes delta >= 0 for in_study_repair = 1 rows."
+        )
     train_labels = np.where(in_study_repair == 0, 0, classify_delta(delta)).astype(np.int8)
     train_surface = Surface(
         vehicle_ids=train_vehicle_ids,

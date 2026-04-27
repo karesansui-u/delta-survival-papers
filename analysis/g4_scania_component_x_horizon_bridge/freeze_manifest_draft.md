@@ -104,6 +104,15 @@ censored-as-class-0 within observed study horizon
 
 This rule may not be changed after freeze.
 
+Frozen execution assumption:
+
+```text
+rows with in_study_repair = 1 must satisfy delta >= 0
+```
+
+The frozen script should assert this condition rather than silently coercing
+negative deltas into class `4`.
+
 Training rows are used exactly at row level after deterministic label
 construction.
 

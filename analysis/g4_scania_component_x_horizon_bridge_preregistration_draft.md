@@ -130,6 +130,15 @@ It does not claim that censoring and true ">48" risk are identical in a general
 survival-theoretic sense. It claims only that this is the fixed classification
 surface for the present public branch.
 
+Additional execution assumption:
+
+```text
+rows with in_study_repair = 1 are assumed to satisfy delta >= 0
+```
+
+The execution package should assert this rather than silently remap negative
+values into the terminal class.
+
 ## 6. Observation Surface
 
 Training surface:
