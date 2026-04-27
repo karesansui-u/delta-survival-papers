@@ -26,6 +26,7 @@ git archive \
   analysis/route_a_mixed_csp/mixed_csp_generator.py \
   analysis/route_a_mixed_csp/mixed_csp_solvers.py \
   analysis/route_a_mixed_csp/debug_mixed_csp_encoding.py \
+  analysis/route_a_mixed_csp/requirements_mixed_csp.txt \
   analysis/route_a_mixed_csp/mixed_csp_primary_official_2026-04-22.jsonl \
   analysis/route_a_mixed_csp/mixed_csp_results.json \
   analysis/route_a_mixed_csp/mixed_csp_results_summary.md \
@@ -35,8 +36,7 @@ git archive \
   analysis/route_a_mixed_csp/mixed_csp_true_outside_send_runbook.md \
   analysis/route_a_mixed_csp/mixed_csp_true_outside_send_packet_ja.md \
   analysis/route_a_mixed_csp/mixed_csp_zip_receiver_guide_ja.md \
-  analysis/route_a_mixed_csp/mixed_csp_g7_replication_report_template.md \
-  requirements.txt
+  analysis/route_a_mixed_csp/mixed_csp_g7_replication_report_template.md
 
 shasum -a 256 "$ZIP_PATH" > "$SHA_PATH"
 

@@ -82,7 +82,7 @@ Send the following files and nothing more unless requested:
 10. `analysis/route_a_mixed_csp/mixed_csp_results_summary.md`
 11. `analysis/route_a_mixed_csp/mixed_csp_external_rerun_package.md`
 12. `analysis/route_a_mixed_csp/mixed_csp_true_outside_handoff_checklist.md`
-13. `requirements.txt`
+13. `analysis/route_a_mixed_csp/requirements_mixed_csp.txt`
 14. `analysis/route_a_mixed_csp/mixed_csp_true_outside_send_template.md`
 15. `analysis/route_a_mixed_csp/mixed_csp_zip_receiver_guide_ja.md`
 
@@ -124,7 +124,7 @@ Ask the outside group to do exactly this:
 
 1. clone the published repository state, or unpack a zip exported from that
    exact published state;
-2. install from `requirements.txt`;
+2. install from `analysis/route_a_mixed_csp/requirements_mixed_csp.txt`;
 3. write all outputs to a separate directory;
 4. run smoke dry-run;
 5. run smoke execution;

@@ -81,7 +81,7 @@ Attach or link exactly these:
 3. `analysis/route_a_mixed_csp/mixed_csp_primary_official_2026-04-22.jsonl`
 4. `analysis/route_a_mixed_csp/mixed_csp_results.json`
 5. `analysis/route_a_mixed_csp/mixed_csp_results_summary.md`
-6. `requirements.txt`
+6. `analysis/route_a_mixed_csp/requirements_mixed_csp.txt`
 7. `analysis/route_a_mixed_csp/mixed_csp_zip_receiver_guide_ja.md`
 
 Optional context:
@@ -103,7 +103,7 @@ git archive \
   --output "mixed_csp_true_outside_bundle_${SEND_COMMIT_HASH}.zip" \
   HEAD \
   analysis/route_a_mixed_csp \
-  requirements.txt
+  analysis/route_a_mixed_csp/requirements_mixed_csp.txt
 shasum -a 256 "mixed_csp_true_outside_bundle_${SEND_COMMIT_HASH}.zip"
 ```
 

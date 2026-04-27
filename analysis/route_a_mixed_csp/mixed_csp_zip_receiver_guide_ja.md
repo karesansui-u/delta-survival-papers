@@ -66,7 +66,7 @@ cd delta-survival-paper
 ### 4-2. 依存関係
 
 ```bash
-python3 -m pip install -r requirements.txt
+python3 -m pip install -r analysis/route_a_mixed_csp/requirements_mixed_csp.txt
 ```
 
 ### 4-3. 出力先の作成

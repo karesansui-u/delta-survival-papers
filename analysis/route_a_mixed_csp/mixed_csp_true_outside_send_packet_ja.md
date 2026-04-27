@@ -33,7 +33,7 @@
 
 1. 指定された公開コミットからリポジトリを複製する
    または、そのコミットから作られた zip を展開する
-2. `requirements.txt` から依存関係を入れる
+2. `analysis/route_a_mixed_csp/requirements_mixed_csp.txt` から依存関係を入れる
 3. 正式参照ファイルは上書きせず、別出力先で再実行する
 4. 事前確認 / 診断 / 本実行 / 結果集計を順番に実行する
 5. 出力ハッシュ・行数・支持フラグ・要約・環境メモを返す
@@ -43,7 +43,7 @@
 この依頼に向いているのは、次の条件を満たす人です。
 
 1. Python 実行環境がある
-2. `requirements.txt` から依存関係を入れられる
+2. `analysis/route_a_mixed_csp/requirements_mixed_csp.txt` から依存関係を入れられる
 3. zip 展開または git のどちらかでファイルを受け取れる
 4. 手順書どおりに実行して、結果ファイルを返せる
 
@@ -89,7 +89,7 @@ LLM の利用は **必須ではありません**。使えるなら手順整理�
 3. `analysis/route_a_mixed_csp/mixed_csp_primary_official_2026-04-22.jsonl`
 4. `analysis/route_a_mixed_csp/mixed_csp_results.json`
 5. `analysis/route_a_mixed_csp/mixed_csp_results_summary.md`
-6. `requirements.txt`
+6. `analysis/route_a_mixed_csp/requirements_mixed_csp.txt`
 7. `analysis/route_a_mixed_csp/mixed_csp_zip_receiver_guide_ja.md`
 
 Git を使わない相手には、上の内容を含む zip 一式を送って構いません。
@@ -124,7 +124,7 @@ Git を使わない相手には、上の内容を含む zip 一式を送って�
 お願いしたいこと:
 1. 指定コミットから複製
    または、そのコミットから作られた zip を展開
-2. `requirements.txt` に基づいて依存関係を導入
+2. `analysis/route_a_mixed_csp/requirements_mixed_csp.txt` に基づいて依存関係を導入
 3. 正式参照ファイルは上書きせず、別出力先で実行
 4. 指定手順書に従って事前確認 / 診断 / 本実行 / 結果集計を実行
 5. 結果として、出力ハッシュ / 行数 / 支持フラグ / 要約 /
@@ -159,7 +159,7 @@ Git を使わない相手には、上の内容を含む zip 一式を送って�
 1. リポジトリを複製する
    または zip を展開する
 2. 複製した場合は指定コミットに切り替える
-3. `pip install -r requirements.txt`
+3. `pip install -r analysis/route_a_mixed_csp/requirements_mixed_csp.txt`
 4. `analysis/route_a_mixed_csp/external_outputs` を作る
 5. 事前確認の試行
 6. 事前確認の本実行

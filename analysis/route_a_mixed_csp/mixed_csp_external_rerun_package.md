@@ -67,7 +67,7 @@ Recommended external bundle contents:
 | `analysis/route_a_mixed_csp/mixed_csp_primary_official_2026-04-22.jsonl` | official raw reference |
 | `analysis/route_a_mixed_csp/mixed_csp_results.json` | official machine-readable summary |
 | `analysis/route_a_mixed_csp/mixed_csp_results_summary.md` | official human-readable summary |
-| `requirements.txt` | install surface |
+| `analysis/route_a_mixed_csp/requirements_mixed_csp.txt` | install surface |
 
 Optional but useful:
 
@@ -96,7 +96,7 @@ Recommended external rerun order:
 Install:
 
 ```bash
-pip install -r requirements.txt
+pip install -r analysis/route_a_mixed_csp/requirements_mixed_csp.txt
 mkdir -p analysis/route_a_mixed_csp/external_outputs
 printf '*\n!.gitignore\n' > analysis/route_a_mixed_csp/external_outputs/.gitignore
 ```

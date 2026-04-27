@@ -66,10 +66,10 @@ Implemented files:
 Dependency note:
 
 ```bash
-pip install -r requirements.txt
+pip install -r analysis/route_a_mixed_csp/requirements_mixed_csp.txt
 ```
 
-The repository requirements include `python-sat`, `numpy`, and `scipy`.
+The Mixed-CSP rerun surface only needs `python-sat`, `numpy`, and `scipy`.
 
 Smoke dry-run:
 

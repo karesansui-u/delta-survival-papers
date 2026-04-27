@@ -16,9 +16,10 @@ I am sending a frozen rerun package for an already validated Mixed-CSP primary
 result. This is a replication request, not a redesign request.
 
 Please clone the current published repository HEAD at commit
-`<SEND_COMMIT_HASH>`, install from requirements.txt, and run the Mixed-CSP
-package using separate outputs only. Please do not overwrite the official
-artifacts.
+`<SEND_COMMIT_HASH>`, install from
+`analysis/route_a_mixed_csp/requirements_mixed_csp.txt`, and run the
+Mixed-CSP package using separate outputs only. Please do not overwrite the
+official artifacts.
 
 If git-based clone is inconvenient, an equivalent zip bundle exported from that
 exact published HEAD may be used instead, as long as the message also states
@@ -72,7 +73,7 @@ When sending, attach or point to:
 1. `analysis/route_a_mixed_csp/mixed_csp_external_rerun_package.md`
 2. `analysis/route_a_mixed_csp/mixed_csp_true_outside_handoff_checklist.md`
 3. official reference artifacts listed in that checklist
-4. `requirements.txt`
+4. `analysis/route_a_mixed_csp/requirements_mixed_csp.txt`
 
 Optional:
 

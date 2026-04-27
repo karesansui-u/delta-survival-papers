@@ -99,7 +99,7 @@
 
 【 重視する点・経験 】
 ・Python 実行環境があること
-・requirements.txt から依存関係を導入できること
+・`analysis/route_a_mixed_csp/requirements_mixed_csp.txt` から依存関係を導入できること
 ・コマンドラインで Python スクリプトを実行できること
 ・手順書どおりに作業し、結果を返送できること
 
@@ -110,7 +110,7 @@
 【 応募方法 】
 応募時に、次の内容を簡単に教えてください。
 1. Python の実行環境があるか
-2. requirements.txt から依存関係を入れられるか
+2. `analysis/route_a_mixed_csp/requirements_mixed_csp.txt` から依存関係を入れられるか
 3. git / zip のどちらで受け取りたいか
 4. コマンドラインで Python スクリプトを実行した経験があるか
 5. 想定作業時間と希望金額
@@ -124,7 +124,7 @@
 CloudWorks 上で最初に見るポイントはこれで十分です。
 
 1. Python 実行環境があるか
-2. `requirements.txt` から依存関係を入れられるか
+2. `analysis/route_a_mixed_csp/requirements_mixed_csp.txt` から依存関係を入れられるか
 3. CLI 実行に抵抗がないか
 4. zip 受け取りで問題ないか
 5. 「改善」ではなく「手順どおりの再現実行」だと理解しているか
@@ -141,7 +141,7 @@ CloudWorks 上で最初に見るポイントはこれで十分です。
 もし可能でしたら、以下を教えてください。
 
 1. Python 実行環境の有無
-2. requirements.txt から依存関係を入れられるか
+2. `analysis/route_a_mixed_csp/requirements_mixed_csp.txt` から依存関係を入れられるか
 3. git と zip のどちらで受け取りたいか
 4. コマンドラインで Python スクリプトを実行した経験の有無
 5. 想定作業時間とお見積もり
