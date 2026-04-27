@@ -1,7 +1,7 @@
 # Lean 形式検証 ↔ 論文対応棚卸し
 
-棚卸し日: 2026-04-21
-対象: `lean/Survival/` 配下 136 ファイル
+棚卸し日: 2026-04-27
+対象: `lean/Survival/` 配下 137 ファイル
 対応論文: `delta-survival-paper/v2/` 配下 8 本（Paper 0–4 + 補論 3 本）
 
 ## 現在の結論
@@ -9,7 +9,7 @@
 このファイルを、Lean 形式化と論文本文を結ぶ唯一の reader-facing theorem map とする。
 旧 SAT/CSP 専用 map は現行ツリーから外し、git history / OSF snapshot 側の archive として扱う。
 
-現時点の Lean 側は **136 Survival modules / sorry = 0 / axiom = 0** で閉じている。Paper 2 §5 が
+現時点の Lean 側は **137 Survival modules / sorry = 0 / axiom = 0** で閉じている。Paper 2 §5 が
 明示している 5 ファイルを超えて、停止時刻崩壊、martingale concentration、粗視化、有限状態 Markov
 microfoundation、SAT/k-SAT Chernoff-KL chain、Bernoulli-CSP 水平展開、Route A 非CSP skeletons まで
 含む。
@@ -80,6 +80,37 @@ M2-A: mapping-only is sufficient.
 A thin wrapper file may still be added later for readability, but it is not
 mathematically required. If added, wrappers should be direct aliases of the
 existing theorems, with no new axioms and no strengthened empirical claim.
+
+## Paper 3 / Structural Balance Law Mapping
+
+Paper 3 の pathwise algebraic kernel は、既存の
+`Survival/GeneralStateDynamics.lean` が証明している。`Survival/StructuralBalanceLaw.lean`
+は、この既存 theorem 群を Paper 3 の読者向け名称で束ねる薄い wrapper であり、新しい仮定や
+新しい普遍法則 claim は追加しない。
+
+重要な前提は positivity である。対数比で loss / gain / net action を定義するため、Lean 側では
+`PositiveTrajectory`、Paper 3 側では positive finite trajectory assumptions の下で
+machine-checked と読む。
+
+| Paper 3 claim | Lean entry point | Underlying theorem / object | Status |
+|---|---|---|---|
+| signed action \(a_t=\ell_t-g_t\) | `StructuralBalanceLaw.signedAction_eq_loss_sub_gain` | `GeneralStateDynamics.stepNetAction` | proven by definition |
+| cumulative action \(A_n=\sum_{t<n}a_t\) | `StructuralBalanceLaw.cumulativeSignedAction_eq_sum_signedAction` | `GeneralStateDynamics.cumulativeNetAction` | proven by definition |
+| local balance \(m(V^{t+1})=m(V^t)e^{-a_t}\) | `StructuralBalanceLaw.local_signed_exponential_balance` | `feasibleMass_succ_eq_mass_mul_exp_neg_stepNetAction` | proven under positivity |
+| pathwise signed kernel \(m(V^n)=m(V^0)e^{-A_n}\) | `StructuralBalanceLaw.pathwise_signed_exponential_kernel` | `feasibleMass_eq_initial_mul_exp_neg_cumulativeNetAction` | proven under positive finite trajectory assumptions |
+| loss-only recovery | `StructuralBalanceLaw.pureContraction_recovers_loss_only_kernel` | `feasibleMass_eq_initial_mul_exp_neg_cumulativeLoss_of_pureContraction` | proven for pure contraction / zero gain |
+| Foster-Lyapunov algebraic embedding | `StructuralBalanceLaw.lyapunov_*` wrappers | `LyapunovBalanceEmbedding.*` | proven as minimal algebraic embedding, not positive recurrence |
+| repair / maintenance finite-prefix balance | `StructuralBalanceLaw.repair_*` wrappers | `RepairMaintenanceBalance.*` | proven finite-prefix skeleton |
+| remaining margin \(B-D_n\) | `repair_remainingMargin_eq_initial_margin_sub_cumulative_signed_action` | `RepairMaintenanceBalance.margin` | proven; this is margin, not Paper 1 resource term `M` |
+
+Paper 3 non-claims remain outside Lean:
+
+- naturality or uniqueness of \(V,m,\ell_t,g_t\) in arbitrary domains;
+- empirical observability of \(g_t\);
+- Route C causal mechanism identification;
+- Backblaze / C-MAPSS / Scania empirical outcomes;
+- Foster-Lyapunov positive recurrence, geometric ergodicity, or optimal maintenance theorem;
+- any universal-law declaration.
 
 ## Lean で閉じている範囲
 
