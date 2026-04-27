@@ -120,14 +120,16 @@ No Scania bridge freeze should occur until all of the following are completed.
 
 ### 5.1 Exact large-file acquisition
 
-The following three files must be fully acquired and hashed locally:
+This gate is now closed by:
+
+- `analysis/g4_scania_component_x_large_readout_acquisition_note.md`
+
+That note records exact bytes, full-file sha256 values, line counts, and unique
+`vehicle_id` counts for:
 
 - `train_operational_readouts.csv`
 - `validation_operational_readouts.csv`
 - `test_operational_readouts.csv`
-
-The exact full-file sha256 values must appear in a later exact-archive /
-freeze-stage note.
 
 ### 5.2 Label grammar lock
 
@@ -191,6 +193,7 @@ The clean current position is:
 ```text
 Scania Component X is ready for a bridge-package draft.
 It should be developed as a public stochastic reliability / TTE bridge, with
-horizon-classification as the practical secondary path, and with full readout
-hashes plus label-grammar lock as the next freeze prerequisites.
+horizon-classification as the practical secondary path. Full readout hashes are
+now fixed; the remaining pre-freeze work is label-grammar lock, primary-path
+choice, and package freeze design.
 ```

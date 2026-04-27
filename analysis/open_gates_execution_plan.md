@@ -109,6 +109,14 @@ That practical move now has a send-ready companion:
 Use the brief as the gate definition and the request packet as the actual
 partner / local-owner outreach artifact.
 
+The public bridge route has also advanced one stage:
+
+- `analysis/g4_scania_component_x_large_readout_acquisition_note.md`
+
+This closes exact local acquisition of the three large readout CSV files, so
+the remaining Scania pre-freeze work is label-grammar lock plus bridge-package
+freeze design rather than archive identity.
+
 There is now also a narrow public-web rescan layer:
 
 - `analysis/g4_v2_public_repair_flow_rescan_2026-04-27.md`
