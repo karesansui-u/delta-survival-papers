@@ -47,11 +47,12 @@ SAT/CSP 系の個別 OSF 公開リンクは v1.1 archive snapshot を指す。v2
 - update bundle zip: https://osf.io/mdh7b/files/osfstorage/69f0aac955cae29ef45db6b6
 - update bundle download: https://osf.io/download/69f0aac955cae29ef45db6b6/
 - manifest: https://osf.io/mdh7b/files/osfstorage/69f0aaeb6982d95c29f8c2c2
-- uploaded source commit: `672e042` (`Reorder reader-facing v2 guide`)
+- uploaded source commit: `ef7b55f` (`Adopt observability layer terminology`)
 - included spine commit: `6fe9162` (`Align v2 paper spine and references`)
-- sha256: `2afd31f58974982de8a5c6dc68b1539b353dd6dec70f7d58733277e4da0e1fcc`
-- OSF file versions: zip v3, manifest v3
-- scope: current v2 main theory spine, balance-principle supplements, conditional derivation supplement, LLM companions, Lean mapping, public overview, data index, patent notice, citation metadata, and license note. The manifest and public guides use the reader-facing order: construction map, integrated overview, Paper 1, Paper 2, operational discipline, specification-fixed finite-CSP, structurally inferred LLM, resource term \(M\), existing-theory bridges, and Lean / technical details.
+- sha256: `2c0aedb80b3e445638dedbeb996cbc5f1abdbdad0e7e8f91dd02b9da250ee8fb`
+- manifest sha256: `f9891a9c44a71f22e9285aba3ccee1be44b5f6dccdd79e5ed76750298117b288`
+- OSF file versions: zip v4, manifest v4
+- scope: current v2 main theory spine, balance-principle supplements, conditional derivation supplement, LLM companions, Lean mapping, public overview, data index, patent notice, citation metadata, and license note. The manifest and public guides use the reader-facing order: construction map, integrated overview, Paper 1, Paper 2, operational discipline, specification-fixed finite-CSP, structurally inferred LLM, resource term \(M\), existing-theory bridges, and Lean / technical details. The v4 refresh adopts the observability-layer terminology: specification-fixed structural domain, conditional structural-embedding domain, and structurally inferred domain.
 
 ## Canonical Metadata Packet
 
