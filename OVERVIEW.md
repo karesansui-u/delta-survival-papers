@@ -1,17 +1,34 @@
 # Overview
 
-このリポジトリは、構造持続理論に関する `v2` の主理論 spine 2 本、統合版、Route C companion 2 本、および補論群を中心に読むための構成です。
+このリポジトリは、構造持続理論に関する `v2` の構成地図、統合版、主理論 spine 2 本、運用規律、Route A/C anchors、および補論群を中心に読むための構成です。
 
 ## English Entry Points
 
 - Start here: [`v2/pdf用/ENGLISH_ABSTRACT.pdf`](v2/pdf%E7%94%A8/ENGLISH_ABSTRACT.pdf)
 - Longer English note: [`ENGLISH_OVERVIEW.md`](ENGLISH_OVERVIEW.md)
 
+## Recommended Public Order
+
+外向けには、次の順に読むのが最も迷いにくいです。これは表示順であり、理論上の主論文番号は `v2/1` -> `v2/2` のままです。
+
+1. 構成地図: [`v2/補論_構造持続理論の構成地図.md`](v2/補論_構造持続理論の構成地図.md)
+2. 統合版: [`v2/0_構造持続理論の統合版.md`](v2/0_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E7%90%86%E8%AB%96%E3%81%AE%E7%B5%B1%E5%90%88%E7%89%88.md)
+3. 最小形式: [`v2/1_構造持続の最小形式.md`](v2/1_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%AE%E6%9C%80%E5%B0%8F%E5%BD%A2%E5%BC%8F.md)
+4. 収支原理: [`v2/2_構造持続の収支原理.md`](v2/2_構造持続の収支原理.md)
+5. 運用規律: [`v2/補論_構造持続理論の運用規律.md`](v2/補論_構造持続理論の運用規律.md)
+6. Route A / 有限CSP: [`v2/補論_有限CSPにおける構造持続の予測力.md`](v2/%E8%A3%9C%E8%AB%96_%E6%9C%89%E9%99%90CSP%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%AE%E4%BA%88%E6%B8%AC%E5%8A%9B.md)
+7. Route C / LLM: [`v2/Companion_RouteC_推論時の構造劣化.md`](v2/Companion_RouteC_推論時の構造劣化.md), [`v2/Companion_RouteC_継続学習時の構造的忘却.md`](v2/Companion_RouteC_継続学習時の構造的忘却.md)
+8. 資源項 \(M\): [`v2/補論_構造持続における資源項Mの操作的定式化.md`](v2/補論_構造持続における資源項Mの操作的定式化.md)
+9. 既存理論 bridge: [`v2/補論_構造持続の収支原理とFoster-Lyapunovドリフトの形式的埋め込み.md`](v2/補論_構造持続の収支原理とFoster-Lyapunovドリフトの形式的埋め込み.md), [`v2/補論_非CSP古典例における構造持続の収支原理の最小アンカー.md`](v2/補論_非CSP古典例における構造持続の収支原理の最小アンカー.md)
+10. Lean / 詳細補論: [`lean/PAPER_MAPPING.md`](lean/PAPER_MAPPING.md), [`v2/補論_構造持続の条件つき導出.md`](v2/補論_構造持続の条件つき導出.md), [`v2/補論_構造持続の収支原理の詳細展開.md`](v2/補論_構造持続の収支原理の詳細展開.md)
+
 ## Japanese Entry Point
 
-全体像を先に掴むための統合版:
+全体像を先に掴むための入口:
 
+- [`v2/補論_構造持続理論の構成地図.md`](v2/補論_構造持続理論の構成地図.md)
 - [`v2/0_構造持続理論の統合版.md`](v2/0_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E7%90%86%E8%AB%96%E3%81%AE%E7%B5%B1%E5%90%88%E7%89%88.md)
+- [`v2/pdf用/補論_構造持続理論の構成地図.pdf`](v2/pdf用/補論_構造持続理論の構成地図.pdf)
 - [`v2/pdf用/0_構造持続理論の統合版.pdf`](v2/pdf%E7%94%A8/0_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E7%90%86%E8%AB%96%E3%81%AE%E7%B5%B1%E5%90%88%E7%89%88.pdf)
 
 ## Architecture And Discipline
@@ -39,11 +56,19 @@
 
 ## PDFs
 
+- [`v2/pdf用/補論_構造持続理論の構成地図.pdf`](v2/pdf用/補論_構造持続理論の構成地図.pdf)
+- [`v2/pdf用/0_構造持続理論の統合版.pdf`](v2/pdf%E7%94%A8/0_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E7%90%86%E8%AB%96%E3%81%AE%E7%B5%B1%E5%90%88%E7%89%88.pdf)
 - [`v2/pdf用/1_構造持続の最小形式.pdf`](v2/pdf%E7%94%A8/1_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%AE%E6%9C%80%E5%B0%8F%E5%BD%A2%E5%BC%8F.pdf)
-- [`v2/pdf用/補論_構造持続の条件つき導出.pdf`](v2/pdf用/補論_構造持続の条件つき導出.pdf)
 - [`v2/pdf用/2_構造持続の収支原理.pdf`](v2/pdf用/2_構造持続の収支原理.pdf)
+- [`v2/pdf用/補論_構造持続理論の運用規律.pdf`](v2/pdf用/補論_構造持続理論の運用規律.pdf)
+- [`v2/pdf用/補論_有限CSPにおける構造持続の予測力.pdf`](v2/pdf用/補論_有限CSPにおける構造持続の予測力.pdf)
 - [`v2/pdf用/Companion_RouteC_推論時の構造劣化.pdf`](v2/pdf用/Companion_RouteC_推論時の構造劣化.pdf)
 - [`v2/pdf用/Companion_RouteC_継続学習時の構造的忘却.pdf`](v2/pdf用/Companion_RouteC_継続学習時の構造的忘却.pdf)
+- [`v2/pdf用/補論_構造持続における資源項Mの操作的定式化.pdf`](v2/pdf用/補論_構造持続における資源項Mの操作的定式化.pdf)
+- [`v2/pdf用/補論_構造持続の収支原理とFoster-Lyapunovドリフトの形式的埋め込み.pdf`](v2/pdf用/補論_構造持続の収支原理とFoster-Lyapunovドリフトの形式的埋め込み.pdf)
+- [`v2/pdf用/補論_非CSP古典例における構造持続の収支原理の最小アンカー.pdf`](v2/pdf用/補論_非CSP古典例における構造持続の収支原理の最小アンカー.pdf)
+- [`v2/pdf用/補論_構造持続の条件つき導出.pdf`](v2/pdf用/補論_構造持続の条件つき導出.pdf)
+- [`v2/pdf用/補論_構造持続の収支原理の詳細展開.pdf`](v2/pdf用/補論_構造持続の収支原理の詳細展開.pdf)
 
 Latest OSF mirror (Bernoulli-CSP links are the v1.1 archive snapshot):
 
@@ -62,7 +87,7 @@ Latest OSF mirror (Bernoulli-CSP links are the v1.1 archive snapshot):
 以下は補助資料です。
 
 - `v1/`: 旧版アーカイブ
-- `v2/補論_*`: 補論
+- その他の `v2/補論_*`: 深部補論・技術補論
 
 ## Data and Proof
 

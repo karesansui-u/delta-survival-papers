@@ -1,8 +1,9 @@
 # Reproduction Guide
 
-This repository currently centers on the `v2` main theory spine (`1` and `2`),
-the Route C companion notes, the technical supplements, their PDF builds, the
-supporting experiment code, and the Lean formalization.
+This repository currently centers on the `v2` reader-facing map, integrated
+overview, main theory spine (`1` and `2`), operational discipline note, Route
+A/C anchors, technical supplements, their PDF builds, supporting experiment
+code, and Lean formalization.
 
 Raw data, logs, and PDF mirrors are available at [osf.io/mdh7b](https://osf.io/mdh7b).
 
@@ -16,31 +17,45 @@ cd delta-survival-paper
 pip install -r requirements.txt
 ```
 
-## Current Preprints (v2)
+## Current Reader-Facing Order (v2)
 
-Main manuscripts:
+Reader orientation:
 
+- `v2/補論_構造持続理論の構成地図.md`
+- `v2/0_構造持続理論の統合版.md`
 - `v2/1_構造持続の最小形式.md`
 - `v2/2_構造持続の収支原理.md`
+- `v2/補論_構造持続理論の運用規律.md`
 
-Technical supplements:
+Route A / C anchors:
 
-- `v2/補論_構造持続の条件つき導出.md`
-- `v2/補論_構造持続の収支原理の詳細展開.md`
-
-Route C companion notes:
-
+- `v2/補論_有限CSPにおける構造持続の予測力.md`
 - `v2/Companion_RouteC_推論時の構造劣化.md`
 - `v2/Companion_RouteC_継続学習時の構造的忘却.md`
 
+Technical supplements:
+
+- `v2/補論_構造持続における資源項Mの操作的定式化.md`
+- `v2/補論_構造持続の収支原理とFoster-Lyapunovドリフトの形式的埋め込み.md`
+- `v2/補論_非CSP古典例における構造持続の収支原理の最小アンカー.md`
+- `v2/補論_構造持続の条件つき導出.md`
+- `v2/補論_構造持続の収支原理の詳細展開.md`
+
 Built PDFs:
 
+- `v2/pdf用/補論_構造持続理論の構成地図.pdf`
+- `v2/pdf用/0_構造持続理論の統合版.pdf`
 - `v2/pdf用/1_構造持続の最小形式.pdf`
-- `v2/pdf用/補論_構造持続の条件つき導出.pdf`
 - `v2/pdf用/2_構造持続の収支原理.pdf`
-- `v2/pdf用/補論_構造持続の収支原理の詳細展開.pdf`
+- `v2/pdf用/補論_構造持続理論の運用規律.pdf`
+- `v2/pdf用/補論_有限CSPにおける構造持続の予測力.pdf`
 - `v2/pdf用/Companion_RouteC_推論時の構造劣化.pdf`
 - `v2/pdf用/Companion_RouteC_継続学習時の構造的忘却.pdf`
+- `v2/pdf用/補論_構造持続における資源項Mの操作的定式化.pdf`
+- `v2/pdf用/補論_構造持続の収支原理とFoster-Lyapunovドリフトの形式的埋め込み.pdf`
+- `v2/pdf用/補論_非CSP古典例における構造持続の収支原理の最小アンカー.pdf`
+- `v2/pdf用/補論_構造持続の条件つき導出.pdf`
+- `v2/pdf用/補論_構造持続の収支原理の詳細展開.pdf`
 
 Current OSF mirrors:
 

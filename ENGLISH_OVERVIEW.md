@@ -64,32 +64,36 @@ The intended target is not just a stronger stateless chatbot, but a system that 
 
 ## What This Repository Contains
 
-- Japanese main theory spine (`v2/1`, `v2/2`) and technical supplements
-- Route C companion anchors (`v2/Companion_RouteC_推論時の構造劣化.md`, `v2/Companion_RouteC_継続学習時の構造的忘却.md`)
+- a Japanese structure map: [`v2/補論_構造持続理論の構成地図.md`](v2/補論_構造持続理論の構成地図.md)
 - an integrated Japanese overview: [`v2/0_構造持続理論の統合版.md`](v2/0_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E7%90%86%E8%AB%96%E3%81%AE%E7%B5%B1%E5%90%88%E7%89%88.md)
+- Japanese main theory spine (`v2/1`, `v2/2`) and technical supplements
+- an operational discipline note: [`v2/補論_構造持続理論の運用規律.md`](v2/補論_構造持続理論の運用規律.md)
+- Route A finite-CSP anchor: [`v2/補論_有限CSPにおける構造持続の予測力.md`](v2/%E8%A3%9C%E8%AB%96_%E6%9C%89%E9%99%90CSP%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%AE%E4%BA%88%E6%B8%AC%E5%8A%9B.md)
+- Route C companion anchors (`v2/Companion_RouteC_推論時の構造劣化.md`, `v2/Companion_RouteC_継続学習時の構造的忘却.md`)
 - PDFs in [`v2/pdf用/`](v2/pdf%E7%94%A8/)
 - Lean 4 formalization in [`lean/`](lean/)
 - raw data and summaries in [`DATA.md`](DATA.md)
 
 ## Suggested Reading Path
 
-If you want the shortest route:
+For external readers, the cleanest route is:
 
-1. [`v2/0_構造持続理論の統合版.md`](v2/0_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E7%90%86%E8%AB%96%E3%81%AE%E7%B5%B1%E5%90%88%E7%89%88.md)
-2. [`v2/2_構造持続の収支原理.md`](v2/2_構造持続の収支原理.md)
-3. [`v2/Companion_RouteC_推論時の構造劣化.md`](v2/Companion_RouteC_推論時の構造劣化.md)
-4. [`v2/Companion_RouteC_継続学習時の構造的忘却.md`](v2/Companion_RouteC_継続学習時の構造的忘却.md)
+1. Structure map: [`v2/補論_構造持続理論の構成地図.md`](v2/補論_構造持続理論の構成地図.md)
+2. Integrated overview: [`v2/0_構造持続理論の統合版.md`](v2/0_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E7%90%86%E8%AB%96%E3%81%AE%E7%B5%B1%E5%90%88%E7%89%88.md)
+3. Minimal form: [`v2/1_構造持続の最小形式.md`](v2/1_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%AE%E6%9C%80%E5%B0%8F%E5%BD%A2%E5%BC%8F.md)
+4. Balance principle: [`v2/2_構造持続の収支原理.md`](v2/2_構造持続の収支原理.md)
+5. Operational discipline: [`v2/補論_構造持続理論の運用規律.md`](v2/補論_構造持続理論の運用規律.md)
+6. Route A / finite CSP: [`v2/補論_有限CSPにおける構造持続の予測力.md`](v2/%E8%A3%9C%E8%AB%96_%E6%9C%89%E9%99%90CSP%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%AE%E4%BA%88%E6%B8%AC%E5%8A%9B.md)
+7. Route C / LLM anchors: [`v2/Companion_RouteC_推論時の構造劣化.md`](v2/Companion_RouteC_推論時の構造劣化.md), [`v2/Companion_RouteC_継続学習時の構造的忘却.md`](v2/Companion_RouteC_継続学習時の構造的忘却.md)
+8. Resource term \(M\): [`v2/補論_構造持続における資源項Mの操作的定式化.md`](v2/補論_構造持続における資源項Mの操作的定式化.md)
+9. Bridges to existing theory: [`v2/補論_構造持続の収支原理とFoster-Lyapunovドリフトの形式的埋め込み.md`](v2/補論_構造持続の収支原理とFoster-Lyapunovドリフトの形式的埋め込み.md), [`v2/補論_非CSP古典例における構造持続の収支原理の最小アンカー.md`](v2/補論_非CSP古典例における構造持続の収支原理の最小アンカー.md)
+10. Lean and technical details: [`lean/PAPER_MAPPING.md`](lean/PAPER_MAPPING.md), [`v2/補論_構造持続の条件つき導出.md`](v2/補論_構造持続の条件つき導出.md), [`v2/補論_構造持続の収支原理の詳細展開.md`](v2/補論_構造持続の収支原理の詳細展開.md)
 
-If you want the theoretical core:
+If you want the logical dependency order:
 
 1. [`v2/1_構造持続の最小形式.md`](v2/1_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%AE%E6%9C%80%E5%B0%8F%E5%BD%A2%E5%BC%8F.md)
 2. [`v2/2_構造持続の収支原理.md`](v2/2_構造持続の収支原理.md)
 3. [`v2/補論_構造持続の条件つき導出.md`](v2/補論_構造持続の条件つき導出.md)
-
-If you want the Route C companion layer after that:
-
-1. [`v2/Companion_RouteC_推論時の構造劣化.md`](v2/Companion_RouteC_推論時の構造劣化.md)
-2. [`v2/Companion_RouteC_継続学習時の構造的忘却.md`](v2/Companion_RouteC_継続学習時の構造的忘却.md)
 
 ## Scope and Caution
 
