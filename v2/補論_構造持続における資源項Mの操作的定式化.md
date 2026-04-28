@@ -700,6 +700,8 @@ DeltaLint-like structural diagnostics は、software domain における強い�
 
 DeltaLint が主に観測するのは、静的コード内の未整理な前提不整合、scope mismatch、guard 欠落、順序依存、設定干渉である。これは $M$ 側というより、局所的な $\hat L$ または $\Delta L$ risk の観測に近い。したがって、DeltaLint は本補論の主 validation には含めない。
 
+より正確には、DeltaLint bench が検査しうるのは、ソフトウェア崩壊そのものではなく、分散契約矛盾という早期シグナルである。ここでの software structure は、API / caller、config / runtime、documentation / implementation、default producer / consumer、lifecycle producer / consumer など、複数 surface にまたがって一貫性を保つ contract set として定義される。したがって DeltaLint bench は、長期保守不能化や構造死を直接測るものではなく、generic review に対して structural-lens prompt が unique valid structural root cause を増やすかを検査する operational benchmark である。
+
 本補論では、DeltaLint を次のように位置づける。
 
 - DeltaLint は本補論の $M$-framework の実証柱ではない。
@@ -1168,10 +1170,12 @@ DeltaLint は、本補論の main validation ではない。DeltaLint が観測�
 したがって、DeltaLint は別 note で扱う。その中心予測は、本補論の介入順位予測ではなく、次である。
 
 \[
-  \text{existing tools} + \text{DeltaLint} > \text{existing tools alone}.
+  \text{generic review} + \text{structural lens}
+  >
+  \text{generic review}.
 \]
 
-同じ alert budget の下で、既存 tool 群に DeltaLint を加えたとき、将来 bug-fix outcome に対する hit が増えるかを検査する。これは本補論の validation ではなく、Route C companion I / L-side の別 track である。
+同じ model、同じ frozen context、同じ one-pass budget の下で、structural lens が generic review より unique valid structural root causes を増やすかを検査する。これは本補論の validation ではなく、Route C companion I / L-side の別 track である。将来的には、既存 static tools への追加価値や、検出された分散契約矛盾が後の bug-fix、rollback、regression、maintenance slowdown を予測するかを調べる longitudinal track へ進める。ただし、その段階までは software collapse の直接検証とは呼ばない。
 
 7.11 次段階の研究課題
 

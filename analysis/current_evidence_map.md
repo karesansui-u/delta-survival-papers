@@ -48,6 +48,7 @@ preregistered experiments.
 | Exp42 attribution-as-repair | Preregistered decomposition | Source attribution carries much of the repair signal | Model-internal causal mechanism not proven |
 | Exp41 width | Preregistered width check | `scoped > structural` replicated across primary models | `subtle` / `structural` ordering is model-dependent |
 | Route C companion II dependency-aware repair | Observational / designed comparison | External DAG replay and adapter separation expose different recovery modes | Not a universal continual-learning theorem |
+| DeltaLint software operational benchmark | `analysis/deltalint_software_operational_benchmark_note.md` + `/Users/sunagawa/Project/delta-lint-bench` | Candidate L-side / Route C software extension | Defines software structure as a distributed contract set and prepares a matched generic-review vs structural-lens benchmark for detecting valid structural contradictions | Not direct software-collapse evidence, not M-supplement validation, and not support until blinded validation and unblinding are complete |
 
 ## 5. G4 Non-CSP Anchors
 
