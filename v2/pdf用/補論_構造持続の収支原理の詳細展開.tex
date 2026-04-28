@@ -133,9 +133,9 @@ m(V^{(n)}) = m(V^{(0)}) e^{-B_{n}}.
 \item
   Lean M1 は、期待値レベルの傾向が既存の定理対応によって支えられることを示す。
 \item
-  Mixed-CSP および Bernoulli-CSP 系は、有限時間の bad-event drift と Chernoff / KL 型 collapse bound の仕様固定構造ドメイン anchor を与える。
+  Mixed-CSP および Bernoulli-CSP 系は、有限時間の bad-event drift と Chernoff / KL 型 collapse bound の仕様固定構造層 anchor を与える。
 \item
-  LLM companion I / II は、scope-as-repair, external metabolism, dependency-aware replay などを回復量の構造推定ドメイン indicator として与える companion anchors である。
+  LLM companion I / II は、scope-as-repair, external metabolism, dependency-aware replay などを回復量の構造推定層 indicator として与える companion anchors である。
 \item
   M 補論は、回復量・資源入力を実ドメインで測るための operational coordinate を与える。
 \end{itemize}
@@ -725,7 +725,7 @@ Lean 側では、この層は stopped-collapse / hitting-time theorem 群とし�
 \bottomrule\noalign{}
 \endlastfoot
 bounded increments + martingale-like structure & Azuma-Hoeffding & 一般的な有限時間 concentration \\
-Bernoulli bad-event exposure & Chernoff / KL & CSP / SAT / q-coloring などの仕様固定構造ドメイン anchor \\
+Bernoulli bad-event exposure & Chernoff / KL & CSP / SAT / q-coloring などの仕様固定構造層 anchor \\
 exact MGF product & optimized Chernoff-KL & tight exponential profile \\
 resource-bounded conditional drift & stopped-collapse wrapper & 回復・資源制約つき過程 \\
 \end{longtable}
@@ -733,7 +733,7 @@ resource-bounded conditional drift & stopped-collapse wrapper & 回復・資源�
 
 SAT / Bernoulli-CSP では、bad-event count の MGF product が内部導出できるため、Chernoff-KL 型の指数境界が得られる。これは期待値レベルの傾向より強い。なぜなら、単に中心が増えるだけでなく、中心から大きく外れる確率を指数的に抑えるからである。
 
-一方、LLM や software のような構造推定ドメインでは、自然な MGF product が直ちに得られるとは限らない。その場合、まずは期待値レベルの傾向や予測検証に留め、高確率境界を主張するには追加の確率モデルが必要である。
+一方、LLM や software のような構造推定層では、自然な MGF product が直ちに得られるとは限らない。その場合、まずは期待値レベルの傾向や予測検証に留め、高確率境界を主張するには追加の確率モデルが必要である。
 
 \subsection{Lean 形式化との対応}\label{lean-ux5f62ux5f0fux5316ux3068ux306eux5bfeux5fdc-1}
 
@@ -767,7 +767,7 @@ SAT Chernoff-KL closed form & SAT KL algebra module \\
   high-probability finite-horizon bound: bounded increments, MGF, Chernoff / KL, margin 条件を追加して、collapse / stopped-collapse / hitting-time の確率境界を得る。
 \end{enumerate}
 
-この分離は、普遍理論候補としての節度を保つために重要である。期待値の符号だけで高確率崩壊を主張しない。逆に、仕様固定構造ドメインのように MGF product や Chernoff-KL が得られるドメインでは、その強い構造を明示的に使う。
+この分離は、普遍理論候補としての節度を保つために重要である。期待値の符号だけで高確率崩壊を主張しない。逆に、仕様固定構造層のように MGF product や Chernoff-KL が得られるドメインでは、その強い構造を明示的に使う。
 
 \subsection{次節への接続}\label{ux6b21ux7bc0ux3078ux306eux63a5ux7d9a-1}
 
@@ -783,11 +783,11 @@ SAT Chernoff-KL closed form & SAT KL algebra module \\
   §4: concentration / margin 条件つきの finite-horizon collapse schema。
 \end{itemize}
 
-次に必要なのは、この schema がどの concrete domain で自然に閉じるかである。仕様固定構造ドメインでは、SAT / Mixed-CSP / Bernoulli-CSP が最も硬い anchor であり、Exp43c q-coloring により SAT 構文の外側へ empirical support が一段広がった。構造推定ドメインでは、LLM companion I / II の scope-as-repair, external metabolism, dependency-aware replay が、回復量 \(r_{t}\) の observational indicator として扱われる。
+次に必要なのは、この schema がどの concrete domain で自然に閉じるかである。仕様固定構造層では、SAT / Mixed-CSP / Bernoulli-CSP が最も硬い anchor であり、Exp43c q-coloring により SAT 構文の外側へ empirical support が一段広がった。構造推定層では、LLM companion I / II の scope-as-repair, external metabolism, dependency-aware replay が、回復量 \(r_{t}\) の observational indicator として扱われる。
 
-\section{仕様固定構造ドメイン anchors}\label{ux4ed5ux69d8ux56faux5b9aux69cbux9020ux30c9ux30e1ux30a4ux30f3-anchors}
+\section{仕様固定構造層 anchors}\label{ux4ed5ux69d8ux56faux5b9aux69cbux9020ux5c64-anchors}
 
-本節では、§2-4 の schema が最も強く閉じる concrete domain を整理する。ここでいう 仕様固定構造ドメイン anchor とは、次の四条件が問題設定そのものから与えられる場合を指す。
+本節では、§2-4 の schema が最も強く閉じる concrete domain を整理する。ここでいう 仕様固定構造層 anchor とは、次の四条件が問題設定そのものから与えられる場合を指す。
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -824,7 +824,7 @@ m(V^{(m)}) = m(V^{(0)})e^{-L}
 
 が pathwise または first-moment level の中心座標になる。
 
-仕様固定構造ドメイン が強いのは、ここで止まらない点にある。bad-event exposure が Bernoulli 型に閉じる場合、count の MGF product が得られ、Chernoff / KL 型の lower-tail bound を通じて §4 の collapse / stopped-collapse / hitting-time schema に接続できる。つまり、仕様固定構造ドメインでは
+仕様固定構造層 が強いのは、ここで止まらない点にある。bad-event exposure が Bernoulli 型に閉じる場合、count の MGF product が得られ、Chernoff / KL 型の lower-tail bound を通じて §4 の collapse / stopped-collapse / hitting-time schema に接続できる。つまり、仕様固定構造層では
 
 \[
 \begin{aligned}
@@ -939,7 +939,7 @@ L = m_{\mathrm{SAT}}\log(8/7) + m_{\mathrm{NAE}}\log(4/3)
 
 となる。
 
-2026-04-22 の事前登録済み primary run では、12,000 インスタンスが正常に完走し、timeout と malformed encoding は 0 であった。primary endpoint は solver cost ではなく feasibility / SAT rate である。これは、仕様固定構造ドメインの第一モーメント構造が直接支配するのは解空間体積と feasibility であり、特定 solver の探索コストではないからである。
+2026-04-22 の事前登録済み primary run では、12,000 インスタンスが正常に完走し、timeout と malformed encoding は 0 であった。primary endpoint は solver cost ではなく feasibility / SAT rate である。これは、仕様固定構造層の第一モーメント構造が直接支配するのは解空間体積と feasibility であり、特定 solver の探索コストではないからである。
 
 leave-one-mixture-out の結果は次であった。
 
@@ -988,21 +988,21 @@ n\log 2-L
 
 この Mixed-CSP package は、公開後に依頼ベースの外部実行者 3 名によって独立に再実行された。3 件とも、凍結済み bundle を用いて 12,000 行の primary run を完走し、公式 primary JSONL に対する checked core fields は 0 mismatches、support flags はすべて true であった。環境は WSL / Ubuntu が 1 件、Windows 11 Home 系が 2 件であり、いずれも回避策は報告されていない。したがって Mixed-CSP は、依頼済みの 3 件の outside-group rerun set について、著者環境外でも同じ qualitative support decision が再現された状態にある。ただし、これは Mixed-CSP package に限った replication closure であり、non-CSP branch や observational branch の replication 完了を意味しない。
 
-\subsection{仕様固定構造ドメイン anchor の現在地}\label{ux4ed5ux69d8ux56faux5b9aux69cbux9020ux30c9ux30e1ux30a4ux30f3-anchor-ux306eux73feux5728ux5730}
+\subsection{仕様固定構造層 anchor の現在地}\label{ux4ed5ux69d8ux56faux5b9aux69cbux9020ux5c64-anchor-ux306eux73feux5728ux5730}
 
-ここまでで、仕様固定構造ドメインには三つの異なる状態がある。
+ここまでで、仕様固定構造層には三つの異なる状態がある。
 
 第一に、SAT / Bernoulli-CSP の形式層は、Lean 側でかなり強く閉じている。ここで閉じているのは、仕様から bad-event probability と drift を計算し、path measure、MGF product、Chernoff-KL bound、collapse / hitting-time wrapper へ接続する有限時間の定理鎖である。
 
-第二に、Mixed-CSP と Exp43c q-coloring は、経験的にも primary run を通った 仕様固定構造ドメイン anchor である。Mixed-CSP では、3-SAT と 3-NAE-SAT の混合により、raw count と drift-weighted coordinate の縮退を破り、事前登録された leave-one-mixture-out 検査で \texttt{L\_plus\_n} と \texttt{first\_moment} が raw baseline を上回った。さらに、同じ frozen Mixed-CSP package は 3 名の外部実行者による独立再実行で 3/3 clean success を返している。Exp43c q-coloring では、freeze 済み threshold-local window の上で、\texttt{fm\_plus\_n} が raw edge count / density / CNF-size baselines を leave-one-q-out で上回った。さらに Exp43c package も、3 名の外部実行者による再実行で、それぞれ 4,000 行、checked core mismatches 0、TIMEOUT 0、MALFORMED 0、および同じ qualitative support decision を返している。
+第二に、Mixed-CSP と Exp43c q-coloring は、経験的にも primary run を通った 仕様固定構造層 anchor である。Mixed-CSP では、3-SAT と 3-NAE-SAT の混合により、raw count と drift-weighted coordinate の縮退を破り、事前登録された leave-one-mixture-out 検査で \texttt{L\_plus\_n} と \texttt{first\_moment} が raw baseline を上回った。さらに、同じ frozen Mixed-CSP package は 3 名の外部実行者による独立再実行で 3/3 clean success を返している。Exp43c q-coloring では、freeze 済み threshold-local window の上で、\texttt{fm\_plus\_n} が raw edge count / density / CNF-size baselines を leave-one-q-out で上回った。さらに Exp43c package も、3 名の外部実行者による再実行で、それぞれ 4,000 行、checked core mismatches 0、TIMEOUT 0、MALFORMED 0、および同じ qualitative support decision を返している。
 
 第三に、Cardinality-SAT は、現時点では proposed / calibration extension であり、validated empirical anchor ではない。Exp44 pilot calibration は、heterogeneous drift family でも informative window の配置が難しいことを示したため、Cardinality-SAT を primary evidence として扱うには、新しい threshold-local preregistration が必要である。Exp44b はその fresh draft と calibration-v1 dry-run として開かれたが、これは review / calibration 候補であって、freeze package でも validation evidence でもない。
 
-この区別は重要である。仕様固定構造ドメインの現在の validated empirical support は Mixed-CSP と Exp43c q-coloring であり、Cardinality-SAT は Exp44 no-go history と Exp44b draft を持つ future validation candidate である。
+この区別は重要である。仕様固定構造層の現在の validated empirical support は Mixed-CSP と Exp43c q-coloring であり、Cardinality-SAT は Exp44 no-go history と Exp44b draft を持つ future validation candidate である。
 
 \subsection{Validated extension I: q-coloring}\label{validated-extension-i-q-coloring}
 
-SAT の外側に見える仕様固定構造ドメインの幅 extension として最初に検査されたのが q-coloring である。理由は、SAT と見た目が大きく異なり、graph coloring、統計物理、組合せ最適化に接続するからである。
+SAT の外側に見える仕様固定構造層の幅 extension として最初に検査されたのが q-coloring である。理由は、SAT と見た目が大きく異なり、graph coloring、統計物理、組合せ最適化に接続するからである。
 
 q-coloring の fixed-coloring edge exposure では、状態空間を \([q]^n\) とし、edge \((u,v)\) が同色を禁じる。固定 coloring から見ると、ランダム edge が bad になる確率は
 
@@ -1016,7 +1016,7 @@ p_{q}=\frac{1}{q}
 d_{q} = -\log(1-1/q) = \log\frac{q}{q-1}.
 \]
 
-Lean 側では、q-coloring も Bernoulli-CSP template、edge-exposure path layer、Chernoff collapse wrapper に接続されている。ここでも重要なのは、graph-coloring family が SAT と別見えの対象でありながら、bad-edge drift という同じ 仕様固定構造ドメイン grammar に入る点である。
+Lean 側では、q-coloring も Bernoulli-CSP template、edge-exposure path layer、Chernoff collapse wrapper に接続されている。ここでも重要なのは、graph-coloring family が SAT と別見えの対象でありながら、bad-edge drift という同じ 仕様固定構造層 grammar に入る点である。
 
 ただし、経験的検査では注意が必要である。単一の \(q\) だけを見ると
 
@@ -1028,7 +1028,7 @@ L=m\log\frac{q}{q-1}
 
 このため、q-coloring cross-q feasibility では、primary endpoint を colorable / uncolorable とし、primary predictor を \(L\) と state-space size correction の組、または threshold-normalized \(L\) として設計するのが自然である。baseline は raw edge count、density、\(n\)、\(q\)、および必要に応じて encoding-size diagnostic を含める。primary split は leave-one-q-out または leave-one-threshold-band-out が望ましい。
 
-ここでも primary は solver cost ではない。colorability / feasibility である。solver metadata は diagnostic として残してよいが、仕様固定構造ドメインの主張を solver dynamics にすり替えない。
+ここでも primary は solver cost ではない。colorability / feasibility である。solver metadata は diagnostic として残してよいが、仕様固定構造層の主張を solver dynamics にすり替えない。
 
 初期 Exp43 / Exp43b の pilot calibration は、random CSP の sharp threshold を粗い grid で見に行く設計上の難しさを示した。そこで Exp43c では calibration / freeze / validation を分離した threshold-local protocol を用い、primary seed stream を calibration と分離して、\(q=3\),4,5 の leave-one-q-out 検査を行った。
 
@@ -1075,7 +1075,7 @@ fold-level でも H1 の方向は \(q=3\),4,5 のすべてで通った。ただ�
 
 この結果で特に重要なのは、単に \(q\) を logistic regression の特徴量として入れた tuple predictor が leave-one-q-out で弱かった点である。\texttt{fm\_plus\_n} は \(n\log q-L\) という theory-specified coordinate の中に \(q\) 依存を畳み込む。一方、\texttt{raw\_plus\_n\_q} や \texttt{cnf\_count\_plus\_n\_q} は \(q\) に自由係数を学習させるため、held-out q への外挿で壊れやすい。したがって Exp43c は、「\(q\) を追加特徴量として入れたから勝った」のではなく、「first-moment / drift coordinate として \(q\) 依存を事前に組み込んだ座標が外挿で機能した」ことを示している。
 
-このため、q-coloring によって 仕様固定構造ドメインは SAT / NAE-SAT mixed CSP に閉じず、graph-coloring family にも広がった。ただし、それでも universal law の確立ではない。正確には、SAT 以外に見える独立 family で、同じ first-moment / drift-weighted coordinate が frozen threshold-local window 内で out-of-sample に効いた、という primary empirical support である。
+このため、q-coloring によって 仕様固定構造層は SAT / NAE-SAT mixed CSP に閉じず、graph-coloring family にも広がった。ただし、それでも universal law の確立ではない。正確には、SAT 以外に見える独立 family で、同じ first-moment / drift-weighted coordinate が frozen threshold-local window 内で out-of-sample に効いた、という primary empirical support である。
 
 \subsection{Proposed extension II: Cardinality-SAT and stress extensions}\label{proposed-extension-ii-cardinality-sat-and-stress-extensions}
 
@@ -1091,9 +1091,9 @@ q-coloring の次に有用なのは、Cardinality-SAT や exactly-one SAT のよ
 
 Exp44 Cardinality-SAT の pilot calibration も、solver / verifier / runtime path は clean であったが、current grid は freeze-ready ではない。特に low-drift mixtures では、precommitted fine grid でも informative band が一点に留まり、さらなる tuning は新しい Exp44b preregistration を必要とした。現在、Exp44b は fresh threshold-local draft と calibration-v1 config まで開かれている。dry-run では \texttt{4800} planned instances / \texttt{96} cells が確認されたが、solver run、freeze closeout、primary data はまだ存在しない。このため、Cardinality-SAT は現時点では validated empirical anchor ではなく、review 後の calibration-only execution から始めるべき proposed stress extension である。
 
-\subsection{仕様固定構造ドメイン anchor の限界}\label{ux4ed5ux69d8ux56faux5b9aux69cbux9020ux30c9ux30e1ux30a4ux30f3-anchor-ux306eux9650ux754c}
+\subsection{仕様固定構造層 anchor の限界}\label{ux4ed5ux69d8ux56faux5b9aux69cbux9020ux5c64-anchor-ux306eux9650ux754c}
 
-仕様固定構造ドメイン anchor は構造持続の収支原理の中で最も硬い証拠層である。しかし、次の限界を持つ。
+仕様固定構造層 anchor は構造持続の収支原理の中で最も硬い証拠層である。しかし、次の限界を持つ。
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -1107,34 +1107,34 @@ Exp44 Cardinality-SAT の pilot calibration も、solver / verifier / runtime pa
 \item
   feasibility と solver cost は別の問いである。
 \item
-  finite-horizon exposure bound は、無限時間の ergodic law や threshold theorem そのものではない。 \# 仕様固定構造ドメイン が広がっても、独立再現や異質ドメインへの写像なしに universal law は確立しない。
+  finite-horizon exposure bound は、無限時間の ergodic law や threshold theorem そのものではない。 \# 仕様固定構造層 が広がっても、独立再現や異質ドメインへの写像なしに universal law は確立しない。
 \end{enumerate}
 
 したがって、本節の正確な結論は次である。
 
 \begin{quote}
-SAT / Bernoulli-CSP、Mixed-CSP、Exp43c q-coloring は、構造持続の収支原理が自然測度と bad-event exposure の上で強く閉じる 仕様固定構造ドメイン universality-class candidate を与える。Cardinality-SAT は、その幅をさらに広げるための proposed stress extension であり、現時点では Exp44b の review / calibration gate を必要とする draft-stage anchor である。
+SAT / Bernoulli-CSP、Mixed-CSP、Exp43c q-coloring は、構造持続の収支原理が自然測度と bad-event exposure の上で強く閉じる 仕様固定構造層 universality-class candidate を与える。Cardinality-SAT は、その幅をさらに広げるための proposed stress extension であり、現時点では Exp44b の review / calibration gate を必要とする draft-stage anchor である。
 \end{quote}
 
 これは「普遍法則の完成」ではない。しかし、構造持続の収支原理が単なる比喩や分類ではなく、仕様から drift を計算し、finite-horizon bound と empirical prediction に接続できる一般形式であることを示す。
 
 5.8 次節への接続
 
-仕様固定構造ドメインでは、測度、drift、MGF product が比較的自然に与えられる。これに対して、LLM 推論、継続学習、software / SaaS のような構造推定ドメインでは、自然測度や path PMF は直ちには得られない。
+仕様固定構造層では、測度、drift、MGF product が比較的自然に与えられる。これに対して、LLM 推論、継続学習、software / SaaS のような構造推定層では、自然測度や path PMF は直ちには得られない。
 
-しかし、それは構造持続の収支原理が使えないという意味ではない。むしろ、構造推定ドメインでは \(r_{t}\) の observable indicator を慎重に設計し、期待値レベルまたは prospective prediction の形で検査する必要がある。次節では、LLM companion I / II の scope-as-repair, external metabolism, dependency-aware replay を、回復量 \(r_{t}\) の構造推定ドメイン anchor として整理する。
+しかし、それは構造持続の収支原理が使えないという意味ではない。むしろ、構造推定層では \(r_{t}\) の observable indicator を慎重に設計し、期待値レベルまたは prospective prediction の形で検査する必要がある。次節では、LLM companion I / II の scope-as-repair, external metabolism, dependency-aware replay を、回復量 \(r_{t}\) の構造推定層 anchor として整理する。
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \setcounter{enumi}{5}
 \tightlist
 \item
-  構造推定ドメイン anchors
+  構造推定層 anchors
 \end{enumerate}
 
-§5 の仕様固定構造ドメイン anchor では、自然測度、bad-event probability、path PMF、MGF product が問題仕様から与えられた。これに対して、LLM 推論、継続学習、software / SaaS のようなドメインでは、構造維持可能集合 \(V\) や測度 \(m\) を同じ強度で直接数えることは難しい。
+§5 の仕様固定構造層 anchor では、自然測度、bad-event probability、path PMF、MGF product が問題仕様から与えられた。これに対して、LLM 推論、継続学習、software / SaaS のようなドメインでは、構造維持可能集合 \(V\) や測度 \(m\) を同じ強度で直接数えることは難しい。
 
-本節では、このようなドメインを 構造推定ドメインと呼ぶ。構造推定ドメインでは、構造持続の収支原理
+本節では、このようなドメインを 構造推定層と呼ぶ。構造推定層では、構造持続の収支原理
 
 \[
 B_{n}=D_{\mathrm{obs}}-R_{\mathrm{obs}}^{\mathrm{rec}}
@@ -1157,11 +1157,11 @@ B_{n}=D_{\mathrm{obs}}-R_{\mathrm{obs}}^{\mathrm{rec}}
   recovery indicator を含む structure-aware model が、quality-blind / raw-count / loss-only baseline より out-of-sample に予測力を持つかを検査する。
 \end{enumerate}
 
-したがって、構造推定ドメインの証拠は仕様固定構造ドメイン より弱い。構造推定ドメインは、MGF product から高確率 bound を出す層ではない。むしろ、構造持続の収支原理が「何を構造消耗とし、何を回復として測るべきか」を予測し、その予測が観測量に対して基準モデルを上回るかを調べる層である。
+したがって、構造推定層の証拠は仕様固定構造層 より弱い。構造推定層は、MGF product から高確率 bound を出す層ではない。むしろ、構造持続の収支原理が「何を構造消耗とし、何を回復として測るべきか」を予測し、その予測が観測量に対して基準モデルを上回るかを調べる層である。
 
-\subsection{構造推定ドメインの証拠形式}\label{ux69cbux9020ux63a8ux5b9aux30c9ux30e1ux30a4ux30f3ux306eux8a3cux62e0ux5f62ux5f0f}
+\subsection{構造推定層の証拠形式}\label{ux69cbux9020ux63a8ux5b9aux5c64ux306eux8a3cux62e0ux5f62ux5f0f}
 
-構造推定ドメインでは、次のような操作的モデルを置く。
+構造推定層では、次のような操作的モデルを置く。
 
 \[
 B_{\mathrm{eff}} = D_{\mathrm{obs}} - R_{\mathrm{obs}}^{\mathrm{rec}},
@@ -1169,7 +1169,7 @@ B_{\mathrm{eff}} = D_{\mathrm{obs}} - R_{\mathrm{obs}}^{\mathrm{rec}},
 
 ここで \(D_{\mathrm{obs}}\) は観測された構造消耗指標、\(R_{\mathrm{obs}}^{\mathrm{rec}}\) は観測された回復指標である。\(B_{\mathrm{eff}}\) は、§2 の \(B_{n}\) と同じ強度の pathwise quantity ではない。あくまで、観測可能な代理量である。
 
-構造推定ドメインの最小検査は、次の形になる。
+構造推定層の最小検査は、次の形になる。
 
 \[
 \text{構造消耗条件が同程度のとき、回復指標が強いほど }Y\text{ が保たれるか。}
@@ -1184,7 +1184,7 @@ D_{\mathrm{obs}}\text{ だけ、または quality-blind baseline を上回るか
 \end{aligned}
 \]
 
-この形なら、構造推定ドメインでも事前登録された prospective prediction が可能である。ただし、次の主張はしない。
+この形なら、構造推定層でも事前登録された prospective prediction が可能である。ただし、次の主張はしない。
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -1203,7 +1203,7 @@ D_{\mathrm{obs}}\text{ だけ、または quality-blind baseline を上回るか
 
 \subsection{LLM companion I: scope-as-repair}\label{llm-companion-i-scope-as-repair}
 
-LLM companion I では、推論時の論理一貫性維持を観測量 \(Y\) とし、未整理の矛盾や競合値が有効推論経路を削るかを検査した。特に Exp40 / Exp42 / Exp41 は、構造推定ドメインにおける回復指標の設計として重要である。
+LLM companion I では、推論時の論理一貫性維持を観測量 \(Y\) とし、未整理の矛盾や競合値が有効推論経路を削るかを検査した。特に Exp40 / Exp42 / Exp41 は、構造推定層における回復指標の設計として重要である。
 
 Exp40 では、文脈長を 32K に固定し、\texttt{zero\_sanity}, \texttt{scoped}, \texttt{subtle}, \texttt{structural} を比較した。結果は次であった。
 
@@ -1251,7 +1251,7 @@ condition & correct & exact wrong-sum adoption \\
 
 \texttt{medium\_scope} は時間・データセット範囲を示すが、``ignore'' や ``use only'' のような明示的命令を含まない。にもかかわらず、ほぼ完全に repair した。さらに \texttt{weak\_scope} は、最小の source label だけを持つ条件であるが、裸の \texttt{subtle} に比べて wrong-sum adoption を大きく減らした。
 
-したがって、Exp42 が示す 構造推定ドメイン的な中核は、scope-as-repair のなかでも attribution-as-repair が大きな成分を担う、という点である。すなわち、競合値を「どの source から来たものか」として分離するだけでも、未整理上書きとして取り込まれる失敗が減る。
+したがって、Exp42 が示す 構造推定層的な中核は、scope-as-repair のなかでも attribution-as-repair が大きな成分を担う、という点である。すなわち、競合値を「どの source から来たものか」として分離するだけでも、未整理上書きとして取り込まれる失敗が減る。
 
 この結果は、構造持続の収支原理の \(r_{t}\) 側に対して次の示唆を与える。
 
@@ -1299,7 +1299,7 @@ ON vs OFF は \(p=0.0004\), Cohen's \(d=8.80\) であった。qwen3.5:27b の 30
 
 ただし、外部代謝 ON/OFF は、Exp40/42 の in-context scope-as-repair と同一機構ではない。共通しているのは、未整理な衝突を整理し、task-relevant な状態へ再配置するという観測上の帰結である。供給階層は異なる。
 
-また、gemma3:27b の自己代謝と、qwen3.5:27b + Claude Sonnet の外部代謝を同一条件として合算してはならない。前者は coupled process、後者は teacher-like external process を含む。したがって、LLM companion I の外部代謝結果は、構造推定ドメイン anchor として強い方向性を持つが、機構同定や普遍的効果サイズの主張ではない。
+また、gemma3:27b の自己代謝と、qwen3.5:27b + Claude Sonnet の外部代謝を同一条件として合算してはならない。前者は coupled process、後者は teacher-like external process を含む。したがって、LLM companion I の外部代謝結果は、構造推定層 anchor として強い方向性を持つが、機構同定や普遍的効果サイズの主張ではない。
 
 \subsection{LLM companion II: dependency-aware repair}\label{llm-companion-ii-dependency-aware-repair}
 
@@ -1329,13 +1329,13 @@ F-v2c は、前提と依存属性の関係を DAG として保持し、前提更
 
 F-multi は、現在知識と過去知識を別々の adapter に分離する。これは repair というより、保持と更新の干渉を部分空間で分ける buffering / reconfiguration 的な回復である。T5 時点の T1 保持が 0.500 まで上がったことは、空間分離が保持と更新の衝突を緩和しうることを示す。ただし、これは理想振り分け条件で得た上界 indicator であり、実運用性能ではない。
 
-LLM companion II が構造推定ドメインに与える教訓は、単なる reconfiguration と repair を分ける必要がある、という点である。LoRA は新しい信号に反応して表現を再構成するが、依存構造を自律的に修復するとは限らない。F-v2c は依存整合性を改善するが、旧知識保持を回復しない。F-multi は保持を一部改善するが、完全な dependency repair ではない。したがって、\(r_{t}\) は単一の「資源量」ではなく、どの種類の回復がどの構造消耗に効いているかを区別して測る必要がある。
+LLM companion II が構造推定層に与える教訓は、単なる reconfiguration と repair を分ける必要がある、という点である。LoRA は新しい信号に反応して表現を再構成するが、依存構造を自律的に修復するとは限らない。F-v2c は依存整合性を改善するが、旧知識保持を回復しない。F-multi は保持を一部改善するが、完全な dependency repair ではない。したがって、\(r_{t}\) は単一の「資源量」ではなく、どの種類の回復がどの構造消耗に効いているかを区別して測る必要がある。
 
 これは LLM companion II §7.5 の三役分離、すなわち parametric reconfiguration / external metabolism / response fidelity を、構造持続の収支原理側から \(r_{t}\) の indicator 階層として読み直したものである。M 補論 §3.5 は、この三役分離を support-side component decomposition として操作化する。
 
-\subsection{構造推定ドメインのまとめ}\label{ux69cbux9020ux63a8ux5b9aux30c9ux30e1ux30a4ux30f3ux306eux307eux3068ux3081}
+\subsection{構造推定層のまとめ}\label{ux69cbux9020ux63a8ux5b9aux5c64ux306eux307eux3068ux3081}
 
-LLM companion I / II は、仕様固定構造ドメインのような自然測度・MGF product を持たない。しかし、構造持続の収支原理の観点から見ると、どちらも同じ形の検査を行っている。
+LLM companion I / II は、仕様固定構造層のような自然測度・MGF product を持たない。しかし、構造持続の収支原理の観点から見ると、どちらも同じ形の検査を行っている。
 
 {\def\LTcaptype{table} % do not increment counter
 \begin{longtable}[]{@{}
@@ -1370,10 +1370,10 @@ LLM companion II F-multi & update / retention interference & adapter separation 
 この表から得られる保守的な結論は次である。
 
 \begin{quote}
-構造推定ドメインでは、構造持続の収支原理は pathwise concentration theorem としてではなく、構造消耗指標と回復指標の組が観測量を予測するかを検査する方法論として働く。
+構造推定層では、構造持続の収支原理は pathwise concentration theorem としてではなく、構造消耗指標と回復指標の組が観測量を予測するかを検査する方法論として働く。
 \end{quote}
 
-これは、構造推定ドメインを弱く見せるための制限ではない。むしろ、自然測度や path PMF がないドメインで主張強度を誤らないための規律である。構造推定ドメインの価値は、次の形で現れる。
+これは、構造推定層を弱く見せるための制限ではない。むしろ、自然測度や path PMF がないドメインで主張強度を誤らないための規律である。構造推定層の価値は、次の形で現れる。
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -1385,12 +1385,12 @@ LLM companion II F-multi & update / retention interference & adapter separation 
 \item
   介入の種類によって、どの \(r_{t}\) がどの loss に効くかを区別できる。
 \item
-  仕様固定構造ドメインの定理層とは別に、実ドメインでの recovery design を導ける。
+  仕様固定構造層の定理層とは別に、実ドメインでの recovery design を導ける。
 \end{enumerate}
 
 第四点は、単なる実装上の含意ではない。構造持続の収支原理は、consumption localization、recovery preservation、margin preservation、alternative-path preservation を共通座標に置くため、あるドメインで効いた維持設計を別ドメインの candidate intervention へ翻訳できる。たとえば、LLM の scope-as-repair は組織やソフトウェアでの責任境界・変更範囲の明示へ、継続学習の dependency-aware replay は制度変更や企業判断での下流再同期へ、repair / maintenance の margin は SaaS や運用系の局所復元余地へ転用できる。ただし、この転用は support ではない。転用先ドメインで写像と介入を凍結し、別データまたは future surface で検証して初めて support になる。
 
-§6.1 の非主張をまとめ直すと、構造推定ドメイン だけからは次を言ってはならない。
+§6.1 の非主張をまとめ直すと、構造推定層 だけからは次を言ってはならない。
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -1407,9 +1407,9 @@ LLM companion II F-multi & update / retention interference & adapter separation 
   universal law が確立したとは言わない。
 \end{enumerate}
 
-これと別に、non-CSP empirical 側には loss-only observational branch がある。Backblaze drive reliability の Q4 2025 v1 は高い ranking signal を持ちながら frozen log-loss rule では no-support で終わった。一方、Q3 2025 v2 は、fresh untouched archive 上の calibration-aware redesign として separately frozen され、same-domain observational loss-only support を通った。ただしこれは回復量の evidence ではなく、構造推定ドメインの scope / metabolism anchors とも別 tier である。ここで増えたのは「industrial reliability domain で loss-only operationalization が観測可能である」という限定的な support であって、non-CSP empirical gate 全体の閉鎖ではない。
+これと別に、non-CSP empirical 側には loss-only observational branch がある。Backblaze drive reliability の Q4 2025 v1 は高い ranking signal を持ちながら frozen log-loss rule では no-support で終わった。一方、Q3 2025 v2 は、fresh untouched archive 上の calibration-aware redesign として separately frozen され、same-domain observational loss-only support を通った。ただしこれは回復量の evidence ではなく、構造推定層の scope / metabolism anchors とも別 tier である。ここで増えたのは「industrial reliability domain で loss-only operationalization が観測可能である」という限定的な support であって、non-CSP empirical gate 全体の閉鎖ではない。
 
-この意味で、仕様固定構造ドメインと 構造推定ドメインは競合しない。仕様固定構造ドメインは、自然測度と exposure law がある領域で構造持続の収支原理を強く閉じる。構造推定ドメインは、自然測度が直ちに得られない領域で、どの構造消耗指標 / 回復指標が予測力を持つかを検査する。
+この意味で、仕様固定構造層と 構造推定層は競合しない。仕様固定構造層は、自然測度と exposure law がある領域で構造持続の収支原理を強く閉じる。構造推定層は、自然測度が直ちに得られない領域で、どの構造消耗指標 / 回復指標が予測力を持つかを検査する。
 
 \subsection{次節への接続}\label{ux6b21ux7bc0ux3078ux306eux63a5ux7d9a-2}
 
@@ -1418,9 +1418,9 @@ LLM companion II F-multi & update / retention interference & adapter separation 
 \begin{itemize}
 \tightlist
 \item
-  仕様固定構造ドメイン: 仕様から drift, MGF product, finite-horizon bound へ進む。
+  仕様固定構造層: 仕様から drift, MGF product, finite-horizon bound へ進む。
 \item
-  構造推定ドメイン: observable consumption / recovery indicator から prospective prediction へ進む。
+  構造推定層: observable consumption / recovery indicator から prospective prediction へ進む。
 \end{itemize}
 
 次に必要なのは、この構造持続の収支原理が既存理論とどう関係するかを整理することである。非平衡熱力学、散逸構造、queueing theory の Lyapunov drift、確率制御、情報理論はいずれも、consumption / recovery / resource / drift を扱う既存枠組みを持つ。§7 では、これらとの同じ点と違う点を、単なる analogy ではなく、correspondence と formal reduction の強度差を明示しながら整理する。
@@ -1661,7 +1661,7 @@ stabilizing policy & \(\mathbb E[b_t]\le 0\) を保つ policy \\
 
 の形に一意化されることを示した。これは、Shannon 情報量や KL divergence が対数比から生じるのと同じ数学的背景を持つ。
 
-また、SAT / Bernoulli-CSP の Chernoff-KL 出口では、MGF 最適化から Bernoulli relative entropy が現れる。これは、仕様固定構造ドメインでは単なる比喩ではなく、Lean 上でも閉じた実際の情報理論的計算である。
+また、SAT / Bernoulli-CSP の Chernoff-KL 出口では、MGF 最適化から Bernoulli relative entropy が現れる。これは、仕様固定構造層では単なる比喩ではなく、Lean 上でも閉じた実際の情報理論的計算である。
 
 しかし、構造持続の収支原理は情報理論そのものではない。情報理論は、通信、符号化、不確実性、分布間距離を扱う。構造持続の収支原理は、事前固定された対象構造を維持できる状態集合の比を扱う。両者は対数比という共通形式を持つが、何を測っているかが異なる。
 
@@ -1681,7 +1681,7 @@ entropy of uncertainty & 構造維持可能性の残存量とは別物 \\
 \end{longtable}
 }
 
-したがって、情報理論との関係は G6-b が基本である。ただし、Bernoulli-CSP の Chernoff-KL 部分については、すでに G6-c に近い局所的な formal embedding がある。すなわち、bad-count lower-tail bound の出口が Bernoulli relative entropy として閉じることが、仕様固定構造ドメインの定理鎖の一部になっている。
+したがって、情報理論との関係は G6-b が基本である。ただし、Bernoulli-CSP の Chernoff-KL 部分については、すでに G6-c に近い局所的な formal embedding がある。すなわち、bad-count lower-tail bound の出口が Bernoulli relative entropy として閉じることが、仕様固定構造層の定理鎖の一部になっている。
 
 \subsection{本稿の独自性: operational discipline}\label{ux672cux7a3fux306eux72ecux81eaux6027-operational-discipline}
 
@@ -1703,7 +1703,7 @@ entropy of uncertainty & 構造維持可能性の残存量とは別物 \\
 \item
   経路ごとの恒等式、期待値レベルの傾向、高確率境界、観測的予測を混同しない。
 \item
-  仕様固定構造ドメイン / 構造推定ドメインの主張強度を分ける。
+  仕様固定構造層 / 構造推定層の主張強度を分ける。
 \item
   universal law declaration を、独立再現と formal mapping なしに行わない。
 \end{enumerate}
@@ -1755,7 +1755,7 @@ queueing / Foster-Lyapunov drift & G6-c (minimal algebraic embedding) & \(b_t=W(
 構造持続の収支原理は、熱力学や情報理論を置き換えるものではない。対象構造を事前固定したうえで、構造消耗量と回復量の差し引きが構造維持可能性をどう支配するかを記述する、cross-domain な drift-and-balance framework である。
 \end{quote}
 
-この位置づけにより、§5 の仕様固定構造ドメイン anchor、§6 の構造推定ドメイン anchor、そして本節の既存理論対応は、一つの階層に収まる。すなわち、仕様固定構造ドメインでは formal theorem に近づき、構造推定ドメインでは observational prediction に留まり、既存理論との関係では analogy / correspondence / formal reduction を明示的に分ける。
+この位置づけにより、§5 の仕様固定構造層 anchor、§6 の構造推定層 anchor、そして本節の既存理論対応は、一つの階層に収まる。すなわち、仕様固定構造層では formal theorem に近づき、構造推定層では observational prediction に留まり、既存理論との関係では analogy / correspondence / formal reduction を明示的に分ける。
 
 \section{限界と次段階}\label{ux9650ux754cux3068ux6b21ux6bb5ux968e}
 
@@ -1787,9 +1787,9 @@ m(V^{(n)})&=m(V^{(0)})e^{-B_{n}}
 
 第二に、期待値レベルの傾向である。\(b_{t}\) を確率変数として扱えるなら、\(\mathbb E[b_{t}]\) の符号は、累積純消耗量の期待中心がどちらへ動くかを与える。これは high-probability collapse ではなく、中心の方向に関する主張である。
 
-第三に、concentration 条件つきの finite-horizon bound である。bounded increments、MGF product、Chernoff / KL profile、margin 条件などが追加される場合には、collapse / stopped-collapse / hitting-time の確率境界へ進める。これは仕様固定構造ドメイン で強く閉じるが、構造推定ドメインでは一般に得られない。
+第三に、concentration 条件つきの finite-horizon bound である。bounded increments、MGF product、Chernoff / KL profile、margin 条件などが追加される場合には、collapse / stopped-collapse / hitting-time の確率境界へ進める。これは仕様固定構造層 で強く閉じるが、構造推定層では一般に得られない。
 
-第四に、仕様固定構造ドメイン / 構造推定ドメインの主張強度の分離である。仕様固定構造ドメインは自然測度と exposure law があるため、formal theorem に近い。構造推定ドメインは observable consumption / recovery indicator による prospective prediction の層であり、同じ強度の theorem ではない。
+第四に、仕様固定構造層 / 構造推定層の主張強度の分離である。仕様固定構造層は自然測度と exposure law があるため、formal theorem に近い。構造推定層は observable consumption / recovery indicator による prospective prediction の層であり、同じ強度の theorem ではない。
 
 8.1.1 Lean で閉じている部分
 
@@ -1838,7 +1838,7 @@ repair balance & SBP repair & finite-prefix damage-minus-repair skeleton とし�
 
 また、repair / maintenance 側の \texttt{margin} は \(B-D_{n}\) という remaining margin であり、構造持続の最小形式の資源項 \(M\) と同一ではない。この区別を消すと、finite-prefix damage balance と operational resource mapping が混同される。
 
-したがって Lean が閉じているのは、構造持続の収支原理の代数核である。任意ドメインで自然な \(m\) が一意に定まること、\(r_{t}\) が観測可能であること、構造推定ドメインの repair-like effects が因果機構として同定されること、あるいは構造持続の収支原理が普遍法則として確立したことは、Lean の主張範囲外である。
+したがって Lean が閉じているのは、構造持続の収支原理の代数核である。任意ドメインで自然な \(m\) が一意に定まること、\(r_{t}\) が観測可能であること、構造推定層の repair-like effects が因果機構として同定されること、あるいは構造持続の収支原理が普遍法則として確立したことは、Lean の主張範囲外である。
 
 \subsection{本稿が確定していない部分}\label{ux672cux7a3fux304cux78baux5b9aux3057ux3066ux3044ux306aux3044ux90e8ux5206}
 
@@ -1852,7 +1852,7 @@ repair balance & SBP repair & finite-prefix damage-minus-repair skeleton とし�
 \item
   あらゆるドメインで自然な \(V\), \(m\), \(d_{t}\), \(r_{t}\) が一意に定まるとは主張しない。
 \item
-  \(r_{t}\) の真値を 構造推定ドメインの観測指標から直接測定できるとは主張しない。
+  \(r_{t}\) の真値を 構造推定層の観測指標から直接測定できるとは主張しない。
 \item
   期待値レベルの傾向から high-probability bound が無条件に従うとは主張しない。
 \item
@@ -1873,9 +1873,9 @@ repair balance & SBP repair & finite-prefix damage-minus-repair skeleton とし�
 
 本稿の枠組みは、次のような形で反証または制限される。
 
-第一に、仕様固定構造ドメインでは、drift-weighted coordinate が raw count や encoding-size baseline を上回らない独立 family が見つかれば、Bernoulli-CSP universality-class claim は弱まる。Exp43c q-coloring ではこの反証経路を実際に primary validation として検査し、\texttt{fm\_plus\_n} が raw / density / CNF-size baselines を上回った。したがって q-coloring は現在では positive support である。一方、Cardinality-SAT の threshold-local test はまだ draft / calibration-stage extension であり、validation evidence ではない。
+第一に、仕様固定構造層では、drift-weighted coordinate が raw count や encoding-size baseline を上回らない独立 family が見つかれば、Bernoulli-CSP universality-class claim は弱まる。Exp43c q-coloring ではこの反証経路を実際に primary validation として検査し、\texttt{fm\_plus\_n} が raw / density / CNF-size baselines を上回った。したがって q-coloring は現在では positive support である。一方、Cardinality-SAT の threshold-local test はまだ draft / calibration-stage extension であり、validation evidence ではない。
 
-第二に、構造推定ドメインでは、consumption condition を揃えたうえで recovery indicator が観測量 \(Y\) を改善しない、または structure-aware model が quality-blind baseline を out-of-sample に上回らないなら、そのドメインでの \(R_{\mathrm{obs}}^{\mathrm{rec}}\) 読みは失敗する。より強い検査では、SP-only model が simple baseline を上回るだけでなく、既存専門モデルまたは強い domain baseline に構造持続指標を加えた baseline + SP が、domain baseline 単独を out-of-sample に改善するかを見る。ここで SP は structural persistence coordinate、すなわち本稿の consumption / recovery / margin 指標群を指す。構造持続の収支原理の経験的価値は、各ドメインの最強モデルを置き換えることではなく、既存予測枠組みに対して追加的な consumption / recovery 座標を与えることにある。したがって、外向けの価値は「凍結検証」そのものではなく、凍結された写像による予測力の増分検証である。
+第二に、構造推定層では、consumption condition を揃えたうえで recovery indicator が観測量 \(Y\) を改善しない、または structure-aware model が quality-blind baseline を out-of-sample に上回らないなら、そのドメインでの \(R_{\mathrm{obs}}^{\mathrm{rec}}\) 読みは失敗する。より強い検査では、SP-only model が simple baseline を上回るだけでなく、既存専門モデルまたは強い domain baseline に構造持続指標を加えた baseline + SP が、domain baseline 単独を out-of-sample に改善するかを見る。ここで SP は structural persistence coordinate、すなわち本稿の consumption / recovery / margin 指標群を指す。構造持続の収支原理の経験的価値は、各ドメインの最強モデルを置き換えることではなく、既存予測枠組みに対して追加的な consumption / recovery 座標を与えることにある。したがって、外向けの価値は「凍結検証」そのものではなく、凍結された写像による予測力の増分検証である。
 
 第三に、既存理論との対応では、formal reduction と呼んだものが元理論の仮定を保持していない、または単なる記号置換にすぎないと判明すれば、G6-c claim は G6-b correspondence へ下げなければならない。
 
@@ -1888,7 +1888,7 @@ repair balance & SBP repair & finite-prefix damage-minus-repair skeleton とし�
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  threshold-local 仕様固定構造ドメイン extension の継続。 SAT / NAE mixed CSP の次に、Exp43c q-coloring は、drift-weighted / first-moment coordinate が raw edge count / density / encoding-size baseline を上回るかを検査し、primary validation として通過した。次に仕様固定構造ドメインの幅をさらに広げる場合は、Exp44b Cardinality-SAT のような family で同じ基準を検査する。ただし、random CSP の sharp threshold を粗い grid で見る設計は避け、calibration / freeze / validation を分離した threshold-local protocol を維持する必要がある。Exp44b は現時点では draft / dry-run のみであり、primary 実行には calibration closeout と別途 freeze package が必要である。
+  threshold-local 仕様固定構造層 extension の継続。 SAT / NAE mixed CSP の次に、Exp43c q-coloring は、drift-weighted / first-moment coordinate が raw edge count / density / encoding-size baseline を上回るかを検査し、primary validation として通過した。次に仕様固定構造層の幅をさらに広げる場合は、Exp44b Cardinality-SAT のような family で同じ基準を検査する。ただし、random CSP の sharp threshold を粗い grid で見る設計は避け、calibration / freeze / validation を分離した threshold-local protocol を維持する必要がある。Exp44b は現時点では draft / dry-run のみであり、primary 実行には calibration closeout と別途 freeze package が必要である。
 \item
   G4 non-CSP anchors の次 iteration。 queueing / Foster-Lyapunov drift の最小代数的埋め込みは、補論と Lean の LyapunovBalanceEmbedding によって G6-c iteration 1 として閉じている。これを受けて、G4 v1 では queueing / Foster-Lyapunov を primary anchor、serial reliability と constant-fraction decay を loss-only control anchors として置く。この G4 v1 package は補論「非CSP古典例における構造持続の収支原理の最小アンカー」に整理されている。さらに G4 v2 iteration 1 として、repair / maintenance reliability-fatigue balance を RepairMaintenanceBalance と同補論 §11 に整理した。次に進む場合は、positive recurrence / geometric ergodicity への G6-c iteration 2、stochastic reliability / optimal maintenance theorem への拡張、または maintenance log を用いた operational pilot を、明示的に scope lock する必要がある。
 \end{enumerate}
@@ -1901,9 +1901,9 @@ repair balance & SBP repair & finite-prefix damage-minus-repair skeleton とし�
 \item
   Lean theorem map の reader-facing 整理。 既存 Lean theorem がどの paper claim を支えるかを、命名、表、wrapper theorem として読みやすくする。新 theorem を増やすことより、主張と仮定の対応を明確にすることが重要である。
 \item
-  構造推定ドメインの新規 prospective test。 scope-as-repair や dependency-aware repair が、別タスク・別モデル・別ドメインでも baseline を上回るかを事前登録で検査する。
+  構造推定層の新規 prospective test。 scope-as-repair や dependency-aware repair が、別タスク・別モデル・別ドメインでも baseline を上回るかを事前登録で検査する。
 \item
-  independent replication。 Level 3 universal-law credibility には、内部再現だけでは足りない。外部研究者による再現、批判、失敗例の報告が必要である。 現時点では Mixed-CSP について、3 名の外部実行者が同一 frozen package を再実行し、3/3 clean success を返している。これは Mixed-CSP package に限れば requested outside-group rerun set の完了であり、G7 replication gate に対する大きな前進である。さらに Exp43c q-coloring についても、3 名の外部実行者が同一 frozen package を再実行し、それぞれ 4,000 行、checked core mismatches 0、TIMEOUT 0、MALFORMED 0、および同じ qualitative support decision を返している。したがって仕様固定構造ドメインでは、二つの frozen package について著者環境外の再実行成功が得られている。ただし、これはプログラム全体の replication 完了ではなく、non-CSP branch、observational branch、および追加の独立 review は別の gate として残る。
+  independent replication。 Level 3 universal-law credibility には、内部再現だけでは足りない。外部研究者による再現、批判、失敗例の報告が必要である。 現時点では Mixed-CSP について、3 名の外部実行者が同一 frozen package を再実行し、3/3 clean success を返している。これは Mixed-CSP package に限れば requested outside-group rerun set の完了であり、G7 replication gate に対する大きな前進である。さらに Exp43c q-coloring についても、3 名の外部実行者が同一 frozen package を再実行し、それぞれ 4,000 行、checked core mismatches 0、TIMEOUT 0、MALFORMED 0、および同じ qualitative support decision を返している。したがって仕様固定構造層では、二つの frozen package について著者環境外の再実行成功が得られている。ただし、これはプログラム全体の replication 完了ではなく、non-CSP branch、observational branch、および追加の独立 review は別の gate として残る。
 \end{enumerate}
 
 8.5 統合版との関係
@@ -1922,11 +1922,11 @@ repair balance & SBP repair & finite-prefix damage-minus-repair skeleton とし�
 \item
   条件つき導出補論: 条件つき導出と弱依存境界。
 \item
-  仕様固定構造ドメイン補論群: SAT / Bernoulli-CSP / Mixed-CSP / Exp43c q-coloring、および Cardinality-SAT などの proposed stress extensions。
+  仕様固定構造層補論群: SAT / Bernoulli-CSP / Mixed-CSP / Exp43c q-coloring、および Cardinality-SAT などの proposed stress extensions。
 \item
   G4 非CSP補論群: queueing / reliability / decay / repair-maintenance による古典例への最小埋め込み。
 \item
-  LLM companion I / II: 構造推定ドメイン observational anchors。
+  LLM companion I / II: 構造推定層 observational anchors。
 \item
   M 補論: \(r_{t}\) や回復能力を実ドメインで測る operational mapping。
 \end{enumerate}
@@ -1959,7 +1959,7 @@ m(V^{(n)})&=m(V^{(0)})e^{-B_{n}}.
 
 この式は、構造持続の最小核を \(r_{t}=0\) の特例として回収し、回復を含む場合には回復量 \(r_{t}\) によって崩壊、維持、回復の三 regime を同じ座標上で扱う。期待値レベルでは \(\mathbb E[b_{t}]\) の符号が傾向を与え、追加の concentration 条件があれば finite-horizon collapse / hitting-time bound へ進める。
 
-仕様固定構造ドメインでは、SAT / Bernoulli-CSP / Mixed-CSP / Exp43c q-coloring が、自然測度と bad-event exposure の上でこの構造を強く閉じる。Cardinality-SAT は、この幅をさらに広げるための proposed stress extension であり、現時点では Exp44 no-go history と Exp44b draft / dry-run を持つ validation candidate に留まる。構造推定ドメインでは、LLM companion I / II の scope-as-repair、external metabolism、dependency-aware replay が、回復量の observable indicator として働く。ただし、構造推定ドメインは high-probability theorem ではなく、observational prediction の層である。
+仕様固定構造層では、SAT / Bernoulli-CSP / Mixed-CSP / Exp43c q-coloring が、自然測度と bad-event exposure の上でこの構造を強く閉じる。Cardinality-SAT は、この幅をさらに広げるための proposed stress extension であり、現時点では Exp44 no-go history と Exp44b draft / dry-run を持つ validation candidate に留まる。構造推定層では、LLM companion I / II の scope-as-repair、external metabolism、dependency-aware replay が、回復量の observable indicator として働く。ただし、構造推定層は high-probability theorem ではなく、observational prediction の層である。
 
 既存理論との関係では、熱力学や情報理論とは analogy / correspondence を持ち、queueing / Lyapunov drift とは最小代数的な formal embedding を持つ。さらに、serial reliability と constant-fraction decay は回復量を含まない指数核の非CSP対照アンカーとして働き、repair / maintenance balance は回復量 \(r_{t}\) を非CSP repair-maintenance anchor として明示する。しかし、本稿はこれらを置き換えない。本稿の役割は、対象構造を事前固定したうえで、何が構造を削り、何がそれを補い、どの収支を越えると崩壊へ向かうかを、一つのドリフトと収支の枠組みとして記述することである。
 
@@ -1967,7 +1967,7 @@ m(V^{(n)})&=m(V^{(0)})e^{-B_{n}}.
 
 この非CSP側の最も強い安全な言い方は、queueing / Foster-Lyapunov drift を中心とする restricted drift-based stability class における \textbf{conditional law-side bridge} である。これは、構造持続の収支原理が一般 non-CSP universal law だと言うことではない。むしろ、自然な \(m\)、観測可能な \(r_{t}\)、条件つき collapse / hitting boundary が揃う限定クラスでは、構造持続の収支原理が既存安定性理論の内部に law-side に近い形で埋め込まれる、と言うのである。Repair / maintenance balance は、その class を empirical \(r_{t}\) 側へ広げる near-bridge repair-maintenance anchor である。
 
-非CSP empirical 側では、Backblaze v2 が calibration-aware loss-only design として same-domain observational support を与えた一方、Backblaze v1 は closed no-support のまま残っている。この組は、構造持続の収支原理の loss-only operationalization が industrial reliability domain でも観測可能であることを示すが、その証拠の重みは仕様固定構造ドメイン primary や独立再現と同じではない。ここで重要なのは、v1 を消すことではなく、calibration を明示した frozen redesign が fresh archive では通りうることを記録することである。
+非CSP empirical 側では、Backblaze v2 が calibration-aware loss-only design として same-domain observational support を与えた一方、Backblaze v1 は closed no-support のまま残っている。この組は、構造持続の収支原理の loss-only operationalization が industrial reliability domain でも観測可能であることを示すが、その証拠の重みは仕様固定構造層 primary や独立再現と同じではない。ここで重要なのは、v1 を消すことではなく、calibration を明示した frozen redesign が fresh archive では通りうることを記録することである。
 
-したがって、本稿は普遍法則の最終宣言ではない。より正確には、構造持続理論を universal-law candidate として強化するための主理論層である。Exp43c q-coloring により、SAT 以外に見える仕様固定構造ドメイン family への幅は一段広がった。また、Mixed-CSP package については、3 名の外部実行者による独立再実行が 3/3 clean success を返しており、Exp43c q-coloring package についても、3 名の外部実行者による独立再実行が 3/3 clean success を返している。したがって仕様固定構造ドメインでは、二つの frozen package で著者環境外でも qualitative support decision が再現されることを示している。今後の決定的な進展は、さらなる異質 family、追加の独立 review、non-CSP formal embedding、および構造推定ドメインの前向き検査によって与えられる。
+したがって、本稿は普遍法則の最終宣言ではない。より正確には、構造持続理論を universal-law candidate として強化するための主理論層である。Exp43c q-coloring により、SAT 以外に見える仕様固定構造層 family への幅は一段広がった。また、Mixed-CSP package については、3 名の外部実行者による独立再実行が 3/3 clean success を返しており、Exp43c q-coloring package についても、3 名の外部実行者による独立再実行が 3/3 clean success を返している。したがって仕様固定構造層では、二つの frozen package で著者環境外でも qualitative support decision が再現されることを示している。今後の決定的な進展は、さらなる異質 family、追加の独立 review、non-CSP formal embedding、および構造推定層の前向き検査によって与えられる。
 \end{document}

@@ -52,7 +52,7 @@ SAT/CSP 系の個別 OSF 公開リンクは v1.1 archive snapshot を指す。v2
 - sha256: `2c0aedb80b3e445638dedbeb996cbc5f1abdbdad0e7e8f91dd02b9da250ee8fb`
 - manifest sha256: `f9891a9c44a71f22e9285aba3ccee1be44b5f6dccdd79e5ed76750298117b288`
 - OSF file versions: zip v4, manifest v4
-- scope: current v2 main theory spine, balance-principle supplements, conditional derivation supplement, LLM companions, Lean mapping, public overview, data index, patent notice, citation metadata, and license note. The manifest and public guides use the reader-facing order: construction map, integrated overview, Paper 1, Paper 2, operational discipline, specification-fixed finite-CSP, structurally inferred LLM, resource term \(M\), existing-theory bridges, and Lean / technical details. The v4 refresh adopts the observability-layer terminology: specification-fixed structural domain, conditional structural-embedding domain, and structurally inferred domain.
+- scope: current v2 main theory spine, balance-principle supplements, conditional derivation supplement, LLM companions, Lean mapping, public overview, data index, patent notice, citation metadata, and license note. The manifest and public guides use the reader-facing order: construction map, integrated overview, Paper 1, Paper 2, operational discipline, specification-fixed finite-CSP layer, structural-inference LLM layer, resource term \(M\), existing-theory bridges, and Lean / technical details. The v4 refresh recorded the first observability-layer terminology; this local post-v4 draft further sharpens the reader-facing labels to specification-fixed structural layer, conditional structural-embedding layer, and structural-inference layer.
 
 ## Canonical Metadata Packet
 

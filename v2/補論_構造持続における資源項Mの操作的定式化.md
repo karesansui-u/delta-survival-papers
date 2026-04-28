@@ -12,7 +12,7 @@
 \]
 と書き直す。
 
-本補論の役割は、普遍法則そのものを主張することではなく、構造消耗量と回復量の収支を現実ドメインへ写すときの $M$ 側の操作化を与えることである。その操作的帰結として、同じ $L$、同じ raw resource $R$、同じ scalar $M_{\mathrm{total}}$ のもとでも、維持能力成分の構成が異なれば、最初に強化すべき成分は異なる、という intervention-ranking 型の検査標的が得られる。本補論はこの標的を software / SaaS を最初の構造推定ドメインとして具体化し、$\rho_i$、$\Phi$、$A_j$ の候補族に対する頑健性検査を含む、事前固定可能な経験的検証プロトコルを与える。
+本補論の役割は、普遍法則そのものを主張することではなく、構造消耗量と回復量の収支を現実ドメインへ写すときの $M$ 側の操作化を与えることである。その操作的帰結として、同じ $L$、同じ raw resource $R$、同じ scalar $M_{\mathrm{total}}$ のもとでも、維持能力成分の構成が異なれば、最初に強化すべき成分は異なる、という intervention-ranking 型の検査標的が得られる。本補論はこの標的を software / SaaS を最初の構造推定層として具体化し、$\rho_i$、$\Phi$、$A_j$ の候補族に対する頑健性検査を含む、事前固定可能な経験的検証プロトコルを与える。
 
 本補論は新しい普遍法則の証明ではない。また、経験的 pilot を完了した論文でもない。本補論の位置づけは、構造持続の収支原理の回復量・資源入力を実ドメインで測るための support-side operational mapping である。
 
@@ -65,7 +65,7 @@ Paper 1 の最小形式 $S = M e^{-L}$ にはもう一つの側があり、そ�
 - 本補論では**介入順位予測**を、維持能力成分の分解の操作的帰結として一つの検査標的に置く。崩壊プロファイルや時間発展主張は後続の拡張とみなす。
 - 本補論は最初のドメインとしてソフトウェア / SaaS を置き、four-domain comparison や普遍理論の宣言には進まない。
 - 本補論は Paper 1 §3 の対数比の一意性定理と同じ設計原理 (Cauchy 関数方程式と連続性から一意関数形を強制する) を M 側に移植する候補を持つ。§2.5 では、この表現補題候補を本補論の短い theoretical pointer として置き、証明と公理列挙の詳細は別稿の補論に委ねる。
-- 本補論は仕様固定構造ドメインの普遍法則宣言を行わない。ソフトウェアは構造推定ドメインとして扱う。
+- 本補論は仕様固定構造層の普遍法則宣言を行わない。ソフトウェアは構造推定層として扱う。
 
 ここでいう介入順位予測とは、同じ L、同じ R、同じスカラー量 $M_{\mathrm{total}}$ のもとで、異なる維持能力成分の構成を持つ二つの系では、有効な介入の順位が異なるという予測である。これは静学式 $S = \Phi(M) e^{-L}$ の範囲で検査可能であり、補論B の手順 4.5 (基準モデルに対する追加予測力) に直接対応する。
 
@@ -470,15 +470,15 @@ LLM companion I では、これは in-context scope marker または外部代謝
 
 4. Software / SaaS における写像
 
-本補論の最初の具体ドメインは、software / SaaS / 継続運用される業務システムである。この選択は、ソフトウェアが最も普遍的な対象であるという主張ではない。むしろ、本補論の目的である $M$ の操作的定式化にとって、software / SaaS が扱いやすい 構造推定ドメインだからである。
+本補論の最初の具体ドメインは、software / SaaS / 継続運用される業務システムである。この選択は、ソフトウェアが最も普遍的な対象であるという主張ではない。むしろ、本補論の目的である $M$ の操作的定式化にとって、software / SaaS が扱いやすい 構造推定層だからである。
 
 理由は三つある。第一に、維持したい機能 $F$ と、それを担う構造 $\Sigma$ を比較的具体的に書ける。第二に、障害、変更、rollback、MTTR、lead time、deploy history などの観測ログが存在しうる。第三に、介入が内部 component ($I_{\mathrm{buffer}}, I_{\mathrm{recovery}}, I_{\mathrm{reconfiguration}}$) と外部供給 channel ($I_{\mathrm{ext}\to\mathrm{buffer}}, I_{\mathrm{ext}\to\mathrm{recovery}}, I_{\mathrm{ext}\to\mathrm{reconfiguration}}$) として比較的自然に定義できる。
 
-4.1 構造推定ドメインとしての位置づけ
+4.1 構造推定層としての位置づけ
 
-Software / SaaS は、SAT や Mixed-CSP のような 仕様固定構造ドメインではない。安全な変更経路や有効運用状態の集合を概念的に置くことはできるが、その残存比率 $m(V^{(n)})/m(V^{(0)})$ を自然測度で直接数えることは難しい。したがって、本補論では software を 構造推定ドメインとして扱う。
+Software / SaaS は、SAT や Mixed-CSP のような 仕様固定構造層ではない。安全な変更経路や有効運用状態の集合を概念的に置くことはできるが、その残存比率 $m(V^{(n)})/m(V^{(0)})$ を自然測度で直接数えることは難しい。したがって、本補論では software を 構造推定層として扱う。
 
-構造推定ドメインとしての勝ち筋は次である。
+構造推定層としての勝ち筋は次である。
 
 \begin{quote}
 事前固定した代理構造消耗 $\hat L$ と component predictor が、raw size / age / churn / incident count などの基準モデルより、held-out outcome をよく予測するかを見る。
@@ -715,7 +715,7 @@ DeltaLint が主に観測するのは、静的コード内の未整理な前提�
 
 本節では、次を主張しない。
 
-1. Software / SaaS が仕様固定構造ドメインであるとは主張しない。
+1. Software / SaaS が仕様固定構造層であるとは主張しない。
 2. $\hat L$ が真の $L$ と同一であるとは主張しない。
 3. $M_i$ が単一の universal metric で測れるとは主張しない。
 4. DeltaLint の既存実績だけで本補論が実証されたとは主張しない。DeltaLint は本補論の主 validation から切り離し、LLM companion I / L-side の static-code extension として別 note で扱う。
@@ -745,7 +745,7 @@ DeltaLint が主に観測するのは、静的コード内の未整理な前提�
 
 6.1 検証対象
 
-本補論では、software / SaaS を 構造推定ドメインとして扱う。第一段階の broad target と pilot target は、§4.2 で定義した通りである。
+本補論では、software / SaaS を 構造推定層として扱う。第一段階の broad target と pilot target は、§4.2 で定義した通りである。
 
 \[
   F_{\mathrm{broad}} = \text{safe change continuity}
@@ -1038,7 +1038,7 @@ $A_j$ についても、reasonable candidate は preregistration で固定され
 本節は、次を主張しない。
 
 1. 現時点で本補論の M-framework が実証済みであるとは主張しない。
-2. Software / SaaS が仕様固定構造ドメインであるとは主張しない。
+2. Software / SaaS が仕様固定構造層であるとは主張しない。
 3. $\hat L_{\mathrm{pilot}}$ が真の $L$ であるとは主張しない。
 4. DeltaLint が本補論の validation であるとは主張しない。
 5. 単一の $\rho_i$、$\Phi$、$A_j$ が全ドメインで正しいとは主張しない。
@@ -1072,11 +1072,11 @@ $A_j$ についても、reasonable candidate は preregistration で固定され
 
 この operational dataset がない場合、risk prediction の改善は preparatory support に留まる。介入履歴と outcome がない dataset では、本補論の primary claim は fully tested とは言わない。
 
-7.2 Software は構造推定ドメインであり仕様固定構造ドメインではない
+7.2 Software は構造推定層であり仕様固定構造層ではない
 
-Software / SaaS は、本補論の最初の具体ドメインとして扱いやすい。しかし、SAT や Mixed-CSP のように、問題設定そのものから自然測度 $m$ と縮小列 $V^{(0)} \supseteq V^{(1)} \supseteq \cdots$ が与えられる 仕様固定構造ドメインではない。
+Software / SaaS は、本補論の最初の具体ドメインとして扱いやすい。しかし、SAT や Mixed-CSP のように、問題設定そのものから自然測度 $m$ と縮小列 $V^{(0)} \supseteq V^{(1)} \supseteq \cdots$ が与えられる 仕様固定構造層ではない。
 
-安全な変更経路や有効運用状態の集合を概念的に置くことはできるが、その残存比率を domain-intrinsic に数えることは難しい。したがって、本補論の software claim は構造推定ドメインの operational prediction であり、仕様固定構造ドメインの普遍法則宣言ではない。
+安全な変更経路や有効運用状態の集合を概念的に置くことはできるが、その残存比率を domain-intrinsic に数えることは難しい。したがって、本補論の software claim は構造推定層の operational prediction であり、仕様固定構造層の普遍法則宣言ではない。
 
 7.3 $\hat L_{\mathrm{pilot}}$ は真の $L$ ではない
 
@@ -1148,7 +1148,7 @@ $M_{\mathrm{buffer}}^{\mathrm{int}}$, $M_{\mathrm{recovery}}^{\mathrm{int}}$, $M
 
 7.9 Domain generalization は未完
 
-本補論は software / SaaS を最初の構造推定ドメインとして扱う。しかし、$M$ の維持能力成分の分解は、組織、学校、病院、企業、研究チームなどにも自然に現れる可能性がある。
+本補論は software / SaaS を最初の構造推定層として扱う。しかし、$M$ の維持能力成分の分解は、組織、学校、病院、企業、研究チームなどにも自然に現れる可能性がある。
 
 この cross-domain extension は本補論の主張ではない。本補論では、software-centered に保つ。
 
@@ -1192,6 +1192,6 @@ DeltaLint は、本補論の main validation ではない。DeltaLint が観測�
 
 本補論は、構造持続の最小形式 $S = M e^{-L}$ の右辺のうち、支える側の資源項 $M$ を単一スカラーとして扱うのをやめ、維持能力成分と外部供給 channel に分ける枠組みを与えた。内部の維持能力成分を $M_{\mathrm{buffer}}^{\mathrm{int}}, M_{\mathrm{recovery}}^{\mathrm{int}}, M_{\mathrm{reconfiguration}}^{\mathrm{int}}$ に分け、外部供給 channel を $M_{\mathrm{ext}\to\mathrm{buffer}}, M_{\mathrm{ext}\to\mathrm{recovery}}, M_{\mathrm{ext}\to\mathrm{reconfiguration}}$ として、それぞれの実効能力を $\widetilde M_j = A_j(M_j^{\mathrm{int}}, M_{\mathrm{ext}\to j})$ に集約する。そのうえで、$\Phi$ による effective maintenance capacity $M_{\mathrm{eff}} = \Phi(\widetilde M_{\mathrm{buffer}}, \widetilde M_{\mathrm{recovery}}, \widetilde M_{\mathrm{reconfiguration}})$ を通じて、構造持続量を書き直した。
 
-本補論の固有の検査標的は、よりよい risk prediction そのものではなく、維持能力成分の分解にもとづく介入順位予測である。すなわち、同じ $L$、同じ raw resource $R$、同じ scalar $M_{\mathrm{total}}$ のもとでも、維持能力成分の構成が異なれば、最初に強化すべき成分は異なる。本補論はこの標的を software / SaaS を最初の構造推定ドメインとして具体化し、$\rho_i$, $\Phi$, $A_j$ の候補族に対する頑健性検査を含む、事前固定可能な経験的検証プロトコルを定式化した。実際の preregistration と pilot 実行は、本補論の外、別の empirical program として進める。
+本補論の固有の検査標的は、よりよい risk prediction そのものではなく、維持能力成分の分解にもとづく介入順位予測である。すなわち、同じ $L$、同じ raw resource $R$、同じ scalar $M_{\mathrm{total}}$ のもとでも、維持能力成分の構成が異なれば、最初に強化すべき成分は異なる。本補論はこの標的を software / SaaS を最初の構造推定層として具体化し、$\rho_i$, $\Phi$, $A_j$ の候補族に対する頑健性検査を含む、事前固定可能な経験的検証プロトコルを定式化した。実際の preregistration と pilot 実行は、本補論の外、別の empirical program として進める。
 
 本補論は新しい普遍法則の証明ではなく、また empirical pilot 完了論文でもない。本補論の位置づけは、構造持続の収支原理の回復量・資源入力を実ドメインで測るための support-side operational mapping である。構造持続の最小形式と条件つき導出補論が構造消耗側の対数比の構造消耗を特徴づけ、LLM companion I と II が構造消耗と支援の相互作用を経験的に観察したのに対し、本補論は support 側の操作的座標系を提供する。そこから自然に出てくる次段階は、準備された protocol を operational data に適用する経験的 pilot であり、それは本補論の外、別の empirical program として進める。
