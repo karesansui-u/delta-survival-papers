@@ -252,7 +252,8 @@ Current status:
 
 ```text
 Bernoulli-CSP is the first closed class template; Foster-Lyapunov / queueing is
-now staged as the second class template
+staged as the second class template; Repair-Maintenance is now staged as the
+third class template at the v0 wrapper layer
 ```
 
 Existing anchors:
@@ -290,7 +291,8 @@ collapse interface.
 Other future limited classes:
 
 - reliability / decay controls;
-- repair-maintenance finite-prefix class.
+- repair-maintenance v1 stochastic repair model, if the v0 wrapper is judged
+  insufficient before Phase 7 v0.
 
 ### Phase 6.1: Foster-Lyapunov / queueing template
 
@@ -341,6 +343,59 @@ positive recurrence theorem,
 geometric ergodicity theorem,
 unconditional Lyapunov second law,
 or Bernoulli-style pathwise nondecrease for arbitrary Foster-Lyapunov systems.
+```
+
+### Phase 6.2: Repair-Maintenance template
+
+Status:
+
+```text
+template note added in `analysis/phase6_repair_maintenance_template.md`;
+thin Lean wrapper added in `Survival.RepairMaintenanceTemplate`;
+Phase 6.2 v0 finite-prefix / Sigma / resource-bounded certificate wrappers added
+```
+
+Repair-Maintenance is the third limited class template after Bernoulli-CSP and
+Foster-Lyapunov / queueing. It is the class in which both sides of the signed
+balance are directly visible: damage \(d_t\) and repair \(r_t\). The central
+finite-prefix quantity is net consumption \(d_t-r_t\), while repair cost is
+accounted for in the `Sigma` / total-production layer.
+
+Existing Lean anchors:
+
+- `Survival.RepairMaintenanceBalance`
+- `Survival.TotalProduction`
+- `Survival.SecondLawTotalProduction`
+- `Survival.ResourceBoundedStochasticCollapse`
+- `Survival.RepairMaintenanceTemplate`
+
+Correct reading:
+
+```text
+Repair-Maintenance is the third limited class template. It shares the Sigma /
+net-consumption / resource-cost / concentration / coarse-transfer grammar, but
+only under supplied finite-prefix and stochastic compatibility assumptions.
+```
+
+What is now closed at the reader-facing Lean layer:
+
+- finite-prefix damage / repair net-consumption wrappers;
+- accumulated damage, remaining margin, and threshold-crossing wrappers;
+- local exponential maintenance update;
+- nonnegative-repair improvement relative to damage-only dynamics;
+- `Sigma = B + C = L + repair_slack` wrappers;
+- resource-bounded stopped-collapse and hitting-time high-probability wrappers
+  for supplied stochastic step models;
+- coarse stopped-collapse and hitting-time transfer wrappers under explicit
+  stochastic compatibility and a resource-bounded coarse model.
+
+Do not read it as:
+
+```text
+stochastic reliability theorem,
+optimal maintenance or repair-policy theorem,
+unconditional repair-maintenance second law,
+or Bernoulli-style pathwise nondecrease for arbitrary repair systems.
 ```
 
 ### Component 5: cross-class unification
@@ -683,6 +738,9 @@ Phase-5 solution.
 9. Stage Foster-Lyapunov / queueing as the second class template, including
    expectation-level and resource-bounded high-probability wrappers, before
    adding any strong cross-class theorem.
+10. Stage Repair-Maintenance as the third class template at the v0 wrapper
+    layer before deciding whether a repair-specific stochastic v1 is needed or
+    whether Phase 7 v0 can begin.
 
 ## 6. What not to do next
 
@@ -726,6 +784,11 @@ The next phase succeeds if the repo reaches this state:
    identify the second limited class, including stopped-collapse / hitting-time
    high-probability wrappers, without overclaiming recurrence, ergodicity,
    pathwise monotonicity, or an unconditional Lyapunov second law.
+10. Phase-6.2 Repair-Maintenance template note and thin Lean wrapper identify
+   the third limited class, including finite-prefix damage/repair algebra,
+   `Sigma` / repair-cost grammar, resource-bounded certificates, and
+   conditional coarse transfer, without overclaiming stochastic reliability,
+   optimal maintenance, pathwise nondecrease, or an unconditional repair law.
 ```
 
 At that point, the program has not reached a second law. But it has a much more

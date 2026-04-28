@@ -69,6 +69,7 @@ import Survival.QueueStability
 import Survival.LyapunovBalanceEmbedding
 import Survival.FosterLyapunovTemplate
 import Survival.RepairMaintenanceBalance
+import Survival.RepairMaintenanceTemplate
 import Survival.MaintenanceComponentDecomposition
 import Survival.BinarySymmetricChannel
 import Survival.FatigueDamage

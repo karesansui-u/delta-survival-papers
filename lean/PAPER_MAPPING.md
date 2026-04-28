@@ -1,7 +1,7 @@
 # Lean 形式検証 ↔ 論文対応棚卸し
 
 棚卸し日: 2026-04-27
-対象: `lean/Survival/` 配下 147 ファイル
+対象: `lean/Survival/` 配下 148 ファイル
 対応文書: `delta-survival-paper/v2/` 配下の主理論 spine、Route C companions、補論群
 
 ## 現在の結論
@@ -9,7 +9,7 @@
 このファイルを、Lean 形式化と論文本文を結ぶ唯一の reader-facing theorem map とする。
 旧 SAT/CSP 専用 map は現行ツリーから外し、git history / OSF snapshot 側の archive として扱う。
 
-現時点の Lean 側は **147 Survival modules / sorry = 0 / axiom = 0** で閉じている。条件つき導出補論 §5 が
+現時点の Lean 側は **148 Survival modules / sorry = 0 / axiom = 0** で閉じている。条件つき導出補論 §5 が
 明示している 5 ファイルを超えて、停止時刻崩壊、martingale concentration、粗視化、有限状態 Markov
 microfoundation、SAT/k-SAT Chernoff-KL chain、Bernoulli-CSP 水平展開、Route A 非CSP skeletons まで
 含む。
@@ -208,6 +208,39 @@ high-probability certificates and coarse high-probability transfer under
 explicit assumptions. It is not a positive-recurrence theorem, a
 geometric-ergodicity theorem, a Bernoulli-style pathwise nondecrease theorem,
 or an unconditional Lyapunov second law.
+```
+
+### Phase 6.2 / Repair-Maintenance Template Note
+
+`analysis/phase6_repair_maintenance_template.md` records the third limited-class
+template after Bernoulli-CSP and Foster-Lyapunov / queueing.
+`Survival.RepairMaintenanceTemplate` gives a thin reader-facing wrapper for the
+Phase-6.2 v0 layer. It maps explicit damage / repair flows onto the same
+\(\Sigma\) / net-consumption / resource-cost / concentration / coarse-transfer
+grammar without strengthening the claims:
+
+| Phase-6 role | Lean anchor | Reading discipline |
+|---|---|---|
+| net consumption | `RepairMaintenanceTemplate.netConsumption_eq_damage_sub_repair` | finite-prefix \(d_t-r_t\), not stochastic reliability |
+| cumulative net consumption | `RepairMaintenanceTemplate.cumulativeNetConsumption_succ` | finite-prefix algebra |
+| accumulated damage | `RepairMaintenanceTemplate.damageLevel_eq_initial_plus_cumulativeNetConsumption` | \(D_n=D_0+\sum(d_t-r_t)\) |
+| remaining margin | `RepairMaintenanceTemplate.margin_eq_initial_margin_sub_cumulativeNetConsumption` | margin coordinate, not Paper-1 resource term `M` |
+| threshold crossing | `RepairMaintenanceTemplate.thresholdCrossed_iff_margin_nonpos`; `RepairMaintenanceTemplate.thresholdCrossed_of_initial_margin_le_cumulativeNetConsumption` | deterministic finite-prefix boundary |
+| exponential maintenance update | `RepairMaintenanceTemplate.relativeMaintenance_succ_eq_mul_exp_neg_netConsumption` | signed-action coordinate |
+| repair improves damage-only margin | `RepairMaintenanceTemplate.damageOnlyMargin_le_margin_of_repair_nonneg` | requires nonnegative repair |
+| \(\Sigma\) / repair-cost grammar | `RepairMaintenanceTemplate.sigma_equals_B_plus_C`; `RepairMaintenanceTemplate.sigma_equals_L_plus_repair_slack`; `RepairMaintenanceTemplate.sigma_at_least_L` | repair is not free; cost moves into `Σ` |
+| resource-bounded high-probability route | `RepairMaintenanceTemplate.repairMaintenance_resourceBoundedExpectedSigma_monotone`; `RepairMaintenanceTemplate.repairMaintenance_stoppedCollapseWithFailureBound_of_expectedMargin`; `RepairMaintenanceTemplate.repairMaintenance_hittingTimeBeforeHorizonWithFailureBound_of_expectedMargin` | high-probability claims require a supplied resource-bounded stochastic step model |
+| coarse high-probability transfer | `RepairMaintenanceTemplate.coarseRepairMaintenance_stoppedCollapseWithFailureBound_of_microExpectedMargin`; `RepairMaintenanceTemplate.coarseRepairMaintenance_hittingTimeBeforeHorizonWithFailureBound_of_microExpectedMargin` | stochastic compatibility plus a resource-bounded coarse model, not unconditional DPI |
+
+The correct interpretation is:
+
+```text
+Repair-Maintenance is staged as the third limited class template. It shares the
+Sigma / net-consumption / resource-cost / concentration / coarse-transfer
+grammar with the previous two classes, but it does not claim an optimal
+maintenance policy, a stochastic reliability theorem for arbitrary repair
+processes, Bernoulli-style pathwise nondecrease, or an unconditional repair
+law.
 ```
 
 ## Paper 2 / Structural Persistence Balance Mapping
@@ -482,7 +515,7 @@ drift は `log(2^k / allowed)` になる。部分二項和が \(0\) と \(2^k\) 
 | [`StoppingTimeHighProbabilityCollapse.lean`](Survival/StoppingTimeHighProbabilityCollapse.lean) | 停止値での S < θ の確率境界 | optional stopping × Azuma |
 | [`StoppingTimeSharpDecomposition.lean`](Survival/StoppingTimeSharpDecomposition.lean) | τ < N と τ = N の完全分離 | 有限地平線の精密分解 |
 
-### G. 修復率・予算・動力学（6）— **論文 DSMF §11 の形式化**
+### G. 修復率・予算・動力学（7）— **論文 DSMF §11 の形式化**
 
 | ファイル | 主定理 | 評価 |
 |---------|-------|------|
@@ -491,6 +524,7 @@ drift は `log(2^k / allowed)` になる。部分二項和が \(0\) と \(2^k\) 
 | [`ResourceBudget.lean`](Survival/ResourceBudget.lean) | cumulativeGain ≤ cumulativeCost | 資源会計の基盤公理 |
 | [`ResourceBoundedDynamics.lean`](Survival/ResourceBoundedDynamics.lean) | resource-bounded → Σ 単調 | Route C companion I §9.2 長期安定性、Route C companion II §7 の基礎 |
 | [`ResourceBoundedStochasticCollapse.lean`](Survival/ResourceBoundedStochasticCollapse.lean) | initial margin → high-probability stopped collapse | **最重要の高確率層、論文未掲載** |
+| [`RepairMaintenanceTemplate.lean`](Survival/RepairMaintenanceTemplate.lean) | repair-maintenance Phase 6.2 v0 wrappers | 第三限定 class template。finite-prefix damage/repair, Σ/resource-cost, resource-bounded certificate, conditional coarse transfer |
 | [`GeneralStateDynamics.lean`](Survival/GeneralStateDynamics.lean) | `feasibleMass_eq_initial_mul_exp_neg_cumulativeNetAction`: 符号付き指数カーネル | **Paper 1 の暗黙核定理を形式化** |
 
 ### G2. M 側の維持能力成分分解（1）— **M 補論の表現文法**
