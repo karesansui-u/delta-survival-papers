@@ -47,12 +47,12 @@ SAT/CSP 系の個別 OSF 公開リンクは v1.1 archive snapshot を指す。v2
 - update bundle zip: https://osf.io/mdh7b/files/osfstorage/69f0aac955cae29ef45db6b6
 - update bundle download: https://osf.io/download/69f0aac955cae29ef45db6b6/
 - manifest: https://osf.io/mdh7b/files/osfstorage/69f0aaeb6982d95c29f8c2c2
-- uploaded source commit: `ef7b55f` (`Adopt observability layer terminology`)
+- uploaded source commit: `aef84d8` (`Refine observability terminology as layers`)
 - included spine commit: `6fe9162` (`Align v2 paper spine and references`)
-- sha256: `2c0aedb80b3e445638dedbeb996cbc5f1abdbdad0e7e8f91dd02b9da250ee8fb`
-- manifest sha256: `f9891a9c44a71f22e9285aba3ccee1be44b5f6dccdd79e5ed76750298117b288`
-- OSF file versions: zip v4, manifest v4
-- scope: current v2 main theory spine, balance-principle supplements, conditional derivation supplement, LLM companions, Lean mapping, public overview, data index, patent notice, citation metadata, and license note. The manifest and public guides use the reader-facing order: construction map, integrated overview, Paper 1, Paper 2, operational discipline, specification-fixed finite-CSP layer, structural-inference LLM layer, resource term \(M\), existing-theory bridges, and Lean / technical details. The v4 refresh recorded the first observability-layer terminology; this local post-v4 draft further sharpens the reader-facing labels to specification-fixed structural layer, conditional structural-embedding layer, and structural-inference layer.
+- sha256: `ad9b30effceb7d8f6eebebd888fdebf02b90defd8a155d7a5d2c0a9ab383a44c`
+- manifest sha256: `6fb5e48086efbe2d698996f02e0431f2b972480a2494b9207a22ddcf378e1c9a`
+- OSF file versions: zip v5, manifest v5
+- scope: current v2 main theory spine, balance-principle supplements, conditional derivation supplement, LLM companions, Lean mapping, public overview, data index, patent notice, citation metadata, and license note. The manifest and public guides use the reader-facing order: construction map, integrated overview, Paper 1, Paper 2, operational discipline, specification-fixed finite-CSP layer, structural-inference LLM layer, resource term \(M\), existing-theory bridges, and Lean / technical details. The v5 refresh sharpens the reader-facing observability terminology to specification-fixed structural layer, conditional structural-embedding layer, and structural-inference layer.
 
 ## Canonical Metadata Packet
 
