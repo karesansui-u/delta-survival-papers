@@ -1,7 +1,7 @@
 # Lean 形式検証 ↔ 論文対応棚卸し
 
 棚卸し日: 2026-04-27
-対象: `lean/Survival/` 配下 144 ファイル
+対象: `lean/Survival/` 配下 145 ファイル
 対応文書: `delta-survival-paper/v2/` 配下の主理論 spine、Route C companions、補論群
 
 ## 現在の結論
@@ -9,7 +9,7 @@
 このファイルを、Lean 形式化と論文本文を結ぶ唯一の reader-facing theorem map とする。
 旧 SAT/CSP 専用 map は現行ツリーから外し、git history / OSF snapshot 側の archive として扱う。
 
-現時点の Lean 側は **144 Survival modules / sorry = 0 / axiom = 0** で閉じている。条件つき導出補論 §5 が
+現時点の Lean 側は **145 Survival modules / sorry = 0 / axiom = 0** で閉じている。条件つき導出補論 §5 が
 明示している 5 ファイルを超えて、停止時刻崩壊、martingale concentration、粗視化、有限状態 Markov
 microfoundation、SAT/k-SAT Chernoff-KL chain、Bernoulli-CSP 水平展開、Route A 非CSP skeletons まで
 含む。
@@ -60,6 +60,7 @@ probability assumptions.
 | coarse-grained typical nondecrease | coarse stochastic compatibility | `coarse_expectedCumulative_monotone_of_micro_nonnegative`; `coarse_expectedCumulative_monotone_of_micro_resourceBounded`; `coarse_expectedCumulative_monotone_of_micro_conditionalAzuma` | proven |
 | SAT expected tendency | state-dependent SAT step model | `expectedCumulative_monotone_stepModel`; `expectedCumulative_eq_initial_add_linear` | proven; mapping sufficient |
 | Bernoulli-CSP finite drift / collapse tendency | bad-event exposure, drift, Chernoff margin | `drift`; `expectedBadEmission_eq_drift`; `collapseWithChernoffBound_of_linearMargin`; `stoppedCollapseWithChernoffBound_of_linearMargin` | proven; different schema from repair dominance |
+| Bernoulli-CSP \(\Sigma\) lower-tail tendency | one-sided cumulative production as \(\Sigma\) | `BernoulliTypicalSigma.bernoulliSigmaLowerTailMeasure_le_chernoffFailureBound_of_interior`; `BernoulliTypicalSigma.bernoulliSigma_expectedCumulative_monotone` | proven; finite-path / expectation-level wrapper, not unconditional second law |
 | stopped collapse / hitting-time bound | bounded increments, expected margin, concentration | `stoppedCollapseWithFailureBound_of_boundedIncrementData_expectedMargin`; resource/coarse stopped-collapse wrappers | proven under assumptions |
 
 M1 wording discipline:
@@ -108,6 +109,10 @@ map layers:
 | defect-controlled repair gain | contracted-intermediate defect enters repair gain | `DefectControlledAdmissibleMap.repairGain_coarse_eq_micro_add_next_feasible_defect_sub_contracted_defect` | proven at readout level |
 | contracted-defect cancellation | \( \bar b_t=b_t+e_V(t)-e_V(t+1) \) | `DefectControlledAdmissibleMap.stepNetAction_coarse_eq_micro_add_feasible_defect_sub_next_feasible_defect` | proven at readout level |
 | cumulative defect-controlled signed action | \( \bar B_n=B_n+e_V(0)-e_V(n) \) | `DefectControlledAdmissibleMap.cumulativeNetAction_coarse_eq_micro_add_initial_defect_sub_terminal` | proven at readout level |
+| Bernoulli-CSP \(\Sigma\) observable | cumulative bad-event production as total-production coordinate | `BernoulliTypicalSigma.bernoulliSigma`; `BernoulliTypicalSigma.bernoulliSigmaProcess` | defined |
+| Bernoulli-CSP expected \(\Sigma\) monotonicity | nonnegative one-step bad-event emissions | `BernoulliTypicalSigma.bernoulliSigma_expectedCumulative_monotone` | proven |
+| Bernoulli-CSP \(\Sigma\) lower-tail certificate | interior KL/Chernoff finite-path lower-tail bound | `BernoulliTypicalSigma.bernoulliSigmaLowerTailMeasure_le_chernoffFailureBound_of_interior` | proven under interior margin assumptions |
+| Bernoulli-CSP \(\Sigma\) collapse wrappers | threshold / collapse / stopped-collapse / hitting-time API | `BernoulliTypicalSigma.bernoulliSigma_*WithChernoffBound_of_linearMargin` | proven under finite-horizon margin assumptions |
 
 This is intentionally not a full category of structural-maintenance problems.
 It now includes the exact admissible-map compatibility layer, where initial
@@ -241,7 +246,7 @@ M supplement non-claims remain outside Lean:
 | Martingale / Azuma concentration | 完了 | 条件つき導出補論 §4 の抽象 ρ 境界を bounded-increment concentration に格上げ可能 |
 | 粗視化・表現安定性 | 完了 | Paper 1 §2 P5 を集合論・total production・stochastic layer で形式化 |
 | SAT chain v1.0 | 完了 | actual path measure → non-flat emission → MGF product → Chernoff/KL → collapse |
-| Bernoulli CSP universality v1.2 | 完了 | k-SAT / NAE-SAT / XOR-SAT / coloring / forbidden-pattern / cardinality families |
+| Bernoulli CSP universality v1.2 | 完了 | k-SAT / NAE-SAT / XOR-SAT / coloring / forbidden-pattern / cardinality families; `BernoulliTypicalSigma` gives the reader-facing \(\Sigma\) lower-tail / expectation wrapper |
 | Route A 非CSP skeletons | 表現検査として完了 | 指数型、線形過負荷型、累積容量型、臨界パラメータ型の finite-prefix sanity examples |
 
 ## 意図的に未着手の範囲

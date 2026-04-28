@@ -179,7 +179,8 @@ polish.
 Current status:
 
 ```text
-expectation-level schema mapped; high-probability schema remains conditional
+expectation-level schema mapped; Bernoulli-CSP finite-path Sigma wrapper added;
+high-probability schema remains conditional
 ```
 
 Existing Lean anchors:
@@ -189,6 +190,7 @@ Existing Lean anchors:
 - `Survival.StochasticTotalProductionAzuma`
 - `Survival.ResourceBoundedStochasticCollapse`
 - `Survival.CoarseStochasticStoppingTimeCollapse`
+- `Survival.BernoulliTypicalSigma`
 
 What is already closed:
 
@@ -198,6 +200,10 @@ What is already closed:
   monotonicity under explicit assumptions;
 - stopped-collapse / hitting-time statements exist under bounded-increment,
   margin, and concentration assumptions.
+- for the Bernoulli-CSP one-sided iid bad-event template, `Survival.BernoulliTypicalSigma`
+  gives reader-facing names for the cumulative `\Sigma` observable, monotone
+  expectation, the interior KL/Chernoff lower-tail certificate, and the
+  threshold / collapse / stopped-collapse / hitting-time wrappers.
 
 What remains:
 
@@ -217,6 +223,15 @@ production, or from existing resource-bounded assumptions that imply it.
 
 The high-probability version must keep the extra concentration and margin
 assumptions.
+
+Bernoulli-specific wrapper discipline:
+
+```text
+BernoulliTypicalSigma is a finite-path / expectation-level entry point.
+It packages existing Chernoff and collapse facts around the Sigma observable.
+It is not an unconditional second-law theorem and not a maximal-class
+universality theorem.
+```
 
 ### Component 4: limited-class universality
 
@@ -460,6 +475,45 @@ defect monotonicity, and compatibility with contraction / repair. It is heavier
 than the readout-level wrapper work, but the contracted-defect cancellation
 itself is now closed.
 
+### Immediate action E: Bernoulli-CSP Sigma finite-path wrapper
+
+Status:
+
+```text
+done; reader-facing wrapper added in `Survival.BernoulliTypicalSigma`
+```
+
+This is the first deliberately narrow Phase-4 entry point. It does not prove a
+new universal law. It makes the existing Bernoulli-CSP path Chernoff and
+collapse stack readable as a `\Sigma` / total-production layer.
+
+Reader-facing Lean names:
+
+- `BernoulliTypicalSigma.bernoulliSigma`
+- `BernoulliTypicalSigma.bernoulliSigmaProcess`
+- `BernoulliTypicalSigma.bernoulliSigma_expectedCumulative_monotone`
+- `BernoulliTypicalSigma.bernoulliSigmaLowerTailMeasure_le_chernoffFailureBound_of_interior`
+- `BernoulliTypicalSigma.bernoulliSigma_thresholdCrossingWithChernoffBound_of_linearMargin`
+- `BernoulliTypicalSigma.bernoulliSigma_collapseWithChernoffBound_of_linearMargin`
+- `BernoulliTypicalSigma.bernoulliSigma_stoppedCollapseWithChernoffBound_of_linearMargin`
+- `BernoulliTypicalSigma.bernoulliSigma_hittingTimeBeforeHorizonWithChernoffBound_of_linearMargin`
+
+Correct reading:
+
+```text
+In the one-sided iid bad-event Bernoulli-CSP template, cumulative bad-event
+production has monotone expectation and a finite-path interior Chernoff
+lower-tail certificate. Collapse wrappers follow under explicit finite-horizon
+margin assumptions.
+```
+
+Do not read it as:
+
+```text
+unconditional high-probability Sigma monotonicity
+or full Bernoulli-CSP universality closure.
+```
+
 ## 5. Recommended order
 
 1. Commit the admissible-maps supplement and this roadmap.
@@ -467,7 +521,9 @@ itself is now closed.
 3. Add the low-risk Lean wrappers for Sigma and readout-level Iso/Gauge.
 4. Continue the saturation-defect formalization only at the defect-controlled
    admissible-map layer; do not re-open unconditional coarse-graining DPI.
-5. Keep Bernoulli-CSP class closure as a limited-class universality target, not
+5. Add Bernoulli-CSP `\Sigma` reader-facing wrappers before trying to prove a
+   stronger high-probability or generated-class theorem.
+6. Keep Bernoulli-CSP class closure as a limited-class universality target, not
    a full universal-law claim.
 
 ## 6. What not to do next
@@ -502,6 +558,8 @@ The next phase succeeds if the repo reaches this state:
 4. optional wrapper names are implemented for the low-risk Phase 2 layer;
 5. saturation-defect Lean formalization has a narrow spec, not an open-ended
    "prove coarse-graining DPI" mandate.
+6. Bernoulli-CSP `\Sigma` wrappers make the finite-path lower-tail and
+   expectation-level tendency layer explicit without overclaiming.
 ```
 
 At that point, the program has not reached a second law. But it has a much more

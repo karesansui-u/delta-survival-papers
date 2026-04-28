@@ -157,6 +157,7 @@ import Survival.BernoulliCSPTemplate
 import Survival.BernoulliCSPPathMeasure
 import Survival.BernoulliCSPPathChernoff
 import Survival.BernoulliCSPPathCollapse
+import Survival.BernoulliTypicalSigma
 import Survival.KSATBernoulliTemplate
 import Survival.KSATClauseExposureProcess
 import Survival.KSATChernoffCollapse
