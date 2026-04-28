@@ -508,6 +508,7 @@ total production の粗視化保存 & \texttt{Survival.CoarseTotalProduction} \\
 確率空間上の coarse compatibility & \texttt{Survival.CoarseStochasticTotalProduction} \\
 resource-bounded monotonicity & \texttt{Survival.ResourceBoundedDynamics} \\
 同型不変性・正ゲージ共変性の readout wrapper & \texttt{Survival.AdmissibleMapInvariants} \\
+飽和欠損恒等式の readout spec & \texttt{Survival.SaturationDefect} \\
 Sigma / total production の reader-facing wrapper & \texttt{Survival.SecondLawTotalProduction} \\
 Bernoulli-CSP template & \texttt{Survival.BernoulliCSPTemplate}, \texttt{Survival.BernoulliCSPUniversality} \\
 \end{longtable}
@@ -521,14 +522,26 @@ Bernoulli-CSP template & \texttt{Survival.BernoulliCSPTemplate}, \texttt{Surviva
 \item
   構造維持問題の一般的な morphism interface。
 \item
-  粗視化に対する飽和欠損恒等式と、DPI 型単調性の条件切り。
+  set-level な粗視化に対する飽和欠損恒等式、正有限質量条件、DPI 型単調性の条件切り。
 \item
   Bernoulli-CSP class をテンプレート保存 subcategory / generated class として読む外向け定理名。
 \item
   代理観測写像は不変量定理ではなく frozen validation に落ちる、という運用側の theorem map。
 \end{enumerate}
 
-したがって、本補論は新しい普遍法則を主張するものではない。既存の粗視化・総生成量・Bernoulli-CSP interface を、一つの数学的見取り図にまとめ、どの wrapper が閉じており、どこから先が飽和欠損・高確率化・限定クラス普遍性の未解決部分なのかを指定する文書である。
+\texttt{Survival.SaturationDefect} が閉じるのは、集合論的な粗視化写像そのものではなく、readout-level の狭い spec である。すなわち、一歩ごとの粗視化 log-ratio loss が微視的 loss と欠損差 \(e_{t}-e_{t+1}\) だけ異なるなら、累積量は
+
+\[
+\begin{aligned}
+B_{n}^{\mathrm{coarse}} \\
+&= \\
+B_{n}^{\mathrm{micro}}+e_0-e_{n}
+\end{aligned}
+\]
+
+となる。この theorem は、条件なしの DPI ではなく、\(e_{n}\ge e_0\) のような欠損条件のもとで初めて \(B_{n}^{\mathrm{coarse}}\le B_{n}^{\mathrm{micro}}\) が読めることも同時に示す。
+
+したがって、本補論は新しい普遍法則を主張するものではない。既存の粗視化・総生成量・Bernoulli-CSP interface を、一つの数学的見取り図にまとめ、どの wrapper が閉じており、どこから先が set-level 粗視化、高確率化、限定クラス普遍性の未解決部分なのかを指定する文書である。
 
 第二法則級の統一へ向けた実行順序は、本文の主張ではなく作業地図として \texttt{analysis/second\_law\_level\_roadmap.md} に分けて記録する。そこでは、許容写像、\(\Sigma\) / total production、典型的非減少、限定クラス普遍性、将来の cross-class unification を別々の構成要素として扱う。
 

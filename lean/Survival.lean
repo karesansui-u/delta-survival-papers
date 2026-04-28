@@ -50,6 +50,7 @@ import Survival.TelescopingExp
 import Survival.GeneralStateDynamics
 import Survival.StructuralPersistenceBalancePrinciple
 import Survival.AdmissibleMapInvariants
+import Survival.SaturationDefect
 import Survival.CoarseGraining
 import Survival.ResourceBudget
 import Survival.TotalProduction

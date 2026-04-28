@@ -2,6 +2,8 @@
 
 このリポジトリは、構造持続理論に関する `v2` の構成地図、統合版、主理論 spine 2 本、運用規律、仕様固定構造層 / 構造推定層の検証アンカー、および補論群を中心に読むための構成です。
 
+仕様固定構造層、条件付き構造埋め込み層、構造推定層は強弱の直線的序列ではなく、同一の構造持続核を異なる観測可能性のもとで扱うための層です。
+
 ## English Entry Points
 
 - Start here: [`v2/pdf用/ENGLISH_ABSTRACT.pdf`](v2/pdf%E7%94%A8/ENGLISH_ABSTRACT.pdf)
@@ -102,4 +104,4 @@ Mixed-CSP の true outside-group rerun は requested set が完了しており�
 
 Exp43c q-coloring についても、3 名の外部実行者が同じ frozen package を再実行し、それぞれ `4000` 行 primary run、`0` checked core mismatches、`TIMEOUT = 0`、`MALFORMED = 0`、および同じ qualitative support decision を返している。これは Exp43c package に限った replication closure であり、詳細は [`analysis/exp43_qcoloring/exp43c_true_outside_final_report.md`](analysis/exp43_qcoloring/exp43c_true_outside_final_report.md) を参照。二つの仕様固定構造層 package をまとめた概要は [`analysis/g7_route_a_true_outside_replication_summary.md`](analysis/g7_route_a_true_outside_replication_summary.md) に置いている。
 
-現在の Lean 側は `139 Survival modules`、`sorry = 0`、`axiom = 0` の状態で、最小形式、弱依存、粗視化、停止時刻崩壊、有限状態 Markov 例、SAT/k-SAT Chernoff-KL chain、固定割当 NAE-SAT / XOR-SAT exposure instance、固定 coloring の q-coloring edge exposure instance、finite-alphabet forbidden-pattern CSP instance、hypergraph-coloring specialization、multi-forbidden-pattern witness bridge、exactly-one-SAT witness specialization、exactly-`r` cardinality-SAT family specialization、at-most / at-least threshold cardinality-SAT specialization、numerical sanity checks、さらに仕様固定・条件付き構造埋め込み skeletons（指数型、線形過負荷型、累積容量型、臨界パラメータ型）までを含む。SAT/k-SAT の finite-horizon / iid Bernoulli bad-event exposure は **SAT chain v1.0**、横断的な Bernoulli-CSP 層は **Bernoulli CSP universality v1.2** としてローカルに凍結している。OSF mirror は現時点では v1.1 archive snapshot を指している。
+現在の Lean 側は `142 Survival modules`、`sorry = 0`、`axiom = 0` の状態で、最小形式、弱依存、粗視化、停止時刻崩壊、有限状態 Markov 例、SAT/k-SAT Chernoff-KL chain、固定割当 NAE-SAT / XOR-SAT exposure instance、固定 coloring の q-coloring edge exposure instance、finite-alphabet forbidden-pattern CSP instance、hypergraph-coloring specialization、multi-forbidden-pattern witness bridge、exactly-one-SAT witness specialization、exactly-`r` cardinality-SAT family specialization、at-most / at-least threshold cardinality-SAT specialization、numerical sanity checks、さらに仕様固定・条件付き構造埋め込み skeletons（指数型、線形過負荷型、累積容量型、臨界パラメータ型）までを含む。SAT/k-SAT の finite-horizon / iid Bernoulli bad-event exposure は **SAT chain v1.0**、横断的な Bernoulli-CSP 層は **Bernoulli CSP universality v1.2** としてローカルに凍結している。OSF mirror は現時点では v1.1 archive snapshot を指している。

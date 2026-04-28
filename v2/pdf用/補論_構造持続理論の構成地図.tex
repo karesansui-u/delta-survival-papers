@@ -198,7 +198,42 @@ internal definition & B\_n = sum\_\{t\textless n\}(d\_t-r\_t) & 消耗量 d\_t �
   観測可能性の三層
 \end{enumerate}
 
-本理論は、同一の構造持続核を、観測可能性と主張強度の異なる三つの層で扱う。これは対象ドメインの固定分類ではない。同じ LLM でも明示制約タスクなら仕様固定構造層に近づき、同じ物理・生物・ソフトウェア系でも proxy しか取れない場合は構造推定層に入る。これは「構造は常にある」という主張ではない。維持対象・測度・観測単位を固定できる場合に、その系を構造持続問題として扱う、という規律である。
+本理論は、同一の構造持続核を、観測可能性と主張強度の異なる三つの層で扱う。各層は異なる理論ではなく、同一の構造持続核を異なる観測レベルで扱ったものである。これは対象ドメインの固定分類ではない。同じ LLM でも明示制約タスクなら仕様固定構造層に近づき、同じ物理・生物・ソフトウェア系でも proxy しか取れない場合は構造推定層に入る。これは「構造は常にある」という主張ではない。維持対象・測度・観測単位を固定できる場合に、その系を構造持続問題として扱う、という規律である。
+
+観測可能性の軸は次のように読む。
+
+{\def\LTcaptype{table} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+方向
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+意味
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+↑ 観測可能性が高い & 構造、測度、境界を仕様として直接指定できる \\
+↓ 観測可能性が低い & 構造そのものを直接数えず、代理指標と凍結検証で推定する \\
+\end{longtable}
+}
+
+全層に共通する核は
+
+\[
+\begin{aligned}
+S&=Me^{-L}, \\
+\qquad \\
+S&=Me^{-B}, \\
+\qquad \\
+B_{n}&=\sum_{t<n}(d_{t}-r_{t})
+\end{aligned}
+\]
+
+である。違うのは式ではなく、その式に入る \(V,m,d_{t},r_{t}\) をどの程度直接指定・観測できるかである。
 
 {\def\LTcaptype{table} % do not increment counter
 \begin{longtable}[]{@{}
@@ -221,8 +256,8 @@ internal definition & B\_n = sum\_\{t\textless n\}(d\_t-r\_t) & 消耗量 d\_t �
 \bottomrule\noalign{}
 \endlastfoot
 仕様固定構造層 & Route A & 構造、測度、境界が仕様から事前固定される & SAT, Mixed-CSP, q-coloring, Bernoulli-CSP interface \\
-条件付き構造埋め込み層 & Route B & 既存理論のドリフト、差分、停止境界を本理論の変数へ条件付きに写す & Foster-Lyapunov / queueing drift, bounded approximation candidates \\
-構造推定層 & Route C & 構造そのものを直接数えるのではなく、代理指標と凍結検証によりその効果を推定する & LLM 推論劣化、継続学習、software / DeltaLint 系 \\
+条件付き構造埋め込み層 & Route B & 既存理論のドリフト、差分、停止境界を本理論の変数へ条件付きに写す。縦軸の中間段階ではなく、既存理論との横方向の bridge である & Foster-Lyapunov / queueing drift, bounded approximation candidates \\
+構造推定層 & Route C & 構造そのものを直接数えるのではなく、代理指標と凍結検証によりその効果を推定する。多くの現実系で標準的な観測形である & LLM 推論劣化、継続学習、software / DeltaLint 系 \\
 \end{longtable}
 }
 

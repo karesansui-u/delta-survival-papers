@@ -76,7 +76,8 @@ longer vague.
 Current status:
 
 ```text
-partly closed in text; first Lean wrappers added
+partly closed in text; first Lean wrappers added, including a narrow
+saturation-defect readout spec
 ```
 
 Already done:
@@ -97,7 +98,8 @@ Next work:
 
 - the readout-level Lean wrappers for iso invariance and positive-gauge
   covariance now live in `Survival.AdmissibleMapInvariants`;
-- a Lean specification for the saturation-defect identity;
+- a readout-level Lean specification for the saturation-defect identity now
+  lives in `Survival.SaturationDefect`;
 - an admissible coarse-graining condition stated in terms of defect control.
 
 Do not claim yet:
@@ -382,30 +384,44 @@ Those would overclaim.
 Status:
 
 ```text
-open, medium risk
+readout-level spec done; set-level coarse-graining remains open
 ```
 
 This is the first genuinely new Lean-facing work suggested by the new
-supplement.
+supplement. The low-risk readout layer is now implemented in
+`Survival.SaturationDefect`.
 
-Minimal target:
+Implemented minimal target:
 
 ```text
-If e_pi(A) := log(m(preimage(image A))/m(A)) is defined for positive finite
-mass sets, then coarse B_n equals micro B_n plus initial defect minus terminal
-defect.
+If coarse stage loss differs from micro stage loss by e_t - e_{t+1}, then
+coarse B_n equals micro B_n plus initial defect minus terminal defect.
 ```
 
-This should be developed only after the current supplement and Sigma mapping
-are fixed. It touches sets, maps, positive mass assumptions, and logs, so it is
-heavier than the Sigma wrapper work.
+Reader-facing Lean names:
+
+- `SaturationDefect.SaturationDefectReadout`
+- `SaturationDefect.coarse_cumulativeStageLoss_eq_micro_add_initial_defect_sub_terminal`
+- `SaturationDefect.coarse_cumulativeStageLoss_le_micro_of_terminal_defect_ge_initial`
+
+Remaining set-level target:
+
+```text
+Define e_pi(A) := log(m(preimage(image A))/m(A)) for positive finite mass sets,
+prove that the set-level coarse-graining assumptions instantiate the readout
+relation, and only then derive conditional DPI-style monotonicity.
+```
+
+This remaining target touches sets, maps, positive mass assumptions, and logs,
+so it is heavier than the readout wrapper work.
 
 ## 5. Recommended order
 
 1. Commit the admissible-maps supplement and this roadmap.
 2. Add the reader-facing Sigma theorem map to `lean/PAPER_MAPPING.md`.
 3. Add the low-risk Lean wrappers for Sigma and readout-level Iso/Gauge.
-4. Only then start the saturation-defect Lean formalization.
+4. Continue the saturation-defect formalization only at the set-level
+   instantiation layer; do not re-open unconditional coarse-graining DPI.
 5. Keep Bernoulli-CSP class closure as a limited-class universality target, not
    a full universal-law claim.
 
