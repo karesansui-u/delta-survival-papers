@@ -40,7 +40,7 @@ PDF は [`v2/pdf用/補論_構造持続理論の構成地図.pdf`](v2/pdf用/補
 
 - 仕様固定構造層: SAT / Mixed-CSP / q-coloring では、自然測度・finite-horizon collapse chain・prospective empirical support が揃いつつあります。Mixed-CSP と Exp43c q-coloring は、それぞれ外部実行者 3 名による frozen package rerun で decision-relevant output が再現されています。
 - 構造推定層: LLM 推論実験では、文脈長だけではなく構造矛盾の質が崩壊を予測することを、複数の preregistered / prospective checks で検査しています。
-- Formal layer: Lean 4 側は `148 Survival modules`, `sorry = 0`, `axiom = 0` で、主な theorem-to-paper mapping は [`lean/PAPER_MAPPING.md`](lean/PAPER_MAPPING.md) にまとめています。階層的不変量による統一枠組みへ何を積むかは [`analysis/second_law_level_roadmap.md`](analysis/second_law_level_roadmap.md) に、Phase 5 の admissible-map ladder は [`analysis/phase5_admissible_map_ladder.md`](analysis/phase5_admissible_map_ladder.md) に、Phase 6.1 の Foster-Lyapunov / queueing template は [`analysis/phase6_foster_lyapunov_template.md`](analysis/phase6_foster_lyapunov_template.md) に、Phase 6.2 の Repair-Maintenance template は [`analysis/phase6_repair_maintenance_template.md`](analysis/phase6_repair_maintenance_template.md) に分けて整理しています。
+- Formal layer: Lean 4 側は `149 Survival modules`, `sorry = 0`, `axiom = 0` で、主な theorem-to-paper mapping は [`lean/PAPER_MAPPING.md`](lean/PAPER_MAPPING.md) にまとめています。階層的不変量による統一枠組みへ何を積むかは [`analysis/second_law_level_roadmap.md`](analysis/second_law_level_roadmap.md) に、Phase 5 の admissible-map ladder は [`analysis/phase5_admissible_map_ladder.md`](analysis/phase5_admissible_map_ladder.md) に、Phase 6.1 の Foster-Lyapunov / queueing template は [`analysis/phase6_foster_lyapunov_template.md`](analysis/phase6_foster_lyapunov_template.md) に、Phase 6.2 の Repair-Maintenance template は [`analysis/phase6_repair_maintenance_template.md`](analysis/phase6_repair_maintenance_template.md) に、Phase 7 v0 の cross-class registry は [`analysis/phase7_cross_class_unification_v0.md`](analysis/phase7_cross_class_unification_v0.md) に分けて整理しています。
 - Non-CSP: Backblaze / C-MAPSS / Scania などは support / weakening / no-support を分けて記録し、同一 archive 内の rescue を避けています。
 
 ## Core and Companion Papers (v2) / 主理論核と companion papers
@@ -97,7 +97,7 @@ PDF は [`v2/pdf用/補論_構造持続理論の構成地図.pdf`](v2/pdf用/補
 | Conditional derivation | Supplement |
 | LLM Companion I | Companion preprint |
 | LLM Companion II | Companion preprint |
-| Lean 4 formalization | Complete (`148 Survival modules`, `sorry = 0`, `axiom = 0`) |
+| Lean 4 formalization | Complete (`149 Survival modules`, `sorry = 0`, `axiom = 0`) |
 | OSF project | [osf.io/mdh7b/overview](https://osf.io/mdh7b/overview) |
 | Raw data and summaries | [DATA.md](DATA.md) |
 
@@ -162,7 +162,7 @@ delta-survival-paper/
 ## Formal Verification / 形式検証
 
 Lean formalization is in [`lean/`](lean/). Current status:
-`148 Survival modules`, `sorry = 0`, `axiom = 0`.
+`149 Survival modules`, `sorry = 0`, `axiom = 0`.
 
 The current core layering includes:
 
@@ -190,6 +190,8 @@ The current core layering includes:
 - Phase 6.1 template: [`analysis/phase6_foster_lyapunov_template.md`](analysis/phase6_foster_lyapunov_template.md) records how the Bernoulli-CSP \(\Sigma\) template should transfer to Foster-Lyapunov / queueing without claiming positive recurrence, geometric ergodicity, pathwise monotonicity, or an unconditional Lyapunov second law.
 - `RepairMaintenanceTemplate.lean`: Phase 6.2 の reader-facing wrapper。damage / repair finite-prefix algebra, \(\Sigma\) / repair-cost grammar, resource-bounded stopped-collapse / hitting-time certificate route, and conditional coarse transfer を束ねるが、stochastic reliability theorem, optimal maintenance policy, Bernoulli-style pathwise nondecrease, unconditional repair law は主張しない。
 - Phase 6.2 template: [`analysis/phase6_repair_maintenance_template.md`](analysis/phase6_repair_maintenance_template.md) records repair-maintenance as the third limited class template after Bernoulli-CSP and Foster-Lyapunov / queueing.
+- `CrossClassUnificationV0.lean`: Phase 7 v0 の registry。Bernoulli-CSP / Foster-Lyapunov / Repair-Maintenance の三つが \(\Sigma\) grammar, expectation-level tendency, high-probability certificate, conditional coarse transfer を共有することを機械登録するが、generic universal theorem や necessary/sufficient characterization は主張しない。
+- Phase 7 v0 registry: [`analysis/phase7_cross_class_unification_v0.md`](analysis/phase7_cross_class_unification_v0.md) records the first cross-class profile after the three limited templates.
 - 仕様固定・条件付き構造埋め込み skeletons: 11 small Lean modules grouped into five finite-prefix forms: multiplicative/exponential survival, linear overload, cumulative-capacity thresholds, critical-parameter thresholds, and explicit repair / maintenance balance. Detailed module-to-claim mapping is kept in [`lean/PAPER_MAPPING.md`](lean/PAPER_MAPPING.md).
 
 The cross-domain Bernoulli-CSP layer is frozen locally as **Bernoulli CSP

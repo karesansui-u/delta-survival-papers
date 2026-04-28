@@ -1,7 +1,7 @@
 # Lean 形式検証 ↔ 論文対応棚卸し
 
 棚卸し日: 2026-04-27
-対象: `lean/Survival/` 配下 148 ファイル
+対象: `lean/Survival/` 配下 149 ファイル
 対応文書: `delta-survival-paper/v2/` 配下の主理論 spine、Route C companions、補論群
 
 ## 現在の結論
@@ -9,7 +9,7 @@
 このファイルを、Lean 形式化と論文本文を結ぶ唯一の reader-facing theorem map とする。
 旧 SAT/CSP 専用 map は現行ツリーから外し、git history / OSF snapshot 側の archive として扱う。
 
-現時点の Lean 側は **148 Survival modules / sorry = 0 / axiom = 0** で閉じている。条件つき導出補論 §5 が
+現時点の Lean 側は **149 Survival modules / sorry = 0 / axiom = 0** で閉じている。条件つき導出補論 §5 が
 明示している 5 ファイルを超えて、停止時刻崩壊、martingale concentration、粗視化、有限状態 Markov
 microfoundation、SAT/k-SAT Chernoff-KL chain、Bernoulli-CSP 水平展開、Route A 非CSP skeletons まで
 含む。
@@ -242,6 +242,36 @@ maintenance policy, a stochastic reliability theorem for arbitrary repair
 processes, Bernoulli-style pathwise nondecrease, or an unconditional repair
 law.
 ```
+
+### Phase 7 v0 / Cross-Class Unification Registry
+
+`analysis/phase7_cross_class_unification_v0.md` records the first Phase-7
+cross-class registry after the Bernoulli-CSP, Foster-Lyapunov / queueing, and
+Repair-Maintenance templates. `Survival.CrossClassUnificationV0` is deliberately
+a registry rather than a generic universal theorem: it machine-registers the
+common profile now present in all three limited classes.
+
+| Phase-7 v0 role | Lean anchor | Reading discipline |
+|---|---|---|
+| registered class enum | `CrossClassUnificationV0.LimitedClassTemplate` | the three current limited templates only |
+| registered profile | `CrossClassUnificationV0.profile` | reader-facing registry, not a necessary/sufficient characterization |
+| common Phase-7 v0 support | `CrossClassUnificationV0.supportsPhase7V0`; `CrossClassUnificationV0.all_registered_classes_supportPhase7V0` | all registered classes have \(\Sigma\) grammar, expected tendency, high-probability certificate, and coarse transfer |
+| Bernoulli pathwise component | `CrossClassUnificationV0.bernoulliCSP_pathwiseNondecrease_registered` | class-specific stronger component |
+| non-Bernoulli pathwise non-claim | `CrossClassUnificationV0.fosterLyapunovQueueing_pathwiseNondecrease_not_registered`; `CrossClassUnificationV0.repairMaintenance_pathwiseNondecrease_not_registered` | pathwise nondecrease is not promoted to the cross-class profile |
+| class-specific engines | `CrossClassUnificationV0.bernoulliCSP_engine`; `CrossClassUnificationV0.fosterLyapunovQueueing_engine`; `CrossClassUnificationV0.repairMaintenance_engine` | Chernoff/KL, conditional-Azuma, and resource-bounded Azuma are registered engines, not an exhaustive taxonomy |
+
+The correct interpretation is:
+
+```text
+Phase 7 v0 closes the common-profile registry:
+Bernoulli-CSP, Foster-Lyapunov / queueing, and Repair-Maintenance all share
+Sigma grammar, expectation-level tendency, finite-horizon high-probability
+certificate route, and conditional coarse transfer.
+```
+
+It does **not** prove the generic cross-class theorem yet. Phase 7 v1 should
+extract the actual schema, most likely around subadditivity, resource-cost lower
+bounds, and defect-controlled admissible maps.
 
 ## Paper 2 / Structural Persistence Balance Mapping
 

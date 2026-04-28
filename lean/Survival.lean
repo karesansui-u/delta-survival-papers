@@ -70,6 +70,7 @@ import Survival.LyapunovBalanceEmbedding
 import Survival.FosterLyapunovTemplate
 import Survival.RepairMaintenanceBalance
 import Survival.RepairMaintenanceTemplate
+import Survival.CrossClassUnificationV0
 import Survival.MaintenanceComponentDecomposition
 import Survival.BinarySymmetricChannel
 import Survival.FatigueDamage

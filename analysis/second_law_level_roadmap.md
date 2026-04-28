@@ -403,11 +403,35 @@ or Bernoulli-style pathwise nondecrease for arbitrary repair systems.
 Current status:
 
 ```text
-future work; do not front-run
+Phase 7 v0 registry closed; generic theorem still future work
 ```
 
-This is the actual second-law-level target. It should only be attempted after
-multiple limited-class universality theorems exist.
+This is the actual second-law-level target. It is no longer an empty future
+slot, because three limited-class templates now exist:
+
+- Bernoulli-CSP / one-sided iid bad-event exposure;
+- Foster-Lyapunov / queueing;
+- Repair-Maintenance finite-prefix / resource-bounded stochastic models.
+
+The Phase 7 v0 registry is recorded in:
+
+- `analysis/phase7_cross_class_unification_v0.md`
+- `Survival.CrossClassUnificationV0`
+
+The narrow closed claim is:
+
+```text
+all three registered limited classes share the Phase-7 v0 profile:
+Sigma grammar, expectation-level tendency, finite-horizon high-probability
+certificate route, and conditional coarse transfer.
+```
+
+The Phase 7 v0 registry also records the important asymmetry:
+
+```text
+Bernoulli-CSP registers pathwise nondecrease;
+Foster-Lyapunov / queueing and Repair-Maintenance do not.
+```
 
 The eventual shape may be:
 
@@ -418,7 +442,10 @@ appropriate expectation-level tendency theorem; class-specific collapse
 statements then follow after margin and concentration assumptions.
 ```
 
-This is not ready as a theorem today. It is a future synthesis target.
+This generic statement is not ready as a theorem today. The current correct
+claim is that the three-class profile is now visible and machine-registered;
+Phase 7 v1 should extract the generic schema without pretending that v0 already
+proves the full unification theorem.
 
 ## 4. What can be done now
 
@@ -741,6 +768,9 @@ Phase-5 solution.
 10. Stage Repair-Maintenance as the third class template at the v0 wrapper
     layer before deciding whether a repair-specific stochastic v1 is needed or
     whether Phase 7 v0 can begin.
+11. Use Phase 7 v0 only as a cross-class registry. It may record the shared
+    three-class profile, but it must not be read as the final generic
+    unification theorem.
 
 ## 6. What not to do next
 
