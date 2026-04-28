@@ -47,10 +47,11 @@ SAT/CSP 系の個別 OSF 公開リンクは v1.1 archive snapshot を指す。v2
 - update bundle zip: https://osf.io/mdh7b/files/osfstorage/69f0aac955cae29ef45db6b6
 - update bundle download: https://osf.io/download/69f0aac955cae29ef45db6b6/
 - manifest: https://osf.io/mdh7b/files/osfstorage/69f0aaeb6982d95c29f8c2c2
-- uploaded source commit: `b7eb090` (`Record Exp44b calibration no-go and G7 updates`)
+- uploaded source commit: `672e042` (`Reorder reader-facing v2 guide`)
 - included spine commit: `6fe9162` (`Align v2 paper spine and references`)
-- sha256: `7d201f3c046f1f0e57ca8a479a3686445bdeac6084706874385ff0ab5f77cb3b`
-- scope: current v2 main theory spine, balance-principle supplements, conditional derivation supplement, Route C companions, Lean mapping, public overview, data index, patent notice, citation metadata, and license note.
+- sha256: `2afd31f58974982de8a5c6dc68b1539b353dd6dec70f7d58733277e4da0e1fcc`
+- OSF file versions: zip v3, manifest v3
+- scope: current v2 main theory spine, balance-principle supplements, conditional derivation supplement, Route C companions, Lean mapping, public overview, data index, patent notice, citation metadata, and license note. The manifest and public guides use the reader-facing order: construction map, integrated overview, Paper 1, Paper 2, operational discipline, Route A finite-CSP, Route C LLM, resource term \(M\), existing-theory bridges, and Lean / technical details.
 
 ## Canonical Metadata Packet
 
@@ -119,15 +120,26 @@ SAT/CSP 系の個別 OSF 公開リンクは v1.1 archive snapshot を指す。v2
 
 ## 推奨ファイル構成
 
-### Core PDFs
+### Reader-facing PDFs
 
+外向けの表示順は、理論上の主論文番号ではなく読者導線を優先する。
+
+- `10_structural_persistence_construction_map_supplement_ja_2026-04-28.pdf`
 - `00_structural_persistence_integrated_overview_ja_2026-04-28.pdf`
 - `01_structural_persistence_minimal_form_ja_2026-04-28.pdf`
 - `02_structural_persistence_balance_principle_ja_2026-04-28.pdf`
-- `03_structural_persistence_balance_details_supplement_ja_2026-04-28.pdf`
-- `04_structural_persistence_conditional_derivation_supplement_ja_2026-04-28.pdf`
+- `11_structural_persistence_operational_discipline_supplement_ja_2026-04-28.pdf`
+- `17_finite_csp_predictive_power_supplement_ja_2026-04-28.pdf`
 - `05_route_c_companion_inference_degradation_ja_2026-04-28.pdf`
 - `06_route_c_companion_continual_learning_forgetting_ja_2026-04-28.pdf`
+- `13_resource_term_M_operational_formulation_supplement_ja_2026-04-28.pdf`
+- `15_foster_lyapunov_drift_embedding_supplement_ja_2026-04-28.pdf`
+- `16_non_csp_classical_examples_minimal_anchor_supplement_ja_2026-04-28.pdf`
+- `04_structural_persistence_conditional_derivation_supplement_ja_2026-04-28.pdf`
+- `03_structural_persistence_balance_details_supplement_ja_2026-04-28.pdf`
+- `12_structural_persistence_mapping_procedure_supplement_ja_2026-04-28.pdf`
+- `14_set_valued_dynamics_and_signed_exponential_kernel_supplement_ja_2026-04-28.pdf`
+- `18_structural_prediction_of_computational_cost_supplement_ja_2026-04-28.pdf`
 - `98_structural_persistence_english_abstract_2026-04-28.pdf`
 
 ### Supporting indexes
@@ -165,7 +177,7 @@ OSF には、上記 bundle 一式をそのまま上げる。
 
 Zenodo には、論文本体と英語入口を中心にした trimmed public bundle を上げる。OSF と同一の完全 mirror にはしない。
 
-- Core PDFs 一式
+- Reader-facing PDFs 一式
 - `98_structural_persistence_english_abstract_2026-04-28.pdf`
 - `99_structural_persistence_english_overview_2026-04-28.md`
 - `ARCHIVE_README_2026-04-28.md`
