@@ -193,7 +193,7 @@ G4 v1 の正しい言い方:
 
 G4 v1 の次作業は、次の順で進めるのがよい。
 
-1. structural persistence balance principle paper §7 / §8 と G6-c 補論から、queueing / Foster-Lyapunov を primary non-CSP anchor として明示する。これは `v2/3_構造持続の収支原理と崩壊傾向.md` と `v2/補論_非CSP古典例における構造持続の収支原理の最小アンカー.md` に反映済みである。
+1. structural persistence balance principle paper §7 / §8 と G6-c 補論から、queueing / Foster-Lyapunov を primary non-CSP anchor として明示する。これは `v2/3_構造持続の収支原理.md` と `v2/補論_非CSP古典例における構造持続の収支原理の最小アンカー.md` に反映済みである。
 2. `SerialReliability.lean` と `ConstantFractionDecay.lean` を loss-only control anchors として theorem map にまとめる。これは `lean/PAPER_MAPPING.md` の C2 / C3 と README の formalization section に反映済みである。
 3. G4 v2 は、fatigue / reliability の repair intervention を含む
    open-system model へ進む。scope は

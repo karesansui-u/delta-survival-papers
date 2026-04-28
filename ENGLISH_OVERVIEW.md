@@ -76,7 +76,7 @@ The intended target is not just a stronger stateless chatbot, but a system that 
 If you want the shortest route:
 
 1. [`v2/0_構造持続理論の統合版.md`](v2/0_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E7%90%86%E8%AB%96%E3%81%AE%E7%B5%B1%E5%90%88%E7%89%88.md)
-2. [`v2/3_構造持続の収支原理と崩壊傾向.md`](v2/3_構造持続の収支原理と崩壊傾向.md)
+2. [`v2/3_構造持続の収支原理.md`](v2/3_構造持続の収支原理.md)
 3. [`v2/Companion_RouteC_推論時の構造劣化.md`](v2/Companion_RouteC_推論時の構造劣化.md)
 4. [`v2/Companion_RouteC_継続学習時の構造的忘却.md`](v2/Companion_RouteC_継続学習時の構造的忘却.md)
 
@@ -84,7 +84,7 @@ If you want the theoretical core:
 
 1. [`v2/1_構造持続の最小形式.md`](v2/1_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%AE%E6%9C%80%E5%B0%8F%E5%BD%A2%E5%BC%8F.md)
 2. [`v2/2_構造持続の条件つき導出.md`](v2/2_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%AE%E6%9D%A1%E4%BB%B6%E3%81%A4%E3%81%8D%E5%B0%8E%E5%87%BA.md)
-3. [`v2/3_構造持続の収支原理と崩壊傾向.md`](v2/3_構造持続の収支原理と崩壊傾向.md)
+3. [`v2/3_構造持続の収支原理.md`](v2/3_構造持続の収支原理.md)
 
 If you want the Route C companion layer after that:
 
@@ -104,4 +104,4 @@ The current claim is narrower:
 
 The framework only has empirical bite when the target structure, measure, stage boundaries, and time horizon are fixed in advance in a non-trivial and representationally stable way. If those are allowed to vary post hoc, the same mathematics can be made to fit arbitrary finite monotone sequences and the theory becomes vacuous. The value of the framework, at this stage, is that it offers a common language connecting theory, experiments, and architecture without hiding that scope condition.
 
-As of 2026-04-27, the Mixed-CSP package has also been rerun by two independent outside executors. Both returned clean 12,000-row primary runs with zero checked core-field mismatches and all support flags true. This is still an interim outside-group status (`2/3` requested returns completed), not a claim that the full replication program is closed.
+As of 2026-04-28, the Mixed-CSP package has also been rerun by three independent outside executors. All three returned clean 12,000-row primary runs with zero checked core-field mismatches and all support flags true. This completes the requested Mixed-CSP outside-group rerun set, but it is not a claim that the full replication program is closed.

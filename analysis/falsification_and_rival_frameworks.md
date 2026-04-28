@@ -13,7 +13,7 @@ domain-specific problems.
 The memo should be read together with:
 
 - `analysis/current_evidence_map.md`
-- `v2/3_構造持続の収支原理と崩壊傾向.md` §7-8
+- `v2/3_構造持続の収支原理.md` §7-8
 - `v2/補論_構造持続写像の標準手順.md`
 - `analysis/g6c_foster_lyapunov_embedding_draft.md`
 - `v2/補論_構造持続の収支原理とFoster-Lyapunovドリフトの形式的埋め込み.md`

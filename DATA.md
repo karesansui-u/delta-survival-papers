@@ -188,6 +188,10 @@ The theory-pure `first_moment` predictor also beat `raw_plus_n`
 [zip](https://osf.io/download/69e826573b65e7b53bfd8b7e/),
 [manifest](https://osf.io/download/69e8265a30357781bafd90d6/).
 
+The requested true outside-group rerun set is complete: three independent
+outside executors returned clean 12,000-row primary runs with zero checked
+core-field mismatches and all support flags true.
+
 | File | Description |
 |------|-------------|
 | [Mixed-CSP README](analysis/route_a_mixed_csp/README.md) | Design summary, commands, verifier-fix note, and status |
@@ -197,6 +201,7 @@ The theory-pure `first_moment` predictor also beat `raw_plus_n`
 | [Official primary records](analysis/route_a_mixed_csp/mixed_csp_primary_official_2026-04-22.jsonl) | 12,000 official solver records; aborted attempt excluded |
 | [Mixed-CSP results summary](analysis/route_a_mixed_csp/mixed_csp_results_summary.md) | Human-readable primary model-comparison summary |
 | [Mixed-CSP results JSON](analysis/route_a_mixed_csp/mixed_csp_results.json) | Machine-readable primary analysis and support flags |
+| [Mixed-CSP outside-group final report](analysis/route_a_mixed_csp/mixed_csp_true_outside_final_report.md) | Final three-run outside-group rerun report |
 
 ### Route A — Exp43c q-coloring threshold-local primary validation
 

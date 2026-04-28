@@ -1,7 +1,7 @@
 # 構造持続の収支原理 Draft Plan
 
 Status: design draft. The main preprint draft has started at
-`v2/3_構造持続の収支原理と崩壊傾向.md`; §1-8 currently establish the minimal
+`v2/3_構造持続の収支原理.md`; §1-8 currently establish the minimal
 balance identity, signed exponential kernel, expectation-level tendency,
 finite-horizon concentration schema, Route A anchors, Route C anchors, and
 existing-theory differences, and close with limitations / next steps.
@@ -46,7 +46,7 @@ Three regimes:
 Tentative title:
 
 ```text
-構造持続の収支原理と崩壊傾向
+構造持続の収支原理
 — 閉じた系 S = M exp(-L) から開いた系 S = M exp(-B) へ —
 ```
 
@@ -72,7 +72,7 @@ Draft sections:
 
 ## 5. Immediate Next Edits
 
-1. `v2/3_構造持続の収支原理と崩壊傾向.md` §1-8 をレビューし、重複・節番号・cross-reference を整える。
+1. `v2/3_構造持続の収支原理.md` §1-8 をレビューし、重複・節番号・cross-reference を整える。
 2. Exp43 q-coloring cross-q feasibility の preregistration draft を設計する。
 3. §7 の G6-a/b/c（analogy / correspondence / formal reduction）整理を、Lean theorem map / roadmap に反映する。
 4. Paper 0 統合版の architecture を、Paper 1 -> Paper 2 -> 構造持続の収支原理 -> Route C companion I/II -> M 補論、という依存順に更新する。

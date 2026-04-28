@@ -22,7 +22,7 @@ Main manuscripts:
 
 - `v2/1_構造持続の最小形式.md`
 - `v2/2_構造持続の条件つき導出.md`
-- `v2/3_構造持続の収支原理と崩壊傾向.md`
+- `v2/3_構造持続の収支原理.md`
 
 Route C companion notes:
 
@@ -33,7 +33,7 @@ Built PDFs:
 
 - `v2/pdf用/1_構造持続の最小形式.pdf`
 - `v2/pdf用/2_構造持続の条件つき導出.pdf`
-- `v2/pdf用/3_構造持続の収支原理と崩壊傾向.pdf`
+- `v2/pdf用/3_構造持続の収支原理.pdf`
 - `v2/pdf用/Companion_RouteC_推論時の構造劣化.pdf`
 - `v2/pdf用/Companion_RouteC_継続学習時の構造的忘却.pdf`
 
@@ -66,16 +66,17 @@ python phase3_bootstrap_ci.py
 
 ## Mixed-CSP Outside-Group Reruns
 
-The Mixed-CSP true outside-group rerun stream is currently interim but already
-has two clean outside returns. Two independent external executors reran the same
-frozen package and returned `12000` primary rows, `0` checked core-field
-mismatches, and all support flags true. The requested set is still `2/3`
-completed, so this is not yet the final G7 report.
+The Mixed-CSP true outside-group rerun stream has completed the requested
+three-run set. Three independent external executors reran the same frozen
+package and each returned `12000` primary rows, `0` checked core-field
+mismatches, and all support flags true.
 
 Current notes:
 
 - `analysis/route_a_mixed_csp/mixed_csp_true_outside_rerun_01_katsumasa1234.md`
 - `analysis/route_a_mixed_csp/mixed_csp_true_outside_rerun_02_SCRAPRO.md`
+- `analysis/route_a_mixed_csp/mixed_csp_true_outside_rerun_03_philia_channel.md`
+- `analysis/route_a_mixed_csp/mixed_csp_true_outside_final_report.md`
 - `analysis/route_a_mixed_csp/mixed_csp_true_outside_interim_report.md`
 
 ## LLM Experiments (API key required)

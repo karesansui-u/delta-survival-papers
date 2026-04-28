@@ -15,9 +15,11 @@ V2_DIR = ROOT.parent
 DEFAULT_DATE = "2026年4月12日"
 TARGET_FILES = [
     V2_DIR / "0_構造持続理論の統合版.md",
+    V2_DIR / "補論_構造持続理論の構成地図.md",
+    V2_DIR / "補論_構造持続理論の運用規律.md",
     V2_DIR / "1_構造持続の最小形式.md",
     V2_DIR / "2_構造持続の条件つき導出.md",
-    V2_DIR / "3_構造持続の収支原理と崩壊傾向.md",
+    V2_DIR / "3_構造持続の収支原理.md",
     V2_DIR / "Companion_RouteC_推論時の構造劣化.md",
     V2_DIR / "Companion_RouteC_継続学習時の構造的忘却.md",
     V2_DIR / "補論_計算コストの構造的予測.md",

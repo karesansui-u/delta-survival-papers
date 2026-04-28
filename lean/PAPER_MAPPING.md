@@ -1,7 +1,7 @@
 # Lean 形式検証 ↔ 論文対応棚卸し
 
 棚卸し日: 2026-04-27
-対象: `lean/Survival/` 配下 137 ファイル
+対象: `lean/Survival/` 配下 139 ファイル
 対応論文: `delta-survival-paper/v2/` 配下 8 本（Paper 0–4 + 補論 3 本）
 
 ## 現在の結論
@@ -9,7 +9,7 @@
 このファイルを、Lean 形式化と論文本文を結ぶ唯一の reader-facing theorem map とする。
 旧 SAT/CSP 専用 map は現行ツリーから外し、git history / OSF snapshot 側の archive として扱う。
 
-現時点の Lean 側は **137 Survival modules / sorry = 0 / axiom = 0** で閉じている。Paper 2 §5 が
+現時点の Lean 側は **139 Survival modules / sorry = 0 / axiom = 0** で閉じている。Paper 2 §5 が
 明示している 5 ファイルを超えて、停止時刻崩壊、martingale concentration、粗視化、有限状態 Markov
 microfoundation、SAT/k-SAT Chernoff-KL chain、Bernoulli-CSP 水平展開、Route A 非CSP skeletons まで
 含む。
@@ -25,6 +25,7 @@ microfoundation、SAT/k-SAT Chernoff-KL chain、Bernoulli-CSP 水平展開、Rou
 | SAT chain v1.0 | 数学的 anchor | random 3-SAT の自然測度、actual path measure、MGF product、Chernoff/KL collapse が有限地平線で閉じている |
 | LLM 810 試行 | 経験的 anchor | 文脈長・制約数だけの基準モデルを越え、構造矛盾がより強い崩壊要因になることを示す |
 | Bernoulli CSP universality v1.2 | template validation | fixed assignment/coloring の iid bad-event exposure に限った水平展開。solver dynamics や依存構造は含めない |
+| Numerical sanity checks | tests-as-documentation | 抽象 wrapper が小さな具体例で期待される定数を返すことを reader-facing に確認する。経験的 support ではない |
 | Route A 非CSP skeletons | sanity / coverage benchmark | 古典例を最小語彙で歪めず表せるかの検査。信頼性・材料・待ち行列等の新規本命定理ではない |
 | Level B / proxy domains | future work | LLM 以外の高次元・非自然測度ドメインは calibration と実証を要する |
 
@@ -286,6 +287,7 @@ drift は `log(2^k / allowed)` になる。部分二項和が \(0\) と \(2^k\) 
 | [`CorrelatedSecondMoment.lean`](Survival/CorrelatedSecondMoment.lean) | secondMoment ∈ [2ⁿ(3/4)ᵐ, 2ⁿ(7/8)ᵐ] | **相関下で sandwich、論文未掲載** |
 | [`AsymptoticExponent.lean`](Survival/AsymptoticExponent.lean) | φ(β,α) = h(β) - ln 2 + α ln R(β)、φ(1/2, α)=0 ∀α | **β=1/2 neutrality、論文未掲載洞察** |
 | [`SensitivityAnalysis.lean`](Survival/SensitivityAnalysis.lean) | S_mult 零崩壊 vs S_add 非零崩壊 | **乗法/加法モデルの定性差、論文未掲載** |
+| [`NumericalSanityChecks.lean`](Survival/NumericalSanityChecks.lean) | k-SAT/NAE/XOR/q-coloring/forbidden-pattern wrappers が `log(8/7)`, `log(4/3)`, `log 2` などを回復 | tests-as-documentation。抽象 interface の小さな具体例であり、新しい empirical support ではない |
 
 ### C2. Route A 非CSP core examples（11）
 

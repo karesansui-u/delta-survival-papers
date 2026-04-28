@@ -2,8 +2,8 @@
 
 Status: active program-execution memo after Backblaze v2 same-domain
 observational support, the first C-MAPSS FD001 cross-domain loss-only primary,
-Scania horizon-bridge no-support, and the first two returned Mixed-CSP true
-outside-group reruns. This is not a freeze document, not validation evidence,
+Scania horizon-bridge no-support, and the completed three-run Mixed-CSP true
+outside-group rerun set. This is not a freeze document, not validation evidence,
 and not a new claim source.
 
 Purpose:
@@ -19,7 +19,7 @@ The four current gaps are:
 
 1. G4 non-CSP repair-flow / maintenance-flow empirical support;
 2. cross-domain non-CSP support beyond the Backblaze drive-reliability branch;
-3. G7 independent replication beyond the first two returned Mixed-CSP successes;
+3. G7 independent replication beyond the completed Mixed-CSP requested set;
 4. rival-framework stress testing, especially LDP / rate-function subsumption.
 
 ## 1. Current Starting Position
@@ -40,9 +40,8 @@ Still open:
 
 - no repair-flow empirical primary;
 - no cross-domain non-CSP empirical support beyond drive reliability;
-- two true outside-group Mixed-CSP rerun results have returned cleanly, but the
-  requested Mixed-CSP outside-rerun set is still interim (`2/3` completed,
-  `2/2` clean success, `1` pending);
+- the requested true outside-group Mixed-CSP rerun set has returned cleanly:
+  `3/3` completed, `3/3` clean success, `0` pending;
 - no completed reader-facing rival-framework comparison.
 
 New information:
@@ -51,7 +50,7 @@ New information:
   C-MAPSS FD001;
 - it produced a weakening outcome, not a support result:
   `H1 = true`, `H2 = false`, `H3 = true`, `primary_support = false`.
-- the first two returned Mixed-CSP true outside-group reruns completed cleanly:
+- the three returned Mixed-CSP true outside-group reruns completed cleanly:
   each has `12000` primary rows, `0` checked core mismatches, all four support
   flags true, and no reported workaround.
 
@@ -190,39 +189,116 @@ Outcome:
 So C-MAPSS FD001 is informative, but it is not yet the cross-domain non-CSP
 support anchor we would want for closing this gate.
 
+A new battery physical-degradation design branch now exists at:
+
+- `analysis/g4_battery_m_profile/README.md`
+- `analysis/g4_battery_m_profile/battery_m_profile_validation_design.md`
+- `analysis/g4_battery_m_profile/candidate_dataset_ranking.md`
+- `analysis/g4_battery_m_profile/oxford_path_dependent_feasibility_note.md`
+- `analysis/g4_battery_m_profile/oxford_path_dependent_parser_smoke_plan.md`
+- `analysis/g4_battery_m_profile/oxford_path_dependent_part1_smallfile_smoke_note.md`
+- `analysis/g4_battery_m_profile/oxford_path_dependent_part1_group2_smoke_note.md`
+- `analysis/g4_battery_m_profile/oxford_path_dependent_freeze_design_decision_note.md`
+- `analysis/g4_battery_m_profile/oxford_path_dependent_full_archive_identity_plan.md`
+- `analysis/g4_battery_m_profile/oxford_path_dependent_part1_full_identity_note.md`
+- `analysis/g4_battery_m_profile/oxford_path_dependent_part1_rpt_structure_count_note.md`
+- `analysis/g4_battery_m_profile/oxford_path_dependent_freeze_manifest_draft.md`
+- `analysis/g4_battery_m_profile/oxford_path_dependent_metadata_train_smoke_note.md`
+- `analysis/g4_battery_m_profile/oxford_path_dependent_mcos_conversion_plan.md`
+- `analysis/g4_battery_m_profile/oxford_path_dependent_mcos_converter_script_note.md`
+- `analysis/g4_battery_m_profile/preregistration_draft.md`
+- `analysis/g4_battery_m_profile/scripts/inspect_oxford_path_dependent.py`
+- `analysis/g4_battery_m_profile/scripts/inspect_oxford_rpt_structure.py`
+- `analysis/g4_battery_m_profile/scripts/evaluate_oxford_part1_m_profile.py`
+- `analysis/g4_battery_m_profile/scripts/export_oxford_part1_training_tables.m`
+
+This branch is not validation evidence. It is a clean design path for testing
+whether frozen battery M/SP features add out-of-sample predictive value over a
+strong battery-domain baseline. The first proposed target is Oxford Path
+Dependent feasibility, with NASA Randomized/Recommissioned as the second
+candidate and MIT-Stanford/TRI as a later strong-baseline challenge.
+
+The Oxford Path Dependent note gives a positive exact web-feasibility status
+for Parts 1-3, but keeps the branch below support because the independent cell
+count is modest and must be handled with no-leak split rules. The branch has
+now moved through small-file acquisition, metadata/parser smoke, full Part 1
+identity, bounded `.mat` smoke, and no-metric RPT / diagnostic structure counts
+before any freeze.
+
+The first Part 1 smoke acquired `Guide_to_Datafiles.pdf`,
+`Guide_to_Datafiles.xlsx`, `Readme.txt`, and `EIS.zip`, recorded hashes, opened
+the zip, inspected three `.mat` files, and fixed a pre-freeze parser ambiguity
+around repeated file names. The historical next smoke target was one
+cycling/profile group archive before any feature extraction.
+
+That target has now passed for Part 1 `Group_2.zip`: the archive was acquired,
+hashed, opened as a zip, and three bounded `.mat` files were inspected without
+computing features or outcomes. The Oxford freeze-design decision note now also
+exists. It keeps Oxford as the first battery candidate but blocks primary
+validation until a freeze manifest, train-smoke package, and one-time primary
+command are fixed without feature values or model metrics.
+
+The full-archive identity / RPT-parser plan now also exists. It fixes the
+acquisition tiers, sets `H_count = 1` reference-test step for parser counts, and
+keeps the T1-T6 promotion thresholds pre-fixed before any feature extraction.
+Tier A then completed for Part 1: all Part 1 public files were acquired,
+hashed, opened where applicable, and checked with bounded per-zip `.mat` smoke.
+Part 1 then passed the no-metric RPT / diagnostic structure-count gate: `12`
+unique filename cell IDs, `4` retained groups, `223` H1 candidate rows, `12`
+safe held-out cell-ID folds, T1-T5 count checks true, and T6 public-metadata
+availability true. Because repeated cell IDs occur across groups, the
+conservative split falls back from protocol-group holdout to held-out cell ID.
+The Oxford Part 1 freeze-manifest draft now also exists, but remains below
+frozen status until the final converter/script SHA and one-time primary command
+are fixed. The first execution scaffold now passes metadata-only and blocks raw
+train-smoke safely on MATLAB MCOS table payloads without post-split held-out
+payload access. It also has a `--converted-train-root` interface for validating
+a training-only conversion manifest and CSV headers. Earlier bounded
+parser-smoke reads are treated as schema-only grandfathered smoke. A no-peek
+MATLAB / MCOS conversion plan and converter-script draft now exist for
+converting training cells first. A runner now packages the MATLAB conversion
+and Python converted-smoke step. A training-feature smoke runner and synthetic
+contract test now also define the next gate after converted-smoke. The
+converter has not been executed locally because MATLAB is not available in the
+current environment.
+
 ### Recommended direction
 
-The next non-CSP empirical move should not be another Backblaze redesign.
-Instead, add one clean cross-domain loss-only anchor and keep it explicitly
-below repair-flow evidence.
+The next non-CSP empirical move should not be another Backblaze redesign, and
+it should not rescue C-MAPSS FD001 on the same archive. C-MAPSS is already
+recorded as a weakening outcome.
 
-The best current candidate is:
+The clean near-term empirical branch is now:
 
 ```text
-C-MAPSS turbofan degradation as a non-CSP loss-only control / anchor.
+Oxford Path Dependent MATLAB / MCOS converter execution in a MATLAB environment.
 ```
 
 Reason:
 
-- distinct domain from drive reliability;
+- distinct physical-degradation domain from drive reliability and turbofan
+  simulation;
 - repeated units;
 - explicit time axis;
-- strong degradation signals;
+- capacity / degradation endpoints are available in principle;
+- protocol order and periodicity are central to the dataset design;
 - public and reproducible;
-- no temptation to overclaim recovery amount, because \(r_t=0\) is obvious.
+- M-profile features can be frozen before any primary run.
 
-MetroPT-3 remains useful as a single-system weak-g control, but it is weaker as
-a cross-domain primary anchor because unit repetition is limited.
+NASA Randomized/Recommissioned remains the second feasibility candidate if
+Oxford proves too small or too cumbersome for a stable held-out primary.
+MIT-Stanford/TRI remains a later hard-baseline challenge.
 
 ### Next artifact
 
-Do not immediately rescue C-MAPSS on the same archive. The clean next artifact
-is either:
+The clean next artifact is:
 
-- a later C-MAPSS v2 exploration note on a fresh untouched archive, or
-- a different cross-domain non-CSP candidate note.
+```text
+Oxford Path Dependent MATLAB / MCOS converter execution in a MATLAB environment.
+```
 
-Until then, keep the current FD001 result as a weakening outcome, not as a
+Until the freeze package is executed once on held-out data, keep Oxford below
+support and keep the current FD001 result as a weakening outcome, not as a
 failed theory test and not as a hidden support result.
 
 ## 4. Workstream C — G7 Independent Replication
@@ -231,9 +307,10 @@ failed theory test and not as a hidden support result.
 
 The program now has real validated anchors, a Mixed-CSP external package, an
 Exp43c external package, published-remote outside-workspace reruns for both
-Route A packages, final handoff checklists for both, two returned Mixed-CSP
-outside-group successes, and an Exp43c sender-side zip packet. What remains open
-is outside-group return depth, not project-side reproducibility.
+Route A packages, final handoff checklists for both, a completed three-run
+Mixed-CSP outside-group rerun set, and an Exp43c sender-side zip packet. What
+remains open is outside-group return depth beyond Mixed-CSP, not project-side
+reproducibility.
 
 ### Principle
 
@@ -257,13 +334,13 @@ Reason:
 
 ### Next artifact
 
-The plan and final handoff artifacts now exist, and the first two Mixed-CSP
-returns have landed cleanly. Exp43c now also has a sender-side zip packet. The
-next clean move is the current outside-rerun flow:
+The plan and final handoff artifacts now exist, and all three requested
+Mixed-CSP returns have landed cleanly. Exp43c now also has a sender-side zip
+packet. The next clean move is the current outside-rerun flow:
 
-1. absorb the one pending Mixed-CSP outside-group return when it arrives;
-2. keep the Mixed-CSP report interim until the requested set is resolved;
-3. send the Exp43c outside-group zip packet.
+1. keep the Mixed-CSP final report scoped to that package;
+2. send the Exp43c outside-group zip packet;
+3. wait for and record the first Exp43c outside return.
 
 ## 5. Workstream D — Rival-Framework Stress Test
 
@@ -356,7 +433,8 @@ Near-term order:
 2. keep the conditional law-side bridge fixed as the narrow non-CSP
    interpretation ceiling;
 3. package one clean G7 replication target;
-4. add one cross-domain non-CSP loss-only anchor candidate;
+4. advance one cross-domain non-CSP empirical candidate without same-archive
+   rescue;
 5. only then reopen the harder repair-flow empirical path.
 
 In other words:
@@ -440,9 +518,9 @@ Status update:
   `analysis/route_a_mixed_csp/mixed_csp_true_outside_rerun_02_SCRAPRO.md`;
   both returned runs completed `12000` rows with `0` checked core mismatches,
   all support flags true, and no reported workaround.
-- the Mixed-CSP true outside-group rerun set now has an interim report at
-  `analysis/route_a_mixed_csp/mixed_csp_true_outside_interim_report.md`, with
-  status `2/3` completed, `2/2` clean success, `1` pending.
+- the Mixed-CSP true outside-group rerun set now has a final report at
+  `analysis/route_a_mixed_csp/mixed_csp_true_outside_final_report.md`, with
+  status `3/3` completed, `3/3` clean success, `0` pending.
 - the Exp43c true outside-group sender-side packet now exists via
   `analysis/exp43_qcoloring/exp43c_true_outside_send_runbook.md`,
   `analysis/exp43_qcoloring/exp43c_true_outside_send_packet_ja.md`,
@@ -453,11 +531,13 @@ Status update:
 
 So the next concrete order becomes:
 
-1. absorb the one pending Mixed-CSP true outside-group return when it arrives;
-2. send the Exp43c outside-group zip packet and wait for the first return;
-3. decide whether to open a fresh-archive C-MAPSS v2 exploration note or move
-   directly toward repair-flow data acquisition;
-4. future repair-flow data acquisition under the candidate-criteria gate.
+1. send the Exp43c outside-group zip packet and wait for the first return;
+2. run the Oxford Path Dependent MATLAB / MCOS conversion runner on training
+   cells only in a MATLAB environment;
+3. rerun Python train-smoke through the existing `--converted-train-root`
+   interface, then run the training-feature smoke runner before promoting the
+   draft to frozen with final converter/script SHA and command;
+5. future repair-flow data acquisition under the candidate-criteria gate.
 
 This keeps the program moving on the actual open gaps rather than adding more
 same-type evidence to already-strong tracks.

@@ -14,13 +14,16 @@ Fresh-clone outside-workspace rehearsal is now also complete.
 See analysis/route_a_mixed_csp/mixed_csp_outside_workspace_rerun_note.md.
 Published-remote outside-workspace rerun is now also complete.
 See analysis/route_a_mixed_csp/mixed_csp_published_remote_rerun_note.md.
-True outside-group rerun is now underway:
+True outside-group requested set is now complete:
 `analysis/route_a_mixed_csp/mixed_csp_true_outside_rerun_01_katsumasa1234.md`
 records the first returned clean success,
 `analysis/route_a_mixed_csp/mixed_csp_true_outside_rerun_02_SCRAPRO.md`
 records the second returned clean success, and
-`analysis/route_a_mixed_csp/mixed_csp_true_outside_interim_report.md` records
-the interim state (`2/3` completed, `2/2` clean success, `1` pending).
+`analysis/route_a_mixed_csp/mixed_csp_true_outside_rerun_03_philia_channel.md`
+records the third returned clean success.
+`analysis/route_a_mixed_csp/mixed_csp_true_outside_final_report.md` records
+the final requested-set state (`3/3` completed, `3/3` clean success, `0`
+pending).
 ```
 
 External package boundary notes:
@@ -318,22 +321,23 @@ Returned runs:
 - `analysis/route_a_mixed_csp/mixed_csp_true_outside_rerun_01_katsumasa1234.md`
 - `analysis/route_a_mixed_csp/mixed_csp_true_outside_rerun_02_SCRAPRO.md`
 
-Interim report:
+Final report:
 
-- `analysis/route_a_mixed_csp/mixed_csp_true_outside_interim_report.md`
+- `analysis/route_a_mixed_csp/mixed_csp_true_outside_final_report.md`
 
 The first returned run used a WSL/Ubuntu environment. The second returned run
-used Windows 11 Home without WSL. Both reported no workaround, returned the
-requested artifacts, completed `12000` primary rows, reproduced all four support
-flags, and matched the official primary on checked row-level core fields with
-`0` mismatches.
+used Windows 11 Home without WSL. The third returned run used Windows 11 Home
+25H2. All three reported no workaround, returned the requested primary
+artifacts, completed `12000` primary rows, reproduced all four support flags,
+and matched the official primary on checked row-level core fields with `0`
+mismatches.
 
 The correct current wording is:
 
 ```text
-Mixed-CSP true outside-group rerun is underway. The first two returned runs
-completed cleanly and reproduced the official qualitative support decision; one
-requested rerun remains pending.
+Mixed-CSP true outside-group rerun set completed: three requested outside
+executors returned clean 12,000-row primary runs with zero checked core-field
+mismatches and all support flags true.
 ```
 
 ## 12. Non-Claims

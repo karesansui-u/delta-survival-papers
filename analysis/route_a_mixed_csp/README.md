@@ -1,6 +1,7 @@
 # Route A Mixed-CSP Empirical Replication
 
-Status: official primary complete.
+Status: official primary complete; requested true outside-group rerun set
+complete.
 
 This experiment tests whether drift-weighted structural loss `L` / first-moment
 log count predicts feasibility better than raw constraint count in a hard Route
@@ -43,6 +44,21 @@ theory_pure_support = true
 encoding_guardrail_passed = true
 ```
 
+True outside-group rerun status:
+
+```text
+requested outside-group reruns: 3
+returned reruns: 3
+clean returned successes: 3
+pending reruns: 0
+```
+
+The final outside-group rerun report is:
+
+```text
+analysis/route_a_mixed_csp/mixed_csp_true_outside_final_report.md
+```
+
 OSF addendum:
 
 - zip: <https://osf.io/download/69e826573b65e7b53bfd8b7e/>
@@ -62,6 +78,10 @@ Implemented files:
 | `mixed_csp_primary_official_2026-04-22.jsonl` | Official primary solver records |
 | `mixed_csp_results_summary.md` | Human-readable primary results |
 | `mixed_csp_results.json` | Machine-readable primary results |
+| `mixed_csp_true_outside_final_report.md` | Final three-run outside-group rerun report |
+| `mixed_csp_true_outside_rerun_01_katsumasa1234.md` | Returned outside-group rerun 01 |
+| `mixed_csp_true_outside_rerun_02_SCRAPRO.md` | Returned outside-group rerun 02 |
+| `mixed_csp_true_outside_rerun_03_philia_channel.md` | Returned outside-group rerun 03 |
 
 Dependency note:
 

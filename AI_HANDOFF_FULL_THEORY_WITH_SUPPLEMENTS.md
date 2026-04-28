@@ -21,7 +21,7 @@ Source files in order:
 1. `analysis/current_evidence_map.md` - Current Evidence Map
 2. `README.md` - Repository README
 3. `v2/0_構造持続理論の統合版.md` - Integrated Map (Paper 0)
-4. `v2/3_構造持続の収支原理と崩壊傾向.md` - Main Theory Spine: Paper 3
+4. `v2/3_構造持続の収支原理.md` - Main Theory Spine: Paper 3
 5. `v2/1_構造持続の最小形式.md` - Foundation: Paper 1
 6. `v2/2_構造持続の条件つき導出.md` - Foundation: Paper 2
 7. `v2/補論_構造持続の集合値力学的表現と符号付き指数核.md` - Supplement: Signed Exponential Kernel
@@ -42,8 +42,8 @@ Source files in order:
 
 Status: after Exp43c q-coloring primary validation, G4 v2 repair-maintenance
 integration, Backblaze loss-only primary completion, the first C-MAPSS FD001
-cross-domain loss-only primary, Scania horizon-bridge no-support, and the first
-two returned Mixed-CSP true outside-group reruns.
+cross-domain loss-only primary, Scania horizon-bridge no-support, and the
+completed three-run Mixed-CSP true outside-group rerun set.
 
 This note is a compact map of what each artifact currently supports. It is not
 a new claim source; it is a navigation layer for the papers, Lean modules, and
@@ -54,7 +54,7 @@ preregistered experiments.
 | Layer | Artifact | Current strength | Supports | Does not support |
 |---|---|---|---|---|
 | Loss-only minimal form | Paper 1 / Paper 2 | Main theoretical core | Log-ratio / exponential representation under fixed structure and measure | Universal applicability without pre-fixed \(V,m\) |
-| Structural Persistence Balance Principle | `v2/3_構造持続の収支原理と崩壊傾向.md` | Central theory layer | \(b_t=d_t-r_t\), \(B_n=\sum b_t\), collapse / maintenance / recovery regimes | Universal-law declaration |
+| Structural Persistence Balance Principle | `v2/3_構造持続の収支原理.md` | Central theory layer | \(b_t=d_t-r_t\), \(B_n=\sum b_t\), collapse / maintenance / recovery regimes | Universal-law declaration |
 | Set-valued signed kernel | `v2/補論_構造持続の集合値力学的表現と符号付き指数核.md` | Formal supplement | Loss and repair as signed exponential action | Empirical validation |
 | M operationalization | `v2/補論_構造持続における資源項Mの操作的定式化.md` | Operational mapping layer | How to measure or decompose support-side resources | Universal resource metric |
 | Conditional law-side bridge | `analysis/non_csp_conditional_law_side_bridge.md` + `analysis/law_side_upgrade_gate.md` | Interpretation / bridge layer | Restricted non-CSP classes can be described as conditional law-side embeddings when \(m\), \(r_t\), and boundary conditions are all available | Non-CSP universal-law declaration |
@@ -72,8 +72,8 @@ preregistered experiments.
 
 | Anchor | Phase | Result | Supports | Boundary |
 |---|---|---|---|---|
-| Mixed-CSP | Primary validated; outside-group rerun underway | `L_plus_n` log loss 0.0970 < `raw_plus_n` 0.7525; first two returned outside-group reruns completed cleanly with `12000` rows each, `0` checked core mismatches, and all support flags true | Drift-weighted coordinate beats raw count on mixed SAT/NAE feasibility; the frozen package is now confirmed executable outside the project environment in two returned runs, including one plain Windows run | Still within Bernoulli-CSP family; outside-group rerun set is interim (`2/3` completed, `1` pending) |
-| Mixed-CSP true outside-group rerun interim | `analysis/route_a_mixed_csp/mixed_csp_true_outside_interim_report.md` | First two returned outside-group reruns: `2/3` completed, `2/2` clean success, `1` pending | Records a returned WSL/Ubuntu run by `katsumasa1234` and a returned Windows 11 Home run by `SCRAPRO`, each with `12000` primary rows, `0` checked core mismatches, and reproduced support flags | Interim G7 layer only; not final Mixed-CSP G7 report and not Exp43c replication |
+| Mixed-CSP | Primary validated; requested outside-group rerun set complete | `L_plus_n` log loss 0.0970 < `raw_plus_n` 0.7525; three returned outside-group reruns completed cleanly with `12000` rows each, `0` checked core mismatches, and all support flags true | Drift-weighted coordinate beats raw count on mixed SAT/NAE feasibility; the frozen package is now confirmed executable outside the project environment in three returned runs, including plain Windows runs | Still within Bernoulli-CSP family; this closes the requested Mixed-CSP rerun set but not Exp43c or non-CSP replication |
+| Mixed-CSP true outside-group rerun final | `analysis/route_a_mixed_csp/mixed_csp_true_outside_final_report.md` | Three returned outside-group reruns: `3/3` completed, `3/3` clean success, `0` pending | Records a returned WSL/Ubuntu run by `katsumasa1234`, a Windows 11 Home run by `SCRAPRO`, and a Windows 11 Home 25H2 run by `philia_channel`, each with `12000` primary rows, `0` checked core mismatches, and reproduced support flags | Final G7 layer for Mixed-CSP only; not Exp43c replication and not full-program replication closure |
 | Exp43c q-coloring | Primary validated | `fm_plus_n` log loss 0.440189 < best primary raw baseline 2.804019; H1 direction passed for q=3/4/5 | SAT-looking syntax is not the only Route A surface; first-moment coordinate transfers across q | Not a q-coloring threshold theorem |
 | Exp44 Cardinality-SAT | Exploration / calibration no-go | Infrastructure clean, but informative-band gate failed | Useful calibration history for threshold-local protocol | Not validation evidence |
 
@@ -108,16 +108,17 @@ preregistered experiments.
 | Scania bridge package draft | `analysis/g4_scania_component_x_bridge_package_draft.md` | Historical public bridge-design layer | Captures the pre-freeze framing that positioned Scania as a public stochastic reliability / TTE bridge with horizon-classification as the operational primary path | Superseded by the frozen manifest, validation-smoke note, and primary report |
 | Backblaze drive stats | G4 loss-only observational branch: v1 no-support, v2 support | Under frozen Q4 2025 v1 package, primary SMART model had high AUC (0.902456) but failed preregistered log-loss support (`1.779176` vs best baseline `0.157102`) and failed H2 due `smart_199_raw` sign. Under frozen Q3 2025 v2 package, the calibration-aware primary passed: calibrated log loss `0.007936` < best baseline `0.008801` (9.83% improvement), H2 passed on the five core SMART fields, and stage-1 AUC `0.882895` > best baseline `0.739014` | Same-domain second attempt only; not repair-flow evidence; does not erase the Q4 no-support result |
 | C-MAPSS FD001 degradation | G4 cross-domain loss-only primary: weakening outcome | Under the frozen FD001 package, the low-dimensional `D_pc1` primary beat the best simple baseline (`0.241353` < `0.494974`, H1 pass, 51.24% improvement) and kept directional consistency (`beta_Dpc1 = 3.475025`, H3 pass), but it failed the wide-sensor compression guardrail because `B4` remained stronger (`0.182180`) | Simulated benchmark only; not repair-flow evidence; not full cross-domain primary support |
+| Battery M-profile branch | `analysis/g4_battery_m_profile/` | Design / exact web-feasibility / parser-smoke / freeze-draft layer only | Opens a non-software physical-degradation branch for testing whether frozen battery M/SP features add predictive value over strong battery-domain baselines; Oxford Path Dependent Parts 1-3 are recorded as a positive feasibility target with small-sample risk; Part 1 guide/readme + EIS smoke, `Group_2.zip` smoke, complete Part 1 identity, bounded per-zip `.mat` smoke, and no-metric RPT / diagnostic structure counts have now passed; Part 1 satisfies T1-T5 plus T6 public-metadata availability, the conservative split falls back to held-out cell ID because repeated filename cell IDs occur across groups, an Oxford Part 1 freeze-manifest draft exists, metadata-only passes, raw train-smoke is currently blocked by MATLAB MCOS table payloads without post-split held-out payload access, and a no-peek MATLAB / MCOS conversion plan, converter draft, execution runner, Python `--converted-train-root` interface, training-feature smoke runner, and synthetic guardrail/contract tests exist | Not frozen, not validation evidence, not intervention-ranking evidence; earlier bounded parser-smoke reads are schema-only grandfathered, so this is not an untouched-test-archive claim |
 
 ## 6. Open Gates
 
 | Gate | Current status | Next clean move |
 |---|---|---|
 | G3 Route A width | Strengthened by Mixed-CSP + Exp43c | Independent replication, or optional Exp44b redesign under threshold-local protocol |
-| G4 non-CSP | G4 v1/v2 minimal skeletons closed; repair-flow public dataset search no longer looks empty but still lacks a clean primary; Backblaze loss-only branch contains one closed no-support attempt and one same-domain support pass; C-MAPSS FD001 now has a frozen cross-domain loss-only primary with a weakening outcome (`H1/H3 pass`, `H2 fail`); queueing / Foster-Lyapunov now has an explicit conditional law-side bridge memo; repair-flow now has an acquisition brief, a send-ready request packet, and a stochastic bridge note; the public Scania route has progressed through feasibility, exact acquisition, freeze design, prereg/freeze, validation-smoke, and a frozen primary no-support result, with the earlier bridge-package draft now kept only as a historical design layer | Keep both Backblaze outcomes and the C-MAPSS weakening outcome visible without rescue language. The main open gap remains a directly logged empirical \(r_t\), stronger cross-domain non-CSP support, and any attempt to widen the law-side bridge beyond the current restricted class. The current public-work path now includes `analysis/g4_v2_repair_flow_acquisition_brief.md` for gate definition, `analysis/g4_v2_repair_flow_request_packet.md` for partner/local outreach, `analysis/g4_v2_stochastic_repair_bridge_note.md` for theorem-side escalation, `analysis/g4_v2_public_repair_flow_rescan_2026-04-27.md` for public-web triage, `analysis/g4_scania_component_x_archive_feasibility_note.md` for exact public bridge feasibility, `analysis/g4_scania_component_x_large_readout_acquisition_note.md` for full readout hashes and counts, `analysis/g4_scania_component_x_freeze_design_note.md` for label grammar and primary-path choice, `analysis/g4_scania_component_x_horizon_bridge_preregistration_draft.md` for the operational bridge prereg, `analysis/g4_scania_component_x_horizon_bridge/freeze_manifest_draft.md` for the frozen package record, and `analysis/g4_scania_component_x_horizon_bridge/primary_report.md` for the closed public bridge no-support outcome, all explicitly below a completed repair-flow empirical bridge |
+| G4 non-CSP | G4 v1/v2 minimal skeletons closed; repair-flow public dataset search no longer looks empty but still lacks a clean primary; Backblaze loss-only branch contains one closed no-support attempt and one same-domain support pass; C-MAPSS FD001 now has a frozen cross-domain loss-only primary with a weakening outcome (`H1/H3 pass`, `H2 fail`); queueing / Foster-Lyapunov now has an explicit conditional law-side bridge memo; repair-flow now has an acquisition brief, a send-ready request packet, and a stochastic bridge note; the public Scania route has progressed through feasibility, exact acquisition, freeze design, prereg/freeze, validation-smoke, and a frozen primary no-support result, with the earlier bridge-package draft now kept only as a historical design layer; battery M-profile now has a design-plus-feasibility branch, complete Oxford Part 1 identity, a no-metric T1-T5 count pass plus T6 public-metadata availability, a freeze-manifest draft, metadata-only pass, a raw train-smoke MCOS-table block, a no-peek conversion plan plus converter draft, a MATLAB execution runner, a Python converted-train manifest/header validation path, a training-feature smoke runner, and synthetic guardrail/contract tests | Keep both Backblaze outcomes and the C-MAPSS weakening outcome visible without rescue language. The main open gap remains a directly logged empirical \(r_t\), stronger cross-domain non-CSP support, and any attempt to widen the law-side bridge beyond the current restricted class. The current public-work path now includes `analysis/g4_v2_repair_flow_acquisition_brief.md` for gate definition, `analysis/g4_v2_repair_flow_request_packet.md` for partner/local outreach, `analysis/g4_v2_stochastic_repair_bridge_note.md` for theorem-side escalation, `analysis/g4_v2_public_repair_flow_rescan_2026-04-27.md` for public-web triage, `analysis/g4_scania_component_x_archive_feasibility_note.md` for exact public bridge feasibility, `analysis/g4_scania_component_x_large_readout_acquisition_note.md` for full readout hashes and counts, `analysis/g4_scania_component_x_freeze_design_note.md` for label grammar and primary-path choice, `analysis/g4_scania_component_x_horizon_bridge_preregistration_draft.md` for the operational bridge prereg, `analysis/g4_scania_component_x_horizon_bridge/freeze_manifest_draft.md` for the frozen package record, `analysis/g4_scania_component_x_horizon_bridge/primary_report.md` for the closed public bridge no-support outcome, and `analysis/g4_battery_m_profile/` for the battery physical-degradation design branch plus Oxford Path Dependent web-feasibility / parser-smoke / freeze-draft layer, all explicitly below a completed repair-flow empirical bridge |
 | G5 prospective prediction | Supported by Exp40/41/42, Mixed-CSP, Exp43c | Another preregistered external-domain test |
 | G6 existing-theory mapping | G6-c iteration 1 closed | Optional iteration 2: positive recurrence / geometric ergodicity |
-| G7 independent replication | Open but now underway with two returned Mixed-CSP outside-group successes. Mixed-CSP has Level 1 audit replay, Level 2 local fresh rerun, an external handoff note, a pre-published fresh-clone rehearsal, a published-remote outside-workspace rerun, a sender-side send runbook, a final true outside-group handoff checklist, and an interim outside-group report with `2/3` returned and `2/2` clean success. Exp43c now has a completed local fresh rerun, an external handoff note, a published-remote outside-workspace rerun, a final true outside-group handoff checklist, and a locked sender-side zip packet / return-template layer | Public replication package starts with Mixed-CSP via `analysis/g7_mixed_csp_replication_package_plan.md`; `analysis/route_a_mixed_csp/mixed_csp_true_outside_rerun_01_katsumasa1234.md` and `analysis/route_a_mixed_csp/mixed_csp_true_outside_rerun_02_SCRAPRO.md` record the first two returned outside-group successes, and `analysis/route_a_mixed_csp/mixed_csp_true_outside_interim_report.md` records the interim state: `2/3 completed`, `2/2 clean success`, `1 pending`. Earlier layers remain recorded in `mixed_csp_audit_replay_note.md`, `mixed_csp_level2_rerun_note.md`, `mixed_csp_external_rerun_package.md`, `mixed_csp_outside_workspace_rerun_note.md`, `mixed_csp_published_remote_rerun_note.md`, `mixed_csp_true_outside_handoff_checklist.md`, and `mixed_csp_true_outside_send_runbook.md`. Exp43c now has a matching local rerun at `analysis/exp43_qcoloring/exp43c_level2_rerun_note.md`, an outside handoff boundary at `analysis/exp43_qcoloring/exp43c_external_rerun_package.md`, a published-remote outside-workspace rerun at `analysis/exp43_qcoloring/exp43c_published_remote_rerun_note.md`, a final handoff checklist at `analysis/exp43_qcoloring/exp43c_true_outside_handoff_checklist.md`, send-ready materials at `analysis/exp43_qcoloring/exp43c_true_outside_send_runbook.md`, `analysis/exp43_qcoloring/exp43c_true_outside_send_packet_ja.md`, and `analysis/exp43_qcoloring/exp43c_g7_replication_report_template.md`, plus locked bundle metadata at `analysis/exp43_qcoloring/handoff_exports/LOCKED_BUNDLE_NOTE.md`. The next clean move is to send the Exp43c outside-group zip packet while absorbing the one pending Mixed-CSP return when it arrives |
+| G7 independent replication | Mixed-CSP requested outside-group set complete, broader G7 still open. Mixed-CSP has Level 1 audit replay, Level 2 local fresh rerun, an external handoff note, a pre-published fresh-clone rehearsal, a published-remote outside-workspace rerun, a sender-side send runbook, a final true outside-group handoff checklist, and a final outside-group report with `3/3` returned and `3/3` clean success. Exp43c now has a completed local fresh rerun, an external handoff note, a published-remote outside-workspace rerun, a final true outside-group handoff checklist, and a locked sender-side zip packet / return-template layer | Public replication package starts with Mixed-CSP via `analysis/g7_mixed_csp_replication_package_plan.md`; `analysis/route_a_mixed_csp/mixed_csp_true_outside_rerun_01_katsumasa1234.md`, `analysis/route_a_mixed_csp/mixed_csp_true_outside_rerun_02_SCRAPRO.md`, and `analysis/route_a_mixed_csp/mixed_csp_true_outside_rerun_03_philia_channel.md` record the three returned outside-group successes, and `analysis/route_a_mixed_csp/mixed_csp_true_outside_final_report.md` records the final requested-set state: `3/3 completed`, `3/3 clean success`, `0 pending`. Earlier layers remain recorded in `mixed_csp_audit_replay_note.md`, `mixed_csp_level2_rerun_note.md`, `mixed_csp_external_rerun_package.md`, `mixed_csp_outside_workspace_rerun_note.md`, `mixed_csp_published_remote_rerun_note.md`, `mixed_csp_true_outside_handoff_checklist.md`, and `mixed_csp_true_outside_send_runbook.md`. Exp43c now has a matching local rerun at `analysis/exp43_qcoloring/exp43c_level2_rerun_note.md`, an outside handoff boundary at `analysis/exp43_qcoloring/exp43c_external_rerun_package.md`, a published-remote outside-workspace rerun at `analysis/exp43_qcoloring/exp43c_published_remote_rerun_note.md`, a final handoff checklist at `analysis/exp43_qcoloring/exp43c_true_outside_handoff_checklist.md`, send-ready materials at `analysis/exp43_qcoloring/exp43c_true_outside_send_runbook.md`, `analysis/exp43_qcoloring/exp43c_true_outside_send_packet_ja.md`, and `analysis/exp43_qcoloring/exp43c_g7_replication_report_template.md`, plus locked bundle metadata at `analysis/exp43_qcoloring/handoff_exports/LOCKED_BUNDLE_NOTE.md`. The next clean move is to send the Exp43c outside-group zip packet and keep Mixed-CSP final wording scoped to that package |
 
 ## 7. Stress-Test / Falsification Layer
 
@@ -147,9 +148,10 @@ cross-domain sign-convention table.
 
 The program has a stable structural-persistence balance core, Lean-backed algebraic
 embeddings, two validated Route A empirical anchors beyond the SAT-only core,
-and disciplined Route C observational support. Mixed-CSP now also has an
-interim true outside-group rerun layer with two clean returned successes and one
-requested rerun pending. On the non-CSP side it now has one same-domain
+and disciplined Route C observational support. Mixed-CSP now also has a
+completed three-run true outside-group rerun layer with three clean returned
+successes and no requested Mixed-CSP reruns pending. On the non-CSP side it now
+has one same-domain
 observational loss-only pass (Backblaze v2), one cross-domain loss-only
 weakening outcome (C-MAPSS FD001), and one public stochastic-reliability bridge
 no-support result (Scania), while repair-flow empirical support remains open.
@@ -169,8 +171,15 @@ Structural Persistence Theory for LLM reasoning degradation, catastrophic forget
 
 ## Current Focus / 現在の主対象
 
-このリポジトリの主対象は、`v2` にある主理論 spine 3 本と Route C companion 2 本、および補論群です。
-論理依存としては `v2/1`、`v2/2`、`v2/3` が主理論 spine ですが、外向きの最短導線としては `v2/0_構造持続理論の統合版.md` から入り、続いて `v2/3_構造持続の収支原理と崩壊傾向.md` を主論文として読む構成を想定しています。そこから foundation を厳密に追いたい読者は `v2/1` と `v2/2` に降り、Route C の observational layer を見たい読者は `v2/Companion_RouteC_推論時の構造劣化.md`、`v2/Companion_RouteC_継続学習時の構造的忘却.md` を companion anchors として読むのが自然です。現在の証拠階層は [`analysis/current_evidence_map.md`](analysis/current_evidence_map.md) に整理しています。`v1/` は旧版アーカイブ、補論は補助資料です。
+このリポジトリの主対象は、`v2` にある主理論 spine 3 本、Route C companion 2 本、および補論群です。
+
+- 最短導線: [`v2/0_構造持続理論の統合版.md`](v2/0_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E7%90%86%E8%AB%96%E3%81%AE%E7%B5%B1%E5%90%88%E7%89%88.md) -> [`v2/3_構造持続の収支原理.md`](v2/3_構造持続の収支原理.md)
+- 論理依存順: `v2/1` -> `v2/2` -> `v2/3`
+- 構成地図: [`v2/補論_構造持続理論の構成地図.md`](v2/補論_構造持続理論の構成地図.md)
+- 判定語彙: [`v2/補論_構造持続理論の運用規律.md`](v2/補論_構造持続理論の運用規律.md)
+- 証拠階層: [`analysis/current_evidence_map.md`](analysis/current_evidence_map.md)
+
+`v1/` は旧版アーカイブです。
 
 ### English Entry Points
 
@@ -184,23 +193,12 @@ PDF は [`v2/pdf用/0_構造持続理論の統合版.pdf`](v2/pdf%E7%94%A8/0_%E6
 
 ## Evidence Status / 証拠の階層
 
-現時点で前面に出すべき主証拠は、[`analysis/current_evidence_map.md`](analysis/current_evidence_map.md) に階層別に整理しています。LLM 側では 810 試行の構造矛盾実験が、単なる文脈長や制約数の基準モデルを越える追加予測力を与えます。SAT / Route A 側では、自然測度・first moment・Chernoff/KL collapse chain が有限地平線の数学的 anchor として Lean で閉じ、Mixed-CSP と Exp43c q-coloring が prospective empirical support を追加しています。
+現時点の証拠階層は [`analysis/current_evidence_map.md`](analysis/current_evidence_map.md) に整理しています。README では現在地だけを示します。
 
-追加の prospective check として、Exp.39 では `gpt-4.1-nano` に対する 2×2 replication を行い、`32K structural contradiction` が `256K filler-only` より低い正答率を示した（0/30 vs 19/30）。これは文脈長が無害だという主張ではなく、構造矛盾が filler 長だけより強い崩壊要因になりうるという限定された予測を支持する。
-
-既存 Exp.36/39 の trial-level 再解析では、token-only、quality-blind、structure-aware の三つの予測モデルを比較しています。Exp.36 の leave-one-model/context-out と Exp.39 外挿のいずれでも structure-aware model が最良の log loss を示しました。ただし quality-blind baseline も強いため、Exp.40 では「矛盾の有無」ではなく「矛盾の質」の差を固定比較しました。
-
-Exp.40 はこの残った quality-blind baseline を直接叩く事前登録済み検査です。32K に固定し、`scoped / subtle / structural` を各50試行で比較しました。`scoped` は事前に repaired / zero-like として符号化しています。結果は `zero_sanity=50/50`, `scoped=50/50`, `subtle=23/50`, `structural=0/50` で、strong support が通りました。leave-one-target-out の primary log loss でも structure-aware `0.2763` が quality-blind `0.6944` を上回りました。
-
-Exp.42 は Exp.40 の scope-as-repair 効果を四段階に分解しました。結果は `strong_scope=50/50`, `medium_scope=49/50`, `weak_scope=42/50`, `subtle=10/50` です。primary ordering は通りましたが、strong support の 10pt margin は strong/medium の天井効果により未達でした。row-level では exact wrong-sum adoption が `subtle` 25/40 mistakes から `weak_scope` 1/50 (1/8 mistakes)、`medium/strong` 0/50 へ落ち、最小の参照元 attribution が repair の主要成分であることを示唆します。
-
-Route A の有限 CSP 側では、Mixed-SAT/NAE-SAT の事前登録済み primary test が、drift-weighted `L_plus_n` predictor が raw count + `n` baseline を大きく上回ることを示しました（leave-one-mixture-out log loss 0.0970 vs 0.7525）。さらに Exp43c q-coloring primary validation では、freeze 済み threshold-local window 内で `fm_plus_n` が raw / density / CNF-size baselines を上回りました（mean held-out log loss 0.440189 vs best raw baseline 2.804019、84.3% improvement）。q=5 fold は僅差なので大きな効果とは呼ばず、SAT 構文を越えた Route A width support として限定的に扱います。これは独立再現前の universal law 宣言ではなく、Level 2 universality candidate への支持です。
-
-形式層では、Lean M1 gap analysis により、目標定理 4 の期待値レベル tendency schema が既存定理で formally accessible であることを確認しました。さらに G6-c iteration 1 として、Foster-Lyapunov / queueing drift の最小代数的埋め込みを `Survival/LyapunovBalanceEmbedding.lean` で形式化しました。対応表は [`lean/PAPER_MAPPING.md`](lean/PAPER_MAPPING.md) にまとめています。残る formal work は、必要に応じた reader-facing wrapper の追加と、高確率 stopped-collapse schema を期待値版 tendency schema から分離して維持することです。
-
-Route A の非CSP skeletons は、信頼性・減衰・待ち行列・疲労・合意・臨界閾値などの古典例を同じ最小語彙で歪めず表せるかを見る sanity / coverage benchmark です。G4 v1 では queueing / Foster-Lyapunov drift を primary anchor、serial reliability と constant-fraction decay を loss-only control anchors として扱います。G4 v2 では repair / maintenance を持つ reliability / fatigue 系へ進め、`RepairMaintenanceBalance.lean` で回復量 \(r_t\) を非CSP open-system anchor として明示しました。これらは各分野の新しい本命定理を主張するものではなく、今後の operational theorem がどこへ波及しうるかを示すための射程確認として扱います。
-
-非CSP の observational 側では、Backblaze drive reliability の loss-only branch に closed Q4 2025 no-support と Q3 2025 same-domain calibrated support の両方があります。Q4 2025 v1 は高い AUC を持ちながら frozen log-loss rule で失敗しましたが、Q3 2025 v2 は別 archive 上の calibration-aware redesign として通りました（0.007936 vs best baseline 0.008801、9.83% improvement）。ただしこれは repair-flow evidence ではなく、same-domain second attempt の loss-only observational support に限定して扱います。
+- Route A: SAT / Mixed-CSP / q-coloring では、自然測度・finite-horizon collapse chain・prospective empirical support が揃いつつあります。Mixed-CSP は外部実行者 3 名による frozen package rerun で primary output と support flags が再現されています。
+- Route C: LLM 推論実験では、文脈長だけではなく構造矛盾の質が崩壊を予測することを、複数の preregistered / prospective checks で検査しています。
+- Formal layer: Lean 4 側は `139 Survival modules`, `sorry = 0`, `axiom = 0` で、主な theorem-to-paper mapping は [`lean/PAPER_MAPPING.md`](lean/PAPER_MAPPING.md) にまとめています。
+- Non-CSP: Backblaze / C-MAPSS / Scania などは support / weakening / no-support を分けて記録し、同一 archive 内の rescue を避けています。
 
 ## Core and Companion Papers (v2) / 主理論核と companion papers
 
@@ -220,11 +218,11 @@ Route A の非CSP skeletons は、信頼性・減衰・待ち行列・疲労・�
 - PDF: [`v2/pdf用/2_構造持続の条件つき導出.pdf`](v2/pdf%E7%94%A8/2_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%AE%E6%9D%A1%E4%BB%B6%E3%81%A4%E3%81%8D%E5%B0%8E%E5%87%BA.pdf)
 - OSF mirror: [paper2_conditional_derivation_ja_2026-04-14.pdf](https://osf.io/mdh7b/files/osfstorage/69dde4faa17296e9bb3e7a3b)
 
-### Paper 3 — 構造持続の収支原理と崩壊傾向
+### Paper 3 — 構造持続の収支原理
 
-主理論 spine の第三層。構造消耗量と回復量の差し引きを構造持続の収支原理として定式化し、pathwise identity、expectation-level tendency、finite-horizon concentration schema、Route A / Route C anchors、既存理論との接続強度を整理する中心 draft です。
+主理論 spine の第三層。閉じた系の `S = M e^{-L}` を、回復量を含む開いた系の `S = M e^{-B}` へ拡張し、pathwise identity、expectation-level tendency、finite-horizon concentration schema、Route A / Route C anchors、既存理論との接続強度を整理する中心 draft です。
 
-- Markdown: [`v2/3_構造持続の収支原理と崩壊傾向.md`](v2/3_構造持続の収支原理と崩壊傾向.md)
+- Markdown: [`v2/3_構造持続の収支原理.md`](v2/3_構造持続の収支原理.md)
 
 ### Route C Companion I — 推論時の構造劣化
 
@@ -255,7 +253,7 @@ Route C companion anchor 2。主理論 spine の証明ではなく、前提更�
 | v2 Paper 3 | Main theory draft |
 | Route C Companion I | Companion preprint |
 | Route C Companion II | Companion preprint |
-| Lean 4 formalization | Complete (`136 Survival modules`, `sorry = 0`, `axiom = 0`) |
+| Lean 4 formalization | Complete (`139 Survival modules`, `sorry = 0`, `axiom = 0`) |
 | OSF project | [osf.io/mdh7b/overview](https://osf.io/mdh7b/overview) |
 | Raw data and summaries | [DATA.md](DATA.md) |
 
@@ -269,7 +267,7 @@ See [`PATENTS.md`](PATENTS.md) for a brief scope note.
 ### Public-facing shortest route
 
 1. [`v2/0_構造持続理論の統合版.md`](v2/0_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E7%90%86%E8%AB%96%E3%81%AE%E7%B5%B1%E5%90%88%E7%89%88.md)
-2. [`v2/3_構造持続の収支原理と崩壊傾向.md`](v2/3_構造持続の収支原理と崩壊傾向.md)
+2. [`v2/3_構造持続の収支原理.md`](v2/3_構造持続の収支原理.md)
 3. [`v2/1_構造持続の最小形式.md`](v2/1_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%AE%E6%9C%80%E5%B0%8F%E5%BD%A2%E5%BC%8F.md)
 4. [`v2/2_構造持続の条件つき導出.md`](v2/2_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%AE%E6%9D%A1%E4%BB%B6%E3%81%A4%E3%81%8D%E5%B0%8E%E5%87%BA.md)
 5. [`v2/Companion_RouteC_推論時の構造劣化.md`](v2/Companion_RouteC_推論時の構造劣化.md)
@@ -279,19 +277,20 @@ See [`PATENTS.md`](PATENTS.md) for a brief scope note.
 
 1. [`v2/1_構造持続の最小形式.md`](v2/1_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%AE%E6%9C%80%E5%B0%8F%E5%BD%A2%E5%BC%8F.md)
 2. [`v2/2_構造持続の条件つき導出.md`](v2/2_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%AE%E6%9D%A1%E4%BB%B6%E3%81%A4%E3%81%8D%E5%B0%8E%E5%87%BA.md)
-3. [`v2/3_構造持続の収支原理と崩壊傾向.md`](v2/3_構造持続の収支原理と崩壊傾向.md)
+3. [`v2/3_構造持続の収支原理.md`](v2/3_構造持続の収支原理.md)
 
 ## Supplements / 補論・補助資料
 
-補論は主張の中心ではなく、補助的な位置づけです。
+補論は主張の中心ではなく、補助的な位置づけです。ただし最初の二つは、補論群全体を読むための地図と運用規律として先に参照できます。
 
+- [`v2/補論_構造持続理論の構成地図.md`](v2/補論_構造持続理論の構成地図.md)
+- [`v2/補論_構造持続理論の運用規律.md`](v2/補論_構造持続理論の運用規律.md)
 - [`v2/補論_計算コストの構造的予測.md`](v2/%E8%A3%9C%E8%AB%96_%E8%A8%88%E7%AE%97%E3%82%B3%E3%82%B9%E3%83%88%E3%81%AE%E6%A7%8B%E9%80%A0%E7%9A%84%E4%BA%88%E6%B8%AC.md)
 - [`v2/補論_有限CSPにおける構造持続の予測力.md`](v2/%E8%A3%9C%E8%AB%96_%E6%9C%89%E9%99%90CSP%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%AE%E4%BA%88%E6%B8%AC%E5%8A%9B.md)
 - [`v2/補論_構造持続の収支原理とFoster-Lyapunovドリフトの形式的埋め込み.md`](v2/補論_構造持続の収支原理とFoster-Lyapunovドリフトの形式的埋め込み.md)
 - [`v2/補論_非CSP古典例における構造持続の収支原理の最小アンカー.md`](v2/補論_非CSP古典例における構造持続の収支原理の最小アンカー.md)
 - [`v2/補論_構造持続における資源項Mの操作的定式化.md`](v2/補論_構造持続における資源項Mの操作的定式化.md)
 - [`v2/補論_構造持続写像の標準手順.md`](v2/%E8%A3%9C%E8%AB%96_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E5%86%99%E5%83%8F%E3%81%AE%E6%A8%99%E6%BA%96%E6%89%8B%E9%A0%86.md)
-- [`v2/補論_持続的支援知能の設計原理.md`](v2/%E8%A3%9C%E8%AB%96_%E6%8C%81%E7%B6%9A%E7%9A%84%E6%94%AF%E6%8F%B4%E7%9F%A5%E8%83%BD%E3%81%AE%E8%A8%AD%E8%A8%88%E5%8E%9F%E7%90%86.md)
 
 ## Repository Structure / リポジトリ構成
 
@@ -309,7 +308,7 @@ delta-survival-paper/
 ## Formal Verification / 形式検証
 
 Lean formalization is in [`lean/`](lean/). Current status:
-`136 Survival modules`, `sorry = 0`, `axiom = 0`.
+`139 Survival modules`, `sorry = 0`, `axiom = 0`.
 
 The current core layering includes:
 
@@ -329,6 +328,7 @@ The current core layering includes:
 - `ThresholdCardinalitySATChernoffCollapse.lean`: at-most / at-least threshold cardinality-SAT を同じ witness bridge に載せる family-level specialization
 - `ExactlyOneSATChernoffCollapse.lean`: exactly-one-SAT を multi-forbidden-pattern witness として表現する specialization
 - `BernoulliCSPUniversality.lean`: k-SAT / NAE-SAT / XOR-SAT / q-coloring / forbidden-pattern / hypergraph-coloring / cardinality-SAT / threshold-cardinality-SAT CSP を同一 Bernoulli-CSP interface に束ねる wrapper
+- `NumericalSanityChecks.lean`: k-SAT / NAE-SAT / XOR-SAT / q-coloring / forbidden-pattern wrappers が小さな具体例で `log(8/7)`, `log(4/3)`, `log 2` などを回復する documented sanity layer
 - `LyapunovBalanceEmbedding.lean`: Foster-Lyapunov / queueing drift を構造持続の収支原理の \(b_t,B_n,R_t,d_t,r_t\) へ埋め込む G6-c minimal algebraic embedding
 - Route A non-CSP skeletons: 11 small Lean modules grouped into five finite-prefix forms: multiplicative/exponential survival, linear overload, cumulative-capacity thresholds, critical-parameter thresholds, and explicit repair / maintenance balance. Detailed module-to-claim mapping is kept in [`lean/PAPER_MAPPING.md`](lean/PAPER_MAPPING.md).
 
@@ -376,17 +376,17 @@ See [`CITATION.cff`](CITATION.cff).
 
 要旨
 
-本稿は、構造持続理論に関する既存の分冊を、一つの導線で読めるように再構成した統合版である。現在の構成では、Paper 1 / Paper 2 が loss-only の最小核とその条件つき導出を与え、Paper 3 がそれを構造消耗量と回復量の構造持続の収支原理へ拡張する主理論層を与える。Route C companion I / II は、その主理論核を LLM 推論劣化と継続学習忘却へ写した companion anchor として位置づける。論理依存としては 1 → 2 → 3 だが、読者導線としてはまず Paper 0 から全体像を掴み、その後に Paper 3 を主論文として読み、必要に応じて Paper 1 / Paper 2 へ降りるのが自然である。
+本稿は、構造持続理論に関する既存の分冊を、一つの導線で読めるように再構成した統合版である。現在の構成では、Paper 1 / Paper 2 が loss-only の最小核とその条件つき導出を与え、Paper 3 がそれを構造消耗量と回復量の構造持続の収支原理へ拡張する主理論層を与える。Route C companion I / II は、その主理論核を LLM 推論劣化と継続学習忘却へ写した companion anchor として位置づける。
 
 理論の最小核では、構造維持可能な状態集合の逐次縮小を対数比で測ることで、残存可能性が指数型で表されることを与える。したがって、指数型は追加仮定ではなく、この表現の帰結である。条件つき導出では、どこまでが定義の帰結であり、どこからが独立性や弱依存といった追加条件に依存するのかを明示する。構造持続の収支原理では、この loss-only 核を \(r_t=0\) の特例として含み、構造消耗量 \(d_t\) と回復量 \(r_t\) の差を純消耗量
 \[
   b_t := d_t - r_t
 \]
-として扱う。累積純消耗量 \(B_n:=\sum_{t<n}b_t\) に対して、読者向けには
+として扱う。対象期間の累積純消耗量 \(B:=\sum_t b_t\) に対して、読者向けには
 \[
-  S_n = M_n e^{-B_n}
+  S = M e^{-B}
 \]
-という表の形を取る。集合値核だけを見れば、
+という看板式を取る。ここで \(B\) は、対象期間が文脈上固定されたときの累積純消耗量であり、最小形式の \(S=Me^{-L}\) を開いた系へ拡張した同型の式である。厳密な有限時間地平では \(B_n:=\sum_{t<n}(d_t-r_t)\), \(S_n=M_n e^{-B_n}\) と書く。集合値核だけを見れば、
 \[
   m(V^{(n)}) = m(V^{(0)}) e^{-B_n}
 \]
@@ -394,8 +394,7 @@ See [`CITATION.cff`](CITATION.cff).
 
 推論側では、長期対話の劣化を文脈長そのものではなく、未整理の矛盾蓄積として捉える。継続学習側では、前提更新に依存する知識の連鎖更新が失敗することを、構造的忘却として記述する。これらは主理論核そのものではなく、consumption-side indicator と recovery-side indicator が観測量を予測するかを検査する Route C companion anchor である。さらに、これらの含意として、外部代謝、多層記憶、ロールバック可能性を備えた持続知能アーキテクチャの方向を述べる。
 
-経験的主張として現時点で最も強いのは次の三点である。第一に、推論実験では、GPT-4.1-nano / mini と Gemini Flash Lite の 3 モデル・計 810 試行にわたり、256K トークンのフィラーを含む長文脈よりも、32K 文脈に混入した構造的矛盾のほうが正答率を大きく削ること（GPT-4.1-mini で 256K フィラーのみ 97% に対し 32K + 構造矛盾 0%）が一貫して観測された。これは、制約の個数や文脈長のみで崩壊を予測する基準モデルでは説明できない方向であり、構造持続の枠組みが基準モデルに対する追加予測力を持つことの経験的証拠を与える。第二に、ランダム 3-SAT における計算コストのスケーリングは、構造的パラメータ $L = \alpha n |\ln(7/8)|$ に対して $\mu_c \propto e^{cL}$ の形式で進み、CDCL で $c \approx 0.24$（$R^2 = 0.99$）、WalkSAT で $c \approx 0.21$（$R^2 = 0.96$）と、$c = 1$ のランダム探索基準線を定量的に下回る。これは、$L$ が単なる制約数の再パラメータ化ではなく、計算コストに対しても実質的な予測量となることを定量的に示す。第三に、Mixed-SAT/NAE-SAT の有限 CSP 実験では、drift-weighted な `L_plus_n` predictor が raw count + \(n\) baseline を大きく上回った（leave-one-mixture-out log loss 0.0970 vs 0.7525）。これは、単一 family では縮退する \(L\) と raw count の比較を、異なる drift を持つ制約混合によって非縮退に検査したものであり、Bernoulli-CSP universality class に対する経験的支持を与える。この Mixed-CSP package は、その後、依頼ベースの外部実行者 2 名によって独立に再実行され、2/2 の返送で 12,000 行の primary run、0 checked core-field mismatches、全 support flag true が確認された。一方で、当初依頼した 3 件のうち 1 件は未返送であるため、これは「複数外部実行者による再現確認済み」とは言えるが、外部 replication set 全体の完了や普遍法則の確立を意味しない。
-その後の prospective check として、Exp.39 では GPT-4.1-nano に対する 2×2 replication を行い、32K + structural contradiction が 256K filler-only より低い正答率を示した（0/30 vs 19/30）。これは文脈長が無害だという意味ではなく、構造矛盾が filler 長だけより強い崩壊要因になりうるという限定された予測を支持する。
+経験的主張として現時点で前面に出すべきものは三つである。第一に、LLM 推論実験では、単なる文脈長ではなく構造矛盾の質が崩壊を予測する。第二に、ランダム 3-SAT の計算コストは、構造的パラメータ \(L\) に対して \(\mu_c \propto e^{cL}\) の形で整理される。第三に、Mixed-SAT/NAE-SAT では drift-weighted な `L_plus_n` predictor が raw count + \(n\) baseline を上回り、その frozen package は外部実行者 3 名による再実行でも primary output と support flags が再現された。ただし、これは普遍法則の確立ではなく、Route A/C の主張強度を分けた経験的支持である。詳細な数値、no-support branch、未完了の別系統 replication は evidence map と各 analysis note に委ねる。
 
 本稿は、主理論 spine、Route A anchors、Route C companion anchors、実装含意を一つの見取り図として提示するための入口であり、詳細な導出と実験条件は各分冊および補論に委ねる。
 
@@ -410,7 +409,7 @@ See [`CITATION.cff`](CITATION.cff).
 
 ここで問題にしているのは、基体そのものの消滅ではない。問題にしているのは、ある構造としての同一性や、その構造が担っていた機能が持続できるかどうかである。したがって、劣化や崩壊として観測されるものは、多くの場合、無への消失ではなく、別の構造への遷移、構造的再編、相転移として理解される。
 
-本稿の目的は、この共通骨格を、最小理論、条件つき導出、構造持続の収支原理、Route A/C アンカー、実装含意の順に再配置し、全体像を一つの物語として読めるようにすることにある。新しい定理や新しい実験を追加することが目的ではない。目的は、既存の分冊がそれぞれ担っていた役割を、一つの統一的主張のもとに並べ直すことである。より具体的には、Paper 1 / Paper 2 / Paper 3 を主理論核として前景化し、Route C companion I / II はその核に対する Route C の companion anchor として後段に置く。論理的な依存順は 1 → 2 → 3 だが、外向きの最短導線としては Paper 0 → Paper 3 を先に読み、その後に foundation として Paper 1 / Paper 2 へ降りる読み方も許容する。読者が骨格だけを追うなら、Section 2 → Section 3 → Section 4 → Section 9 → Section 10 を先に読むのがよい。
+本稿の目的は、この共通骨格を、最小理論、条件つき導出、構造持続の収支原理、Route A/C アンカー、実装含意の順に再配置し、全体像を一つの導線として読めるようにすることにある。新しい定理や新しい実験を追加することが目的ではない。目的は、既存の分冊がそれぞれ担っていた役割を、一つの統一的主張のもとに並べ直すことである。論理的な依存順は Paper 1 -> Paper 2 -> Paper 3 であり、本稿はその入口である。
 
 
 2. 最小理論
@@ -448,7 +447,7 @@ See [`CITATION.cff`](CITATION.cff).
 
 さらに、この理論が経験科学として意味を持つためには、構造 V^(0)、測度 m、制約列 {C_i}、時間地平 T が事前に operationalize されていなければならない。もし観測後に都合のよい構造や測度を選び直してよいなら、任意の有限単調減少列に対して m(V^(i)) = s_i を満たす縮小列を構成でき、理論は事後的適合によって空虚化する。したがって本稿群の射程は、事前固定性・非自明性・表現安定性を満たす構造維持問題に限られる。
 
-ここでいう事前固定性は、探索的な写像発見を禁止するものではない。現実ドメインでは、維持対象、測度、構造消耗指標、回復指標を探索的に発見する段階がある。その段階の結果は candidate mapping であって support ではない。support と呼べるのは、写像・指標・split・metric・baseline を凍結した後、holdout / future / fresh archive / outside rerun で予測力の増分を示した場合に限られる。この運用規律は、補論「構造持続写像の標準手順」で定める。
+ここでいう事前固定性は、探索的な写像発見を禁止するものではない。現実ドメインでは、維持対象、測度、構造消耗指標、回復指標を探索的に発見する段階がある。その段階の結果は candidate mapping であって support ではない。support と呼べるのは、写像・指標・split・metric・baseline を凍結した後、holdout / future / fresh archive / outside rerun で予測力の増分を示した場合に限られる。この運用規律は、補論「構造持続写像の標準手順」と補論「構造持続理論の運用規律」で定める。
 
 このとき重要になるのが、構造粒度である。構造粒度とは、維持対象をどの細かさ・どの階層で定義するかを指す。全体の維持可能性は、最小構成要素の状態だけで決まるとは限らない。多くの系では、構造は入れ子状・多階層的であり、下位構造の消耗、上位構造の制約、階層間の依存、回復量の伝播が相互作用する。したがって、自然な \(V,m\) は単一の階層だけで固定されるとは限らず、維持条件に応じた構造粒度の設定と、多階層的な構造写像が必要になる。
 
@@ -553,7 +552,11 @@ Paper 3 は、Paper 1 / Paper 2 の loss-only 核を、開いた構造系の主�
 \[
   m(V^{(n)}) = m(V^{(0)}) e^{-B_n}
 \]
-が成り立つ。これは、収縮だけを扱う \(m(V^{(n)})=m(V^{(0)})e^{-L_n}\) を捨てるのではなく、\(r_t=0\) の特例として回収する。
+が成り立つ。資源項を明示する読者向けの表では、同じ内容を
+\[
+  S = M e^{-B}
+\]
+と書く。これは、閉じた系の \(S=Me^{-L}\) や、収縮だけを扱う \(m(V^{(n)})=m(V^{(0)})e^{-L_n}\) を捨てるのではなく、\(r_t=0\) の特例として回収する。
 
 この構造持続の収支原理では、\(b_t>0\) は構造消耗優位、\(b_t=0\) は維持、\(b_t<0\) は回復優位を表す。したがって、ここでいう「収支」は均衡ではなく accounting である。崩壊、維持、回復を同じ符号付き量の三つの regime として読むための座標である。
 
@@ -597,6 +600,8 @@ Exp.39 の 2×2 prospective replication でも、同じ主比較は GPT-4.1-nano
 
 この含意は LLM に閉じない。ソフトウェア工学における冗長性、クリーンアーキテクチャ、interface / contract、CI、rollback、observability は、構造消耗を局所化し、回復経路を残し、変更後も維持可能な経路集合を枯らさないための実践的プロトタイプとして読める。同じ座標に写すことで、あるドメインの成功例は、別ドメインにおける設計候補を生成する。たとえば scope-as-repair は責任境界や変更範囲の明示へ、dependency-aware replay は上流変更に伴う下流判断の再同期へ、rollback は局所復元可能性の設計へ翻訳できる。
 
+同じ規律は、本稿群自身の書き方にも現れる。主理論 spine、companion papers、補論、Lean mapping、numerical sanity checks、no-support / silence 判定を分けることは、理論プログラムを検証可能・保守可能・拡張可能な構成物として扱うための方法論である。
+
 この方向は、長期的な一貫性を持つ知能システム、すなわち内部モデルを育てながら持続するパートナー型知能を考えるときに自然である。記憶を増やすことそのものよりも、矛盾をどう解消し、何を休眠させ、いつ再活性化し、どこまで安全に戻せるかが中心になるからである。
 
 
@@ -611,7 +616,7 @@ Exp.39 の 2×2 prospective replication でも、同じ主比較は GPT-4.1-nano
 
 9. 結論
 
-本稿は、構造持続理論に関する既存の分冊を統合し、主理論核と実証アンカーの役割を整理した。Paper 1 は、構造を維持できる状態集合の縮小から loss-only の指数型が現れることを与える。Paper 2 は、その指数型がどこまで定義の帰結で、どこからが追加条件に依存するのかを分ける。Paper 3 は、これを構造消耗量と回復量の構造持続の収支原理へ拡張し、開いた系では \(b_t=d_t-r_t\) の累積純消耗量 \(B_n\) が構造維持可能性を支配することを主導線に置く。Route C companion I / II は、未整理の矛盾や前提更新が構造を削り、scope marker、外部代謝、依存 DAG controller などが recovery-side indicator として働くことを示す Route C companion anchor である。
+本稿は、構造持続理論に関する既存の分冊を統合し、主理論核と実証アンカーの役割を整理した。Paper 1 は、構造を維持できる状態集合の縮小から loss-only の指数型 \(S=Me^{-L}\) が現れることを与える。Paper 2 は、その指数型がどこまで定義の帰結で、どこからが追加条件に依存するのかを分ける。Paper 3 は、これを構造消耗量と回復量の構造持続の収支原理へ拡張し、開いた系では累積純消耗量 \(B\) による \(S=Me^{-B}\) が構造維持可能性を支配することを主導線に置く。Route C companion I / II は、未整理の矛盾や前提更新が構造を削り、scope marker、外部代謝、依存 DAG controller などが recovery-side indicator として働くことを示す Route C companion anchor である。
 
 したがって、本稿群の中心主張は次のように要約できる。長期的な知能システムの劣化を理解する鍵は、単なる容量不足や長さそれ自体ではなく、構造を維持できる状態の領域がどのような制約によって削られていくかを見ることにある。そこから自然に導かれる設計方向は、矛盾を外部で代謝し、内部モデルを壊れにくく保つ持続知能アーキテクチャである。
 
@@ -619,29 +624,29 @@ Exp.39 の 2×2 prospective replication でも、同じ主比較は GPT-4.1-nano
 
 ここで失われるのは、存在一般ではなく、「その構造として持続すること」である。この整理を置いておくことで、崩壊、忘却、相転移、再編といった異なる観測現象を、同じ骨格の別相として読むことができる。
 
-本稿群の経験的主張のうち、現時点で最も強いものは次の三つである。第一に、推論実験の 810 試行（3 モデル）にわたる基準モデル超えの逆転、すなわち長文脈フィラーよりも短文脈中の構造的矛盾のほうが大きく崩壊を起こすという定性予測。第二に、ランダム 3-SAT の計算コスト指数則 $\mu_c \propto e^{cL}$ における $c < 1$ の定量予測（CDCL $c \approx 0.24$, $R^2 = 0.99$；WalkSAT $c \approx 0.21$, $R^2 = 0.96$）。第三に、Mixed-SAT/NAE-SAT において \(L+n\) が raw count + \(n\) より feasibility を強く予測したこと（log loss 0.0970 vs 0.7525）である。Mixed-CSP については、さらに 2 名の外部実行者が同一 frozen package を再実行し、いずれも 12,000 行の primary output、0 checked core-field mismatches、全 support flag true を返した。これらは、構造持続の枠組みが単なる形式的再記述ではなく、個別ドメインにおいて基準モデルに対する追加予測力を持つこと、かつ少なくとも Mixed-CSP package が著者環境だけに依存しないことの具体的な経験的証拠である。ただし、Route C companion I / II の観察は Route C の観測的アンカーであり、Route A の有限時間定理鎖と同じ強度ではない。また、Mixed-CSP の外部再実行は現時点で 2/3 返送済みの interim status であり、全依頼件数の完了ではない。
+本稿群の経験的主張のうち、現時点で最も強いものは次の三つである。第一に、推論実験の 810 試行（3 モデル）にわたる基準モデル超えの逆転、すなわち長文脈フィラーよりも短文脈中の構造的矛盾のほうが大きく崩壊を起こすという定性予測。第二に、ランダム 3-SAT の計算コスト指数則 $\mu_c \propto e^{cL}$ における $c < 1$ の定量予測（CDCL $c \approx 0.24$, $R^2 = 0.99$；WalkSAT $c \approx 0.21$, $R^2 = 0.96$）。第三に、Mixed-SAT/NAE-SAT において \(L+n\) が raw count + \(n\) より feasibility を強く予測したこと（log loss 0.0970 vs 0.7525）である。Mixed-CSP については、さらに 3 名の外部実行者が同一 frozen package を再実行し、いずれも 12,000 行の primary output、0 checked core-field mismatches、全 support flag true を返した。これにより、依頼済みの Mixed-CSP outside-group rerun set は 3/3 clean success として完了した。これらは、構造持続の枠組みが単なる形式的再記述ではなく、個別ドメインにおいて基準モデルに対する追加予測力を持つこと、かつ少なくとも Mixed-CSP package が著者環境だけに依存しないことの具体的な経験的証拠である。ただし、Route C companion I / II の観察は Route C の観測的アンカーであり、Route A の有限時間定理鎖と同じ強度ではない。また、Mixed-CSP の requested rerun set が完了したことは、Exp43c outside-group rerun や non-CSP repair-flow support まで完了したことを意味しない。
 このうち前者については、Exp.39 の prospective replication が、同一モデル内の 2×2 比較として主方向を再確認している。
 
 
 10. 詳細への案内
 
-本稿は入口であり、詳細は各分冊に委ねる。読み順としては、主理論 spine を先に押さえ、その後に Route A / Route C の各アンカーへ進むのが最も誤読が少ない。
+本稿は入口であり、詳細は各分冊に委ねる。読み順としては、主理論 spine を先に押さえ、その後に Route A / Route C の各アンカーへ進むのが最も誤読が少ない。全体の層と依存関係は補論「構造持続理論の構成地図」、support 判定と沈黙条件は補論「構造持続理論の運用規律」にまとめる。
 
-- 主理論核（先に読む）: 1_構造持続の最小形式.md, 2_構造持続の条件つき導出.md, 3_構造持続の収支原理と崩壊傾向.md
+- 構成地図・運用規律: 補論_構造持続理論の構成地図.md, 補論_構造持続理論の運用規律.md
+- 主理論核（先に読む）: 1_構造持続の最小形式.md, 2_構造持続の条件つき導出.md, 3_構造持続の収支原理.md
 - Route C companion anchors（主理論核の後で読む）: Companion_RouteC_推論時の構造劣化.md, Companion_RouteC_継続学習時の構造的忘却.md
 - Route A / CSP アンカー: 補論_計算コストの構造的予測.md, 補論_有限CSPにおける構造持続の予測力.md
 - 開放系・写像・資源項: [構造持続の集合値力学的表現と符号付き指数核](補論_構造持続の集合値力学的表現と符号付き指数核.md), 補論_構造持続写像の標準手順.md, 補論_構造持続における資源項Mの操作的定式化.md
 - 非CSP / 既存理論アンカー: 補論_構造持続の収支原理とFoster-Lyapunovドリフトの形式的埋め込み.md, 補論_非CSP古典例における構造持続の収支原理の最小アンカー.md
-- 実装含意: 補論_持続的支援知能の設計原理.md
 
 
 ---
 
-# Source: `v2/3_構造持続の収支原理と崩壊傾向.md`
+# Source: `v2/3_構造持続の収支原理.md`
 
-3_構造持続の収支原理と崩壊傾向
-構造持続の収支原理と崩壊傾向
-— 累積純消耗量 Bn と構造持続量 Sn —
+3_構造持続の収支原理
+構造持続の収支原理
+— 閉じた系 S = M exp(-L) から開いた系 S = M exp(-B) へ —
 
 要旨
 
@@ -651,17 +656,25 @@ Exp.39 の 2×2 prospective replication でも、同じ主比較は GPT-4.1-nano
 \[
   b_t := d_t - r_t
 \]
-と置く。累積純消耗量を
+と置く。対象期間が文脈上固定されているとき、その累積を
 \[
-  B_n := \sum_{t<n} b_t
+  B := \sum_t b_t = \sum_t(d_t-r_t)
 \]
-とすれば、読者向けの表の形は
+と書けば、読者向けの看板式は
 \[
-  R_n = e^{-B_n},
+  S = M e^{-B}
+\]
+である。これは Paper 1 の閉じた系
+\[
+  S = M e^{-L}
+\]
+と同じ顔を持つ。違いは、回復なしの累積情報損失 \(L\) が、回復量を差し引いた累積純消耗量 \(B\) に置き換わる点にある。厳密な有限時間地平 \(n\) では
+\[
+  B_n := \sum_{t<n}(d_t-r_t),
   \qquad
-  S_n = M_n R_n = M_n e^{-B_n}
+  S_n = M_n e^{-B_n}
 \]
-である。ここで \(R_n\) は構造維持可能性の持続率（残存比）、\(M_n\) はその時点で明示的に追跡する維持資源、\(S_n\) は構造持続量である。集合値核だけを見る場合には、この式は
+と書く。ここで \(B_n\) は時刻 \(n\) までの累積純消耗量、\(M_n\) はその時点で明示的に追跡する維持資源、\(S_n\) は時刻 \(n\) における構造持続量である。必要なら \(R_n:=e^{-B_n}\) を構造維持可能性の持続率（残存比）と呼ぶ。集合値核だけを見る場合には、この式は
 \[
   m(V^{(n)}) = m(V^{(0)}) e^{-B_n}
 \]
@@ -690,19 +703,25 @@ Exp.39 の 2×2 prospective replication でも、同じ主比較は GPT-4.1-nano
 
 この問いは、閉じた系の収縮則を否定するものではない。むしろ、収縮則を \(r_t=0\) の特例として回収する。そのうえで、repair, learning, redundancy, external support, rollback のような再拡大作用を、同じ対数尺度上の回復量 \(r_t\) として導入する。
 
-本稿の基本形は次である。まず純消耗量と累積純消耗量を
+本稿の基本形は、読者向けには次の一式である。
+\[
+  S = M e^{-B},
+  \qquad
+  B = \sum_t(d_t-r_t)
+\]
+これは Paper 1 の \(S=Me^{-L}\) を、回復量を含む開いた系へ持ち上げた同型の式である。
+
+厳密な有限時間地平では、まず純消耗量と累積純消耗量を
 \[
   b_t = d_t - r_t,
   \qquad
   B_n = \sum_{t=0}^{n-1} b_t
 \]
-と置く。そのうえで、持続率（残存比）と構造持続量を
+と置き、時刻 \(n\) の構造持続量を
 \[
-  R_n = e^{-B_n},
-  \qquad
-  S_n = M_n R_n = M_n e^{-B_n}
+  S_n = M_n e^{-B_n}
 \]
-と書く。集合値核だけを取り出せば、
+と書く。必要なら残存比を \(R_n=e^{-B_n}\) と分離してもよい。集合値核だけを取り出せば、
 \[
   m(V^{(n)}) = m(V^{(0)}) e^{-B_n}.
 \]
@@ -897,15 +916,21 @@ d_t - r_t \\
 
 この定理は、指数型が loss-only 収縮モードに限られないことを示す。構造消耗量と回復量を同じ対数尺度で測れる限り、残存量は累積純消耗量 \(B_n\) に対して指数型で表される。
 
-資源項を明示的に追跡する場合には、残存比
+資源項を明示的に追跡する場合、読者向けの最小表示は
 \[
-  R_n := e^{-B_n}
+  S = M e^{-B}
 \]
-を用いて
+である。これは Paper 1 の
 \[
-  S_n := M_n R_n = M_n e^{-B_n}
+  S = M e^{-L}
 \]
-と書く。この \(S_n\) 表記は Paper 1 の \(S=Me^{-L}\) と同じ顔を持つ。違いは、閉じた系の累積構造消耗量 \(L_n\) が、開いた系では回復量を差し引いた累積純消耗量 \(B_n=L_n-R_n^{\mathrm{rec}}\) に置き換わる点である。
+と同じ顔を持つ。違いは、閉じた系の累積構造消耗量 \(L\) が、開いた系では回復量を差し引いた累積純消耗量 \(B\) に置き換わる点である。厳密な finite-prefix 表記では
+\[
+  B_n := \sum_{t<n}(d_t-r_t),
+  \qquad
+  S_n := M_n e^{-B_n}
+\]
+と書く。必要なら残存比を \(R_n:=e^{-B_n}\) と置き、\(S_n=M_n R_n\) と分離してもよい。
 
 2.6 収縮モードの回収
 
@@ -1040,11 +1065,11 @@ Lean 側では、この期待値レベルの傾向律は、既存の theorem map
 
 | 本稿の語彙 | Lean 側の語彙・定理 |
 |---|---|
-| 局所収支則 | `feasibleMass_succ_eq_mass_mul_exp_neg_stepNetAction` |
-| 累積指数核 | `feasibleMass_eq_initial_mul_exp_neg_cumulativeNetAction` |
-| 非負 one-step production からの期待単調性 | `expectedCumulative_monotone_of_ae_nonnegative_stepTotalProduction` |
-| 構造粒度変換後の expectation tendency | `coarse_expectedCumulative_monotone_of_micro_*` |
-| SAT state-dependent expected tendency | `expectedCumulative_monotone_stepModel` |
+| 局所収支則 | `GeneralStateDynamics.local` |
+| 累積指数核 | `GeneralStateDynamics.cumulative` |
+| 非負 one-step production からの期待単調性 | `TotalProduction.expected` |
+| 構造粒度変換後の expectation tendency | `CoarseTypicalNondecrease` |
+| SAT state-dependent expected tendency | `SATStateDependentCount` |
 
 ここで重要なのは、Lean が「すべての実ドメインで回復量が正しく測れている」ことを証明しているわけではない、という点である。Lean が保証しているのは、明示された確率過程・生産量・有界性・期待値条件のもとで、期待中心の単調性や有限時間境界が論理的に従うことである。
 
@@ -1162,12 +1187,12 @@ SAT / Bernoulli-CSP では、bad-event count の MGF product が内部導出で�
 
 | 本稿の語彙 | Lean 側の語彙・定理 |
 |---|---|
-| bounded-increment concentration | `AzumaHoeffding.lean`, `BoundedAzumaConstruction.lean` |
+| bounded-increment concentration | Azuma modules |
 | concentration interface | `ConcentrationInterface.lean` |
-| resource-bounded stopped collapse | `ResourceBoundedConditionalAzuma.lean`, `ResourceBoundedStochasticCollapse.lean` |
-| hitting-time event | `StoppingTimeCollapseEvent.lean`, `StoppingTimeHighProbabilityCollapse.lean` |
-| Bernoulli-CSP Chernoff collapse | `collapseWithChernoffBound_of_linearMargin`, `stoppedCollapseWithChernoffBound_of_linearMargin` |
-| SAT Chernoff-KL closed form | `SATStateDependentCountChernoffKLAlgebra.lean` |
+| resource-bounded stopped collapse | Resource-bounded modules |
+| hitting-time event | Stopping-time modules |
+| Bernoulli-CSP Chernoff collapse | Chernoff collapse wrappers |
+| SAT Chernoff-KL closed form | SAT KL algebra module |
 
 この対応により、本稿は次の二層を明示的に分ける。
 
@@ -1329,7 +1354,7 @@ leave-one-mixture-out の結果は次であった。
 
 これは、\(L\) が単なる制約数ではなく、制約が解空間を削る質的差を持つ座標として機能することを示す。ただし、この結果は universal law の確立ではない。正確には、Bernoulli-CSP class 内で、drift-weighted coordinate が raw-count baseline より feasibility を強く予測したという Level 2 support である。
 
-この Mixed-CSP package は、公開後に依頼ベースの外部実行者 2 名によって独立に再実行された。2 件とも、凍結済み bundle を用いて 12,000 行の primary run を完走し、公式 primary JSONL に対する checked core fields は 0 mismatches、support flags はすべて true であった。環境は一方が WSL / Ubuntu、もう一方が Windows 11 Home / Python 3.12.7 であり、いずれも回避策は報告されていない。したがって Mixed-CSP は、少なくとも 2 名の外部実行者により、著者環境外でも同じ qualitative support decision が再現された状態にある。ただし、当初依頼した 3 件のうち 1 件は未返送であるため、これは final outside-group replication set の完了ではなく、2/3 completed の interim outside-group rerun status として扱う。
+この Mixed-CSP package は、公開後に依頼ベースの外部実行者 3 名によって独立に再実行された。3 件とも、凍結済み bundle を用いて 12,000 行の primary run を完走し、公式 primary JSONL に対する checked core fields は 0 mismatches、support flags はすべて true であった。環境は WSL / Ubuntu が 1 件、Windows 11 Home 系が 2 件であり、いずれも回避策は報告されていない。したがって Mixed-CSP は、依頼済みの 3 件の outside-group rerun set について、著者環境外でも同じ qualitative support decision が再現された状態にある。ただし、これは Mixed-CSP package に限った replication closure であり、Exp43c outside-group rerun や non-CSP branch の replication 完了を意味しない。
 
 5.4 Route A anchor の現在地
 
@@ -1337,7 +1362,7 @@ leave-one-mixture-out の結果は次であった。
 
 第一に、SAT / Bernoulli-CSP の形式層は、Lean 側でかなり強く閉じている。ここで閉じているのは、仕様から bad-event probability と drift を計算し、path measure、MGF product、Chernoff-KL bound、collapse / hitting-time wrapper へ接続する有限時間の定理鎖である。
 
-第二に、Mixed-CSP と Exp43c q-coloring は、経験的にも primary run を通った Route A anchor である。Mixed-CSP では、3-SAT と 3-NAE-SAT の混合により、raw count と drift-weighted coordinate の縮退を破り、事前登録された leave-one-mixture-out 検査で `L_plus_n` と `first_moment` が raw baseline を上回った。さらに、同じ frozen Mixed-CSP package は 2 名の外部実行者による独立再実行で 2/2 clean success を返している。Exp43c q-coloring では、freeze 済み threshold-local window の上で、`fm_plus_n` が raw edge count / density / CNF-size baselines を leave-one-q-out で上回った。
+第二に、Mixed-CSP と Exp43c q-coloring は、経験的にも primary run を通った Route A anchor である。Mixed-CSP では、3-SAT と 3-NAE-SAT の混合により、raw count と drift-weighted coordinate の縮退を破り、事前登録された leave-one-mixture-out 検査で `L_plus_n` と `first_moment` が raw baseline を上回った。さらに、同じ frozen Mixed-CSP package は 3 名の外部実行者による独立再実行で 3/3 clean success を返している。Exp43c q-coloring では、freeze 済み threshold-local window の上で、`fm_plus_n` が raw edge count / density / CNF-size baselines を leave-one-q-out で上回った。
 
 第三に、Cardinality-SAT は、現時点では proposed / calibration extension であり、validated empirical anchor ではない。Exp44 pilot calibration は、heterogeneous drift family でも informative window の配置が難しいことを示したため、Cardinality-SAT を primary evidence として扱うには、新しい threshold-local preregistration が必要である。
 
@@ -1748,7 +1773,7 @@ Route C では、構造持続の収支原理は pathwise concentration theorem �
 
 §2.2 の \(d_t,r_t\ge 0\) という二段階 sign convention に合わせて読むなら、\(Z_t\) の増加分を構造消耗量 \(d_t\)、減少分を回復量 \(r_t\) に分ければよい。その差し引きが、ここで直接定義した \(b_t=Z_{t+1}-Z_t\) に一致する。
 
-この意味で、Lyapunov drift calculus は構造持続の収支原理の G6-c formal embedding として扱える。より正確には、任意の Lyapunov drift process は、\(Z_t\) を構造負荷、\(R_t=e^{-Z_t}\) を相対維持量と読むことで、構造持続の収支原理の expectation-level tendency 層に埋め込める。この最小代数的埋め込みは、補論「構造持続の収支原理と Foster-Lyapunov ドリフトの形式的埋め込み」および Lean file `Survival/LyapunovBalanceEmbedding.lean` で reader-facing / machine-checked に記録されている。
+この意味で、Lyapunov drift calculus は構造持続の収支原理の G6-c formal embedding として扱える。より正確には、任意の Lyapunov drift process は、\(Z_t\) を構造負荷、\(R_t=e^{-Z_t}\) を相対維持量と読むことで、構造持続の収支原理の expectation-level tendency 層に埋め込める。この最小代数的埋め込みは、補論「構造持続の収支原理と Foster-Lyapunov ドリフトの形式的埋め込み」および Lean の LyapunovBalanceEmbedding で reader-facing / machine-checked に記録されている。
 
 ただし、ここにも限界がある。queueing theory の安定性定理をそのまま構造持続の収支原理の定理として使うには、Markov 性、irreducibility、petite set、moment 条件など、元の theorem が要求する仮定を保持しなければならない。構造持続の収支原理がそれらを不要にするわけではない。したがって本稿が主張できるのは、drift 条件の形式的埋め込みであり、queueing stability theorem 全体の無条件な再証明ではない。
 
@@ -1857,7 +1882,11 @@ Route C では、構造持続の収支原理は pathwise concentration theorem �
 
 本稿で確定したのは、次の階層である。
 
-第一に、pathwise identity としての構造持続の収支原理である。構造維持可能集合 \(V^{(t)}\)、測度 \(m\)、収縮作用 \(K_t\)、再拡大作用 \(R_t\) が事前に固定され、対数比が well-defined なら、
+第一に、pathwise identity としての構造持続の収支原理である。読者向けの最小表示では、閉じた系の \(S=Me^{-L}\) が、開いた系では
+\[
+  S = M e^{-B}
+\]
+になる。構造維持可能集合 \(V^{(t)}\)、測度 \(m\)、収縮作用 \(K_t\)、再拡大作用 \(R_t\) が事前に固定され、対数比が well-defined なら、厳密な finite-prefix 表記として
 \[
   b_t=d_t-r_t,
   \qquad
@@ -1875,25 +1904,25 @@ Route C では、構造持続の収支原理は pathwise concentration theorem �
 
 8.1.1 Lean で閉じている部分
 
-本稿の pathwise algebraic kernel は、Lean 側では `Survival/GeneralStateDynamics.lean` によってすでに machine-checked である。そこでは、収縮後集合、修復後集合、feasible mass、stage loss、stage gain、net consumption amount、cumulative net consumption が定義され、positive finite trajectory assumptions の下で
+本稿の pathwise algebraic kernel は、Lean 側では GeneralStateDynamics によってすでに machine-checked である。そこでは、収縮後集合、修復後集合、feasible mass、stage loss、stage gain、net consumption amount、cumulative net consumption が定義され、positive finite trajectory assumptions の下で
 \[
   m(V^{(t+1)})=m(V^{(t)})e^{-b_t},
   \qquad
   m(V^{(n)})=m(V^{(0)})e^{-B_n}
 \]
-が証明されている。追加した `Survival/StructuralPersistenceBalancePrinciple.lean` は、この既存 theorem 群を Paper 3 の読者向け名称で束ねる薄い wrapper であり、新しい数学的仮定を追加するものではない。
+が証明されている。追加した StructuralPersistenceBalancePrinciple は、この既存 theorem 群を Paper 3 の読者向け名称で束ねる薄い wrapper であり、新しい数学的仮定を追加するものではない。
 
-Lean 対応は次の範囲に限られる。
+Lean 対応は次の範囲に限られる。表中の SBP は StructuralPersistenceBalancePrinciple を表す。
 
 | Paper 3 の主張 | Lean 側の対応 | 読み |
 |---|---|---|
-| net consumption amount $b_t=d_t-r_t$ | `StructuralPersistenceBalancePrinciple.netConsumptionAmount_eq_consumption_sub_recovery` | 定義として証明済み |
-| cumulative net consumption amount $B_n=\sum_{t<n}b_t$ | `StructuralPersistenceBalancePrinciple.cumulativeNetConsumption_eq_sum_netConsumptionAmount` | finite-prefix sum として証明済み |
-| local net-consumption identity | `StructuralPersistenceBalancePrinciple.local_exponential_netConsumption_identity` | positive mass assumptions の下で証明済み |
-| pathwise net-consumption kernel | `StructuralPersistenceBalancePrinciple.pathwise_netConsumption_exponential_kernel` | positive finite trajectory assumptions の下で証明済み |
-| loss-only 回収 | `StructuralPersistenceBalancePrinciple.pureContraction_recovers_loss_only_kernel` | pure contraction / zero gain の特例として証明済み |
-| Lyapunov drift embedding | `StructuralPersistenceBalancePrinciple.lyapunov_*` wrappers | 最小代数的埋め込みとして証明済み |
-| repair / maintenance balance | `StructuralPersistenceBalancePrinciple.repair_*` wrappers | finite-prefix damage-minus-repair skeleton として証明済み |
+| local net amount | SBP net | local difference の定義として証明済み |
+| cumulative amount | SBP cumulative | finite-prefix sum として証明済み |
+| local identity | SBP local | positive mass assumptions の下で証明済み |
+| pathwise kernel | SBP pathwise | positive finite trajectory assumptions の下で証明済み |
+| loss-only 回収 | SBP loss-only | pure contraction / zero gain の特例として証明済み |
+| Lyapunov embedding | SBP Lyapunov | 最小代数的埋め込みとして証明済み |
+| repair balance | SBP repair | finite-prefix damage-minus-repair skeleton として証明済み |
 
 ここでいう positive finite trajectory assumptions は、各段階の \(m(V^{(t)})\) と中間質量が正であり、対数比が well-defined であるという仮定である。この仮定は測度 \(m\) の自然性を証明するものではない。対象構造 \(V\)、測度 \(m\)、構造消耗量 \(d_t\)、回復量 \(r_t\) を各ドメインで事前固定できるかは、Lean ではなく運用上の gate である。
 
@@ -1939,7 +1968,7 @@ Lean 対応は次の範囲に限られる。
    SAT / NAE mixed CSP の次に、Exp43c q-coloring は、drift-weighted / first-moment coordinate が raw edge count / density / encoding-size baseline を上回るかを検査し、primary validation として通過した。次に Route A width をさらに広げる場合は、Cardinality-SAT のような family で同じ基準を検査する。ただし、random CSP の sharp threshold を粗い grid で見る設計は避け、calibration / freeze / validation を分離した threshold-local protocol を維持する必要がある。
 
 2. G4 non-CSP anchors の次 iteration。
-   queueing / Foster-Lyapunov drift の最小代数的埋め込みは、補論と Lean file `Survival/LyapunovBalanceEmbedding.lean` によって G6-c iteration 1 として閉じている。これを受けて、G4 v1 では queueing / Foster-Lyapunov を primary anchor、serial reliability と constant-fraction decay を loss-only control anchors として置く。この G4 v1 package は補論「非CSP古典例における構造持続の収支原理の最小アンカー」に整理されている。さらに G4 v2 iteration 1 として、repair / maintenance reliability-fatigue balance を `RepairMaintenanceBalance.lean` と同補論 §11 に整理した。次に進む場合は、positive recurrence / geometric ergodicity への G6-c iteration 2、stochastic reliability / optimal maintenance theorem への拡張、または maintenance log を用いた operational pilot を、明示的に scope lock する必要がある。
+   queueing / Foster-Lyapunov drift の最小代数的埋め込みは、補論と Lean の LyapunovBalanceEmbedding によって G6-c iteration 1 として閉じている。これを受けて、G4 v1 では queueing / Foster-Lyapunov を primary anchor、serial reliability と constant-fraction decay を loss-only control anchors として置く。この G4 v1 package は補論「非CSP古典例における構造持続の収支原理の最小アンカー」に整理されている。さらに G4 v2 iteration 1 として、repair / maintenance reliability-fatigue balance を RepairMaintenanceBalance と同補論 §11 に整理した。次に進む場合は、positive recurrence / geometric ergodicity への G6-c iteration 2、stochastic reliability / optimal maintenance theorem への拡張、または maintenance log を用いた operational pilot を、明示的に scope lock する必要がある。
 
    ここで reader-facing に追加された gate は、non-CSP domain を law-side に近い bridge と呼べる条件を明示することである。現在の program では、`analysis/law_side_upgrade_gate.md` がその 3 条件、すなわち自然な \(m\)、観測可能な \(r_t\)、条件つき collapse / hitting boundary を固定している。これに照らすと、queueing / Foster-Lyapunov は conditional law-side bridge、repair / maintenance balance は near-bridge open-system anchor、serial reliability と constant-fraction decay は loss-only controls、Backblaze / C-MAPSS / Route C companion は observational tier に留まる。この整理により、G4 / G6-c は “何でも収支語彙で言い換えられる” という弱い枠組みではなく、既存安定性理論にどこまで law-side に近づけるかを段階的に評価する gate として読める。
    loss-only observational 側では、Backblaze drive reliability に対する二つの frozen run が現在の reference point である。Q4 2025 v1 は高い ranking signal を持ちながら preregistered log-loss support を通らず、closed no-support となった。これに対して Q3 2025 v2 は、fresh untouched archive 上の calibration-aware same-domain redesign として separately frozen され、loss-only primary support を通った。ただし、これは same-domain second attempt の observational support であり、回復量 evidence でも、Q4 2025 no-support を erase する evidence でもない。したがって、現時点で増えたのは「non-CSP loss-only observational anchor が一つ立った」という事実であって、non-CSP empirical gate 全体が解けたわけではない。
@@ -1952,7 +1981,7 @@ Lean 対応は次の範囲に限られる。
 
 5. independent replication。
    Level 3 universal-law credibility には、内部再現だけでは足りない。外部研究者による再現、批判、失敗例の報告が必要である。
-   現時点では Mixed-CSP について、2 名の外部実行者が同一 frozen package を再実行し、2/2 clean success を返している。これは G7 replication gate に対する大きな前進であるが、当初依頼した 3 件のうち 1 件は未返送であり、Exp43c の outside-group rerun も未完了である。したがって、独立再現は「開始済みで複数成功あり」と記述し、「完了済み」とは記述しない。
+   現時点では Mixed-CSP について、3 名の外部実行者が同一 frozen package を再実行し、3/3 clean success を返している。これは Mixed-CSP package に限れば requested outside-group rerun set の完了であり、G7 replication gate に対する大きな前進である。ただし、Exp43c の outside-group rerun や non-CSP branch の replication は未完了である。したがって、独立再現は「Mixed-CSP では requested set 完了」と記述し、プログラム全体の replication 完了とは記述しない。
 
 8.5 Paper 0 との関係
 
@@ -1972,7 +2001,13 @@ Lean 対応は次の範囲に限られる。
 
 8.6 結論
 
-本稿の中心主張は、開いた構造系では、構造消耗量そのものではなく、構造消耗量と回復量の収支が構造維持可能性を支配する、ということである。
+本稿の中心主張は、開いた構造系では、構造消耗量そのものではなく、構造消耗量と回復量の収支が構造維持可能性を支配する、ということである。読者向けの看板式は
+\[
+  S = M e^{-B},
+  \qquad
+  B=\sum_t(d_t-r_t)
+\]
+である。厳密な finite-prefix 表記では
 \[
   b_t=d_t-r_t,
   \qquad
@@ -1993,7 +2028,7 @@ Route A では、SAT / Bernoulli-CSP / Mixed-CSP / Exp43c q-coloring が、自�
 
 非CSP empirical 側では、Backblaze v2 が calibration-aware loss-only design として same-domain observational support を与えた一方、Backblaze v1 は closed no-support のまま残っている。この組は、構造持続の収支原理の loss-only operationalization が industrial reliability domain でも観測可能であることを示すが、その証拠の重みは Route A primary や独立再現と同じではない。ここで重要なのは、v1 を消すことではなく、calibration を明示した frozen redesign が fresh archive では通りうることを記録することである。
 
-したがって、本稿は普遍法則の最終宣言ではない。より正確には、構造持続理論を universal-law candidate として強化するための主理論層である。Exp43c q-coloring により、SAT 以外に見える Route A family への幅は一段広がった。また、Mixed-CSP package については、2 名の外部実行者による独立再実行が 2/2 clean success を返しており、著者環境外でも qualitative support decision が再現されることを示している。今後の決定的な進展は、残りの outside return、Exp43c の outside-group rerun、さらなる異質 family、non-CSP formal embedding、および Route C の前向き検査によって与えられる。
+したがって、本稿は普遍法則の最終宣言ではない。より正確には、構造持続理論を universal-law candidate として強化するための主理論層である。Exp43c q-coloring により、SAT 以外に見える Route A family への幅は一段広がった。また、Mixed-CSP package については、3 名の外部実行者による独立再実行が 3/3 clean success を返しており、著者環境外でも qualitative support decision が再現されることを示している。今後の決定的な進展は、Exp43c の outside-group rerun、さらなる異質 family、non-CSP formal embedding、および Route C の前向き検査によって与えられる。
 
 
 ---
@@ -4919,7 +4954,7 @@ B_n=B_0+n(\lambda-\mu),\qquad P_n=P_0+n(W-M)
 \]
 によって構造維持量の変化を記述する枠組みである。
 
-Paper 3「構造持続の収支原理と崩壊傾向」では、既存理論との接続を G6-a / G6-b / G6-c の三段階に分けた。熱力学や情報理論との対応は、多くの場合 G6-a または G6-b に留まる。一方、queueing theory や Markov chain stability に現れる Foster-Lyapunov drift 条件は、構造持続の収支原理の純消耗量 \(b_t\) へ直接埋め込める。
+Paper 3「構造持続の収支原理」では、既存理論との接続を G6-a / G6-b / G6-c の三段階に分けた。熱力学や情報理論との対応は、多くの場合 G6-a または G6-b に留まる。一方、queueing theory や Markov chain stability に現れる Foster-Lyapunov drift 条件は、構造持続の収支原理の純消耗量 \(b_t\) へ直接埋め込める。
 
 本補論の目的は、その最小埋め込みを reader-facing artifact として独立に記録することである。これは既存理論の置き換えではない。むしろ、既存理論の drift 部分が構造持続の収支原理の expectation-level tendency 層へどう写るかを明示する。
 
@@ -5417,6 +5452,8 @@ Lean では、維持能力成分を
 
 さらに Lean では、任意の raw mechanism を直接分類するのではなく、それが M 側の観測 interface に入ったときの効果を component profile として扱う。したがって「第四成分が存在しない」という主張は、現実世界の原因機構が三種類しかないという主張ではない。正確には、M として観測される効果は $M_{\mathrm{buffer}},M_{\mathrm{recovery}},M_{\mathrm{reconfiguration}}$ の三座標に還元され、同じ三座標を持つ二つの mechanism を M interface 内部で区別する独立な第四座標は存在しない、という表現定理である。三座標で表現できない候補が現れた場合、それは第四の M 成分ではなく、対象構造・測度・環境・同一性条件など、M interface の外側に置くべき候補として扱う。
 
+この主張はさらに、標準商としても定式化される。Lean 側では、raw mechanism を「同じ三成分 profile を持つなら同一視する」同値関係で割った `ObservationQuotient` を作り、任意の M-side readout がこの標準商を一意に通ることを証明している。したがって三成分 profile は単なる便利な座標ではなく、M interface 上で識別可能な差分を失わない最小完全観測商として機能する。
+
 対応する定理は次の通りである。
 
 | Lean entry point | 内容 |
@@ -5433,6 +5470,11 @@ Lean では、維持能力成分を
 | `MaintenanceInterface.observationallyEquivalent_iff_three_coordinates` | M interface 上の観測同値性は三成分の一致と同値である |
 | `MaintenanceInterface.noFourthObservableCoordinate` | 三成分が一致する二つの mechanism を分ける第四 M 座標は interface 内部には存在しない |
 | `MaintenanceInterface.maintenanceReadout_eq_of_same_three_coordinates` | 任意の M-side readout は三成分が一致する mechanism を区別できない |
+| `MaintenanceInterface.factors_through_observationQuotient_iff_respects_equivalence` | 観測量が標準商を通ることと、M 観測同値性を尊重することは同値である |
+| `MaintenanceInterface.maintenanceReadout_factors_through_observationQuotient` | 任意の M-side readout は標準商 `ObservationQuotient` を通る |
+| `MaintenanceInterface.quotientFactor_unique` | 標準商を通る factorization は一意である |
+| `MaintenanceInterface.quotientProfile_injective` | 標準商の各クラスは三成分 profile によって忠実に表現される |
+| `MaintenanceInterface.quotientProfile_eq_iff` | 標準商上の等号は complete profile の等号と同値である |
 | `MaintenanceInterface.outsideInterface_if_distinguishes_observationallyEquivalent` | 同じ三成分 profile を持つ mechanism を区別する追加量は M interface を factor しない |
 | `MaintenanceInterface.outsideInterface_if_distinguishes_same_three_coordinates` | 三成分が一致する mechanism を区別する追加量は M interface の外側に属する |
 | `PartialMaintenanceInterface.representable_or_outside` | 候補 mechanism は三成分 profile に表現されるか、M interface の外側に置かれる |
@@ -5444,7 +5486,7 @@ Lean では、維持能力成分を
 - software / SaaS における component signal の妥当性。
 - 介入順位予測が実データで成立すること。
 
-つまり、Lean は本補論の「外部供給を第四成分にしない」という文法と、「M interface 内部では三成分以外の独立座標を持たない」という表現定理を閉じる。経験的価値は、§6 の事前固定 validation で判定する。
+つまり、Lean は本補論の「外部供給を第四成分にしない」という文法と、「M interface 内部では三成分以外の独立座標を持たない」という表現定理を閉じる。さらに、M interface 上の任意の valid readout は三成分 profile から作られる標準商を一意に通る。経験的価値は、§6 の事前固定 validation で判定する。
 
 2.7 補論 B との関係
 
@@ -7422,7 +7464,7 @@ SAT 以外のドメインへの拡張には、成果を予測する量とは独�
 
 本手順は二段階で運用する。
 
-第一段階は、探索的写像フェーズである。ここでは、既存データ、専門知識、予備実験、失敗例を用いて、そのドメインで何が維持対象であり、どの測度 m、どの構造消耗指標 L または L̂、どの回復指標 r_t が自然かを探してよい。この段階での後付けは、科学的発見の一部である。ただし、この段階で同じデータにうまく適合したことは、support ではない。
+第一段階は、探索的写像フェーズである。ここでは、既存データ、専門知識、予備実験、失敗例を用いて、そのドメインで何が維持対象であり、どの測度 m、どの構造消耗指標 L または L̂、どの回復指標 r_t が自然かを探してよい。この段階での候補生成や再定義は、科学的発見の一部である。ただし、この段階で同じデータにうまく適合したことは、support ではない。
 
 第二段階は、凍結検証フェーズである。探索で得た写像を、対象構造、測度、観測単位、指標、split、metric、baseline、失敗条件まで含めて固定する。その後、holdout / future / fresh archive / outside rerun で予測力を検査する。ここで初めて、そのドメインにおける構造持続写像の経験的価値を判定する。
 
@@ -8024,7 +8066,7 @@ N_eff^(0) を確保・拡張する介入:
 理論の勝ち筋は、"すべてを最初から定理化すること"ではなく、"複数ドメインで同型の崩壊構造を示すこと"にある。
 
 原則6:
-後付けは探索フェーズでは許されるが、support 判定では許されない。探索的に発見した写像は、凍結され、別データまたは future surface で検証されるまで candidate mapping にとどまる。
+探索的な候補生成は探索フェーズでは許されるが、support 判定では許されない。探索的に発見した写像は、凍結され、別データまたは future surface で検証されるまで candidate mapping にとどまる。
 
 原則7:
 構造持続理論の経験的価値は、既存専門モデルを常に置き換えることではなく、既存専門モデルに対して追加的な予測座標を与えることにある。したがって、重要な検査はしばしば SP-only vs baseline ではなく、baseline + SP vs baseline である。

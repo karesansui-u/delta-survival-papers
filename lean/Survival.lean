@@ -175,6 +175,7 @@ import Survival.CardinalitySATChernoffCollapse
 import Survival.ThresholdCardinalitySATChernoffCollapse
 import Survival.ExactlyOneSATChernoffCollapse
 import Survival.BernoulliCSPUniversality
+import Survival.NumericalSanityChecks
 import Survival.SATPositiveDriftCollapse
 import Survival.SATUnconditionalTendency
 
