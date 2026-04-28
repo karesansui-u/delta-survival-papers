@@ -1,8 +1,8 @@
 # Oxford Path Dependent Part 1 Battery M-Profile Freeze Manifest Draft
 
-Status: freeze-manifest draft with training-only conversion, feature-smoke, and
-held-out primary runner contract implemented. The held-out primary has not been
-run, and this is not validation evidence or a support claim.
+Status: freeze-manifest draft and one-time primary command record. The command
+has now been executed once; the held-out result is recorded in
+`oxford_path_dependent_primary_result_note.md`.
 
 Date opened: 2026-04-28
 
@@ -625,9 +625,9 @@ FEATURE_SCHEMA=analysis/g4_battery_m_profile/oxford_part1_training_feature_schem
 bash analysis/g4_battery_m_profile/scripts/run_oxford_part1_primary.sh
 ```
 
-This command is the first held-out conversion/evaluation authorization. It
-must be run at most once for the current frozen Oxford Part 1 package unless a
-later rerun is explicitly labeled as a rerun.
+This command was the first held-out conversion/evaluation authorization and
+has been run once for the current frozen Oxford Part 1 package. Later reruns,
+if any, must be explicitly labeled as reruns.
 
 ## 17. Non-Claims
 
@@ -652,9 +652,9 @@ leakage-aware freeze-manifest draft.
 The no-peek MATLAB / MCOS conversion, converted-smoke, header-only schema
 draft, and training-feature smoke have all passed on training cells only.
 
-The held-out primary runner and output contract are now implemented and covered
-by synthetic contract tests. The next operational step, if this draft is
-accepted as frozen, is to run the one-time primary command above.
+The held-out primary runner and output contract are implemented and covered by
+synthetic contract tests. The one-time primary command above has now been run.
+The next step is to use the result note as the evidence record.
 
-Until that command is run, Oxford Part 1 still has no held-out validation
-result and no support/no-support status.
+Oxford Part 1 now has a held-out no-support status for this frozen battery
+M/SP mapping.

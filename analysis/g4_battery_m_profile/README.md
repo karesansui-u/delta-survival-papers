@@ -1,8 +1,8 @@
 # G4 Battery M-Profile Branch
 
-Status: design / exact web-feasibility / parser-smoke / freeze-draft /
-training-smoke / primary-runner contract branch. Not held-out validation
-evidence, and not a claim that battery data already supports the theory.
+Status: Oxford Part 1 one-time held-out primary completed with a no-support
+outcome for the frozen battery M/SP mapping. Not causal intervention evidence,
+not repair-flow evidence, and not a universal-law claim.
 
 Date: 2026-04-28
 
@@ -52,19 +52,22 @@ rank higher?
 | `oxford_path_dependent_mcos_converter_execution_note.md` | MATLAB execution packet note for training conversion |
 | `oxford_path_dependent_training_feature_smoke_plan.md` | Next-gate plan for training-only endpoint/feature extraction and model fit smoke |
 | `oxford_path_dependent_training_conversion_and_feature_smoke_result_note.md` | Training-only MATLAB conversion / schema draft / feature-smoke pass note |
-| `oxford_part1_training_feature_schema_frozen.json` | Human-finalized training-feature smoke schema; not a primary authorization |
+| `oxford_path_dependent_primary_result_note.md` | One-time held-out primary no-support result note |
+| `oxford_part1_training_feature_schema_frozen.json` | Human-finalized frozen feature schema used by the training smoke and one-time primary |
 | `preregistration_draft.md` | Future freeze/preregistration skeleton |
 | `scripts/inspect_oxford_path_dependent.py` | Manifest / `.mat` structure smoke script for Oxford Path Dependent |
 | `scripts/inspect_oxford_rpt_structure.py` | No-metric RPT / diagnostic structure count script |
-| `scripts/evaluate_oxford_part1_m_profile.py` | Oxford Part 1 metadata-only / train-smoke / training-feature-smoke / fail-closed primary scaffold |
-| `scripts/export_oxford_part1_training_tables.m` | MATLAB train-smoke converter draft for training cell IDs only |
+| `scripts/evaluate_oxford_part1_m_profile.py` | Oxford Part 1 metadata-only / train-smoke / training-feature-smoke / confirmed primary evaluator |
+| `scripts/export_oxford_part1_training_tables.m` | MATLAB converter for `train_smoke` and frozen `heldout_primary` modes |
 | `scripts/run_oxford_part1_training_conversion_smoke.sh` | MATLAB converter + Python converted-smoke runner |
 | `scripts/draft_oxford_training_feature_schema.py` | Header-only training schema draft helper |
 | `scripts/run_oxford_part1_training_schema_draft.sh` | Runner for header-only training schema draft |
 | `scripts/run_oxford_part1_training_feature_smoke.sh` | Training-only endpoint/feature smoke runner after converted-smoke |
+| `scripts/run_oxford_part1_primary.sh` | One-time held-out primary runner, guarded by `CONFIRM_FROZEN_PRIMARY=1` |
 | `scripts/test_oxford_converted_manifest_guardrails.py` | Synthetic negative tests for converted-manifest no-peek guardrails |
 | `scripts/test_oxford_training_schema_draft_contract.py` | Synthetic contract tests for header-only schema drafting |
 | `scripts/test_oxford_training_feature_smoke_contract.py` | Synthetic contract tests for training-feature smoke |
+| `scripts/test_oxford_primary_contract.py` | Synthetic contract tests for the one-time primary runner |
 
 ## Current Recommendation
 
@@ -108,31 +111,34 @@ support_flags_emitted = false
 primary_blocked = true
 ```
 
-The decision note keeps Oxford as the first candidate. The freeze-manifest
-draft now fixes the intended held-out cell-ID split, `H = 1`, baseline ladder,
-candidate M/SP feature-family boundaries, primary metric, and one-time primary
-command slot. Earlier pre-split parser-smoke reads are explicitly schema-only
-grandfathered; from the fixed split onward, held-out payloads remain sealed
-until the final frozen primary command is intentionally run.
+The one-time held-out primary has now been run. It produced a no-support
+outcome for this frozen Oxford Part 1 battery M/SP mapping:
 
-The Python scaffold accepts `--converted-train-root` for training-only
-conversion smoke and `--converted-test-root` only for the confirmed one-time
-primary. The primary runner is fail-closed unless `CONFIRM_FROZEN_PRIMARY=1`
-is supplied.
+```text
+B3 RMSE = 0.2296038662551124
+primary RMSE = 0.23508673118782375
+H1_strong_incremental_support = false
+H2_weak_incremental_support = false
+H3_no_support = true
+primary_support = false
+```
 
-The next gate is operational, not evidential yet: if the freeze-manifest draft
-is accepted as frozen, run the one-time primary command to produce the first
-held-out validation result.
+This closes Oxford Part 1 as a public battery M-profile no-support outcome. It
+does not refute the theoretical core and should not be rescued on the same
+archive.
 
-Before writing the `FEATURE_SCHEMA`, draft header-only candidates with:
+Historical / reproducibility helpers:
+
+Draft header-only candidates with:
 
 ```bash
 bash analysis/g4_battery_m_profile/scripts/run_oxford_part1_training_schema_draft.sh
 ```
 
-The draft is a non-runnable template. Human-finalize it into a
-`training_feature_smoke_schema_frozen` JSON using only the header draft, the
-converted training schema, and public guide information. Then run:
+The draft is a non-runnable template. The checked-in schema was
+human-finalized into `training_feature_smoke_schema_frozen` using only the
+header draft, converted training schema, and public guide information. The
+training-feature smoke can be rerun with:
 
 ```bash
 FEATURE_SCHEMA=analysis/g4_battery_m_profile/oxford_part1_training_feature_schema_frozen.json \
@@ -157,6 +163,15 @@ The training-feature smoke contract can be checked without MATLAB by running:
 ```bash
 python3 analysis/g4_battery_m_profile/scripts/test_oxford_training_feature_smoke_contract.py
 ```
+
+The primary runner contract can be checked without MATLAB by running:
+
+```bash
+python3 analysis/g4_battery_m_profile/scripts/test_oxford_primary_contract.py
+```
+
+Do not rerun the Oxford Part 1 primary as a new primary on the same archive.
+Any future execution must be labeled as a rerun.
 
 NASA Randomized/Recommissioned is a strong second candidate if exact archive
 access and parsing are clean.

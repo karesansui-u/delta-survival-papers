@@ -2,9 +2,10 @@
 
 Status: active program-execution memo after Backblaze v2 same-domain
 observational support, the first C-MAPSS FD001 cross-domain loss-only primary,
-Scania horizon-bridge no-support, the completed three-run Mixed-CSP true
-outside-group rerun set, and the first returned Exp43c true outside-group rerun
-success. This is not a freeze document, not validation evidence,
+Scania horizon-bridge no-support, Oxford Part 1 battery M-profile no-support,
+the completed three-run Mixed-CSP true outside-group rerun set, and the first
+returned Exp43c true outside-group rerun success. This is not a freeze
+document, not validation evidence,
 and not a new claim source.
 
 Purpose:
@@ -58,6 +59,11 @@ New information:
 - the three returned Mixed-CSP true outside-group reruns completed cleanly:
   each has `12000` primary rows, `0` checked core mismatches, all four support
   flags true, and no reported workaround.
+- Oxford Path Dependent Part 1 has now completed its one-time held-out battery
+  M-profile primary and produced a no-support result:
+  `primary RMSE = 0.23508673118782375` versus
+  `B3 RMSE = 0.2296038662551124`, with `H1 = false`, `H2 = false`,
+  `H3 = true`, and `primary_support = false`.
 
 ## 2. Workstream A — G4 Repair-Flow Empirical Gap
 
@@ -260,16 +266,16 @@ conservative split falls back from protocol-group holdout to held-out cell ID.
 The Oxford Part 1 freeze-manifest draft now also exists. The first execution
 scaffold passes metadata-only and blocks raw train-smoke safely on MATLAB MCOS
 table payloads without post-split held-out payload access. The MATLAB training
-conversion has now run locally with MATLAB R2026a trial, producing `168`
+conversion ran locally with MATLAB R2026a trial, producing `168`
 training-table records. Python converted-smoke then passed exact expected-entry
 and exclusive-CSV checks. Header-only schema draft found no direct capacity
-column, so the training-feature smoke uses `transition_aggregate_v1`:
+column, so the training-feature smoke used `transition_aggregate_v1`:
 `next_capacity_ah = max(Amphr)` at diagnostic index `k + 1`, with features from
 diagnostic index `k` aggregates only. Training-feature smoke passed with `149`
 transition rows and B0/B1/B2/B3/primary fit success, while still emitting no
 held-out values, predictions, metrics, coefficients, or support flags. The
-held-out primary runner and output contract are now implemented, but remain
-fail-closed unless the one-time frozen command is intentionally run. Earlier
+one-time held-out primary then ran on `74` held-out transition rows and closed
+as a no-support outcome for this frozen Oxford battery M/SP mapping. Earlier
 bounded parser-smoke reads are treated as schema-only grandfathered smoke.
 
 ### Recommended direction
@@ -278,10 +284,10 @@ The next non-CSP empirical move should not be another Backblaze redesign, and
 it should not rescue C-MAPSS FD001 on the same archive. C-MAPSS is already
 recorded as a weakening outcome.
 
-The clean near-term empirical branch is now:
+The Oxford branch has now closed as:
 
 ```text
-Oxford Path Dependent freeze-manifest promotion and one-time held-out primary.
+Oxford Path Dependent one-time held-out primary no-support.
 ```
 
 Reason:
@@ -295,21 +301,22 @@ Reason:
 - public and reproducible;
 - M-profile features can be frozen before any primary run.
 
-NASA Randomized/Recommissioned remains the second feasibility candidate if
-Oxford proves too small or too cumbersome for a stable held-out primary.
+NASA Randomized/Recommissioned remains the second feasibility candidate if we
+want another public battery M-profile attempt.
 MIT-Stanford/TRI remains a later hard-baseline challenge.
 
 ### Next artifact
 
-The clean next operation is:
+The clean next empirical operation is now:
 
 ```text
-Oxford Path Dependent one-time held-out primary execution.
+choose between NASA Randomized/Recommissioned battery feasibility or the
+repair-flow acquisition path.
 ```
 
-Until the freeze package is executed once on held-out data, keep Oxford below
-support and keep the current FD001 result as a weakening outcome, not as a
-failed theory test and not as a hidden support result.
+Do not rescue Oxford on the same archive. Keep Oxford as a no-support battery
+M-profile outcome and keep the current FD001 result as a weakening outcome,
+not as a failed theory test and not as a hidden support result.
 
 ## 4. Workstream C — G7 Independent Replication
 
@@ -548,11 +555,11 @@ So the next concrete order becomes:
 
 1. collect additional Exp43c outside-group returns if already requested, or
    keep the first return as the current package-level G7 layer;
-2. accept the Oxford freeze-manifest draft as frozen now that the final
-   converter/script hashes, frozen schema identity, one-time primary command,
-   and output contract are inserted;
-3. run the Oxford held-out primary once;
-4. future repair-flow data acquisition under the candidate-criteria gate.
+2. choose the next non-CSP empirical branch: NASA Randomized/Recommissioned
+   battery feasibility or future repair-flow data acquisition under the
+   candidate-criteria gate;
+3. keep Oxford Part 1 as a closed no-support battery M-profile outcome without
+   same-archive rescue.
 
 This keeps the program moving on the actual open gaps rather than adding more
 same-type evidence to already-strong tracks.
