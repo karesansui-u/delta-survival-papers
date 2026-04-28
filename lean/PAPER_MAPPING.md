@@ -60,7 +60,7 @@ probability assumptions.
 | coarse-grained typical nondecrease | coarse stochastic compatibility | `coarse_expectedCumulative_monotone_of_micro_nonnegative`; `coarse_expectedCumulative_monotone_of_micro_resourceBounded`; `coarse_expectedCumulative_monotone_of_micro_conditionalAzuma` | proven |
 | SAT expected tendency | state-dependent SAT step model | `expectedCumulative_monotone_stepModel`; `expectedCumulative_eq_initial_add_linear` | proven; mapping sufficient |
 | Bernoulli-CSP finite drift / collapse tendency | bad-event exposure, drift, Chernoff margin | `drift`; `expectedBadEmission_eq_drift`; `collapseWithChernoffBound_of_linearMargin`; `stoppedCollapseWithChernoffBound_of_linearMargin` | proven; different schema from repair dominance |
-| Bernoulli-CSP \(\Sigma\) lower-tail tendency | one-sided cumulative production as \(\Sigma\) | `BernoulliTypicalSigma.bernoulliSigmaLowerTailMeasure_le_chernoffFailureBound_of_interior`; `BernoulliTypicalSigma.bernoulliSigma_expectedCumulative_monotone` | proven; finite-path / expectation-level wrapper, not unconditional second law |
+| Bernoulli-CSP \(\Sigma\) lower-tail tendency | one-sided cumulative production as \(\Sigma\) | `BernoulliTypicalSigma.bernoulliSigmaLowerTailMeasure_le_chernoffFailureBound_of_interior`; `BernoulliTypicalSigma.bernoulliSigma_lowerBoundWithChernoffBound_of_interior`; `BernoulliTypicalSigma.bernoulliSigma_expectedCumulative_monotone` | proven; finite-path / expectation-level wrapper, not unconditional second law |
 | stopped collapse / hitting-time bound | bounded increments, expected margin, concentration | `stoppedCollapseWithFailureBound_of_boundedIncrementData_expectedMargin`; resource/coarse stopped-collapse wrappers | proven under assumptions |
 
 M1 wording discipline:
@@ -112,6 +112,7 @@ map layers:
 | Bernoulli-CSP \(\Sigma\) observable | cumulative bad-event production as total-production coordinate | `BernoulliTypicalSigma.bernoulliSigma`; `BernoulliTypicalSigma.bernoulliSigmaProcess` | defined |
 | Bernoulli-CSP expected \(\Sigma\) monotonicity | nonnegative one-step bad-event emissions | `BernoulliTypicalSigma.bernoulliSigma_expectedCumulative_monotone` | proven |
 | Bernoulli-CSP \(\Sigma\) lower-tail certificate | interior KL/Chernoff finite-path lower-tail bound | `BernoulliTypicalSigma.bernoulliSigmaLowerTailMeasure_le_chernoffFailureBound_of_interior` | proven under interior margin assumptions |
+| Bernoulli-CSP \(\Sigma\) high-probability lower bound | good event with `center-r ≤ Σ_n` and Chernoff failure bound | `BernoulliTypicalSigma.BernoulliSigmaLowerBoundWithFailureBound`; `BernoulliTypicalSigma.bernoulliSigma_lowerBoundWithChernoffBound_of_interior` | proven under finite-path interior assumptions |
 | Bernoulli-CSP \(\Sigma\) collapse wrappers | threshold / collapse / stopped-collapse / hitting-time API | `BernoulliTypicalSigma.bernoulliSigma_*WithChernoffBound_of_linearMargin` | proven under finite-horizon margin assumptions |
 
 This is intentionally not a full category of structural-maintenance problems.

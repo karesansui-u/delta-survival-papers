@@ -172,7 +172,7 @@ The current core layering includes:
 - `WeakDependence.lean`: 弱依存下の境界
 - `SATStateDependentCountChernoffKLAlgebra.lean`: actual 3-SAT clause-exposure path measure から Chernoff/KL collapse bound まで
 - `BernoulliCSPPathCollapse.lean` / `KSATChernoffCollapse.lean`: Bernoulli bad-event CSP と random k-SAT への operational collapse wrapper
-- `BernoulliTypicalSigma.lean`: Bernoulli-CSP の cumulative production を \(\Sigma\) として読む reader-facing lower-tail / expectation wrapper
+- `BernoulliTypicalSigma.lean`: Bernoulli-CSP の cumulative production を \(\Sigma\) として読む reader-facing lower-tail / good-event lower-bound / expectation wrapper
 - `NAESATChernoffCollapse.lean`: fixed-assignment NAE-SAT bad-event exposure への horizontal expansion
 - `XORSATChernoffCollapse.lean`: fixed-assignment XOR-SAT bad-event exposure への horizontal expansion
 - `QColoringChernoffCollapse.lean`: fixed-coloring q-coloring edge exposure への horizontal expansion

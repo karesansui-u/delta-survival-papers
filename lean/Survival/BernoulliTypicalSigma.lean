@@ -95,6 +95,41 @@ theorem bernoulliSigmaLowerTailMeasure_le_chernoffFailureBound_of_interior
     cumulativeLowerTailMeasure_le_chernoffFailureBound_of_interior
       P N hn hr hlt
 
+/-- A fixed finite-path high-probability lower-bound certificate for the
+Bernoulli-CSP `Σ` observable.  It packages a good event with a failure
+probability bound and a pointwise lower bound
+`center_n - r ≤ Σ_n` on that event. -/
+def BernoulliSigmaLowerBoundWithFailureBound
+    (P : Parameters) (N : ℕ) (s₀ : ℝ) (n : ℕ) (r : ℝ) (ε : ENNReal) : Prop :=
+  ∃ E : Set (Trajectory N),
+    EventWithFailureBound (μ := pathMeasure P N) E ε ∧
+      ∀ τ ∈ E, bernoulliSigmaCenter P s₀ n - r ≤ bernoulliSigma P s₀ τ n
+
+/-- Interior KL/Chernoff high-probability lower-bound certificate for
+Bernoulli-CSP `Σ`: outside a bad event of probability at most the Chernoff
+profile, `Σ_n` lies above its deterministic linear center minus `r`.
+
+This is the narrow Phase-4.2 bridge from a lower-tail measure inequality to a
+reader-facing typical lower-bound statement. -/
+theorem bernoulliSigma_lowerBoundWithChernoffBound_of_interior
+    (P : Parameters) (N : ℕ) {n : ℕ} (hn : n ≤ N + 1) {s₀ r : ℝ}
+    (hr : 0 ≤ r)
+    (hlt : r < (n : ℝ) * P.drift) :
+    BernoulliSigmaLowerBoundWithFailureBound
+      P N s₀ n r (P.chernoffFailureBound n r) := by
+  let badEvent := bernoulliSigmaLowerTailEvent P s₀ N n r
+  let goodEvent : Set (Trajectory N) := badEventᶜ
+  refine ⟨goodEvent, ?_, ?_⟩
+  · constructor
+    · change MeasurableSet (bernoulliSigmaLowerTailEvent P s₀ N n r)ᶜ
+      trivial
+    · simpa [goodEvent, badEvent] using
+        bernoulliSigmaLowerTailMeasure_le_chernoffFailureBound_of_interior
+          P N hn hr hlt
+  · intro τ hτ
+    dsimp [goodEvent, badEvent, bernoulliSigmaLowerTailEvent] at hτ
+    exact not_lt.mp hτ
+
 /-- Fixed-time threshold crossing for Bernoulli-CSP `Σ`, obtained by combining
 the lower-tail certificate with a linear margin. -/
 theorem bernoulliSigma_thresholdCrossingWithChernoffBound_of_linearMargin
