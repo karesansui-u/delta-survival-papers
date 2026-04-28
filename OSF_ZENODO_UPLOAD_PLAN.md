@@ -2,21 +2,21 @@
 
 最終更新: 2026-04-28
 
-このメモは、`delta-survival-paper` の公開物を OSF / Zenodo に反映するときの最小セットを固定するためのものです。2026-04-19 の更新では、Paper 1 §3 の対数比の一意性定理（A2 の特徴づけ）と Lean 側の `LogUniqueness.lean` の反映に伴い、bundle を `2026-04-19` に差し替えています。2026-04-16 版は `osf_zenodo_latest_2026-04-16/` としてローカルには残しています。
+このメモは、`delta-survival-paper` の公開物を OSF / Zenodo に反映するときの最小セットを固定するためのものです。2026-04-28 の更新では、Paper 1 / Paper 2 を主理論 spine として整えたうえで、v2 本体、補論、Route C companion、Lean 対応表、公開導線を `v2_spine_2026-04-28` として OSF に反映しています。2026-04-19 版以前の bundle は履歴 snapshot として扱います。
 
 現在の公開反映状況は次のとおりです。
 
 - GitHub: 反映済み
 - Codeberg: 反映済み
-- OSF: 2026-04-21 SAT chain v1.0 / Bernoulli CSP universality v1.1 update bundle 反映済み。2026-04-28 Mixed-CSP true outside-group rerun final bundle 反映済み
+- OSF: 2026-04-21 SAT chain v1.0 / Bernoulli CSP universality v1.1 update bundle 反映済み。2026-04-28 Mixed-CSP true outside-group rerun final bundle、および v2 spine bundle 反映済み
 - Zenodo: 未反映
 
 ローカルでは、reader-facing theorem map を `lean/PAPER_MAPPING.md` に統合済み。Bernoulli CSP
 universality v1.2 は multi-forbidden-pattern witness bridge、exactly-one-SAT、exactly-\(r\)
 cardinality-SAT、at-most / at-least threshold cardinality-SAT までを含む。さらに Route A 非CSP
 skeletons は、指数型、線形過負荷型、累積容量型、臨界パラメータ型の四型分類に圧縮した。
-OSF の現行公開リンクは v1.1 archive snapshot を指すため、次回 bundle では `PAPER_MAPPING.md` を
-canonical map として反映する。
+SAT/CSP 系の個別 OSF 公開リンクは v1.1 archive snapshot を指す。v2 spine bundle では
+`PAPER_MAPPING.md` を canonical map として同梱済み。
 
 2026-04-21 反映:
 
@@ -37,8 +37,20 @@ canonical map として反映する。
 
 - OSF file: https://osf.io/download/69f01d8831a90752f1d4ae38/
 - sha256: `91e72ea2fd6d56579e87e09b51d253969af7f79035ccb0d7ab2c9f2d8c6e6e09`
-- uploaded commit: `8e63981` (`Finalize Paper 3 framing and Mixed-CSP outside reruns`)
+- uploaded commit: `8e63981` (Mixed-CSP outside rerun final bundle)
 - scope: Mixed-CSP requested outside-group rerun set only; `3/3` completed, `3/3` clean success, `0` pending. This bundle predates the later Exp43c `3/3` outside-return completion and does not include Exp43c, observational-branch replication, or non-CSP repair-flow support.
+
+2026-04-28 v2 spine bundle 反映:
+
+- OSF folder: `v2_spine_2026-04-28`
+- OSF folder link: https://osf.io/mdh7b/files/osfstorage/69f0aa156982d95c29f8c1d0
+- update bundle zip: https://osf.io/mdh7b/files/osfstorage/69f0aac955cae29ef45db6b6
+- update bundle download: https://osf.io/download/69f0aac955cae29ef45db6b6/
+- manifest: https://osf.io/mdh7b/files/osfstorage/69f0aaeb6982d95c29f8c2c2
+- uploaded source commit: `b7eb090` (`Record Exp44b calibration no-go and G7 updates`)
+- included spine commit: `6fe9162` (`Align v2 paper spine and references`)
+- sha256: `7d201f3c046f1f0e57ca8a479a3686445bdeac6084706874385ff0ab5f77cb3b`
+- scope: current v2 main theory spine, balance-principle supplements, conditional derivation supplement, Route C companions, Lean mapping, public overview, data index, patent notice, citation metadata, and license note.
 
 ## Canonical Metadata Packet
 
@@ -89,43 +101,49 @@ canonical map として反映する。
 
 ## 次回アップロード候補
 
-最新のローカル公開候補は、次の内容を含む bundle とする。
+次回更新が必要になった場合は、今回の `v2_spine_2026-04-28` を基準に差分 bundle を作る。
 
 - `lean/PAPER_MAPPING.md` を唯一の reader-facing theorem map として同梱
 - `README.md`, `OVERVIEW.md`, `LEAN_FORMALIZATION_README.md` の導線を `PAPER_MAPPING.md` に一本化
 - Route A 非CSP skeletons は四型分類で説明し、個別ファイル一覧は `PAPER_MAPPING.md` に集約
 - 旧 SAT/CSP map は現行 tree から外し、git history / OSF archive snapshot の扱いにする
 
-## 既存アップロード単位
+## 現行アップロード単位
 
 直近の公開済み最小単位は、次の bundle です。
 
-- ローカル bundle: `/Users/sunagawa/Project/delta-survival-export/osf_zenodo_latest_2026-04-19/`
-- zip: `/Users/sunagawa/Project/delta-survival-export/osf_zenodo_latest_2026-04-19.zip`
+- OSF folder: `v2_spine_2026-04-28`
+- zip: `v2_spine_2026-04-28.zip`
+- local staging bundle: `/tmp/delta-survival-osf/v2_spine_2026-04-28/`
+- local staging zip: `/tmp/delta-survival-osf/v2_spine_2026-04-28.zip`
 
 ## 推奨ファイル構成
 
 ### Core PDFs
 
-- `00_structural_persistence_integrated_overview_ja_2026-04-19.pdf`
-- `01_structural_persistence_minimal_form_ja_2026-04-19.pdf`
-- `02_structural_persistence_conditional_derivation_ja_2026-04-19.pdf`
-- `03_structural_persistence_reasoning_degradation_ja_2026-04-19.pdf`
-- `04_structural_persistence_catastrophic_forgetting_ja_2026-04-19.pdf`
-- `90_structural_prediction_of_computational_cost_ja_2026-04-19.pdf`
-- `98_structural_persistence_english_abstract_2026-04-19.pdf`
+- `00_structural_persistence_integrated_overview_ja_2026-04-28.pdf`
+- `01_structural_persistence_minimal_form_ja_2026-04-28.pdf`
+- `02_structural_persistence_balance_principle_ja_2026-04-28.pdf`
+- `03_structural_persistence_balance_details_supplement_ja_2026-04-28.pdf`
+- `04_structural_persistence_conditional_derivation_supplement_ja_2026-04-28.pdf`
+- `05_route_c_companion_inference_degradation_ja_2026-04-28.pdf`
+- `06_route_c_companion_continual_learning_forgetting_ja_2026-04-28.pdf`
+- `98_structural_persistence_english_abstract_2026-04-28.pdf`
 
 ### Supporting indexes
 
-- `99_structural_persistence_english_overview_2026-04-19.md`
-- `ARCHIVE_README_2026-04-19.md`
-- `PUBLICATION_DATA_INDEX_2026-04-19.md`
-- `LEAN_PAPER_MAPPING.md`（次回 bundle から追加。source: `lean/PAPER_MAPPING.md`）
-- `CITATION.cff`
-- `PATENT_NOTICE_2026-04-19.md`
-- `LEAN_FORMALIZATION_NOTE_2026-04-19.md`
-- `LICENSE_2026-04-19.txt`
-- `PACKAGE_MANIFEST_2026-04-19.md`
+- `99_structural_persistence_english_overview_2026-04-28.md`
+- `ARCHIVE_README_2026-04-28.md`
+- `OVERVIEW_2026-04-28.md`
+- `PUBLICATION_DATA_INDEX_2026-04-28.md`
+- `LEAN_PAPER_MAPPING_2026-04-28.md`
+- `CITATION_2026-04-28.cff`
+- `PATENT_NOTICE_2026-04-28.md`
+- `LEAN_FORMALIZATION_NOTE_2026-04-28.md`
+- `LICENSE_2026-04-28.txt`
+- `PACKAGE_MANIFEST_2026-04-28.md`
+- `REPRODUCE_2026-04-28.md`
+- `GIT_COMMIT_2026-04-28.txt`
 
 ## OSF に上げる推奨範囲
 
@@ -148,38 +166,50 @@ OSF には、上記 bundle 一式をそのまま上げる。
 Zenodo には、論文本体と英語入口を中心にした trimmed public bundle を上げる。OSF と同一の完全 mirror にはしない。
 
 - Core PDFs 一式
-- `98_structural_persistence_english_abstract_2026-04-19.pdf`
-- `99_structural_persistence_english_overview_2026-04-19.md`
-- `ARCHIVE_README_2026-04-19.md`
-- `CITATION.cff`
-- `PATENT_NOTICE_2026-04-19.md`
-- `LEAN_FORMALIZATION_NOTE_2026-04-19.md`
-- `LEAN_PAPER_MAPPING.md`
-- `LICENSE_2026-04-19.txt`
+- `98_structural_persistence_english_abstract_2026-04-28.pdf`
+- `99_structural_persistence_english_overview_2026-04-28.md`
+- `ARCHIVE_README_2026-04-28.md`
+- `CITATION_2026-04-28.cff`
+- `PATENT_NOTICE_2026-04-28.md`
+- `LEAN_FORMALIZATION_NOTE_2026-04-28.md`
+- `LEAN_PAPER_MAPPING_2026-04-28.md`
+- `LICENSE_2026-04-28.txt`
 
-`PUBLICATION_DATA_INDEX_2026-04-19.md` と `PACKAGE_MANIFEST_2026-04-19.md` は OSF 側の補助導線として扱う。
+`PUBLICATION_DATA_INDEX_2026-04-28.md` と `PACKAGE_MANIFEST_2026-04-28.md` は OSF 側の補助導線として扱う。
 
 ## ソース対応表
 
 | Bundle file | Source |
 |---|---|
-| `00_structural_persistence_integrated_overview_ja_2026-04-19.pdf` | `v2/pdf用/0_構造持続理論の統合版.pdf` |
-| `01_structural_persistence_minimal_form_ja_2026-04-19.pdf` | `v2/pdf用/1_構造持続の最小形式.pdf` |
-| `02_structural_persistence_balance_principle_ja_2026-04-19.pdf` | `v2/pdf用/2_構造持続の収支原理.pdf` |
-| `03_structural_persistence_balance_principle_details_ja_2026-04-19.pdf` | `v2/pdf用/補論_構造持続の収支原理の詳細展開.pdf` |
-| `80_structural_persistence_conditional_derivation_supplement_ja_2026-04-19.pdf` | `v2/pdf用/補論_構造持続の条件つき導出.pdf` |
-| `91_routec_reasoning_degradation_ja_2026-04-19.pdf` | `v2/pdf用/Companion_RouteC_推論時の構造劣化.pdf` |
-| `92_routec_catastrophic_forgetting_ja_2026-04-19.pdf` | `v2/pdf用/Companion_RouteC_継続学習時の構造的忘却.pdf` |
-| `90_structural_prediction_of_computational_cost_ja_2026-04-19.pdf` | `v2/pdf用/補論_計算コストの構造的予測.pdf` |
-| `98_structural_persistence_english_abstract_2026-04-19.pdf` | `v2/pdf用/ENGLISH_ABSTRACT.pdf` |
-| `99_structural_persistence_english_overview_2026-04-19.md` | `ENGLISH_OVERVIEW.md` |
-| `ARCHIVE_README_2026-04-19.md` | `README.md` |
-| `PUBLICATION_DATA_INDEX_2026-04-19.md` | `DATA.md` |
-| `PATENT_NOTICE_2026-04-19.md` | `PATENTS.md` |
-| `LEAN_FORMALIZATION_NOTE_2026-04-19.md` | `LEAN_FORMALIZATION_README.md` |
-| `LEAN_PAPER_MAPPING.md` | `lean/PAPER_MAPPING.md` |
-| `LICENSE_2026-04-19.txt` | `LICENSE` |
-| `PACKAGE_MANIFEST_2026-04-19.md` | generated during bundle assembly |
+| `00_structural_persistence_integrated_overview_ja_2026-04-28.pdf` | `v2/pdf用/0_構造持続理論の統合版.pdf` |
+| `01_structural_persistence_minimal_form_ja_2026-04-28.pdf` | `v2/pdf用/1_構造持続の最小形式.pdf` |
+| `02_structural_persistence_balance_principle_ja_2026-04-28.pdf` | `v2/pdf用/2_構造持続の収支原理.pdf` |
+| `03_structural_persistence_balance_details_supplement_ja_2026-04-28.pdf` | `v2/pdf用/補論_構造持続の収支原理の詳細展開.pdf` |
+| `04_structural_persistence_conditional_derivation_supplement_ja_2026-04-28.pdf` | `v2/pdf用/補論_構造持続の条件つき導出.pdf` |
+| `05_route_c_companion_inference_degradation_ja_2026-04-28.pdf` | `v2/pdf用/Companion_RouteC_推論時の構造劣化.pdf` |
+| `06_route_c_companion_continual_learning_forgetting_ja_2026-04-28.pdf` | `v2/pdf用/Companion_RouteC_継続学習時の構造的忘却.pdf` |
+| `10_structural_persistence_construction_map_supplement_ja_2026-04-28.pdf` | `v2/pdf用/補論_構造持続理論の構成地図.pdf` |
+| `11_structural_persistence_operational_discipline_supplement_ja_2026-04-28.pdf` | `v2/pdf用/補論_構造持続理論の運用規律.pdf` |
+| `12_structural_persistence_mapping_procedure_supplement_ja_2026-04-28.pdf` | `v2/pdf用/補論_構造持続写像の標準手順.pdf` |
+| `13_resource_term_M_operational_formulation_supplement_ja_2026-04-28.pdf` | `v2/pdf用/補論_構造持続における資源項Mの操作的定式化.pdf` |
+| `14_set_valued_dynamics_and_signed_exponential_kernel_supplement_ja_2026-04-28.pdf` | `v2/pdf用/補論_構造持続の集合値力学的表現と符号付き指数核.pdf` |
+| `15_foster_lyapunov_drift_embedding_supplement_ja_2026-04-28.pdf` | `v2/pdf用/補論_構造持続の収支原理とFoster-Lyapunovドリフトの形式的埋め込み.pdf` |
+| `16_non_csp_classical_examples_minimal_anchor_supplement_ja_2026-04-28.pdf` | `v2/pdf用/補論_非CSP古典例における構造持続の収支原理の最小アンカー.pdf` |
+| `17_finite_csp_predictive_power_supplement_ja_2026-04-28.pdf` | `v2/pdf用/補論_有限CSPにおける構造持続の予測力.pdf` |
+| `18_structural_prediction_of_computational_cost_supplement_ja_2026-04-28.pdf` | `v2/pdf用/補論_計算コストの構造的予測.pdf` |
+| `98_structural_persistence_english_abstract_2026-04-28.pdf` | `v2/pdf用/ENGLISH_ABSTRACT.pdf` |
+| `99_structural_persistence_english_overview_2026-04-28.md` | `ENGLISH_OVERVIEW.md` |
+| `ARCHIVE_README_2026-04-28.md` | `README.md` |
+| `OVERVIEW_2026-04-28.md` | `OVERVIEW.md` |
+| `PUBLICATION_DATA_INDEX_2026-04-28.md` | `DATA.md` |
+| `PATENT_NOTICE_2026-04-28.md` | `PATENTS.md` |
+| `LEAN_FORMALIZATION_NOTE_2026-04-28.md` | `LEAN_FORMALIZATION_README.md` |
+| `LEAN_PAPER_MAPPING_2026-04-28.md` | `lean/PAPER_MAPPING.md` |
+| `LICENSE_2026-04-28.txt` | `LICENSE` |
+| `CITATION_2026-04-28.cff` | `CITATION.cff` |
+| `REPRODUCE_2026-04-28.md` | `REPRODUCE.md` |
+| `PACKAGE_MANIFEST_2026-04-28.md` | generated during bundle assembly |
+| `GIT_COMMIT_2026-04-28.txt` | generated during bundle assembly |
 
 ## 反映後に更新する場所
 
@@ -204,12 +234,12 @@ OSF には、次の順で作業する。
    - Code and formalization: Apache 2.0
 5. Contributors / creator 情報を確認する
 6. bundle 一式を upload する  
-   ローカル: `/Users/sunagawa/Project/delta-survival-export/osf_zenodo_latest_2026-04-19/`
+   ローカル staging: `/tmp/delta-survival-osf/v2_spine_2026-04-28/`
 7. 最上位で見せたいファイルを確認する  
-   - `00_structural_persistence_integrated_overview_ja_2026-04-19.pdf`
-   - `98_structural_persistence_english_abstract_2026-04-19.pdf`
-   - `99_structural_persistence_english_overview_2026-04-19.md`
-8. `PATENT_NOTICE_2026-04-19.md` と `LEAN_FORMALIZATION_NOTE_2026-04-19.md` が閲覧可能であることを確認する
+   - `00_structural_persistence_integrated_overview_ja_2026-04-28.pdf`
+   - `98_structural_persistence_english_abstract_2026-04-28.pdf`
+   - `99_structural_persistence_english_overview_2026-04-28.md`
+8. `PATENT_NOTICE_2026-04-28.md` と `LEAN_FORMALIZATION_NOTE_2026-04-28.md` が閲覧可能であることを確認する
 9. 公開後に恒久リンクを控える
 
 ## OSF Post-Upload Checklist
@@ -218,9 +248,9 @@ OSF には、次の順で作業する。
 - Description / abstract が反映されている
 - Keywords が反映されている
 - 先頭で見せたい 3 ファイルが閲覧できる
-- `PATENT_NOTICE_2026-04-19.md` が見える
-- `LEAN_FORMALIZATION_NOTE_2026-04-19.md` が見える
-- `LICENSE_2026-04-19.txt` が見える
+- `PATENT_NOTICE_2026-04-28.md` が見える
+- `LEAN_FORMALIZATION_NOTE_2026-04-28.md` が見える
+- `LICENSE_2026-04-28.txt` が見える
 - OSF project URL を控えた
 
 ## README / DATA への差し戻し

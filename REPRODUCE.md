@@ -46,8 +46,10 @@ Current OSF mirrors:
 
 - Paper 1: <https://osf.io/mdh7b/files/osfstorage/69dde399e43067989d1187e1>
 - Conditional derivation supplement: <https://osf.io/mdh7b/files/osfstorage/69dde4faa17296e9bb3e7a3b>
-- Route C companion I (former Paper 3): <https://osf.io/mdh7b/files/osfstorage/69dde3bde1158f542e3e7aec>
-- Route C companion II (former Paper 4): <https://osf.io/mdh7b/files/osfstorage/69dde3c0cc45911aa117d84c>
+- Route C companion I: <https://osf.io/mdh7b/files/osfstorage/69dde3bde1158f542e3e7aec>
+- Route C companion II: <https://osf.io/mdh7b/files/osfstorage/69dde3c0cc45911aa117d84c>
+- v2 spine bundle (2026-04-28): <https://osf.io/mdh7b/files/osfstorage/69f0aac955cae29ef45db6b6>
+- v2 spine manifest (2026-04-28): <https://osf.io/mdh7b/files/osfstorage/69f0aaeb6982d95c29f8c2c2>
 
 ## SAT Experiments (no API key needed)
 
@@ -174,7 +176,7 @@ At the time of writing:
 
 - `v2_preprints_2026-04-14/` contains the current `v2` PDF mirrors
 - `paper1_survival_equation/` contains earlier paper-1-related materials
-- `paper3_deltazero/` contains earlier DeltaZero / paper-3-related materials
+- `paper3_deltazero/` contains earlier DeltaZero and legacy Route C materials
 - `supplementary/` contains additional files
 
 ## Notes
