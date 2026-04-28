@@ -248,7 +248,7 @@ Decision rule:
 - the existing theorem name `expectedCumulative_monotone_stepModel` is harder
   for paper readers to connect to target theorem 4 than a wrapper such as
   `SAT_targetTheorem4_expected_tendency`; or
-- Paper 3 / the supplement cites target theorem 4 in a place where the existing
+- Paper 2 / the relevant supplement cites target theorem 4 in a place where the existing
   Lean name would look misaligned.
 
 Otherwise, a `PAPER_MAPPING.md` entry is sufficient.

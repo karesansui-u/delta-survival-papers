@@ -45,7 +45,7 @@
 \]
 によって構造維持量の変化を記述する枠組みである。
 
-Paper 3「構造持続の収支原理」では、既存理論との接続を G6-a / G6-b / G6-c の三段階に分けた。熱力学や情報理論との対応は、多くの場合 G6-a または G6-b に留まる。一方、queueing theory や Markov chain stability に現れる Foster-Lyapunov drift 条件は、構造持続の収支原理の純消耗量 \(b_t\) へ直接埋め込める。
+Paper 2「構造持続の収支原理」では、既存理論との接続を G6-a / G6-b / G6-c の三段階に分けた。熱力学や情報理論との対応は、多くの場合 G6-a または G6-b に留まる。一方、queueing theory や Markov chain stability に現れる Foster-Lyapunov drift 条件は、構造持続の収支原理の純消耗量 \(b_t\) へ直接埋め込める。
 
 本補論の目的は、その最小埋め込みを読者向けの記録として独立に残すことである。これは既存理論の置き換えではない。むしろ、既存理論の drift 部分が構造持続の収支原理の期待値レベルの傾向層へどう写るかを明示する。
 
@@ -203,7 +203,7 @@ Foster-Lyapunov 側で \(\mathbb E[Z_{t+1}-Z_t\mid X_t]\ge \epsilon\) なら、
   Z_n=Z_0+B_n.
 \]
 
-三つの regime は次のように分かれる。
+三つの局面は次のように分かれる。
 
 \(\lambda<\mu\) なら \(b_t<0\) であり、service が arrival を上回る recovery tendency と読む。
 \(\lambda=\mu\) なら \(b_t=0\) であり、critical / maintenance boundary と読む。

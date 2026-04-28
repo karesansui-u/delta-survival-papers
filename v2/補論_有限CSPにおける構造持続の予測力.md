@@ -61,7 +61,7 @@
 
 Exp43c の結果は、SAT / NAE-SAT mixed CSP だけでなく、SAT 構文の外側に見える graph-coloring family でも、first-moment / drift coordinate が raw / density / encoding-size baselines より out-of-sample に強いことを示す。ただし、これは absolute q-coloring threshold の予測ではなく、frozen threshold-local window 内での feasibility prediction である。
 
-外部再実行については、Mixed-CSP の requested outside-group rerun set が 3 名の外部実行者により 3/3 clean success として完了した。さらに Exp43c q-coloring でも、1 名の外部実行者が同じ frozen package を Windows 環境で再実行し、4,000 行、checked core mismatches 0、TIMEOUT 0、MALFORMED 0、および同じ qualitative support decision を返した。したがって Route A では、Mixed-CSP と Exp43c q-coloring という二つの frozen package について、著者環境外での再実行成功が得られている。ただし、これは Route A empirical package の外部再現性を強めるものであり、非CSP branch や理論全体の普遍法則化を単独で閉じるものではない。
+外部再実行については、Mixed-CSP の requested outside-group rerun set が 3 名の外部実行者により 3/3 clean success として完了した。さらに Exp43c q-coloring でも、3 名の外部実行者が同じ frozen package を再実行し、それぞれ 4,000 行、checked core mismatches 0、TIMEOUT 0、MALFORMED 0、および同じ qualitative support decision を返した。したがって Route A では、Mixed-CSP と Exp43c q-coloring という二つの frozen package について、著者環境外での 3/3 再実行成功が得られている。ただし、これは Route A empirical package の外部再現性を強めるものであり、非CSP branch や理論全体の普遍法則化を単独で閉じるものではない。
 
 
 1. 目的
@@ -364,7 +364,7 @@ LLM 側の Exp.40/41/42 は、scope-as-repair が quality-blind baseline より�
 
 7. 限界
 
-第一に、Mixed-CSP 結果は SAT/NAE の二型混合に限定される。Exp43c は q-coloring への拡張を与えたが、これは単独で universal law を確立するものではない。Cardinality-SAT への拡張は自然な次段階だが、本補論の validated claim ではない。
+第一に、Mixed-CSP 結果は SAT/NAE の二型混合に限定される。Exp43c は q-coloring への拡張を与えたが、これは単独で universal law を確立するものではない。Cardinality-SAT への拡張は自然な次段階だが、本補論の validated claim ではない。Exp44 は calibration no-go として閉じ、Exp44b は threshold-local な draft / dry-run 候補として開いた段階に留まる。したがって、Cardinality-SAT は現時点でも validation evidence ではない。
 
 第二に、encoding guardrail の margin は小さい。これは SAT/NAE では CNF clause ratio と drift ratio が近いためである。この点は exact-one stress extension でより強く検査できる。
 
@@ -400,15 +400,18 @@ Exp43c q-coloring の関連ファイルは以下にある。
 | `analysis/exp43_qcoloring/config/exp43c_primary_config.json` | primary grid |
 | `analysis/exp43_qcoloring/src/evaluate_primary.py` | frozen evaluation script |
 | `analysis/exp43_qcoloring/exp43c_true_outside_rerun_01_philia_channel.md` | first returned true outside-group rerun |
+| `analysis/exp43_qcoloring/exp43c_true_outside_rerun_02_katsumasa1234.md` | second returned true outside-group rerun |
+| `analysis/exp43_qcoloring/exp43c_true_outside_rerun_03_SCRAPRO.md` | third returned true outside-group rerun |
+| `analysis/exp43_qcoloring/exp43c_true_outside_final_report.md` | final outside-group rerun report |
 
 G7 outside-group replication layer:
 
 | package | returned outside runs | status |
 |---|---:|---|
 | Mixed-CSP | `3` | `3/3` clean success |
-| Exp43c q-coloring | `1` | `1/1` returned clean success |
+| Exp43c q-coloring | `3` | `3/3` returned clean success |
 
-この G7 layer は、各 package の frozen 手順が著者環境外でも実行可能であり、qualitative support decision が回復されることを示す。Mixed-CSP は requested set として完了している。一方、Exp43c は現時点で first returned success であり、追加の outside return があれば別途記録する。
+この G7 layer は、各 package の frozen 手順が著者環境外でも実行可能であり、qualitative support decision が回復されることを示す。Mixed-CSP と Exp43c q-coloring は、ともに現時点で 3 件の returned clean success を持つ。
 
 OSF addendum:
 
@@ -440,7 +443,7 @@ Mixed-CSP primary は、構造持続理論の Route A empirical test として�
 
 さらに Exp43c q-coloring により、SAT 構文の外側に見える graph-coloring family でも、first-moment / drift coordinate が raw / density / encoding-size baseline を上回ることが示された。これは Route A width を一段広げる primary evidence である。
 
-外部再実行の層では、Mixed-CSP が 3 名の外部実行者で 3/3 clean success を返し、Exp43c q-coloring も 1 名の外部実行者で clean success を返した。したがって、Route A では二つの frozen package について著者環境外での再実行成功が得られている。
+外部再実行の層では、Mixed-CSP が 3 名の外部実行者で 3/3 clean success を返し、Exp43c q-coloring も 3 名の外部実行者で 3/3 clean success を返した。したがって、Route A では二つの frozen package について著者環境外での再実行成功が得られている。
 
 ただし、本補論は universal law の最終宣言ではない。正確な位置づけは、SAT、LLM contradiction repair、Mixed-CSP feasibility、Exp43c q-coloring feasibility で、structure-aware coordinate が quality-blind / raw baseline を上回った、という Level 2 universality candidate への強い支持である。
 

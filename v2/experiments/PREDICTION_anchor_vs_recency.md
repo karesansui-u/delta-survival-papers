@@ -5,7 +5,7 @@ Registered BEFORE data collection.
 
 ## Question
 
-ON > NC (metabolism with contradictions > no contradictions) was observed in Paper 3.
+ON > NC (metabolism with contradictions > no contradictions) was observed in the Route C companion.
 Is this because:
 (a) Resolved contradiction PAIRS create richer retrieval anchors (anchor hypothesis)
 (b) Metabolism merely refreshes record timestamps, improving retrieval recency (recency hypothesis)

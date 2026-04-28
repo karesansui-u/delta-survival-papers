@@ -2,14 +2,14 @@
 
 棚卸し日: 2026-04-27
 対象: `lean/Survival/` 配下 139 ファイル
-対応論文: `delta-survival-paper/v2/` 配下 8 本（Paper 0–4 + 補論 3 本）
+対応文書: `delta-survival-paper/v2/` 配下の主理論 spine、Route C companions、補論群
 
 ## 現在の結論
 
 このファイルを、Lean 形式化と論文本文を結ぶ唯一の reader-facing theorem map とする。
 旧 SAT/CSP 専用 map は現行ツリーから外し、git history / OSF snapshot 側の archive として扱う。
 
-現時点の Lean 側は **139 Survival modules / sorry = 0 / axiom = 0** で閉じている。Paper 2 §5 が
+現時点の Lean 側は **139 Survival modules / sorry = 0 / axiom = 0** で閉じている。条件つき導出補論 §5 が
 明示している 5 ファイルを超えて、停止時刻崩壊、martingale concentration、粗視化、有限状態 Markov
 microfoundation、SAT/k-SAT Chernoff-KL chain、Bernoulli-CSP 水平展開、Route A 非CSP skeletons まで
 含む。
@@ -82,15 +82,15 @@ A thin wrapper file may still be added later for readability, but it is not
 mathematically required. If added, wrappers should be direct aliases of the
 existing theorems, with no new axioms and no strengthened empirical claim.
 
-## Paper 3 / Structural Persistence Balance Mapping
+## Paper 2 / Structural Persistence Balance Mapping
 
-Paper 3 の経路ごとの代数核は、既存の
+Paper 2 の経路ごとの代数核は、既存の
 `Survival/GeneralStateDynamics.lean` が証明している。`Survival/StructuralPersistenceBalancePrinciple.lean`
 は、この既存 theorem 群を Structural Persistence Balance の読者向け名称で束ねる薄い wrapper であり、新しい仮定や
 新しい普遍法則 claim は追加しない。
 
 重要な前提は positivity である。対数比で loss / gain / net consumption amount を定義するため、Lean 側では
-`PositiveTrajectory`、Paper 3 側では positive finite trajectory assumptions の下で
+`PositiveTrajectory`、Paper 2 側では positive finite trajectory assumptions の下で
 machine-checked と読む。
 
 | Structural Persistence Balance claim | Lean entry point | Underlying theorem / object | Status |
@@ -104,7 +104,7 @@ machine-checked と読む。
 | repair / maintenance finite-prefix net-consumption skeleton | `StructuralPersistenceBalancePrinciple.repair_*` wrappers | `RepairMaintenanceBalance.*` | proven finite-prefix skeleton |
 | remaining margin \(B-D_n\) | `repair_remainingMargin_eq_initial_margin_sub_cumulative_netConsumption` | `RepairMaintenanceBalance.margin` | proven; this is margin, not Paper 1 resource term `M` |
 
-Paper 3 non-claims remain outside Lean:
+Paper 2 non-claims remain outside Lean:
 
 - naturality or uniqueness of \(V,m,d_t,r_t\) in arbitrary domains;
 - empirical observability of \(r_t\);
@@ -158,9 +158,9 @@ M supplement non-claims remain outside Lean:
 
 | 範囲 | 状態 | 読み方 |
 |---|---|---|
-| Paper 1/2 の最小指数核 | 完了 | `LogUniqueness`, `TelescopingExp`, `AxiomsToExp`, `WeakDependence` が主軸 |
+| Paper 1 + 条件つき導出補論の最小指数核 | 完了 | `LogUniqueness`, `TelescopingExp`, `AxiomsToExp`, `WeakDependence` が主軸 |
 | 確率的崩壊・停止時刻 | 完了 | Paper 1 §5 の崩壊閾値を finite-horizon hitting-time / stopped-collapse に拡張 |
-| Martingale / Azuma concentration | 完了 | Paper 2 §4 の抽象 ρ 境界を bounded-increment concentration に格上げ可能 |
+| Martingale / Azuma concentration | 完了 | 条件つき導出補論 §4 の抽象 ρ 境界を bounded-increment concentration に格上げ可能 |
 | 粗視化・表現安定性 | 完了 | Paper 1 §2 P5 を集合論・total production・stochastic layer で形式化 |
 | SAT chain v1.0 | 完了 | actual path measure → non-flat emission → MGF product → Chernoff/KL → collapse |
 | Bernoulli CSP universality v1.2 | 完了 | k-SAT / NAE-SAT / XOR-SAT / coloring / forbidden-pattern / cardinality families |
@@ -179,8 +179,8 @@ M supplement non-claims remain outside Lean:
 
 ## 論文本文へ反映すべき最重要差分
 
-1. Paper 2 §5 の形式検証リストを 5 ファイルから現在の主要層へ更新する。
-2. Paper 2 §4 に martingale / Azuma concentration による厳密化を追加する。
+1. 条件つき導出補論 §5 の形式検証リストを 5 ファイルから現在の主要層へ更新する。
+2. 条件つき導出補論 §4 に martingale / Azuma concentration による厳密化を追加する。
 3. Paper 1 §5 に stopping-time collapse / cliff warning / high-probability collapse を反映する。
 4. Paper 1 §2 P5 に coarse-graining の形式化を反映する。
 5. 補論 SAT / Route A では、SAT chain v1.0 と Bernoulli CSP universality v1.2 を本文の主導線にする。
@@ -234,15 +234,15 @@ drift は `log(2^k / allowed)` になる。部分二項和が \(0\) と \(2^k\) 
 | Paper 1 §4 命題1 望遠鏡積 | m(V⁽ⁿ⁾) = m(V⁽⁰⁾)e⁻ᴸ 恒等式 | `TelescopingExp.lean` | 形式化済・論文掲載 |
 | Paper 1 §5 S = Me⁻ᴸ, S_c 閾値 | 構造持続量 | `FullFormula.lean`, `Penalty.lean`, `Basic.lean` | 形式化済（3因子分解まで） |
 | Paper 1 §5 崩壊 S < S_c | 崩壊条件 | `CollapseTimeBound.lean`, `StochasticCollapseTimeBound.lean`, `HighProbabilityCollapse.lean` | **確率版まで拡張済（論文未掲載）** |
-| Paper 2 §2 A1/A2/A3 | 三条件の分離 | `AxiomsToExp.lean` | 形式化済・論文掲載 |
-| Paper 2 §3 恒等式 A1–A2 のみ | 独立性不要 | `TelescopingExp.lean` | 形式化済・論文掲載 |
-| Paper 2 §4 弱依存 ρ-境界 | e⁻ᴸ⁽¹⁺ρ⁾ ≤ P ≤ e⁻ᴸ⁽¹⁻ρ⁾ | `WeakDependence.lean`, `RobustSurvival.lean`, `SignedWeakDependence.lean` | 形式化済（signed 拡張は論文未掲載） |
-| Paper 2 §4 真の martingale concentration | 論文に書かれず | `AzumaHoeffding.lean`, `BoundedAzumaConstruction.lean`, `ConditionalMartingale.lean`, `MartingaleDrift.lean`, `ConcentrationInterface.lean`, `ResourceBoundedConditionalAzuma.lean`, `ProbabilityConnection.lean` | **形式化済・論文未掲載（格上げ候補）** |
-| Paper 2 §5 形式検証リスト | 5 ファイル明示 | 同上 | **実態は 30+ ファイル** |
-| Paper 3 §5 指数表現の適用 | 経路集合縮小 | Paper 1 同等ファイル群を流用 | 形式化済 |
-| Paper 3 §9.2 100ターン長期安定性 | 代謝ありで単調崩壊しない | `TypicalNondecrease.lean`, `ResourceBoundedDynamics.lean`, `ResourceBoundedStochasticCollapse.lean` | **形式化済・論文未掲載** |
-| Paper 4 §7 条件 (i) 矛盾解消代謝 | パラメータ更新だけでは不十分 | `FiniteStateMarkovCollapse.lean`, `FiniteStateMarkovRepairChain.lean`, `MarkovRepairFailureExample.lean` | **最小形式モデル形式化済（論文未掲載）** |
-| Paper 4 §7 F-v2c / F-multi | 修復・空間分離 | `MinimumRepairRate.lean`, `StochasticMinimumRepairRate.lean`, `CoarseMinimumRepairRate.lean` | 修復率下限として形式化（論文未掲載） |
+| 条件つき導出補論 §2 A1/A2/A3 | 三条件の分離 | `AxiomsToExp.lean` | 形式化済・論文掲載 |
+| 条件つき導出補論 §3 恒等式 A1–A2 のみ | 独立性不要 | `TelescopingExp.lean` | 形式化済・論文掲載 |
+| 条件つき導出補論 §4 弱依存 ρ-境界 | e⁻ᴸ⁽¹⁺ρ⁾ ≤ P ≤ e⁻ᴸ⁽¹⁻ρ⁾ | `WeakDependence.lean`, `RobustSurvival.lean`, `SignedWeakDependence.lean` | 形式化済（signed 拡張は論文未掲載） |
+| 条件つき導出補論 §4 真の martingale concentration | 論文に書かれず | `AzumaHoeffding.lean`, `BoundedAzumaConstruction.lean`, `ConditionalMartingale.lean`, `MartingaleDrift.lean`, `ConcentrationInterface.lean`, `ResourceBoundedConditionalAzuma.lean`, `ProbabilityConnection.lean` | **形式化済・論文未掲載（格上げ候補）** |
+| 条件つき導出補論 §5 形式検証リスト | 5 ファイル明示 | 同上 | **実態は 30+ ファイル** |
+| Paper 2 §5 指数表現の適用 | 経路集合縮小 | Paper 1 同等ファイル群を流用 | 形式化済 |
+| Route C companion I §9.2 100ターン長期安定性 | 代謝ありで単調崩壊しない | `TypicalNondecrease.lean`, `ResourceBoundedDynamics.lean`, `ResourceBoundedStochasticCollapse.lean` | **形式化済・論文未掲載** |
+| Route C companion II §7 条件 (i) 矛盾解消代謝 | パラメータ更新だけでは不十分 | `FiniteStateMarkovCollapse.lean`, `FiniteStateMarkovRepairChain.lean`, `MarkovRepairFailureExample.lean` | **最小形式モデル形式化済（論文未掲載）** |
+| Route C companion II §7 F-v2c / F-multi | 修復・空間分離 | `MinimumRepairRate.lean`, `StochasticMinimumRepairRate.lean`, `CoarseMinimumRepairRate.lean` | 修復率下限として形式化（論文未掲載） |
 | 補論 SAT §2.1 第一モーメント法 | E[#SAT] = 2ⁿ e⁻ᴸ | `SATFirstMoment.lean`, `KLDivergence.lean` | 形式化済 |
 | 補論 SAT 第二モーメント法 | Paley-Zygmund 下界 | `SATSecondMoment.lean`, `SecondMomentBound.lean`, `CorrelatedSecondMoment.lean`, `PairCorrelation.lean` | 形式化済（相関 sandwich は論文未掲載の補強） |
 | 補論 SAT §5.1 感度指数 c | μ_c ∝ eᶜᴸ、α-n 非対称性 | `AsymptoticExponent.lean`, `SensitivityAnalysis.lean` | 形式化済（β=1/2 neutrality は論文未掲載の洞察） |
@@ -254,15 +254,15 @@ drift は `log(2^k / allowed)` になる。部分二項和が \(0\) と \(2^k\) 
 
 ## 2. カテゴリ別ファイル一覧
 
-### A. 論文明示コア（5）— Paper 2 §5 掲載
+### A. 論文明示コア（5）— 条件つき導出補論 §5 掲載
 
 | ファイル | 主定理 | 評価 |
 |---------|-------|------|
 | [`LogUniqueness.lean`](Survival/LogUniqueness.lean) | `log_ratio_uniqueness`: B1–B4 → f(r) = -k ln r 一意 | Paper 1 §3.1 そのもの |
-| [`TelescopingExp.lean`](Survival/TelescopingExp.lean) | `measure_eq_initial_mul_exp_neg_cumulative_loss`: mₙ = m₀·exp(-Σlᵢ) 純代数 | Paper 2 §3、A3 不要の最小コア |
-| [`AxiomsToExp.lean`](Survival/AxiomsToExp.lean) | `joint_survival_eq_exp_neg_delta`: 独立積 → eˡ | Paper 1 §2、Paper 2 §3 |
-| [`WeakDependence.lean`](Survival/WeakDependence.lean) | `WeakDependenceSandwich`: ρ-sandwich | Paper 2 §4 本丸 |
-| [`RobustSurvival.lean`](Survival/RobustSurvival.lean) | `robustPotential`: μ·exp(-δ·(1+ρ))、保守的下界 | Paper 2 §4 拡張 |
+| [`TelescopingExp.lean`](Survival/TelescopingExp.lean) | `measure_eq_initial_mul_exp_neg_cumulative_loss`: mₙ = m₀·exp(-Σlᵢ) 純代数 | 条件つき導出補論 §3、A3 不要の最小コア |
+| [`AxiomsToExp.lean`](Survival/AxiomsToExp.lean) | `joint_survival_eq_exp_neg_delta`: 独立積 → eˡ | Paper 1 §2、条件つき導出補論 §3 |
+| [`WeakDependence.lean`](Survival/WeakDependence.lean) | `WeakDependenceSandwich`: ρ-sandwich | 条件つき導出補論 §4 本丸 |
+| [`RobustSurvival.lean`](Survival/RobustSurvival.lean) | `robustPotential`: μ·exp(-δ·(1+ρ))、保守的下界 | 条件つき導出補論 §4 拡張 |
 
 ### B. 基礎・情報理論（7）
 
@@ -323,17 +323,17 @@ drift は `log(2^k / allowed)` になる。部分二項和が \(0\) と \(2^k\) 
 | [`CoarseMinimumRepairRate.lean`](Survival/CoarseMinimumRepairRate.lean) | 粗視化下の修復率下限 | DSMF §11 の粗視化版 |
 | [`CoarseStochasticStoppingTimeCollapse.lean`](Survival/CoarseStochasticStoppingTimeCollapse.lean) | 粗視 + 停止時刻 + 高確率崩壊 | 積層フレーム、論文未掲載 |
 
-### E. Azuma-Hoeffding / Martingale / Concentration（11）— **論文 Paper 2 §4 の格上げ候補**
+### E. Azuma-Hoeffding / Martingale / Concentration（11）— **論文 条件つき導出補論 §4 の格上げ候補**
 
 | ファイル | 主定理 | 評価 |
 |---------|-------|------|
-| [`AzumaHoeffding.lean`](Survival/AzumaHoeffding.lean) | `collapseWithAzumaHoeffdingBound_of_initial_margin`: martingale-like なら初期マージンで exp(-r²/(2V_n)) 崩壊 | Paper 2 §4 の真の martingale concentration |
+| [`AzumaHoeffding.lean`](Survival/AzumaHoeffding.lean) | `collapseWithAzumaHoeffdingBound_of_initial_margin`: martingale-like なら初期マージンで exp(-r²/(2V_n)) 崩壊 | 条件つき導出補論 §4 の真の martingale concentration |
 | [`BoundedAzumaConstruction.lean`](Survival/BoundedAzumaConstruction.lean) | bounded increments + good event → `AzumaHoeffdingConcentration` 構成 | 標準 Azuma setup |
 | [`ConditionalMartingale.lean`](Survival/ConditionalMartingale.lean) | mathlib `Martingale` → `MartingaleLike`（ドリフト=0） | Mathlib 接続 |
 | [`MartingaleDrift.lean`](Survival/MartingaleDrift.lean) | `expectedCumulative_eq_initial_of_martingaleLike` | ドリフト言語の foundation |
 | [`ConcentrationInterface.lean`](Survival/ConcentrationInterface.lean) | `collapseWithFailureBound_of_expected_center`, `largeDeviationFailureBound` | concentration interface 抽象化 |
 | [`ResourceBoundedConditionalAzuma.lean`](Survival/ResourceBoundedConditionalAzuma.lean) | conditional submartingale drift + bounded increments → stopped collapse | 確率的停止時刻崩壊 |
-| [`SignedWeakDependence.lean`](Survival/SignedWeakDependence.lean) | `signed_survival_sandwich`: \|B_eff - B_ref\| ≤ ρ\|B_ref\| で exp 境界 | **Paper 2 §4 の signed 厳密化、論文未掲載** |
+| [`SignedWeakDependence.lean`](Survival/SignedWeakDependence.lean) | `signed_survival_sandwich`: \|B_eff - B_ref\| ≤ ρ\|B_ref\| で exp 境界 | **条件つき導出補論 §4 の signed 厳密化、論文未掲載** |
 | [`ProbabilityConnection.lean`](Survival/ProbabilityConnection.lean) | actual probability space → expected cumulative process | 基盤層 |
 | [`StochasticTotalProduction.lean`](Survival/StochasticTotalProduction.lean) | random net action + random cost → stochastic process、deterministic embedding | Paper 1 の確率拡張、論文未掲載 |
 | [`StochasticTotalProductionAzuma.lean`](Survival/StochasticTotalProductionAzuma.lean) | bounded increment Azuma witness → stopped collapse | total production × Azuma |
@@ -361,7 +361,7 @@ drift は `log(2^k / allowed)` になる。部分二項和が \(0\) と \(2^k\) 
 | [`MinimumRepairRate.lean`](Survival/MinimumRepairRate.lean) | mass 保持 θ → cost ≥ loss + log θ | **代謝必要量の下限、論文未掲載** |
 | [`TotalProduction.lean`](Survival/TotalProduction.lean) | Σ = A + C の分解 | DSMF §5 基本 |
 | [`ResourceBudget.lean`](Survival/ResourceBudget.lean) | cumulativeGain ≤ cumulativeCost | 資源会計の基盤公理 |
-| [`ResourceBoundedDynamics.lean`](Survival/ResourceBoundedDynamics.lean) | resource-bounded → Σ 単調 | Paper 3 §9.2 長期安定性、Paper 4 §7 の基礎 |
+| [`ResourceBoundedDynamics.lean`](Survival/ResourceBoundedDynamics.lean) | resource-bounded → Σ 単調 | Route C companion I §9.2 長期安定性、Route C companion II §7 の基礎 |
 | [`ResourceBoundedStochasticCollapse.lean`](Survival/ResourceBoundedStochasticCollapse.lean) | initial margin → high-probability stopped collapse | **最重要の高確率層、論文未掲載** |
 | [`GeneralStateDynamics.lean`](Survival/GeneralStateDynamics.lean) | `feasibleMass_eq_initial_mul_exp_neg_cumulativeNetAction`: 符号付き指数カーネル | **Paper 1 の暗黙核定理を形式化** |
 
@@ -371,11 +371,11 @@ drift は `log(2^k / allowed)` になる。部分二項和が \(0\) と \(2^k\) 
 |---------|-------|------|
 | [`MaintenanceComponentDecomposition.lean`](Survival/MaintenanceComponentDecomposition.lean) | `MaintenanceComponent.exhaustive`, `SupplyChannel.exhaustive`, `componentProfile_ext`, `supplyProfile_ext`, `fromInternalExternal_eq_iff`, `effectiveMaintenance_nonneg`, `MaintenanceInterface.ObservationQuotient`, `MaintenanceInterface.factors_through_observationQuotient_iff_respects_equivalence`, `MaintenanceInterface.quotientProfile_injective`, `PartialMaintenanceInterface.representable_or_outside` | buffer / recovery / reconfiguration と internal / external channel の分離を型レベルで固定。M interface 上の観測効果は三成分 profile によって完全に決まる、という表現定理と標準商の universal property まで形式化 |
 
-### H. マルコフ修復チェーン（3）— **Paper 4 §7 条件 (i) 最小形式モデル**
+### H. マルコフ修復チェーン（3）— **Route C companion II §7 条件 (i) 最小形式モデル**
 
 | ファイル | 主定理 | 評価 |
 |---------|-------|------|
-| [`FiniteStateMarkovCollapse.lean`](Survival/FiniteStateMarkovCollapse.lean) | 有限状態 Markov chain → stopped collapse bound | Paper 4 §7 最小モデル、論文未掲載 |
+| [`FiniteStateMarkovCollapse.lean`](Survival/FiniteStateMarkovCollapse.lean) | 有限状態 Markov chain → stopped collapse bound | Route C companion II §7 最小モデル、論文未掲載 |
 | [`FiniteStateMarkovRepairChain.lean`](Survival/FiniteStateMarkovRepairChain.lean) | statewise-nonneg → 経路別 total production nonneg | failure/idle/repair 三状態 |
 | [`MarkovRepairFailureExample.lean`](Survival/MarkovRepairFailureExample.lean) | 有限状態 → resource-bounded | 継続学習での修復/回復具体化 |
 
@@ -400,7 +400,7 @@ drift は `log(2^k / allowed)` になる。部分二項和が \(0\) と \(2^k\) 
 
 ## 3. 論文未反映の価値ある成果（格上げ候補）
 
-### 3.1 Paper 2 §5 形式検証リストのアップデート
+### 3.1 条件つき導出補論 §5 形式検証リストのアップデート
 
 **現状の論文本文:**
 > 検証対象は以下の通りである。
@@ -420,7 +420,7 @@ drift は `log(2^k / allowed)` になる。部分二項和が \(0\) と \(2^k\) 
 
 これだけで 5 → 約 20 ファイルへ拡張可能。
 
-### 3.2 Paper 2 §4 の主張強度を一段上げる提案
+### 3.2 条件つき導出補論 §4 の主張強度を一段上げる提案
 
 **現状の論文本文（§4）:**
 > 依存の効果が参照モデルからの相対誤差として ρ（0 ≤ ρ < 1）で抑えられているとする。
@@ -431,9 +431,9 @@ drift は `log(2^k / allowed)` になる。部分二項和が \(0\) と \(2^k\) 
 `AzumaHoeffding.lean` + `BoundedAzumaConstruction.lean` + `ConditionalMartingale.lean` により、段階構造消耗 l_i が bounded increments を満たす conditional martingale なら、Azuma-Hoeffding 不等式から `exp(-r²/(2V_n))` の具体的な指数境界が得られる。
 
 **論文への反映案:**
-Paper 2 §4 に「§4.1 真の martingale concentration による厳密化」を追加し、SignedWeakDependence + ConditionalMartingale + AzumaHoeffding を引用することで、弱依存の扱いを「相対誤差 ρ を仮定」から「bounded martingale increments → 具体的 variance proxy」へ格上げできる。
+条件つき導出補論 §4 に「§4.1 真の martingale concentration による厳密化」を追加し、SignedWeakDependence + ConditionalMartingale + AzumaHoeffding を引用することで、弱依存の扱いを「相対誤差 ρ を仮定」から「bounded martingale increments → 具体的 variance proxy」へ格上げできる。
 
-### 3.3 Paper 4 §7 「条件 (i) 矛盾解消代謝」の形式モデル
+### 3.3 Route C companion II §7 「条件 (i) 矛盾解消代謝」の形式モデル
 
 **現状の論文本文（§7.4）:**
 > LoRA ベース継続学習は条件 (ii) を部分的に緩めるが、条件 (i)（矛盾解消代謝機構）を備えていない。
@@ -444,7 +444,7 @@ Paper 2 §4 に「§4.1 真の martingale concentration による厳密化」を
 `FiniteStateMarkovRepairChain.lean` + `MarkovRepairFailureExample.lean` が failure/idle/repair の三状態で最小形式モデルを与えている。さらに `MinimumRepairRate.lean` が「mass 保持 θ → cost ≥ loss + log θ」として**代謝必要量の下限定理**を形式化済み。
 
 **論文への反映案:**
-Paper 4 §7.4 に「§7.4.1 最小マルコフ修復チェーンモデル」を追加し、条件 (i) が欠けた場合に mass 保持が指数的に崩壊することを定理化できる。これは LoRA の上書き的振る舞いの定性観察を、**形式モデル上の定理に昇格**させる。
+Route C companion II §7.4 に「§7.4.1 最小マルコフ修復チェーンモデル」を追加し、条件 (i) が欠けた場合に mass 保持が指数的に崩壊することを定理化できる。これは LoRA の上書き的振る舞いの定性観察を、**形式モデル上の定理に昇格**させる。
 
 ### 3.4 補論 SAT の論文未掲載洞察
 
@@ -464,7 +464,7 @@ Paper 4 §7.4 に「§7.4.1 最小マルコフ修復チェーンモデル」を�
 - `StoppingTimeCollapseEvent.lean` / `StoppingTimeHighProbabilityCollapse.lean`: τ^θ が停止時刻であり、有限地平線内で θ 越えが起きる確率境界
 - `StoppingTimeSharpDecomposition.lean`: τ < N と τ = N の精密分離
 
-これらを合わせると「S_c を θ として τ^θ < N となる確率上界」が Azuma から出る。Paper 1 §5 を Paper 1.5（Paper 1 と Paper 2 の間）として補強するか、Paper 2 に吸収するか、の設計判断ができる材料。
+これらを合わせると「S_c を θ として τ^θ < N となる確率上界」が Azuma から出る。Paper 1 §5 を Paper 1.5（Paper 1 と 条件つき導出補論 の間）として補強するか、条件つき導出補論 に吸収するか、の設計判断ができる材料。
 
 ### 3.6 Paper 1 §2 P5 表現安定性の形式化
 
@@ -485,7 +485,7 @@ Paper 4 §7.4 に「§7.4.1 最小マルコフ修復チェーンモデル」を�
 1. **ビルド整合性**: 136 ファイルは `Survival.lean` の top-level import を通じて一貫して検証する設計である。今後は `PAPER_MAPPING.md` の freeze snapshot ごとに `lake build Survival` の通過状況を併記する。
 2. **重複可能性**: `Coarse*` と `Stochastic*` の組合せで似た主張が複数箇所にある可能性。一本化できるものはリファクタ候補。
 3. **ArrowOfTime 系の位置づけ**: 補論 SAT §4 らしい H 定理的主張だが、論文本文に対応章が明示されていない。SAT への熱力学的意味付けを追加するか、独立補論として切り出すか、の判断が必要。
-4. **論文側の空白**: 上記 3.1–3.6 の未反映分を Paper 2 と補論 SAT / 設計原理 に反映しないままだと、Lean 資産が **論文強度に寄与しない状態**が続く。特に 3.2（Paper 2 §4 格上げ）と 3.3（Paper 4 §7 マルコフモデル）は、査読者が Route A/B 強度を評価する際に効く。
+4. **論文側の空白**: 上記 3.1–3.6 の未反映分を 条件つき導出補論 と補論 SAT / 設計原理 に反映しないままだと、Lean 資産が **論文強度に寄与しない状態**が続く。特に 3.2（条件つき導出補論 §4 格上げ）と 3.3（Route C companion II §7 マルコフモデル）は、査読者が Route A/B 強度を評価する際に効く。
 
 ---
 
@@ -493,9 +493,9 @@ Paper 4 §7.4 に「§7.4.1 最小マルコフ修復チェーンモデル」を�
 
 優先度順:
 
-1. **Paper 2 §5 の形式検証対象リストを 5 → ~20 ファイルへ拡張**する最小差分 patch を書く（§3.1）。論文強度が既存資産だけで一段上がる。
-2. **Paper 2 §4 に真の martingale concentration サブセクションを追加**（§3.2）。`AzumaHoeffding.lean` を引用。
-3. **Paper 4 §7.4 に最小マルコフ修復チェーン**を入れる（§3.3）。Paper 4 の主張が形式モデル上の定理で裏付けられる。
+1. **条件つき導出補論 §5 の形式検証対象リストを 5 → ~20 ファイルへ拡張**する最小差分 patch を書く（§3.1）。論文強度が既存資産だけで一段上がる。
+2. **条件つき導出補論 §4 に真の martingale concentration サブセクションを追加**（§3.2）。`AzumaHoeffding.lean` を引用。
+3. **Route C companion II §7.4 に最小マルコフ修復チェーン**を入れる（§3.3）。Route C companion II の主張が形式モデル上の定理で裏付けられる。
 4. `lake build Survival` の通過状況と、136 ファイルの依存グラフを図示。棚卸しの完成度を検証。
 5. 補論 SAT の `AsymptoticExponent` / `CorrelatedSecondMoment` / `SensitivityAnalysis` の論文未掲載洞察を、補論 SAT §6 限界節または新規節として追加（§3.4）。
 
