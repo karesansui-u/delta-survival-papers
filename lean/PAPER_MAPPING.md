@@ -110,9 +110,11 @@ map layers:
 | contracted-defect cancellation | \( \bar b_t=b_t+e_V(t)-e_V(t+1) \) | `DefectControlledAdmissibleMap.stepNetAction_coarse_eq_micro_add_feasible_defect_sub_next_feasible_defect` | proven at readout level |
 | cumulative defect-controlled signed action | \( \bar B_n=B_n+e_V(0)-e_V(n) \) | `DefectControlledAdmissibleMap.cumulativeNetAction_coarse_eq_micro_add_initial_defect_sub_terminal` | proven at readout level |
 | Bernoulli-CSP \(\Sigma\) observable | cumulative bad-event production as total-production coordinate | `BernoulliTypicalSigma.bernoulliSigma`; `BernoulliTypicalSigma.bernoulliSigmaProcess` | defined |
+| Bernoulli-CSP adjacent \(\Sigma\) nondecrease | one-sided bad-event emissions are nonnegative | `BernoulliTypicalSigma.bernoulliSigma_succ_le`; `BernoulliTypicalSigma.bernoulliSigma_initial_le` | proven pathwise for the finite-path observable |
 | Bernoulli-CSP expected \(\Sigma\) monotonicity | nonnegative one-step bad-event emissions | `BernoulliTypicalSigma.bernoulliSigma_expectedCumulative_monotone` | proven |
 | Bernoulli-CSP \(\Sigma\) lower-tail certificate | interior KL/Chernoff finite-path lower-tail bound | `BernoulliTypicalSigma.bernoulliSigmaLowerTailMeasure_le_chernoffFailureBound_of_interior` | proven under interior margin assumptions |
 | Bernoulli-CSP \(\Sigma\) high-probability lower bound | good event with `center-r ≤ Σ_n` and Chernoff failure bound | `BernoulliTypicalSigma.BernoulliSigmaLowerBoundWithFailureBound`; `BernoulliTypicalSigma.bernoulliSigma_lowerBoundWithChernoffBound_of_interior` | proven under finite-path interior assumptions |
+| Bernoulli-CSP fixed-time typical growth | same good event has initial-to-time nondecrease and `center-r ≤ Σ_n` | `BernoulliTypicalSigma.BernoulliSigmaTypicalGrowthWithFailureBound`; `BernoulliTypicalSigma.bernoulliSigma_typicalGrowthWithChernoffBound_of_interior` | proven under finite-path interior assumptions |
 | Bernoulli-CSP \(\Sigma\) collapse wrappers | threshold / collapse / stopped-collapse / hitting-time API | `BernoulliTypicalSigma.bernoulliSigma_*WithChernoffBound_of_linearMargin` | proven under finite-horizon margin assumptions |
 
 This is intentionally not a full category of structural-maintenance problems.

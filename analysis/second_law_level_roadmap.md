@@ -179,9 +179,9 @@ polish.
 Current status:
 
 ```text
-expectation-level schema mapped; Bernoulli-CSP finite-path Sigma wrapper and
-fixed-time high-probability lower-bound certificate added; global
-high-probability schema remains conditional
+expectation-level schema mapped; Bernoulli-CSP finite-path Sigma wrapper,
+fixed-time high-probability lower-bound certificate, and fixed-time typical
+growth certificate added; global high-probability schema remains conditional
 ```
 
 Existing Lean anchors:
@@ -204,14 +204,15 @@ What is already closed:
 - for the Bernoulli-CSP one-sided iid bad-event template, `Survival.BernoulliTypicalSigma`
   gives reader-facing names for the cumulative `\Sigma` observable, monotone
   expectation, the interior KL/Chernoff lower-tail certificate, the corresponding
-  good-event lower-bound certificate, and the threshold / collapse /
-  stopped-collapse / hitting-time wrappers.
+  good-event lower-bound certificate, a fixed-time typical-growth certificate,
+  and the threshold / collapse / stopped-collapse / hitting-time wrappers.
 
 What remains:
 
 - a reader-facing split between:
   - expectation-level tendency;
   - fixed-time high-probability lower-bound certificates;
+  - fixed-time typical-growth certificates;
   - high-probability stopped collapse;
   - long-time / ergodic / almost-sure claims.
 
@@ -231,8 +232,9 @@ Bernoulli-specific wrapper discipline:
 
 ```text
 BernoulliTypicalSigma is a finite-path / expectation-level entry point.
-It packages existing Chernoff lower-tail, good-event lower-bound, and collapse
-facts around the Sigma observable.
+It packages existing nonnegative-step, Chernoff lower-tail, good-event
+lower-bound, fixed-time typical-growth, and collapse facts around the Sigma
+observable.
 It is not an unconditional second-law theorem and not a maximal-class
 universality theorem.
 ```
@@ -495,10 +497,14 @@ Reader-facing Lean names:
 
 - `BernoulliTypicalSigma.bernoulliSigma`
 - `BernoulliTypicalSigma.bernoulliSigmaProcess`
+- `BernoulliTypicalSigma.bernoulliSigma_succ_le`
+- `BernoulliTypicalSigma.bernoulliSigma_initial_le`
 - `BernoulliTypicalSigma.bernoulliSigma_expectedCumulative_monotone`
 - `BernoulliTypicalSigma.bernoulliSigmaLowerTailMeasure_le_chernoffFailureBound_of_interior`
 - `BernoulliTypicalSigma.BernoulliSigmaLowerBoundWithFailureBound`
 - `BernoulliTypicalSigma.bernoulliSigma_lowerBoundWithChernoffBound_of_interior`
+- `BernoulliTypicalSigma.BernoulliSigmaTypicalGrowthWithFailureBound`
+- `BernoulliTypicalSigma.bernoulliSigma_typicalGrowthWithChernoffBound_of_interior`
 - `BernoulliTypicalSigma.bernoulliSigma_thresholdCrossingWithChernoffBound_of_linearMargin`
 - `BernoulliTypicalSigma.bernoulliSigma_collapseWithChernoffBound_of_linearMargin`
 - `BernoulliTypicalSigma.bernoulliSigma_stoppedCollapseWithChernoffBound_of_linearMargin`
@@ -511,8 +517,9 @@ In the one-sided iid bad-event Bernoulli-CSP template, cumulative bad-event
 production has monotone expectation and a finite-path interior Chernoff
 lower-tail certificate. The complement good event now carries the explicit
 pointwise lower bound `center_n-r ≤ Sigma_n` with the same Chernoff failure
-profile. Collapse wrappers follow under explicit finite-horizon margin
-assumptions.
+profile. Combining this with nonnegative adjacent emissions gives a fixed-time
+typical-growth certificate. Collapse wrappers follow under explicit
+finite-horizon margin assumptions.
 ```
 
 Do not read it as:

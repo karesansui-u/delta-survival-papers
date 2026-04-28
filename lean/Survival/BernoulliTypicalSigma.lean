@@ -71,6 +71,25 @@ theorem bernoulliSigma_ae_nonnegative_increment
   exact Filter.Eventually.of_forall
     (fun τ => stepEmission_nonneg P (outcomeAt τ t))
 
+/-- In the one-sided Bernoulli-CSP template, every adjacent `Σ` step is
+nondecreasing because each bad-event emission is nonnegative.  This is a
+class-specific finite-path fact, not a universal second-law statement. -/
+theorem bernoulliSigma_succ_le
+    (P : Parameters) (s₀ : ℝ) {N : ℕ} (τ : Trajectory N) (n : ℕ) :
+    bernoulliSigma P s₀ τ n ≤ bernoulliSigma P s₀ τ (n + 1) := by
+  rw [bernoulliSigma_succ]
+  exact le_add_of_nonneg_right (stepEmission_nonneg P (outcomeAt τ n))
+
+/-- Initial-to-time monotonicity as a fixed-time corollary of the nonnegative
+adjacent-step property. -/
+theorem bernoulliSigma_initial_le
+    (P : Parameters) (s₀ : ℝ) {N : ℕ} (τ : Trajectory N) (n : ℕ) :
+    bernoulliSigma P s₀ τ 0 ≤ bernoulliSigma P s₀ τ n := by
+  induction n with
+  | zero => rfl
+  | succ n ih =>
+      exact le_trans ih (bernoulliSigma_succ_le P s₀ τ n)
+
 /-- Therefore the expected Bernoulli-CSP `Σ` observable is monotone in the
 finite-prefix horizon. -/
 theorem bernoulliSigma_expectedCumulative_monotone
@@ -105,6 +124,17 @@ def BernoulliSigmaLowerBoundWithFailureBound
     EventWithFailureBound (μ := pathMeasure P N) E ε ∧
       ∀ τ ∈ E, bernoulliSigmaCenter P s₀ n - r ≤ bernoulliSigma P s₀ τ n
 
+/-- A fixed finite-path typical-growth certificate for Bernoulli-CSP `Σ`.
+On the same good event, `Σ` is nondecreasing from time zero and lies above its
+linear center minus `r` at time `n`. -/
+def BernoulliSigmaTypicalGrowthWithFailureBound
+    (P : Parameters) (N : ℕ) (s₀ : ℝ) (n : ℕ) (r : ℝ) (ε : ENNReal) : Prop :=
+  ∃ E : Set (Trajectory N),
+    EventWithFailureBound (μ := pathMeasure P N) E ε ∧
+      ∀ τ ∈ E,
+        bernoulliSigma P s₀ τ 0 ≤ bernoulliSigma P s₀ τ n ∧
+          bernoulliSigmaCenter P s₀ n - r ≤ bernoulliSigma P s₀ τ n
+
 /-- Interior KL/Chernoff high-probability lower-bound certificate for
 Bernoulli-CSP `Σ`: outside a bad event of probability at most the Chernoff
 profile, `Σ_n` lies above its deterministic linear center minus `r`.
@@ -129,6 +159,23 @@ theorem bernoulliSigma_lowerBoundWithChernoffBound_of_interior
   · intro τ hτ
     dsimp [goodEvent, badEvent, bernoulliSigmaLowerTailEvent] at hτ
     exact not_lt.mp hτ
+
+/-- Fixed-time typical growth certificate for Bernoulli-CSP `Σ`.  This combines
+pathwise nondecrease from nonnegative emissions with the finite-path interior
+Chernoff lower-bound certificate. -/
+theorem bernoulliSigma_typicalGrowthWithChernoffBound_of_interior
+    (P : Parameters) (N : ℕ) {n : ℕ} (hn : n ≤ N + 1) {s₀ r : ℝ}
+    (hr : 0 ≤ r)
+    (hlt : r < (n : ℝ) * P.drift) :
+    BernoulliSigmaTypicalGrowthWithFailureBound
+      P N s₀ n r (P.chernoffFailureBound n r) := by
+  rcases
+    bernoulliSigma_lowerBoundWithChernoffBound_of_interior
+      P N hn hr hlt with
+    ⟨E, hE, hlower⟩
+  refine ⟨E, hE, ?_⟩
+  intro τ hτ
+  exact ⟨bernoulliSigma_initial_le P s₀ τ n, hlower τ hτ⟩
 
 /-- Fixed-time threshold crossing for Bernoulli-CSP `Σ`, obtained by combining
 the lower-tail certificate with a linear margin. -/
