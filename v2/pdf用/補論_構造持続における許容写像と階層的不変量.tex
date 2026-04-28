@@ -505,6 +505,7 @@ Lean 側の足場
 pathwise balance kernel & \texttt{Survival.GeneralStateDynamics}, \texttt{Survival.StructuralPersistenceBalancePrinciple} \\
 粗視化の exact interface & \texttt{Survival.CoarseGraining} \\
 admissible-map compatibility wrapper & \texttt{Survival.AdmissibleMapCompatibility} \\
+defect-controlled compatibility wrapper & \texttt{Survival.DefectControlledAdmissibleMap} \\
 total production の粗視化保存 & \texttt{Survival.CoarseTotalProduction} \\
 確率空間上の coarse compatibility & \texttt{Survival.CoarseStochasticTotalProduction} \\
 resource-bounded monotonicity & \texttt{Survival.ResourceBoundedDynamics} \\
@@ -523,7 +524,7 @@ Bernoulli-CSP template & \texttt{Survival.BernoulliCSPTemplate}, \texttt{Surviva
 \item
   構造維持問題の一般的な morphism interface。
 \item
-  defect-controlled な粗視化に対する、飽和欠損条件と admissible-map compatibility の統合。
+  defect-controlled な粗視化代数を、実際の set-level coarse map、正有限質量条件、feasible / contracted / repaired region の compatibility から instantiate すること。
 \item
   Bernoulli-CSP class をテンプレート保存 subcategory / generated class として読む外向け定理名。
 \item
@@ -552,7 +553,29 @@ e_\pi(A)=\log\frac{m(\pi^{-1}\pi(A))}{m(A)}
 
 一方で、exact な admissible coarse map については、\(\pi\) が初期集合、feasible trajectory、収縮作用、回復作用と可換する条件が \texttt{Survival.CoarseGraining} にあり、それを reader-facing に読む wrapper が \texttt{Survival.AdmissibleMapCompatibility} にある。ここでは、初期領域の可換性、feasible trajectory の可換性、contracted intermediate region の可換性、repaired intermediate region の可換性、さらに一様質量スケーリング下での signed kernel の exact preservation が Lean theorem 名として切り出されている。
 
-残る作業は、exact preservation ではなく、飽和欠損を持つ非 exact coarse-graining において、feasible trajectory、収縮作用、回復作用との compatibility と欠損項条件をどう組み合わせれば DPI 型単調性を読めるかを定式化することである。
+さらに \texttt{Survival.DefectControlledAdmissibleMap} は、feasible mass readout と contracted intermediate mass readout の二段階で飽和欠損を入れた場合の代数を閉じている。収縮段階では feasible defect と contracted defect が現れ、回復段階では次時点の feasible defect と contracted defect が現れる。しかし純消耗量 \(b_{t}=d_{t}-r_{t}\) では contracted defect が相殺され、
+
+\[
+\begin{aligned}
+\bar b_{t} \\
+&= \\
+b_{t} + e_{V}(t)-e_{V}(t+1)
+\end{aligned}
+\]
+
+となる。したがって累積量では
+
+\[
+\begin{aligned}
+\bar B_{n} \\
+&= \\
+B_{n} + e_{V}(0)-e_{V}(n)
+\end{aligned}
+\]
+
+だけが残る。この theorem は、条件なしの DPI ではなく、終端 feasible defect が初期 feasible defect を上回る場合に初めて \(\bar B_{n}\le B_{n}\) を読むための reader-facing な algebraic core である。
+
+残る作業は、この二段階 readout algebra を、実際の set-level coarse map、正有限質量条件、feasible / contracted / repaired region の compatibility から instantiate することである。
 
 したがって、本補論は新しい普遍法則を主張するものではない。既存の粗視化・総生成量・Bernoulli-CSP interface を、一つの数学的見取り図にまとめ、どの wrapper が閉じており、どこから先が set-level 粗視化、高確率化、限定クラス普遍性の未解決部分なのかを指定する文書である。
 

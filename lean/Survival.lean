@@ -53,6 +53,7 @@ import Survival.AdmissibleMapInvariants
 import Survival.SaturationDefect
 import Survival.CoarseGraining
 import Survival.AdmissibleMapCompatibility
+import Survival.DefectControlledAdmissibleMap
 import Survival.ResourceBudget
 import Survival.TotalProduction
 import Survival.SecondLawTotalProduction

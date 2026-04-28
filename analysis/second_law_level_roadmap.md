@@ -375,6 +375,8 @@ Implemented names include:
 - `AdmissibleMapCompatibility.contraction_commutes_along_trajectory`
 - `AdmissibleMapCompatibility.repair_commutes_along_trajectory`
 - `AdmissibleMapCompatibility.cumulative_net_action_preserved_of_uniform_mass_scaling`
+- `DefectControlledAdmissibleMap.stepNetAction_coarse_eq_micro_add_feasible_defect_sub_next_feasible_defect`
+- `DefectControlledAdmissibleMap.cumulativeNetAction_coarse_eq_micro_add_initial_defect_sub_terminal`
 
 Avoid names like:
 
@@ -392,7 +394,8 @@ Status:
 
 ```text
 readout-level spec done; minimal set-level instantiation done; admissible
-coarse-graining exact compatibility wrappers done
+coarse-graining exact compatibility wrappers done; defect-controlled two-stage
+readout algebra done
 ```
 
 This is the first genuinely new Lean-facing work suggested by the new
@@ -408,6 +411,16 @@ The exact admissible-map compatibility layer is also now reader-facing in
 - contracted intermediate regions commute;
 - repaired intermediate regions commute;
 - under uniform mass scaling, the signed kernel is preserved exactly.
+
+The defect-controlled two-stage readout layer is now reader-facing in
+`Survival.DefectControlledAdmissibleMap`. It proves that the contracted
+intermediate defect enters both contraction loss and repair gain, then cancels
+in the signed net action:
+
+```text
+coarse b_t = micro b_t + e_V(t) - e_V(t+1)
+coarse B_n = micro B_n + e_V(0) - e_V(n)
+```
 
 Implemented minimal target:
 
@@ -428,18 +441,24 @@ Reader-facing Lean names:
 - `AdmissibleMapCompatibility.contraction_commutes_along_trajectory`
 - `AdmissibleMapCompatibility.repair_commutes_along_trajectory`
 - `AdmissibleMapCompatibility.cumulative_net_action_preserved_of_uniform_mass_scaling`
+- `DefectControlledAdmissibleMap.contractionLoss_coarse_eq_micro_add_feasible_defect_sub_contracted_defect`
+- `DefectControlledAdmissibleMap.repairGain_coarse_eq_micro_add_next_feasible_defect_sub_contracted_defect`
+- `DefectControlledAdmissibleMap.stepNetAction_coarse_eq_micro_add_feasible_defect_sub_next_feasible_defect`
+- `DefectControlledAdmissibleMap.cumulativeNetAction_coarse_eq_micro_add_initial_defect_sub_terminal`
+- `DefectControlledAdmissibleMap.cumulativeNetAction_coarse_le_micro_of_terminal_defect_ge_initial`
 
-Remaining defect-controlled admissible-map target:
+Remaining set-level admissible-map target:
 
 ```text
-Combine exact trajectory / contraction / repair compatibility with
-saturation-defect control, so that non-exact coarse-graining can be treated by
-defect terms rather than by unconditional DPI.
+Instantiate the defect-controlled two-stage readout algebra from actual
+set-level coarse maps, positive mass assumptions, and compatibility conditions
+for feasible, contracted, and repaired regions.
 ```
 
 This remaining target touches sets, maps, positive mass assumptions, logs,
-defect monotonicity, and compatibility with contraction / repair. It is
-heavier than the exact compatibility wrapper work.
+defect monotonicity, and compatibility with contraction / repair. It is heavier
+than the readout-level wrapper work, but the contracted-defect cancellation
+itself is now closed.
 
 ## 5. Recommended order
 

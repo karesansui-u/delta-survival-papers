@@ -1,7 +1,7 @@
 # Lean 形式検証 ↔ 論文対応棚卸し
 
 棚卸し日: 2026-04-27
-対象: `lean/Survival/` 配下 143 ファイル
+対象: `lean/Survival/` 配下 144 ファイル
 対応文書: `delta-survival-paper/v2/` 配下の主理論 spine、Route C companions、補論群
 
 ## 現在の結論
@@ -9,7 +9,7 @@
 このファイルを、Lean 形式化と論文本文を結ぶ唯一の reader-facing theorem map とする。
 旧 SAT/CSP 専用 map は現行ツリーから外し、git history / OSF snapshot 側の archive として扱う。
 
-現時点の Lean 側は **143 Survival modules / sorry = 0 / axiom = 0** で閉じている。条件つき導出補論 §5 が
+現時点の Lean 側は **144 Survival modules / sorry = 0 / axiom = 0** で閉じている。条件つき導出補論 §5 が
 明示している 5 ファイルを超えて、停止時刻崩壊、martingale concentration、粗視化、有限状態 Markov
 microfoundation、SAT/k-SAT Chernoff-KL chain、Bernoulli-CSP 水平展開、Route A 非CSP skeletons まで
 含む。
@@ -104,16 +104,22 @@ map layers:
 | set-level defect instantiates readout spec | positive set masses for \(V_t\) and \(\pi^{-1}\pi(V_t)\) | `SaturationDefect.coarseMap_saturationDefectReadout_of_positive_setMass` | proven |
 | coarse cumulative loss with saturation defect | \(B_n^{coarse}=B_n^{micro}+e_0-e_n\) | `SaturationDefect.coarse_cumulativeStageLoss_eq_micro_add_initial_defect_sub_terminal` | proven at readout level |
 | conditional coarse monotonicity | \(e_0\le e_n\Rightarrow B_n^{coarse}\le B_n^{micro}\) | `SaturationDefect.coarse_cumulativeStageLoss_le_micro_of_terminal_defect_ge_initial` | proven at readout level |
+| defect-controlled contraction loss | contracted-intermediate defect enters contraction loss | `DefectControlledAdmissibleMap.contractionLoss_coarse_eq_micro_add_feasible_defect_sub_contracted_defect` | proven at readout level |
+| defect-controlled repair gain | contracted-intermediate defect enters repair gain | `DefectControlledAdmissibleMap.repairGain_coarse_eq_micro_add_next_feasible_defect_sub_contracted_defect` | proven at readout level |
+| contracted-defect cancellation | \( \bar b_t=b_t+e_V(t)-e_V(t+1) \) | `DefectControlledAdmissibleMap.stepNetAction_coarse_eq_micro_add_feasible_defect_sub_next_feasible_defect` | proven at readout level |
+| cumulative defect-controlled signed action | \( \bar B_n=B_n+e_V(0)-e_V(n) \) | `DefectControlledAdmissibleMap.cumulativeNetAction_coarse_eq_micro_add_initial_defect_sub_terminal` | proven at readout level |
 
 This is intentionally not a full category of structural-maintenance problems.
 It now includes the exact admissible-map compatibility layer, where initial
 regions, contractions, and repairs commute with the coarse map, plus the
 finite mass-readout layer needed by the supplement's first claims. The
 saturation defect wrapper includes the minimal set-level instantiation for
-`eπ(A)=log(m(π⁻¹π(A))/m(A))` under positive mass assumptions. It still does not
-claim that an arbitrary coarse map is admissible, nor does it prove an
-unconditional DPI. Defect-controlled coarse-graining and proxy / estimation
-validation remain separate tasks.
+`eπ(A)=log(m(π⁻¹π(A))/m(A))` under positive mass assumptions. The
+defect-controlled wrapper now also proves that contracted-intermediate defects
+cancel in the signed net action, leaving only endpoint feasible defects. It
+still does not claim that an arbitrary coarse map is admissible, nor does it
+prove an unconditional DPI. Full set-level admissible coarse-graining and proxy
+/ estimation validation remain separate tasks.
 
 ### Sigma / Total Production Component
 
