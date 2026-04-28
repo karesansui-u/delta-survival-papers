@@ -297,7 +297,8 @@ Other future limited classes:
 Status:
 
 ```text
-template note added in `analysis/phase6_foster_lyapunov_template.md`
+template note added in `analysis/phase6_foster_lyapunov_template.md`;
+thin Lean wrapper added in `Survival.FosterLyapunovTemplate`
 ```
 
 The Phase-6.1 goal is not to copy the Bernoulli proof engine. Bernoulli-CSP
@@ -313,6 +314,7 @@ Existing Lean anchors:
 - `Survival.ResourceBoundedConditionalAzuma`
 - `Survival.SecondLawTotalProduction`
 - `Survival.CoarseTypicalNondecrease`
+- `Survival.FosterLyapunovTemplate`
 
 Correct reading:
 
@@ -708,9 +710,9 @@ The next phase succeeds if the repo reaches this state:
    for coarse transfer without claiming a full characterization.
 8. Phase-5 ladder note distinguishes the short-term Phase-6 exit from the full
    necessary/sufficient admissible-map characterization.
-9. Phase-6.1 Foster-Lyapunov / queueing template note identifies the second
-   limited class and its existing Lean anchors without overclaiming recurrence
-   or ergodicity.
+9. Phase-6.1 Foster-Lyapunov / queueing template note and thin Lean wrapper
+   identify the second limited class and its existing anchors without
+   overclaiming recurrence or ergodicity.
 ```
 
 At that point, the program has not reached a second law. But it has a much more

@@ -1,6 +1,7 @@
 # Phase 6.1 Foster-Lyapunov / queueing template
 
-Status: Phase 6.1 v0 planning note after Phase 5 ladder.
+Status: Phase 6.1 v0 template note after Phase 5 ladder. A thin Lean wrapper
+now exists in `Survival.FosterLyapunovTemplate`.
 
 This note starts Phase 6 by asking how the Bernoulli-CSP `Sigma` template can
 be reused in a second, genuinely different class: Foster-Lyapunov / queueing
@@ -49,8 +50,8 @@ more than Bernoulli-CSP.
 
 The important point is that Phase 6.1 does not start from zero. The algebraic
 Lyapunov embedding and the conditional-Azuma concentration route already
-exist. The missing piece is reader-facing organization, not a new universal
-law.
+exist. The first reader-facing organization layer is now present in
+`Survival.FosterLyapunovTemplate`; it adds names, not a new universal law.
 
 ## 3. Bernoulli template versus Foster-Lyapunov template
 
@@ -92,16 +93,20 @@ which layer is closed and which is still conditional.
 
 ## 5. Safe Lean wrapper candidates
 
-If a Lean wrapper is added next, the safest names are reader-facing aliases of
-existing theorems:
+The thin Lean wrapper now added in `Survival.FosterLyapunovTemplate` uses
+reader-facing aliases of existing theorems:
 
 - `FosterLyapunovTemplate.lyapunov_cumulativeAction_eq_load_diff`
 - `FosterLyapunovTemplate.lyapunov_increment_eq_consumption_sub_recovery`
+- `FosterLyapunovTemplate.lyapunov_relativeMaintenance_succ_eq_mul_exp_neg_increment`
 - `FosterLyapunovTemplate.queue_increment_eq_excessDemand`
+- `FosterLyapunovTemplate.queue_cumulativeAction_eq_cumulativeOverloadLoss`
 - `FosterLyapunovTemplate.queue_stable_increment_nonpos`
 - `FosterLyapunovTemplate.queue_overloaded_increment_pos`
 - `FosterLyapunovTemplate.expectedSigma_monotone_of_conditionalAzuma`
-- `FosterLyapunovTemplate.stoppedCollapseWithFailureBound_of_initialExpectedMargin`
+- `FosterLyapunovTemplate.fosterLyapunov_stoppedCollapseWithFailureBound_of_initialExpectedMargin`
+- `FosterLyapunovTemplate.fosterLyapunov_hittingTimeBeforeHorizonWithFailureBound_of_initialExpectedMargin`
+- `FosterLyapunovTemplate.coarseExpectedSigma_monotone_of_conditionalAzuma`
 
 These would not add new mathematics. They would make the class template
 reader-facing, similar to what `BernoulliTypicalSigma` did for Bernoulli-CSP.
@@ -128,8 +133,9 @@ Phase 6.1 v0 is closed when the repo has:
    limited class after Bernoulli-CSP;
 4. explicit non-claims separating expectation-level tendency from
    high-probability and almost-sure claims.
+5. a thin Lean wrapper that exposes those anchors without strengthening them.
 
-Lean wrappers can be added after this, but they should be thin aliases first.
+The current wrapper satisfies item 5 at the alias / reader-facing layer.
 
 ## 7. What remains open
 
@@ -151,14 +157,17 @@ own assumptions and concentration engine.
 
 ## 8. Recommended next move
 
-After this note, add a thin Lean wrapper only if it improves theorem-map
-readability. The first wrapper should not create new assumptions. It should
-bundle existing names from:
+After this note and wrapper, the next Lean-side step should only be attempted if
+there is a concrete new certificate to expose. The wrapper should remain an
+alias layer unless a later Phase 6.1 v1 explicitly introduces a bounded-drift /
+conditional-Azuma certificate analogous to the Bernoulli lower-tail certificate.
+
+The current wrapper bundles existing names from:
 
 - `Survival.LyapunovBalanceEmbedding`
 - `Survival.QueueStability`
 - `Survival.ResourceBoundedConditionalAzuma`
-- `Survival.SecondLawTotalProduction`
+- `Survival.CoarseTypicalNondecrease`
 
 If that wrapper stays thin, Phase 6.1 can progress without risking a false
 claim that Foster-Lyapunov / queueing has already delivered the full class

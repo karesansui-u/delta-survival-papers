@@ -9,7 +9,7 @@
 このファイルを、Lean 形式化と論文本文を結ぶ唯一の reader-facing theorem map とする。
 旧 SAT/CSP 専用 map は現行ツリーから外し、git history / OSF snapshot 側の archive として扱う。
 
-現時点の Lean 側は **146 Survival modules / sorry = 0 / axiom = 0** で閉じている。条件つき導出補論 §5 が
+現時点の Lean 側は **147 Survival modules / sorry = 0 / axiom = 0** で閉じている。条件つき導出補論 §5 が
 明示している 5 ファイルを超えて、停止時刻崩壊、martingale concentration、粗視化、有限状態 Markov
 microfoundation、SAT/k-SAT Chernoff-KL chain、Bernoulli-CSP 水平展開、Route A 非CSP skeletons まで
 含む。
@@ -180,18 +180,20 @@ concentration assumptions.
 ### Phase 6.1 / Foster-Lyapunov Template Note
 
 `analysis/phase6_foster_lyapunov_template.md` records the next limited-class
-template after Bernoulli-CSP. It does not add a new Lean theorem yet. Instead,
-it maps the Bernoulli-CSP \(\Sigma\) grammar onto existing Foster-Lyapunov /
-queueing anchors:
+template after Bernoulli-CSP. `Survival.FosterLyapunovTemplate` now provides a
+thin reader-facing wrapper for the first Phase-6.1 layer. It maps the
+Bernoulli-CSP \(\Sigma\) grammar onto existing Foster-Lyapunov / queueing
+anchors without strengthening them:
 
 | Phase-6 role | Lean anchor | Reading discipline |
 |---|---|---|
-| Lyapunov / load increment | `LyapunovBalanceEmbedding.increment` | pathwise load difference, not recurrence |
-| cumulative action | `LyapunovBalanceEmbedding.cumulativeAction` | telescopes to `Z n - Z 0` |
-| queue overload skeleton | `QueueStability.queue_increment_eq_excessDemand`; `QueueStability.queue_increment_nonpos_of_stable`; `QueueStability.queue_increment_pos_of_overloaded` | deterministic finite-prefix skeleton |
-| concentration route | `ResourceBoundedConditionalAzuma.*` | high-probability claims require bounded-increment / margin assumptions |
+| Lyapunov / load increment | `FosterLyapunovTemplate.lyapunov_increment_eq_consumption_sub_recovery` | pathwise load difference, not recurrence |
+| cumulative action | `FosterLyapunovTemplate.lyapunov_cumulativeAction_eq_load_diff` | telescopes to `Z n - Z 0` |
+| exponential maintenance update | `FosterLyapunovTemplate.lyapunov_relativeMaintenance_succ_eq_mul_exp_neg_increment` | signed-action coordinate, not a stability theorem |
+| queue overload skeleton | `FosterLyapunovTemplate.queue_increment_eq_excessDemand`; `FosterLyapunovTemplate.queue_stable_increment_nonpos`; `FosterLyapunovTemplate.queue_overloaded_increment_pos` | deterministic finite-prefix skeleton |
+| concentration route | `FosterLyapunovTemplate.expectedSigma_monotone_of_conditionalAzuma`; `FosterLyapunovTemplate.fosterLyapunov_stoppedCollapseWithFailureBound_of_initialExpectedMargin`; `FosterLyapunovTemplate.fosterLyapunov_hittingTimeBeforeHorizonWithFailureBound_of_initialExpectedMargin` | high-probability claims require bounded-increment / margin assumptions |
 | \(\Sigma\) / total production grammar | `SecondLawTotalProduction.*` | expectation-level tendency candidate |
-| coarse expectation route | `CoarseTypicalNondecrease.*` | conditional compatibility, not unconditional DPI |
+| coarse expectation route | `FosterLyapunovTemplate.coarseExpectedSigma_monotone_of_conditionalAzuma` | conditional compatibility, not unconditional DPI |
 
 The correct interpretation is:
 
