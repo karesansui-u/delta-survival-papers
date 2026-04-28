@@ -177,6 +177,32 @@ different schemas and must not be merged without carrying the extra margin and
 concentration assumptions.
 ```
 
+### Phase 6.1 / Foster-Lyapunov Template Note
+
+`analysis/phase6_foster_lyapunov_template.md` records the next limited-class
+template after Bernoulli-CSP. It does not add a new Lean theorem yet. Instead,
+it maps the Bernoulli-CSP \(\Sigma\) grammar onto existing Foster-Lyapunov /
+queueing anchors:
+
+| Phase-6 role | Lean anchor | Reading discipline |
+|---|---|---|
+| Lyapunov / load increment | `LyapunovBalanceEmbedding.increment` | pathwise load difference, not recurrence |
+| cumulative action | `LyapunovBalanceEmbedding.cumulativeAction` | telescopes to `Z n - Z 0` |
+| queue overload skeleton | `QueueStability.queue_increment_eq_excessDemand`; `QueueStability.queue_increment_nonpos_of_stable`; `QueueStability.queue_increment_pos_of_overloaded` | deterministic finite-prefix skeleton |
+| concentration route | `ResourceBoundedConditionalAzuma.*` | high-probability claims require bounded-increment / margin assumptions |
+| \(\Sigma\) / total production grammar | `SecondLawTotalProduction.*` | expectation-level tendency candidate |
+| coarse expectation route | `CoarseTypicalNondecrease.*` | conditional compatibility, not unconditional DPI |
+
+The correct interpretation is:
+
+```text
+Foster-Lyapunov / queueing is staged as the second limited class template.
+It shares the Sigma / drift / concentration / coarse-transfer grammar with
+Bernoulli-CSP, but uses its own drift and Azuma-style concentration
+assumptions. It is not a positive-recurrence theorem, a geometric-ergodicity
+theorem, or an unconditional Lyapunov second law.
+```
+
 ## Paper 2 / Structural Persistence Balance Mapping
 
 Paper 2 の経路ごとの代数核は、既存の

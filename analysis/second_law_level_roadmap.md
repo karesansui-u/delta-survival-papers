@@ -251,7 +251,8 @@ universality theorem.
 Current status:
 
 ```text
-Bernoulli-CSP is the closest class; others are bridge candidates
+Bernoulli-CSP is the first closed class template; Foster-Lyapunov / queueing is
+now staged as the second class template
 ```
 
 Existing anchors:
@@ -288,9 +289,46 @@ collapse interface.
 
 Other future limited classes:
 
-- Foster-Lyapunov / queueing drift class;
 - reliability / decay controls;
 - repair-maintenance finite-prefix class.
+
+### Phase 6.1: Foster-Lyapunov / queueing template
+
+Status:
+
+```text
+template note added in `analysis/phase6_foster_lyapunov_template.md`
+```
+
+The Phase-6.1 goal is not to copy the Bernoulli proof engine. Bernoulli-CSP
+uses one-sided iid bad-event exposure and Chernoff/KL. Foster-Lyapunov /
+queueing uses a Lyapunov or load coordinate, drift assumptions, deterministic
+queue skeletons, and conditional-Azuma / bounded-increment routes when
+high-probability statements are needed.
+
+Existing Lean anchors:
+
+- `Survival.LyapunovBalanceEmbedding`
+- `Survival.QueueStability`
+- `Survival.ResourceBoundedConditionalAzuma`
+- `Survival.SecondLawTotalProduction`
+- `Survival.CoarseTypicalNondecrease`
+
+Correct reading:
+
+```text
+Foster-Lyapunov / queueing is the second limited class template. It shares the
+Sigma / drift / concentration / coarse-transfer grammar, but keeps its own
+assumptions and concentration engine.
+```
+
+Do not read it as:
+
+```text
+positive recurrence theorem,
+geometric ergodicity theorem,
+or unconditional Lyapunov second law.
+```
 
 ### Component 5: cross-class unification
 
@@ -629,6 +667,8 @@ Phase-5 solution.
 7. Add the Phase-5 ladder note before using v0 as a Phase-6 template.
 8. Keep Bernoulli-CSP class closure as a limited-class universality target, not
    a full universal-law claim.
+9. Stage Foster-Lyapunov / queueing as the second class template before adding
+   any strong cross-class theorem.
 
 ## 6. What not to do next
 
@@ -668,6 +708,9 @@ The next phase succeeds if the repo reaches this state:
    for coarse transfer without claiming a full characterization.
 8. Phase-5 ladder note distinguishes the short-term Phase-6 exit from the full
    necessary/sufficient admissible-map characterization.
+9. Phase-6.1 Foster-Lyapunov / queueing template note identifies the second
+   limited class and its existing Lean anchors without overclaiming recurrence
+   or ergodicity.
 ```
 
 At that point, the program has not reached a second law. But it has a much more
