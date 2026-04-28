@@ -2,8 +2,9 @@
 
 Status: active program-execution memo after Backblaze v2 same-domain
 observational support, the first C-MAPSS FD001 cross-domain loss-only primary,
-Scania horizon-bridge no-support, and the completed three-run Mixed-CSP true
-outside-group rerun set. This is not a freeze document, not validation evidence,
+Scania horizon-bridge no-support, the completed three-run Mixed-CSP true
+outside-group rerun set, and the first returned Exp43c true outside-group rerun
+success. This is not a freeze document, not validation evidence,
 and not a new claim source.
 
 Purpose:
@@ -19,7 +20,8 @@ The four current gaps are:
 
 1. G4 non-CSP repair-flow / maintenance-flow empirical support;
 2. cross-domain non-CSP support beyond the Backblaze drive-reliability branch;
-3. G7 independent replication beyond the completed Mixed-CSP requested set;
+3. G7 independent replication beyond the completed Mixed-CSP requested set and
+   first returned Exp43c outside rerun;
 4. rival-framework stress testing, especially LDP / rate-function subsumption.
 
 ## 1. Current Starting Position
@@ -42,6 +44,9 @@ Still open:
 - no cross-domain non-CSP empirical support beyond drive reliability;
 - the requested true outside-group Mixed-CSP rerun set has returned cleanly:
   `3/3` completed, `3/3` clean success, `0` pending;
+- the first returned Exp43c true outside-group rerun has returned cleanly:
+  `4000` rows, `0` checked core mismatches, `TIMEOUT = 0`, `MALFORMED = 0`,
+  and the same qualitative support decision;
 - no completed reader-facing rival-framework comparison.
 
 New information:
@@ -249,16 +254,19 @@ safe held-out cell-ID folds, T1-T5 count checks true, and T6 public-metadata
 availability true. Because repeated cell IDs occur across groups, the
 conservative split falls back from protocol-group holdout to held-out cell ID.
 The Oxford Part 1 freeze-manifest draft now also exists, but remains below
-frozen status until the final converter/script SHA and one-time primary command
-are fixed. The first execution scaffold now passes metadata-only and blocks raw
-train-smoke safely on MATLAB MCOS table payloads without post-split held-out
-payload access. It also has a `--converted-train-root` interface for validating
-a training-only conversion manifest and CSV headers. Earlier bounded
-parser-smoke reads are treated as schema-only grandfathered smoke. A no-peek
-MATLAB / MCOS conversion plan and converter-script draft now exist for
-converting training cells first. A runner now packages the MATLAB conversion
-and Python converted-smoke step. A training-feature smoke runner and synthetic
-contract test now also define the next gate after converted-smoke. The
+frozen status until MATLAB conversion, strict converted smoke, header-only
+schema draft, human schema finalization, training-feature smoke, final
+converter/script SHA, and one-time primary command are all fixed. The first
+execution scaffold now passes metadata-only and blocks raw train-smoke safely
+on MATLAB MCOS table payloads without post-split held-out payload access. It
+also has a `--converted-train-root` interface for validating a training-only
+conversion manifest and CSV headers/SHA256. Earlier bounded parser-smoke reads
+are treated as schema-only grandfathered smoke. A no-peek MATLAB / MCOS
+conversion plan and converter-script draft now exist for converting training
+cells first. A runner now packages the MATLAB conversion and Python
+converted-smoke step. A header-only schema draft runner plus a training-feature
+smoke runner and synthetic contract tests now also define the next gate after
+converted-smoke. The
 converter has not been executed locally because MATLAB is not available in the
 current environment.
 
@@ -308,9 +316,9 @@ failed theory test and not as a hidden support result.
 The program now has real validated anchors, a Mixed-CSP external package, an
 Exp43c external package, published-remote outside-workspace reruns for both
 Route A packages, final handoff checklists for both, a completed three-run
-Mixed-CSP outside-group rerun set, and an Exp43c sender-side zip packet. What
-remains open is outside-group return depth beyond Mixed-CSP, not project-side
-reproducibility.
+Mixed-CSP outside-group rerun set, and one returned Exp43c outside-group rerun
+success. What remains open is outside-group return depth beyond these package
+level successes, not project-side reproducibility.
 
 ### Principle
 
@@ -334,13 +342,14 @@ Reason:
 
 ### Next artifact
 
-The plan and final handoff artifacts now exist, and all three requested
-Mixed-CSP returns have landed cleanly. Exp43c now also has a sender-side zip
-packet. The next clean move is the current outside-rerun flow:
+The plan and final handoff artifacts now exist, all three requested Mixed-CSP
+returns have landed cleanly, and the first Exp43c return has also landed
+cleanly. The next clean move is the current outside-rerun flow:
 
 1. keep the Mixed-CSP final report scoped to that package;
-2. send the Exp43c outside-group zip packet;
-3. wait for and record the first Exp43c outside return.
+2. keep the Exp43c first outside-return report scoped to that package;
+3. collect additional Exp43c returns if they were requested, or move to the
+   next external-facing workstream.
 
 ## 5. Workstream D — Rival-Framework Stress Test
 
@@ -528,15 +537,22 @@ Status update:
   `analysis/exp43_qcoloring/exp43c_g7_replication_report_template.md`.
 - the locked Exp43c distribution bundle metadata now exists at
   `analysis/exp43_qcoloring/handoff_exports/LOCKED_BUNDLE_NOTE.md`.
+- the first returned Exp43c true outside-group rerun is now recorded in
+  `analysis/exp43_qcoloring/exp43c_true_outside_rerun_01_philia_channel.md`;
+  it completed `4000` rows with `0` checked core mismatches, `TIMEOUT = 0`,
+  `MALFORMED = 0`, and the same qualitative support decision.
 
 So the next concrete order becomes:
 
-1. send the Exp43c outside-group zip packet and wait for the first return;
+1. collect additional Exp43c outside-group returns if already requested, or
+   keep the first return as the current package-level G7 layer;
 2. run the Oxford Path Dependent MATLAB / MCOS conversion runner on training
    cells only in a MATLAB environment;
 3. rerun Python train-smoke through the existing `--converted-train-root`
-   interface, then run the training-feature smoke runner before promoting the
-   draft to frozen with final converter/script SHA and command;
+   interface;
+4. draft header-only schema candidates, human-finalize `FEATURE_SCHEMA`, then
+   run the training-feature smoke runner before promoting the draft to frozen
+   with final converter/script SHA and command;
 5. future repair-flow data acquisition under the candidate-criteria gate.
 
 This keeps the program moving on the actual open gaps rather than adding more

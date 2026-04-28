@@ -82,24 +82,24 @@ A thin wrapper file may still be added later for readability, but it is not
 mathematically required. If added, wrappers should be direct aliases of the
 existing theorems, with no new axioms and no strengthened empirical claim.
 
-## Paper 3 / Structural Persistence Balance Principle Mapping
+## Paper 3 / Structural Persistence Balance Mapping
 
-Paper 3 の pathwise algebraic kernel は、既存の
+Paper 3 の経路ごとの代数核は、既存の
 `Survival/GeneralStateDynamics.lean` が証明している。`Survival/StructuralPersistenceBalancePrinciple.lean`
-は、この既存 theorem 群を Paper 3 の読者向け名称で束ねる薄い wrapper であり、新しい仮定や
+は、この既存 theorem 群を Structural Persistence Balance の読者向け名称で束ねる薄い wrapper であり、新しい仮定や
 新しい普遍法則 claim は追加しない。
 
 重要な前提は positivity である。対数比で loss / gain / net consumption amount を定義するため、Lean 側では
 `PositiveTrajectory`、Paper 3 側では positive finite trajectory assumptions の下で
 machine-checked と読む。
 
-| Paper 3 claim | Lean entry point | Underlying theorem / object | Status |
+| Structural Persistence Balance claim | Lean entry point | Underlying theorem / object | Status |
 |---|---|---|---|
 | net consumption amount \(b_t=d_t-r_t\) | `StructuralPersistenceBalancePrinciple.netConsumptionAmount_eq_consumption_sub_recovery` | `GeneralStateDynamics.stepNetAction` | proven by definition |
 | cumulative net consumption amount \(B_n=\sum_{t<n}b_t\) | `StructuralPersistenceBalancePrinciple.cumulativeNetConsumption_eq_sum_netConsumptionAmount` | `GeneralStateDynamics.cumulativeNetAction` | proven by definition |
 | local net-consumption identity \(m(V^{t+1})=m(V^t)e^{-b_t}\) | `StructuralPersistenceBalancePrinciple.local_exponential_netConsumption_identity` | `feasibleMass_succ_eq_mass_mul_exp_neg_stepNetAction` | proven under positivity |
 | pathwise net-consumption kernel \(m(V^n)=m(V^0)e^{-B_n}\) | `StructuralPersistenceBalancePrinciple.pathwise_netConsumption_exponential_kernel` | `feasibleMass_eq_initial_mul_exp_neg_cumulativeNetAction` | proven under positive finite trajectory assumptions |
-| loss-only kernel recovery | `StructuralPersistenceBalancePrinciple.pureContraction_recovers_loss_only_kernel` | `feasibleMass_eq_initial_mul_exp_neg_cumulativeLoss_of_pureContraction` | proven for pure contraction / zero gain |
+| loss-only minimum-form recovery | `StructuralPersistenceBalancePrinciple.pureContraction_recovers_loss_only_kernel` | `feasibleMass_eq_initial_mul_exp_neg_cumulativeLoss_of_pureContraction` | proven for pure contraction / zero gain |
 | Foster-Lyapunov algebraic embedding | `StructuralPersistenceBalancePrinciple.lyapunov_*` wrappers | `LyapunovBalanceEmbedding.*` | proven as minimal algebraic embedding, not positive recurrence |
 | repair / maintenance finite-prefix net-consumption skeleton | `StructuralPersistenceBalancePrinciple.repair_*` wrappers | `RepairMaintenanceBalance.*` | proven finite-prefix skeleton |
 | remaining margin \(B-D_n\) | `repair_remainingMargin_eq_initial_margin_sub_cumulative_netConsumption` | `RepairMaintenanceBalance.margin` | proven; this is margin, not Paper 1 resource term `M` |
@@ -309,7 +309,7 @@ drift は `log(2^k / allowed)` になる。部分二項和が \(0\) と \(2^k\) 
 
 | ファイル | 主定理 | 評価 |
 |---------|-------|------|
-| [`LyapunovBalanceEmbedding.lean`](Survival/LyapunovBalanceEmbedding.lean) | Lyapunov/load sequence `Z_t` から `b_t = Z_{t+1}-Z_t`, `B_n = Z_n-Z_0`, `R_{t+1}=R_t exp(-b_t)`、queue excess demand への wrapper | G6-c。Foster-Lyapunov / queueing drift を構造持続の収支原理の expectation-level tendency へ埋め込む最小代数 skeleton |
+| [`LyapunovBalanceEmbedding.lean`](Survival/LyapunovBalanceEmbedding.lean) | Lyapunov/load sequence `Z_t` から `b_t = Z_{t+1}-Z_t`, `B_n = Z_n-Z_0`, `R_{t+1}=R_t exp(-b_t)`、queue excess demand への wrapper | G6-c。Foster-Lyapunov / queueing drift を構造持続の収支原理の期待値レベルの傾向へ埋め込む最小代数 skeleton |
 
 ### D. 表現安定性・粗視化（5）— Paper 1 §2 P5
 

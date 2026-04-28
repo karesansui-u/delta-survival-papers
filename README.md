@@ -55,13 +55,13 @@ PDF は [`v2/pdf用/0_構造持続理論の統合版.pdf`](v2/pdf%E7%94%A8/0_%E6
 
 ### Paper 3 — 構造持続の収支原理
 
-主理論 spine の第三層。構造持続の最小核 `S = M e^{-L}` を、回復を含む `S = M e^{-B}` へ拡張し、pathwise identity、expectation-level tendency、finite-horizon concentration schema、Route A / Route C anchors、既存理論との接続強度を整理する中心 draft です。
+主理論 spine の第三層。構造持続の最小核 `S = M e^{-L}` を、回復を含む `S = M e^{-B}` へ拡張し、経路ごとの恒等式、期待値レベルの傾向、finite-horizon concentration schema、Route A / Route C anchors、既存理論との接続強度を整理する中心 draft です。
 
 - Markdown: [`v2/3_構造持続の収支原理.md`](v2/3_構造持続の収支原理.md)
 
 ### Route C Companion I — 推論時の構造劣化
 
-Route C companion anchor 1。主理論 spine そのものではなく、未整理矛盾や external metabolism が reduction-side / recovery-side indicator として観測量を予測するかを検査する観測的アンカーです。
+Route C companion anchor 1。主理論 spine そのものではなく、未整理矛盾や external metabolism が消耗側 / 回復側指標として観測量を予測するかを検査する観測的アンカーです。
 
 推論時の未整理矛盾や上書きが、論理一貫性を保てる経路を削るという具体例。現時点の主張は、外部代謝が未整理の矛盾放置より良い、という点に絞っている。
 

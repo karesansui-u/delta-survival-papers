@@ -47,7 +47,7 @@
 
 Paper 3「構造持続の収支原理」では、既存理論との接続を G6-a / G6-b / G6-c の三段階に分けた。熱力学や情報理論との対応は、多くの場合 G6-a または G6-b に留まる。一方、queueing theory や Markov chain stability に現れる Foster-Lyapunov drift 条件は、構造持続の収支原理の純消耗量 \(b_t\) へ直接埋め込める。
 
-本補論の目的は、その最小埋め込みを reader-facing artifact として独立に記録することである。これは既存理論の置き換えではない。むしろ、既存理論の drift 部分が構造持続の収支原理の expectation-level tendency 層へどう写るかを明示する。
+本補論の目的は、その最小埋め込みを読者向けの記録として独立に残すことである。これは既存理論の置き換えではない。むしろ、既存理論の drift 部分が構造持続の収支原理の期待値レベルの傾向層へどう写るかを明示する。
 
 
 2. G6-a / G6-b / G6-c の中での位置
@@ -158,7 +158,7 @@ Lyapunov 差分
   = b_t.
 \]
 
-したがって、負荷が増えるステップは structural consumption amount として、負荷が減るステップは recovery amount として読める。
+したがって、負荷が増えるステップは構造消耗量として、負荷が減るステップは回復量として読める。
 
 この読み替えは、物理的資源入力を同定したという意味ではない。あくまで、Lyapunov 負荷の増減を構造持続の収支原理の符号つき純消耗量へ写す最小的な分解である。
 
@@ -284,7 +284,7 @@ Foster-Lyapunov theorem は通常、単なる代数恒等式だけでは成立�
 本補論の主張は限定的である。
 
 \begin{quote}
-Foster-Lyapunov drift calculus は、構造持続の収支原理の expectation-level tendency 層へ形式的に埋め込める。その際、既存 theorem の仮定は保存される。
+Foster-Lyapunov drift calculus は、構造持続の収支原理の期待値レベルの傾向層へ形式的に埋め込める。その際、既存 theorem の仮定は保存される。
 \end{quote}
 
 

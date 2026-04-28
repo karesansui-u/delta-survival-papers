@@ -8,7 +8,7 @@ import Survival.QueueStability
 # Lyapunov Balance Embedding
 
 This module records the minimal G6-c formal embedding described in the
-structural persistence balance principle:
+Structural Persistence Balance:
 
 * a Lyapunov/load sequence `Z_t`,
 * its net consumption amount `b_t = Z_{t+1} - Z_t`,
@@ -40,7 +40,7 @@ def cumulativeAction (Z : ℕ → ℝ) (n : ℕ) : ℝ :=
 def relativeMaintenance (Z : ℕ → ℝ) (t : ℕ) : ℝ :=
   Real.exp (-(Z t))
 
-/-- Positive part of the load increment, read as structural consumption amount. -/
+/-- Positive part of the load increment, read as structural consumption. -/
 def consumptionAmount (Z : ℕ → ℝ) (t : ℕ) : ℝ :=
   max (increment Z t) 0
 

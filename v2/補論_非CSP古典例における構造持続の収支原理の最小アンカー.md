@@ -10,7 +10,7 @@
 \[
   R=\exp(-L)
 \]
-が、CSP ではない信頼性工学・減衰過程にも現れることを示す。第三に、G4 v2 として repair / maintenance reliability-fatigue balance を追加する。これは、damage amount \(d_t\) と recovery amount \(r_t\) を分けて
+が、CSP ではない信頼性工学・減衰過程にも現れることを示す。第三に、G4 v2 として repair / maintenance reliability-fatigue balance を追加する。これは、損傷量 \(d_t\) と回復量 \(r_t\) を分けて
 \[
   D_n = D_0 + \sum_{t<n}(d_t-r_t)
 \]
@@ -68,7 +68,7 @@ loss-only control の第二は constant-fraction decay であり、
 
 第一に、queueing / Foster-Lyapunov は、回復量や処理能力が構造消耗量を上回るかどうかという open-system balance を示す。
 
-第二に、serial reliability と constant-fraction decay は、回復量を含まない loss-only kernel が、古典的な工学・自然科学モデルにも現れることを示す。
+第二に、serial reliability と constant-fraction decay は、回復量を含まない指数核が、古典的な工学・自然科学モデルにも現れることを示す。
 
 
 4. Primary anchor: queueing / Foster-Lyapunov drift
@@ -122,7 +122,7 @@ Queueing / Foster-Lyapunov を primary anchor にする理由は、構造持続�
 
 5. Loss-only control anchor: serial reliability
 
-Serial reliability は、loss-only kernel の non-CSP control として置く。
+Serial reliability は、回復量を含まない最小核の非CSP対照例として置く。
 
 直列系では、全ての component が動作しなければ全体が動作しない。component reliability を \(p_i\) とすると、最初の \(n\) components の reliability は
 \[
@@ -144,9 +144,9 @@ Serial reliability は、loss-only kernel の non-CSP control として置く。
 \]
 が成り立つ。
 
-`SerialReliability.lean` はこの対応を形式化している。これは Paper 1 / Paper 2 の loss-only kernel が、SAT ではなく信頼性工学の textbook model にもそのまま現れることを示す。
+`SerialReliability.lean` はこの対応を形式化している。これは、構造持続の最小形式と条件つき導出の回復量を含まない最小核が、SAT ではなく信頼性工学の textbook model にもそのまま現れることを示す。
 
-ただし、serial reliability は G4 v1 の primary anchor ではない。理由は、構造持続の収支原理の新しい要素である回復量 \(r_t\) や recovery tendency を含まないからである。queueing anchor と並べることで、loss-only exponential kernel と open-system drift balance の両方を non-CSP 側で示す control として使う。
+ただし、serial reliability は G4 v1 の primary anchor ではない。理由は、構造持続の収支原理の新しい要素である回復量 \(r_t\) や回復傾向を含まないからである。queueing anchor と並べることで、回復量を含まない指数核と open-system drift balance の両方を non-CSP 側で示す対照例として使う。
 
 
 6. Loss-only control anchor: constant-fraction decay
@@ -250,7 +250,7 @@ secondary skeletons は coverage only として扱う。
 本補論の主張は限定的である。
 
 \begin{quote}
-構造持続の収支原理は、非CSP古典例のうち、少なくとも queueing / Foster-Lyapunov drift に対して、\(b_t,B_n,R_t,d_t,r_t\) の最小代数的埋め込みを持つ。Serial reliability と constant-fraction decay は、同じ log-ratio exponential kernel が loss-only non-CSP 系にも現れることを示す control anchors である。Repair / maintenance balance は、回復量 \(r_t\) が非CSP open-system 系でも operational variable として読めることを示す G4 v2 anchor である。
+構造持続の収支原理は、非CSP古典例のうち、少なくとも queueing / Foster-Lyapunov drift に対して、\(b_t,B_n,R_t,d_t,r_t\) の最小代数的埋め込みを持つ。Serial reliability と constant-fraction decay は、同じ対数比の指数核が、回復量を含まない非CSP系にも現れることを示す対照アンカーである。Repair / maintenance balance は、回復量 \(r_t\) が非CSP open-system 系でも operational variable として読めることを示す G4 v2 anchor である。
 \end{quote}
 
 この statement を一歩だけ強く言い直すなら、queueing / Foster-Lyapunov drift は current program における最初の **conditional law-side bridge** であり、repair / maintenance balance はその open-system semantic range を広げる near-bridge anchor である。
@@ -260,7 +260,7 @@ secondary skeletons は coverage only として扱う。
 
 G4 v1 の primary anchor である queueing / Foster-Lyapunov drift は、サービス率 \(\mu\) を通じて回復に相当する項を持つ。しかし、queueing の gloss では、回復は主に constant-rate service として表れる。G4 v2 の目的は、この回復量をより operational に見える形へ移すことである。
 
-Repair / maintenance reliability-fatigue model では、damage amount \(d_t\) と recovery amount \(r_t\) を分ける。
+Repair / maintenance reliability-fatigue model では、損傷量 \(d_t\) と回復量 \(r_t\) を分ける。
 \[
   b_t=d_t-r_t,\qquad
   B_n=\sum_{t<n}(d_t-r_t),
@@ -303,7 +303,7 @@ Failure threshold を \(B\) とすると、remaining margin は
 repair が非負なら damage-only より damage が小さい、という主張は `damageLevel_le_damageOnlyLevel_of_repair_nonneg` に対応する。
 repair が非負なら damage-only より margin が大きい、という主張は `damageOnlyMargin_le_margin_of_repair_nonneg` に対応する。
 
-最後の二つは、G4 v2 に固有の operational 意味を持つ。すなわち、同じ damage schedule のもとで recovery amount が非負なら、repair を入れた系の damage level は damage-only dynamics を上回らず、remaining margin は damage-only dynamics を下回らない。
+最後の二つは、G4 v2 に固有の operational 意味を持つ。すなわち、同じ損傷系列のもとで回復量が非負なら、repair を入れた系の損傷水準は回復なしの損傷動力学を上回らず、残余余白は回復なしの損傷動力学を下回らない。
 
 これは「repair は何もしないよりよい」という常識的命題を、構造持続の収支原理の \(r_t\) として明示する小定理である。ただし、これは最適保守 policy theorem ではない。どの timing で repair すべきか、repair cost をどう最小化するか、stochastic fatigue distribution がどう振る舞うかは、本補論の範囲外である。
 
@@ -312,7 +312,7 @@ M 補論の語彙で言えば、preventive maintenance schedule は \(M_{\mathrm
 この G4 v2 anchor が言えること:
 
 - 回復量 \(r_t\) は非CSPの reliability / fatigue 系でも自然に出る。
-- 構造持続の収支原理は loss-only exponential kernel だけでなく、consumption-minus-recovery accounting も非CSP側に持つ。
+- 構造持続の収支原理は、回復量を含まない指数核だけでなく、消耗量から回復量を差し引く会計も非CSP側に持つ。
 - repair / maintenance は \(B_n\) を下げ、remaining margin を damage-only dynamics より改善する。
 
 この G4 v2 anchor が言えないこと:
@@ -340,9 +340,9 @@ G4 v2 iteration 1 は、finite-prefix algebraic skeleton として閉じた。�
 
 13. 結論
 
-G4 v1 は、非CSP古典例の最小 anchor package として閉じることができる。primary anchor は queueing / Foster-Lyapunov drift であり、これは G6-c iteration 1 の minimal algebraic embedding と一致する。serial reliability と constant-fraction decay は、loss-only exponential kernel の control anchors である。
+G4 v1 は、非CSP古典例の最小 anchor package として閉じることができる。primary anchor は queueing / Foster-Lyapunov drift であり、これは G6-c iteration 1 の minimal algebraic embedding と一致する。serial reliability と constant-fraction decay は、回復量を含まない指数核の対照アンカーである。
 
-G4 v2 は、repair / maintenance balance を加えることで、回復量 \(r_t\) を非CSP open-system anchor として明示した。`RepairMaintenanceBalance.lean` は、damage amount と recovery amount の差し引きが accumulated damage と remaining margin を決めることを形式化している。
+G4 v2 は、repair / maintenance balance を加えることで、回復量 \(r_t\) を非CSP open-system anchor として明示した。`RepairMaintenanceBalance.lean` は、損傷量と回復量の差し引きが累積損傷と残余余白を決めることを形式化している。
 
 この package により、構造持続の収支原理は SAT / Bernoulli-CSP / Mixed-CSP の内部だけでなく、少なくとも queueing stability、reliability、decay、repairable fatigue / maintenance という古典的非CSP語彙にも歪めず写ることが示される。
 

@@ -3,9 +3,9 @@ import Survival.LyapunovBalanceEmbedding
 import Survival.RepairMaintenanceBalance
 
 /-!
-# Structural Persistence Balance Principle
+# Structural Persistence Balance
 
-Reader-facing Lean wrappers for Paper 3, "Structural Persistence Balance Principle and Collapse
+Reader-facing Lean wrappers for Paper 3, "Structural Persistence Balance and Collapse
 Tendency".
 
 This file deliberately adds no new mathematical substance.  The pathwise balance
@@ -83,7 +83,7 @@ theorem pureContraction_cumulativeNetConsumption_eq_cumulativeLoss
     cumulativeNetAction P n = cumulativeLoss P n :=
   cumulativeNetAction_eq_cumulativeLoss_of_pureContraction P n hpure hpos
 
-/-- Paper 1/2 loss-only kernel recovered as the pure-contraction special case. -/
+/-- The loss-only minimum form recovered as the pure-contraction special case. -/
 theorem pureContraction_recovers_loss_only_kernel
     (P : StructuralSystem X) (n : ℕ)
     (hpure : PureContraction P.D)
@@ -92,8 +92,8 @@ theorem pureContraction_recovers_loss_only_kernel
       feasibleMass P 0 * Real.exp (-(cumulativeLoss P n)) :=
   feasibleMass_eq_initial_mul_exp_neg_cumulativeLoss_of_pureContraction P n hpure hpos
 
-/-- Foster--Lyapunov/load increments decompose as structural consumption amount
-minus recovery amount. -/
+/-- Foster--Lyapunov/load increments decompose as structural consumption
+minus recovery. -/
 theorem lyapunov_increment_eq_consumptionAmount_sub_recoveryAmount
     (Z : ℕ → ℝ) (t : ℕ) :
     Survival.LyapunovBalanceEmbedding.increment Z t =
