@@ -76,7 +76,7 @@ longer vague.
 Current status:
 
 ```text
-partly closed in text; Lean wrappers still open
+partly closed in text; first Lean wrappers added
 ```
 
 Already done:
@@ -95,8 +95,8 @@ B_n^{micro}
 
 Next work:
 
-- reader-facing Lean wrappers for iso invariance and positive-gauge
-  covariance;
+- the readout-level Lean wrappers for iso invariance and positive-gauge
+  covariance now live in `Survival.AdmissibleMapInvariants`;
 - a Lean specification for the saturation-defect identity;
 - an admissible coarse-graining condition stated in terms of defect control.
 
@@ -144,12 +144,16 @@ Already proven in Lean:
   compatibility / resource-bounded / conditional-Azuma routes.
 
 This means Component 2 is not a speculative future task. It is already mostly
-formalized. The remaining task is reader-facing packaging:
+formalized. The reader-facing wrapper layer now lives in
+`Survival.SecondLawTotalProduction`. The remaining task is no longer the
+mathematical core, but the stronger layers around it:
 
-- give the existing theorems stable paper-facing names;
 - explain that \(\Sigma\), not raw \(B_n\), is the natural open-system
   tendency candidate;
 - keep expectation-level monotonicity separate from high-probability collapse.
+- make the high-probability, admissible coarse-graining, and class-universality
+  conditions explicit before claiming anything stronger than expectation-level
+  tendency.
 
 Do not claim yet:
 
@@ -287,7 +291,7 @@ there and close the smallest missing wrappers.
 Status:
 
 ```text
-done locally, pending commit
+done and committed in `b2baac7`
 ```
 
 Files involved:
@@ -309,7 +313,7 @@ spine of the second-law-level route.
 Status:
 
 ```text
-open, low risk
+done; wrappers added in `Survival.SecondLawTotalProduction`
 ```
 
 Target documents:
@@ -327,13 +331,13 @@ Minimum mapping table:
 
 | Paper-side phrase | Lean anchor | Current status |
 |---|---|---|
-| \(\Sigma_n = B_n + C_n\) | `cumulativeTotalProduction` | proven by definition |
-| total production splits as loss plus repair slack | `cumulativeTotalProduction_eq_cumulativeLoss_add_cumulativeRepairSlack` | proven |
+| \(\Sigma_n = B_n + C_n\) | `SecondLawTotalProduction.sigma_equals_B_plus_C` | proven by definition |
+| total production splits as loss plus repair slack | `SecondLawTotalProduction.sigma_equals_L_plus_repair_slack` | proven |
 | repair slack is nonnegative | `cumulativeRepairSlack_nonneg` | proven |
-| \(\Sigma\) dominates cumulative loss | `cumulativeLoss_le_cumulativeTotalProduction` | proven |
-| exact payment recovers loss-only total | `cumulativeTotalProduction_eq_cumulativeLoss_of_exact_payment` | proven |
-| lower contraction bound lifts to \(E[\Delta\Sigma]\ge\alpha\) | `expectedIncrement_lowerBound_of_stepLoss_lowerBound` | proven |
-| nonnegative typical contraction gives expected monotonicity | `expectedCumulative_monotone_of_nonneg_typicalContraction` | proven |
+| \(\Sigma\) dominates cumulative loss | `SecondLawTotalProduction.sigma_at_least_L` | proven |
+| exact payment recovers loss-only total | `SecondLawTotalProduction.sigma_equals_L_under_exact_payment` | proven |
+| lower contraction bound lifts to \(E[\Delta\Sigma]\ge\alpha\) | `SecondLawTotalProduction.expected_sigma_drift_lower_bound` | proven |
+| nonnegative typical contraction gives expected monotonicity | `SecondLawTotalProduction.expected_sigma_monotone_of_nonnegative_typical_contraction` | proven |
 | coarse expected nondecrease under compatibility | `coarse_expectedCumulative_monotone_of_micro_*` | proven under assumptions |
 
 ### Immediate action C: optional thin Lean wrappers
@@ -341,24 +345,27 @@ Minimum mapping table:
 Status:
 
 ```text
-open, optional
+done for the low-risk Phase 2 layer
 ```
 
-These should be wrapper names, not new mathematical claims.
+These are wrapper names, not new mathematical claims.
 
-Candidate wrapper module:
+Implemented wrapper modules:
 
 ```text
-Survival/SecondLawRoadmapWrappers.lean
+Survival/SecondLawTotalProduction.lean
+Survival/AdmissibleMapInvariants.lean
 ```
 
-Safer candidate names:
+Implemented names include:
 
-- `sigma_eq_netConsumption_add_resourceCost`
-- `sigma_eq_loss_add_repairSlack`
-- `sigma_dominates_cumulativeLoss`
-- `expectedSigma_monotone_of_nonnegative_stepSigma`
-- `coarse_expectedSigma_monotone_of_micro_resourceBounded`
+- `SecondLawTotalProduction.sigma_equals_B_plus_C`
+- `SecondLawTotalProduction.sigma_equals_L_plus_repair_slack`
+- `SecondLawTotalProduction.sigma_at_least_L`
+- `SecondLawTotalProduction.expected_sigma_drift_lower_bound`
+- `SecondLawTotalProduction.expected_sigma_monotone_of_nonnegative_typical_contraction`
+- `AdmissibleMapInvariants.iso_invariance`
+- `AdmissibleMapInvariants.positive_gauge_covariance`
 
 Avoid names like:
 
@@ -397,7 +404,7 @@ heavier than the Sigma wrapper work.
 
 1. Commit the admissible-maps supplement and this roadmap.
 2. Add the reader-facing Sigma theorem map to `lean/PAPER_MAPPING.md`.
-3. Decide whether thin Lean wrappers are worth the extra file.
+3. Add the low-risk Lean wrappers for Sigma and readout-level Iso/Gauge.
 4. Only then start the saturation-defect Lean formalization.
 5. Keep Bernoulli-CSP class closure as a limited-class universality target, not
    a full universal-law claim.
@@ -431,7 +438,7 @@ The next phase succeeds if the repo reaches this state:
 2. second-law-level roadmap committed and linked;
 3. Sigma / total-production theorem map explicitly states what Lean already
    proves;
-4. optional wrapper names are either implemented or explicitly deferred;
+4. optional wrapper names are implemented for the low-risk Phase 2 layer;
 5. saturation-defect Lean formalization has a narrow spec, not an open-ended
    "prove coarse-graining DPI" mandate.
 ```

@@ -82,6 +82,23 @@ A thin wrapper file may still be added later for readability, but it is not
 mathematically required. If added, wrappers should be direct aliases of the
 existing theorems, with no new axioms and no strengthened empirical claim.
 
+### Admissible-Map Wrapper Layer
+
+The admissible-map supplement now has a thin Lean entry point for the first two
+map layers:
+
+| Paper-side phrase | Lean vocabulary | Lean theorem / object | Status |
+|---|---|---|---|
+| cumulative log-ratio readout | finite mass sequence readout | `AdmissibleMapInvariants.cumulativeStageLoss` | defined |
+| isomorphic mass readouts preserve \(B_n\) | same masses up to horizon | `AdmissibleMapInvariants.iso_invariance` | proven |
+| positive gauge readout makes \(B_n\) covariant | stage losses scale by \(\alpha\) | `AdmissibleMapInvariants.positive_gauge_covariance` | proven |
+| positive gauge preserves comparisons | positive scalar multiplication is order-preserving | `AdmissibleMapInvariants.positive_gauge_preserves_order` | proven |
+| positive gauge preserves nonnegative regime | \(0 \le \alpha B\iff 0\le B\) for \(\alpha>0\) | `AdmissibleMapInvariants.positive_gauge_preserves_nonnegative` | proven |
+
+This is intentionally not a full morphism interface. It is the finite
+mass-readout layer needed by the supplement's first two claims. Coarse-graining
+defect identities and proxy / estimation validation remain separate tasks.
+
 ### Sigma / Total Production Component
 
 The second-law-level roadmap in
@@ -98,16 +115,17 @@ still require explicit assumptions.
 
 | Paper-side phrase | Lean vocabulary | Lean theorem / object | Status |
 |---|---|---|---|
-| total production \(\Sigma_n = B_n + C_n\) | cumulative net action plus cumulative resource cost | `TotalProduction.cumulativeTotalProduction` | defined |
+| deterministic expected \(\Sigma\) process | deterministic embedding of total production | `SecondLawTotalProduction.deterministicExpectedSigmaProcess` | defined |
+| total production \(\Sigma_n = B_n + C_n\) | cumulative net action plus cumulative resource cost | `SecondLawTotalProduction.sigma_equals_B_plus_C` | proven by definition |
 | stepwise \(\Sigma_t = b_t + c_t\) | step net action plus resource cost | `TotalProduction.stepTotalProduction` | defined |
 | repair slack \(c_t-r_t\) | cost minus realized gain | `TotalProduction.stepRepairSlack` | defined |
 | repair slack is nonnegative under a budget | budgeted repair cannot exceed cost | `TotalProduction.stepRepairSlack_nonneg`; `TotalProduction.cumulativeRepairSlack_nonneg` | proven |
-| total production splits as loss plus repair slack | \(\Sigma = L + slack\) | `TotalProduction.stepTotalProduction_eq_stepLoss_add_stepRepairSlack`; `TotalProduction.cumulativeTotalProduction_eq_cumulativeLoss_add_cumulativeRepairSlack` | proven |
-| \(\Sigma\) dominates cumulative contraction loss | repair is not free | `TotalProduction.cumulativeLoss_le_cumulativeTotalProduction` | proven |
-| exact payment recovers loss-only total | cost exactly equals gain | `TotalProduction.cumulativeTotalProduction_eq_cumulativeLoss_of_exact_payment` | proven |
-| resource budget plus contraction lower bound gives one-step \(\Sigma\) drift | deterministic expected increment | `ResourceBudgetToSigmaDrift.expectedIncrement_lowerBound_of_stepLoss_lowerBound` | proven |
-| uniform contraction lower bound gives expected cumulative lower bound | linear expected \(\Sigma\) lower bound | `ResourceBudgetToSigmaDrift.expectedCumulative_lowerBound_of_typicalContraction` | proven |
-| nonnegative typical contraction gives expected monotonicity | expectation-level tendency | `ResourceBudgetToSigmaDrift.expectedCumulative_monotone_of_nonneg_typicalContraction` | proven |
+| total production splits as loss plus repair slack | \(\Sigma = L + slack\) | `SecondLawTotalProduction.sigma_equals_L_plus_repair_slack` | proven |
+| \(\Sigma\) dominates cumulative contraction loss | repair is not free | `SecondLawTotalProduction.sigma_at_least_L` | proven |
+| exact payment recovers loss-only total | cost exactly equals gain | `SecondLawTotalProduction.sigma_equals_L_under_exact_payment` | proven |
+| resource budget plus contraction lower bound gives one-step \(\Sigma\) drift | deterministic expected increment | `SecondLawTotalProduction.expected_sigma_drift_lower_bound` | proven |
+| uniform contraction lower bound gives expected cumulative lower bound | linear expected \(\Sigma\) lower bound | `SecondLawTotalProduction.expected_cumulative_sigma_lower_bound` | proven |
+| nonnegative typical contraction gives expected monotonicity | expectation-level tendency | `SecondLawTotalProduction.expected_sigma_monotone_of_nonnegative_typical_contraction` | proven |
 | coarse expected \(\Sigma\) nondecrease under compatibility / resource-boundedness | coarse typical nondecrease | `CoarseTypicalNondecrease.coarse_expectedCumulative_monotone_of_micro_nonnegative`; `CoarseTypicalNondecrease.coarse_expectedCumulative_monotone_of_micro_resourceBounded`; `CoarseTypicalNondecrease.coarse_expectedCumulative_monotone_of_micro_conditionalAzuma` | proven under assumptions |
 
 Reader-facing discipline:

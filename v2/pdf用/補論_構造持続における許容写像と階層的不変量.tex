@@ -507,6 +507,8 @@ pathwise balance kernel & \texttt{Survival.GeneralStateDynamics}, \texttt{Surviv
 total production の粗視化保存 & \texttt{Survival.CoarseTotalProduction} \\
 確率空間上の coarse compatibility & \texttt{Survival.CoarseStochasticTotalProduction} \\
 resource-bounded monotonicity & \texttt{Survival.ResourceBoundedDynamics} \\
+同型不変性・正ゲージ共変性の readout wrapper & \texttt{Survival.AdmissibleMapInvariants} \\
+Sigma / total production の reader-facing wrapper & \texttt{Survival.SecondLawTotalProduction} \\
 Bernoulli-CSP template & \texttt{Survival.BernoulliCSPTemplate}, \texttt{Survival.BernoulliCSPUniversality} \\
 \end{longtable}
 }
@@ -519,8 +521,6 @@ Bernoulli-CSP template & \texttt{Survival.BernoulliCSPTemplate}, \texttt{Surviva
 \item
   構造維持問題の一般的な morphism interface。
 \item
-  同型不変性と正ゲージ共変性の reader-facing wrapper。
-\item
   粗視化に対する飽和欠損恒等式と、DPI 型単調性の条件切り。
 \item
   Bernoulli-CSP class をテンプレート保存 subcategory / generated class として読む外向け定理名。
@@ -528,7 +528,7 @@ Bernoulli-CSP template & \texttt{Survival.BernoulliCSPTemplate}, \texttt{Surviva
   代理観測写像は不変量定理ではなく frozen validation に落ちる、という運用側の theorem map。
 \end{enumerate}
 
-したがって、本補論は新しい Lean 定理を主張するものではない。既存の粗視化・総生成量・Bernoulli-CSP interface を、一つの数学的見取り図にまとめ、次にどの wrapper を閉じるべきかを指定する文書である。
+したがって、本補論は新しい普遍法則を主張するものではない。既存の粗視化・総生成量・Bernoulli-CSP interface を、一つの数学的見取り図にまとめ、どの wrapper が閉じており、どこから先が飽和欠損・高確率化・限定クラス普遍性の未解決部分なのかを指定する文書である。
 
 第二法則級の統一へ向けた実行順序は、本文の主張ではなく作業地図として \texttt{analysis/second\_law\_level\_roadmap.md} に分けて記録する。そこでは、許容写像、\(\Sigma\) / total production、典型的非減少、限定クラス普遍性、将来の cross-class unification を別々の構成要素として扱う。
 

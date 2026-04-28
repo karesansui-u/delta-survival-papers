@@ -49,9 +49,11 @@ import Survival.LogUniqueness
 import Survival.TelescopingExp
 import Survival.GeneralStateDynamics
 import Survival.StructuralPersistenceBalancePrinciple
+import Survival.AdmissibleMapInvariants
 import Survival.CoarseGraining
 import Survival.ResourceBudget
 import Survival.TotalProduction
+import Survival.SecondLawTotalProduction
 import Survival.CoarseTotalProduction
 import Survival.TypicalNondecrease
 import Survival.ResourceBoundedDynamics
