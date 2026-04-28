@@ -115,6 +115,8 @@ map layers:
 | Bernoulli-CSP \(\Sigma\) lower-tail certificate | interior KL/Chernoff finite-path lower-tail bound | `BernoulliTypicalSigma.bernoulliSigmaLowerTailMeasure_le_chernoffFailureBound_of_interior` | proven under interior margin assumptions |
 | Bernoulli-CSP \(\Sigma\) high-probability lower bound | good event with `center-r ≤ Σ_n` and Chernoff failure bound | `BernoulliTypicalSigma.BernoulliSigmaLowerBoundWithFailureBound`; `BernoulliTypicalSigma.bernoulliSigma_lowerBoundWithChernoffBound_of_interior` | proven under finite-path interior assumptions |
 | Bernoulli-CSP fixed-time typical growth | same good event has initial-to-time nondecrease and `center-r ≤ Σ_n` | `BernoulliTypicalSigma.BernoulliSigmaTypicalGrowthWithFailureBound`; `BernoulliTypicalSigma.bernoulliSigma_typicalGrowthWithChernoffBound_of_interior` | proven under finite-path interior assumptions |
+| Bernoulli-CSP coarse terminal lower-bound transfer | endpoint defect budget \(e_n-e_0\le\delta\) degrades `center-r ≤ Σ_n` to `center-r-δ ≤ Σ̄_n` | `BernoulliTypicalSigma.CoarseBernoulliSigmaLowerBoundWithFailureBound`; `BernoulliTypicalSigma.coarseBernoulliSigma_lowerBoundWithChernoffBound_of_endpointDefectBudget` | proven as fixed-time conditional readout transfer |
+| Bernoulli-CSP coarse fixed-time typical growth | coarse monotonicity plus endpoint defect budget transfer the fixed-time certificate | `BernoulliTypicalSigma.CoarseBernoulliSigmaTypicalGrowthWithFailureBound`; `BernoulliTypicalSigma.coarseBernoulliSigma_typicalGrowthWithChernoffBound_of_endpointDefectBudget` | proven as conditional readout-level transfer |
 | Bernoulli-CSP \(\Sigma\) collapse wrappers | threshold / collapse / stopped-collapse / hitting-time API | `BernoulliTypicalSigma.bernoulliSigma_*WithChernoffBound_of_linearMargin` | proven under finite-horizon margin assumptions |
 
 This is intentionally not a full category of structural-maintenance problems.
@@ -249,7 +251,7 @@ M supplement non-claims remain outside Lean:
 | Martingale / Azuma concentration | 完了 | 条件つき導出補論 §4 の抽象 ρ 境界を bounded-increment concentration に格上げ可能 |
 | 粗視化・表現安定性 | 完了 | Paper 1 §2 P5 を集合論・total production・stochastic layer で形式化 |
 | SAT chain v1.0 | 完了 | actual path measure → non-flat emission → MGF product → Chernoff/KL → collapse |
-| Bernoulli CSP universality v1.2 | 完了 | k-SAT / NAE-SAT / XOR-SAT / coloring / forbidden-pattern / cardinality families; `BernoulliTypicalSigma` gives the reader-facing \(\Sigma\) lower-tail / expectation wrapper |
+| Bernoulli CSP universality v1.2 | 完了 | k-SAT / NAE-SAT / XOR-SAT / coloring / forbidden-pattern / cardinality families; `BernoulliTypicalSigma` gives the reader-facing \(\Sigma\) lower-tail / expectation / endpoint-defect coarse-transfer wrapper |
 | Route A 非CSP skeletons | 表現検査として完了 | 指数型、線形過負荷型、累積容量型、臨界パラメータ型の finite-prefix sanity examples |
 
 ## 意図的に未着手の範囲

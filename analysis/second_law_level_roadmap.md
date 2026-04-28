@@ -180,8 +180,9 @@ Current status:
 
 ```text
 expectation-level schema mapped; Bernoulli-CSP finite-path Sigma wrapper,
-fixed-time high-probability lower-bound certificate, and fixed-time typical
-growth certificate added; global high-probability schema remains conditional
+fixed-time high-probability lower-bound certificate, fixed-time typical
+growth certificate, and endpoint-defect coarse-transfer certificate added;
+global high-probability schema remains conditional
 ```
 
 Existing Lean anchors:
@@ -205,7 +206,8 @@ What is already closed:
   gives reader-facing names for the cumulative `\Sigma` observable, monotone
   expectation, the interior KL/Chernoff lower-tail certificate, the corresponding
   good-event lower-bound certificate, a fixed-time typical-growth certificate,
-  and the threshold / collapse / stopped-collapse / hitting-time wrappers.
+  endpoint-defect coarse-transfer certificates, and the threshold / collapse /
+  stopped-collapse / hitting-time wrappers.
 
 What remains:
 
@@ -213,10 +215,11 @@ What remains:
   - expectation-level tendency;
   - fixed-time high-probability lower-bound certificates;
   - fixed-time typical-growth certificates;
+  - endpoint-defect coarse-transfer certificates;
   - high-probability stopped collapse;
   - long-time / ergodic / almost-sure claims.
 
-Do not merge these three.
+Do not merge these layers.
 
 The next theorem-wrapper target should say something like:
 
@@ -233,8 +236,8 @@ Bernoulli-specific wrapper discipline:
 ```text
 BernoulliTypicalSigma is a finite-path / expectation-level entry point.
 It packages existing nonnegative-step, Chernoff lower-tail, good-event
-lower-bound, fixed-time typical-growth, and collapse facts around the Sigma
-observable.
+lower-bound, fixed-time typical-growth, endpoint-defect coarse-transfer, and
+collapse facts around the Sigma observable.
 It is not an unconditional second-law theorem and not a maximal-class
 universality theorem.
 ```
@@ -505,6 +508,13 @@ Reader-facing Lean names:
 - `BernoulliTypicalSigma.bernoulliSigma_lowerBoundWithChernoffBound_of_interior`
 - `BernoulliTypicalSigma.BernoulliSigmaTypicalGrowthWithFailureBound`
 - `BernoulliTypicalSigma.bernoulliSigma_typicalGrowthWithChernoffBound_of_interior`
+- `BernoulliTypicalSigma.CoarseBernoulliSigmaLowerBoundWithFailureBound`
+- `BernoulliTypicalSigma.CoarseBernoulliSigmaTypicalGrowthWithFailureBound`
+- `BernoulliTypicalSigma.terminalDefectBudget_terminal_lower_bound`
+- `BernoulliTypicalSigma.coarseBernoulliSigma_lowerBoundWithFailureBound_of_micro_defectBudget`
+- `BernoulliTypicalSigma.coarseBernoulliSigma_lowerBoundWithChernoffBound_of_endpointDefectBudget`
+- `BernoulliTypicalSigma.coarseBernoulliSigma_typicalGrowthWithFailureBound_of_micro_defectBudget`
+- `BernoulliTypicalSigma.coarseBernoulliSigma_typicalGrowthWithChernoffBound_of_endpointDefectBudget`
 - `BernoulliTypicalSigma.bernoulliSigma_thresholdCrossingWithChernoffBound_of_linearMargin`
 - `BernoulliTypicalSigma.bernoulliSigma_collapseWithChernoffBound_of_linearMargin`
 - `BernoulliTypicalSigma.bernoulliSigma_stoppedCollapseWithChernoffBound_of_linearMargin`
@@ -518,7 +528,9 @@ production has monotone expectation and a finite-path interior Chernoff
 lower-tail certificate. The complement good event now carries the explicit
 pointwise lower bound `center_n-r ≤ Sigma_n` with the same Chernoff failure
 profile. Combining this with nonnegative adjacent emissions gives a fixed-time
-typical-growth certificate. Collapse wrappers follow under explicit
+typical-growth certificate. If a coarse terminal readout is within endpoint
+defect budget `delta`, the same good-event lower bound transfers as
+`center_n-r-delta ≤ coarse Sigma_n`. Collapse wrappers follow under explicit
 finite-horizon margin assumptions.
 ```
 

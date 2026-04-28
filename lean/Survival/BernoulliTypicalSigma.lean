@@ -1,3 +1,4 @@
+import Mathlib.Tactic.Linarith
 import Survival.BernoulliCSPPathCollapse
 
 /-!
@@ -10,12 +11,15 @@ The existing Bernoulli path modules already prove the substantial facts:
 * a one-sided cumulative production observable;
 * its KL/Chernoff lower-tail bound;
 * collapse and stopping-time wrappers derived from that lower tail.
+* a narrow endpoint-defect transfer for coarse/readout-level terminal
+  certificates.
 
 This file gives those facts the `Σ`-oriented names used by the second-law-level
 roadmap.  It is intentionally thin: it does not assert an unconditional
 second-law theorem.  It says that, in the Bernoulli-CSP template, the cumulative
 `Σ` observable has an interior Chernoff lower-tail certificate and monotone
-expectation because its one-step emissions are nonnegative.
+expectation because its one-step emissions are nonnegative.  Coarse transfer is
+only conditional: the endpoint defect budget is explicit.
 -/
 
 namespace Survival.BernoulliTypicalSigma
@@ -135,6 +139,29 @@ def BernoulliSigmaTypicalGrowthWithFailureBound
         bernoulliSigma P s₀ τ 0 ≤ bernoulliSigma P s₀ τ n ∧
           bernoulliSigmaCenter P s₀ n - r ≤ bernoulliSigma P s₀ τ n
 
+/-- A coarse/readout-level fixed-time lower-bound certificate.  The coarse
+terminal observable may lose a deterministic endpoint-defect budget `δ`, so the
+lower bound is degraded from `center-r` to `center-r-δ`. -/
+def CoarseBernoulliSigmaLowerBoundWithFailureBound
+    (P : Parameters) (N : ℕ) (s₀ : ℝ) (n : ℕ) (r δ : ℝ) (ε : ENNReal)
+    (coarseSigmaN : Trajectory N → ℝ) : Prop :=
+  ∃ E : Set (Trajectory N),
+    EventWithFailureBound (μ := pathMeasure P N) E ε ∧
+      ∀ τ ∈ E, bernoulliSigmaCenter P s₀ n - r - δ ≤ coarseSigmaN τ
+
+/-- A coarse/readout-level fixed-time typical-growth certificate.  It is still
+fixed-time and conditional: coarse monotonicity is supplied by the admissible
+readout, while the terminal lower bound is transferred with endpoint-defect
+budget `δ`. -/
+def CoarseBernoulliSigmaTypicalGrowthWithFailureBound
+    (P : Parameters) (N : ℕ) (s₀ : ℝ) (n : ℕ) (r δ : ℝ) (ε : ENNReal)
+    (coarseSigma0 coarseSigmaN : Trajectory N → ℝ) : Prop :=
+  ∃ E : Set (Trajectory N),
+    EventWithFailureBound (μ := pathMeasure P N) E ε ∧
+      ∀ τ ∈ E,
+        coarseSigma0 τ ≤ coarseSigmaN τ ∧
+          bernoulliSigmaCenter P s₀ n - r - δ ≤ coarseSigmaN τ
+
 /-- Interior KL/Chernoff high-probability lower-bound certificate for
 Bernoulli-CSP `Σ`: outside a bad event of probability at most the Chernoff
 profile, `Σ_n` lies above its deterministic linear center minus `r`.
@@ -176,6 +203,129 @@ theorem bernoulliSigma_typicalGrowthWithChernoffBound_of_interior
   refine ⟨E, hE, ?_⟩
   intro τ hτ
   exact ⟨bernoulliSigma_initial_le P s₀ τ n, hlower τ hτ⟩
+
+/-- A scalar endpoint-defect budget transfers a terminal lower bound from the
+micro `Σ_n` readout to a coarse terminal readout, losing at most `δ`. -/
+theorem terminalDefectBudget_terminal_lower_bound
+    {micro coarse e0 en δ : ℝ}
+    (hcoarse : coarse = micro + e0 - en)
+    (hbudget : en - e0 ≤ δ) :
+    micro - δ ≤ coarse := by
+  rw [hcoarse]
+  linarith
+
+/-- Transfer a micro Bernoulli-CSP lower-bound certificate to a coarse terminal
+readout under a deterministic endpoint-defect budget.  This is the narrow
+Phase-4.4 conditional coarse version: it is not a uniform-in-time theorem and
+not an unconditional second-law claim. -/
+theorem coarseBernoulliSigma_lowerBoundWithFailureBound_of_micro_defectBudget
+    (P : Parameters) (N : ℕ) {n : ℕ} {s₀ r δ : ℝ} {ε : ENNReal}
+    {coarseSigmaN : Trajectory N → ℝ}
+    (hmicro : BernoulliSigmaLowerBoundWithFailureBound P N s₀ n r ε)
+    (hterminal :
+      ∀ τ, bernoulliSigma P s₀ τ n - δ ≤ coarseSigmaN τ) :
+    CoarseBernoulliSigmaLowerBoundWithFailureBound
+      P N s₀ n r δ ε coarseSigmaN := by
+  rcases hmicro with ⟨E, hE, hlower⟩
+  refine ⟨E, hE, ?_⟩
+  intro τ hτ
+  have hμ := hlower τ hτ
+  have hc := hterminal τ
+  linarith
+
+/-- Interior Chernoff lower-bound transfer to a coarse terminal readout under a
+deterministic endpoint-defect budget. -/
+theorem coarseBernoulliSigma_lowerBoundWithChernoffBound_of_interior
+    (P : Parameters) (N : ℕ) {n : ℕ} (hn : n ≤ N + 1) {s₀ r δ : ℝ}
+    (hr : 0 ≤ r)
+    (hlt : r < (n : ℝ) * P.drift)
+    {coarseSigmaN : Trajectory N → ℝ}
+    (hterminal :
+      ∀ τ, bernoulliSigma P s₀ τ n - δ ≤ coarseSigmaN τ) :
+    CoarseBernoulliSigmaLowerBoundWithFailureBound
+      P N s₀ n r δ (P.chernoffFailureBound n r) coarseSigmaN := by
+  exact
+    coarseBernoulliSigma_lowerBoundWithFailureBound_of_micro_defectBudget
+      P N
+      (bernoulliSigma_lowerBoundWithChernoffBound_of_interior
+        P N hn hr hlt)
+      hterminal
+
+/-- Endpoint-defect form of the coarse lower-bound transfer.  If the coarse
+terminal readout is the micro terminal readout plus `e0-en`, and `en-e0 ≤ δ`,
+then the Chernoff lower bound transfers with a `δ` penalty. -/
+theorem coarseBernoulliSigma_lowerBoundWithChernoffBound_of_endpointDefectBudget
+    (P : Parameters) (N : ℕ) {n : ℕ} (hn : n ≤ N + 1) {s₀ r δ e0 en : ℝ}
+    (hr : 0 ≤ r)
+    (hlt : r < (n : ℝ) * P.drift)
+    {coarseSigmaN : Trajectory N → ℝ}
+    (hcoarse :
+      ∀ τ, coarseSigmaN τ = bernoulliSigma P s₀ τ n + e0 - en)
+    (hbudget : en - e0 ≤ δ) :
+    CoarseBernoulliSigmaLowerBoundWithFailureBound
+      P N s₀ n r δ (P.chernoffFailureBound n r) coarseSigmaN := by
+  refine
+    coarseBernoulliSigma_lowerBoundWithChernoffBound_of_interior
+      P N hn hr hlt ?_
+  intro τ
+  exact terminalDefectBudget_terminal_lower_bound (hcoarse τ) hbudget
+
+/-- Coarse fixed-time typical-growth transfer.  The monotonicity of the coarse
+readout is an explicit compatibility assumption; the terminal lower bound is
+inherited from the micro Bernoulli certificate with defect penalty `δ`. -/
+theorem coarseBernoulliSigma_typicalGrowthWithFailureBound_of_micro_defectBudget
+    (P : Parameters) (N : ℕ) {n : ℕ} {s₀ r δ : ℝ} {ε : ENNReal}
+    {coarseSigma0 coarseSigmaN : Trajectory N → ℝ}
+    (hmicro : BernoulliSigmaLowerBoundWithFailureBound P N s₀ n r ε)
+    (hmono : ∀ τ, coarseSigma0 τ ≤ coarseSigmaN τ)
+    (hterminal :
+      ∀ τ, bernoulliSigma P s₀ τ n - δ ≤ coarseSigmaN τ) :
+    CoarseBernoulliSigmaTypicalGrowthWithFailureBound
+      P N s₀ n r δ ε coarseSigma0 coarseSigmaN := by
+  rcases
+    coarseBernoulliSigma_lowerBoundWithFailureBound_of_micro_defectBudget
+      P N hmicro hterminal with
+    ⟨E, hE, hlower⟩
+  refine ⟨E, hE, ?_⟩
+  intro τ hτ
+  exact ⟨hmono τ, hlower τ hτ⟩
+
+/-- Interior Chernoff coarse fixed-time typical-growth transfer under explicit
+coarse-readout monotonicity and terminal defect budget. -/
+theorem coarseBernoulliSigma_typicalGrowthWithChernoffBound_of_interior
+    (P : Parameters) (N : ℕ) {n : ℕ} (hn : n ≤ N + 1) {s₀ r δ : ℝ}
+    (hr : 0 ≤ r)
+    (hlt : r < (n : ℝ) * P.drift)
+    {coarseSigma0 coarseSigmaN : Trajectory N → ℝ}
+    (hmono : ∀ τ, coarseSigma0 τ ≤ coarseSigmaN τ)
+    (hterminal :
+      ∀ τ, bernoulliSigma P s₀ τ n - δ ≤ coarseSigmaN τ) :
+    CoarseBernoulliSigmaTypicalGrowthWithFailureBound
+      P N s₀ n r δ (P.chernoffFailureBound n r) coarseSigma0 coarseSigmaN := by
+  exact
+    coarseBernoulliSigma_typicalGrowthWithFailureBound_of_micro_defectBudget
+      P N
+      (bernoulliSigma_lowerBoundWithChernoffBound_of_interior
+        P N hn hr hlt)
+      hmono hterminal
+
+/-- Endpoint-defect version of the coarse fixed-time typical-growth transfer. -/
+theorem coarseBernoulliSigma_typicalGrowthWithChernoffBound_of_endpointDefectBudget
+    (P : Parameters) (N : ℕ) {n : ℕ} (hn : n ≤ N + 1) {s₀ r δ e0 en : ℝ}
+    (hr : 0 ≤ r)
+    (hlt : r < (n : ℝ) * P.drift)
+    {coarseSigma0 coarseSigmaN : Trajectory N → ℝ}
+    (hmono : ∀ τ, coarseSigma0 τ ≤ coarseSigmaN τ)
+    (hcoarse :
+      ∀ τ, coarseSigmaN τ = bernoulliSigma P s₀ τ n + e0 - en)
+    (hbudget : en - e0 ≤ δ) :
+    CoarseBernoulliSigmaTypicalGrowthWithFailureBound
+      P N s₀ n r δ (P.chernoffFailureBound n r) coarseSigma0 coarseSigmaN := by
+  refine
+    coarseBernoulliSigma_typicalGrowthWithChernoffBound_of_interior
+      P N hn hr hlt hmono ?_
+  intro τ
+  exact terminalDefectBudget_terminal_lower_bound (hcoarse τ) hbudget
 
 /-- Fixed-time threshold crossing for Bernoulli-CSP `Σ`, obtained by combining
 the lower-tail certificate with a linear margin. -/
