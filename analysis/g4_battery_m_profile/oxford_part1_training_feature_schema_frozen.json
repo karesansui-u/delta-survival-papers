@@ -1,0 +1,69 @@
+{
+  "endpoint_column": "next_capacity_ah",
+  "feature_extraction": "transition_aggregate_v1",
+  "heldout_cell_ids": [
+    3,
+    9,
+    11,
+    12
+  ],
+  "human_finalized": true,
+  "mode": "training_feature_smoke",
+  "model_features": {
+    "B1": [
+      "_sp_diagnostic_index"
+    ],
+    "B2": [
+      "_sp_diagnostic_index",
+      "_sp_group_id"
+    ],
+    "B3": [
+      "_sp_diagnostic_index",
+      "_sp_group_id",
+      "capacity_ah_current",
+      "energy_wh_current",
+      "duration_s_current",
+      "abs_current_mean",
+      "abs_current_max",
+      "voltage_mean",
+      "voltage_min",
+      "voltage_max",
+      "temperature_mean",
+      "temperature_max"
+    ],
+    "primary": [
+      "_sp_diagnostic_index",
+      "_sp_group_id",
+      "capacity_ah_current",
+      "energy_wh_current",
+      "duration_s_current",
+      "abs_current_mean",
+      "abs_current_max",
+      "voltage_mean",
+      "voltage_min",
+      "voltage_max",
+      "temperature_mean",
+      "temperature_max",
+      "m_buffer_capacity_ah",
+      "m_buffer_voltage_min",
+      "m_recovery_voltage_tail_minus_min"
+    ]
+  },
+  "non_claims": [
+    "training-feature smoke schema only",
+    "no held-out payload values opened",
+    "no metrics or support flags authorized",
+    "primary remains blocked until final freeze"
+  ],
+  "status": "training_feature_smoke_schema_frozen",
+  "train_cell_ids": [
+    4,
+    8,
+    10,
+    14,
+    15,
+    18,
+    19,
+    20
+  ]
+}

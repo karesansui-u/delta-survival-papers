@@ -216,6 +216,10 @@ A new battery physical-degradation design branch now exists at:
 - `analysis/g4_battery_m_profile/scripts/inspect_oxford_rpt_structure.py`
 - `analysis/g4_battery_m_profile/scripts/evaluate_oxford_part1_m_profile.py`
 - `analysis/g4_battery_m_profile/scripts/export_oxford_part1_training_tables.m`
+- `analysis/g4_battery_m_profile/scripts/run_oxford_part1_primary.sh`
+- `analysis/g4_battery_m_profile/scripts/test_oxford_primary_contract.py`
+- `analysis/g4_battery_m_profile/oxford_part1_training_feature_schema_frozen.json`
+- `analysis/g4_battery_m_profile/oxford_path_dependent_training_conversion_and_feature_smoke_result_note.md`
 
 This branch is not validation evidence. It is a clean design path for testing
 whether frozen battery M/SP features add out-of-sample predictive value over a
@@ -253,22 +257,20 @@ unique filename cell IDs, `4` retained groups, `223` H1 candidate rows, `12`
 safe held-out cell-ID folds, T1-T5 count checks true, and T6 public-metadata
 availability true. Because repeated cell IDs occur across groups, the
 conservative split falls back from protocol-group holdout to held-out cell ID.
-The Oxford Part 1 freeze-manifest draft now also exists, but remains below
-frozen status until MATLAB conversion, strict converted smoke, header-only
-schema draft, human schema finalization, training-feature smoke, final
-converter/script SHA, and one-time primary command are all fixed. The first
-execution scaffold now passes metadata-only and blocks raw train-smoke safely
-on MATLAB MCOS table payloads without post-split held-out payload access. It
-also has a `--converted-train-root` interface for validating a training-only
-conversion manifest and CSV headers/SHA256. Earlier bounded parser-smoke reads
-are treated as schema-only grandfathered smoke. A no-peek MATLAB / MCOS
-conversion plan and converter-script draft now exist for converting training
-cells first. A runner now packages the MATLAB conversion and Python
-converted-smoke step. A header-only schema draft runner plus a training-feature
-smoke runner and synthetic contract tests now also define the next gate after
-converted-smoke. The
-converter has not been executed locally because MATLAB is not available in the
-current environment.
+The Oxford Part 1 freeze-manifest draft now also exists. The first execution
+scaffold passes metadata-only and blocks raw train-smoke safely on MATLAB MCOS
+table payloads without post-split held-out payload access. The MATLAB training
+conversion has now run locally with MATLAB R2026a trial, producing `168`
+training-table records. Python converted-smoke then passed exact expected-entry
+and exclusive-CSV checks. Header-only schema draft found no direct capacity
+column, so the training-feature smoke uses `transition_aggregate_v1`:
+`next_capacity_ah = max(Amphr)` at diagnostic index `k + 1`, with features from
+diagnostic index `k` aggregates only. Training-feature smoke passed with `149`
+transition rows and B0/B1/B2/B3/primary fit success, while still emitting no
+held-out values, predictions, metrics, coefficients, or support flags. The
+held-out primary runner and output contract are now implemented, but remain
+fail-closed unless the one-time frozen command is intentionally run. Earlier
+bounded parser-smoke reads are treated as schema-only grandfathered smoke.
 
 ### Recommended direction
 
@@ -279,7 +281,7 @@ recorded as a weakening outcome.
 The clean near-term empirical branch is now:
 
 ```text
-Oxford Path Dependent MATLAB / MCOS converter execution in a MATLAB environment.
+Oxford Path Dependent freeze-manifest promotion and one-time held-out primary.
 ```
 
 Reason:
@@ -299,10 +301,10 @@ MIT-Stanford/TRI remains a later hard-baseline challenge.
 
 ### Next artifact
 
-The clean next artifact is:
+The clean next operation is:
 
 ```text
-Oxford Path Dependent MATLAB / MCOS converter execution in a MATLAB environment.
+Oxford Path Dependent one-time held-out primary execution.
 ```
 
 Until the freeze package is executed once on held-out data, keep Oxford below
@@ -546,14 +548,11 @@ So the next concrete order becomes:
 
 1. collect additional Exp43c outside-group returns if already requested, or
    keep the first return as the current package-level G7 layer;
-2. run the Oxford Path Dependent MATLAB / MCOS conversion runner on training
-   cells only in a MATLAB environment;
-3. rerun Python train-smoke through the existing `--converted-train-root`
-   interface;
-4. draft header-only schema candidates, human-finalize `FEATURE_SCHEMA`, then
-   run the training-feature smoke runner before promoting the draft to frozen
-   with final converter/script SHA and command;
-5. future repair-flow data acquisition under the candidate-criteria gate.
+2. accept the Oxford freeze-manifest draft as frozen now that the final
+   converter/script hashes, frozen schema identity, one-time primary command,
+   and output contract are inserted;
+3. run the Oxford held-out primary once;
+4. future repair-flow data acquisition under the candidate-criteria gate.
 
 This keeps the program moving on the actual open gaps rather than adding more
 same-type evidence to already-strong tracks.
