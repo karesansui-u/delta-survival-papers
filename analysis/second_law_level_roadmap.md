@@ -298,7 +298,8 @@ Status:
 
 ```text
 template note added in `analysis/phase6_foster_lyapunov_template.md`;
-thin Lean wrapper added in `Survival.FosterLyapunovTemplate`
+thin Lean wrapper added in `Survival.FosterLyapunovTemplate`;
+Phase 6.1 v1 high-probability stopped-collapse / hitting-time wrappers added
 ```
 
 The Phase-6.1 goal is not to copy the Bernoulli proof engine. Bernoulli-CSP
@@ -312,6 +313,7 @@ Existing Lean anchors:
 - `Survival.LyapunovBalanceEmbedding`
 - `Survival.QueueStability`
 - `Survival.ResourceBoundedConditionalAzuma`
+- `Survival.ResourceBoundedStochasticCollapse`
 - `Survival.SecondLawTotalProduction`
 - `Survival.CoarseTypicalNondecrease`
 - `Survival.FosterLyapunovTemplate`
@@ -324,12 +326,21 @@ Sigma / drift / concentration / coarse-transfer grammar, but keeps its own
 assumptions and concentration engine.
 ```
 
+What is now closed at the reader-facing Lean layer:
+
+- Lyapunov/load and queue skeleton wrappers;
+- conditional-Azuma expectation-level monotonicity wrappers;
+- resource-bounded stopped-collapse and hitting-time high-probability wrappers;
+- coarse stopped-collapse and hitting-time transfer wrappers under explicit
+  stochastic compatibility and a resource-bounded coarse model.
+
 Do not read it as:
 
 ```text
 positive recurrence theorem,
 geometric ergodicity theorem,
-or unconditional Lyapunov second law.
+unconditional Lyapunov second law,
+or Bernoulli-style pathwise nondecrease for arbitrary Foster-Lyapunov systems.
 ```
 
 ### Component 5: cross-class unification
@@ -669,8 +680,9 @@ Phase-5 solution.
 7. Add the Phase-5 ladder note before using v0 as a Phase-6 template.
 8. Keep Bernoulli-CSP class closure as a limited-class universality target, not
    a full universal-law claim.
-9. Stage Foster-Lyapunov / queueing as the second class template before adding
-   any strong cross-class theorem.
+9. Stage Foster-Lyapunov / queueing as the second class template, including
+   expectation-level and resource-bounded high-probability wrappers, before
+   adding any strong cross-class theorem.
 
 ## 6. What not to do next
 
@@ -711,8 +723,9 @@ The next phase succeeds if the repo reaches this state:
 8. Phase-5 ladder note distinguishes the short-term Phase-6 exit from the full
    necessary/sufficient admissible-map characterization.
 9. Phase-6.1 Foster-Lyapunov / queueing template note and thin Lean wrapper
-   identify the second limited class and its existing anchors without
-   overclaiming recurrence or ergodicity.
+   identify the second limited class, including stopped-collapse / hitting-time
+   high-probability wrappers, without overclaiming recurrence, ergodicity,
+   pathwise monotonicity, or an unconditional Lyapunov second law.
 ```
 
 At that point, the program has not reached a second law. But it has a much more

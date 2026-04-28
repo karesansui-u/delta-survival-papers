@@ -186,8 +186,8 @@ The current core layering includes:
 - `BernoulliCSPUniversality.lean`: k-SAT / NAE-SAT / XOR-SAT / q-coloring / forbidden-pattern / hypergraph-coloring / cardinality-SAT / threshold-cardinality-SAT CSP を同一 Bernoulli-CSP interface に束ねる wrapper
 - `NumericalSanityChecks.lean`: k-SAT / NAE-SAT / XOR-SAT / q-coloring / forbidden-pattern wrappers が小さな具体例で `log(8/7)`, `log(4/3)`, `log 2` などを回復する documented sanity layer
 - `LyapunovBalanceEmbedding.lean`: Foster-Lyapunov / queueing drift を構造持続の収支原理の \(b_t,B_n,R_t,d_t,r_t\) へ埋め込む G6-c minimal algebraic embedding
-- `FosterLyapunovTemplate.lean`: Phase 6.1 の reader-facing wrapper。Lyapunov / queueing / conditional-Azuma / coarse expectation anchors を束ねるが、positive recurrence, geometric ergodicity, unconditional Lyapunov second law は主張しない。
-- Phase 6.1 template: [`analysis/phase6_foster_lyapunov_template.md`](analysis/phase6_foster_lyapunov_template.md) records how the Bernoulli-CSP \(\Sigma\) template should transfer to Foster-Lyapunov / queueing without claiming positive recurrence, geometric ergodicity, or an unconditional Lyapunov second law.
+- `FosterLyapunovTemplate.lean`: Phase 6.1 の reader-facing wrapper。Lyapunov / queueing / conditional-Azuma / resource-bounded high-probability / coarse-transfer anchors を束ねるが、positive recurrence, geometric ergodicity, Bernoulli-style pathwise nondecrease, unconditional Lyapunov second law は主張しない。
+- Phase 6.1 template: [`analysis/phase6_foster_lyapunov_template.md`](analysis/phase6_foster_lyapunov_template.md) records how the Bernoulli-CSP \(\Sigma\) template should transfer to Foster-Lyapunov / queueing without claiming positive recurrence, geometric ergodicity, pathwise monotonicity, or an unconditional Lyapunov second law.
 - 仕様固定・条件付き構造埋め込み skeletons: 11 small Lean modules grouped into five finite-prefix forms: multiplicative/exponential survival, linear overload, cumulative-capacity thresholds, critical-parameter thresholds, and explicit repair / maintenance balance. Detailed module-to-claim mapping is kept in [`lean/PAPER_MAPPING.md`](lean/PAPER_MAPPING.md).
 
 The cross-domain Bernoulli-CSP layer is frozen locally as **Bernoulli CSP

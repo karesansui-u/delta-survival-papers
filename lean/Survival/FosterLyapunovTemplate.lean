@@ -1,5 +1,6 @@
 import Survival.LyapunovBalanceEmbedding
 import Survival.QueueStability
+import Survival.ResourceBoundedStochasticCollapse
 import Survival.ResourceBoundedConditionalAzuma
 import Survival.CoarseTypicalNondecrease
 
@@ -15,6 +16,7 @@ stable names to the existing algebraic and conditional-Azuma anchors:
 * Lyapunov/load increments as signed structural action;
 * queue overload as a deterministic finite-prefix skeleton;
 * conditional-Azuma data as an expectation-level and stopped-collapse route;
+* resource-bounded Azuma data as a high-probability stopped/hitting route;
 * coarse expectation-level transfer under explicit stochastic compatibility.
 -/
 
@@ -149,6 +151,91 @@ theorem fosterLyapunov_hittingTimeBeforeHorizonWithFailureBound_of_initialExpect
   hittingTimeBeforeHorizonWithFailureBound_of_initialExpectedMargin
     (μ := μ) A hkN hmargin₀
 
+open Survival.ResourceBoundedStochasticCollapse
+
+/-- Phase 6.1 v1: resource-bounded Foster-Lyapunov/Azuma data give
+expectation-level monotonicity for cumulative `Σ`.  This is the entry point for
+the high-probability certificate layer because it bundles nonnegative one-step
+production, bounded increments, and a lower-tail witness. -/
+theorem fosterLyapunov_resourceBoundedExpectedSigma_monotone
+    {S : StepModel (μ := μ)}
+    (A :
+      Survival.ResourceBoundedStochasticCollapse.ResourceBoundedStepModelAzuma
+        (μ := μ) S) :
+    Monotone S.toStochasticProcess.toExpectedProcess.expectedCumulative :=
+  expectedCumulative_monotone (μ := μ) A
+
+/-- Phase 6.1 v1: terminal expected-margin high-probability stopped-collapse
+certificate for the Foster-Lyapunov / queueing template, under the
+resource-bounded Azuma interface. -/
+theorem fosterLyapunov_stoppedCollapseWithFailureBound_of_resourceBoundedExpectedMargin
+    {S : StepModel (μ := μ)}
+    (A :
+      Survival.ResourceBoundedStochasticCollapse.ResourceBoundedStepModelAzuma
+        (μ := μ) S)
+    {N : ℕ} {θ r : ℝ} (hθ : 0 < θ)
+    (hmargin :
+      -Real.log θ ≤ S.toStochasticProcess.toExpectedProcess.expectedCumulative N - r) :
+    Survival.StoppingTimeHighProbabilityCollapse.StoppedCollapseWithFailureBound
+      (μ := μ) S.toStochasticProcess N θ
+      (Survival.AzumaHoeffding.azumaHoeffdingFailureBound
+        (Survival.BoundedAzumaConstruction.varianceProxyOfBounds A.incrementBound) N r) :=
+  stoppedCollapseWithFailureBound_of_expectedMargin (μ := μ) A hθ hmargin
+
+/-- Phase 6.1 v1: initial expected-margin version of the stopped-collapse
+certificate.  The initial margin is lifted to the terminal margin by
+resource-bounded monotonicity. -/
+theorem fosterLyapunov_stoppedCollapseWithFailureBound_of_resourceBoundedInitialMargin
+    {S : StepModel (μ := μ)}
+    (A :
+      Survival.ResourceBoundedStochasticCollapse.ResourceBoundedStepModelAzuma
+        (μ := μ) S)
+    {N : ℕ} {θ r : ℝ} (hθ : 0 < θ)
+    (hmargin₀ :
+      -Real.log θ ≤ S.toStochasticProcess.toExpectedProcess.expectedCumulative 0 - r) :
+    Survival.StoppingTimeHighProbabilityCollapse.StoppedCollapseWithFailureBound
+      (μ := μ) S.toStochasticProcess N θ
+      (Survival.AzumaHoeffding.azumaHoeffdingFailureBound
+        (Survival.BoundedAzumaConstruction.varianceProxyOfBounds A.incrementBound) N r) :=
+  stoppedCollapseWithFailureBound_of_initialExpectedMargin
+    (μ := μ) A hθ hmargin₀
+
+/-- Phase 6.1 v1: direct hitting-time event certificate with a margin at
+`k < N`, under the resource-bounded Azuma interface. -/
+theorem fosterLyapunov_hittingTimeBeforeHorizonWithFailureBound_of_resourceBoundedExpectedMargin
+    {S : StepModel (μ := μ)}
+    (A :
+      Survival.ResourceBoundedStochasticCollapse.ResourceBoundedStepModelAzuma
+        (μ := μ) S)
+    {k N : ℕ} (hkN : k < N)
+    {θ r : ℝ}
+    (hmargin :
+      -Real.log θ ≤ S.toStochasticProcess.toExpectedProcess.expectedCumulative k - r) :
+    Survival.StoppingTimeCollapseEvent.HittingTimeBeforeHorizonWithFailureBound
+      (μ := μ) S.toStochasticProcess N θ
+      (Survival.AzumaHoeffding.azumaHoeffdingFailureBound
+        (Survival.BoundedAzumaConstruction.varianceProxyOfBounds A.incrementBound) k r) :=
+  hittingTimeBeforeHorizonWithFailureBound_of_expectedMargin
+    (μ := μ) A hkN hmargin
+
+/-- Phase 6.1 v1: initial expected-margin version of the direct hitting-time
+event certificate. -/
+theorem fosterLyapunov_hittingTimeBeforeHorizonWithFailureBound_of_resourceBoundedInitialMargin
+    {S : StepModel (μ := μ)}
+    (A :
+      Survival.ResourceBoundedStochasticCollapse.ResourceBoundedStepModelAzuma
+        (μ := μ) S)
+    {k N : ℕ} (hkN : k < N)
+    {θ r : ℝ}
+    (hmargin₀ :
+      -Real.log θ ≤ S.toStochasticProcess.toExpectedProcess.expectedCumulative 0 - r) :
+    Survival.StoppingTimeCollapseEvent.HittingTimeBeforeHorizonWithFailureBound
+      (μ := μ) S.toStochasticProcess N θ
+      (Survival.AzumaHoeffding.azumaHoeffdingFailureBound
+        (Survival.BoundedAzumaConstruction.varianceProxyOfBounds A.incrementBound) k r) :=
+  hittingTimeBeforeHorizonWithFailureBound_of_initialExpectedMargin
+    (μ := μ) A hkN hmargin₀
+
 /-- Coarse expectation-level monotonicity transfers under explicit stochastic
 compatibility and conditional-Azuma data.  This is a conditional coarse
 tendency wrapper, not an unconditional coarse-graining DPI. -/
@@ -164,6 +251,98 @@ theorem coarseExpectedSigma_monotone_of_conditionalAzuma
     Monotone Scoarse.toStochasticProcess.toExpectedProcess.expectedCumulative :=
   Survival.CoarseTypicalNondecrease.coarse_expectedCumulative_monotone_of_micro_conditionalAzuma
     (μ := μ) hcomp A
+
+/-- Phase 6.1 v1: high-probability stopped-collapse transfer from a micro
+expected-margin statement to a resource-bounded coarse Foster-Lyapunov model.
+This is conditional on explicit stochastic compatibility and is not an
+unconditional coarse-graining DPI. -/
+theorem coarseFosterLyapunov_stoppedCollapseWithFailureBound_of_microExpectedMargin
+    {Smicro Scoarse : StepModel (μ := μ)}
+    (hcomp :
+      Survival.CoarseStochasticTotalProduction.CoarseStochasticCompatibility
+        (μ := μ) Smicro Scoarse)
+    (Acoarse :
+      Survival.ResourceBoundedStochasticCollapse.ResourceBoundedStepModelAzuma
+        (μ := μ) Scoarse)
+    {N : ℕ} {θ r : ℝ} (hθ : 0 < θ)
+    (hmargin_micro :
+      -Real.log θ ≤
+        Smicro.toStochasticProcess.toExpectedProcess.expectedCumulative N - r) :
+    Survival.StoppingTimeHighProbabilityCollapse.StoppedCollapseWithFailureBound
+      (μ := μ) Scoarse.toStochasticProcess N θ
+      (Survival.AzumaHoeffding.azumaHoeffdingFailureBound
+        (Survival.BoundedAzumaConstruction.varianceProxyOfBounds
+          Acoarse.incrementBound) N r) :=
+  coarse_stoppedCollapseWithFailureBound_of_micro_expectedMargin
+    (μ := μ) hcomp Acoarse hθ hmargin_micro
+
+/-- Phase 6.1 v1: initial-margin version of the high-probability coarse
+stopped-collapse transfer. -/
+theorem coarseFosterLyapunov_stoppedCollapseWithFailureBound_of_microInitialMargin
+    {Smicro Scoarse : StepModel (μ := μ)}
+    (hcomp :
+      Survival.CoarseStochasticTotalProduction.CoarseStochasticCompatibility
+        (μ := μ) Smicro Scoarse)
+    (Acoarse :
+      Survival.ResourceBoundedStochasticCollapse.ResourceBoundedStepModelAzuma
+        (μ := μ) Scoarse)
+    {N : ℕ} {θ r : ℝ} (hθ : 0 < θ)
+    (hmargin₀_micro :
+      -Real.log θ ≤
+        Smicro.toStochasticProcess.toExpectedProcess.expectedCumulative 0 - r) :
+    Survival.StoppingTimeHighProbabilityCollapse.StoppedCollapseWithFailureBound
+      (μ := μ) Scoarse.toStochasticProcess N θ
+      (Survival.AzumaHoeffding.azumaHoeffdingFailureBound
+        (Survival.BoundedAzumaConstruction.varianceProxyOfBounds
+          Acoarse.incrementBound) N r) :=
+  coarse_stoppedCollapseWithFailureBound_of_micro_initialExpectedMargin
+    (μ := μ) hcomp Acoarse hθ hmargin₀_micro
+
+/-- Phase 6.1 v1: direct hitting-time high-probability coarse transfer from a
+micro expected-margin statement. -/
+theorem coarseFosterLyapunov_hittingTimeBeforeHorizonWithFailureBound_of_microExpectedMargin
+    {Smicro Scoarse : StepModel (μ := μ)}
+    (hcomp :
+      Survival.CoarseStochasticTotalProduction.CoarseStochasticCompatibility
+        (μ := μ) Smicro Scoarse)
+    (Acoarse :
+      Survival.ResourceBoundedStochasticCollapse.ResourceBoundedStepModelAzuma
+        (μ := μ) Scoarse)
+    {k N : ℕ} (hkN : k < N)
+    {θ r : ℝ}
+    (hmargin_micro :
+      -Real.log θ ≤
+        Smicro.toStochasticProcess.toExpectedProcess.expectedCumulative k - r) :
+    Survival.StoppingTimeCollapseEvent.HittingTimeBeforeHorizonWithFailureBound
+      (μ := μ) Scoarse.toStochasticProcess N θ
+      (Survival.AzumaHoeffding.azumaHoeffdingFailureBound
+        (Survival.BoundedAzumaConstruction.varianceProxyOfBounds
+          Acoarse.incrementBound) k r) :=
+  coarse_hittingTimeBeforeHorizonWithFailureBound_of_micro_expectedMargin
+    (μ := μ) hcomp Acoarse hkN hmargin_micro
+
+/-- Phase 6.1 v1: initial-margin version of the direct hitting-time
+high-probability coarse transfer. -/
+theorem coarseFosterLyapunov_hittingTimeBeforeHorizonWithFailureBound_of_microInitialMargin
+    {Smicro Scoarse : StepModel (μ := μ)}
+    (hcomp :
+      Survival.CoarseStochasticTotalProduction.CoarseStochasticCompatibility
+        (μ := μ) Smicro Scoarse)
+    (Acoarse :
+      Survival.ResourceBoundedStochasticCollapse.ResourceBoundedStepModelAzuma
+        (μ := μ) Scoarse)
+    {k N : ℕ} (hkN : k < N)
+    {θ r : ℝ}
+    (hmargin₀_micro :
+      -Real.log θ ≤
+        Smicro.toStochasticProcess.toExpectedProcess.expectedCumulative 0 - r) :
+    Survival.StoppingTimeCollapseEvent.HittingTimeBeforeHorizonWithFailureBound
+      (μ := μ) Scoarse.toStochasticProcess N θ
+      (Survival.AzumaHoeffding.azumaHoeffdingFailureBound
+        (Survival.BoundedAzumaConstruction.varianceProxyOfBounds
+          Acoarse.incrementBound) k r) :=
+  coarse_hittingTimeBeforeHorizonWithFailureBound_of_micro_initialExpectedMargin
+    (μ := μ) hcomp Acoarse hkN hmargin₀_micro
 
 end
 

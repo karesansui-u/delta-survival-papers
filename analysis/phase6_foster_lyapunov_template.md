@@ -1,7 +1,9 @@
 # Phase 6.1 Foster-Lyapunov / queueing template
 
-Status: Phase 6.1 v0 template note after Phase 5 ladder. A thin Lean wrapper
-now exists in `Survival.FosterLyapunovTemplate`.
+Status: Phase 6.1 v1 template note after Phase 5 ladder. A thin Lean wrapper
+now exists in `Survival.FosterLyapunovTemplate`, including resource-bounded
+high-probability stopped-collapse / hitting-time certificates and coarse
+high-probability transfer wrappers.
 
 This note starts Phase 6 by asking how the Bernoulli-CSP `Sigma` template can
 be reused in a second, genuinely different class: Foster-Lyapunov / queueing
@@ -45,13 +47,15 @@ more than Bernoulli-CSP.
 | fluid queue load | `queueLoad` | queue backlog embedded as Lyapunov/load sequence |
 | queue stable / overload regimes | `QueueStability.*` | deterministic skeleton proven |
 | conditional-Azuma resource-bounded route | `ResourceBoundedConditionalAzuma.*` | expected monotonicity and stopped-collapse wrappers proven under assumptions |
+| resource-bounded stochastic collapse route | `ResourceBoundedStochasticCollapse.*` | high-probability stopped-collapse / hitting-time and coarse-transfer wrappers proven under assumptions |
 | total-production tendency | `SecondLawTotalProduction.*` | reader-facing `Sigma` core proven |
 | coarse expectation route | `CoarseTypicalNondecrease.*` | expectation-level coarse tendency under assumptions |
 
 The important point is that Phase 6.1 does not start from zero. The algebraic
-Lyapunov embedding and the conditional-Azuma concentration route already
-exist. The first reader-facing organization layer is now present in
-`Survival.FosterLyapunovTemplate`; it adds names, not a new universal law.
+Lyapunov embedding, conditional-Azuma expectation route, and resource-bounded
+high-probability route already exist. The reader-facing organization layer is
+now present in `Survival.FosterLyapunovTemplate`; it adds stable names and
+class-template staging, not a new universal law.
 
 ## 3. Bernoulli template versus Foster-Lyapunov template
 
@@ -62,20 +66,21 @@ exist. The first reader-facing organization layer is now present in
 | `Σ_n = cumulativeProduction` | cumulative total production or cumulative Lyapunov action |
 | deterministic center `linearCenter` | expected cumulative drift / lower-bound trajectory |
 | Chernoff/KL failure profile | Azuma / bounded-increment / conditional-martingale profile |
-| fixed-time lower-bound certificate | expected-margin or lower-tail certificate under concentration assumptions |
-| typical-growth certificate | expectation-level monotonicity plus high-probability wrapper when assumptions are present |
-| endpoint-defect coarse transfer | same defect-budget pattern, if a coarse readout supplies terminal equality and budget |
+| fixed-time lower-bound certificate | expected-margin or lower-tail certificate under resource-bounded concentration assumptions |
+| typical-growth certificate | expectation-level monotonicity plus stopped / hitting high-probability wrapper when assumptions are present |
+| endpoint-defect coarse transfer | coarse stochastic compatibility plus a resource-bounded coarse model |
 
 The two templates should not be forced to share the same proof engine.
 Bernoulli uses Chernoff/KL. Foster-Lyapunov uses drift plus bounded-increment
 concentration when a high-probability statement is needed.
 
-## 4. Candidate Phase 6.1 v0 output
+## 4. Candidate Phase 6.1 v1 output
 
-The safest Phase 6.1 v0 output is not yet a new Lean theorem named
+The safest Phase 6.1 v1 output is not yet a new Lean theorem named
 `CoarseLyapunovSigmaTypicalGrowthWithFailureBound`.
 
-That name may become appropriate later, but v0 should first fix the template:
+That name may become appropriate later, but v1 first fixes the high-probability
+certificate layer that can be stated without overclaim:
 
 ```text
 Foster-Lyapunov / queueing class supports the same structural role as
@@ -106,10 +111,21 @@ reader-facing aliases of existing theorems:
 - `FosterLyapunovTemplate.expectedSigma_monotone_of_conditionalAzuma`
 - `FosterLyapunovTemplate.fosterLyapunov_stoppedCollapseWithFailureBound_of_initialExpectedMargin`
 - `FosterLyapunovTemplate.fosterLyapunov_hittingTimeBeforeHorizonWithFailureBound_of_initialExpectedMargin`
+- `FosterLyapunovTemplate.fosterLyapunov_resourceBoundedExpectedSigma_monotone`
+- `FosterLyapunovTemplate.fosterLyapunov_stoppedCollapseWithFailureBound_of_resourceBoundedExpectedMargin`
+- `FosterLyapunovTemplate.fosterLyapunov_stoppedCollapseWithFailureBound_of_resourceBoundedInitialMargin`
+- `FosterLyapunovTemplate.fosterLyapunov_hittingTimeBeforeHorizonWithFailureBound_of_resourceBoundedExpectedMargin`
+- `FosterLyapunovTemplate.fosterLyapunov_hittingTimeBeforeHorizonWithFailureBound_of_resourceBoundedInitialMargin`
 - `FosterLyapunovTemplate.coarseExpectedSigma_monotone_of_conditionalAzuma`
+- `FosterLyapunovTemplate.coarseFosterLyapunov_stoppedCollapseWithFailureBound_of_microExpectedMargin`
+- `FosterLyapunovTemplate.coarseFosterLyapunov_stoppedCollapseWithFailureBound_of_microInitialMargin`
+- `FosterLyapunovTemplate.coarseFosterLyapunov_hittingTimeBeforeHorizonWithFailureBound_of_microExpectedMargin`
+- `FosterLyapunovTemplate.coarseFosterLyapunov_hittingTimeBeforeHorizonWithFailureBound_of_microInitialMargin`
 
-These would not add new mathematics. They would make the class template
-reader-facing, similar to what `BernoulliTypicalSigma` did for Bernoulli-CSP.
+These do not add an unconditional Lyapunov law. They make the class template
+reader-facing, similar to what `BernoulliTypicalSigma` did for Bernoulli-CSP,
+while preserving the explicit bounded-increment, margin, concentration, and
+coarse-compatibility assumptions.
 
 Avoid names like:
 
@@ -122,9 +138,9 @@ fosterLyapunovAlwaysIncreases
 Those would overclaim. Foster-Lyapunov drift gives conditional tendency, not an
 unconditional second law.
 
-## 6. What would count as Phase 6.1 v0 closed
+## 6. What counts as Phase 6.1 v1 closed
 
-Phase 6.1 v0 is closed when the repo has:
+Phase 6.1 v1 is closed when the repo has:
 
 1. this template note;
 2. theorem-map entries pointing to the existing Lyapunov / queueing / Azuma
@@ -133,17 +149,21 @@ Phase 6.1 v0 is closed when the repo has:
    limited class after Bernoulli-CSP;
 4. explicit non-claims separating expectation-level tendency from
    high-probability and almost-sure claims.
-5. a thin Lean wrapper that exposes those anchors without strengthening them.
+5. a thin Lean wrapper that exposes those anchors without strengthening them;
+6. resource-bounded stopped-collapse / hitting-time high-probability wrappers;
+7. coarse stopped-collapse / hitting-time high-probability transfer wrappers
+   under explicit stochastic compatibility and a resource-bounded coarse model.
 
-The current wrapper satisfies item 5 at the alias / reader-facing layer.
+The current wrapper satisfies these items at the alias / reader-facing layer.
 
 ## 7. What remains open
 
-Phase 6.1 v0 does not close:
+Phase 6.1 v1 does not close:
 
 - positive recurrence or geometric ergodicity;
 - a full queueing stability theorem beyond the existing deterministic skeletons;
 - unconditional high-probability nondecrease;
+- Bernoulli-style pathwise nondecrease for arbitrary Foster-Lyapunov systems;
 - a set-level admissible coarse map for Lyapunov systems;
 - a cross-class unification theorem.
 
@@ -157,10 +177,15 @@ own assumptions and concentration engine.
 
 ## 8. Recommended next move
 
-After this note and wrapper, the next Lean-side step should only be attempted if
-there is a concrete new certificate to expose. The wrapper should remain an
-alias layer unless a later Phase 6.1 v1 explicitly introduces a bounded-drift /
-conditional-Azuma certificate analogous to the Bernoulli lower-tail certificate.
+After this note and wrapper, the next Lean-side step should not force a
+Bernoulli-style pathwise nondecrease claim. The most natural next choices are:
+
+1. record explicitly that Foster-Lyapunov Phase 6.1 has closed at the
+   expectation / stopped-collapse / hitting-time certificate level, while
+   pathwise nondecrease remains class-specific and generally unavailable;
+2. proceed to Phase 6.2 Repair-Maintenance as the third limited class template;
+3. only later return to set-level Lyapunov admissible maps or necessary-side
+   Phase-5 pruning.
 
 The current wrapper bundles existing names from:
 

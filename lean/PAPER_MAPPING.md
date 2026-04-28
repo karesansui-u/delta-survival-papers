@@ -1,7 +1,7 @@
 # Lean 形式検証 ↔ 論文対応棚卸し
 
 棚卸し日: 2026-04-27
-対象: `lean/Survival/` 配下 146 ファイル
+対象: `lean/Survival/` 配下 147 ファイル
 対応文書: `delta-survival-paper/v2/` 配下の主理論 spine、Route C companions、補論群
 
 ## 現在の結論
@@ -181,7 +181,7 @@ concentration assumptions.
 
 `analysis/phase6_foster_lyapunov_template.md` records the next limited-class
 template after Bernoulli-CSP. `Survival.FosterLyapunovTemplate` now provides a
-thin reader-facing wrapper for the first Phase-6.1 layer. It maps the
+thin reader-facing wrapper for the Phase-6.1 v1 layer. It maps the
 Bernoulli-CSP \(\Sigma\) grammar onto existing Foster-Lyapunov / queueing
 anchors without strengthening them:
 
@@ -191,9 +191,11 @@ anchors without strengthening them:
 | cumulative action | `FosterLyapunovTemplate.lyapunov_cumulativeAction_eq_load_diff` | telescopes to `Z n - Z 0` |
 | exponential maintenance update | `FosterLyapunovTemplate.lyapunov_relativeMaintenance_succ_eq_mul_exp_neg_increment` | signed-action coordinate, not a stability theorem |
 | queue overload skeleton | `FosterLyapunovTemplate.queue_increment_eq_excessDemand`; `FosterLyapunovTemplate.queue_stable_increment_nonpos`; `FosterLyapunovTemplate.queue_overloaded_increment_pos` | deterministic finite-prefix skeleton |
-| concentration route | `FosterLyapunovTemplate.expectedSigma_monotone_of_conditionalAzuma`; `FosterLyapunovTemplate.fosterLyapunov_stoppedCollapseWithFailureBound_of_initialExpectedMargin`; `FosterLyapunovTemplate.fosterLyapunov_hittingTimeBeforeHorizonWithFailureBound_of_initialExpectedMargin` | high-probability claims require bounded-increment / margin assumptions |
+| conditional-Azuma route | `FosterLyapunovTemplate.expectedSigma_monotone_of_conditionalAzuma`; `FosterLyapunovTemplate.fosterLyapunov_stoppedCollapseWithFailureBound_of_initialExpectedMargin`; `FosterLyapunovTemplate.fosterLyapunov_hittingTimeBeforeHorizonWithFailureBound_of_initialExpectedMargin` | expectation / stopped-collapse route under conditional-Azuma assumptions |
+| resource-bounded high-probability route | `FosterLyapunovTemplate.fosterLyapunov_resourceBoundedExpectedSigma_monotone`; `FosterLyapunovTemplate.fosterLyapunov_stoppedCollapseWithFailureBound_of_resourceBoundedExpectedMargin`; `FosterLyapunovTemplate.fosterLyapunov_hittingTimeBeforeHorizonWithFailureBound_of_resourceBoundedExpectedMargin` | high-probability claims require bounded-increment, nonnegative step production, margin, and lower-tail assumptions |
 | \(\Sigma\) / total production grammar | `SecondLawTotalProduction.*` | expectation-level tendency candidate |
 | coarse expectation route | `FosterLyapunovTemplate.coarseExpectedSigma_monotone_of_conditionalAzuma` | conditional compatibility, not unconditional DPI |
+| coarse high-probability transfer | `FosterLyapunovTemplate.coarseFosterLyapunov_stoppedCollapseWithFailureBound_of_microExpectedMargin`; `FosterLyapunovTemplate.coarseFosterLyapunov_hittingTimeBeforeHorizonWithFailureBound_of_microExpectedMargin` | stochastic compatibility plus a resource-bounded coarse model, not unconditional DPI |
 
 The correct interpretation is:
 
@@ -201,8 +203,11 @@ The correct interpretation is:
 Foster-Lyapunov / queueing is staged as the second limited class template.
 It shares the Sigma / drift / concentration / coarse-transfer grammar with
 Bernoulli-CSP, but uses its own drift and Azuma-style concentration
-assumptions. It is not a positive-recurrence theorem, a geometric-ergodicity
-theorem, or an unconditional Lyapunov second law.
+assumptions. The v1 layer exposes stopped-collapse / hitting-time
+high-probability certificates and coarse high-probability transfer under
+explicit assumptions. It is not a positive-recurrence theorem, a
+geometric-ergodicity theorem, a Bernoulli-style pathwise nondecrease theorem,
+or an unconditional Lyapunov second law.
 ```
 
 ## Paper 2 / Structural Persistence Balance Mapping
