@@ -40,7 +40,7 @@ PDF は [`v2/pdf用/補論_構造持続理論の構成地図.pdf`](v2/pdf用/補
 
 - 仕様固定構造層: SAT / Mixed-CSP / q-coloring では、自然測度・finite-horizon collapse chain・prospective empirical support が揃いつつあります。Mixed-CSP と Exp43c q-coloring は、それぞれ外部実行者 3 名による frozen package rerun で decision-relevant output が再現されています。
 - 構造推定層: LLM 推論実験では、文脈長だけではなく構造矛盾の質が崩壊を予測することを、複数の preregistered / prospective checks で検査しています。
-- Formal layer: Lean 4 側は `146 Survival modules`, `sorry = 0`, `axiom = 0` で、主な theorem-to-paper mapping は [`lean/PAPER_MAPPING.md`](lean/PAPER_MAPPING.md) にまとめています。階層的不変量による統一枠組みへ何を積むかは [`analysis/second_law_level_roadmap.md`](analysis/second_law_level_roadmap.md) に分けて整理しています。
+- Formal layer: Lean 4 側は `146 Survival modules`, `sorry = 0`, `axiom = 0` で、主な theorem-to-paper mapping は [`lean/PAPER_MAPPING.md`](lean/PAPER_MAPPING.md) にまとめています。階層的不変量による統一枠組みへ何を積むかは [`analysis/second_law_level_roadmap.md`](analysis/second_law_level_roadmap.md) に、Phase 5 の admissible-map ladder は [`analysis/phase5_admissible_map_ladder.md`](analysis/phase5_admissible_map_ladder.md) に分けて整理しています。
 - Non-CSP: Backblaze / C-MAPSS / Scania などは support / weakening / no-support を分けて記録し、同一 archive 内の rescue を避けています。
 
 ## Core and Companion Papers (v2) / 主理論核と companion papers

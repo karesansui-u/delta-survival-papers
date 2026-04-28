@@ -105,6 +105,7 @@ Latest OSF mirror (Bernoulli-CSP links are the v1.1 archive snapshot):
 - Lean formalization: [`lean/readme.md`](lean/readme.md)
 - Reader-facing theorem map: [`lean/PAPER_MAPPING.md`](lean/PAPER_MAPPING.md)
 - Hierarchical-invariants roadmap: [`analysis/second_law_level_roadmap.md`](analysis/second_law_level_roadmap.md)
+- Phase 5 admissible-map ladder: [`analysis/phase5_admissible_map_ladder.md`](analysis/phase5_admissible_map_ladder.md)
 
 Mixed-CSP の true outside-group rerun は requested set が完了しており、3 名の外部実行者がそれぞれ `12000` 行 primary run、`0` checked core mismatches、support flags 全 true を返している。これは Mixed-CSP package に限った replication closure であり、詳細は [`analysis/route_a_mixed_csp/mixed_csp_true_outside_final_report.md`](analysis/route_a_mixed_csp/mixed_csp_true_outside_final_report.md) を参照。
 

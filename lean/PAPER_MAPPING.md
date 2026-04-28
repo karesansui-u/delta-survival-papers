@@ -133,8 +133,10 @@ endpoint defect budget, and coarse monotonicity assumptions as sufficient
 conditions for the Phase-4 coarse \(\Sigma\) certificates. It still does not
 claim that an arbitrary coarse map is admissible, nor does it prove an
 unconditional DPI or a necessary/sufficient admissible-map characterization.
-Full set-level admissible coarse-graining and proxy / estimation validation
-remain separate tasks.
+`analysis/phase5_admissible_map_ladder.md` records the ladder from this v0
+sufficient package to the still-open set-level and necessary/sufficient
+targets. Full set-level admissible coarse-graining and proxy / estimation
+validation remain separate tasks.
 
 ### Sigma / Total Production Component
 

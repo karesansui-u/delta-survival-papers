@@ -583,6 +583,38 @@ set-level instantiation from arbitrary coarse maps,
 or unconditional coarse-graining DPI.
 ```
 
+### Immediate action G: Phase 5 ladder and exit criteria
+
+Status:
+
+```text
+done; ladder note added in `analysis/phase5_admissible_map_ladder.md`
+```
+
+This note fixes the practical answer to whether Phase 5 can be closed "all at
+once":
+
+```text
+Phase 5 can be exited for Phase 6 purposes, because the Bernoulli sufficient
+package and ladder are now explicit.
+
+Phase 5 cannot yet be called fully complete, because necessary-and-sufficient
+admissible-map characterization remains open.
+```
+
+The ladder separates:
+
+- exact readout identity;
+- endpoint-defect transfer;
+- v0 sufficient coarse readout;
+- defect-controlled two-stage algebra;
+- set-level defect-controlled instantiation;
+- Bernoulli necessary-side pruning;
+- full generated-class characterization.
+
+This is a guardrail against over-reading `BernoulliAdmissibleMapV0` as a full
+Phase-5 solution.
+
 ## 5. Recommended order
 
 1. Commit the admissible-maps supplement and this roadmap.
@@ -594,7 +626,8 @@ or unconditional coarse-graining DPI.
    stronger high-probability or generated-class theorem.
 6. Package the Bernoulli coarse-transfer sufficient conditions before claiming
    a general admissible-map characterization.
-7. Keep Bernoulli-CSP class closure as a limited-class universality target, not
+7. Add the Phase-5 ladder note before using v0 as a Phase-6 template.
+8. Keep Bernoulli-CSP class closure as a limited-class universality target, not
    a full universal-law claim.
 
 ## 6. What not to do next
@@ -633,6 +666,8 @@ The next phase succeeds if the repo reaches this state:
    expectation-level tendency layer explicit without overclaiming.
 7. Bernoulli admissible-map v0 packages the sufficient readout-level conditions
    for coarse transfer without claiming a full characterization.
+8. Phase-5 ladder note distinguishes the short-term Phase-6 exit from the full
+   necessary/sufficient admissible-map characterization.
 ```
 
 At that point, the program has not reached a second law. But it has a much more
