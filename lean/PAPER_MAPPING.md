@@ -95,15 +95,18 @@ map layers:
 | positive gauge preserves comparisons | positive scalar multiplication is order-preserving | `AdmissibleMapInvariants.positive_gauge_preserves_order` | proven |
 | positive gauge preserves nonnegative regime | \(0 \le \alpha B\iff 0\le B\) for \(\alpha>0\) | `AdmissibleMapInvariants.positive_gauge_preserves_nonnegative` | proven |
 | saturation-defect readout spec | coarse stage loss differs by \(e_t-e_{t+1}\) | `SaturationDefect.SaturationDefectReadout` | defined |
+| set-level saturation defect | \(e_\pi(A)=\log(m(\pi^{-1}\pi(A))/m(A))\) | `SaturationDefect.saturationDefectOfCoarseMap` | defined |
+| set-level defect instantiates readout spec | positive set masses for \(V_t\) and \(\pi^{-1}\pi(V_t)\) | `SaturationDefect.coarseMap_saturationDefectReadout_of_positive_setMass` | proven |
 | coarse cumulative loss with saturation defect | \(B_n^{coarse}=B_n^{micro}+e_0-e_n\) | `SaturationDefect.coarse_cumulativeStageLoss_eq_micro_add_initial_defect_sub_terminal` | proven at readout level |
 | conditional coarse monotonicity | \(e_0\le e_n\Rightarrow B_n^{coarse}\le B_n^{micro}\) | `SaturationDefect.coarse_cumulativeStageLoss_le_micro_of_terminal_defect_ge_initial` | proven at readout level |
 
 This is intentionally not a full morphism interface. It is the finite
 mass-readout layer needed by the supplement's first claims. The saturation
-defect wrapper is also readout-level only: it does not yet construct
-`eπ(A)=log(m(π⁻¹π(A))/m(A))` from sets, maps, and positive finite masses.
-Set-level coarse-graining and proxy / estimation validation remain separate
-tasks.
+defect wrapper now includes the minimal set-level instantiation for
+`eπ(A)=log(m(π⁻¹π(A))/m(A))` under positive mass assumptions. It still does not
+claim that an arbitrary coarse map is admissible, nor does it prove an
+unconditional DPI. Admissible coarse-graining compatibility and proxy /
+estimation validation remain separate tasks.
 
 ### Sigma / Total Production Component
 

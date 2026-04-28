@@ -77,7 +77,7 @@ Current status:
 
 ```text
 partly closed in text; first Lean wrappers added, including a narrow
-saturation-defect readout spec
+saturation-defect readout spec and minimal set-level instantiation
 ```
 
 Already done:
@@ -100,6 +100,9 @@ Next work:
   covariance now live in `Survival.AdmissibleMapInvariants`;
 - a readout-level Lean specification for the saturation-defect identity now
   lives in `Survival.SaturationDefect`;
+- the minimal set-level formula
+  `eπ(A)=log(m(π⁻¹π(A))/m(A))` now instantiates that readout spec under positive
+  mass assumptions;
 - an admissible coarse-graining condition stated in terms of defect control.
 
 Do not claim yet:
@@ -384,12 +387,13 @@ Those would overclaim.
 Status:
 
 ```text
-readout-level spec done; set-level coarse-graining remains open
+readout-level spec done; minimal set-level instantiation done; admissible
+coarse-graining compatibility remains open
 ```
 
 This is the first genuinely new Lean-facing work suggested by the new
-supplement. The low-risk readout layer is now implemented in
-`Survival.SaturationDefect`.
+supplement. The low-risk readout layer and minimal set-level instantiation are
+now implemented in `Survival.SaturationDefect`.
 
 Implemented minimal target:
 
@@ -401,27 +405,31 @@ coarse B_n equals micro B_n plus initial defect minus terminal defect.
 Reader-facing Lean names:
 
 - `SaturationDefect.SaturationDefectReadout`
+- `SaturationDefect.saturationDefectOfCoarseMap`
+- `SaturationDefect.coarseMap_saturationDefectReadout_of_positive_setMass`
 - `SaturationDefect.coarse_cumulativeStageLoss_eq_micro_add_initial_defect_sub_terminal`
 - `SaturationDefect.coarse_cumulativeStageLoss_le_micro_of_terminal_defect_ge_initial`
 
-Remaining set-level target:
+Remaining admissible-map target:
 
 ```text
-Define e_pi(A) := log(m(preimage(image A))/m(A)) for positive finite mass sets,
-prove that the set-level coarse-graining assumptions instantiate the readout
-relation, and only then derive conditional DPI-style monotonicity.
+Define the compatibility conditions under which an actual coarse-graining map
+is admissible for a structural-maintenance problem, prove that its feasible
+trajectory and saturation defects instantiate the set-level theorem, and only
+then derive conditional DPI-style monotonicity.
 ```
 
 This remaining target touches sets, maps, positive mass assumptions, and logs,
-so it is heavier than the readout wrapper work.
+as well as commutation with contraction / repair, so it is heavier than the
+readout and minimal set-level wrapper work.
 
 ## 5. Recommended order
 
 1. Commit the admissible-maps supplement and this roadmap.
 2. Add the reader-facing Sigma theorem map to `lean/PAPER_MAPPING.md`.
 3. Add the low-risk Lean wrappers for Sigma and readout-level Iso/Gauge.
-4. Continue the saturation-defect formalization only at the set-level
-   instantiation layer; do not re-open unconditional coarse-graining DPI.
+4. Continue the saturation-defect formalization only at the admissible-map
+   compatibility layer; do not re-open unconditional coarse-graining DPI.
 5. Keep Bernoulli-CSP class closure as a limited-class universality target, not
    a full universal-law claim.
 

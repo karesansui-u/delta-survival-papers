@@ -187,9 +187,10 @@ Short horizon:
    already Lean-backed.
 3. Treat `Survival.AdmissibleMapInvariants` as the completed low-risk Iso /
    positive-gauge wrapper layer, and `Survival.SaturationDefect` as the narrow
-   readout-level saturation-defect spec. The next Lean-side target is the
-   set-level instantiation \(e_\pi(A)=\log(m(\pi^{-1}\pi(A))/m(A))\), not more
-   wrapper aliases or unconditional DPI.
+   readout-level plus minimal set-level saturation-defect spec. The next
+   Lean-side target is admissible-map compatibility for
+   \(e_\pi(A)=\log(m(\pi^{-1}\pi(A))/m(A))\), not more wrapper aliases or
+   unconditional DPI.
 4. Keep M resource operationalization as a supplement-level mapping layer, not
    as the next main-theory paper.
 5. Review and polish the structural persistence balance principle / 構造持続の収支原理 draft as the next
@@ -283,7 +284,7 @@ Estimated timelines, assuming no unexpected gates:
 |---|---:|
 | M1 propagation to public docs | 30-60 min |
 | M2-B wrapper layer | completed |
-| Saturation-defect Lean spec | readout-level implemented; set-level instantiation design remains |
+| Saturation-defect Lean spec | readout-level and minimal set-level instantiation implemented; admissible-map compatibility remains |
 | M operationalization supplement cleanup | 30-60 min |
 | Structural Persistence Balance Principle §1-8 review pass | 1 focused session |
 | G4 v2 exploratory maintenance-log dataset scan | 1 focused session |
