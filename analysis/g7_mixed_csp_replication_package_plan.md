@@ -353,6 +353,6 @@ It claims only:
 
 ```text
 Mixed-CSP was the cleanest first external replication package and has now opened
-G7 with two clean returned outside-group runs, while the requested return set and
-Exp43c outside-group rerun remain open.
+G7 with a completed `3/3` clean outside-group rerun set. Exp43c q-coloring is
+tracked as a separate Route A package and now has its own outside-return layer.
 ```

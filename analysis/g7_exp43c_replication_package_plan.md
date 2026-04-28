@@ -15,7 +15,9 @@ See analysis/exp43_qcoloring/exp43c_published_remote_rerun_note.md.
 Sender-side true outside-group packet is now prepared.
 See analysis/exp43_qcoloring/exp43c_true_outside_send_runbook.md and
 analysis/exp43_qcoloring/handoff_exports/LOCKED_BUNDLE_NOTE.md.
-External independent rerun return remains open.
+Two external independent rerun returns are now recorded.
+See analysis/exp43_qcoloring/exp43c_true_outside_rerun_01_philia_channel.md
+and analysis/exp43_qcoloring/exp43c_true_outside_rerun_02_katsumasa1234.md.
 ```
 
 Purpose:
@@ -179,9 +181,10 @@ Actions:
 3. run the frozen evaluation script;
 4. compare outcomes to the official report.
 
-This target is now complete locally and remains the next clean outside
-Route A rerun after Mixed-CSP. The sender-side zip packet is now prepared; the
-open step is actual outside execution and return.
+This target is now complete locally, packaged for outside execution, and has
+three returned outside-group rerun successes. Additional outside returns are
+optional depth rather than the next blocking gate. The current package-level
+final report is `analysis/exp43_qcoloring/exp43c_true_outside_final_report.md`.
 
 ## 6. Clean Execution Order
 
@@ -277,8 +280,8 @@ observational same-domain branch
 
 This note does not claim:
 
-1. Exp43c replication is already complete;
-2. threshold-local q-coloring alone is enough for G7 closure;
+1. package-level Exp43c outside returns are full-program G7 closure;
+2. threshold-local q-coloring alone is enough for universal-law closure;
 3. exact numeric identity is required;
 4. Backblaze-style observational reruns should be treated the same as Route A
    primaries.

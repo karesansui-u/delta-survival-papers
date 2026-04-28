@@ -2,10 +2,10 @@
 
 Status: coordination note for true outside-group reruns. Mixed-CSP now has a
 completed requested outside-group set: `3/3` returned and `3/3` clean success.
-Exp43c q-coloring now has its first returned outside-group rerun: `1/1`
-returned clean success.
+Exp43c q-coloring now has three returned outside-group reruns: `3/3` returned
+clean success.
 
-Date: 2026-04-27
+Date: 2026-04-28
 
 Purpose:
 
@@ -41,7 +41,7 @@ That order remains the correct historical rationale:
 The current result is:
 
 1. Mixed-CSP has completed the requested three-run outside-group set;
-2. Exp43c has one returned outside-group rerun success;
+2. Exp43c has three returned outside-group rerun successes;
 3. broader observational / non-CSP branches remain separate workstreams.
 
 ## 2. Current Preparation Level
@@ -69,14 +69,21 @@ Exp43c currently has:
 4. final true outside-group handoff checklist;
 5. sender-side runbook, Japanese send packet, zip receiver guide, environment
    memo template, and return-report template;
-6. one returned true outside-group rerun success:
-   `analysis/exp43_qcoloring/exp43c_true_outside_rerun_01_philia_channel.md`.
+6. three returned true outside-group rerun successes:
+   `analysis/exp43_qcoloring/exp43c_true_outside_rerun_01_philia_channel.md`,
+   `analysis/exp43_qcoloring/exp43c_true_outside_rerun_02_katsumasa1234.md`,
+   and
+   `analysis/exp43_qcoloring/exp43c_true_outside_rerun_03_SCRAPRO.md`;
+7. a final package-level report:
+   `analysis/exp43_qcoloring/exp43c_true_outside_final_report.md`;
+8. a package-level Route A outside-replication summary:
+   `analysis/g7_route_a_true_outside_replication_summary.md`.
 
 ## 3. What Still Counts As Open
 
 The following remains open:
 
-1. optional additional Exp43c outside-group returns, if more were requested;
+1. optional additional Exp43c outside-group returns, if more are later requested;
 2. observational-branch replication;
 3. non-CSP repair-flow / maintenance-log support;
 4. outside-group environment notes and returned artifact hashes for future
@@ -86,8 +93,8 @@ So:
 
 ```text
 Route A now has outside-group success in two frozen packages: Mixed-CSP
-completed 3/3 requested clean returns, and Exp43c q-coloring has one clean
-returned outside-group rerun. This strengthens G7 for Route A, but does not
+completed 3/3 requested clean returns, and Exp43c q-coloring has three clean
+returned outside-group reruns. This strengthens G7 for Route A, but does not
 close observational, non-CSP, or universal-law replication.
 ```
 
@@ -116,6 +123,10 @@ For Exp43c, use:
 - `analysis/exp43_qcoloring/exp43c_execution_environment_note_template_ja.md`
 - `analysis/exp43_qcoloring/exp43c_g7_replication_report_template.md`
 - `analysis/exp43_qcoloring/exp43c_true_outside_rerun_01_philia_channel.md`
+- `analysis/exp43_qcoloring/exp43c_true_outside_rerun_02_katsumasa1234.md`
+- `analysis/exp43_qcoloring/exp43c_true_outside_rerun_03_SCRAPRO.md`
+- `analysis/exp43_qcoloring/exp43c_true_outside_final_report.md`
+- `analysis/g7_route_a_true_outside_replication_summary.md`
 - `analysis/exp43_qcoloring/handoff_exports/LOCKED_BUNDLE_NOTE.md`
 - `analysis/exp43_qcoloring/handoff_exports/依頼文.md`
 - `analysis/exp43_qcoloring/handoff_exports/返信が来たらやること.md`
@@ -126,8 +137,7 @@ The next clean move is:
 
 ```text
 keep the Mixed-CSP and Exp43c outside-group reports scoped to their packages;
-then either collect additional Exp43c returns if already requested, or move to
-the next external-facing workstream
+then move to the next external-facing workstream or independent review
 ```
 
 This preserves the current distinction: Route A outside-group reproducibility

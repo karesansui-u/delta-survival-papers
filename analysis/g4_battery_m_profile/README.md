@@ -1,8 +1,10 @@
 # G4 Battery M-Profile Branch
 
 Status: Oxford Part 1 one-time held-out primary completed with a no-support
-outcome for the frozen battery M/SP mapping. Not causal intervention evidence,
-not repair-flow evidence, and not a universal-law claim.
+outcome for the frozen battery M/SP mapping. It is also a weak-axis audit:
+the added M/SP coordinates were too close to ordinary battery state proxies to
+serve as a strong independent `baseline + SP` test. Not causal intervention
+evidence, not repair-flow evidence, and not a universal-law claim.
 
 Date: 2026-04-28
 
@@ -22,6 +24,20 @@ predictive:
 Does a frozen battery M/SP feature set improve out-of-sample prediction over a
 strong battery-domain baseline?
 ```
+
+After the Oxford Part 1 result, the battery branch should treat the maintained
+structure as a future service-envelope rather than capacity alone:
+
+```text
+V_k = future operating paths that can still deliver the required service over
+      horizon H without crossing capacity, voltage, temperature, or safety
+      boundaries.
+```
+
+Capacity remains an important proxy, but not the structure itself. Future
+battery v2 attempts should define margin, recovery, and reconfiguration
+features against this service-envelope and should pass an SP-axis independence
+gate before primary promotion.
 
 If this passes on a real public battery dataset, then a later branch can ask a
 harder question:

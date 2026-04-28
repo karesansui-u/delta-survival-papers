@@ -28,14 +28,15 @@ Bernoulli-CSP theorem layer.
 | Mixed-SAT/NAE-SAT | primary validated | `L_plus_n` log loss `0.0970` vs `raw_plus_n` `0.7525` | drift-weighted constraint quality beats raw count in a mixed Bernoulli-CSP family |
 | Exp43c q-coloring | primary validated | `fm_plus_n` log loss `0.440189` vs best primary raw baseline `2.804019` | first-moment / drift coordinate extrapolates across held-out q better than raw / density / CNF-size baselines |
 | Exp44 Cardinality-SAT | calibration no-go | informative-window gate failed for low-drift mixtures | useful future stress extension, not current validation evidence |
+| Exp44b Cardinality-SAT | calibration no-go | calibration-v1 completed `4800/4800` rows with `0` timeouts and `0` malformed rows, but `M3_threeway_low` failed the monotonicity gate; row audit shows a small local reversal rather than execution failure | useful calibration history for a future noise-aware redesign, not validation evidence |
 
 The current priority is no longer "run Mixed-CSP" or "recover q-coloring".
 Those gates have moved: Mixed-CSP and Exp43c are positive primary evidence.
 The next Route A work, if continued, should either:
 
-1. integrate Exp43c into reader-facing Route A / finite-CSP summaries;
-2. design a fresh Cardinality-SAT / forbidden-pattern stress extension under
-   the threshold-local protocol;
+1. keep Exp43c integrated into reader-facing Route A / finite-CSP summaries;
+2. keep Exp44b Cardinality-SAT v1 closed as calibration no-go unless a fresh
+   versioned redesign is explicitly opened;
 3. pause Route A width and move to G4 / G6 / independent replication.
 
 ## 2. Safe Empirical Route A Extensions
@@ -46,7 +47,7 @@ These are the safe Route A candidates and their current status.
 |---|---|---|---|
 | `3-NAE-SAT` | No special polynomial solver shortcut for generic instances; drift differs from SAT: `log(4/3)` | Present via NAE-SAT Bernoulli templates / collapse wrappers | Already in Mixed-CSP primary |
 | `q`-coloring | Bad edge probability is `1/q`, drift `log(q/(q-1))`; varying `q` gives clean drift variation | Present via q-coloring Bernoulli template / Chernoff wrapper | Validated by Exp43c threshold-local leave-one-q-out primary |
-| Cardinality-SAT family | Drift varies by binomial count, e.g. `log(2^k / C(k,r))`; one family can scan multiple drift levels | Present via exactly-`r`, at-most, at-least wrappers | Good future robustness / dose-response test, but Exp44 current calibration is no-go |
+| Cardinality-SAT family | Drift varies by binomial count, e.g. `log(2^k / C(k,r))`; one family can scan multiple drift levels | Present via exactly-`r`, at-most, at-least wrappers | Good future robustness / dose-response test; Exp44 and Exp44b v1 are calibration no-go |
 | Forbidden-pattern CSP | Direct Bernoulli bad-event semantics; drift is specified by number of forbidden patterns | Present in Bernoulli CSP interface | Good generalization if SAT/NAE passes |
 
 For `q`-coloring, separate the formal and empirical layers:
@@ -155,8 +156,9 @@ Near-term:
 1. Keep Mixed-CSP and Exp43c q-coloring as the two current empirical Route A
    validation anchors.
 2. Integrate Exp43c into the finite-CSP supplement and Route A public wording.
-3. If continuing Route A width, design a fresh Cardinality-SAT / forbidden-
-   pattern stress extension under the threshold-local protocol.
+3. If continuing Route A width, open a fresh versioned Cardinality-SAT
+   redesign; Exp44b v1 is calibration no-go and should not be tuned into a
+   primary.
 
 Hold back:
 
@@ -178,6 +180,7 @@ Current status:
 Mixed-CSP: passed.
 Exp43c q-coloring: passed.
 Cardinality-SAT: calibration no-go under current Exp44 design.
+Exp44b Cardinality-SAT v1: calibration no-go; no primary.
 ```
 
 ## 6. Public Wording
@@ -189,7 +192,8 @@ The formal Bernoulli-CSP layer already covers several horizontal instances.
 Empirically, Mixed-SAT/NAE-SAT and Exp43c q-coloring have both passed frozen
 primary tests in which a first-moment / drift-weighted coordinate beat raw or
 encoding-size baselines out of sample. Cardinality-SAT remains a future stress
-extension rather than current validation evidence. XOR-SAT and LDPC-like
+extension rather than current validation evidence: Exp44 is calibration no-go,
+and Exp44b v1 is also calibration no-go. XOR-SAT and LDPC-like
 examples are useful formal or analogical cases, but they are not primary
 empirical solver-scaling anchors because solver / decoder structure can
 dominate the observed c.

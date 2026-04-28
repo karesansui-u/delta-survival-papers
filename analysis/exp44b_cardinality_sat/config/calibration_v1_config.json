@@ -1,0 +1,27 @@
+{
+  "phase": "exp44b_calibration_v1",
+  "n_values": [60, 100],
+  "instances_per_cell": 50,
+  "timeout_sec": 120,
+  "solver_backend": "minisat22",
+  "per_mixture_config": {
+    "M0_low": {
+      "rho_fm_values": [0.86, 0.88, 0.90, 0.92, 0.94, 0.96, 0.98, 1.00]
+    },
+    "M1_low_med": {
+      "rho_fm_values": [0.86, 0.88, 0.90, 0.92, 0.94, 0.96, 0.98, 1.00]
+    },
+    "M2_bal_low_med": {
+      "rho_fm_values": [0.86, 0.88, 0.90, 0.92, 0.94, 0.96, 0.98, 1.00]
+    },
+    "M3_threeway_low": {
+      "rho_fm_values": [0.64, 0.68, 0.72, 0.76, 0.80, 0.84, 0.88, 0.92]
+    },
+    "M4_threeway_med": {
+      "rho_fm_values": [0.64, 0.68, 0.72, 0.76, 0.80, 0.84, 0.88, 0.92]
+    },
+    "M5_med_high": {
+      "rho_fm_values": [0.64, 0.68, 0.72, 0.76, 0.80, 0.84, 0.88, 0.92]
+    }
+  }
+}

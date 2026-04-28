@@ -98,5 +98,6 @@ mismatches and all support flags true.
 ```
 
 This strengthens G7 for the Mixed-CSP package specifically. It does not close
-the full replication program, because Exp43c outside-group rerun, observational
-branch replication, and non-CSP repair-flow support remain separate workstreams.
+the full replication program, because observational branch replication,
+non-CSP repair-flow support, and independent theoretical review remain separate
+workstreams. Exp43c q-coloring is tracked as a separate Route A package.

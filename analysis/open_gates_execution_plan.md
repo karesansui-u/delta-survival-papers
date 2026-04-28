@@ -3,8 +3,8 @@
 Status: active program-execution memo after Backblaze v2 same-domain
 observational support, the first C-MAPSS FD001 cross-domain loss-only primary,
 Scania horizon-bridge no-support, Oxford Part 1 battery M-profile no-support,
-the completed three-run Mixed-CSP true outside-group rerun set, and the first
-returned Exp43c true outside-group rerun success. This is not a freeze
+the completed three-run Mixed-CSP true outside-group rerun set, and the
+completed three-run Exp43c true outside-group rerun set. This is not a freeze
 document, not validation evidence,
 and not a new claim source.
 
@@ -21,8 +21,8 @@ The four current gaps are:
 
 1. G4 non-CSP repair-flow / maintenance-flow empirical support;
 2. cross-domain non-CSP support beyond the Backblaze drive-reliability branch;
-3. G7 independent replication beyond the completed Mixed-CSP requested set and
-   first returned Exp43c outside rerun;
+3. G7 independent replication beyond the completed Mixed-CSP and Exp43c
+   package-level outside rerun sets;
 4. rival-framework stress testing, especially LDP / rate-function subsumption.
 
 ## 1. Current Starting Position
@@ -45,9 +45,10 @@ Still open:
 - no cross-domain non-CSP empirical support beyond drive reliability;
 - the requested true outside-group Mixed-CSP rerun set has returned cleanly:
   `3/3` completed, `3/3` clean success, `0` pending;
-- the first returned Exp43c true outside-group rerun has returned cleanly:
-  `4000` rows, `0` checked core mismatches, `TIMEOUT = 0`, `MALFORMED = 0`,
-  and the same qualitative support decision;
+- the returned Exp43c true outside-group rerun set has returned cleanly:
+  `3/3` completed, `3/3` clean success, `4000` rows in each returned run,
+  `0` checked core mismatches in each returned run, `TIMEOUT = 0`,
+  `MALFORMED = 0`, and the same qualitative support decision;
 - no completed reader-facing rival-framework comparison.
 
 New information:
@@ -59,6 +60,12 @@ New information:
 - the three returned Mixed-CSP true outside-group reruns completed cleanly:
   each has `12000` primary rows, `0` checked core mismatches, all four support
   flags true, and no reported workaround.
+- Exp44b Cardinality-SAT v1 has now completed calibration only:
+  `4800/4800` rows across `96` cells, `0` timeouts, and `0` malformed rows.
+  Its closeout returned `calibration_no_go` because `M3_threeway_low` failed
+  the monotonicity gate. A row-level audit shows this was a small local
+  reversal rather than execution failure, but no primary-window selection or
+  freeze should be made from this v1 design.
 - Oxford Path Dependent Part 1 has now completed its one-time held-out battery
   M-profile primary and produced a no-support result:
   `primary RMSE = 0.23508673118782375` versus
@@ -316,7 +323,12 @@ repair-flow acquisition path.
 
 Do not rescue Oxford on the same archive. Keep Oxford as a no-support battery
 M-profile outcome and keep the current FD001 result as a weakening outcome,
-not as a failed theory test and not as a hidden support result.
+not as a failed theory test and not as a hidden support result. Record the
+Oxford lesson in the mapping-attempt ledger: the frozen primary was not only
+no-support, but also a weak-axis warning because the added M/SP coordinates
+were too close to ordinary battery state proxies. Future battery v2 work should
+first define the maintained structure as future service-envelope / operation
+path margin, then freeze an independent SP-axis gate before any primary run.
 
 ## 4. Workstream C — G7 Independent Replication
 
@@ -325,9 +337,10 @@ not as a failed theory test and not as a hidden support result.
 The program now has real validated anchors, a Mixed-CSP external package, an
 Exp43c external package, published-remote outside-workspace reruns for both
 Route A packages, final handoff checklists for both, a completed three-run
-Mixed-CSP outside-group rerun set, and one returned Exp43c outside-group rerun
-success. What remains open is outside-group return depth beyond these package
-level successes, not project-side reproducibility.
+Mixed-CSP outside-group rerun set, and a completed three-run Exp43c
+outside-group rerun set. What remains open is independent review and
+outside-group return depth beyond these package-level successes, not
+project-side reproducibility.
 
 ### Principle
 
@@ -352,13 +365,14 @@ Reason:
 ### Next artifact
 
 The plan and final handoff artifacts now exist, all three requested Mixed-CSP
-returns have landed cleanly, and the first Exp43c return has also landed
-cleanly. The next clean move is the current outside-rerun flow:
+returns have landed cleanly, and three Exp43c returns have also landed cleanly.
+The next clean move is now a scoped post-return flow:
 
 1. keep the Mixed-CSP final report scoped to that package;
-2. keep the Exp43c first outside-return report scoped to that package;
-3. collect additional Exp43c returns if they were requested, or move to the
-   next external-facing workstream.
+2. keep the Exp43c outside-return reports scoped to that package;
+3. use `analysis/g7_route_a_true_outside_replication_summary.md` as the
+   package-level G7 summary;
+4. move to independent review or the next external-facing workstream.
 
 ## 5. Workstream D — Rival-Framework Stress Test
 
@@ -451,9 +465,11 @@ Near-term order:
 2. keep the conditional law-side bridge fixed as the narrow non-CSP
    interpretation ceiling;
 3. package one clean G7 replication target;
-4. advance one cross-domain non-CSP empirical candidate without same-archive
+4. keep Exp44b v1 closed as calibration no-go; any Cardinality-SAT retry must
+   be a fresh versioned design, not current validation evidence;
+5. advance one cross-domain non-CSP empirical candidate without same-archive
    rescue;
-5. only then reopen the harder repair-flow empirical path.
+6. only then reopen the harder repair-flow empirical path.
 
 In other words:
 
@@ -546,19 +562,33 @@ Status update:
   `analysis/exp43_qcoloring/exp43c_g7_replication_report_template.md`.
 - the locked Exp43c distribution bundle metadata now exists at
   `analysis/exp43_qcoloring/handoff_exports/LOCKED_BUNDLE_NOTE.md`.
-- the first returned Exp43c true outside-group rerun is now recorded in
-  `analysis/exp43_qcoloring/exp43c_true_outside_rerun_01_philia_channel.md`;
-  it completed `4000` rows with `0` checked core mismatches, `TIMEOUT = 0`,
+- three returned Exp43c true outside-group reruns are now recorded in
+  `analysis/exp43_qcoloring/exp43c_true_outside_rerun_01_philia_channel.md`,
+  `analysis/exp43_qcoloring/exp43c_true_outside_rerun_02_katsumasa1234.md`,
+  and
+  `analysis/exp43_qcoloring/exp43c_true_outside_rerun_03_SCRAPRO.md`;
+  each completed `4000` rows with `0` checked core mismatches, `TIMEOUT = 0`,
   `MALFORMED = 0`, and the same qualitative support decision.
+- the Exp43c true outside-group rerun set now has a final report at
+  `analysis/exp43_qcoloring/exp43c_true_outside_final_report.md`.
+- the Route A package-level outside-return summary now exists at
+  `analysis/g7_route_a_true_outside_replication_summary.md`.
+- Exp44b Cardinality-SAT v1 now exists as a completed calibration no-go at
+  `analysis/exp44b_cardinality_sat/`. Calibration-v1 completed `4800/4800`
+  rows across `96` cells with `0` timeouts and `0` malformed rows, but closeout
+  returned `calibration_no_go` because `M3_threeway_low` failed the
+  monotonicity gate. This is not a freeze, not a primary run, and not
+  validation evidence.
 
 So the next concrete order becomes:
 
-1. collect additional Exp43c outside-group returns if already requested, or
-   keep the first return as the current package-level G7 layer;
-2. choose the next non-CSP empirical branch: NASA Randomized/Recommissioned
+1. keep the two Route A outside-return sets scoped to package-level G7;
+2. open a fresh versioned Cardinality-SAT redesign if Route A width is
+   reopened; do not run primary from Exp44b v1;
+3. choose the next non-CSP empirical branch: NASA Randomized/Recommissioned
    battery feasibility or future repair-flow data acquisition under the
    candidate-criteria gate;
-3. keep Oxford Part 1 as a closed no-support battery M-profile outcome without
+4. keep Oxford Part 1 as a closed no-support battery M-profile outcome without
    same-archive rescue.
 
 This keeps the program moving on the actual open gaps rather than adding more

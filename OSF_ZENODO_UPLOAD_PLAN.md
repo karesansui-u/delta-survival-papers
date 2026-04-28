@@ -38,7 +38,7 @@ canonical map として反映する。
 - OSF file: https://osf.io/download/69f01d8831a90752f1d4ae38/
 - sha256: `91e72ea2fd6d56579e87e09b51d253969af7f79035ccb0d7ab2c9f2d8c6e6e09`
 - uploaded commit: `8e63981` (`Finalize Paper 3 framing and Mixed-CSP outside reruns`)
-- scope: Mixed-CSP requested outside-group rerun set only; `3/3` completed, `3/3` clean success, `0` pending. This does not close Exp43c outside-group rerun, observational-branch replication, or non-CSP repair-flow support.
+- scope: Mixed-CSP requested outside-group rerun set only; `3/3` completed, `3/3` clean success, `0` pending. This bundle predates the later Exp43c `3/3` outside-return completion and does not include Exp43c, observational-branch replication, or non-CSP repair-flow support.
 
 ## Canonical Metadata Packet
 
@@ -165,8 +165,9 @@ Zenodo には、論文本体と英語入口を中心にした trimmed public bun
 |---|---|
 | `00_structural_persistence_integrated_overview_ja_2026-04-19.pdf` | `v2/pdf用/0_構造持続理論の統合版.pdf` |
 | `01_structural_persistence_minimal_form_ja_2026-04-19.pdf` | `v2/pdf用/1_構造持続の最小形式.pdf` |
-| `02_structural_persistence_conditional_derivation_ja_2026-04-19.pdf` | `v2/pdf用/2_構造持続の条件つき導出.pdf` |
-| `03_structural_persistence_balance_principle_ja_2026-04-19.pdf` | `v2/pdf用/3_構造持続の収支原理.pdf` |
+| `02_structural_persistence_balance_principle_ja_2026-04-19.pdf` | `v2/pdf用/2_構造持続の収支原理.pdf` |
+| `03_structural_persistence_balance_principle_details_ja_2026-04-19.pdf` | `v2/pdf用/補論_構造持続の収支原理の詳細展開.pdf` |
+| `80_structural_persistence_conditional_derivation_supplement_ja_2026-04-19.pdf` | `v2/pdf用/補論_構造持続の条件つき導出.pdf` |
 | `91_routec_reasoning_degradation_ja_2026-04-19.pdf` | `v2/pdf用/Companion_RouteC_推論時の構造劣化.pdf` |
 | `92_routec_catastrophic_forgetting_ja_2026-04-19.pdf` | `v2/pdf用/Companion_RouteC_継続学習時の構造的忘却.pdf` |
 | `90_structural_prediction_of_computational_cost_ja_2026-04-19.pdf` | `v2/pdf用/補論_計算コストの構造的予測.pdf` |

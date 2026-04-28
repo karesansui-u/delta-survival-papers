@@ -90,9 +90,10 @@ The current Exp44 grid must not be frozen as a primary validation design.
 
 Allowed next steps:
 
-- write a new Exp44b preregistration that explicitly treats smoke, runtime
-  probe, pilot_v2, and pilot_v3 as calibration and fixes a new threshold-local
-  grid before any primary data;
+- use the fresh Exp44b draft at `analysis/exp44b_cardinality_sat/` only as a
+  review / calibration candidate. It explicitly treats smoke, runtime probe,
+  pilot_v2, and pilot_v3 as calibration and fixes a new threshold-local
+  calibration grid before any primary data;
 - return to Exp43b q-coloring with a new threshold-local preregistration;
 - pause Route A empirical calibration and move to G4/G6 formal mapping work;
 - continue exploratory calibration only if the result is clearly labeled as
@@ -135,6 +136,7 @@ The clean research move is:
 
 ```text
 current Exp44 = exploration / pilot calibration
-next = threshold-local protocol note, Exp44b only if newly preregistered,
+current Exp44b v1 = calibration no-go
+next = fresh versioned Cardinality-SAT redesign if Route A width is reopened,
        or G4/G6 formal mapping
 ```

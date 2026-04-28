@@ -1,8 +1,8 @@
 # Reproduction Guide
 
-This repository currently centers on the `v2` main theory spine (`1` through `3`),
-the Route C companion notes, their PDF builds, the supporting experiment code,
-and the Lean formalization.
+This repository currently centers on the `v2` main theory spine (`1` and `2`),
+the Route C companion notes, the technical supplements, their PDF builds, the
+supporting experiment code, and the Lean formalization.
 
 Raw data, logs, and PDF mirrors are available at [osf.io/mdh7b](https://osf.io/mdh7b).
 
@@ -21,8 +21,12 @@ pip install -r requirements.txt
 Main manuscripts:
 
 - `v2/1_構造持続の最小形式.md`
-- `v2/2_構造持続の条件つき導出.md`
-- `v2/3_構造持続の収支原理.md`
+- `v2/2_構造持続の収支原理.md`
+
+Technical supplements:
+
+- `v2/補論_構造持続の条件つき導出.md`
+- `v2/補論_構造持続の収支原理の詳細展開.md`
 
 Route C companion notes:
 
@@ -32,15 +36,16 @@ Route C companion notes:
 Built PDFs:
 
 - `v2/pdf用/1_構造持続の最小形式.pdf`
-- `v2/pdf用/2_構造持続の条件つき導出.pdf`
-- `v2/pdf用/3_構造持続の収支原理.pdf`
+- `v2/pdf用/補論_構造持続の条件つき導出.pdf`
+- `v2/pdf用/2_構造持続の収支原理.pdf`
+- `v2/pdf用/補論_構造持続の収支原理の詳細展開.pdf`
 - `v2/pdf用/Companion_RouteC_推論時の構造劣化.pdf`
 - `v2/pdf用/Companion_RouteC_継続学習時の構造的忘却.pdf`
 
 Current OSF mirrors:
 
 - Paper 1: <https://osf.io/mdh7b/files/osfstorage/69dde399e43067989d1187e1>
-- Paper 2: <https://osf.io/mdh7b/files/osfstorage/69dde4faa17296e9bb3e7a3b>
+- Conditional derivation supplement: <https://osf.io/mdh7b/files/osfstorage/69dde4faa17296e9bb3e7a3b>
 - Route C companion I (former Paper 3): <https://osf.io/mdh7b/files/osfstorage/69dde3bde1158f542e3e7aec>
 - Route C companion II (former Paper 4): <https://osf.io/mdh7b/files/osfstorage/69dde3c0cc45911aa117d84c>
 
@@ -78,6 +83,22 @@ Current notes:
 - `analysis/route_a_mixed_csp/mixed_csp_true_outside_rerun_03_philia_channel.md`
 - `analysis/route_a_mixed_csp/mixed_csp_true_outside_final_report.md`
 - `analysis/route_a_mixed_csp/mixed_csp_true_outside_interim_report.md`
+
+## Exp43c Q-Coloring Outside-Group Reruns
+
+The Exp43c q-coloring true outside-group rerun stream has completed at the
+current three-return level. Three external executors reran the same frozen
+package and each returned `4000` primary rows, `0` checked core-field
+mismatches, `TIMEOUT = 0`, `MALFORMED = 0`, and the same qualitative support
+decision.
+
+Current notes:
+
+- `analysis/exp43_qcoloring/exp43c_true_outside_rerun_01_philia_channel.md`
+- `analysis/exp43_qcoloring/exp43c_true_outside_rerun_02_katsumasa1234.md`
+- `analysis/exp43_qcoloring/exp43c_true_outside_rerun_03_SCRAPRO.md`
+- `analysis/exp43_qcoloring/exp43c_true_outside_final_report.md`
+- `analysis/g7_route_a_true_outside_replication_summary.md`
 
 ## LLM Experiments (API key required)
 

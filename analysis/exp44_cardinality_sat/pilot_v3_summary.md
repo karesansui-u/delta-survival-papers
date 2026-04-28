@@ -103,18 +103,17 @@ Exp44 has not failed as a theory test, because it has not entered validation.
 The current Exp44 calibration design is inconclusive / not freeze-ready.
 ```
 
-Any future Cardinality-SAT validation should be written as a new Exp44b
-preregistration, explicitly treating Exp44 pilot_v1/v2/v3 as calibration and
-fixing a new grid before primary data.
+The Cardinality-SAT re-entry path was then tried as Exp44b v1 at
+`analysis/exp44b_cardinality_sat/`. It explicitly treated Exp44 pilot_v1/v2/v3
+as calibration and fixed a new calibration-v1 grid before any primary data.
+Exp44b v1 is now calibration no-go, not validation evidence.
 
 ## 6. Recommended next options
 
 The clean next options are:
 
-1. Write Exp44b with a new low-drift-focused grid, explicitly derived from
-   this calibration history.
-2. Return to Exp43b q-coloring with a fine-grid preregistration.
-3. Move to G4/G6 non-CSP formal mapping, since Route A width calibration has
+1. Review Exp44b and, only if accepted, run calibration-only solver execution.
+2. Move to G4/G6 non-CSP formal mapping, since Route A width calibration has
    now produced useful but not validation-ready feedback.
 
 Do not silently continue grid search inside the current Exp44 design.
