@@ -561,7 +561,7 @@ Mode boundaries:
 | `--training-feature-smoke` | converted training tables only; selected field paths, feature-column names, and fit-success/shape diagnostics only; no held-out values, predictions, metrics, support flags, coefficients, or preprocessing statistics |
 | `--allow-primary-run` | fail-closed unless `--confirm-frozen-primary`, converted train/test roots, and frozen feature schema are supplied; emits one-time held-out metrics/support only in the frozen primary command |
 
-Final script SHA256:
+Script SHA256 at the one-time primary run:
 
 ```text
 evaluate_oxford_part1_m_profile.py
@@ -573,6 +573,10 @@ sha256 = db793e04a5c04d79273959e411a3468e39fdd98f209b5ff0a0b15f7ab60c7210
 run_oxford_part1_primary.sh
 sha256 = 4093e81c8db9aeabec2c704dc85f87889cc7acee41f78432b3358b1112a57b1c
 ```
+
+These hashes identify the scripts used for the recorded one-time primary run.
+Later guardrail-hardening commits may change the current script hashes without
+changing the recorded primary result.
 
 ## 15. Output Paths
 

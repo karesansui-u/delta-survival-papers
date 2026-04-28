@@ -97,6 +97,22 @@ analysis/g4_battery_m_profile/replication_outputs/oxford_part1_primary_report.md
 sha256 = 80e721cf2238b439a585a48b6790550c42f70996a99ee004c5ddb63e057c6470
 ```
 
+Execution-time script identities:
+
+```text
+analysis/g4_battery_m_profile/scripts/evaluate_oxford_part1_m_profile.py
+sha256 = 34f239de2452208ded58a10ca14c3a5862c18a0b2b1b7808ff273434f8915aea
+
+analysis/g4_battery_m_profile/scripts/export_oxford_part1_training_tables.m
+sha256 = db793e04a5c04d79273959e411a3468e39fdd98f209b5ff0a0b15f7ab60c7210
+
+analysis/g4_battery_m_profile/scripts/run_oxford_part1_primary.sh
+sha256 = 4093e81c8db9aeabec2c704dc85f87889cc7acee41f78432b3358b1112a57b1c
+```
+
+These are the script hashes at the time of the recorded one-time primary run.
+Later guardrail-hardening changes do not change this result.
+
 ## 6. Non-Claims
 
 This result does not claim:

@@ -173,5 +173,9 @@ python3 analysis/g4_battery_m_profile/scripts/test_oxford_primary_contract.py
 Do not rerun the Oxford Part 1 primary as a new primary on the same archive.
 Any future execution must be labeled as a rerun.
 
+The checked-in result note is now used as a sentinel. The primary runner and
+direct evaluator refuse another primary-labeled execution after the result note
+exists unless rerun mode and rerun-labeled paths are explicitly supplied.
+
 NASA Randomized/Recommissioned is a strong second candidate if exact archive
 access and parsing are clean.

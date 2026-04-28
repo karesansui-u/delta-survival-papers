@@ -38,6 +38,9 @@ from typing import Any
 H_COUNT = 1
 TRAIN_CELL_IDS = {4, 8, 10, 14, 15, 18, 19, 20}
 TEST_CELL_IDS = {3, 9, 11, 12}
+DEFAULT_PRIMARY_RESULT_NOTE = Path(
+    "analysis/g4_battery_m_profile/oxford_path_dependent_primary_result_note.md"
+)
 
 GROUP_ARCHIVES = ["Group_1.zip", "Group_2.zip", "Group_3.zip", "Group_4.zip"]
 REQUIRED_FILES = [
@@ -133,6 +136,16 @@ def parse_args() -> argparse.Namespace:
         "--confirm-frozen-primary",
         action="store_true",
         help="Required with --allow-primary-run to avoid accidental held-out evaluation.",
+    )
+    parser.add_argument(
+        "--primary-result-note",
+        default="analysis/g4_battery_m_profile/oxford_path_dependent_primary_result_note.md",
+        help="Checked-in result note used as the one-time primary sentinel.",
+    )
+    parser.add_argument(
+        "--allow-primary-rerun",
+        action="store_true",
+        help="Allow an explicitly labeled rerun after the primary result note exists.",
     )
     parser.add_argument(
         "--allow-partial-converted-smoke",
@@ -1273,6 +1286,8 @@ def primary_run(
 
 
 def write_primary_report(path: Path, payload: dict[str, Any]) -> None:
+    if path.exists():
+        raise SystemExit(f"Refusing to overwrite primary report: {path}")
     metrics = payload["metrics"]
     flags = payload["support_flags"]
     lines = [
@@ -1314,6 +1329,39 @@ def write_primary_report(path: Path, payload: dict[str, Any]) -> None:
     path.write_text("\n".join(lines), encoding="utf-8")
 
 
+def path_is_labeled_rerun(path: Path | None) -> bool:
+    return path is not None and "rerun" in str(path).lower()
+
+
+def guard_primary_invocation(args: argparse.Namespace, output: Path) -> None:
+    report = Path(args.primary_report_output) if args.primary_report_output is not None else None
+    if output.exists():
+        raise SystemExit(f"Refusing to overwrite primary output: {output}")
+    if report is not None and report.exists():
+        raise SystemExit(f"Refusing to overwrite primary report: {report}")
+    if not args.confirm_frozen_primary:
+        raise SystemExit("Primary run is fail-closed until --confirm-frozen-primary is supplied.")
+
+    result_notes = {DEFAULT_PRIMARY_RESULT_NOTE, Path(args.primary_result_note)}
+    existing_result_notes = sorted(str(path) for path in result_notes if path.exists())
+    if existing_result_notes and not args.allow_primary_rerun:
+        raise SystemExit(
+            f"Primary result is already recorded at {existing_result_notes[0]}; "
+            "future executions must be explicitly labeled as reruns."
+        )
+    if args.allow_primary_rerun:
+        converted_test = Path(args.converted_test_root) if args.converted_test_root is not None else None
+        if not (
+            path_is_labeled_rerun(output)
+            and path_is_labeled_rerun(report)
+            and path_is_labeled_rerun(converted_test)
+        ):
+            raise SystemExit(
+                "--allow-primary-rerun requires rerun-labeled output, report, "
+                "and converted-test paths."
+            )
+
+
 def primary_blocked(root: Path) -> dict[str, Any]:
     entries, unmatched = parse_group_entries(root)
     return {
@@ -1333,7 +1381,8 @@ def main() -> None:
     args = parse_args()
     root = Path(args.root)
     output = Path(args.output)
-    primary_was_blocked = False
+    if args.allow_primary_run:
+        guard_primary_invocation(args, output)
 
     if args.metadata_only:
         payload = metadata_only(root)
@@ -1357,30 +1406,24 @@ def main() -> None:
             Path(args.feature_schema),
         )
     else:
-        if not args.confirm_frozen_primary:
-            payload = primary_blocked(root)
-            primary_was_blocked = True
-        else:
-            if args.converted_train_root is None:
-                raise SystemExit("--allow-primary-run requires --converted-train-root.")
-            if args.converted_test_root is None:
-                raise SystemExit("--allow-primary-run requires --converted-test-root.")
-            if args.feature_schema is None:
-                raise SystemExit("--allow-primary-run requires --feature-schema.")
-            payload = primary_run(
-                root,
-                Path(args.converted_train_root),
-                Path(args.converted_test_root),
-                Path(args.feature_schema),
-                Path(args.primary_report_output) if args.primary_report_output is not None else None,
-            )
+        if args.converted_train_root is None:
+            raise SystemExit("--allow-primary-run requires --converted-train-root.")
+        if args.converted_test_root is None:
+            raise SystemExit("--allow-primary-run requires --converted-test-root.")
+        if args.feature_schema is None:
+            raise SystemExit("--allow-primary-run requires --feature-schema.")
+        payload = primary_run(
+            root,
+            Path(args.converted_train_root),
+            Path(args.converted_test_root),
+            Path(args.feature_schema),
+            Path(args.primary_report_output) if args.primary_report_output is not None else None,
+        )
 
     output.parent.mkdir(parents=True, exist_ok=True)
     with output.open("w", encoding="utf-8") as handle:
         json.dump(payload, handle, ensure_ascii=False, indent=2, sort_keys=True)
         handle.write("\n")
-    if primary_was_blocked:
-        raise SystemExit("Primary run is fail-closed until the freeze manifest is promoted.")
 
 
 if __name__ == "__main__":

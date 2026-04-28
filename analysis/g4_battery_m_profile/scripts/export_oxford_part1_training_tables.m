@@ -1,4 +1,4 @@
-function export_oxford_part1_training_tables(root_dir, output_root, mode, max_records)
+function export_oxford_part1_training_tables(root_dir, output_root, mode, max_records, confirm_heldout_primary)
 % Export Oxford Path Dependent Part 1 MATLAB tables for frozen runner modes.
 %
 % This converter is intentionally no-peek:
@@ -22,10 +22,20 @@ end
 if nargin < 4 || isempty(max_records)
     max_records = Inf;
 end
+if nargin < 5
+    confirm_heldout_primary = '';
+end
 
 allowed_modes = {'train_smoke', 'heldout_primary'};
 if ~ismember(mode, allowed_modes)
     error('Unsupported mode: %s', mode);
+end
+if strcmp(mode, 'heldout_primary')
+    env_confirm = getenv('OXFORD_CONFIRM_HELDOUT_PRIMARY');
+    if ~(strcmp(confirm_heldout_primary, 'CONFIRM_HELDOUT_PRIMARY') || strcmp(env_confirm, '1'))
+        error(['heldout_primary conversion requires explicit confirmation. ', ...
+            'Use the guarded one-time primary runner or pass CONFIRM_HELDOUT_PRIMARY.']);
+    end
 end
 if ~(isnumeric(max_records) && isscalar(max_records) && max_records > 0)
     error('max_records must be a positive scalar or Inf.');
@@ -44,6 +54,9 @@ if any(ismember(train_cell_ids, heldout_cell_ids))
     error('Train/test cell ID sets overlap.');
 end
 
+if isfolder(output_root) && dir_has_entries(output_root)
+    error('Refusing to write into non-empty output root: %s', output_root);
+end
 ensure_dir(output_root);
 tables_root = fullfile(output_root, 'tables');
 ensure_dir(tables_root);
@@ -290,6 +303,12 @@ function ensure_dir(path)
 if ~isfolder(path)
     mkdir(path);
 end
+end
+
+function has_entries = dir_has_entries(path)
+listing = dir(path);
+names = {listing.name};
+has_entries = any(~ismember(names, {'.', '..'}));
 end
 
 function cleanup_dir(path)

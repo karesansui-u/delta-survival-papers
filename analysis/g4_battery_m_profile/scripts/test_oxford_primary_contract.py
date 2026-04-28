@@ -165,6 +165,8 @@ def run_primary(
     report: Path,
     *,
     confirm: bool,
+    primary_result_note: Path | None = None,
+    allow_primary_rerun: bool = False,
 ) -> subprocess.CompletedProcess[str]:
     script = repo_root / "analysis/g4_battery_m_profile/scripts/evaluate_oxford_part1_m_profile.py"
     command = [
@@ -186,6 +188,10 @@ def run_primary(
     ]
     if confirm:
         command.append("--confirm-frozen-primary")
+    if primary_result_note is not None:
+        command.extend(["--primary-result-note", str(primary_result_note)])
+    if allow_primary_rerun:
+        command.append("--allow-primary-rerun")
     return subprocess.run(
         command,
         cwd=repo_root,
@@ -273,6 +279,7 @@ def main() -> None:
         schema_path = tmp_root / "schema.json"
         write_schema(schema_path)
 
+        blocked_output = tmp_root / "blocked.json"
         expect_fail(
             "primary_without_confirmation",
             run_primary(
@@ -281,30 +288,84 @@ def main() -> None:
                 converted_train_root,
                 converted_test_root,
                 schema_path,
-                tmp_root / "blocked.json",
+                blocked_output,
                 tmp_root / "blocked.md",
                 confirm=False,
             ),
             "Primary run is fail-closed",
         )
+        if blocked_output.exists():
+            raise SystemExit("primary_without_confirmation wrote an output file.")
 
+        rerun_heldout_root = tmp_root / "rerun_converted_heldout"
+        write_converted_root(rerun_heldout_root, heldout_specs, split="heldout")
+        primary_output = tmp_root / "rerun_primary.json"
+        primary_report = tmp_root / "rerun_primary.md"
         expect_pass(
-            "primary_with_confirmation",
+            "primary_rerun_with_confirmation",
+            run_primary(
+                repo_root,
+                data_root,
+                converted_train_root,
+                rerun_heldout_root,
+                schema_path,
+                primary_output,
+                primary_report,
+                confirm=True,
+                allow_primary_rerun=True,
+            ),
+            primary_output,
+            primary_report,
+        )
+
+        expect_fail(
+            "primary_output_overwrite",
             run_primary(
                 repo_root,
                 data_root,
                 converted_train_root,
                 converted_test_root,
                 schema_path,
-                tmp_root / "primary.json",
-                tmp_root / "primary.md",
+                primary_output,
+                tmp_root / "primary_overwrite.md",
                 confirm=True,
+                allow_primary_rerun=True,
             ),
-            tmp_root / "primary.json",
-            tmp_root / "primary.md",
+            "Refusing to overwrite primary output",
         )
 
-        bad_heldout_root = tmp_root / "bad_heldout"
+        expect_fail(
+            "recorded_primary_requires_rerun_label",
+            run_primary(
+                repo_root,
+                data_root,
+                converted_train_root,
+                converted_test_root,
+                schema_path,
+                tmp_root / "second_primary.json",
+                tmp_root / "second_primary.md",
+                confirm=True,
+            ),
+            "Primary result is already recorded",
+        )
+
+        expect_fail(
+            "rerun_requires_all_paths_labeled",
+            run_primary(
+                repo_root,
+                data_root,
+                converted_train_root,
+                converted_test_root,
+                schema_path,
+                tmp_root / "rerun_primary_2.json",
+                tmp_root / "rerun_primary_2.md",
+                confirm=True,
+                allow_primary_rerun=True,
+            ),
+            "rerun-labeled output",
+        )
+
+        bad_heldout_root = tmp_root / "bad_rerun_heldout"
         write_converted_root(bad_heldout_root, heldout_specs + train_specs[:1], split="heldout")
         expect_fail(
             "heldout_manifest_contains_training_cell",
@@ -314,9 +375,10 @@ def main() -> None:
                 converted_train_root,
                 bad_heldout_root,
                 schema_path,
-                tmp_root / "bad_primary.json",
-                tmp_root / "bad_primary.md",
+                tmp_root / "bad_primary_rerun.json",
+                tmp_root / "bad_primary_rerun.md",
                 confirm=True,
+                allow_primary_rerun=True,
             ),
             "forbidden training cell ID",
         )
