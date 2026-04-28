@@ -52,6 +52,7 @@ import Survival.StructuralPersistenceBalancePrinciple
 import Survival.AdmissibleMapInvariants
 import Survival.SaturationDefect
 import Survival.CoarseGraining
+import Survival.AdmissibleMapCompatibility
 import Survival.ResourceBudget
 import Survival.TotalProduction
 import Survival.SecondLawTotalProduction

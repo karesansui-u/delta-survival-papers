@@ -371,6 +371,10 @@ Implemented names include:
 - `SecondLawTotalProduction.expected_sigma_monotone_of_nonnegative_typical_contraction`
 - `AdmissibleMapInvariants.iso_invariance`
 - `AdmissibleMapInvariants.positive_gauge_covariance`
+- `AdmissibleMapCompatibility.feasible_trajectory_commutes`
+- `AdmissibleMapCompatibility.contraction_commutes_along_trajectory`
+- `AdmissibleMapCompatibility.repair_commutes_along_trajectory`
+- `AdmissibleMapCompatibility.cumulative_net_action_preserved_of_uniform_mass_scaling`
 
 Avoid names like:
 
@@ -382,18 +386,28 @@ entropyAlwaysIncreases
 
 Those would overclaim.
 
-### Immediate action D: saturation-defect Lean spec
+### Immediate action D: saturation-defect Lean spec and exact admissible-map compatibility
 
 Status:
 
 ```text
 readout-level spec done; minimal set-level instantiation done; admissible
-coarse-graining compatibility remains open
+coarse-graining exact compatibility wrappers done
 ```
 
 This is the first genuinely new Lean-facing work suggested by the new
 supplement. The low-risk readout layer and minimal set-level instantiation are
 now implemented in `Survival.SaturationDefect`.
+
+The exact admissible-map compatibility layer is also now reader-facing in
+`Survival.AdmissibleMapCompatibility`.  This wraps the existing
+`Survival.CoarseGraining` interface:
+
+- initial region commutes with the coarse map;
+- the feasible trajectory commutes;
+- contracted intermediate regions commute;
+- repaired intermediate regions commute;
+- under uniform mass scaling, the signed kernel is preserved exactly.
 
 Implemented minimal target:
 
@@ -409,27 +423,31 @@ Reader-facing Lean names:
 - `SaturationDefect.coarseMap_saturationDefectReadout_of_positive_setMass`
 - `SaturationDefect.coarse_cumulativeStageLoss_eq_micro_add_initial_defect_sub_terminal`
 - `SaturationDefect.coarse_cumulativeStageLoss_le_micro_of_terminal_defect_ge_initial`
+- `AdmissibleMapCompatibility.CompatibleCoarseMap`
+- `AdmissibleMapCompatibility.feasible_trajectory_commutes`
+- `AdmissibleMapCompatibility.contraction_commutes_along_trajectory`
+- `AdmissibleMapCompatibility.repair_commutes_along_trajectory`
+- `AdmissibleMapCompatibility.cumulative_net_action_preserved_of_uniform_mass_scaling`
 
-Remaining admissible-map target:
+Remaining defect-controlled admissible-map target:
 
 ```text
-Define the compatibility conditions under which an actual coarse-graining map
-is admissible for a structural-maintenance problem, prove that its feasible
-trajectory and saturation defects instantiate the set-level theorem, and only
-then derive conditional DPI-style monotonicity.
+Combine exact trajectory / contraction / repair compatibility with
+saturation-defect control, so that non-exact coarse-graining can be treated by
+defect terms rather than by unconditional DPI.
 ```
 
-This remaining target touches sets, maps, positive mass assumptions, and logs,
-as well as commutation with contraction / repair, so it is heavier than the
-readout and minimal set-level wrapper work.
+This remaining target touches sets, maps, positive mass assumptions, logs,
+defect monotonicity, and compatibility with contraction / repair. It is
+heavier than the exact compatibility wrapper work.
 
 ## 5. Recommended order
 
 1. Commit the admissible-maps supplement and this roadmap.
 2. Add the reader-facing Sigma theorem map to `lean/PAPER_MAPPING.md`.
 3. Add the low-risk Lean wrappers for Sigma and readout-level Iso/Gauge.
-4. Continue the saturation-defect formalization only at the admissible-map
-   compatibility layer; do not re-open unconditional coarse-graining DPI.
+4. Continue the saturation-defect formalization only at the defect-controlled
+   admissible-map layer; do not re-open unconditional coarse-graining DPI.
 5. Keep Bernoulli-CSP class closure as a limited-class universality target, not
    a full universal-law claim.
 
