@@ -2,7 +2,7 @@
 
 最終更新: 2026-04-28
 
-このメモは、`delta-survival-paper` の公開物を OSF / Zenodo に反映するときの最小セットを固定するためのものです。2026-04-28 の更新では、Paper 1 / Paper 2 を主理論 spine として整えたうえで、v2 本体、補論、Route C companion、Lean 対応表、公開導線を `v2_spine_2026-04-28` として OSF に反映しています。2026-04-19 版以前の bundle は履歴 snapshot として扱います。
+このメモは、`delta-survival-paper` の公開物を OSF / Zenodo に反映するときの最小セットを固定するためのものです。2026-04-28 の更新では、Paper 1 / Paper 2 を主理論 spine として整えたうえで、v2 本体、補論、LLM companion、Lean 対応表、公開導線を `v2_spine_2026-04-28` として OSF に反映しています。2026-04-19 版以前の bundle は履歴 snapshot として扱います。
 
 現在の公開反映状況は次のとおりです。
 
@@ -13,7 +13,7 @@
 
 ローカルでは、reader-facing theorem map を `lean/PAPER_MAPPING.md` に統合済み。Bernoulli CSP
 universality v1.2 は multi-forbidden-pattern witness bridge、exactly-one-SAT、exactly-\(r\)
-cardinality-SAT、at-most / at-least threshold cardinality-SAT までを含む。さらに Route A 非CSP
+cardinality-SAT、at-most / at-least threshold cardinality-SAT までを含む。さらに仕様固定・条件付き構造埋め込み
 skeletons は、指数型、線形過負荷型、累積容量型、臨界パラメータ型の四型分類に圧縮した。
 SAT/CSP 系の個別 OSF 公開リンクは v1.1 archive snapshot を指す。v2 spine bundle では
 `PAPER_MAPPING.md` を canonical map として同梱済み。
@@ -51,7 +51,7 @@ SAT/CSP 系の個別 OSF 公開リンクは v1.1 archive snapshot を指す。v2
 - included spine commit: `6fe9162` (`Align v2 paper spine and references`)
 - sha256: `2afd31f58974982de8a5c6dc68b1539b353dd6dec70f7d58733277e4da0e1fcc`
 - OSF file versions: zip v3, manifest v3
-- scope: current v2 main theory spine, balance-principle supplements, conditional derivation supplement, Route C companions, Lean mapping, public overview, data index, patent notice, citation metadata, and license note. The manifest and public guides use the reader-facing order: construction map, integrated overview, Paper 1, Paper 2, operational discipline, Route A finite-CSP, Route C LLM, resource term \(M\), existing-theory bridges, and Lean / technical details.
+- scope: current v2 main theory spine, balance-principle supplements, conditional derivation supplement, LLM companions, Lean mapping, public overview, data index, patent notice, citation metadata, and license note. The manifest and public guides use the reader-facing order: construction map, integrated overview, Paper 1, Paper 2, operational discipline, specification-fixed finite-CSP, structurally inferred LLM, resource term \(M\), existing-theory bridges, and Lean / technical details.
 
 ## Canonical Metadata Packet
 
@@ -106,7 +106,7 @@ SAT/CSP 系の個別 OSF 公開リンクは v1.1 archive snapshot を指す。v2
 
 - `lean/PAPER_MAPPING.md` を唯一の reader-facing theorem map として同梱
 - `README.md`, `OVERVIEW.md`, `LEAN_FORMALIZATION_README.md` の導線を `PAPER_MAPPING.md` に一本化
-- Route A 非CSP skeletons は四型分類で説明し、個別ファイル一覧は `PAPER_MAPPING.md` に集約
+- 仕様固定・条件付き構造埋め込み skeletons は四型分類で説明し、個別ファイル一覧は `PAPER_MAPPING.md` に集約
 - 旧 SAT/CSP map は現行 tree から外し、git history / OSF archive snapshot の扱いにする
 
 ## 現行アップロード単位
@@ -130,8 +130,8 @@ SAT/CSP 系の個別 OSF 公開リンクは v1.1 archive snapshot を指す。v2
 - `02_structural_persistence_balance_principle_ja_2026-04-28.pdf`
 - `11_structural_persistence_operational_discipline_supplement_ja_2026-04-28.pdf`
 - `17_finite_csp_predictive_power_supplement_ja_2026-04-28.pdf`
-- `05_route_c_companion_inference_degradation_ja_2026-04-28.pdf`
-- `06_route_c_companion_continual_learning_forgetting_ja_2026-04-28.pdf`
+- `05_llm_companion_inference_degradation_ja_2026-04-28.pdf`
+- `06_llm_companion_continual_learning_forgetting_ja_2026-04-28.pdf`
 - `13_resource_term_M_operational_formulation_supplement_ja_2026-04-28.pdf`
 - `15_foster_lyapunov_drift_embedding_supplement_ja_2026-04-28.pdf`
 - `16_non_csp_classical_examples_minimal_anchor_supplement_ja_2026-04-28.pdf`
@@ -198,8 +198,8 @@ Zenodo には、論文本体と英語入口を中心にした trimmed public bun
 | `02_structural_persistence_balance_principle_ja_2026-04-28.pdf` | `v2/pdf用/2_構造持続の収支原理.pdf` |
 | `03_structural_persistence_balance_details_supplement_ja_2026-04-28.pdf` | `v2/pdf用/補論_構造持続の収支原理の詳細展開.pdf` |
 | `04_structural_persistence_conditional_derivation_supplement_ja_2026-04-28.pdf` | `v2/pdf用/補論_構造持続の条件つき導出.pdf` |
-| `05_route_c_companion_inference_degradation_ja_2026-04-28.pdf` | `v2/pdf用/Companion_RouteC_推論時の構造劣化.pdf` |
-| `06_route_c_companion_continual_learning_forgetting_ja_2026-04-28.pdf` | `v2/pdf用/Companion_RouteC_継続学習時の構造的忘却.pdf` |
+| `05_llm_companion_inference_degradation_ja_2026-04-28.pdf` | `v2/pdf用/Companion_RouteC_推論時の構造劣化.pdf` |
+| `06_llm_companion_continual_learning_forgetting_ja_2026-04-28.pdf` | `v2/pdf用/Companion_RouteC_継続学習時の構造的忘却.pdf` |
 | `10_structural_persistence_construction_map_supplement_ja_2026-04-28.pdf` | `v2/pdf用/補論_構造持続理論の構成地図.pdf` |
 | `11_structural_persistence_operational_discipline_supplement_ja_2026-04-28.pdf` | `v2/pdf用/補論_構造持続理論の運用規律.pdf` |
 | `12_structural_persistence_mapping_procedure_supplement_ja_2026-04-28.pdf` | `v2/pdf用/補論_構造持続写像の標準手順.pdf` |

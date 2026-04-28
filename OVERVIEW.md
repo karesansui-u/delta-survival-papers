@@ -1,6 +1,6 @@
 # Overview
 
-このリポジトリは、構造持続理論に関する `v2` の構成地図、統合版、主理論 spine 2 本、運用規律、Route A/C anchors、および補論群を中心に読むための構成です。
+このリポジトリは、構造持続理論に関する `v2` の構成地図、統合版、主理論 spine 2 本、運用規律、仕様固定構造ドメイン / 構造推定ドメインの検証アンカー、および補論群を中心に読むための構成です。
 
 ## English Entry Points
 
@@ -16,8 +16,8 @@
 3. 最小形式: [`v2/1_構造持続の最小形式.md`](v2/1_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%AE%E6%9C%80%E5%B0%8F%E5%BD%A2%E5%BC%8F.md)
 4. 収支原理: [`v2/2_構造持続の収支原理.md`](v2/2_構造持続の収支原理.md)
 5. 運用規律: [`v2/補論_構造持続理論の運用規律.md`](v2/補論_構造持続理論の運用規律.md)
-6. Route A / 有限CSP: [`v2/補論_有限CSPにおける構造持続の予測力.md`](v2/%E8%A3%9C%E8%AB%96_%E6%9C%89%E9%99%90CSP%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%AE%E4%BA%88%E6%B8%AC%E5%8A%9B.md)
-7. Route C / LLM: [`v2/Companion_RouteC_推論時の構造劣化.md`](v2/Companion_RouteC_推論時の構造劣化.md), [`v2/Companion_RouteC_継続学習時の構造的忘却.md`](v2/Companion_RouteC_継続学習時の構造的忘却.md)
+6. 仕様固定構造ドメイン / 有限CSP: [`v2/補論_有限CSPにおける構造持続の予測力.md`](v2/%E8%A3%9C%E8%AB%96_%E6%9C%89%E9%99%90CSP%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%AE%E4%BA%88%E6%B8%AC%E5%8A%9B.md)
+7. 構造推定ドメイン / LLM: [`v2/Companion_RouteC_推論時の構造劣化.md`](v2/Companion_RouteC_推論時の構造劣化.md), [`v2/Companion_RouteC_継続学習時の構造的忘却.md`](v2/Companion_RouteC_継続学習時の構造的忘却.md)
 8. 資源項 \(M\): [`v2/補論_構造持続における資源項Mの操作的定式化.md`](v2/補論_構造持続における資源項Mの操作的定式化.md)
 9. 既存理論 bridge: [`v2/補論_構造持続の収支原理とFoster-Lyapunovドリフトの形式的埋め込み.md`](v2/補論_構造持続の収支原理とFoster-Lyapunovドリフトの形式的埋め込み.md), [`v2/補論_非CSP古典例における構造持続の収支原理の最小アンカー.md`](v2/補論_非CSP古典例における構造持続の収支原理の最小アンカー.md)
 10. Lean / 詳細補論: [`lean/PAPER_MAPPING.md`](lean/PAPER_MAPPING.md), [`v2/補論_構造持続の条件つき導出.md`](v2/補論_構造持続の条件つき導出.md), [`v2/補論_構造持続の収支原理の詳細展開.md`](v2/補論_構造持続の収支原理の詳細展開.md)
@@ -36,7 +36,7 @@
 - [`v2/補論_構造持続理論の構成地図.md`](v2/補論_構造持続理論の構成地図.md)
   主理論 spine、companion papers、補論群、Lean 形式化、実証アンカーを層として読むための構成地図。
 - [`v2/補論_構造持続理論の運用規律.md`](v2/補論_構造持続理論の運用規律.md)
-  探索的写像、凍結検証、Route / G6 / support / no-support / silence の判定語彙。
+  探索的写像、凍結検証、構造観測可能性の層 / G6 / support / no-support / silence の判定語彙。
 
 ## Main Theory Spine
 
@@ -47,7 +47,7 @@
 
 条件つき導出と弱依存境界は、主線から外して [`v2/補論_構造持続の条件つき導出.md`](v2/補論_構造持続の条件つき導出.md) に置いています。
 
-## Route C Companion Anchors
+## LLM Companion Anchors
 
 1. [`v2/Companion_RouteC_推論時の構造劣化.md`](v2/Companion_RouteC_推論時の構造劣化.md)
    推論時の未整理矛盾と外部代謝。
@@ -79,8 +79,8 @@ Latest OSF mirror (Bernoulli-CSP links are the v1.1 archive snapshot):
 - [SAT chain v1.0 update bundle (zip)](https://osf.io/mdh7b/files/osfstorage/69e7007e01466b7c85fd83fb)
 - [Paper 1](https://osf.io/mdh7b/files/osfstorage/69dde399e43067989d1187e1)
 - [Conditional derivation supplement](https://osf.io/mdh7b/files/osfstorage/69dde4faa17296e9bb3e7a3b)
-- [Route C companion I](https://osf.io/mdh7b/files/osfstorage/69dde3bde1158f542e3e7aec)
-- [Route C companion II](https://osf.io/mdh7b/files/osfstorage/69dde3c0cc45911aa117d84c)
+- [LLM companion I](https://osf.io/mdh7b/files/osfstorage/69dde3bde1158f542e3e7aec)
+- [LLM companion II](https://osf.io/mdh7b/files/osfstorage/69dde3c0cc45911aa117d84c)
 
 ## What Is Secondary
 
@@ -98,6 +98,6 @@ Latest OSF mirror (Bernoulli-CSP links are the v1.1 archive snapshot):
 
 Mixed-CSP の true outside-group rerun は requested set が完了しており、3 名の外部実行者がそれぞれ `12000` 行 primary run、`0` checked core mismatches、support flags 全 true を返している。これは Mixed-CSP package に限った replication closure であり、詳細は [`analysis/route_a_mixed_csp/mixed_csp_true_outside_final_report.md`](analysis/route_a_mixed_csp/mixed_csp_true_outside_final_report.md) を参照。
 
-Exp43c q-coloring についても、3 名の外部実行者が同じ frozen package を再実行し、それぞれ `4000` 行 primary run、`0` checked core mismatches、`TIMEOUT = 0`、`MALFORMED = 0`、および同じ qualitative support decision を返している。これは Exp43c package に限った replication closure であり、詳細は [`analysis/exp43_qcoloring/exp43c_true_outside_final_report.md`](analysis/exp43_qcoloring/exp43c_true_outside_final_report.md) を参照。二つの Route A package をまとめた概要は [`analysis/g7_route_a_true_outside_replication_summary.md`](analysis/g7_route_a_true_outside_replication_summary.md) に置いている。
+Exp43c q-coloring についても、3 名の外部実行者が同じ frozen package を再実行し、それぞれ `4000` 行 primary run、`0` checked core mismatches、`TIMEOUT = 0`、`MALFORMED = 0`、および同じ qualitative support decision を返している。これは Exp43c package に限った replication closure であり、詳細は [`analysis/exp43_qcoloring/exp43c_true_outside_final_report.md`](analysis/exp43_qcoloring/exp43c_true_outside_final_report.md) を参照。二つの仕様固定構造ドメイン package をまとめた概要は [`analysis/g7_route_a_true_outside_replication_summary.md`](analysis/g7_route_a_true_outside_replication_summary.md) に置いている。
 
-現在の Lean 側は `139 Survival modules`、`sorry = 0`、`axiom = 0` の状態で、最小形式、弱依存、粗視化、停止時刻崩壊、有限状態 Markov 例、SAT/k-SAT Chernoff-KL chain、固定割当 NAE-SAT / XOR-SAT exposure instance、固定 coloring の q-coloring edge exposure instance、finite-alphabet forbidden-pattern CSP instance、hypergraph-coloring specialization、multi-forbidden-pattern witness bridge、exactly-one-SAT witness specialization、exactly-`r` cardinality-SAT family specialization、at-most / at-least threshold cardinality-SAT specialization、numerical sanity checks、さらに Route A 非CSP skeletons（指数型、線形過負荷型、累積容量型、臨界パラメータ型）までを含む。SAT/k-SAT の finite-horizon / iid Bernoulli bad-event exposure は **SAT chain v1.0**、横断的な Bernoulli-CSP 層は **Bernoulli CSP universality v1.2** としてローカルに凍結している。OSF mirror は現時点では v1.1 archive snapshot を指している。
+現在の Lean 側は `139 Survival modules`、`sorry = 0`、`axiom = 0` の状態で、最小形式、弱依存、粗視化、停止時刻崩壊、有限状態 Markov 例、SAT/k-SAT Chernoff-KL chain、固定割当 NAE-SAT / XOR-SAT exposure instance、固定 coloring の q-coloring edge exposure instance、finite-alphabet forbidden-pattern CSP instance、hypergraph-coloring specialization、multi-forbidden-pattern witness bridge、exactly-one-SAT witness specialization、exactly-`r` cardinality-SAT family specialization、at-most / at-least threshold cardinality-SAT specialization、numerical sanity checks、さらに仕様固定・条件付き構造埋め込み skeletons（指数型、線形過負荷型、累積容量型、臨界パラメータ型）までを含む。SAT/k-SAT の finite-horizon / iid Bernoulli bad-event exposure は **SAT chain v1.0**、横断的な Bernoulli-CSP 層は **Bernoulli CSP universality v1.2** としてローカルに凍結している。OSF mirror は現時点では v1.1 archive snapshot を指している。

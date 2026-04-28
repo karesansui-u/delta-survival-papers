@@ -4,7 +4,7 @@
 
 要旨
 
-本補論は、構造持続の最小形式 $S = M e^{-L}$ のうち、資源項 $M$ を単一スカラーとして扱うのをやめ、維持能力成分と外部供給 channel に分ける枠組みを与える。構造持続の最小形式と条件つき導出補論が構造消耗側の累積構造消耗量 $L$ を対数比の構造消耗として特徴づけ、Route C companion I と II が LLM 推論と継続学習における構造消耗と支援の相互作用を経験的に観察したのに対し、本補論は支える側の操作的座標系を提供する。
+本補論は、構造持続の最小形式 $S = M e^{-L}$ のうち、資源項 $M$ を単一スカラーとして扱うのをやめ、維持能力成分と外部供給 channel に分ける枠組みを与える。構造持続の最小形式と条件つき導出補論が構造消耗側の累積構造消耗量 $L$ を対数比の構造消耗として特徴づけ、LLM companion I と II が LLM 推論と継続学習における構造消耗と支援の相互作用を経験的に観察したのに対し、本補論は支える側の操作的座標系を提供する。
 
 具体的には、内部の維持能力成分を $M^{\mathrm{int}} = (M_{\mathrm{buffer}}^{\mathrm{int}}, M_{\mathrm{recovery}}^{\mathrm{int}}, M_{\mathrm{reconfiguration}}^{\mathrm{int}})$、外部供給 channel を $M^{\mathrm{external}} = (M_{\mathrm{ext}\to\mathrm{buffer}}, M_{\mathrm{ext}\to\mathrm{recovery}}, M_{\mathrm{ext}\to\mathrm{reconfiguration}})$ と分け、raw resource $R$ から維持能力成分への写像 $\gamma_i$、内部能力と外部供給を合わせる集約 $\widetilde M_j = A_j(M^{\mathrm{int}}_j, M_{\mathrm{ext}\to j})$、複数の effective component を結合する $\Phi$ を通じて、系の構造持続量を
 \[
@@ -12,7 +12,7 @@
 \]
 と書き直す。
 
-本補論の役割は、普遍法則そのものを主張することではなく、構造消耗量と回復量の収支を現実ドメインへ写すときの $M$ 側の操作化を与えることである。その操作的帰結として、同じ $L$、同じ raw resource $R$、同じ scalar $M_{\mathrm{total}}$ のもとでも、維持能力成分の構成が異なれば、最初に強化すべき成分は異なる、という intervention-ranking 型の検査標的が得られる。本補論はこの標的を software / SaaS を最初の Route C ドメインとして具体化し、$\rho_i$、$\Phi$、$A_j$ の候補族に対する頑健性検査を含む、事前固定可能な経験的検証プロトコルを与える。
+本補論の役割は、普遍法則そのものを主張することではなく、構造消耗量と回復量の収支を現実ドメインへ写すときの $M$ 側の操作化を与えることである。その操作的帰結として、同じ $L$、同じ raw resource $R$、同じ scalar $M_{\mathrm{total}}$ のもとでも、維持能力成分の構成が異なれば、最初に強化すべき成分は異なる、という intervention-ranking 型の検査標的が得られる。本補論はこの標的を software / SaaS を最初の構造推定ドメインとして具体化し、$\rho_i$、$\Phi$、$A_j$ の候補族に対する頑健性検査を含む、事前固定可能な経験的検証プロトコルを与える。
 
 本補論は新しい普遍法則の証明ではない。また、経験的 pilot を完了した論文でもない。本補論の位置づけは、構造持続の収支原理の回復量・資源入力を実ドメインで測るための support-side operational mapping である。
 
@@ -23,11 +23,11 @@
 \[
   m(V^{(n)}) = m(V^{(0)}) e^{-L_n}
 \]
-を恒等式として与えた。条件つき導出補論は、この指数表現が A1–A2 のもとで恒等式として成り立ち、段階構造消耗生成過程の弱依存のもとでも指数境界として安定に保たれることを述べた。Route C companion I は、LLM の長期対話において未整理矛盾が有効推論経路を削る過程を 810 試行と対話実験で示し、Route C companion II は、LoRA ベース継続学習において、前提更新が依存知識の再編を壊す破滅的忘却を示した。
+を恒等式として与えた。条件つき導出補論は、この指数表現が A1–A2 のもとで恒等式として成り立ち、段階構造消耗生成過程の弱依存のもとでも指数境界として安定に保たれることを述べた。LLM companion I は、LLM の長期対話において未整理矛盾が有効推論経路を削る過程を 810 試行と対話実験で示し、LLM companion II は、LoRA ベース継続学習において、前提更新が依存知識の再編を壊す破滅的忘却を示した。
 
 これらはいずれも L という「削られる側」の座標を具体化する方向に集中している。
 
-本補論は新しい普遍法則の証明ではない。本補論は、支える側の操作的座標系である。構造持続の最小形式と条件つき導出補論が与えた structural consumption \(L\)、および Route C companion I/II で経験的に観察された構造消耗と支援の相互作用を前提として、構造消耗を回復する資源・修復入力を実ドメインでどう記録するかを問う。維持能力成分の分解にもとづく intervention ranking は、その操作化から得られる検査標的であって、普遍理論の中核そのものではない。
+本補論は新しい普遍法則の証明ではない。本補論は、支える側の操作的座標系である。構造持続の最小形式と条件つき導出補論が与えた structural consumption \(L\)、および LLM companion I/II で経験的に観察された構造消耗と支援の相互作用を前提として、構造消耗を回復する資源・修復入力を実ドメインでどう記録するかを問う。維持能力成分の分解にもとづく intervention ranking は、その操作化から得られる検査標的であって、普遍理論の中核そのものではない。
 
 Paper 1 の最小形式 $S = M e^{-L}$ にはもう一つの側があり、それが有効維持資源 M である。M は「L と独立に、構造がどれだけ持ちこたえられるか」を担う量として導入されたが、既存分冊ではその内部構造はほとんど議論されていない。補論「構造持続写像の標準手順」(以下 補論B と呼ぶ) は運用展開
 \[
@@ -58,29 +58,29 @@ Paper 1 の最小形式 $S = M e^{-L}$ にはもう一つの側があり、そ�
 
 1.3 立場と範囲
 
-本補論の立場は、主理論 spine、Route C companion、および補論群と整合するように、以下のように限定する。
+本補論の立場は、主理論 spine、LLM companion、および補論群と整合するように、以下のように限定する。
 
 - 本補論は M の完全理論ではない。現行スカラー M を維持能力成分ベクトルへ分解するための分析フレームである。
 - 本補論は構造持続の収支原理の中核ではなく、その回復量・資源入力を実ドメインへ写す操作化層である。
 - 本補論では**介入順位予測**を、維持能力成分の分解の操作的帰結として一つの検査標的に置く。崩壊プロファイルや時間発展主張は後続の拡張とみなす。
 - 本補論は最初のドメインとしてソフトウェア / SaaS を置き、four-domain comparison や普遍理論の宣言には進まない。
 - 本補論は Paper 1 §3 の対数比の一意性定理と同じ設計原理 (Cauchy 関数方程式と連続性から一意関数形を強制する) を M 側に移植する候補を持つ。§2.5 では、この表現補題候補を本補論の短い theoretical pointer として置き、証明と公理列挙の詳細は別稿の補論に委ねる。
-- 本補論は Route A の普遍法則宣言を行わない。ソフトウェアは Route C として扱う。
+- 本補論は仕様固定構造ドメインの普遍法則宣言を行わない。ソフトウェアは構造推定ドメインとして扱う。
 
 ここでいう介入順位予測とは、同じ L、同じ R、同じスカラー量 $M_{\mathrm{total}}$ のもとで、異なる維持能力成分の構成を持つ二つの系では、有効な介入の順位が異なるという予測である。これは静学式 $S = \Phi(M) e^{-L}$ の範囲で検査可能であり、補論B の手順 4.5 (基準モデルに対する追加予測力) に直接対応する。
 
 本補論で扱う対象構造は、Paper 1 §2 の適用可能性条件 P1–P5 を満たすもの、すなわち観測前に対象構造・測度・制約列・時間地平が事前固定された構造維持問題に限る。観測後に F、$\Sigma$、R、成分集合を選び直してよいなら、本補論の予測は事後的適合によって空虚化するからである。
 
-1.4 Route C companion I / II との概観的接続
+1.4 LLM companion I / II との概観的接続
 
-§2 の維持能力成分の分解を置くと、Route C companion I と II の具体的観察は、それぞれ M の異なる成分として自然に読み直される。詳細な対応は §3 に委ねるが、概観を述べておく。
+§2 の維持能力成分の分解を置くと、LLM companion I と II の具体的観察は、それぞれ M の異なる成分として自然に読み直される。詳細な対応は §3 に委ねるが、概観を述べておく。
 
-- Route C companion I の scope-as-repair および attribution-as-repair は、「source 分離」という最小の整理作用として働き、未整理矛盾による有効 L 蓄積を局所的に削減する。本補論の枠組みでは、これは base LLM の内部 $M_{\mathrm{recovery}}$ 能力を prompt design が誘導した結果、すなわち in-context $M_{\mathrm{recovery}}$ として読める。
-- Route C companion I の外部代謝 ON/OFF 実験は、対話 LLM 単体では欠けていた $M_{\mathrm{recovery}}$ が外部プロセスから供給された効果の直接観察として位置づけられる。本補論の記法では $M_{\mathrm{ext}\to\mathrm{recovery}}$ である。
-- Route C companion II の LoRA 逐次更新が「蓄積ではなく上書き」に振る舞う結果は、パラメータ更新が partial $M_{\mathrm{reconfiguration}}$ に近い作用を持つが $M_{\mathrm{recovery}}$ を代替しないという、成分分離の経験的支持として読める。
-- Route C companion II の F-v2c は依存構造に沿った選択的再提示によって外部 $M_{\mathrm{recovery}}$ を運用した結果、F-multi は空間分離による部分的 $M_{\mathrm{buffer}}$ / $M_{\mathrm{reconfiguration}}$ の模倣と読める。
+- LLM companion I の scope-as-repair および attribution-as-repair は、「source 分離」という最小の整理作用として働き、未整理矛盾による有効 L 蓄積を局所的に削減する。本補論の枠組みでは、これは base LLM の内部 $M_{\mathrm{recovery}}$ 能力を prompt design が誘導した結果、すなわち in-context $M_{\mathrm{recovery}}$ として読める。
+- LLM companion I の外部代謝 ON/OFF 実験は、対話 LLM 単体では欠けていた $M_{\mathrm{recovery}}$ が外部プロセスから供給された効果の直接観察として位置づけられる。本補論の記法では $M_{\mathrm{ext}\to\mathrm{recovery}}$ である。
+- LLM companion II の LoRA 逐次更新が「蓄積ではなく上書き」に振る舞う結果は、パラメータ更新が partial $M_{\mathrm{reconfiguration}}$ に近い作用を持つが $M_{\mathrm{recovery}}$ を代替しないという、成分分離の経験的支持として読める。
+- LLM companion II の F-v2c は依存構造に沿った選択的再提示によって外部 $M_{\mathrm{recovery}}$ を運用した結果、F-multi は空間分離による部分的 $M_{\mathrm{buffer}}$ / $M_{\mathrm{reconfiguration}}$ の模倣と読める。
 
-これらの接続は、本補論の維持能力成分の分解が既存観察に対する事後的再記述にとどまらず、異なる分冊で観察された現象を共通の座標で読むための座標系を提供することを示唆する。詳細な対応表と、各成分の Route C companion I/II における具体的指標は §3 で与える。
+これらの接続は、本補論の維持能力成分の分解が既存観察に対する事後的再記述にとどまらず、異なる分冊で観察された現象を共通の座標で読むための座標系を提供することを示唆する。詳細な対応表と、各成分の LLM companion I/II における具体的指標は §3 で与える。
 
 
 2. 最小形式
@@ -295,7 +295,7 @@ Lean では、維持能力成分を
 重要な注意として、静的な $N_{\mathrm{eff}}^{(0)}$ をそのまま $M_{\mathrm{reconfiguration}}$ に吸収しないこと。ドメインが再編を通じて選択肢を再生させるケース以外では、$N_{\mathrm{eff}}^{(0)}$ と $M_{\mathrm{reconfiguration}}$ は別物として保つ方が安全である。本補論は補論 B を上書きするのではなく、補論 B の右辺の $M$ 側を維持能力成分へ分解して再解釈するものとして位置づける。
 
 
-3. Route C companion I / II の成分対応
+3. LLM companion I / II の成分対応
 
 §2 では、有効維持能力を、内部の維持能力成分
 \[
@@ -305,7 +305,7 @@ Lean では、維持能力成分を
 \[
   M^{\mathrm{external}}=(M_{\mathrm{ext}\to\mathrm{buffer}},M_{\mathrm{ext}\to\mathrm{recovery}},M_{\mathrm{ext}\to\mathrm{reconfiguration}})
 \]
-に分けた。本節では、この component / channel 分解を Route C companion I と II の観察に対応づける。ただし、本節の対応は成分値の直接推定ではない。各実験で観察された差分を、どの成分の不足または外部供給を示す indicator として読むのが安全である。
+に分けた。本節では、この component / channel 分解を LLM companion I と II の観察に対応づける。ただし、本節の対応は成分値の直接推定ではない。各実験で観察された差分を、どの成分の不足または外部供給を示す indicator として読むのが安全である。
 
 3.1 対応の原則: 成分と担い手を分ける
 
@@ -320,11 +320,11 @@ Lean では、維持能力成分を
 - in-context $M_{\mathrm{recovery}}$: base system 内の $\gamma_{\mathrm{recovery}}$ を prompt design によって誘導する。
 - $M_{\mathrm{ext}\to\mathrm{recovery}}$: 外部プロセスが repair / resolution を担い、その結果を base system に供給する。
 
-この区別により、Route C companion I の scope-as-repair と外部代謝 ON/OFF を同じ「repair 的効果」として見つつ、供給階層の違いを失わずに記述できる。
+この区別により、LLM companion I の scope-as-repair と外部代謝 ON/OFF を同じ「repair 的効果」として見つつ、供給階層の違いを失わずに記述できる。
 
-3.2 Route C companion I: 推論時矛盾と外部代謝
+3.2 LLM companion I: 推論時矛盾と外部代謝
 
-Route C companion I は、LLM 推論における未整理矛盾の効果を扱った。本補論の観点から見ると、Route C companion I は主に次の二つを示している。
+LLM companion I は、LLM 推論における未整理矛盾の効果を扱った。本補論の観点から見ると、LLM companion I は主に次の二つを示している。
 
 第一に、未整理矛盾は L 側の構造消耗として働く。第二に、その構造消耗を抑えるには、矛盾を範囲づける repair 型の作用が必要である。この repair は、prompt 内で誘導される場合もあれば、外部代謝プロセスによって供給される場合もある。
 
@@ -360,7 +360,7 @@ Exp.41 は、この方向が `gpt-4.1-mini` 固有でないことを検査した
 
 3.2.2 外部代謝 ON/OFF: $M_{\mathrm{ext}\to\mathrm{recovery}}$
 
-Route C companion I の対話実験では、未整理矛盾を外部で検出し、時間ラベルつきの更新対として整理する代謝パイプラインを ON/OFF で比較した。ここで ON は、矛盾更新を外部プロセスが整理し検索可能な形に保持する条件であり、OFF は同じ矛盾を未整理のまま混在させる条件である。
+LLM companion I の対話実験では、未整理矛盾を外部で検出し、時間ラベルつきの更新対として整理する代謝パイプラインを ON/OFF で比較した。ここで ON は、矛盾更新を外部プロセスが整理し検索可能な形に保持する条件であり、OFF は同じ矛盾を未整理のまま混在させる条件である。
 
 gemma3:27b の 180 ターン実験では、対話 LLM と代謝 LLM は同一モデルであるが、代謝は対話呼び出しとは別のプロセスとして行われる。規則＋事実の合算は次であった。
 
@@ -384,15 +384,15 @@ Exp.36 と Exp.39 は、本補論の成分対応そのものではなく、L 側
 
 Exp.36 は、3 モデル × 3 δ 水準 × 3 文脈長 × n=30、合計 810 試行で、文脈長と矛盾の質を操作した。Exp.39 はその中心的方向を prospective comparison として再検査した。これらの結果は、文脈長や制約数だけでは推論性能劣化を説明できず、構造的矛盾の質が大きく効くことを示す。
 
-本補論にとって、この観察は「成分の直接証拠」ではない。むしろ、$\gamma_i(R,\Sigma,F)$ の入力として、L 側の構造が raw count ではなく質的に効くことを示す背景である。したがって本節では、Exp.36 / Exp.39 を $M$ の成分値に対応づけず、Route C companion I の L-side anchor として扱う。
+本補論にとって、この観察は「成分の直接証拠」ではない。むしろ、$\gamma_i(R,\Sigma,F)$ の入力として、L 側の構造が raw count ではなく質的に効くことを示す背景である。したがって本節では、Exp.36 / Exp.39 を $M$ の成分値に対応づけず、LLM companion I の L-side anchor として扱う。
 
-3.3 Route C companion II: LoRA 継続学習と依存再編
+3.3 LLM companion II: LoRA 継続学習と依存再編
 
-Route C companion II は、前提更新を伴う LoRA ベース継続学習が、知識を蓄積するのか、それとも上書きするのかを検査した。本補論の観点から見ると、Route C companion II は $M_{\mathrm{reconfiguration}}$ と $M_{\mathrm{recovery}}$ の分離を鋭く示している。
+LLM companion II は、前提更新を伴う LoRA ベース継続学習が、知識を蓄積するのか、それとも上書きするのかを検査した。本補論の観点から見ると、LLM companion II は $M_{\mathrm{reconfiguration}}$ と $M_{\mathrm{recovery}}$ の分離を鋭く示している。
 
 3.3.1 LoRA 逐次更新: partial $M_{\mathrm{reconfiguration}}$, weak $M_{\mathrm{recovery}}$
 
-LoRA はパラメータを変えるため、局所的には reconfigurative な作用を持つ。新しい課題や前提更新に反応して表現を変えるという意味で、これは partial $M_{\mathrm{reconfiguration}}$ に近い。しかし Route C companion II の主要結果は、その再構成作用が repair / resolution を代替しないことであった。
+LoRA はパラメータを変えるため、局所的には reconfigurative な作用を持つ。新しい課題や前提更新に反応して表現を変えるという意味で、これは partial $M_{\mathrm{reconfiguration}}$ に近い。しかし LLM companion II の主要結果は、その再構成作用が repair / resolution を代替しないことであった。
 
 主要三条件の最終時点の結果は次である。
 
@@ -424,7 +424,7 @@ F-multi が示すのは、部分空間分離によって一部の $M_{\mathrm{bu
 
 3.4 成分対応表
 
-以上をまとめると、Route C companion I / II の観察は次のように成分 indicator と対応づけられる。
+以上をまとめると、LLM companion I / II の観察は次のように成分 indicator と対応づけられる。
 
 | 観察 | 主な indicator | 供給階層 | 主要数値 / 方向 | 読み方 |
 |---|---|---|---|---|
@@ -439,11 +439,11 @@ F-multi が示すのは、部分空間分離によって一部の $M_{\mathrm{bu
 
 この表は、既存結果を成分値として再推定するものではない。既存結果は、それぞれの成分が不足している、または外部から供給されている、という方向を示す indicator である。
 
-3.5 Route C companion II §7.5 の三役分離との接続
+3.5 LLM companion II §7.5 の三役分離との接続
 
-Route C companion II §7.5 は、持続知能に少なくとも三つの役割が必要であると述べた。第一にパラメータ的再編、第二に外部代謝、第三に応答生成の忠実化である。本補論の維持能力成分の分解は、この三役分離を M 側の言葉で整理し直す。
+LLM companion II §7.5 は、持続知能に少なくとも三つの役割が必要であると述べた。第一にパラメータ的再編、第二に外部代謝、第三に応答生成の忠実化である。本補論の維持能力成分の分解は、この三役分離を M 側の言葉で整理し直す。
 
-| Route C companion II の役割 | 本補論の位置づけ | 注意 |
+| LLM companion II の役割 | 本補論の位置づけ | 注意 |
 |---|---|---|
 | パラメータ的再編 | partial $M_{\mathrm{reconfiguration}}$ | 新しい信号に反応するが、repair を代替しない |
 | 外部代謝 | $M_{\mathrm{ext}\to\mathrm{recovery}}$ | 更新履歴と依存関係を外部で整理する |
@@ -451,9 +451,9 @@ Route C companion II §7.5 は、持続知能に少なくとも三つの役割�
 
 ここで output-side realization は第五の維持能力成分ではない。これは、すでに保持・修復・再編された構造が実際の応答へ反映されるかどうかの出力段階であり、本補論の主予測である維持能力成分の構成には含めない。
 
-この対応により、Route C companion II の結論は本補論の介入順位予測へ接続する。条件 (i) 内部に長期的な矛盾解消代謝機構を持たず、条件 (ii) 推論呼び出しの境界を越えて信念を持ち越す機構が弱い系では、最初に効く介入は単なる capacity 増強ではなく、$M_{\mathrm{recovery}}$ の供給である可能性が高い。
+この対応により、LLM companion II の結論は本補論の介入順位予測へ接続する。条件 (i) 内部に長期的な矛盾解消代謝機構を持たず、条件 (ii) 推論呼び出しの境界を越えて信念を持ち越す機構が弱い系では、最初に効く介入は単なる capacity 増強ではなく、$M_{\mathrm{recovery}}$ の供給である可能性が高い。
 
-Route C companion I では、これは in-context scope marker または外部代謝として現れた。Route C companion II では、F-v2c の依存 DAG controller として現れた。どちらも、raw resource を増やすのではなく、衝突をどう整理し直すかを変えている。この点で、Route C companion I / II は本補論の検査標的——同じ L、同じ R、同じ scalar $M_{\mathrm{total}}$ でも維持能力成分の構成が違えば有効介入順位が異なる——への準備的根拠を与える。
+LLM companion I では、これは in-context scope marker または外部代謝として現れた。LLM companion II では、F-v2c の依存 DAG controller として現れた。どちらも、raw resource を増やすのではなく、衝突をどう整理し直すかを変えている。この点で、LLM companion I / II は本補論の検査標的——同じ L、同じ R、同じ scalar $M_{\mathrm{total}}$ でも維持能力成分の構成が違えば有効介入順位が異なる——への準備的根拠を与える。
 
 3.6 非主張
 
@@ -470,15 +470,15 @@ Route C companion I では、これは in-context scope marker または外部�
 
 4. Software / SaaS における写像
 
-本補論の最初の具体ドメインは、software / SaaS / 継続運用される業務システムである。この選択は、ソフトウェアが最も普遍的な対象であるという主張ではない。むしろ、本補論の目的である $M$ の操作的定式化にとって、software / SaaS が扱いやすい Route C ドメインだからである。
+本補論の最初の具体ドメインは、software / SaaS / 継続運用される業務システムである。この選択は、ソフトウェアが最も普遍的な対象であるという主張ではない。むしろ、本補論の目的である $M$ の操作的定式化にとって、software / SaaS が扱いやすい 構造推定ドメインだからである。
 
 理由は三つある。第一に、維持したい機能 $F$ と、それを担う構造 $\Sigma$ を比較的具体的に書ける。第二に、障害、変更、rollback、MTTR、lead time、deploy history などの観測ログが存在しうる。第三に、介入が内部 component ($I_{\mathrm{buffer}}, I_{\mathrm{recovery}}, I_{\mathrm{reconfiguration}}$) と外部供給 channel ($I_{\mathrm{ext}\to\mathrm{buffer}}, I_{\mathrm{ext}\to\mathrm{recovery}}, I_{\mathrm{ext}\to\mathrm{reconfiguration}}$) として比較的自然に定義できる。
 
-4.1 Route C としての位置づけ
+4.1 構造推定ドメインとしての位置づけ
 
-Software / SaaS は、SAT や Mixed-CSP のような Route A ドメインではない。安全な変更経路や有効運用状態の集合を概念的に置くことはできるが、その残存比率 $m(V^{(n)})/m(V^{(0)})$ を自然測度で直接数えることは難しい。したがって、本補論では software を Route C として扱う。
+Software / SaaS は、SAT や Mixed-CSP のような 仕様固定構造ドメインではない。安全な変更経路や有効運用状態の集合を概念的に置くことはできるが、その残存比率 $m(V^{(n)})/m(V^{(0)})$ を自然測度で直接数えることは難しい。したがって、本補論では software を 構造推定ドメインとして扱う。
 
-Route C としての勝ち筋は次である。
+構造推定ドメインとしての勝ち筋は次である。
 
 \begin{quote}
 事前固定した代理構造消耗 $\hat L$ と component predictor が、raw size / age / churn / incident count などの基準モデルより、held-out outcome をよく予測するかを見る。
@@ -523,7 +523,7 @@ Software の $\Sigma$ は、ソースコードの文字列だけではない。$
 - code review checklist
 - operational procedure
 
-ここで、Route C companion I における prompt design との対応が明確になる。Route C companion I の in-context scope marker は、LLM 呼び出し内の protocol / context structure として働いた。Software / SaaS では、runbook、checklist、CI/CD、contract test、review rule、deployment protocol が同じ位置にある。すなわち、これらは単なる raw resource $R$ ではなく、機能を担う構造 $\Sigma$ の一部である。
+ここで、LLM companion I における prompt design との対応が明確になる。LLM companion I の in-context scope marker は、LLM 呼び出し内の protocol / context structure として働いた。Software / SaaS では、runbook、checklist、CI/CD、contract test、review rule、deployment protocol が同じ位置にある。すなわち、これらは単なる raw resource $R$ ではなく、機能を担う構造 $\Sigma$ の一部である。
 
 したがって、§3 で残した tension への本補論の答えは次である。
 
@@ -705,7 +705,7 @@ DeltaLint が主に観測するのは、静的コード内の未整理な前提�
 本補論では、DeltaLint を次のように位置づける。
 
 - DeltaLint は本補論の $M$-framework の実証柱ではない。
-- DeltaLint は Route C companion I の unscoped contradiction / attribution repair に近い L-side static-code extension として、別 note で扱う。
+- DeltaLint は LLM companion I の unscoped contradiction / attribution repair に近い L-side static-code extension として、別 note で扱う。
 - DeltaLint の既存実績は、本補論においては動機づけ以上には使わない。
 - DeltaLint が $M_{\mathrm{recovery}}$ に関与するのは、triage、patch、CI gate、rollback、migration などの repair workflow に接続された場合に限られる。
 
@@ -715,10 +715,10 @@ DeltaLint が主に観測するのは、静的コード内の未整理な前提�
 
 本節では、次を主張しない。
 
-1. Software / SaaS が Route A ドメインであるとは主張しない。
+1. Software / SaaS が仕様固定構造ドメインであるとは主張しない。
 2. $\hat L$ が真の $L$ と同一であるとは主張しない。
 3. $M_i$ が単一の universal metric で測れるとは主張しない。
-4. DeltaLint の既存実績だけで本補論が実証されたとは主張しない。DeltaLint は本補論の主 validation から切り離し、Route C companion I / L-side の static-code extension として別 note で扱う。
+4. DeltaLint の既存実績だけで本補論が実証されたとは主張しない。DeltaLint は本補論の主 validation から切り離し、LLM companion I / L-side の static-code extension として別 note で扱う。
 5. 外部供給 channel が常に望ましいとは主張しない。外部支援は短期維持を助けるが、自律的能力を代替しない場合がある。
 6. $M_{\mathrm{reconfiguration}}$ によって $F$ 自体を変更してよいとは主張しない。
 
@@ -745,7 +745,7 @@ DeltaLint が主に観測するのは、静的コード内の未整理な前提�
 
 6.1 検証対象
 
-本補論では、software / SaaS を Route C ドメインとして扱う。第一段階の broad target と pilot target は、§4.2 で定義した通りである。
+本補論では、software / SaaS を 構造推定ドメインとして扱う。第一段階の broad target と pilot target は、§4.2 で定義した通りである。
 
 \[
   F_{\mathrm{broad}} = \text{safe change continuity}
@@ -1038,7 +1038,7 @@ $A_j$ についても、reasonable candidate は preregistration で固定され
 本節は、次を主張しない。
 
 1. 現時点で本補論の M-framework が実証済みであるとは主張しない。
-2. Software / SaaS が Route A ドメインであるとは主張しない。
+2. Software / SaaS が仕様固定構造ドメインであるとは主張しない。
 3. $\hat L_{\mathrm{pilot}}$ が真の $L$ であるとは主張しない。
 4. DeltaLint が本補論の validation であるとは主張しない。
 5. 単一の $\rho_i$、$\Phi$、$A_j$ が全ドメインで正しいとは主張しない。
@@ -1072,11 +1072,11 @@ $A_j$ についても、reasonable candidate は preregistration で固定され
 
 この operational dataset がない場合、risk prediction の改善は preparatory support に留まる。介入履歴と outcome がない dataset では、本補論の primary claim は fully tested とは言わない。
 
-7.2 Software は Route C であり Route A ではない
+7.2 Software は構造推定ドメインであり仕様固定構造ドメインではない
 
-Software / SaaS は、本補論の最初の具体ドメインとして扱いやすい。しかし、SAT や Mixed-CSP のように、問題設定そのものから自然測度 $m$ と縮小列 $V^{(0)} \supseteq V^{(1)} \supseteq \cdots$ が与えられる Route A ドメインではない。
+Software / SaaS は、本補論の最初の具体ドメインとして扱いやすい。しかし、SAT や Mixed-CSP のように、問題設定そのものから自然測度 $m$ と縮小列 $V^{(0)} \supseteq V^{(1)} \supseteq \cdots$ が与えられる 仕様固定構造ドメインではない。
 
-安全な変更経路や有効運用状態の集合を概念的に置くことはできるが、その残存比率を domain-intrinsic に数えることは難しい。したがって、本補論の software claim は Route C の operational prediction であり、Route A の普遍法則宣言ではない。
+安全な変更経路や有効運用状態の集合を概念的に置くことはできるが、その残存比率を domain-intrinsic に数えることは難しい。したがって、本補論の software claim は構造推定ドメインの operational prediction であり、仕様固定構造ドメインの普遍法則宣言ではない。
 
 7.3 $\hat L_{\mathrm{pilot}}$ は真の $L$ ではない
 
@@ -1148,7 +1148,7 @@ $M_{\mathrm{buffer}}^{\mathrm{int}}$, $M_{\mathrm{recovery}}^{\mathrm{int}}$, $M
 
 7.9 Domain generalization は未完
 
-本補論は software / SaaS を最初の Route C ドメインとして扱う。しかし、$M$ の維持能力成分の分解は、組織、学校、病院、企業、研究チームなどにも自然に現れる可能性がある。
+本補論は software / SaaS を最初の構造推定ドメインとして扱う。しかし、$M$ の維持能力成分の分解は、組織、学校、病院、企業、研究チームなどにも自然に現れる可能性がある。
 
 この cross-domain extension は本補論の主張ではない。本補論では、software-centered に保つ。
 
@@ -1165,7 +1165,7 @@ $M_{\mathrm{buffer}}^{\mathrm{int}}$, $M_{\mathrm{recovery}}^{\mathrm{int}}$, $M
 
 7.10 DeltaLint は並行 track である
 
-DeltaLint は、本補論の main validation ではない。DeltaLint が観測しているのは、主に静的コード中の未整理な前提不整合、scope mismatch、guard 欠落、順序依存、設定干渉である。これは $M$ の維持能力成分の構成ではなく、L-side / Route C companion I static-code extension に近い。
+DeltaLint は、本補論の main validation ではない。DeltaLint が観測しているのは、主に静的コード中の未整理な前提不整合、scope mismatch、guard 欠落、順序依存、設定干渉である。これは $M$ の維持能力成分の構成ではなく、L-side / LLM companion I static-code extension に近い。
 
 したがって、DeltaLint は別 note で扱う。その中心予測は、本補論の介入順位予測ではなく、次である。
 
@@ -1175,7 +1175,7 @@ DeltaLint は、本補論の main validation ではない。DeltaLint が観測�
   \text{generic review}.
 \]
 
-同じ model、同じ frozen context、同じ one-pass budget の下で、structural lens が generic review より unique valid structural root causes を増やすかを検査する。これは本補論の validation ではなく、Route C companion I / L-side の別 track である。将来的には、既存 static tools への追加価値や、検出された分散契約矛盾が後の bug-fix、rollback、regression、maintenance slowdown を予測するかを調べる longitudinal track へ進める。ただし、その段階までは software collapse の直接検証とは呼ばない。
+同じ model、同じ frozen context、同じ one-pass budget の下で、structural lens が generic review より unique valid structural root causes を増やすかを検査する。これは本補論の validation ではなく、LLM companion I / L-side の別 track である。将来的には、既存 static tools への追加価値や、検出された分散契約矛盾が後の bug-fix、rollback、regression、maintenance slowdown を予測するかを調べる longitudinal track へ進める。ただし、その段階までは software collapse の直接検証とは呼ばない。
 
 7.11 次段階の研究課題
 
@@ -1185,13 +1185,13 @@ DeltaLint は、本補論の main validation ではない。DeltaLint が観測�
 
 第二に、四ドメイン比較 (software 以外への拡張) の作成である。組織、学校、病院、企業、研究チームなどにも維持能力成分の分解の自然な対応候補がある (§7.9)。ただし、これは future-work note として独立に起草するのが望ましく、本補論の empirical support には含めない。
 
-第三に、DeltaLint / Route C companion I static-code extension の Phase 2 preregistration への拡張である。これは本補論の validation ではなく、Route C companion I の L-side 延長として別 track で進める。
+第三に、DeltaLint / LLM companion I static-code extension の Phase 2 preregistration への拡張である。これは本補論の validation ではなく、LLM companion I の L-side 延長として別 track で進める。
 
 
 8. 結論
 
 本補論は、構造持続の最小形式 $S = M e^{-L}$ の右辺のうち、支える側の資源項 $M$ を単一スカラーとして扱うのをやめ、維持能力成分と外部供給 channel に分ける枠組みを与えた。内部の維持能力成分を $M_{\mathrm{buffer}}^{\mathrm{int}}, M_{\mathrm{recovery}}^{\mathrm{int}}, M_{\mathrm{reconfiguration}}^{\mathrm{int}}$ に分け、外部供給 channel を $M_{\mathrm{ext}\to\mathrm{buffer}}, M_{\mathrm{ext}\to\mathrm{recovery}}, M_{\mathrm{ext}\to\mathrm{reconfiguration}}$ として、それぞれの実効能力を $\widetilde M_j = A_j(M_j^{\mathrm{int}}, M_{\mathrm{ext}\to j})$ に集約する。そのうえで、$\Phi$ による effective maintenance capacity $M_{\mathrm{eff}} = \Phi(\widetilde M_{\mathrm{buffer}}, \widetilde M_{\mathrm{recovery}}, \widetilde M_{\mathrm{reconfiguration}})$ を通じて、構造持続量を書き直した。
 
-本補論の固有の検査標的は、よりよい risk prediction そのものではなく、維持能力成分の分解にもとづく介入順位予測である。すなわち、同じ $L$、同じ raw resource $R$、同じ scalar $M_{\mathrm{total}}$ のもとでも、維持能力成分の構成が異なれば、最初に強化すべき成分は異なる。本補論はこの標的を software / SaaS を最初の Route C ドメインとして具体化し、$\rho_i$, $\Phi$, $A_j$ の候補族に対する頑健性検査を含む、事前固定可能な経験的検証プロトコルを定式化した。実際の preregistration と pilot 実行は、本補論の外、別の empirical program として進める。
+本補論の固有の検査標的は、よりよい risk prediction そのものではなく、維持能力成分の分解にもとづく介入順位予測である。すなわち、同じ $L$、同じ raw resource $R$、同じ scalar $M_{\mathrm{total}}$ のもとでも、維持能力成分の構成が異なれば、最初に強化すべき成分は異なる。本補論はこの標的を software / SaaS を最初の構造推定ドメインとして具体化し、$\rho_i$, $\Phi$, $A_j$ の候補族に対する頑健性検査を含む、事前固定可能な経験的検証プロトコルを定式化した。実際の preregistration と pilot 実行は、本補論の外、別の empirical program として進める。
 
-本補論は新しい普遍法則の証明ではなく、また empirical pilot 完了論文でもない。本補論の位置づけは、構造持続の収支原理の回復量・資源入力を実ドメインで測るための support-side operational mapping である。構造持続の最小形式と条件つき導出補論が構造消耗側の対数比の構造消耗を特徴づけ、Route C companion I と II が構造消耗と支援の相互作用を経験的に観察したのに対し、本補論は support 側の操作的座標系を提供する。そこから自然に出てくる次段階は、準備された protocol を operational data に適用する経験的 pilot であり、それは本補論の外、別の empirical program として進める。
+本補論は新しい普遍法則の証明ではなく、また empirical pilot 完了論文でもない。本補論の位置づけは、構造持続の収支原理の回復量・資源入力を実ドメインで測るための support-side operational mapping である。構造持続の最小形式と条件つき導出補論が構造消耗側の対数比の構造消耗を特徴づけ、LLM companion I と II が構造消耗と支援の相互作用を経験的に観察したのに対し、本補論は support 側の操作的座標系を提供する。そこから自然に出てくる次段階は、準備された protocol を operational data に適用する経験的 pilot であり、それは本補論の外、別の empirical program として進める。

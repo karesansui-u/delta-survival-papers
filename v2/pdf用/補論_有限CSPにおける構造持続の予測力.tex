@@ -5,11 +5,11 @@
 
 \PaperTitleBlock
   {有限CSPにおける構造持続の予測力}
-  {— Mixed-SAT/NAE-SAT と Exp43c q-coloring による Route A 経験的検証 —}
+  {— Mixed-SAT/NAE-SAT と Exp43c q-coloring による仕様固定構造ドメインの経験的検証 —}
   {2026年4月12日}
 
 \begin{abstract}
-本補論は、構造持続理論の Route A に属する有限制約充足問題において、累積構造消耗 \(L\) が単なる制約数より強い予測情報を持つかを検証する。
+本補論は、構造持続理論の仕様固定構造ドメインに属する有限制約充足問題において、累積構造消耗 \(L\) が単なる制約数より強い予測情報を持つかを検証する。
 
 単一の制約族、たとえば 3-SAT だけ、または NAE-SAT だけを見るなら、各制約の drift は定数である。したがって
 
@@ -89,7 +89,7 @@ model & mean held-out log loss \\
 
 Exp43c の結果は、SAT / NAE-SAT mixed CSP だけでなく、SAT 構文の外側に見える graph-coloring family でも、first-moment / drift coordinate が raw / density / encoding-size baselines より out-of-sample に強いことを示す。ただし、これは absolute q-coloring threshold の予測ではなく、frozen threshold-local window 内での feasibility prediction である。
 
-外部再実行については、Mixed-CSP の requested outside-group rerun set が 3 名の外部実行者により 3/3 clean success として完了した。さらに Exp43c q-coloring でも、3 名の外部実行者が同じ frozen package を再実行し、それぞれ 4,000 行、checked core mismatches 0、TIMEOUT 0、MALFORMED 0、および同じ qualitative support decision を返した。したがって Route A では、Mixed-CSP と Exp43c q-coloring という二つの frozen package について、著者環境外での 3/3 再実行成功が得られている。ただし、これは Route A empirical package の外部再現性を強めるものであり、非CSP branch や理論全体の普遍法則化を単独で閉じるものではない。
+外部再実行については、Mixed-CSP の requested outside-group rerun set が 3 名の外部実行者により 3/3 clean success として完了した。さらに Exp43c q-coloring でも、3 名の外部実行者が同じ frozen package を再実行し、それぞれ 4,000 行、checked core mismatches 0、TIMEOUT 0、MALFORMED 0、および同じ qualitative support decision を返した。したがって仕様固定構造ドメインでは、Mixed-CSP と Exp43c q-coloring という二つの frozen package について、著者環境外での 3/3 再実行成功が得られている。ただし、これは仕様固定有限系の empirical package の外部再現性を強めるものであり、非CSP branch や理論全体の普遍法則化を単独で閉じるものではない。
 \end{abstract}
 
 \section{目的}\label{ux76eeux7684}
@@ -228,7 +228,7 @@ exact-one-3-SAT は、drift が大きく CNF encoding size との交絡も強い
 
 primary endpoint は feasibility である。すなわち、インスタンスが SAT か UNSAT かを予測する。
 
-これは重要である。以前の計算コスト補論では、条件つき発見確率 \(P(\mathrm{found}\mid\mathrm{SAT})\) と solver cost を扱った。しかし Route A の第一モーメント構造が直接支配するのは、まず解空間の体積と feasibility であって、特定ソルバーの探索コストではない。
+これは重要である。以前の計算コスト補論では、条件つき発見確率 \(P(\mathrm{found}\mid\mathrm{SAT})\) と solver cost を扱った。しかし仕様固定構造ドメインの第一モーメント構造が直接支配するのは、まず解空間の体積と feasibility であって、特定ソルバーの探索コストではない。
 
 したがって本補論では、solver conflict count ではなく SAT rate を primary に置く。solver cost は別の問いであり、存在論的 \(L\) と発見論的 \(c\) を混同しない。
 
@@ -385,13 +385,13 @@ n\log2-L
 
 であり、SAT に対して約 7.3 倍である。一方、pairwise CNF encoding の clause count は SAT に対して 4 倍である。ここでは \(L\) と CNF size の比例性がより大きく破れる。
 
-ただし、exact-one は feasibility の飽和と encoding size 交絡が強いため、初回 primary から外した。この判断は、最初の empirical Route A test を清潔に保つための保守的設計である。
+ただし、exact-one は feasibility の飽和と encoding size 交絡が強いため、初回 primary から外した。この判断は、最初の仕様固定構造ドメインにおける empirical test を清潔に保つための保守的設計である。
 
 \section{理論的位置づけ}\label{ux7406ux8ad6ux7684ux4f4dux7f6eux3065ux3051}
 
 \subsection{SAT 単独から Bernoulli-CSP class へ}\label{sat-ux5358ux72ecux304bux3089-bernoulli-csp-class-ux3078}
 
-ランダム 3-SAT は、構造持続理論にとって最も硬い Route A anchor の一つである。状態集合は \(\{0,1\}^n\)、測度は counting measure、各制約の縮小率は仕様から直接計算できる。
+ランダム 3-SAT は、構造持続理論にとって最も硬い仕様固定構造ドメイン anchor の一つである。状態集合は \(\{0,1\}^n\)、測度は counting measure、各制約の縮小率は仕様から直接計算できる。
 
 しかし 3-SAT 単独では、\(L=m\log(8/7)\) であり、raw count と縮退する。したがって、3-SAT で \(L\) が有効であることは重要だが、「制約の質を drift-weighted に数えることが raw count より強い」という主張はまだ検査されていない。
 
@@ -438,7 +438,7 @@ n\log q - L
 \item
   XOR-SAT のように多項式構造が支配する family を primary empirical cost test に使える、とは主張しない。
 \item
-  Bootstrap percolation や branching process がこの意味で Route A anchor である、とは主張しない。
+  Bootstrap percolation や branching process がこの意味で仕様固定構造ドメイン anchor である、とは主張しない。
 \item
   独立再現なしに universal law が確立した、とは主張しない。
 \end{enumerate}
@@ -567,15 +567,15 @@ a5fc8e2
 
 \section{結論}\label{ux7d50ux8ad6}
 
-Mixed-CSP primary は、構造持続理論の Route A empirical test として、事前登録された四つの判定基準を全て通過した。
+Mixed-CSP primary は、構造持続理論の仕様固定構造ドメインにおける empirical test として、事前登録された四つの判定基準を全て通過した。
 
 3-SAT と 3-NAE-SAT は raw count では同じ 1 制約として見えるが、解空間を削る drift は異なる。\(L\) はこの差を加法的に累積し、finite CSP の feasibility を out-of-sample に予測した。
 
-これは、構造持続理論における \(L\) が単なる量ではなく、制約の質を含む座標として機能することの経験的証拠である。SAT 単独の Route A anchor は、Mixed-SAT/NAE-SAT により Bernoulli-CSP class へ一段拡張された。
+これは、構造持続理論における \(L\) が単なる量ではなく、制約の質を含む座標として機能することの経験的証拠である。SAT 単独の仕様固定構造ドメイン anchor は、Mixed-SAT/NAE-SAT により Bernoulli-CSP class へ一段拡張された。
 
-さらに Exp43c q-coloring により、SAT 構文の外側に見える graph-coloring family でも、first-moment / drift coordinate が raw / density / encoding-size baseline を上回ることが示された。これは Route A width を一段広げる primary evidence である。
+さらに Exp43c q-coloring により、SAT 構文の外側に見える graph-coloring family でも、first-moment / drift coordinate が raw / density / encoding-size baseline を上回ることが示された。これは仕様固定構造ドメインの幅を一段広げる primary evidence である。
 
-外部再実行の層では、Mixed-CSP が 3 名の外部実行者で 3/3 clean success を返し、Exp43c q-coloring も 3 名の外部実行者で 3/3 clean success を返した。したがって、Route A では二つの frozen package について著者環境外での再実行成功が得られている。
+外部再実行の層では、Mixed-CSP が 3 名の外部実行者で 3/3 clean success を返し、Exp43c q-coloring も 3 名の外部実行者で 3/3 clean success を返した。したがって、仕様固定構造ドメインでは二つの frozen package について著者環境外での再実行成功が得られている。
 
 ただし、本補論は universal law の最終宣言ではない。正確な位置づけは、SAT、LLM contradiction repair、Mixed-CSP feasibility、Exp43c q-coloring feasibility で、structure-aware coordinate が quality-blind / raw baseline を上回った、という Level 2 universality candidate への強い支持である。
 

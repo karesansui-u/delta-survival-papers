@@ -6,7 +6,7 @@ Structural Persistence Theory for LLM reasoning degradation, catastrophic forget
 
 ## Current Focus / 現在の主対象
 
-このリポジトリの主対象は、`v2` にある構成地図、統合版、主理論 spine 2 本、運用規律、Route A/C anchors、および補論群です。
+このリポジトリの主対象は、`v2` にある構成地図、統合版、主理論 spine 2 本、運用規律、仕様固定構造ドメイン / 構造推定ドメインの検証アンカー、および補論群です。
 
 - 外向け導線: 構成地図 -> 統合版 -> 最小形式 -> 収支原理 -> 運用規律
 - 主理論 spine: `v2/1` -> `v2/2`
@@ -30,8 +30,8 @@ PDF は [`v2/pdf用/補論_構造持続理論の構成地図.pdf`](v2/pdf用/補
 
 現時点の証拠階層は [`analysis/current_evidence_map.md`](analysis/current_evidence_map.md) に整理しています。README では現在地だけを示します。
 
-- Route A: SAT / Mixed-CSP / q-coloring では、自然測度・finite-horizon collapse chain・prospective empirical support が揃いつつあります。Mixed-CSP と Exp43c q-coloring は、それぞれ外部実行者 3 名による frozen package rerun で decision-relevant output が再現されています。
-- Route C: LLM 推論実験では、文脈長だけではなく構造矛盾の質が崩壊を予測することを、複数の preregistered / prospective checks で検査しています。
+- 仕様固定構造ドメイン: SAT / Mixed-CSP / q-coloring では、自然測度・finite-horizon collapse chain・prospective empirical support が揃いつつあります。Mixed-CSP と Exp43c q-coloring は、それぞれ外部実行者 3 名による frozen package rerun で decision-relevant output が再現されています。
+- 構造推定ドメイン: LLM 推論実験では、文脈長だけではなく構造矛盾の質が崩壊を予測することを、複数の preregistered / prospective checks で検査しています。
 - Formal layer: Lean 4 側は `139 Survival modules`, `sorry = 0`, `axiom = 0` で、主な theorem-to-paper mapping は [`lean/PAPER_MAPPING.md`](lean/PAPER_MAPPING.md) にまとめています。
 - Non-CSP: Backblaze / C-MAPSS / Scania などは support / weakening / no-support を分けて記録し、同一 archive 内の rescue を避けています。
 
@@ -55,30 +55,30 @@ PDF は [`v2/pdf用/補論_構造持続理論の構成地図.pdf`](v2/pdf用/補
 
 ### Paper 2 — 構造持続の収支原理
 
-主理論 spine の第二層。構造持続の最小核 `S = M e^{-L}` を、回復を含む `S = M e^{-B}` へ拡張する短い原理论文です。Route A/C anchors や既存理論との接続の詳細は補論へ分離しています。
+主理論 spine の第二層。構造持続の最小核 `S = M e^{-L}` を、回復を含む `S = M e^{-B}` へ拡張する短い原理论文です。仕様固定構造ドメイン、構造推定ドメイン、条件付き構造埋め込みドメインの詳細は補論へ分離しています。
 
 - Markdown: [`v2/2_構造持続の収支原理.md`](v2/2_構造持続の収支原理.md)
 - PDF: [`v2/pdf用/2_構造持続の収支原理.pdf`](v2/pdf用/2_構造持続の収支原理.pdf)
 
-### Route C Companion I — 推論時の構造劣化
+### LLM Companion I — 推論時の構造劣化
 
-Route C companion anchor 1。主理論 spine そのものではなく、未整理矛盾や external metabolism が消耗側 / 回復側指標として観測量を予測するかを検査する観測的アンカーです。
+構造推定ドメインの companion anchor 1。主理論 spine そのものではなく、未整理矛盾や external metabolism が消耗側 / 回復側指標として観測量を予測するかを検査する観測的アンカーです。
 
 推論時の未整理矛盾や上書きが、論理一貫性を保てる経路を削るという具体例。現時点の主張は、外部代謝が未整理の矛盾放置より良い、という点に絞っている。
 
 - Markdown: [`v2/Companion_RouteC_推論時の構造劣化.md`](v2/Companion_RouteC_推論時の構造劣化.md)
 - PDF: [`v2/pdf用/Companion_RouteC_推論時の構造劣化.pdf`](v2/pdf用/Companion_RouteC_推論時の構造劣化.pdf)
-- OSF mirror: [route_c_companion_inference_ja_2026-04-14.pdf](https://osf.io/mdh7b/files/osfstorage/69dde3bde1158f542e3e7aec)
+- OSF mirror: [llm_companion_inference_ja_2026-04-14.pdf](https://osf.io/mdh7b/files/osfstorage/69dde3bde1158f542e3e7aec)
 
-### Route C Companion II — 継続学習時の構造的忘却
+### LLM Companion II — 継続学習時の構造的忘却
 
-Route C companion anchor 2。主理論 spine の証明ではなく、前提更新と依存再編の失敗がどのように structural forgetting として現れるかを観測的に示す companion layer です。
+構造推定ドメインの companion anchor 2。主理論 spine の証明ではなく、前提更新と依存再編の失敗がどのように structural forgetting として現れるかを観測的に示す companion layer です。
 
 継続学習における前提更新と依存知識の崩れを、構造持続の別相として扱う。
 
 - Markdown: [`v2/Companion_RouteC_継続学習時の構造的忘却.md`](v2/Companion_RouteC_継続学習時の構造的忘却.md)
 - PDF: [`v2/pdf用/Companion_RouteC_継続学習時の構造的忘却.pdf`](v2/pdf用/Companion_RouteC_継続学習時の構造的忘却.pdf)
-- OSF mirror: [route_c_companion_continual_learning_ja_2026-04-14.pdf](https://osf.io/mdh7b/files/osfstorage/69dde3c0cc45911aa117d84c)
+- OSF mirror: [llm_companion_continual_learning_ja_2026-04-14.pdf](https://osf.io/mdh7b/files/osfstorage/69dde3c0cc45911aa117d84c)
 
 ## Status / ステータス
 
@@ -87,8 +87,8 @@ Route C companion anchor 2。主理論 spine の証明ではなく、前提更�
 | v2 Paper 1 | Main preprint |
 | v2 Paper 2 | Main preprint / balance principle |
 | Conditional derivation | Supplement |
-| Route C Companion I | Companion preprint |
-| Route C Companion II | Companion preprint |
+| LLM Companion I | Companion preprint |
+| LLM Companion II | Companion preprint |
 | Lean 4 formalization | Complete (`139 Survival modules`, `sorry = 0`, `axiom = 0`) |
 | OSF project | [osf.io/mdh7b/overview](https://osf.io/mdh7b/overview) |
 | Raw data and summaries | [DATA.md](DATA.md) |
@@ -109,8 +109,8 @@ See [`PATENTS.md`](PATENTS.md) for a brief scope note.
 3. 最小形式: [`v2/1_構造持続の最小形式.md`](v2/1_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%AE%E6%9C%80%E5%B0%8F%E5%BD%A2%E5%BC%8F.md)
 4. 収支原理: [`v2/2_構造持続の収支原理.md`](v2/2_構造持続の収支原理.md)
 5. 運用規律: [`v2/補論_構造持続理論の運用規律.md`](v2/補論_構造持続理論の運用規律.md)
-6. Route A / 有限CSP: [`v2/補論_有限CSPにおける構造持続の予測力.md`](v2/%E8%A3%9C%E8%AB%96_%E6%9C%89%E9%99%90CSP%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%AE%E4%BA%88%E6%B8%AC%E5%8A%9B.md)
-7. Route C / LLM: [`v2/Companion_RouteC_推論時の構造劣化.md`](v2/Companion_RouteC_推論時の構造劣化.md), [`v2/Companion_RouteC_継続学習時の構造的忘却.md`](v2/Companion_RouteC_継続学習時の構造的忘却.md)
+6. 仕様固定構造ドメイン / 有限CSP: [`v2/補論_有限CSPにおける構造持続の予測力.md`](v2/%E8%A3%9C%E8%AB%96_%E6%9C%89%E9%99%90CSP%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%AE%E4%BA%88%E6%B8%AC%E5%8A%9B.md)
+7. 構造推定ドメイン / LLM: [`v2/Companion_RouteC_推論時の構造劣化.md`](v2/Companion_RouteC_推論時の構造劣化.md), [`v2/Companion_RouteC_継続学習時の構造的忘却.md`](v2/Companion_RouteC_継続学習時の構造的忘却.md)
 8. 資源項 \(M\): [`v2/補論_構造持続における資源項Mの操作的定式化.md`](v2/補論_構造持続における資源項Mの操作的定式化.md)
 9. 既存理論 bridge: [`v2/補論_構造持続の収支原理とFoster-Lyapunovドリフトの形式的埋め込み.md`](v2/補論_構造持続の収支原理とFoster-Lyapunovドリフトの形式的埋め込み.md), [`v2/補論_非CSP古典例における構造持続の収支原理の最小アンカー.md`](v2/補論_非CSP古典例における構造持続の収支原理の最小アンカー.md)
 10. Lean / 詳細補論: [`lean/PAPER_MAPPING.md`](lean/PAPER_MAPPING.md), [`v2/補論_構造持続の条件つき導出.md`](v2/補論_構造持続の条件つき導出.md), [`v2/補論_構造持続の収支原理の詳細展開.md`](v2/補論_構造持続の収支原理の詳細展開.md)
@@ -175,7 +175,7 @@ The current core layering includes:
 - `BernoulliCSPUniversality.lean`: k-SAT / NAE-SAT / XOR-SAT / q-coloring / forbidden-pattern / hypergraph-coloring / cardinality-SAT / threshold-cardinality-SAT CSP を同一 Bernoulli-CSP interface に束ねる wrapper
 - `NumericalSanityChecks.lean`: k-SAT / NAE-SAT / XOR-SAT / q-coloring / forbidden-pattern wrappers が小さな具体例で `log(8/7)`, `log(4/3)`, `log 2` などを回復する documented sanity layer
 - `LyapunovBalanceEmbedding.lean`: Foster-Lyapunov / queueing drift を構造持続の収支原理の \(b_t,B_n,R_t,d_t,r_t\) へ埋め込む G6-c minimal algebraic embedding
-- Route A non-CSP skeletons: 11 small Lean modules grouped into five finite-prefix forms: multiplicative/exponential survival, linear overload, cumulative-capacity thresholds, critical-parameter thresholds, and explicit repair / maintenance balance. Detailed module-to-claim mapping is kept in [`lean/PAPER_MAPPING.md`](lean/PAPER_MAPPING.md).
+- 仕様固定・条件付き構造埋め込み skeletons: 11 small Lean modules grouped into five finite-prefix forms: multiplicative/exponential survival, linear overload, cumulative-capacity thresholds, critical-parameter thresholds, and explicit repair / maintenance balance. Detailed module-to-claim mapping is kept in [`lean/PAPER_MAPPING.md`](lean/PAPER_MAPPING.md).
 
 The cross-domain Bernoulli-CSP layer is frozen locally as **Bernoulli CSP
 universality v1.2**: finite-horizon, iid bad-event exposure with fixed

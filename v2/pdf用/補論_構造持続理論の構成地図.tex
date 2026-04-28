@@ -11,7 +11,7 @@
 \begin{abstract}
 本補論は、構造持続理論の主理論 spine、companion papers、補論群、Lean 形式化、実証アンカーを、一つの構成地図として整理するための文書である。新しい定理、新しい実験、新しい support 判定を追加するものではない。目的は、どの文書がどの層の主張を担い、どの文書をどの順番で読むと誤読が少ないかを明示することである。
 
-本稿群は、単一の長大な論文ではなく、最小核、回復を含む形式への拡張、条件つき導出、写像手順、操作的資源項、Route A/C アンカー、既存理論との bridge、Lean 形式化を分けて書いている。本補論は、それらの役割、依存関係、主張強度を一つの地図として示す。
+本稿群は、単一の長大な論文ではなく、最小核、回復を含む形式への拡張、条件つき導出、写像手順、操作的資源項、仕様固定構造ドメイン、構造推定ドメイン、条件付き構造埋め込みドメイン、Lean 形式化を分けて書いている。本補論は、それらの役割、依存関係、主張強度を一つの地図として示す。
 \end{abstract}
 
 \section{この地図が与えるもの}\label{ux3053ux306eux5730ux56f3ux304cux4e0eux3048ux308bux3082ux306e}
@@ -34,7 +34,7 @@
 \endlastfoot
 層の地図 & 主理論、操作化、実証アンカー、形式化を分ける \\
 読み順 & reader-facing な最短導線と、論理依存順を分ける \\
-主張強度の位置づけ & Route A / Route B / Route C、G6-a / G6-b / G6-c、support status の混同を避ける \\
+主張強度の位置づけ & 仕様固定構造ドメイン / 条件付き構造埋め込みドメイン / 構造推定ドメイン、G6-a / G6-b / G6-c、support status の混同を避ける \\
 \end{longtable}
 }
 
@@ -56,7 +56,7 @@
 \endlastfoot
 新しい理論核 & 主理論核は Paper 1 / Paper 2 にあり、条件つき導出と集合値力学はそれを支える技術補論である \\
 新しい経験的 support & 経験的 support は凍結検証、fresh archive、outside rerun で別途定まる \\
-普遍法則の宣言 & 普遍性の評価は Route A/C evidence と外部再現の蓄積に依存する \\
+普遍法則の宣言 & 普遍性の評価は観測可能性の層ごとの evidence と外部再現の蓄積に依存する \\
 \end{longtable}
 }
 
@@ -86,12 +86,12 @@ Layer 1: Entry & 全体像を一つの導線で読む & Paper 0 統合版 \\
 Layer 2: Foundation & 回復を明示しない最小核 & Paper 1 最小形式 \\
 Layer 3: Core Extension & 構造消耗量と回復量を含む指数核 & Paper 2 収支原理、条件つき導出補論、集合値力学補論、収支原理の詳細展開補論 \\
 Layer 4: Operational Mapping & 現実ドメインへの写像、資源項、設計原理 & 補論「構造持続写像の標準手順」、補論「資源項Mの操作的定式化」 \\
-Layer 5: Anchors / Bridges & Route A/C の実証アンカー、非CSP bridge、既存理論との接続 & CSP 補論、計算コスト補論、Route C companions、Foster-Lyapunov 補論、非CSP補論 \\
+Layer 5: Anchors / Bridges & 仕様固定構造ドメイン、構造推定ドメイン、条件付き構造埋め込みドメインのアンカー & CSP 補論、計算コスト補論、LLM companions、Foster-Lyapunov 補論、非CSP補論 \\
 Layer 6: Formal Layer & Lean theorem、reader-facing claim、numerical sanity check の対応 & Lean modules, PAPER\_MAPPING, NumericalSanityChecks \\
 \end{longtable}
 }
 
-この層分けで重要なのは、文書の重要度を順位づけることではない。重要なのは、役割を混ぜないことである。たとえば Route C companion は主理論核の証明ではなく、主理論核を LLM 推論や継続学習へ写した観測的アンカーである。Foster-Lyapunov 補論は、新しい安定性定理の証明ではなく、既存の drift calculus が構造持続の純消耗量 \(b_{t}\) へ埋め込めることを示す bridge である。
+この層分けで重要なのは、文書の重要度を順位づけることではない。重要なのは、役割を混ぜないことである。たとえば LLM companion は主理論核の証明ではなく、主理論核を LLM 推論や継続学習へ写した構造推定ドメインの観測的アンカーである。Foster-Lyapunov 補論は、新しい安定性定理の証明ではなく、既存の drift calculus が構造持続の純消耗量 \(b_{t}\) へ条件付きに埋め込めることを示す bridge である。
 
 \section{最短読順}\label{ux6700ux77edux8aadux9806}
 
@@ -101,16 +101,20 @@ Layer 6: Formal Layer & Lean theorem、reader-facing claim、numerical sanity ch
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
+  本補論（構成地図）
+\item
   Paper 0 統合版
 \item
-  Paper 2 構造持続の収支原理
-\item
-  Paper 1 構造持続の最小形式 \# 必要に応じて補論「構造持続の条件つき導出」
+  Paper 1 構造持続の最小形式 \# Paper 2 構造持続の収支原理
 \end{enumerate}
 
-\section{Route C companion I / II}\label{route-c-companion-i-ii}
+\section{補論「構造持続理論の運用規律」}\label{ux88dcux8ad6ux69cbux9020ux6301ux7d9aux7406ux8ad6ux306eux904bux7528ux898fux5f8b}
 
-\section{必要に応じて Route A / non-CSP / operational supplements}\label{ux5fc5ux8981ux306bux5fdcux3058ux3066-route-a-non-csp-operational-supplements}
+\section{仕様固定構造ドメイン / 有限CSP補論}\label{ux4ed5ux69d8ux56faux5b9aux69cbux9020ux30c9ux30e1ux30a4ux30f3-ux6709ux9650cspux88dcux8ad6}
+
+\section{構造推定ドメイン / LLM companion I / II}\label{ux69cbux9020ux63a8ux5b9aux30c9ux30e1ux30a4ux30f3-llm-companion-i-ii}
+
+\section{必要に応じて資源項、条件付き構造埋め込み、Lean / technical supplements}\label{ux5fc5ux8981ux306bux5fdcux3058ux3066ux8cc7ux6e90ux9805ux6761ux4ef6ux4ed8ux304dux69cbux9020ux57cbux3081ux8fbcux307flean-technical-supplements}
 
 この順序は、読者の認知負荷を下げるための順序である。論理依存そのものは、\(Paper 1 -> Paper 2\)を主線とし、条件つき導出補論と集合値力学補論がその背後の技術条件を支える。
 
@@ -149,7 +153,7 @@ Layer 6: Formal Layer & Lean theorem、reader-facing claim、numerical sanity ch
 \end{longtable}
 }
 
-この順序で読むと、Route C の経験的主張や設計原理に入る前に、理論核の範囲を確認できる。
+この順序で読むと、構造推定ドメインの経験的主張や設計原理に入る前に、理論核の範囲を確認できる。
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -191,19 +195,22 @@ internal definition & B\_n = sum\_\{t\textless n\}(d\_t-r\_t) & 消耗量 d\_t �
 \setcounter{enumi}{5}
 \tightlist
 \item
-  Route A / B / C の配置
+  観測可能性の三層
 \end{enumerate}
 
-Route 分類は、証拠の強さを混同しないための分類である。
+本理論は、同一の構造持続核を、観測可能性の異なる三つの層で扱う。これは「構造は常にある」という主張ではない。維持対象・測度・観測単位を固定できる場合に、その系を構造持続問題として扱う、という規律である。
 
 {\def\LTcaptype{table} % do not increment counter
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
-Route
+外向け名
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+内部旧称
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 条件
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
@@ -213,17 +220,23 @@ Route
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-Route A & 自然な状態空間・測度・collapse chain が仕様から固定される & SAT, Mixed-CSP, q-coloring, Bernoulli-CSP interface \\
-Route B & 自然測度は弱いが、限定された近似・境界・代理モデルがある & bounded approximation candidates \\
-Route C & 観測指標・proxy・操作的写像で予測力を検査する & LLM 推論劣化、継続学習、software / DeltaLint 系 \\
+仕様固定構造ドメイン & Route A & 構造、測度、境界が仕様から事前固定される & SAT, Mixed-CSP, q-coloring, Bernoulli-CSP interface \\
+条件付き構造埋め込みドメイン & Route B & 既存理論のドリフト、差分、停止境界を本理論の変数へ条件付きに写す & Foster-Lyapunov / queueing drift, bounded approximation candidates \\
+構造推定ドメイン & Route C & 構造そのものを直接数えるのではなく、代理指標と凍結検証によりその効果を推定する & LLM 推論劣化、継続学習、software / DeltaLint 系 \\
 \end{longtable}
 }
 
-Route C は、自然測度が直ちに得られない現実ドメインで、観測指標と凍結写像により追加予測力を検査する層である。Route C の support は、主理論核の証明ではなく、凍結写像が out-of-sample に追加予測力を持つかによって決まる。
+構造推定ドメインは、自然測度が直ちに得られない現実ドメインで、観測指標と凍結写像により追加予測力を検査する層である。構造推定ドメインの support は、主理論核の証明ではなく、凍結写像が out-of-sample に追加予測力を持つかによって決まる。
 
-Software / DeltaLint 系は、この Route C の中でも、ソフトウェア崩壊そのものではなく、分散契約矛盾という早期シグナルを検査する operational benchmark として扱う。構造は、API / caller、config / runtime、documentation / implementation、lifecycle producer / consumer などにまたがる contract set である。主比較は provider 間競争ではなく、同一 model・同一 frozen context で generic review と structural-lens review を比較し、blinded validation 後の unique valid structural root causes が増えるかで判定する。
+Software / DeltaLint 系は、この構造推定ドメインの中でも、ソフトウェア崩壊そのものではなく、分散契約矛盾という早期シグナルを検査する operational benchmark として扱う。構造は、API / caller、config / runtime、documentation / implementation、lifecycle producer / consumer などにまたがる contract set である。主比較は provider 間競争ではなく、同一 model・同一 frozen context で generic review と structural-lens review を比較し、blinded validation 後の unique valid structural root causes が増えるかで判定する。
 
-\section{G6-a / G6-b / G6-c の配置}\label{g6-a-g6-b-g6-c-ux306eux914dux7f6e}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{6}
+\tightlist
+\item
+  G6-a / G6-b / G6-c の配置
+\end{enumerate}
 
 既存理論との接続は、次の三段階に分ける。
 
@@ -252,13 +265,19 @@ G6-c formal embedding & 既存理論の差分・drift・balance が b\_t, B\_n �
 
 Foster-Lyapunov / queueing drift の補論は、G6-c iteration 1 として位置づける。すなわち、正再帰性や幾何的エルゴード性を新しく証明するのではなく、既存の drift algebra が構造持続の \(b_{t}=d_{t}-r_{t}\) と同じ符号構造を持つことを、reader-facing かつ Lean 対応可能な形で示す。
 
-\section{Bernoulli-CSP universality interface の位置}\label{bernoulli-csp-universality-interface-ux306eux4f4dux7f6e}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{7}
+\tightlist
+\item
+  Bernoulli-CSP universality interface の位置
+\end{enumerate}
 
 本稿群の数学的核は、指数式だけではない。もう一つの核は、Bernoulli-CSP universality interface である。
 
 この interface は、k-SAT、NAE-SAT、XOR-SAT、q-coloring、hypergraph coloring、finite-alphabet forbidden-pattern CSP、cardinality-SAT、threshold-cardinality-SAT を、同じ finite-horizon / iid bad-event exposure の型に載せる。これにより、個別構文の違いではなく、禁止パターンが有効状態空間をどれだけ削るかという共通座標で読める。
 
-この層は、現在は主に Lean modules と集合値力学補論の後半にある。読者が Route A の横断性を評価するときは、PAPER\_MAPPING と Bernoulli-CSP universality modules を参照するのがよい。さらに、NumericalSanityChecks は、各 wrapper が小さな具体例で期待される定数を返すことを示す。これは経験的 support ではなく、reader-facing な numerical sanity check である。
+この層は、現在は主に Lean modules と集合値力学補論の後半にある。読者が仕様固定構造ドメインの横断性を評価するときは、PAPER\_MAPPING と Bernoulli-CSP universality modules を参照するのがよい。さらに、NumericalSanityChecks は、各 wrapper が小さな具体例で期待される定数を返すことを示す。これは経験的 support ではなく、reader-facing な numerical sanity check である。
 
 \section{構造粒度と多階層性}\label{ux69cbux9020ux7c92ux5ea6ux3068ux591aux968eux5c64ux6027}
 
@@ -268,7 +287,7 @@ Foster-Lyapunov / queueing drift の補論は、G6-c iteration 1 として位置
 
 \section{この地図の使い方}\label{ux3053ux306eux5730ux56f3ux306eux4f7fux3044ux65b9}
 
-各補論には、その文脈で必要な限界と非主張を短く残す。ただし、Route 分類、G6 分類、mapping status、support 判定、silence 条件の完全な定義は、補論「構造持続理論の運用規律」と補論「構造持続写像の標準手順」に集約する。
+各補論には、その文脈で必要な限界と非主張を短く残す。ただし、観測可能性の三層、G6 分類、mapping status、support 判定、silence 条件の完全な定義は、補論「構造持続理論の運用規律」と補論「構造持続写像の標準手順」に集約する。
 
 この分担により、各補論は自分の数学的核または経験的核に集中できる。全体の規律は失われず、むしろ独立した参照点として見えるようになる。
 \end{document}
