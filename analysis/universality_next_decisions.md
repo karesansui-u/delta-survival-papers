@@ -1,8 +1,9 @@
 # Universality Program — Next Decisions
 
 Status: program memo after Exp.41, Mixed-CSP primary, Lean M1, Exp43c
-q-coloring primary validation, and completed three-run true outside-group
-rerun sets for both Mixed-CSP and Exp43c q-coloring.
+q-coloring primary validation, completed three-run true outside-group rerun
+sets for both Mixed-CSP and Exp43c q-coloring, and the admissible-maps /
+second-law-level roadmap update.
 
 ## 1. Phase Assessment
 
@@ -30,13 +31,21 @@ The core theory and the LLM scope-as-repair domain are now load-bearing:
 - Lean M1 showed that the expectation-level target theorem 4 / law-of-tendency
   schema is already formally accessible through existing theorems and only
   needs reader-facing mapping.
+- The admissible-maps / hierarchical-invariants supplement now makes the
+  second-law-level route more precise: iso maps preserve \(B_n\), positive
+  gauge changes make \(B_n\) covariant, coarse-graining has a saturation-defect
+  identity rather than unconditional DPI, and proxy domains fall to frozen
+  validation. The execution roadmap for this route is now
+  `analysis/second_law_level_roadmap.md`.
 
 The accurate public characterization is:
 
 ```text
 Core theory is consolidated. LLM scope repair, Route A Mixed-CSP feasibility,
-and Route A q-coloring feasibility now have prospective support, and the
-expectation-level formal tendency schema is mapped to existing Lean theorems.
+and Route A q-coloring feasibility now have prospective support. The
+expectation-level formal tendency schema is mapped to existing Lean theorems,
+and the admissible-map / Sigma route toward a second-law-level hierarchical
+unification is now explicit.
 Independent replication has completed three-run outside-group rerun sets for
 both Mixed-CSP and Exp43c q-coloring; further heterogeneous
 domain extensions remain open.
@@ -54,7 +63,7 @@ replication and, if needed, later theorem-wrapper polish.
 | LLM domain | Verification | Exp.40 + Exp.42 support scope-as-repair and attribution-as-repair; Exp.41 width passed | Model-dependent failure-mode follow-up only if needed |
 | Route A / CSP | Mixed-CSP validated; local fresh rerun, pre-published fresh-clone rehearsal, published-remote outside-workspace rerun, external handoff package completed, and three true outside-group reruns returned cleanly; Exp43c q-coloring primary validated, locally rerun, externally packaged, rerun from the published remote, sender-side zip packet prepared, and three true outside-group reruns returned cleanly; Exp44 calibration inconclusive; Exp44b v1 calibration no-go | Mixed-CSP official primary passed: `L_plus_n` log loss 0.0970 < `raw_plus_n` 0.7525, and the package has now also been rerun locally from scratch with exact reproduction on the checked core fields (`analysis/route_a_mixed_csp/mixed_csp_level2_rerun_note.md`). An earlier fresh-clone outside-workspace rehearsal at the same frozen code path is recorded in `analysis/route_a_mixed_csp/mixed_csp_outside_workspace_rerun_note.md`, the external handoff boundary is recorded in `analysis/route_a_mixed_csp/mixed_csp_external_rerun_package.md`, and a fresh clone of the actually published remote has now also been rerun cleanly at `analysis/route_a_mixed_csp/mixed_csp_published_remote_rerun_note.md`. The three true outside-group returns are recorded in `analysis/route_a_mixed_csp/mixed_csp_true_outside_rerun_01_katsumasa1234.md`, `analysis/route_a_mixed_csp/mixed_csp_true_outside_rerun_02_SCRAPRO.md`, and `analysis/route_a_mixed_csp/mixed_csp_true_outside_rerun_03_philia_channel.md`: each has `12000` primary rows, `0` checked core mismatches, all support flags true, and no reported workaround. The final requested-set status is `3/3` completed, `3/3` clean success, `0` pending in `analysis/route_a_mixed_csp/mixed_csp_true_outside_final_report.md`. Exp43c q-coloring primary passed under frozen threshold-local package: `fm_plus_n` log loss 0.440189 < best primary raw baseline 2.804019, with H1 direction passing for q=3/4/5 and q=5 narrow. That package has now also been rerun locally from scratch with exact manifest and evaluation matches plus zero checked core-field mismatches (`analysis/exp43_qcoloring/exp43c_level2_rerun_note.md`), has an outside handoff boundary at `analysis/exp43_qcoloring/exp43c_external_rerun_package.md`, has now also been rerun from a fresh clone of the published remote at `analysis/exp43_qcoloring/exp43c_published_remote_rerun_note.md`, has sender-side materials at `analysis/exp43_qcoloring/exp43c_true_outside_send_runbook.md` and `analysis/exp43_qcoloring/exp43c_true_outside_send_packet_ja.md`, and now has three returned outside-group successes at `analysis/exp43_qcoloring/exp43c_true_outside_rerun_01_philia_channel.md`, `analysis/exp43_qcoloring/exp43c_true_outside_rerun_02_katsumasa1234.md`, and `analysis/exp43_qcoloring/exp43c_true_outside_rerun_03_SCRAPRO.md`, each with `4000` rows, `0` checked core mismatches, `TIMEOUT = 0`, `MALFORMED = 0`, and the same qualitative support decision. The Exp43c final report is `analysis/exp43_qcoloring/exp43c_true_outside_final_report.md`, and a two-package summary is recorded at `analysis/g7_route_a_true_outside_replication_summary.md`. Exp44 smoke/pilot_v2/pilot_v3 are infrastructure-clean but pilot_v3 still failed the informative-band gate for M0/M1/M2. Exp44b calibration v1 completed `4800/4800` rows with `0` timeouts and `0` malformed rows, but closeout returned `calibration_no_go` because `M3_threeway_low` failed the monotonicity gate. Exp44b is not frozen, has no primary data, and is not validation evidence | Independent review, fresh versioned Cardinality-SAT redesign if desired, or G4/G6 non-CSP continuation |
 | G4 / non-CSP | G4 v1 closed; G4 v2 minimal skeleton implemented and supplement-integrated; Backblaze loss-only observational branch now has one no-support result and one same-domain calibrated support pass; C-MAPSS FD001 now has a frozen cross-domain loss-only weakening outcome; Scania public bridge now has a frozen no-support result | Queueing / Foster-Lyapunov is the primary G4 v1 anchor; serial reliability and constant-fraction decay are loss-only controls. G4 v2 is scoped toward repair / maintenance reliability-fatigue balance, where \(r_t\) is explicit in a non-CSP open-system model. Public repair-flow dataset search found C1 Azure PdM leakage-risk and C2 MetroPT-3 weak-g, so repair-flow primary remains paused. A public-web rescan now clarifies that Scania Component X is the strongest current public stochastic reliability bridge candidate, Azure PdM remains only a leakage-risk re-audit candidate, and the HSE filter dataset looks closer to maintenance-boundary / censored reliability than to a direct repair-flow primary. An exact Scania feasibility note fixed the current public identity at version 3 / DOI `10.5878/bnh5-ka77`, a large-readout exact-acquisition note fixed the three public operational-readout CSV identities, a freeze-design note locked the held-out class grammar and chose horizon-classification as the operational primary path, and the Scania branch then progressed through preregistration draft, frozen manifest, execution script, and no-peek validation smoke before one-time held-out evaluation. The resulting frozen Scania package did not pass H1, did pass H2, and therefore closed as a public stochastic reliability bridge no-support result rather than repair-flow evidence. The private / partner route now also has a send-ready request packet at `analysis/g4_v2_repair_flow_request_packet.md`, so the acquisition path is no longer just a criteria memo. Backblaze Q4 2025 loss-only primary was frozen and run; primary SMART model failed log-loss support (`1.779176` vs best baseline `0.157102`) and H2 sign consistency due `smart_199_raw`. Backblaze Q3 2025 v2 then ran under a separately frozen calibration-aware package and passed: calibrated primary log loss `0.007936` < best baseline `0.008801` (9.83% improvement), H2 passed on the five core SMART fields, and stage-1 AUC `0.882895` > best baseline `0.739014`. This counts only as same-domain observational loss-only support and does not erase the Q4 no-support result. C-MAPSS FD001 then ran under a frozen cross-domain loss-only package and produced the preregistered weakening outcome: primary `D_pc1 + cycle + settings` log loss `0.241353` < best simple baseline `0.494974` (H1 pass, 51.24% improvement) and `beta_Dpc1 = 3.475025` (H3 pass), but wide raw-sensor `B4 = 0.182180` remained stronger, so H2 failed and `primary_support = false`. This does not count as repair-flow evidence or as full cross-domain non-CSP support. The relevant notes now include `analysis/g4_cmapss_loss_only_feasibility_note.md`, `analysis/g4_cmapss_fd001_archive_note.md`, `analysis/g4_cmapss_fd001_archive_feasibility_note.md`, `analysis/g4_cmapss_fd001_loss_only_preregistration_draft.md`, `analysis/g4_cmapss_fd001_loss_only/freeze_manifest_draft.md`, `analysis/g4_cmapss_fd001_loss_only/train_smoke_note.md`, `analysis/g4_cmapss_fd001_loss_only/primary_report.md`, `analysis/g4_v2_repair_flow_candidate_criteria.md`, `analysis/g4_v2_repair_flow_acquisition_brief.md`, `analysis/g4_v2_repair_flow_request_packet.md`, `analysis/g4_v2_stochastic_repair_bridge_note.md`, `analysis/g4_v2_public_repair_flow_rescan_2026-04-27.md`, `analysis/g4_scania_component_x_archive_feasibility_note.md`, `analysis/g4_scania_component_x_large_readout_acquisition_note.md`, `analysis/g4_scania_component_x_freeze_design_note.md`, `analysis/g4_scania_component_x_horizon_bridge_preregistration_draft.md`, `analysis/g4_scania_component_x_horizon_bridge/freeze_manifest_draft.md`, `analysis/g4_scania_component_x_horizon_bridge/validation_smoke_note.md`, `analysis/g4_scania_component_x_horizon_bridge/primary_report.md`, `analysis/g4_scania_component_x_horizon_bridge/scripts/evaluate_scania_component_x_horizon_bridge.py`, and `analysis/g4_scania_component_x_bridge_package_draft.md` | Preserve the Scania no-support result without same-archive rescue language, just as with Backblaze Q4 and C-MAPSS. The remaining non-CSP empirical gap is now best described as repair-flow support plus stronger cross-domain support, not as a reason for retroactive redesign on frozen public runs. Current execution order is recorded in `analysis/open_gates_execution_plan.md` |
-| Formal tendency / rival-framework stress test | M1 completed; G6-c iteration 1 closed; falsification stress-test layer expanded | Expectation-level target theorem 4 formally accessible via existing theorems; M2-A mapping-only fixed. `analysis/falsification_and_rival_frameworks.md` records the main ways the program could still be weakened, especially rival-framework subsumption by LDP / free-energy / contraction-style frameworks. Concrete defenses now include `analysis/ldp_rate_function_comparison.md`, `analysis/cross_domain_sign_convention_table.md`, and `analysis/scope_silence_catalog.md` | Optional M2-B wrapper if paper needs named theorem aliases; theorem-transfer score |
+| Formal tendency / rival-framework stress test | M1 completed; admissible-map supplement added; G6-c iteration 1 closed; falsification stress-test layer expanded | Expectation-level target theorem 4 formally accessible via existing theorems; M2-A mapping-only fixed. `analysis/second_law_level_roadmap.md` now separates the route into admissible maps, \(\Sigma\) / total production, typical nondecrease, limited-class universality, and eventual cross-class unification. `analysis/falsification_and_rival_frameworks.md` records the main ways the program could still be weakened, especially rival-framework subsumption by LDP / free-energy / contraction-style frameworks. Concrete defenses now include `analysis/ldp_rate_function_comparison.md`, `analysis/cross_domain_sign_convention_table.md`, and `analysis/scope_silence_catalog.md` | Sigma theorem-map polish, optional M2-B wrapper if paper needs named theorem aliases, then saturation-defect Lean spec |
 | External reception | Underway, with Route A two-package outside returns | OSF is available; Mixed-CSP and Exp43c now both have local fresh reruns plus published-remote outside-workspace reruns. Mixed-CSP now has three returned true outside-group rerun successes (`analysis/route_a_mixed_csp/mixed_csp_true_outside_rerun_01_katsumasa1234.md`, `analysis/route_a_mixed_csp/mixed_csp_true_outside_rerun_02_SCRAPRO.md`, `analysis/route_a_mixed_csp/mixed_csp_true_outside_rerun_03_philia_channel.md`) and a final report (`analysis/route_a_mixed_csp/mixed_csp_true_outside_final_report.md`) with `3/3` completed, `3/3` clean success, `0` pending. Mixed-CSP also has a sender-side runbook at `analysis/route_a_mixed_csp/mixed_csp_true_outside_send_runbook.md`. Exp43c has a locked sender-side zip packet and return template via `analysis/exp43_qcoloring/handoff_exports/LOCKED_BUNDLE_NOTE.md`, `analysis/exp43_qcoloring/exp43c_true_outside_send_runbook.md`, and `analysis/exp43_qcoloring/exp43c_g7_replication_report_template.md`, plus three returned true outside-group successes at `analysis/exp43_qcoloring/exp43c_true_outside_rerun_01_philia_channel.md`, `analysis/exp43_qcoloring/exp43c_true_outside_rerun_02_katsumasa1234.md`, and `analysis/exp43_qcoloring/exp43c_true_outside_rerun_03_SCRAPRO.md`. The two-package outside-return summary is `analysis/g7_route_a_true_outside_replication_summary.md`. | Independent review |
 
 ## 3. Resolved Gates And Next Options
@@ -170,77 +179,79 @@ Interpretation:
 
 Short horizon:
 
-1. Keep the M1 conclusion synchronized across the supplement / README /
-   program memo.
-2. Decide whether the paper needs optional M2-B reader-facing Lean wrapper
+1. Keep the M1 conclusion and the admissible-map / second-law-level roadmap
+   synchronized across the supplement / README / program memo.
+2. Make the \(\Sigma\) / total-production theorem map explicit enough that
+   readers can see Component 2 is already mostly Lean-backed.
+3. Decide whether the paper needs optional M2-B reader-facing Lean wrapper
    theorem names.
-3. Keep M resource operationalization as a supplement-level mapping layer, not
+4. Keep M resource operationalization as a supplement-level mapping layer, not
    as the next main-theory paper.
-4. Review and polish the structural persistence balance principle / 構造持続の収支原理 draft as the next
+5. Review and polish the structural persistence balance principle / 構造持続の収支原理 draft as the next
    core-theory candidate. §1-8 now exist at
    `v2/2_構造持続の収支原理.md`; current control memo:
    `analysis/structural_persistence_balance_principle_draft_plan.md`.
-5. Keep `analysis/falsification_and_rival_frameworks.md`,
+6. Keep `analysis/falsification_and_rival_frameworks.md`,
    `analysis/ldp_rate_function_comparison.md`, and
    `analysis/cross_domain_sign_convention_table.md` visible as the
    stress-test layer for overclaim, sign inconsistency, silent-system scope,
    and rival-framework subsumption.
-6. Keep the new non-CSP law-side framing narrow and explicit:
+7. Keep the new non-CSP law-side framing narrow and explicit:
    `analysis/law_side_upgrade_gate.md` defines when a domain may count as a
    conditional law-side bridge, and
    `analysis/non_csp_conditional_law_side_bridge.md` applies that gate to
    queueing / Foster-Lyapunov, reliability controls, and repair-maintenance.
-7. Use `analysis/open_gates_execution_plan.md` to keep the remaining work
+8. Use `analysis/open_gates_execution_plan.md` to keep the remaining work
    ordered: rival-framework defense -> conditional law-side bridge -> G7
    replication package -> cross-domain non-CSP anchor -> repair-flow data
    acquisition.
-8. For the rival-framework layer, the first defensive quartet now exists:
+9. For the rival-framework layer, the first defensive quartet now exists:
    falsification memo -> LDP note -> sign table -> scope/silence catalog.
-9. For G7, Mixed-CSP now has both a completed Level 1 replay note
+10. For G7, Mixed-CSP now has both a completed Level 1 replay note
    (`analysis/route_a_mixed_csp/mixed_csp_audit_replay_note.md`) and a
    completed Level 2 local rerun note
    (`analysis/route_a_mixed_csp/mixed_csp_level2_rerun_note.md`).
-10. Mixed-CSP also now has a fresh-clone outside-workspace rehearsal note at
+11. Mixed-CSP also now has a fresh-clone outside-workspace rehearsal note at
    `analysis/route_a_mixed_csp/mixed_csp_outside_workspace_rerun_note.md`
    and a published-remote outside-workspace rerun note at
    `analysis/route_a_mixed_csp/mixed_csp_published_remote_rerun_note.md`.
-11. The external handoff boundary for Mixed-CSP is now
+12. The external handoff boundary for Mixed-CSP is now
     `analysis/route_a_mixed_csp/mixed_csp_external_rerun_package.md`.
-12. Mixed-CSP now also has a final outside-group handoff checklist at
+13. Mixed-CSP now also has a final outside-group handoff checklist at
     `analysis/route_a_mixed_csp/mixed_csp_true_outside_handoff_checklist.md`.
-13. A short coordination note for the send order now exists at
+14. A short coordination note for the send order now exists at
     `analysis/g7_true_outside_handoff_overview.md`, and the sender-side
     runbook now exists at
     `analysis/route_a_mixed_csp/mixed_csp_true_outside_send_runbook.md`.
-14. Exp43c now has both a package-plan note, a completed local fresh rerun
+15. Exp43c now has both a package-plan note, a completed local fresh rerun
     note at `analysis/exp43_qcoloring/exp43c_level2_rerun_note.md`, and an
     outside handoff note at
     `analysis/exp43_qcoloring/exp43c_external_rerun_package.md`.
-15. Exp43c now also has a published-remote outside-workspace rerun note at
+16. Exp43c now also has a published-remote outside-workspace rerun note at
     `analysis/exp43_qcoloring/exp43c_published_remote_rerun_note.md`.
-16. Exp43c now also has a final outside-group handoff checklist at
+17. Exp43c now also has a final outside-group handoff checklist at
     `analysis/exp43_qcoloring/exp43c_true_outside_handoff_checklist.md`.
-17. Exp43c now also has sender-side true outside-group materials at
+18. Exp43c now also has sender-side true outside-group materials at
     `analysis/exp43_qcoloring/exp43c_true_outside_send_runbook.md`,
     `analysis/exp43_qcoloring/exp43c_true_outside_send_packet_ja.md`, and
     `analysis/exp43_qcoloring/exp43c_g7_replication_report_template.md`.
-18. Exp43c now also has three returned true outside-group reruns at
+19. Exp43c now also has three returned true outside-group reruns at
     `analysis/exp43_qcoloring/exp43c_true_outside_rerun_01_philia_channel.md`,
     `analysis/exp43_qcoloring/exp43c_true_outside_rerun_02_katsumasa1234.md`, and
     `analysis/exp43_qcoloring/exp43c_true_outside_rerun_03_SCRAPRO.md`.
-19. Treat q-coloring and Cardinality-SAT as optional Route A width extensions,
+20. Treat q-coloring and Cardinality-SAT as optional Route A width extensions,
    not as required gates.
-19. For G4 v2, use `analysis/g4_v2_exploratory_dataset_scan.md` as the immediate
+21. For G4 v2, use `analysis/g4_v2_exploratory_dataset_scan.md` as the immediate
    operational track. The task is to inspect candidate maintenance / repair
    datasets for schema feasibility only. Do not treat this scan as validation,
    and do not generate maintenance-log primary evidence before a dataset, split,
    feature schema, and evaluation script are frozen.
-20. For repair-flow escalation, separate the next move into two layers:
+22. For repair-flow escalation, separate the next move into two layers:
     `analysis/g4_v2_repair_flow_acquisition_brief.md` for the practical
     dataset request, and `analysis/g4_v2_stochastic_repair_bridge_note.md`
     for the theorem-side half-step from near-bridge to stochastic bridge
     target.
-20. For the current cross-domain non-CSP public branch, treat
+23. For the current cross-domain non-CSP public branch, treat
     `analysis/g4_cmapss_loss_only_feasibility_note.md` as the candidate logic,
     `analysis/g4_cmapss_fd001_archive_note.md` as the exact-subset choice,
     `analysis/g4_cmapss_fd001_archive_feasibility_note.md` as the exact public

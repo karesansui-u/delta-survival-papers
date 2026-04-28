@@ -11,7 +11,7 @@
 \begin{abstract}
 本補論は、構造持続理論の主理論 spine、companion papers、補論群、Lean 形式化、実証アンカーを、一つの構成地図として整理するための文書である。新しい定理、新しい実験、新しい support 判定を追加するものではない。目的は、どの文書がどの層の主張を担い、どの文書をどの順番で読むと誤読が少ないかを明示することである。
 
-本稿群は、単一の長大な論文ではなく、最小核、回復を含む形式への拡張、条件つき導出、写像手順、操作的資源項、仕様固定構造層、構造推定層、条件付き構造埋め込み層、Lean 形式化を分けて書いている。本補論は、それらの役割、依存関係、主張強度を一つの地図として示す。
+本稿群は、単一の長大な論文ではなく、最小核、回復を含む形式への拡張、条件つき導出、写像手順、操作的資源項、許容写像、仕様固定構造層、構造推定層、条件付き構造埋め込み層、Lean 形式化を分けて書いている。本補論は、それらの役割、依存関係、主張強度を一つの地図として示す。
 \end{abstract}
 
 \section{この地図が与えるもの}\label{ux3053ux306eux5730ux56f3ux304cux4e0eux3048ux308bux3082ux306e}
@@ -84,7 +84,7 @@
 Layer 0: Map / Discipline & 読み順、主張強度、support 判定、沈黙条件を定める & 本補論、補論「構造持続理論の運用規律」、補論「構造持続写像の標準手順」 \\
 Layer 1: Entry & 全体像を一つの導線で読む & Paper 0 統合版 \\
 Layer 2: Foundation & 回復を明示しない最小核 & Paper 1 最小形式 \\
-Layer 3: Core Extension & 構造消耗量と回復量を含む指数核 & Paper 2 収支原理、条件つき導出補論、集合値力学補論、収支原理の詳細展開補論 \\
+Layer 3: Core Extension & 構造消耗量と回復量を含む指数核 & Paper 2 収支原理、条件つき導出補論、集合値力学補論、許容写像補論、収支原理の詳細展開補論 \\
 Layer 4: Operational Mapping & 現実ドメインへの写像、資源項、設計原理 & 補論「構造持続写像の標準手順」、補論「資源項Mの操作的定式化」 \\
 Layer 5: Anchors / Bridges & 仕様固定構造層、構造推定層、条件付き構造埋め込み層のアンカー & CSP 補論、計算コスト補論、LLM companions、Foster-Lyapunov 補論、非CSP補論 \\
 Layer 6: Formal Layer & Lean theorem、reader-facing claim、numerical sanity check の対応 & Lean modules, PAPER\_MAPPING, NumericalSanityChecks \\
@@ -114,7 +114,7 @@ Layer 6: Formal Layer & Lean theorem、reader-facing claim、numerical sanity ch
 
 \section{構造推定層 / LLM companion I / II}\label{ux69cbux9020ux63a8ux5b9aux5c64-llm-companion-i-ii}
 
-\section{必要に応じて資源項、条件付き構造埋め込み、Lean / technical supplements}\label{ux5fc5ux8981ux306bux5fdcux3058ux3066ux8cc7ux6e90ux9805ux6761ux4ef6ux4ed8ux304dux69cbux9020ux57cbux3081ux8fbcux307flean-technical-supplements}
+\section{必要に応じて資源項、許容写像、条件付き構造埋め込み、Lean / technical supplements}\label{ux5fc5ux8981ux306bux5fdcux3058ux3066ux8cc7ux6e90ux9805ux8a31ux5bb9ux5199ux50cfux6761ux4ef6ux4ed8ux304dux69cbux9020ux57cbux3081ux8fbcux307flean-technical-supplements}
 
 この順序は、読者の認知負荷を下げるための順序である。論理依存そのものは、\(Paper 1 -> Paper 2\)を主線とし、条件つき導出補論と集合値力学補論がその背後の技術条件を支える。
 
@@ -148,7 +148,7 @@ Layer 6: Formal Layer & Lean theorem、reader-facing claim、numerical sanity ch
 1 & Paper 1 & 構造維持可能集合の縮小から S = M exp(-L) を得る \\
 2 & Paper 2 & S = M exp(-L) を、回復量を含む S = M exp(-B) へ拡張する \\
 3 & 条件つき導出補論 & どこまでが恒等式で、どこからが弱依存・確率条件に依存するかを分ける \\
-4 & 集合値力学補論 / 詳細展開補論 & d\_t, r\_t, b\_t, B\_n の pathwise kernel と応用上の背景を整理する \\
+4 & 集合値力学補論 / 許容写像補論 / 詳細展開補論 & d\_t, r\_t, b\_t, B\_n の pathwise kernel、許容写像の階層、応用上の背景を整理する \\
 5 & Lean mapping & 対応する代数核と finite-horizon skeleton が機械検証されている範囲を確認する \\
 \end{longtable}
 }
@@ -280,6 +280,12 @@ Foster-Lyapunov / queueing drift の補論は、G6-c iteration 1 として位置
 この interface は、k-SAT、NAE-SAT、XOR-SAT、q-coloring、hypergraph coloring、finite-alphabet forbidden-pattern CSP、cardinality-SAT、threshold-cardinality-SAT を、同じ finite-horizon / iid bad-event exposure の型に載せる。これにより、個別構文の違いではなく、禁止パターンが有効状態空間をどれだけ削るかという共通座標で読める。
 
 この層は、現在は主に Lean modules と集合値力学補論の後半にある。読者が仕様固定構造層の横断性を評価するときは、PAPER\_MAPPING と Bernoulli-CSP universality modules を参照するのがよい。さらに、NumericalSanityChecks は、各 wrapper が小さな具体例で期待される定数を返すことを示す。これは経験的 support ではなく、reader-facing な numerical sanity check である。
+
+\section{許容写像と階層的不変量}\label{ux8a31ux5bb9ux5199ux50cfux3068ux968eux5c64ux7684ux4e0dux5909ux91cf}
+
+補論「構造持続における許容写像と階層的不変量」は、観測可能性の三層を数学的に読み直すための深部補論である。そこでは、構造維持問題を対象、その間の許容写像を射として扱い、同型では \(B_{n}\) が不変、正ゲージ変更では \(B_{n}\) が共変、粗視化では保存・単調性・誤差境界の条件が必要、代理観測では凍結後の追加予測力で評価する、という階層を置く。
+
+この補論の役割は、第二法則級の単一普遍法則を宣言することではない。むしろ、仕様固定構造層、条件付き構造埋め込み層、構造推定層が、強弱のラベルではなく、どの写像で何が保たれるかの違いであることを明確にする。Bernoulli-CSP interface の自然性も、SAT 風の構文を後から集めたものではなく、iid bad-event exposure と log-drift を保つテンプレート保存写像で閉じた限定クラスとして読む。
 
 \section{構造粒度と多階層性}\label{ux69cbux9020ux7c92ux5ea6ux3068ux591aux968eux5c64ux6027}
 

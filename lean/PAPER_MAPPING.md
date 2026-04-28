@@ -82,6 +82,44 @@ A thin wrapper file may still be added later for readability, but it is not
 mathematically required. If added, wrappers should be direct aliases of the
 existing theorems, with no new axioms and no strengthened empirical claim.
 
+### Sigma / Total Production Component
+
+The second-law-level roadmap in
+`analysis/second_law_level_roadmap.md` separates the path into admissible maps,
+\(\Sigma\) / total production, typical nondecrease, limited-class universality,
+and eventual cross-class unification. The important current update is that the
+\(\Sigma\) component is not speculative: its deterministic and
+expectation-level core already has Lean anchors.
+
+This does **not** prove a full second-law analogue. It shows that the
+open-system tendency candidate is already formally accessible at the
+definition / expectation level, while high-probability and cross-class claims
+still require explicit assumptions.
+
+| Paper-side phrase | Lean vocabulary | Lean theorem / object | Status |
+|---|---|---|---|
+| total production \(\Sigma_n = B_n + C_n\) | cumulative net action plus cumulative resource cost | `TotalProduction.cumulativeTotalProduction` | defined |
+| stepwise \(\Sigma_t = b_t + c_t\) | step net action plus resource cost | `TotalProduction.stepTotalProduction` | defined |
+| repair slack \(c_t-r_t\) | cost minus realized gain | `TotalProduction.stepRepairSlack` | defined |
+| repair slack is nonnegative under a budget | budgeted repair cannot exceed cost | `TotalProduction.stepRepairSlack_nonneg`; `TotalProduction.cumulativeRepairSlack_nonneg` | proven |
+| total production splits as loss plus repair slack | \(\Sigma = L + slack\) | `TotalProduction.stepTotalProduction_eq_stepLoss_add_stepRepairSlack`; `TotalProduction.cumulativeTotalProduction_eq_cumulativeLoss_add_cumulativeRepairSlack` | proven |
+| \(\Sigma\) dominates cumulative contraction loss | repair is not free | `TotalProduction.cumulativeLoss_le_cumulativeTotalProduction` | proven |
+| exact payment recovers loss-only total | cost exactly equals gain | `TotalProduction.cumulativeTotalProduction_eq_cumulativeLoss_of_exact_payment` | proven |
+| resource budget plus contraction lower bound gives one-step \(\Sigma\) drift | deterministic expected increment | `ResourceBudgetToSigmaDrift.expectedIncrement_lowerBound_of_stepLoss_lowerBound` | proven |
+| uniform contraction lower bound gives expected cumulative lower bound | linear expected \(\Sigma\) lower bound | `ResourceBudgetToSigmaDrift.expectedCumulative_lowerBound_of_typicalContraction` | proven |
+| nonnegative typical contraction gives expected monotonicity | expectation-level tendency | `ResourceBudgetToSigmaDrift.expectedCumulative_monotone_of_nonneg_typicalContraction` | proven |
+| coarse expected \(\Sigma\) nondecrease under compatibility / resource-boundedness | coarse typical nondecrease | `CoarseTypicalNondecrease.coarse_expectedCumulative_monotone_of_micro_nonnegative`; `CoarseTypicalNondecrease.coarse_expectedCumulative_monotone_of_micro_resourceBounded`; `CoarseTypicalNondecrease.coarse_expectedCumulative_monotone_of_micro_conditionalAzuma` | proven under assumptions |
+
+Reader-facing discipline:
+
+```text
+\Sigma_n is the open-system tendency candidate.
+Raw B_n can decrease under recovery.
+Expectation-level monotonicity and high-probability stopped-collapse are
+different schemas and must not be merged without carrying the extra margin and
+concentration assumptions.
+```
+
 ## Paper 2 / Structural Persistence Balance Mapping
 
 Paper 2 の経路ごとの代数核は、既存の

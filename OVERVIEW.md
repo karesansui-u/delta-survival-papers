@@ -20,7 +20,7 @@
 7. 構造推定層 / LLM: [`v2/Companion_RouteC_推論時の構造劣化.md`](v2/Companion_RouteC_推論時の構造劣化.md), [`v2/Companion_RouteC_継続学習時の構造的忘却.md`](v2/Companion_RouteC_継続学習時の構造的忘却.md)
 8. 資源項 \(M\): [`v2/補論_構造持続における資源項Mの操作的定式化.md`](v2/補論_構造持続における資源項Mの操作的定式化.md)
 9. 既存理論 bridge: [`v2/補論_構造持続の収支原理とFoster-Lyapunovドリフトの形式的埋め込み.md`](v2/補論_構造持続の収支原理とFoster-Lyapunovドリフトの形式的埋め込み.md), [`v2/補論_非CSP古典例における構造持続の収支原理の最小アンカー.md`](v2/補論_非CSP古典例における構造持続の収支原理の最小アンカー.md)
-10. Lean / 詳細補論: [`lean/PAPER_MAPPING.md`](lean/PAPER_MAPPING.md), [`v2/補論_構造持続の条件つき導出.md`](v2/補論_構造持続の条件つき導出.md), [`v2/補論_構造持続の収支原理の詳細展開.md`](v2/補論_構造持続の収支原理の詳細展開.md)
+10. Lean / 詳細補論: [`lean/PAPER_MAPPING.md`](lean/PAPER_MAPPING.md), [`v2/補論_構造持続の条件つき導出.md`](v2/補論_構造持続の条件つき導出.md), [`v2/補論_構造持続における許容写像と階層的不変量.md`](v2/補論_構造持続における許容写像と階層的不変量.md), [`v2/補論_構造持続の収支原理の詳細展開.md`](v2/補論_構造持続の収支原理の詳細展開.md)
 
 ## Japanese Entry Point
 
@@ -68,6 +68,7 @@
 - [`v2/pdf用/補論_構造持続の収支原理とFoster-Lyapunovドリフトの形式的埋め込み.pdf`](v2/pdf用/補論_構造持続の収支原理とFoster-Lyapunovドリフトの形式的埋め込み.pdf)
 - [`v2/pdf用/補論_非CSP古典例における構造持続の収支原理の最小アンカー.pdf`](v2/pdf用/補論_非CSP古典例における構造持続の収支原理の最小アンカー.pdf)
 - [`v2/pdf用/補論_構造持続の条件つき導出.pdf`](v2/pdf用/補論_構造持続の条件つき導出.pdf)
+- [`v2/pdf用/補論_構造持続における許容写像と階層的不変量.pdf`](v2/pdf用/補論_構造持続における許容写像と階層的不変量.pdf)
 - [`v2/pdf用/補論_構造持続の収支原理の詳細展開.pdf`](v2/pdf用/補論_構造持続の収支原理の詳細展開.pdf)
 
 Latest OSF mirror (Bernoulli-CSP links are the v1.1 archive snapshot):
@@ -95,6 +96,7 @@ Latest OSF mirror (Bernoulli-CSP links are the v1.1 archive snapshot):
 - Reproduction: [`REPRODUCE.md`](REPRODUCE.md)
 - Lean formalization: [`lean/readme.md`](lean/readme.md)
 - Reader-facing theorem map: [`lean/PAPER_MAPPING.md`](lean/PAPER_MAPPING.md)
+- Second-law-level internal roadmap: [`analysis/second_law_level_roadmap.md`](analysis/second_law_level_roadmap.md)
 
 Mixed-CSP の true outside-group rerun は requested set が完了しており、3 名の外部実行者がそれぞれ `12000` 行 primary run、`0` checked core mismatches、support flags 全 true を返している。これは Mixed-CSP package に限った replication closure であり、詳細は [`analysis/route_a_mixed_csp/mixed_csp_true_outside_final_report.md`](analysis/route_a_mixed_csp/mixed_csp_true_outside_final_report.md) を参照。
 

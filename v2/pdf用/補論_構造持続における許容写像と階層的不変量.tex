@@ -1,0 +1,562 @@
+\documentclass[12pt,a4paper]{article}
+\input{survival_whitepaper_preamble.tex}
+
+\begin{document}
+
+\PaperTitleBlock
+  {構造持続における許容写像と階層的不変量}
+  {— 構造共変性・粗視化欠損・限定クラス普遍性 —}
+  {2026年4月12日}
+
+\begin{abstract}
+本補論は、構造持続理論における「保存される量」「許容される構造粒度変換」「自然なドメインクラス」の関係を整理する。目的は、構造持続理論を直ちに単一の普遍法則として宣言することではない。むしろ、どの写像のもとで何が不変であり、どの写像のもとで何が共変し、どの写像では欠損項や誤差境界を持ち、どの写像では代理指標による凍結検証に降りるべきかを明確にすることである。
+
+中心となる見方は、構造維持問題を対象とし、その間の写像を許容写像として扱うことである。名前変更や測度保存同型では累積純消耗量 \(B_{n}\) は不変である。測度比を正の冪で読み替えるようなゲージ変更では \(B_{n}\) は正の定数倍として共変する。粗視化や代理観測では一般に不変性は失われるため、許容条件、誤差境界、または凍結後の予測力検証が必要になる。
+
+この整理により、仕様固定構造層、条件付き構造埋め込み層、構造推定層は、強弱の直線的序列ではなく、観測可能性と許容写像の違いとして読める。Bernoulli-CSP class も、SAT 風の構文を後から集めたものではなく、iid bad-event exposure と log-drift を保つテンプレート保存写像で閉じた仕様固定構造層の限定クラスとして位置づけられる。
+\end{abstract}
+
+\section{問い}\label{ux554fux3044}
+
+構造持続理論が第二法則級の方向へ進むには、少なくとも三つの問いが残る。
+
+第一に、どの量が保存量または単調量の候補なのか。
+
+第二に、どの構造粒度変換を許容してよいのか。
+
+第三に、Bernoulli-CSP のような限定クラスは、なぜ自然なクラスと言えるのか。
+
+本補論の立場では、これらは独立した三問題ではない。むしろ、どの許容写像に対する不変量または共変量を求めるのかがまだ明示されていなかった、という一つの問題の三つの側面である。
+
+したがって、本補論の問いは次である。
+
+構造維持問題の間にどのような写像を許し、その写像のもとで \(B_{n}\)、\(\Sigma_{n}\)、drift、collapse boundary は、不変・共変・欠損項つき・誤差境界つき・検証対象のどれとして扱われるのか。
+
+\section{構造維持問題を対象として見る}\label{ux69cbux9020ux7dadux6301ux554fux984cux3092ux5bfeux8c61ux3068ux3057ux3066ux898bux308b}
+
+構造維持問題を
+
+\[
+\Pi = (X,m,V^{(0)},K_{t},R_{t},T)
+\]
+
+と書く。ここで \(X\) は状態空間、\(m\) は比較に用いる質量モデル、\(V^{(0)}\) は初期構造維持可能集合、\(K_{t}\) は構造維持可能領域を削る作用、\(R_{t}\) は再拡大作用、\(T\) は時間地平である。
+
+Paper 1 の loss-only 核だけを見るなら、列 \(\{V^{(t)}\}\) だけで十分である。しかし Paper 2 の収支原理を扱うには、消耗後・回復前の中間集合 \(V_{t}^-\) が必要になる。したがって本補論では、二段階更新
+
+\[
+V^{(t)} \longrightarrow V_{t}^- \longrightarrow V^{(t+1)}
+\]
+
+を構造維持問題の読みに含める。\(K_{t},R_{t}\) は単なる付属物ではなく、消耗量 \(d_{t}\) と回復量 \(r_{t}\) を分けるための readout structure である。
+
+この問題から、各時刻の構造維持可能集合
+
+\[
+V^{(t)}
+\]
+
+と中間集合
+
+\[
+V_{t}^- := K_{t}(V^{(t)})
+\]
+
+が定まる。正かつ有限の質量が保たれる範囲では、
+
+\[
+\begin{aligned}
+d_{t} :&= -\log \frac{m(V_{t}^-)}{m(V^{(t)})}, \\
+\qquad \\
+r_{t} :&= \log \frac{m(V^{(t+1)})}{m(V_{t}^-)}
+\end{aligned}
+\]
+
+を定義できる。純消耗量は
+
+\[
+b_{t} := d_{t}-r_{t}
+\]
+
+であり、累積純消耗量は
+
+\[
+B_{n}(\Pi) := \sum_{t<n} b_{t}
+\]
+
+である。
+
+ここで \(B_{n}\) は一般には非負量ではない。回復優位の区間では \(b_{t}<0\) となり、累積純消耗量も負になりうる。したがって target は単純な \(\mathbb{R}_{\ge0}\) ではなく、符号つきの実数的 readout として扱う方が自然である。
+
+構造維持問題の間の写像
+
+\[
+\Psi:\Pi\to\Pi'
+\]
+
+は、単なる状態空間写像ではない。構造、質量比、時刻、消耗・回復の読み方をどこまで保つかを含む。したがって、本補論では「写像」を次の四段階に分ける。
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  同型写像。
+\item
+  ゲージ変更。 \# 粗視化。
+\end{enumerate}
+
+\section{代理観測。}\label{ux4ee3ux7406ux89b3ux6e2c}
+
+この四段階は、どの量を定理として保てるかを決める。
+
+圏論的に言えば、構造維持問題を対象、上の写像を射として扱う。ただし、本補論は \(B_{n}\) が全ての許容写像上で一つの通常の関手になる、と主張しない。むしろ、射の部分クラスごとに \(B_{n}\) が不変量、共変量、欠損項つき量、境界つき量、検証対象のどれになるかを分ける。ここで必要なのは、圏論の重い装置ではなく、次の最小事実である。
+
+{\def\LTcaptype{table} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+要件
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+意味
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+恒等射 & 同じ構造維持問題をそのまま読む写像がある \\
+合成 & 二つの許容写像を続けて適用したとき、どの種類の写像として残るかを問える \\
+射の部分クラス & 同型、ゲージ、粗視化、代理観測を区別できる \\
+量の振る舞い & 累積純消耗量、総生成量、drift、collapse boundary が不変・共変・欠損項つき・境界つき・検証対象のどれになるかを分けられる \\
+\end{longtable}
+}
+
+この意味で、構造持続理論で必要なのは群ではなく圏である。群は可逆変換を中心に置くが、構造持続で重要な粗視化、射影、忘却、代理観測は多くの場合非可逆である。非可逆な写像を外に追い出すと、構造推定層や operational content が理論の外へ落ちてしまう。
+
+したがって、本補論では「不変量」を同型写像に対して、「共変量」をゲージ変更に対して、「欠損項または条件つき単調性」を粗視化に対して、「誤差境界」を確率テンプレートに対して、「support 判定」を代理観測に対して置く。この分担が、階層的不変量という語の意味である。より正確には、階層的不変量とは、不変・共変・欠損項・境界・検証対象の階層である。
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  同型不変性
+\end{enumerate}
+
+同型写像とは、二つの構造維持問題が同じ問題の別表現である場合である。たとえば、状態名の変更、変数名の変更、同じ質量比を保つ可測同型などがこれに含まれる。
+
+命題 1（同型不変性）。 二つの構造維持問題 \(\Pi,\Pi'\) について、すべての \(t<T\) で
+
+\[
+\begin{aligned}
+\frac{m'(V_{t}^{\prime -})}{m'(V^{\prime(t)})} \\
+&= \\
+\frac{m(V_{t}^-)}{m(V^{(t)})}
+\end{aligned}
+\]
+
+かつ
+
+\[
+\begin{aligned}
+\frac{m'(V^{\prime(t+1)})}{m'(V_{t}^{\prime -})} \\
+&= \\
+\frac{m(V^{(t+1)})}{m(V_{t}^-)}
+\end{aligned}
+\]
+
+が成り立つなら、
+
+\[
+b_{t}(\Pi')=b_{t}(\Pi)
+\]
+
+であり、したがって
+
+\[
+B_{n}(\Pi')=B_{n}(\Pi)
+\]
+
+である。
+
+証明。 各時刻の消耗量 \(d_{t}\) と回復量 \(r_{t}\) は、上の二つの質量比の対数で定義される。質量比が等しければ、それぞれの対数も等しい。したがって \(b_{t}=d_{t}-r_{t}\) が等しく、和を取れば \(B_{n}\) も等しい。証明終。
+
+この命題は、構造持続理論の最も硬い不変性である。名前を変えても、同じ比率を見ている限り \(B_{n}\) は変わらない。
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  ゲージ共変性
+\end{enumerate}
+
+同型より少し弱い写像として、測度比の単位を変える場合がある。たとえば、全ての質量比を同じ正の冪で読むような変更である。
+
+ここで注意すべきことは、\(m(A)^\alpha\) が一般に測度になるとは限らない点である。したがって、これは測度そのものの変更というより、質量比 readout のゲージ変更として扱う。
+
+以下の命題で \(m'\) と書くものも、必ずしも \(m\) から構成された新しい測度である必要はない。必要なのは、各時刻の二つの質量比 readout が下の冪変換関係を満たすことである。したがって、命題 2 は測度構成定理ではなく、質量比の読み替えに対する共変性命題である。
+
+命題 2（正ゲージ共変性）。 ある \(\alpha>0\) が存在して、すべての \(t<T\) で
+
+\[
+\begin{aligned}
+\frac{m'(V_{t}^{\prime -})}{m'(V^{\prime(t)})} \\
+&= \left(\frac{m(V_{t}^-)}{m(V^{(t)})}\right)^\alpha
+\end{aligned}
+\]
+
+かつ
+
+\[
+\begin{aligned}
+\frac{m'(V^{\prime(t+1)})}{m'(V_{t}^{\prime -})} \\
+&= \left(\frac{m(V^{(t+1)})}{m(V_{t}^-)}\right)^\alpha
+\end{aligned}
+\]
+
+が成り立つなら、
+
+\[
+b_{t}(\Pi')=\alpha b_{t}(\Pi)
+\]
+
+であり、
+
+\[
+B_{n}(\Pi')=\alpha B_{n}(\Pi)
+\]
+
+である。
+
+証明。 \(-\log x^\alpha=\alpha(-\log x)\) および \(\log x^\alpha=\alpha \log x\) から従う。証明終。
+
+この場合、\(B_{n}\) の数値そのものは変わる。しかし、\(\alpha>0\) なので、符号、順序、消耗優位・維持・回復優位の regime は保たれる。したがって、完全不変性ではなく共変性として読むのが正確である。
+
+\section{粗視化は不変性ではなく許容条件を要する}\label{ux7c97ux8996ux5316ux306fux4e0dux5909ux6027ux3067ux306fux306aux304fux8a31ux5bb9ux6761ux4ef6ux3092ux8981ux3059ux308b}
+
+粗視化とは、細かな状態空間 \(X\) から粗い状態空間 \(\bar X\) への写像
+
+\[
+\pi:X\to\bar X
+\]
+
+によって、微視的な構造維持問題を巨視的な構造維持問題へ送ることである。
+
+粗視化は一般に非可逆である。したがって、同型不変性のような完全な保存は期待できない。下位状態の違いをまとめる時点で、情報は落ちる。
+
+したがって、粗視化では次のいずれかを要求する必要がある。
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  力学との可換性。
+\item
+  質量比の一様スケーリング。
+\item
+  累積量の誤差境界。
+\item
+  順序予測の非反転。
+\end{enumerate}
+
+Lean 側の \texttt{Survival.CoarseGraining} は、このうち保守的な exact case を形式化している。すなわち、粗視化写像が初期領域、収縮作用、再拡大作用と可換であり、かつ feasible mass と contracted mass に一様な質量スケーリングがある場合、step loss、step gain、step net action、cumulative net action が保存される。
+
+これは第二法則級の普遍性を証明したものではない。むしろ、粗視化で何を仮定すれば \(B_{n}\) 側の不変性が壊れないかを示す定義層である。
+
+より弱い粗視化では、完全保存ではなく欠損項つきの恒等式として扱う方が安全である。粗視化写像を \(\pi:X\to\bar X\) とし、集合 \(A\subseteq X\) に対して飽和欠損、すなわち saturation defect を
+
+\[
+\begin{aligned}
+e_\pi(A) \\
+:&= \\
+\log\frac{m(\pi^{-1}\pi(A))}{m(A)}
+\end{aligned}
+\]
+
+と置く。ただし、この定義は
+
+\[
+0<m(A)\le m(\pi^{-1}\pi(A))<\infty
+\]
+
+の範囲で読む。これは、粗視化したあとに引き戻すことで、もとの集合にどれだけ余分な状態が混ざるかを測る量である。定義上 \(e_\pi(A)\ge 0\) であり、\(A\) が粗視化に対して saturated、すなわち \(A=\pi^{-1}\pi(A)\) なら \(e_\pi(A)=0\) である。
+
+押し出し測度 \(\bar m=\pi_*m\) と \(\bar V^{(t)}=\pi(V^{(t)})\) によって粗視化後の残存領域を読むと、
+
+\[
+\begin{aligned}
+\bar m(\bar V^{(t)}) \\
+&= \\
+m(V^{(t)})\exp(e_\pi(V^{(t)}))
+\end{aligned}
+\]
+
+である。したがって、純消耗の一歩更新は
+
+\[
+\begin{aligned}
+b_{t}^{\mathrm{coarse}} \\
+&= \\
+b_{t}^{\mathrm{micro}} \\
++ e_\pi(V^{(t)}) \\
+- e_\pi(V^{(t+1)})
+\end{aligned}
+\]
+
+となり、累積では
+
+\[
+\begin{aligned}
+B_{n}^{\mathrm{coarse}} \\
+&= \\
+B_{n}^{\mathrm{micro}} \\
++ e_\pi(V^{(0)}) \\
+- e_\pi(V^{(n)})
+\end{aligned}
+\]
+
+となる。
+
+この式が粗視化の基本形である。したがって、粗視化によって常に
+
+\[
+B_{n}^{\mathrm{coarse}} \le B_{n}^{\mathrm{micro}}
+\]
+
+が成り立つわけではない。成り立つのは、たとえば \(e_\pi(V^{(n)})\ge e_\pi(V^{(0)})\) のように、終端側の飽和欠損が初期側以上である場合である。初期集合が saturated なら \(e_\pi(V^{(0)})=0\) なので、この条件は自然に満たされやすい。しかし欠損項が減少する粗視化では、不等式の向きは反転しうる。
+
+また、消耗量 \(d_{t}\) と回復量 \(r_{t}\) を個別に比較する場合には、中間集合 \(V_{t}^-\) の飽和欠損も必要になる。この分解は、粗視化が収縮作用 \(K_{t}\) と可換であり、粗視化後の中間集合を
+
+\[
+\bar V_{t}^-=\pi(V_{t}^-)
+\]
+
+として読める場合に成立する。このとき形式的には
+
+\[
+\begin{aligned}
+d_{t}^{\mathrm{coarse}} \\
+&= \\
+d_{t}^{\mathrm{micro}} \\
++ e_\pi(V^{(t)}) \\
+- e_\pi(V_{t}^-)
+\end{aligned}
+\]
+
+および
+
+\[
+\begin{aligned}
+r_{t}^{\mathrm{coarse}} \\
+&= \\
+r_{t}^{\mathrm{micro}} \\
++ e_\pi(V^{(t+1)}) \\
+- e_\pi(V_{t}^-)
+\end{aligned}
+\]
+
+となる。したがって、粗視化は \(B_{n}\) だけでなく、消耗と回復の分解そのものにも欠損項を入れる。
+
+このため、本補論は条件なしの DPI 型定理を主張しない。むしろ、許容粗視化とは飽和欠損が制御され、必要な可換性と中間集合の対応が明示された写像である、と定義するのが正しい。DPI 型単調性は、そのような欠損項条件のもとで得られる候補定理であり、無条件の普遍法則ではない。
+
+\section{代理観測は不変量ではなく検証手順で扱う}\label{ux4ee3ux7406ux89b3ux6e2cux306fux4e0dux5909ux91cfux3067ux306fux306aux304fux691cux8a3cux624bux9806ux3067ux6271ux3046}
+
+構造推定層では、\(V^{(t)}\) や \(m(V^{(t)})\) を直接数えられないことが多い。この場合、観測されるのは代理指標
+
+\[
+Z_{t}
+\]
+
+であり、そこから構造消耗量、回復量、余力、または介入候補を推定する。
+
+この代理観測写像は、一般には \(B_{n}\) を不変にも共変にも保たない。したがって、ここで必要なのは不変量定理ではなく、凍結検証である。
+
+代理観測が構造持続理論の support になるのは、探索後に写像、特徴量、baseline、metric、split、判定規則を凍結し、別データ、future surface、fresh archive、または outside rerun で追加予測力を示す場合に限られる。
+
+このため、構造推定層の no-support は直ちに理論核の反証ではない。それは、代理指標、観測単位、endpoint、または写像手順の失敗として failure ledger に残すべきである。
+
+\section{観測可能性の三層の再解釈}\label{ux89b3ux6e2cux53efux80fdux6027ux306eux4e09ux5c64ux306eux518dux89e3ux91c8}
+
+以上の写像階層から、仕様固定構造層、条件付き構造埋め込み層、構造推定層は次のように読み直せる。
+
+{\def\LTcaptype{table} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+層
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+主な写像
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+保てるもの
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+主な判定
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+仕様固定構造層 & 同型、ゲージ、テンプレート保存写像 & 累積純消耗量、drift、collapse boundary の定義または境界 & 定理、有限時間境界、frozen primary \\
+条件付き構造埋め込み層 & 既存理論からの構造埋め込み & drift、差分、停止境界の対応 & formal embedding / conditional bridge \\
+構造推定層 & 代理観測写像 & 不変量ではなく予測的効果 & baseline + SP の凍結後改善 \\
+\end{longtable}
+}
+
+この表で重要なのは、構造推定層を弱い層として見ることではない。構造推定層は、実世界で構造を直接数えられない場合の標準的インターフェースである。ただし、それは法則側定理を証明する場所ではなく、予測、診断、介入候補を作る場所である。
+
+\section{Bernoulli-CSP class の自然性}\label{bernoulli-csp-class-ux306eux81eaux7136ux6027}
+
+Bernoulli-CSP class は、SAT 風の構文を後から集めた便宜的な集合としてではなく、one-sided iid bad-event exposure を保つテンプレートとして読むのがよい。ここで必要なのは群作用の orbit ではなく、iid bad-event exposure と log-drift を保つ許容写像で閉じた subcategory または generated class である。
+
+ここでテンプレート保存写像とは、少なくとも次を保つ写像である。
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  one-sided iid bad-event exposure 構造。
+\item
+  bad-event probability の許容パラメータ範囲。
+\item
+  一歩あたりの log-drift。
+\item
+  MGF / Chernoff / KL / stopping wrapper へ接続できる downstream structure。
+\end{enumerate}
+
+この class では、各 exposure が bad-event probability
+
+\[
+p\in(0,1)
+\]
+
+を持ち、一歩あたりの drift は
+
+\[
+\log\frac{1}{1-p}
+\]
+
+で定まる。さらに、有限地平の path measure、MGF product、Chernoff / KL profile、fixed-time collapse、stopped collapse、hitting-time wrapper が同じテンプレートで走る。
+
+Lean 側では \texttt{Survival.BernoulliCSPUniversality} がこの interface を固定している。そこでは k-SAT、NAE-SAT、XOR-SAT、q-coloring、finite-alphabet forbidden-pattern CSP、hypergraph coloring、exactly-one-SAT、exactly-\(r\) cardinality-SAT、at-most / at-least threshold cardinality-SAT が、同じ \texttt{ExposureModel} と \texttt{Parameters} の下に載る。
+
+したがって、Bernoulli-CSP class の自然性は「CSPっぽいから」ではない。bad-event exposure、log-drift、MGF/KL collapse stack を保つテンプレート保存写像で閉じているからである。
+
+これは全ドメイン普遍性ではない。しかし、仕様固定構造層における限定 class universality theorem の候補としては非常に自然である。
+
+ここで「閉じている」とは、現時点では最大生成クラスの完全な特徴づけを意味しない。より控えめには、上記の family 群が同じ exposure template と同じ downstream wrappers に入ることを意味する。将来的な stronger claim は、「この template を保つ許容写像で閉じた subcategory または generated class が Bernoulli-CSP universality class を特徴づける」という形になる。その場合でも、主張は全ドメイン普遍性ではなく、仕様固定構造層における限定クラス普遍性である。
+
+\section{階層的不変量としての普遍性}\label{ux968eux5c64ux7684ux4e0dux5909ux91cfux3068ux3057ux3066ux306eux666eux904dux6027}
+
+構造持続理論で無理に単一の universal 保存則を探すと、過剰主張になりやすい。より自然なのは、許容写像の強さに応じて、保たれる量の階層を分けることである。
+
+{\def\LTcaptype{table} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+階層
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+写像の種類
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+保たれるもの
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Level 0 & 同一問題内の pathwise update & pathwise exponential identity \\
+Level 1 & 同型写像 & 累積純消耗量の不変性 \\
+Level 2 & 正ゲージ変更 & 累積純消耗量の正定数倍共変性 \\
+Level 3 & admissible coarse-graining & 飽和欠損恒等式、条件つき単調性、誤差境界 \\
+Level 4 & 確率テンプレート保存写像 & drift / MGF / Chernoff / KL の一様境界 \\
+Level 5 & 代理観測写像 & 凍結後の追加予測力 \\
+\end{longtable}
+}
+
+この階層は、第二法則をそのまま移植するものではない。物理における Noether 型対応は、連続群と微分可能な作用に強く依存する。構造持続理論の写像は、離散的、非可逆的、確率的、代理観測的であることが多い。したがって、直接の移植ではなく、構造維持問題の許容写像と階層的不変量として再定式化する必要がある。
+
+この意味で、目標は単一の全域普遍不等式ではなく、複数の限定クラスで成立する保存・共変・欠損項・境界・条件つき単調性の定理群である。これらが十分に厚くなるとき、構造持続理論は第二法則そのものではなく、構造維持可能性に関する階層的な統一枠組みへ近づく。
+
+\section{既存 Lean との対応}\label{ux65e2ux5b58-lean-ux3068ux306eux5bfeux5fdc}
+
+本補論の考え方には、すでに Lean 側の足場がある。
+
+{\def\LTcaptype{table} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+役割
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Lean 側の足場
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+pathwise balance kernel & \texttt{Survival.GeneralStateDynamics}, \texttt{Survival.StructuralPersistenceBalancePrinciple} \\
+粗視化の exact interface & \texttt{Survival.CoarseGraining} \\
+total production の粗視化保存 & \texttt{Survival.CoarseTotalProduction} \\
+確率空間上の coarse compatibility & \texttt{Survival.CoarseStochasticTotalProduction} \\
+resource-bounded monotonicity & \texttt{Survival.ResourceBoundedDynamics} \\
+Bernoulli-CSP template & \texttt{Survival.BernoulliCSPTemplate}, \texttt{Survival.BernoulliCSPUniversality} \\
+\end{longtable}
+}
+
+現時点で Lean 化されていない、または今後の wrapper として切り出すべき対象は次である。
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  構造維持問題の一般的な morphism interface。
+\item
+  同型不変性と正ゲージ共変性の reader-facing wrapper。
+\item
+  粗視化に対する飽和欠損恒等式と、DPI 型単調性の条件切り。
+\item
+  Bernoulli-CSP class をテンプレート保存 subcategory / generated class として読む外向け定理名。
+\item
+  代理観測写像は不変量定理ではなく frozen validation に落ちる、という運用側の theorem map。
+\end{enumerate}
+
+したがって、本補論は新しい Lean 定理を主張するものではない。既存の粗視化・総生成量・Bernoulli-CSP interface を、一つの数学的見取り図にまとめ、次にどの wrapper を閉じるべきかを指定する文書である。
+
+第二法則級の統一へ向けた実行順序は、本文の主張ではなく作業地図として \texttt{analysis/second\_law\_level\_roadmap.md} に分けて記録する。そこでは、許容写像、\(\Sigma\) / total production、典型的非減少、限定クラス普遍性、将来の cross-class unification を別々の構成要素として扱う。
+
+\section{本補論で言っていないこと}\label{ux672cux88dcux8ad6ux3067ux8a00ux3063ux3066ux3044ux306aux3044ux3053ux3068}
+
+本補論は、次を主張しない。
+
+第一に、任意のドメインに自然な許容写像が存在するとは主張しない。
+
+第二に、任意の粗視化で \(B_{n}\) が保存される、または一方向に単調になるとは主張しない。
+
+第三に、代理指標が構造そのものを直接観測しているとは主張しない。
+
+第四に、Bernoulli-CSP class の限定普遍性が、そのまま全ドメイン普遍法則を意味するとは主張しない。
+
+第五に、物理の Noether 定理をそのまま構造持続理論へ移植できるとは主張しない。
+
+第六に、\(B_{n}\) が全ての許容写像上で一つの通常の関手として振る舞うとは主張しない。
+
+ここでの貢献は、保存則を直接宣言することではなく、保存・共変・欠損項・境界・代理観測を同じ写像階層の中で分けることにある。
+
+\section{結論}\label{ux7d50ux8ad6}
+
+構造持続理論の普遍性を考えるとき、問いは「ただ一つの保存則があるか」ではなく、「どの許容写像のもとで、どの量が保たれるか」である。
+
+同型写像では \(B_{n}\) は不変である。正ゲージ変更では \(B_{n}\) は共変であり、符号と regime は保たれる。粗視化では、一般に飽和欠損が発生し、単調性は欠損項条件つきでしか言えない。代理観測では、不変量定理ではなく、凍結後の追加予測力によって評価する。
+
+この整理により、仕様固定構造層、条件付き構造埋め込み層、構造推定層は、強弱のラベルではなく、構造維持問題をどの写像で観測し、どの量をどの強さで保てるかの違いとして位置づけられる。
+
+第二法則そのものを模倣するのではなく、許容写像の階層に対応する不変量・共変量・欠損項つき量・境界つき量・検証対象の系列を積み上げること。これが、構造持続理論をより深い統一枠組みへ進める現実的な道である。
+\end{document}
