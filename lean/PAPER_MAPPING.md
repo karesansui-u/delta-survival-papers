@@ -1,7 +1,7 @@
 # Lean 形式検証 ↔ 論文対応棚卸し
 
 棚卸し日: 2026-04-27
-対象: `lean/Survival/` 配下 145 ファイル
+対象: `lean/Survival/` 配下 146 ファイル
 対応文書: `delta-survival-paper/v2/` 配下の主理論 spine、Route C companions、補論群
 
 ## 現在の結論
@@ -9,7 +9,7 @@
 このファイルを、Lean 形式化と論文本文を結ぶ唯一の reader-facing theorem map とする。
 旧 SAT/CSP 専用 map は現行ツリーから外し、git history / OSF snapshot 側の archive として扱う。
 
-現時点の Lean 側は **145 Survival modules / sorry = 0 / axiom = 0** で閉じている。条件つき導出補論 §5 が
+現時点の Lean 側は **146 Survival modules / sorry = 0 / axiom = 0** で閉じている。条件つき導出補論 §5 が
 明示している 5 ファイルを超えて、停止時刻崩壊、martingale concentration、粗視化、有限状態 Markov
 microfoundation、SAT/k-SAT Chernoff-KL chain、Bernoulli-CSP 水平展開、Route A 非CSP skeletons まで
 含む。
@@ -117,6 +117,7 @@ map layers:
 | Bernoulli-CSP fixed-time typical growth | same good event has initial-to-time nondecrease and `center-r ≤ Σ_n` | `BernoulliTypicalSigma.BernoulliSigmaTypicalGrowthWithFailureBound`; `BernoulliTypicalSigma.bernoulliSigma_typicalGrowthWithChernoffBound_of_interior` | proven under finite-path interior assumptions |
 | Bernoulli-CSP coarse terminal lower-bound transfer | endpoint defect budget \(e_n-e_0\le\delta\) degrades `center-r ≤ Σ_n` to `center-r-δ ≤ Σ̄_n` | `BernoulliTypicalSigma.CoarseBernoulliSigmaLowerBoundWithFailureBound`; `BernoulliTypicalSigma.coarseBernoulliSigma_lowerBoundWithChernoffBound_of_endpointDefectBudget` | proven as fixed-time conditional readout transfer |
 | Bernoulli-CSP coarse fixed-time typical growth | coarse monotonicity plus endpoint defect budget transfer the fixed-time certificate | `BernoulliTypicalSigma.CoarseBernoulliSigmaTypicalGrowthWithFailureBound`; `BernoulliTypicalSigma.coarseBernoulliSigma_typicalGrowthWithChernoffBound_of_endpointDefectBudget` | proven as conditional readout-level transfer |
+| Bernoulli-CSP admissible-map v0 sufficient package | endpoint identity, endpoint defect budget, and coarse monotonicity as enough conditions for the coarse certificates | `BernoulliAdmissibleMapV0.BernoulliCoarseReadoutV0`; `BernoulliAdmissibleMapV0.BernoulliCoarseReadoutV0.lowerBoundWithChernoffBound_of_interior`; `BernoulliAdmissibleMapV0.BernoulliCoarseReadoutV0.typicalGrowthWithChernoffBound_of_interior` | proven as sufficient readout-level wrapper, not necessary/sufficient admissible-map characterization |
 | Bernoulli-CSP \(\Sigma\) collapse wrappers | threshold / collapse / stopped-collapse / hitting-time API | `BernoulliTypicalSigma.bernoulliSigma_*WithChernoffBound_of_linearMargin` | proven under finite-horizon margin assumptions |
 
 This is intentionally not a full category of structural-maintenance problems.
@@ -126,10 +127,14 @@ finite mass-readout layer needed by the supplement's first claims. The
 saturation defect wrapper includes the minimal set-level instantiation for
 `eπ(A)=log(m(π⁻¹π(A))/m(A))` under positive mass assumptions. The
 defect-controlled wrapper now also proves that contracted-intermediate defects
-cancel in the signed net action, leaving only endpoint feasible defects. It
-still does not claim that an arbitrary coarse map is admissible, nor does it
-prove an unconditional DPI. Full set-level admissible coarse-graining and proxy
-/ estimation validation remain separate tasks.
+cancel in the signed net action, leaving only endpoint feasible defects.
+`Survival.BernoulliAdmissibleMapV0` packages the Bernoulli endpoint identity,
+endpoint defect budget, and coarse monotonicity assumptions as sufficient
+conditions for the Phase-4 coarse \(\Sigma\) certificates. It still does not
+claim that an arbitrary coarse map is admissible, nor does it prove an
+unconditional DPI or a necessary/sufficient admissible-map characterization.
+Full set-level admissible coarse-graining and proxy / estimation validation
+remain separate tasks.
 
 ### Sigma / Total Production Component
 
@@ -251,7 +256,7 @@ M supplement non-claims remain outside Lean:
 | Martingale / Azuma concentration | 完了 | 条件つき導出補論 §4 の抽象 ρ 境界を bounded-increment concentration に格上げ可能 |
 | 粗視化・表現安定性 | 完了 | Paper 1 §2 P5 を集合論・total production・stochastic layer で形式化 |
 | SAT chain v1.0 | 完了 | actual path measure → non-flat emission → MGF product → Chernoff/KL → collapse |
-| Bernoulli CSP universality v1.2 | 完了 | k-SAT / NAE-SAT / XOR-SAT / coloring / forbidden-pattern / cardinality families; `BernoulliTypicalSigma` gives the reader-facing \(\Sigma\) lower-tail / expectation / endpoint-defect coarse-transfer wrapper |
+| Bernoulli CSP universality v1.2 | 完了 | k-SAT / NAE-SAT / XOR-SAT / coloring / forbidden-pattern / cardinality families; `BernoulliTypicalSigma` gives the reader-facing \(\Sigma\) lower-tail / expectation / endpoint-defect coarse-transfer wrapper; `BernoulliAdmissibleMapV0` packages the sufficient readout-level admissible-map conditions for those coarse certificates |
 | Route A 非CSP skeletons | 表現検査として完了 | 指数型、線形過負荷型、累積容量型、臨界パラメータ型の finite-prefix sanity examples |
 
 ## 意図的に未着手の範囲

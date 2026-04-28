@@ -40,7 +40,7 @@ PDF は [`v2/pdf用/補論_構造持続理論の構成地図.pdf`](v2/pdf用/補
 
 - 仕様固定構造層: SAT / Mixed-CSP / q-coloring では、自然測度・finite-horizon collapse chain・prospective empirical support が揃いつつあります。Mixed-CSP と Exp43c q-coloring は、それぞれ外部実行者 3 名による frozen package rerun で decision-relevant output が再現されています。
 - 構造推定層: LLM 推論実験では、文脈長だけではなく構造矛盾の質が崩壊を予測することを、複数の preregistered / prospective checks で検査しています。
-- Formal layer: Lean 4 側は `145 Survival modules`, `sorry = 0`, `axiom = 0` で、主な theorem-to-paper mapping は [`lean/PAPER_MAPPING.md`](lean/PAPER_MAPPING.md) にまとめています。階層的不変量による統一枠組みへ何を積むかは [`analysis/second_law_level_roadmap.md`](analysis/second_law_level_roadmap.md) に分けて整理しています。
+- Formal layer: Lean 4 側は `146 Survival modules`, `sorry = 0`, `axiom = 0` で、主な theorem-to-paper mapping は [`lean/PAPER_MAPPING.md`](lean/PAPER_MAPPING.md) にまとめています。階層的不変量による統一枠組みへ何を積むかは [`analysis/second_law_level_roadmap.md`](analysis/second_law_level_roadmap.md) に分けて整理しています。
 - Non-CSP: Backblaze / C-MAPSS / Scania などは support / weakening / no-support を分けて記録し、同一 archive 内の rescue を避けています。
 
 ## Core and Companion Papers (v2) / 主理論核と companion papers
@@ -97,7 +97,7 @@ PDF は [`v2/pdf用/補論_構造持続理論の構成地図.pdf`](v2/pdf用/補
 | Conditional derivation | Supplement |
 | LLM Companion I | Companion preprint |
 | LLM Companion II | Companion preprint |
-| Lean 4 formalization | Complete (`145 Survival modules`, `sorry = 0`, `axiom = 0`) |
+| Lean 4 formalization | Complete (`146 Survival modules`, `sorry = 0`, `axiom = 0`) |
 | OSF project | [osf.io/mdh7b/overview](https://osf.io/mdh7b/overview) |
 | Raw data and summaries | [DATA.md](DATA.md) |
 
@@ -162,7 +162,7 @@ delta-survival-paper/
 ## Formal Verification / 形式検証
 
 Lean formalization is in [`lean/`](lean/). Current status:
-`145 Survival modules`, `sorry = 0`, `axiom = 0`.
+`146 Survival modules`, `sorry = 0`, `axiom = 0`.
 
 The current core layering includes:
 
@@ -173,6 +173,7 @@ The current core layering includes:
 - `SATStateDependentCountChernoffKLAlgebra.lean`: actual 3-SAT clause-exposure path measure から Chernoff/KL collapse bound まで
 - `BernoulliCSPPathCollapse.lean` / `KSATChernoffCollapse.lean`: Bernoulli bad-event CSP と random k-SAT への operational collapse wrapper
 - `BernoulliTypicalSigma.lean`: Bernoulli-CSP の cumulative production を \(\Sigma\) として読む reader-facing lower-tail / good-event lower-bound / typical-growth / endpoint-defect coarse-transfer / expectation wrapper
+- `BernoulliAdmissibleMapV0.lean`: Bernoulli-CSP coarse \(\Sigma\) transfer を発火させる endpoint identity / defect budget / coarse monotonicity の十分条件 wrapper
 - `NAESATChernoffCollapse.lean`: fixed-assignment NAE-SAT bad-event exposure への horizontal expansion
 - `XORSATChernoffCollapse.lean`: fixed-assignment XOR-SAT bad-event exposure への horizontal expansion
 - `QColoringChernoffCollapse.lean`: fixed-coloring q-coloring edge exposure への horizontal expansion

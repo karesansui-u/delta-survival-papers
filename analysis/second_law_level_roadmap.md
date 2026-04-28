@@ -208,6 +208,10 @@ What is already closed:
   good-event lower-bound certificate, a fixed-time typical-growth certificate,
   endpoint-defect coarse-transfer certificates, and the threshold / collapse /
   stopped-collapse / hitting-time wrappers.
+- `Survival.BernoulliAdmissibleMapV0` packages the sufficient readout-level
+  assumptions that trigger those coarse-transfer certificates: terminal
+  endpoint-defect identity, endpoint defect budget, and fixed-time coarse
+  monotonicity.
 
 What remains:
 
@@ -541,6 +545,44 @@ unconditional high-probability Sigma monotonicity
 or full Bernoulli-CSP universality closure.
 ```
 
+### Immediate action F: Bernoulli admissible-map v0 sufficient package
+
+Status:
+
+```text
+done; sufficient readout-level wrapper added in `Survival.BernoulliAdmissibleMapV0`
+```
+
+This is the first Phase-5 entry point. It does not characterize all admissible
+maps. It only packages the sufficient conditions that make the Phase-4.4 coarse
+Bernoulli \(\Sigma\) transfer fire.
+
+Reader-facing Lean names:
+
+- `BernoulliAdmissibleMapV0.BernoulliCoarseReadoutV0`
+- `BernoulliAdmissibleMapV0.BernoulliCoarseReadoutV0.terminal_lower_bound`
+- `BernoulliAdmissibleMapV0.BernoulliCoarseReadoutV0.lowerBoundWithFailureBound_of_micro`
+- `BernoulliAdmissibleMapV0.BernoulliCoarseReadoutV0.lowerBoundWithChernoffBound_of_interior`
+- `BernoulliAdmissibleMapV0.BernoulliCoarseReadoutV0.typicalGrowthWithFailureBound_of_micro`
+- `BernoulliAdmissibleMapV0.BernoulliCoarseReadoutV0.typicalGrowthWithChernoffBound_of_interior`
+
+Correct reading:
+
+```text
+If a Bernoulli coarse readout supplies terminal equality
+Σbar_n = Σ_n + e0 - en, endpoint defect budget en-e0 ≤ δ, and coarse
+fixed-time monotonicity, then the micro lower-bound / typical-growth
+certificates transfer to the coarse readout with the explicit δ penalty.
+```
+
+Do not read it as:
+
+```text
+necessary-and-sufficient admissible-map characterization,
+set-level instantiation from arbitrary coarse maps,
+or unconditional coarse-graining DPI.
+```
+
 ## 5. Recommended order
 
 1. Commit the admissible-maps supplement and this roadmap.
@@ -550,7 +592,9 @@ or full Bernoulli-CSP universality closure.
    admissible-map layer; do not re-open unconditional coarse-graining DPI.
 5. Add Bernoulli-CSP `\Sigma` reader-facing wrappers before trying to prove a
    stronger high-probability or generated-class theorem.
-6. Keep Bernoulli-CSP class closure as a limited-class universality target, not
+6. Package the Bernoulli coarse-transfer sufficient conditions before claiming
+   a general admissible-map characterization.
+7. Keep Bernoulli-CSP class closure as a limited-class universality target, not
    a full universal-law claim.
 
 ## 6. What not to do next
@@ -587,6 +631,8 @@ The next phase succeeds if the repo reaches this state:
    "prove coarse-graining DPI" mandate.
 6. Bernoulli-CSP `\Sigma` wrappers make the finite-path lower-tail and
    expectation-level tendency layer explicit without overclaiming.
+7. Bernoulli admissible-map v0 packages the sufficient readout-level conditions
+   for coarse transfer without claiming a full characterization.
 ```
 
 At that point, the program has not reached a second law. But it has a much more
