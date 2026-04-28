@@ -190,7 +190,10 @@ The theory-pure `first_moment` predictor also beat `raw_plus_n`
 
 The requested true outside-group rerun set is complete: three independent
 outside executors returned clean 12,000-row primary runs with zero checked
-core-field mismatches and all support flags true.
+core-field mismatches and all support flags true. OSF final outside-rerun
+bundle:
+[zip](https://osf.io/download/69f01d8831a90752f1d4ae38/)
+(`sha256=91e72ea2fd6d56579e87e09b51d253969af7f79035ccb0d7ab2c9f2d8c6e6e09`).
 
 | File | Description |
 |------|-------------|

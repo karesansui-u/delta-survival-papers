@@ -63,6 +63,9 @@ OSF addendum:
 
 - zip: <https://osf.io/download/69e826573b65e7b53bfd8b7e/>
 - manifest: <https://osf.io/download/69e8265a30357781bafd90d6/>
+- true outside-group final bundle:
+  <https://osf.io/download/69f01d8831a90752f1d4ae38/>
+  (`sha256=91e72ea2fd6d56579e87e09b51d253969af7f79035ccb0d7ab2c9f2d8c6e6e09`)
 
 Implemented files:
 

@@ -1,6 +1,6 @@
 # OSF / Zenodo Upload Plan
 
-最終更新: 2026-04-21
+最終更新: 2026-04-28
 
 このメモは、`delta-survival-paper` の公開物を OSF / Zenodo に反映するときの最小セットを固定するためのものです。2026-04-19 の更新では、Paper 1 §3 の対数比の一意性定理（A2 の特徴づけ）と Lean 側の `LogUniqueness.lean` の反映に伴い、bundle を `2026-04-19` に差し替えています。2026-04-16 版は `osf_zenodo_latest_2026-04-16/` としてローカルには残しています。
 
@@ -8,7 +8,7 @@
 
 - GitHub: 反映済み
 - Codeberg: 反映済み
-- OSF: 2026-04-21 SAT chain v1.0 / Bernoulli CSP universality v1.1 update bundle 反映済み
+- OSF: 2026-04-21 SAT chain v1.0 / Bernoulli CSP universality v1.1 update bundle 反映済み。2026-04-28 Mixed-CSP true outside-group rerun final bundle 反映済み
 - Zenodo: 未反映
 
 ローカルでは、reader-facing theorem map を `lean/PAPER_MAPPING.md` に統合済み。Bernoulli CSP
@@ -32,6 +32,13 @@ canonical map として反映する。
 - update bundle zip: https://osf.io/mdh7b/files/osfstorage/69e71087f4653a8fbfb0001a
 - uploaded commit: `99f9f6b` (`Freeze Bernoulli CSP universality v1.1`)
 - uploaded tag: `bernoulli-csp-v1.1`
+
+2026-04-28 Mixed-CSP true outside-group rerun final bundle 反映:
+
+- OSF file: https://osf.io/download/69f01d8831a90752f1d4ae38/
+- sha256: `91e72ea2fd6d56579e87e09b51d253969af7f79035ccb0d7ab2c9f2d8c6e6e09`
+- uploaded commit: `8e63981` (`Finalize Paper 3 framing and Mixed-CSP outside reruns`)
+- scope: Mixed-CSP requested outside-group rerun set only; `3/3` completed, `3/3` clean success, `0` pending. This does not close Exp43c outside-group rerun, observational-branch replication, or non-CSP repair-flow support.
 
 ## Canonical Metadata Packet
 
