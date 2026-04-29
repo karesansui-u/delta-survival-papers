@@ -48,6 +48,13 @@ when frozen validation shows incremental out-of-sample value over the domain
 baseline; otherwise it remains candidate, no-support, weak-axis failure, or
 silence.
 
+The strongest current empirical footing is package-scoped and law-side: two
+specification-fixed frozen packages, Mixed-CSP and Exp43c q-coloring, each have
+3/3 clean outside reruns with decision-relevant outputs reproduced. This is
+stronger than a local rerun or a published procedure alone, but it is still a
+scoped empirical footing. It does not by itself establish universal-law closure,
+non-CSP support, or structurally inferred-domain causal evidence.
+
 
 3. Transfer Claim
 -----------------

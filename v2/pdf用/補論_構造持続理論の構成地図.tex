@@ -14,6 +14,34 @@
 本稿群は、単一の長大な論文ではなく、最小核、回復を含む形式への拡張、条件つき導出、写像手順、M（有効維持余力）の操作化、許容写像、仕様固定構造層、構造推定層、条件付き構造埋め込み層、Lean 形式化を分けて書いている。本補論は、それらの役割、依存関係、主張強度を一つの地図として示す。
 
 v3 では、個別ドメインを本文へ直接増殖させない。ドメインは \texttt{03\_domains/registry.tsv} と個別 domain profile に登録し、support / no-support / outside rerun / field demonstration / bounded benchmark は \texttt{05\_evidence/} に記録する。これにより、ドメインが増えても主理論 spine と claim boundary が崩れないようにする。
+
+Hard Evidence Snapshot
+
+現時点で最も硬い経験的入口は、仕様固定構造層にある二つの凍結済み empirical package である。
+
+{\def\LTcaptype{table} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+package
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+outside rerun status
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+decision-relevant output
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Mixed-CSP & 外部実行者 3 名による 3/3 clean rerun & 各 12,000 primary rows、checked core mismatches 0、support flags reproduced \\
+Exp43c q-coloring & 外部実行者 3 名による 3/3 clean rerun & 各 4,000 primary rows、checked core mismatches 0、TIMEOUT 0、MALFORMED 0、qualitative support decision reproduced \\
+\end{longtable}
+}
+
+これは universal-law closure ではない。しかし、仕様固定構造層において、\(L\) / first-moment 型の law-side 座標が raw baseline と比較され、その凍結済み package が著者環境外で同じ decision-relevant output を返したという意味で、local rerun や単なる手順公開より強い package-scoped replication support である。詳細は \href{../v3/05_evidence/outside_reruns.tsv}{\texttt{../v3/05\_evidence/outside\_reruns.tsv}} と \href{../analysis/g7_route_a_true_outside_replication_summary.md}{\texttt{../analysis/g7\_route\_a\_true\_outside\_replication\_summary.md}} に置く。
 \end{abstract}
 
 \section{この地図が与えるもの}\label{ux3053ux306eux5730ux56f3ux304cux4e0eux3048ux308bux3082ux306e}
