@@ -19,6 +19,8 @@ Include:
 - `RELEASE_NOTES.md`
 - `RELEASE_AUDIT_2026-04-29.md`
 - `UPLOAD_MANIFEST.md`
+- `UPLOAD_RECORDS.md`
+- `upload_description_2026-04-29.md`
 - `CONTRIBUTING.md`
 - `01_theory/`
 - `02_foundations/`
@@ -84,3 +86,17 @@ Run or record the following checks before creating an archive:
 
 If an archive is uploaded to OSF, Zenodo, or another repository, record the
 source commit hash in the upload description.
+
+
+6. Upload Description and Records
+---------------------------------
+
+Use `upload_description_2026-04-29.md` as the initial OSF / Zenodo description
+for source commit:
+
+```text
+94c96c5ae7eedd64efc8ec63261482079a7e6352
+```
+
+After uploading, update `UPLOAD_RECORDS.md` with the URL, DOI, archive filename,
+and checksum if available.
