@@ -149,7 +149,7 @@ For a fixed total energy \(E\), compare at least the following policies:
 | balanced | equal or near-equal split |
 | total-energy baseline | uses only \(E\), not the split |
 
-These anchors are not enough for primary support. The frozen primary should use
+These anchors are not enough for M-ranking support. The frozen primary should use
 an allocation grid over
 \[
   E_{\mathrm{buffer}}+E_{\mathrm{recovery}}+E_{\mathrm{reconfiguration}}=E
@@ -181,7 +181,7 @@ The M-profile model adds:
 
 A stronger calibration-best-policy baseline should also be included. It learns,
 from calibration data only, which policy or allocation region tends to work for
-observable graph and damage summaries. M-primary support requires beating this
+observable graph and damage summaries. M-ranking support requires beating this
 policy-prior baseline, not only the total-resource scalar baseline.
 
 The central comparison is:
@@ -193,10 +193,10 @@ The central comparison is:
 \]
 
 
-8. Primary Validation
----------------------
+8. Frozen Validation
+--------------------
 
-The strongest target is intervention ranking, not only risk prediction.
+The strongest downstream target is intervention ranking, not only risk prediction.
 
 For each held-out instance, the frozen M-profile rule predicts an ordering of the
 intervention policies. The observed ordering is computed from collapse time,
@@ -209,12 +209,12 @@ Primary metrics:
 - Kendall \(\tau\);
 - regret relative to the best observed policy.
 
-Preparatory support:
+M-profile support:
 
 - M-profile improves held-out prediction of collapse time or maintained-flow
   ratio over the total-resource baseline.
 
-M-primary support:
+M-ranking support:
 
 - the pre-frozen M-profile rule predicts intervention ranking above the frozen
   threshold, above the total-resource baseline, and above the calibration-best
@@ -240,7 +240,7 @@ Suggested split:
 - primary: run on held-out graph seeds and damage seeds;
 - outside rerun: provide a seed-locked package for independent execution.
 
-No primary support is allowed if the \(Q\), damage intensity, or policy set is
+No M-ranking support is allowed if the \(Q\), damage intensity, or policy set is
 chosen after observing primary outcomes.
 
 
@@ -262,6 +262,12 @@ The result, if positive, would show something narrower and more useful:
 > M-component allocation is not empty bookkeeping. In a controlled functional
 > structure, the same total energy can have different persistence value depending
 > on whether it is allocated to buffer, recovery, or reconfiguration.
+
+Current status (2026-04-29): the guarded primary final candidate produced
+no M-ranking support under its frozen rule. The M-profile model improved over
+the total-resource regret baseline in aggregate, but it did not beat the
+calibration-best policy-prior baseline. This is recorded as controlled
+mechanistic no-support, not as a refutation of \(M\) as a design coordinate.
 
 
 11. Implementation Roadmap

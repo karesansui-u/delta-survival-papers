@@ -45,7 +45,7 @@ python3 analysis/m_flow_network_testbed/scripts/simulate_flow_network.py dry-run
 
 The default run writes `dry_runs/v0_smoke/runs.csv` and
 `dry_runs/v0_smoke/summary.json`. These outputs are schema checks only and do
-not count as M-primary support.
+not count as M-ranking support.
 
 Evaluator v1 smoke test:
 
@@ -108,5 +108,6 @@ recorded in `primary_packages/final_candidate_v0/commands.md`.
 
 The one-time guarded primary was executed on 2026-04-29 and is recorded in
 `primary_runs/final_candidate_v0/`. Under the frozen support rules it produced
-no M-primary support: the M-profile model improved over total-resource regret
-in aggregate, but did not beat the calibration-best policy-prior baseline.
+no M-ranking support (called M-primary support in the frozen manifest): the
+M-profile model improved over total-resource regret in aggregate, but did not
+beat the calibration-best policy-prior baseline.

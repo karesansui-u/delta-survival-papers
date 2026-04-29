@@ -65,9 +65,9 @@ status: candidate
 
 This domain may support:
 
-- preparatory support if M-profile features improve held-out risk prediction over a domain baseline;
-- primary support if pre-frozen M-component deficits predict which intervention family works best;
-- strong support only if the intervention-ranking direction is robust across \(\rho_i\), \(A_j\), and \(\Phi\) candidate families.
+- M-profile support if M-profile features improve held-out risk prediction or diagnosis over a domain baseline;
+- M-ranking support if pre-frozen M-component deficits predict which intervention family works best;
+- M-strong support only if the intervention-ranking direction is robust across \(\rho_i\), \(A_j\), and \(\Phi\) candidate families.
 
 This domain does not support:
 

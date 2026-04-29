@@ -8,8 +8,8 @@ v3 Changelog
   Component X.
 - Added a specification-fixed flow-network M testbed design for controlled
   buffer / recovery / reconfiguration validation under fixed total energy.
-- Clarified that M-side risk prediction is preparatory support, while intervention
-  ranking is the primary M-side validation target.
+- Clarified that \(M\) is first an effective-maintenance-slack / capability
+  profile; intervention ranking is a stronger downstream validation target.
 
 ## v3 initial layout
 

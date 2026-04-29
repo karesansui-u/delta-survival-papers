@@ -11,7 +11,7 @@ Do not delete failed attempts. They are part of the research program.
 
 For M-side validation, use:
 
-- `../06_templates/m_profile_validation_manifest_template.md` for preparatory
-  risk-prediction validation and weak-axis gates.
-- `../06_templates/intervention_ranking_prereg_template.md` for primary
-  intervention-ranking validation.
+- `../06_templates/m_profile_validation_manifest_template.md` for M-profile
+  validation and weak-axis gates.
+- `../06_templates/intervention_ranking_prereg_template.md` for the stronger
+  downstream M-ranking validation.

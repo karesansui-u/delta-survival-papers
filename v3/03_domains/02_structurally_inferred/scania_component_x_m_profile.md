@@ -35,7 +35,7 @@ status: candidate
 ----------------------------
 
 This is a public-data preparatory candidate for M-profile validation. It is weaker
-than software / SaaS operational logs for intervention-ranking support, but stronger
+than software / SaaS operational logs for M-ranking support, but stronger
 than loss-only datasets when repair records and specifications are usable without
 post-hoc leakage.
 
@@ -63,8 +63,8 @@ Source links:
 --------------------
 
 - current status: candidate.
-- strongest realistic first test: preparatory support through held-out risk prediction.
-- primary M-side support requires intervention-effect ranking and may not be available from this public archive.
+- strongest realistic first test: M-profile support through held-out risk prediction.
+- M-ranking support requires intervention-effect ranking and may not be available from this public archive.
 - M-profile manifest: use `../../06_templates/m_profile_validation_manifest_template.md`.
 - intervention-ranking preregistration: use `../../06_templates/intervention_ranking_prereg_template.md` only if intervention families and post-intervention outcomes can be frozen.
 
@@ -74,12 +74,12 @@ Source links:
 
 This domain may support:
 
-- preparatory support if recovery-aware or M-profile features improve held-out prediction beyond a domain baseline;
+- M-profile support if recovery-aware or M-profile features improve held-out prediction beyond a domain baseline;
 - weak evidence for operational M-profile extraction if repair records are usable without leakage.
 
 This domain does not support:
 
-- full software / SaaS intervention-ranking support;
+- full M-ranking support;
 - causal claims about repairs without an identification design;
 - theorem-side evidence;
 - a universal \(M\)-law.

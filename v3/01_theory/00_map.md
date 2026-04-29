@@ -6,7 +6,7 @@
 
 本補論は、構造持続理論の主理論 spine、companion papers、補論群、Lean 形式化、実証アンカーを、一つの構成地図として整理するための文書である。新しい定理、新しい実験、新しい support 判定を追加するものではない。目的は、どの文書がどの層の主張を担い、どの文書をどの順番で読むと誤読が少ないかを明示することである。
 
-本稿群は、単一の長大な論文ではなく、最小核、回復を含む形式への拡張、条件つき導出、写像手順、操作的資源項、許容写像、仕様固定構造層、構造推定層、条件付き構造埋め込み層、Lean 形式化を分けて書いている。本補論は、それらの役割、依存関係、主張強度を一つの地図として示す。
+本稿群は、単一の長大な論文ではなく、最小核、回復を含む形式への拡張、条件つき導出、写像手順、M（有効維持余力）の操作化、許容写像、仕様固定構造層、構造推定層、条件付き構造埋め込み層、Lean 形式化を分けて書いている。本補論は、それらの役割、依存関係、主張強度を一つの地図として示す。
 
 v3 では、個別ドメインを本文へ直接増殖させない。ドメインは `03_domains/registry.tsv` と個別 domain profile に登録し、support / no-support / outside rerun は `05_evidence/` に記録する。これにより、ドメインが増えても主理論 spine と claim boundary が崩れないようにする。
 
@@ -40,7 +40,7 @@ v3 では、個別ドメインを本文へ直接増殖させない。ドメイ�
 | Layer 1: Entry | 全体像と外向け主導線を読む | Paper 0 統合版、Core Paper「構造持続の最小核と収支原理」 |
 | Layer 2: Foundation | 回復を明示しない最小核 | Paper 1 最小形式 |
 | Layer 3: Core Extension | 構造消耗量と回復量を含む指数核 | Paper 2 収支原理、条件つき導出補論、集合値力学補論、許容写像補論、収支原理の詳細展開補論 |
-| Layer 4: Operational Mapping | 現実ドメインへの写像、資源項、設計原理 | 補論「構造持続写像の標準手順」、補論「資源項Mの操作的定式化」 |
+| Layer 4: Operational Mapping | 現実ドメインへの写像、M（有効維持余力）、設計原理 | 補論「構造持続写像の標準手順」、補論「M（有効維持余力）の操作的定式化」 |
 | Layer 5: Anchors / Bridges | 仕様固定構造層、構造推定層、条件付き構造埋め込み層のアンカー | CSP 補論、計算コスト補論、LLM companions、Foster-Lyapunov 補論、非CSP補論 |
 | Layer 6: Formal Layer | Lean theorem、reader-facing claim、numerical sanity check の対応 | Lean modules, PAPER_MAPPING, NumericalSanityChecks |
 
@@ -125,7 +125,7 @@ v3 では、個別ドメインを本文へ直接増殖させない。ドメイ�
 
 この意味で、普遍性主張はまず仕様固定構造層の限定クラス普遍性定理として評価される。構造推定層では、同じ座標を代理指標と凍結検証によって実世界に写し、予測的・操作的 support を蓄積する。したがって、構造推定層での no-support は直ちに理論核の反証ではなく、proxy 設計または写像手順の失敗として記録される。
 
-Software / DeltaLint 系は、この構造推定層の中でも、ソフトウェア崩壊そのものではなく、分散契約矛盾という早期シグナルを検査する operational benchmark として扱う。構造は、API / caller、config / runtime、documentation / implementation、lifecycle producer / consumer などにまたがる contract set である。主比較は provider 間競争ではなく、同一 model・同一 frozen context で generic review と structural-lens review を比較し、blinded validation 後の unique valid structural root causes が増えるかで判定する。
+Software / DeltaLint 系は、この構造推定層の中でも、ソフトウェア崩壊そのものではなく、分散契約矛盾という早期シグナルを検査する operational track として扱う。構造は、API / caller、config / runtime、documentation / implementation、lifecycle producer / consumer などにまたがる contract set である。この track は二層に分ける。第一に、外部 OSS での merged PR は field demonstration / maintainer-acceptance evidence であり、実運用上の有用性を示すが、raw precision / recall ではない。第二に、DeltaLint bench の主比較は provider 間競争ではなく、同一 model・同一 frozen context で generic review と structural-lens review を比較し、bounded validation 後の unique valid structural root causes が増えるかで判定する。
 
 
 7. G6-a / G6-b / G6-c の配置

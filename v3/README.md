@@ -70,8 +70,10 @@ Do not import support from one domain into another. Cross-domain transfer create
 candidate mapping or candidate intervention; it becomes support only after frozen
 validation in the target domain.
 
-For \(M\)-side work, held-out risk-prediction improvement is preparatory support.
-The primary M-side target is a pre-frozen intervention-ranking prediction.
+For \(M\)-side work, held-out risk-prediction improvement is M-profile support.
+\(M\) is first a design coordinate for effective maintenance slack / capability;
+intervention-ranking prediction is a stronger downstream claim and must use the
+separate preregistration template.
 
 
 4. Why This Layout Exists

@@ -12,6 +12,6 @@ Use templates to keep new domains from changing the core theory by prose.
 | `outside_rerun_report_template.md` | report outside reruns |
 | `no_support_record_template.md` | preserve failed or silent attempts |
 
-For \(M\)-side work, risk prediction and intervention ranking are separate claims.
-Use the M-profile manifest for preparatory support, and the intervention-ranking
-preregistration for primary or strong support.
+For \(M\)-side work, profile value and intervention ranking are separate claims.
+Use the M-profile manifest for profile-level support, and the intervention-ranking
+preregistration only for the stronger downstream ranking-support claim.

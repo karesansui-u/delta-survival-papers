@@ -13,13 +13,14 @@ frozen_by:
 1. Purpose
 ----------
 
-This template tests the distinctive M-side claim:
+This template tests a strong downstream M-side claim:
 
 > systems with different M-component profiles should require different first
 > interventions, even under comparable \(L\), raw resource, and scalar \(M\).
 
-Risk prediction alone is preparatory. Intervention ranking is the primary M-side
-validation target.
+Risk prediction or diagnosis can support the M-profile as a design coordinate.
+Intervention ranking is a stronger claim: it asks whether that coordinate can
+also forecast which maintenance action works best.
 
 
 2. Units and Eligibility
@@ -79,7 +80,7 @@ design.
 -------------
 
 - primary ranking metric: Kendall tau / Spearman rho / top-1 agreement / top-2 agreement
-- primary support threshold:
+- M-ranking support threshold:
 - uncertainty criterion:
 - no-support threshold:
 - minimum power / sample-size condition:
@@ -107,10 +108,10 @@ Use these labels:
 
 | Label | Criterion |
 |---|---|
-| M-preparatory support | M-profile improves held-out risk prediction over domain baseline |
-| M-primary support | predicted intervention ranking agrees with observed intervention effectiveness above threshold |
-| M-strong support | M-primary support is robust across \(\rho_i\), \(A_j\), and \(\Phi\) families |
-| M-replication support | M-primary or M-strong support reproduces in a separate project, organization, archive, or outside run |
+| M-profile support | M-profile improves held-out prediction, diagnosis, or persistence readout over domain baseline |
+| M-ranking support | predicted intervention ranking agrees with observed intervention effectiveness above threshold |
+| M-strong support | M-ranking support is robust across \(\rho_i\), \(A_j\), and \(\Phi\) families |
+| M-replication support | M-profile or M-ranking support reproduces in a separate project, organization, archive, or outside run |
 | no-support | ranking fails the frozen support rule |
 | weak-axis failure | M-profile mostly duplicates baseline, scalar resource, degradation, age, or target leakage |
 | silence | intervention logs or outcome observability are insufficient |

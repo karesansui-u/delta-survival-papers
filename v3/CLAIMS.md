@@ -86,13 +86,18 @@ Use these labels consistently:
 For resource-side work, distinguish formal M-profile representation from empirical
 validation.
 
+Here \(M\) should be read as effective maintenance slack / capability: a
+design coordinate for the amount, quality, placement, reachability, and timing
+of support-side capacity. It is not, by itself, a law that directly chooses the
+next intervention. Intervention ranking is a stronger downstream hypothesis.
+
 | Label | Meaning |
 |---|---|
-| M-preparatory support | \(M\)-profile features improve held-out risk prediction over a domain baseline |
-| M-primary support | pre-frozen M-component deficits predict observed intervention-effect ranking above threshold |
-| M-strong support | M-primary support is robust across pre-frozen \(\rho_i\), \(A_j\), and \(\Phi\) candidate families |
-| M-replication support | M-primary or M-strong support reproduces in a separate project, organization, archive, or outside run |
+| M-profile support | \(M\)-profile features improve held-out prediction or diagnosis over a domain baseline |
+| M-ranking support | pre-frozen M-component deficits predict observed intervention-effect ranking above threshold |
+| M-strong support | M-ranking support is robust across pre-frozen \(\rho_i\), \(A_j\), and \(\Phi\) candidate families |
+| M-replication support | M-profile or M-ranking support reproduces in a separate project, organization, archive, or outside run |
 
-Risk-prediction improvement alone does not validate intervention ranking. Without
-intervention records and post-intervention outcomes, M-side evidence remains
-preparatory.
+Risk-prediction improvement alone does not validate intervention ranking.
+Without intervention records and post-intervention outcomes, M-side evidence
+remains profile-level support rather than ranking support.

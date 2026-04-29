@@ -13,15 +13,17 @@ frozen_by:
 1. Validation Role
 ------------------
 
-- target support level: M-preparatory support / M-primary support / M-strong support
+- target support level: M-profile support / M-ranking support / M-strong support
 - validation type: risk prediction / intervention ranking / both
 - observability layer:
 - claim boundary:
 
 Use this manifest when the test involves \(M_{\mathrm{buffer}}\),
 \(M_{\mathrm{recovery}}\), \(M_{\mathrm{reconfiguration}}\), or external supply
-channels. A risk-prediction improvement is preparatory support unless an
-intervention-ranking endpoint is also frozen.
+channels. A risk-prediction improvement is M-profile support unless an
+intervention-ranking endpoint is also frozen and passes its own rule.
+\(M\) is treated here as an effective-maintenance-slack / capability profile.
+It is not assumed to directly choose an intervention.
 
 
 2. Maintenance Target
@@ -106,7 +108,7 @@ Freeze all candidate families before outcome-bearing evaluation.
 7. Support Rules
 ----------------
 
-Preparatory support:
+M-profile support:
 
 - rule:
 - minimum effect size:
@@ -118,9 +120,10 @@ No-support:
 - weak-axis failure rule:
 - leakage failure rule:
 
-M-strong support is not awarded by risk-prediction improvement alone. It requires
-the intervention-ranking preregistration template and robustness
-across the pre-frozen \(\rho_i\), \(A_j\), and \(\Phi\) families.
+M-strong support is not awarded by risk-prediction improvement alone. If the
+claim is intervention ranking, use the intervention-ranking preregistration
+template and require robustness across the pre-frozen \(\rho_i\), \(A_j\), and
+\(\Phi\) families.
 
 
 8. Non-Claims
