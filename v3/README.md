@@ -59,12 +59,19 @@ Use this sequence:
 1. Create a domain profile from `06_templates/domain_profile_template.md`.
 2. Add one row to `03_domains/registry.tsv`.
 3. If there is a frozen test, add a manifest using `06_templates/frozen_test_manifest_template.md`.
-4. Record support, no-support, or silence in `05_evidence/`.
-5. Update `CLAIMS.md` only if the claim taxonomy itself changes.
+4. If the test involves \(M\)-side component profiles, also use
+   `06_templates/m_profile_validation_manifest_template.md`.
+5. If the test claims intervention-ranking support, also use
+   `06_templates/intervention_ranking_prereg_template.md`.
+6. Record support, no-support, or silence in `05_evidence/`.
+7. Update `CLAIMS.md` only if the claim taxonomy itself changes.
 
 Do not import support from one domain into another. Cross-domain transfer creates a
 candidate mapping or candidate intervention; it becomes support only after frozen
 validation in the target domain.
+
+For \(M\)-side work, held-out risk-prediction improvement is preparatory support.
+The primary M-side target is a pre-frozen intervention-ranking prediction.
 
 
 4. Why This Layout Exists

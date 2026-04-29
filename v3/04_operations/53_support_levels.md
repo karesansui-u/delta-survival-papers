@@ -16,3 +16,19 @@ This file gives the operational reading of support labels used in v3.
 
 The strongest common empirical target is usually incremental support, not SP-only dominance.
 
+
+M-Side Support
+--------------
+
+For \(M_{\mathrm{buffer}}\), \(M_{\mathrm{recovery}}\), and
+\(M_{\mathrm{reconfiguration}}\), use the following stricter reading.
+
+| Level | Meaning |
+|---|---|
+| M-preparatory support | M-profile improves held-out risk prediction over a domain baseline |
+| M-primary support | predicted intervention ranking agrees with observed intervention effectiveness above the frozen threshold |
+| M-strong support | M-primary support is robust across pre-frozen \(\rho_i\), \(A_j\), and \(\Phi\) families |
+| M-replication support | M-primary or M-strong support reproduces in a separate project, organization, archive, or outside run |
+
+This prevents a small risk-prediction gain from being misread as evidence that the
+theory knows which intervention to choose.

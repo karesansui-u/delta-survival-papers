@@ -79,3 +79,20 @@ Use these labels consistently:
 | weak-axis failure | SP feature mostly renames or duplicates the baseline |
 | silence | the theory should not speak for this domain under current observability |
 
+
+6. M-Side Validation
+--------------------
+
+For resource-side work, distinguish formal M-profile representation from empirical
+validation.
+
+| Label | Meaning |
+|---|---|
+| M-preparatory support | \(M\)-profile features improve held-out risk prediction over a domain baseline |
+| M-primary support | pre-frozen M-component deficits predict observed intervention-effect ranking above threshold |
+| M-strong support | M-primary support is robust across pre-frozen \(\rho_i\), \(A_j\), and \(\Phi\) candidate families |
+| M-replication support | M-primary or M-strong support reproduces in a separate project, organization, archive, or outside run |
+
+Risk-prediction improvement alone does not validate intervention ranking. Without
+intervention records and post-intervention outcomes, M-side evidence remains
+preparatory.
