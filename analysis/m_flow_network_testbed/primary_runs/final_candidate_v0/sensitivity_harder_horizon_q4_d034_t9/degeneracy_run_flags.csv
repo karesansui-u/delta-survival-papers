@@ -1,0 +1,10 @@
+flag,count,fraction,graph_family_counts,damage_family_counts,allocation_split_counts
+initially_collapsed,66,0.008333333333333333,"{""series_parallel"": 66}","{""bottleneck_attack"": 11, ""clustered_failure"": 11, ""demand_shock"": 11, ""random_attrition"": 11, ""repairable_wear"": 11, ""scalar_only_control"": 11}","{""calibration"": 60, ""primary_heldout"": 6}"
+collapse_at_first_step,25,0.0031565656565656565,"{""random_geometric"": 10, ""series_parallel"": 15}","{""bottleneck_attack"": 4, ""clustered_failure"": 4, ""demand_shock"": 1, ""random_attrition"": 11, ""repairable_wear"": 4, ""scalar_only_control"": 1}","{""calibration"": 25}"
+no_collapse,2776,0.3505050505050505,"{""grid"": 619, ""layered_dag"": 903, ""random_geometric"": 687, ""series_parallel"": 567}","{""bottleneck_attack"": 377, ""clustered_failure"": 205, ""demand_shock"": 1289, ""random_attrition"": 1, ""repairable_wear"": 3, ""scalar_only_control"": 901}","{""calibration"": 2514, ""primary_heldout"": 262}"
+far_above_q,774,0.09772727272727273,"{""grid"": 171, ""layered_dag"": 392, ""random_geometric"": 107, ""series_parallel"": 104}","{""bottleneck_attack"": 29, ""demand_shock"": 671, ""scalar_only_control"": 74}","{""calibration"": 694, ""primary_heldout"": 80}"
+post_policy_below_q,24,0.0030303030303030303,"{""series_parallel"": 24}","{""bottleneck_attack"": 4, ""clustered_failure"": 4, ""demand_shock"": 4, ""random_attrition"": 4, ""repairable_wear"": 4, ""scalar_only_control"": 4}","{""calibration"": 24}"
+recovery_unused,960,0.12121212121212122,"{""grid"": 240, ""layered_dag"": 240, ""random_geometric"": 240, ""series_parallel"": 240}","{""demand_shock"": 960}","{""calibration"": 840, ""primary_heldout"": 120}"
+reconfiguration_impossible,0,0.0,{},{},{}
+no_alternate_path,0,0.0,{},{},{}
+unflagged,5042,0.6366161616161616,"{""grid"": 1357, ""layered_dag"": 1077, ""random_geometric"": 1262, ""series_parallel"": 1346}","{""bottleneck_attack"": 929, ""clustered_failure"": 1101, ""demand_shock"": 3, ""random_attrition"": 1298, ""repairable_wear"": 1303, ""scalar_only_control"": 408}","{""calibration"": 4589, ""primary_heldout"": 453}"

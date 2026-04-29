@@ -1,0 +1,83 @@
+{
+  "exclusion_recommendation_by_group_split": {
+    "heldout_allocation": {
+      "keep": 280,
+      "review": 170
+    },
+    "heldout_damage_allocation": {
+      "keep": 89,
+      "review": 1
+    },
+    "heldout_graph_allocation": {
+      "keep": 98,
+      "review": 52
+    },
+    "heldout_graph_damage_allocation": {
+      "keep": 30
+    }
+  },
+  "exclusion_recommendation_counts": {
+    "keep": 497,
+    "review": 223
+  },
+  "group_flag_counts": {
+    "all_far_above_q": 17,
+    "all_no_collapse": 160,
+    "high_flag_fraction": 223,
+    "no_outcome_variation": 1,
+    "recovery_never_used": 120
+  },
+  "groups_evaluated": 720,
+  "non_claim": "primary degeneracy report only; exclusion and support decisions must follow the frozen manifest",
+  "run_flag_counts": {
+    "collapse_at_first_step": 23,
+    "far_above_q": 851,
+    "initially_collapsed": 66,
+    "no_alternate_path": 0,
+    "no_collapse": 3277,
+    "post_policy_below_q": 24,
+    "reconfiguration_impossible": 0,
+    "recovery_unused": 960,
+    "unflagged": 4543
+  },
+  "runs": 7920,
+  "schema_fields": {
+    "group_summary": [
+      "seed",
+      "graph_family",
+      "damage_family",
+      "total_energy_E",
+      "required_flow_Q",
+      "horizon_T",
+      "damage_intensity",
+      "graph_split",
+      "damage_split",
+      "has_heldout_allocation",
+      "primary_axes",
+      "group_split",
+      "n_allocations",
+      "flagged_run_fraction",
+      "no_collapse_fraction",
+      "collapse_at_first_step_fraction",
+      "far_above_q_fraction",
+      "post_policy_below_q_fraction",
+      "recovery_unused_fraction_among_recovery_allocations",
+      "reconfiguration_unused_fraction_among_reconfiguration_allocations",
+      "maintained_step_ratio_range",
+      "maintained_flow_ratio_range",
+      "minimum_margin_range",
+      "observed_score_range",
+      "group_degeneracy_flags",
+      "exclusion_recommendation"
+    ],
+    "run_flags": [
+      "flag",
+      "count",
+      "fraction",
+      "graph_family_counts",
+      "damage_family_counts",
+      "allocation_split_counts"
+    ]
+  },
+  "status": "primary_degeneracy_report_v1_uninterpreted"
+}

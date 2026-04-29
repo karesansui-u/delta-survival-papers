@@ -3,7 +3,7 @@
 Status: active program-execution memo after Backblaze v2 same-domain
 observational support, the first C-MAPSS FD001 cross-domain loss-only primary,
 Scania horizon-bridge no-support, Oxford Part 1 battery M-profile no-support,
-the guarded M-flow network final-candidate primary package,
+the controlled M-flow network primary no-support result,
 the completed three-run Mixed-CSP true outside-group rerun set, and the
 completed three-run Exp43c true outside-group rerun set. This is not a freeze
 document, not validation evidence,
@@ -72,12 +72,14 @@ New information:
   `primary RMSE = 0.23508673118782375` versus
   `B3 RMSE = 0.2296038662551124`, with `H1 = false`, `H2 = false`,
   `H3 = true`, and `primary_support = false`.
-- The controlled M-flow network testbed has a guarded final-candidate primary
-  package at `analysis/m_flow_network_testbed/primary_packages/final_candidate_v0/`.
-  It freezes `Q=4`, `damage_intensity=0.34`, `T=8`, seed block `2000..2029`,
-  the allocation grid, held-out graph/damage/allocation axes, three
-  sensitivity settings, script hashes, and guarded execution commands. It has
-  not been executed and is not support evidence.
+- The controlled M-flow network testbed has now completed its guarded
+  final-candidate primary at
+  `analysis/m_flow_network_testbed/primary_runs/final_candidate_v0/`.
+  The primary setting was `Q=4`, `damage_intensity=0.34`, `T=8`, seed block
+  `2000..2029`. The frozen-rule outcome is no M-primary support: M-profile
+  improved over total-resource regret (`0.2204` vs `0.2372`) but did not beat
+  the policy-prior baseline (`0.1506`). Sensitivity settings retained the same
+  qualitative pattern.
 
 ## 2. Workstream A — G4 Repair-Flow Empirical Gap
 
@@ -592,8 +594,8 @@ So the next concrete order becomes:
 1. keep the two Route A outside-return sets scoped to package-level G7;
 2. open a fresh versioned Cardinality-SAT redesign if Route A width is
    reopened; do not run primary from Exp44b v1;
-3. execute the guarded M-flow controlled primary only if we want a synthetic
-   M-side mechanistic test before another real-domain attempt;
+3. keep the M-flow controlled primary as closed no-support unless a future
+   versioned redesign is frozen before any new outcomes;
 4. choose the next non-CSP empirical branch: NASA Randomized/Recommissioned
    battery feasibility or future repair-flow data acquisition under the
    candidate-criteria gate;

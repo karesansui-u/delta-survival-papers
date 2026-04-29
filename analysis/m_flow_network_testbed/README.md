@@ -27,6 +27,8 @@ Files:
 - `primary_packages/`: frozen pre-primary package configs, seed lists, command
   records, and hashes. These packages are not support evidence until executed
   and interpreted under the frozen rules.
+- `primary_runs/final_candidate_v0/`: one-time guarded primary outputs and the
+  frozen-rule result summary.
 
 The purpose is to test whether buffer / recovery / reconfiguration allocation
 has predictive and intervention-ranking value beyond total resource in a
@@ -102,5 +104,9 @@ python3 analysis/m_flow_network_testbed/scripts/run_primary_package.py \
 ```
 
 This command only prints the execution plan. The guarded execution command is
-recorded in `primary_packages/final_candidate_v0/commands.md`. It has not been
-executed in the package record.
+recorded in `primary_packages/final_candidate_v0/commands.md`.
+
+The one-time guarded primary was executed on 2026-04-29 and is recorded in
+`primary_runs/final_candidate_v0/`. Under the frozen support rules it produced
+no M-primary support: the M-profile model improved over total-resource regret
+in aggregate, but did not beat the calibration-best policy-prior baseline.

@@ -1,0 +1,67 @@
+{
+  "allocation_split_counts": {
+    "calibration": 7200,
+    "primary_heldout": 720
+  },
+  "collapse_fraction": 0.5974747474747475,
+  "damage_family_counts": {
+    "bottleneck_attack": 1320,
+    "clustered_failure": 1320,
+    "demand_shock": 1320,
+    "random_attrition": 1320,
+    "repairable_wear": 1320,
+    "scalar_only_control": 1320
+  },
+  "degeneracy_flag_counts": {
+    "collapse_at_first_step": 25,
+    "far_above_q": 827,
+    "initially_collapsed": 66,
+    "no_collapse": 3188,
+    "post_policy_below_q": 24,
+    "recovery_unused": 960
+  },
+  "graph_family_counts": {
+    "grid": 1980,
+    "layered_dag": 1980,
+    "random_geometric": 1980,
+    "series_parallel": 1980
+  },
+  "mean_maintained_flow_ratio": 0.8303866792929293,
+  "non_claim": "raw primary simulator output only; support requires the frozen evaluator, degeneracy report, and support-rule decision",
+  "run_count": 7920,
+  "schema_fields": [
+    "config_hash",
+    "graph_hash",
+    "damage_seed",
+    "seed",
+    "graph_family",
+    "graph_split",
+    "damage_family",
+    "damage_split",
+    "policy_anchor",
+    "allocation_buffer",
+    "allocation_recovery",
+    "allocation_reconfiguration",
+    "allocation_split",
+    "total_energy_E",
+    "initial_max_flow",
+    "post_policy_max_flow",
+    "required_flow_Q",
+    "horizon_T",
+    "damage_intensity",
+    "max_flow_series",
+    "q_series",
+    "margin_series",
+    "collapse_time",
+    "maintained_step_ratio",
+    "maintained_flow_ratio",
+    "minimum_margin",
+    "buffer_energy_spent",
+    "recovery_energy_spent",
+    "reconfiguration_energy_spent",
+    "active_bypass_edges",
+    "degeneracy_flags",
+    "final_graph_hash"
+  ],
+  "status": "primary_run_raw_uninterpreted"
+}
