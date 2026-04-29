@@ -16,7 +16,7 @@ This run checks that simulator v0 can emit:
 - max-flow, margin, collapse-time, and maintained-flow readouts;
 - energy-spend readouts for buffer, recovery, and reconfiguration;
 - degeneracy flags.
-- evaluator v0 can form intervention-ranking groups and compare total-resource,
-  policy-prior, and M-profile ranking predictors.
+- evaluator v1 can form intervention-ranking groups and compare total-resource,
+  policy-prior, and M-profile ranking predictors across held-out split axes.
 
 It is not primary validation and does not count as M-support.

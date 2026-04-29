@@ -9,6 +9,6 @@ Dry-run outputs are used to check:
 - held-out allocation tags;
 - max-flow readouts;
 - degeneracy flags.
-- evaluator ranking-schema outputs.
+- split-aware evaluator ranking-schema outputs.
 
 They are not support evidence and must not be reported as primary validation.

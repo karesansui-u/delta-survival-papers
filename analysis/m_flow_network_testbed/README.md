@@ -37,6 +37,7 @@ python3 analysis/m_flow_network_testbed/scripts/evaluate_flow_network.py
 ```
 
 The default evaluator reads `dry_runs/v0_smoke/runs.csv` and writes
-`dry_runs/v0_smoke/evaluation_group_rankings.csv` plus
-`dry_runs/v0_smoke/evaluation_summary.json`. These outputs check the ranking
-schema only; they are not support evidence.
+`dry_runs/v0_smoke/evaluation_group_rankings.csv`,
+`dry_runs/v0_smoke/evaluation_slice_metrics.csv`, and
+`dry_runs/v0_smoke/evaluation_summary.json`. These outputs check the
+split-aware ranking schema only; they are not support evidence.

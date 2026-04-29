@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Evaluator v0 for the M-profile flow-network testbed.
+"""Evaluator v1 for the M-profile flow-network testbed.
 
 This evaluator is a dry-run ranking/schema checker, not a primary validation
 runner. It trains only on calibration rows, then reports whether the emitted
 simulator readouts are sufficient to compare total-resource, policy-prior, and
-M-profile ranking predictors.
+M-profile ranking predictors across held-out split axes.
 """
 
 from __future__ import annotations
@@ -37,6 +37,19 @@ CALIBRATION_SPLITS = {
     "damage_split": "calibration",
     "allocation_split": "calibration",
 }
+
+MODEL_PRED_KEYS = {
+    "total_resource_tie": "pred_total_resource_tie",
+    "policy_prior": "pred_policy_prior",
+    "m_profile_linear": "pred_m_profile_linear",
+}
+
+METRIC_KEYS = (
+    "top1_tie_adjusted",
+    "top2_contains_observed_best",
+    "kendall_tau",
+    "regret",
+)
 
 
 def as_float(row: dict[str, str], key: str) -> float:
@@ -244,7 +257,106 @@ def mean_dict(dicts: list[dict[str, float]]) -> dict[str, float]:
     }
 
 
-def evaluate(rows: list[dict[str, str]]) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+def group_split_info(items: list[dict[str, Any]]) -> dict[str, Any]:
+    graph_splits = sorted({str(item["graph_split"]) for item in items})
+    damage_splits = sorted({str(item["damage_split"]) for item in items})
+    has_heldout_allocation = any(item["allocation_split"] == "primary_heldout" for item in items)
+    axes: list[str] = []
+    if any(split != "calibration" for split in graph_splits):
+        axes.append("graph")
+    if any(split != "calibration" for split in damage_splits):
+        axes.append("damage")
+    if has_heldout_allocation:
+        axes.append("allocation")
+    if not axes:
+        group_split = "calibration_only"
+    else:
+        group_split = "heldout_" + "_".join(axes)
+    return {
+        "graph_split": "|".join(graph_splits),
+        "damage_split": "|".join(damage_splits),
+        "has_heldout_allocation": has_heldout_allocation,
+        "primary_axes": "|".join(axes) if axes else "none",
+        "group_split": group_split,
+    }
+
+
+def group_slice_names(group_row: dict[str, Any]) -> list[str]:
+    names = ["all"]
+    names.append(f"group_split:{group_row['group_split']}")
+    names.append(f"graph_split:{group_row['graph_split']}")
+    names.append(f"damage_split:{group_row['damage_split']}")
+    allocation_name = "primary_heldout" if group_row["has_heldout_allocation"] else "calibration_only"
+    names.append(f"allocation_split:{allocation_name}")
+    for axis in str(group_row["primary_axes"]).split("|"):
+        if axis and axis != "none":
+            names.append(f"heldout_axis:{axis}")
+    return names
+
+
+def split_metric_rows(group_rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    by_slice: dict[str, dict[str, list[dict[str, float]]]] = defaultdict(
+        lambda: {model: [] for model in MODEL_PRED_KEYS}
+    )
+    for row in group_rows:
+        for slice_name in group_slice_names(row):
+            for model in MODEL_PRED_KEYS:
+                by_slice[slice_name][model].append(
+                    {
+                        metric: float(row[f"{model}_{metric}"])
+                        for metric in METRIC_KEYS
+                    }
+                )
+
+    slice_rows: list[dict[str, Any]] = []
+    for slice_name, model_values in sorted(by_slice.items()):
+        for model, values in sorted(model_values.items()):
+            means = mean_dict(values)
+            slice_rows.append(
+                {
+                    "slice": slice_name,
+                    "model": model,
+                    "n_groups": len(values),
+                    **means,
+                }
+            )
+    return slice_rows
+
+
+def split_comparisons(group_rows: list[dict[str, Any]]) -> dict[str, Any]:
+    comparisons: dict[str, Any] = {}
+    by_slice: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    for row in group_rows:
+        for slice_name in group_slice_names(row):
+            by_slice[slice_name].append(row)
+
+    for slice_name, rows in sorted(by_slice.items()):
+        n = len(rows)
+        if n == 0:
+            continue
+        comparisons[slice_name] = {
+            "n_groups": n,
+            "m_beats_total_resource_regret_rate": sum(
+                bool(row["m_profile_beats_total_resource_regret"]) for row in rows
+            )
+            / n,
+            "m_beats_policy_prior_regret_rate": sum(
+                bool(row["m_profile_beats_policy_prior_regret"]) for row in rows
+            )
+            / n,
+            "m_beats_policy_prior_kendall_rate": sum(
+                bool(row["m_profile_beats_policy_prior_kendall"]) for row in rows
+            )
+            / n,
+            "m_clears_policy_prior_smoke_rate": sum(
+                bool(row["m_profile_clears_policy_prior_smoke"]) for row in rows
+            )
+            / n,
+        }
+    return comparisons
+
+
+def evaluate(rows: list[dict[str, str]]) -> tuple[list[dict[str, Any]], list[dict[str, Any]], dict[str, Any]]:
     calibration_rows = [row for row in rows if is_calibration(row)]
     policy_prior = fit_policy_prior(calibration_rows)
     weights = fit_linear_m_profile(calibration_rows)
@@ -260,41 +372,55 @@ def evaluate(rows: list[dict[str, str]]) -> tuple[list[dict[str, Any]], dict[str
         groups[group_key(row)].append(enriched)
 
     group_rows: list[dict[str, Any]] = []
-    metric_accumulator: dict[str, list[dict[str, float]]] = {
-        "total_resource_tie": [],
-        "policy_prior": [],
-        "m_profile_linear": [],
-    }
+    metric_accumulator: dict[str, list[dict[str, float]]] = {model: [] for model in MODEL_PRED_KEYS}
 
     for key, items in sorted(groups.items()):
         if len(items) < 2:
             continue
         observed_best = top_set(items, "observed_score")
         metrics = {
-            "total_resource_tie": group_metrics(items, "pred_total_resource_tie"),
-            "policy_prior": group_metrics(items, "pred_policy_prior"),
-            "m_profile_linear": group_metrics(items, "pred_m_profile_linear"),
+            model: group_metrics(items, pred_key)
+            for model, pred_key in MODEL_PRED_KEYS.items()
         }
         for model, model_metrics in metrics.items():
             metric_accumulator[model].append(model_metrics)
         best_allocations = [items[idx]["allocation"] for idx in sorted(observed_best)]
-        group_rows.append(
-            {
-                **{column: value for column, value in zip(GROUP_COLUMNS, key)},
-                "n_allocations": len(items),
-                "has_heldout_allocation": any(item["allocation_split"] == "primary_heldout" for item in items),
-                "observed_best_allocations": "|".join(best_allocations),
-                "total_resource_regret": metrics["total_resource_tie"]["regret"],
-                "policy_prior_regret": metrics["policy_prior"]["regret"],
-                "m_profile_regret": metrics["m_profile_linear"]["regret"],
-                "policy_prior_kendall_tau": metrics["policy_prior"]["kendall_tau"],
-                "m_profile_kendall_tau": metrics["m_profile_linear"]["kendall_tau"],
-            }
+        split_info = group_split_info(items)
+        row = {
+            **{column: value for column, value in zip(GROUP_COLUMNS, key)},
+            **split_info,
+            "n_allocations": len(items),
+            "observed_best_allocations": "|".join(best_allocations),
+        }
+        for model, model_metrics in metrics.items():
+            for metric, value in model_metrics.items():
+                row[f"{model}_{metric}"] = value
+        row["m_profile_beats_total_resource_regret"] = (
+            metrics["m_profile_linear"]["regret"] < metrics["total_resource_tie"]["regret"]
         )
+        row["m_profile_beats_policy_prior_regret"] = (
+            metrics["m_profile_linear"]["regret"] < metrics["policy_prior"]["regret"]
+        )
+        row["m_profile_beats_policy_prior_kendall"] = (
+            metrics["m_profile_linear"]["kendall_tau"] > metrics["policy_prior"]["kendall_tau"]
+        )
+        row["m_profile_clears_policy_prior_smoke"] = (
+            row["m_profile_beats_policy_prior_regret"]
+            and row["m_profile_beats_policy_prior_kendall"]
+        )
+        group_rows.append(row)
+
+    slice_rows = split_metric_rows(group_rows)
+    comparisons = split_comparisons(group_rows)
+    all_comparison = comparisons.get("all", {})
+    m_clears_policy_prior_smoke = bool(
+        all_comparison
+        and all_comparison.get("m_clears_policy_prior_smoke_rate", 0.0) >= 0.5
+    )
 
     summary = {
-        "status": "dry_run_evaluator_only",
-        "non_claim": "ranking smoke test only; not M-primary support",
+        "status": "dry_run_evaluator_v1_only",
+        "non_claim": "split-aware ranking smoke test only; not M-primary support",
         "runs": len(rows),
         "calibration_rows": len(calibration_rows),
         "groups_evaluated": len(group_rows),
@@ -308,11 +434,20 @@ def evaluate(rows: list[dict[str, str]]) -> tuple[list[dict[str, Any]], dict[str
             model: mean_dict(values)
             for model, values in metric_accumulator.items()
         },
+        "split_comparisons": comparisons,
+        "guardrail_result": {
+            "m_profile_clears_policy_prior_smoke": m_clears_policy_prior_smoke,
+            "interpretation": (
+                "schema guardrail only; a false value is acceptable in dry-run "
+                "and means the strong policy-prior baseline is active"
+            ),
+        },
         "schema_fields": {
             "group_rankings": list(group_rows[0].keys()) if group_rows else [],
+            "slice_metrics": list(slice_rows[0].keys()) if slice_rows else [],
         },
     }
-    return group_rows, summary
+    return group_rows, slice_rows, summary
 
 
 def read_rows(path: Path) -> list[dict[str, str]]:
@@ -320,15 +455,26 @@ def read_rows(path: Path) -> list[dict[str, str]]:
         return list(csv.DictReader(f))
 
 
-def write_outputs(group_rows: list[dict[str, Any]], summary: dict[str, Any], out_dir: Path) -> None:
+def write_outputs(
+    group_rows: list[dict[str, Any]],
+    slice_rows: list[dict[str, Any]],
+    summary: dict[str, Any],
+    out_dir: Path,
+) -> None:
     out_dir.mkdir(parents=True, exist_ok=True)
     group_path = out_dir / "evaluation_group_rankings.csv"
+    slice_path = out_dir / "evaluation_slice_metrics.csv"
     summary_path = out_dir / "evaluation_summary.json"
     if group_rows:
         with group_path.open("w", newline="", encoding="utf-8") as f:
             writer = csv.DictWriter(f, fieldnames=list(group_rows[0].keys()), lineterminator="\n")
             writer.writeheader()
             writer.writerows(group_rows)
+    if slice_rows:
+        with slice_path.open("w", newline="", encoding="utf-8") as f:
+            writer = csv.DictWriter(f, fieldnames=list(slice_rows[0].keys()), lineterminator="\n")
+            writer.writeheader()
+            writer.writerows(slice_rows)
     summary_path.write_text(json.dumps(summary, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 
 
@@ -339,10 +485,11 @@ def main() -> None:
     args = parser.parse_args()
 
     rows = read_rows(args.runs)
-    group_rows, summary = evaluate(rows)
-    write_outputs(group_rows, summary, args.out_dir)
+    group_rows, slice_rows, summary = evaluate(rows)
+    write_outputs(group_rows, slice_rows, summary, args.out_dir)
     print(json.dumps(summary, ensure_ascii=False, indent=2, sort_keys=True))
     print(f"wrote: {args.out_dir / 'evaluation_group_rankings.csv'}")
+    print(f"wrote: {args.out_dir / 'evaluation_slice_metrics.csv'}")
     print(f"wrote: {args.out_dir / 'evaluation_summary.json'}")
 
 
