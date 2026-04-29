@@ -69,3 +69,18 @@ python3 analysis/m_flow_network_testbed/scripts/run_calibration_sweep.py
 The default sweep writes `dry_runs/calibration_sweep_v0/sweep_summary.csv` and
 `dry_runs/calibration_sweep_v0/sweep_diagnostics.json`. The sweep is a
 calibration-screening tool only; it is not support evidence.
+
+Calibration review v1:
+
+```bash
+python3 analysis/m_flow_network_testbed/scripts/run_calibration_sweep.py \
+  --q-values 4 \
+  --damage-values 0.26,0.28,0.30,0.32,0.34 \
+  --horizon-values 8,9,10,12 \
+  --out-dir analysis/m_flow_network_testbed/dry_runs/calibration_review_v1
+```
+
+The review narrows the v0 sweep around `Q=4` and writes
+`dry_runs/calibration_review_v1/sweep_summary.csv` and
+`dry_runs/calibration_review_v1/sweep_diagnostics.json`. It is still a
+calibration pointer, not a freeze decision or support claim.

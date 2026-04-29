@@ -1,0 +1,1765 @@
+{
+  "best_candidate": {
+    "candidate_score": 0.422348484848485,
+    "collapse_at_first_step_fraction": 0.003787878787878788,
+    "collapse_fraction": 0.6515151515151515,
+    "damage_intensity": 0.34,
+    "far_above_q_fraction": 0.08333333333333333,
+    "full_grid": true,
+    "groups_evaluated": 24,
+    "horizon_T": 8,
+    "keep_group_count": 18,
+    "no_collapse_fraction": 0.3484848484848485,
+    "post_policy_below_q_fraction": 0.0,
+    "required_flow_Q": 4,
+    "review_group_count": 6,
+    "runs": 264,
+    "seeds": 1,
+    "unflagged_fraction": 0.6363636363636364
+  },
+  "candidate_count": 20,
+  "diagnostics": {
+    "Q4_D0.26_T10": {
+      "degeneracy_summary": {
+        "exclusion_recommendation_by_group_split": {
+          "heldout_allocation": {
+            "keep": 10,
+            "review": 5
+          },
+          "heldout_damage_allocation": {
+            "keep": 3
+          },
+          "heldout_graph_allocation": {
+            "keep": 3,
+            "review": 2
+          },
+          "heldout_graph_damage_allocation": {
+            "keep": 1
+          }
+        },
+        "exclusion_recommendation_counts": {
+          "keep": 17,
+          "review": 7
+        },
+        "group_flag_counts": {
+          "all_no_collapse": 4,
+          "high_flag_fraction": 7,
+          "recovery_never_used": 4
+        },
+        "groups_evaluated": 24,
+        "non_claim": "degeneracy schema/reporting smoke test only; not an exclusion decision",
+        "run_flag_counts": {
+          "collapse_at_first_step": 1,
+          "far_above_q": 22,
+          "initially_collapsed": 0,
+          "no_alternate_path": 0,
+          "no_collapse": 93,
+          "post_policy_below_q": 0,
+          "reconfiguration_impossible": 0,
+          "recovery_unused": 32,
+          "unflagged": 167
+        },
+        "runs": 264,
+        "schema_fields": {
+          "group_summary": [
+            "seed",
+            "graph_family",
+            "damage_family",
+            "total_energy_E",
+            "required_flow_Q",
+            "horizon_T",
+            "damage_intensity",
+            "graph_split",
+            "damage_split",
+            "has_heldout_allocation",
+            "primary_axes",
+            "group_split",
+            "n_allocations",
+            "flagged_run_fraction",
+            "no_collapse_fraction",
+            "collapse_at_first_step_fraction",
+            "far_above_q_fraction",
+            "post_policy_below_q_fraction",
+            "recovery_unused_fraction_among_recovery_allocations",
+            "reconfiguration_unused_fraction_among_reconfiguration_allocations",
+            "maintained_step_ratio_range",
+            "maintained_flow_ratio_range",
+            "minimum_margin_range",
+            "observed_score_range",
+            "group_degeneracy_flags",
+            "exclusion_recommendation"
+          ],
+          "run_flags": [
+            "flag",
+            "count",
+            "fraction",
+            "graph_family_counts",
+            "damage_family_counts",
+            "allocation_split_counts"
+          ]
+        },
+        "status": "dry_run_degeneracy_report_v1_only"
+      },
+      "group_flag_counts": {
+        "all_no_collapse": 4,
+        "high_flag_fraction": 7,
+        "recovery_never_used": 4
+      }
+    },
+    "Q4_D0.26_T12": {
+      "degeneracy_summary": {
+        "exclusion_recommendation_by_group_split": {
+          "heldout_allocation": {
+            "keep": 10,
+            "review": 5
+          },
+          "heldout_damage_allocation": {
+            "keep": 3
+          },
+          "heldout_graph_allocation": {
+            "keep": 4,
+            "review": 1
+          },
+          "heldout_graph_damage_allocation": {
+            "keep": 1
+          }
+        },
+        "exclusion_recommendation_counts": {
+          "keep": 18,
+          "review": 6
+        },
+        "group_flag_counts": {
+          "all_no_collapse": 4,
+          "high_flag_fraction": 6,
+          "recovery_never_used": 4
+        },
+        "groups_evaluated": 24,
+        "non_claim": "degeneracy schema/reporting smoke test only; not an exclusion decision",
+        "run_flag_counts": {
+          "collapse_at_first_step": 1,
+          "far_above_q": 22,
+          "initially_collapsed": 0,
+          "no_alternate_path": 0,
+          "no_collapse": 76,
+          "post_policy_below_q": 0,
+          "reconfiguration_impossible": 0,
+          "recovery_unused": 32,
+          "unflagged": 184
+        },
+        "runs": 264,
+        "schema_fields": {
+          "group_summary": [
+            "seed",
+            "graph_family",
+            "damage_family",
+            "total_energy_E",
+            "required_flow_Q",
+            "horizon_T",
+            "damage_intensity",
+            "graph_split",
+            "damage_split",
+            "has_heldout_allocation",
+            "primary_axes",
+            "group_split",
+            "n_allocations",
+            "flagged_run_fraction",
+            "no_collapse_fraction",
+            "collapse_at_first_step_fraction",
+            "far_above_q_fraction",
+            "post_policy_below_q_fraction",
+            "recovery_unused_fraction_among_recovery_allocations",
+            "reconfiguration_unused_fraction_among_reconfiguration_allocations",
+            "maintained_step_ratio_range",
+            "maintained_flow_ratio_range",
+            "minimum_margin_range",
+            "observed_score_range",
+            "group_degeneracy_flags",
+            "exclusion_recommendation"
+          ],
+          "run_flags": [
+            "flag",
+            "count",
+            "fraction",
+            "graph_family_counts",
+            "damage_family_counts",
+            "allocation_split_counts"
+          ]
+        },
+        "status": "dry_run_degeneracy_report_v1_only"
+      },
+      "group_flag_counts": {
+        "all_no_collapse": 4,
+        "high_flag_fraction": 6,
+        "recovery_never_used": 4
+      }
+    },
+    "Q4_D0.26_T8": {
+      "degeneracy_summary": {
+        "exclusion_recommendation_by_group_split": {
+          "heldout_allocation": {
+            "keep": 8,
+            "review": 7
+          },
+          "heldout_damage_allocation": {
+            "keep": 3
+          },
+          "heldout_graph_allocation": {
+            "keep": 3,
+            "review": 2
+          },
+          "heldout_graph_damage_allocation": {
+            "keep": 1
+          }
+        },
+        "exclusion_recommendation_counts": {
+          "keep": 15,
+          "review": 9
+        },
+        "group_flag_counts": {
+          "all_no_collapse": 6,
+          "high_flag_fraction": 9,
+          "recovery_never_used": 4
+        },
+        "groups_evaluated": 24,
+        "non_claim": "degeneracy schema/reporting smoke test only; not an exclusion decision",
+        "run_flag_counts": {
+          "collapse_at_first_step": 1,
+          "far_above_q": 23,
+          "initially_collapsed": 0,
+          "no_alternate_path": 0,
+          "no_collapse": 124,
+          "post_policy_below_q": 0,
+          "reconfiguration_impossible": 0,
+          "recovery_unused": 32,
+          "unflagged": 136
+        },
+        "runs": 264,
+        "schema_fields": {
+          "group_summary": [
+            "seed",
+            "graph_family",
+            "damage_family",
+            "total_energy_E",
+            "required_flow_Q",
+            "horizon_T",
+            "damage_intensity",
+            "graph_split",
+            "damage_split",
+            "has_heldout_allocation",
+            "primary_axes",
+            "group_split",
+            "n_allocations",
+            "flagged_run_fraction",
+            "no_collapse_fraction",
+            "collapse_at_first_step_fraction",
+            "far_above_q_fraction",
+            "post_policy_below_q_fraction",
+            "recovery_unused_fraction_among_recovery_allocations",
+            "reconfiguration_unused_fraction_among_reconfiguration_allocations",
+            "maintained_step_ratio_range",
+            "maintained_flow_ratio_range",
+            "minimum_margin_range",
+            "observed_score_range",
+            "group_degeneracy_flags",
+            "exclusion_recommendation"
+          ],
+          "run_flags": [
+            "flag",
+            "count",
+            "fraction",
+            "graph_family_counts",
+            "damage_family_counts",
+            "allocation_split_counts"
+          ]
+        },
+        "status": "dry_run_degeneracy_report_v1_only"
+      },
+      "group_flag_counts": {
+        "all_no_collapse": 6,
+        "high_flag_fraction": 9,
+        "recovery_never_used": 4
+      }
+    },
+    "Q4_D0.26_T9": {
+      "degeneracy_summary": {
+        "exclusion_recommendation_by_group_split": {
+          "heldout_allocation": {
+            "keep": 9,
+            "review": 6
+          },
+          "heldout_damage_allocation": {
+            "keep": 3
+          },
+          "heldout_graph_allocation": {
+            "keep": 3,
+            "review": 2
+          },
+          "heldout_graph_damage_allocation": {
+            "keep": 1
+          }
+        },
+        "exclusion_recommendation_counts": {
+          "keep": 16,
+          "review": 8
+        },
+        "group_flag_counts": {
+          "all_no_collapse": 4,
+          "high_flag_fraction": 8,
+          "recovery_never_used": 4
+        },
+        "groups_evaluated": 24,
+        "non_claim": "degeneracy schema/reporting smoke test only; not an exclusion decision",
+        "run_flag_counts": {
+          "collapse_at_first_step": 1,
+          "far_above_q": 22,
+          "initially_collapsed": 0,
+          "no_alternate_path": 0,
+          "no_collapse": 101,
+          "post_policy_below_q": 0,
+          "reconfiguration_impossible": 0,
+          "recovery_unused": 32,
+          "unflagged": 159
+        },
+        "runs": 264,
+        "schema_fields": {
+          "group_summary": [
+            "seed",
+            "graph_family",
+            "damage_family",
+            "total_energy_E",
+            "required_flow_Q",
+            "horizon_T",
+            "damage_intensity",
+            "graph_split",
+            "damage_split",
+            "has_heldout_allocation",
+            "primary_axes",
+            "group_split",
+            "n_allocations",
+            "flagged_run_fraction",
+            "no_collapse_fraction",
+            "collapse_at_first_step_fraction",
+            "far_above_q_fraction",
+            "post_policy_below_q_fraction",
+            "recovery_unused_fraction_among_recovery_allocations",
+            "reconfiguration_unused_fraction_among_reconfiguration_allocations",
+            "maintained_step_ratio_range",
+            "maintained_flow_ratio_range",
+            "minimum_margin_range",
+            "observed_score_range",
+            "group_degeneracy_flags",
+            "exclusion_recommendation"
+          ],
+          "run_flags": [
+            "flag",
+            "count",
+            "fraction",
+            "graph_family_counts",
+            "damage_family_counts",
+            "allocation_split_counts"
+          ]
+        },
+        "status": "dry_run_degeneracy_report_v1_only"
+      },
+      "group_flag_counts": {
+        "all_no_collapse": 4,
+        "high_flag_fraction": 8,
+        "recovery_never_used": 4
+      }
+    },
+    "Q4_D0.28_T10": {
+      "degeneracy_summary": {
+        "exclusion_recommendation_by_group_split": {
+          "heldout_allocation": {
+            "keep": 9,
+            "review": 6
+          },
+          "heldout_damage_allocation": {
+            "keep": 3
+          },
+          "heldout_graph_allocation": {
+            "keep": 4,
+            "review": 1
+          },
+          "heldout_graph_damage_allocation": {
+            "keep": 1
+          }
+        },
+        "exclusion_recommendation_counts": {
+          "keep": 17,
+          "review": 7
+        },
+        "group_flag_counts": {
+          "all_no_collapse": 4,
+          "high_flag_fraction": 7,
+          "recovery_never_used": 4
+        },
+        "groups_evaluated": 24,
+        "non_claim": "degeneracy schema/reporting smoke test only; not an exclusion decision",
+        "run_flag_counts": {
+          "collapse_at_first_step": 1,
+          "far_above_q": 22,
+          "initially_collapsed": 0,
+          "no_alternate_path": 0,
+          "no_collapse": 88,
+          "post_policy_below_q": 0,
+          "reconfiguration_impossible": 0,
+          "recovery_unused": 32,
+          "unflagged": 172
+        },
+        "runs": 264,
+        "schema_fields": {
+          "group_summary": [
+            "seed",
+            "graph_family",
+            "damage_family",
+            "total_energy_E",
+            "required_flow_Q",
+            "horizon_T",
+            "damage_intensity",
+            "graph_split",
+            "damage_split",
+            "has_heldout_allocation",
+            "primary_axes",
+            "group_split",
+            "n_allocations",
+            "flagged_run_fraction",
+            "no_collapse_fraction",
+            "collapse_at_first_step_fraction",
+            "far_above_q_fraction",
+            "post_policy_below_q_fraction",
+            "recovery_unused_fraction_among_recovery_allocations",
+            "reconfiguration_unused_fraction_among_reconfiguration_allocations",
+            "maintained_step_ratio_range",
+            "maintained_flow_ratio_range",
+            "minimum_margin_range",
+            "observed_score_range",
+            "group_degeneracy_flags",
+            "exclusion_recommendation"
+          ],
+          "run_flags": [
+            "flag",
+            "count",
+            "fraction",
+            "graph_family_counts",
+            "damage_family_counts",
+            "allocation_split_counts"
+          ]
+        },
+        "status": "dry_run_degeneracy_report_v1_only"
+      },
+      "group_flag_counts": {
+        "all_no_collapse": 4,
+        "high_flag_fraction": 7,
+        "recovery_never_used": 4
+      }
+    },
+    "Q4_D0.28_T12": {
+      "degeneracy_summary": {
+        "exclusion_recommendation_by_group_split": {
+          "heldout_allocation": {
+            "keep": 10,
+            "review": 5
+          },
+          "heldout_damage_allocation": {
+            "keep": 3
+          },
+          "heldout_graph_allocation": {
+            "keep": 4,
+            "review": 1
+          },
+          "heldout_graph_damage_allocation": {
+            "keep": 1
+          }
+        },
+        "exclusion_recommendation_counts": {
+          "keep": 18,
+          "review": 6
+        },
+        "group_flag_counts": {
+          "all_no_collapse": 3,
+          "high_flag_fraction": 6,
+          "recovery_never_used": 4
+        },
+        "groups_evaluated": 24,
+        "non_claim": "degeneracy schema/reporting smoke test only; not an exclusion decision",
+        "run_flag_counts": {
+          "collapse_at_first_step": 1,
+          "far_above_q": 22,
+          "initially_collapsed": 0,
+          "no_alternate_path": 0,
+          "no_collapse": 71,
+          "post_policy_below_q": 0,
+          "reconfiguration_impossible": 0,
+          "recovery_unused": 32,
+          "unflagged": 189
+        },
+        "runs": 264,
+        "schema_fields": {
+          "group_summary": [
+            "seed",
+            "graph_family",
+            "damage_family",
+            "total_energy_E",
+            "required_flow_Q",
+            "horizon_T",
+            "damage_intensity",
+            "graph_split",
+            "damage_split",
+            "has_heldout_allocation",
+            "primary_axes",
+            "group_split",
+            "n_allocations",
+            "flagged_run_fraction",
+            "no_collapse_fraction",
+            "collapse_at_first_step_fraction",
+            "far_above_q_fraction",
+            "post_policy_below_q_fraction",
+            "recovery_unused_fraction_among_recovery_allocations",
+            "reconfiguration_unused_fraction_among_reconfiguration_allocations",
+            "maintained_step_ratio_range",
+            "maintained_flow_ratio_range",
+            "minimum_margin_range",
+            "observed_score_range",
+            "group_degeneracy_flags",
+            "exclusion_recommendation"
+          ],
+          "run_flags": [
+            "flag",
+            "count",
+            "fraction",
+            "graph_family_counts",
+            "damage_family_counts",
+            "allocation_split_counts"
+          ]
+        },
+        "status": "dry_run_degeneracy_report_v1_only"
+      },
+      "group_flag_counts": {
+        "all_no_collapse": 3,
+        "high_flag_fraction": 6,
+        "recovery_never_used": 4
+      }
+    },
+    "Q4_D0.28_T8": {
+      "degeneracy_summary": {
+        "exclusion_recommendation_by_group_split": {
+          "heldout_allocation": {
+            "keep": 8,
+            "review": 7
+          },
+          "heldout_damage_allocation": {
+            "keep": 3
+          },
+          "heldout_graph_allocation": {
+            "keep": 4,
+            "review": 1
+          },
+          "heldout_graph_damage_allocation": {
+            "keep": 1
+          }
+        },
+        "exclusion_recommendation_counts": {
+          "keep": 16,
+          "review": 8
+        },
+        "group_flag_counts": {
+          "all_no_collapse": 5,
+          "high_flag_fraction": 8,
+          "recovery_never_used": 4
+        },
+        "groups_evaluated": 24,
+        "non_claim": "degeneracy schema/reporting smoke test only; not an exclusion decision",
+        "run_flag_counts": {
+          "collapse_at_first_step": 1,
+          "far_above_q": 23,
+          "initially_collapsed": 0,
+          "no_alternate_path": 0,
+          "no_collapse": 109,
+          "post_policy_below_q": 0,
+          "reconfiguration_impossible": 0,
+          "recovery_unused": 32,
+          "unflagged": 151
+        },
+        "runs": 264,
+        "schema_fields": {
+          "group_summary": [
+            "seed",
+            "graph_family",
+            "damage_family",
+            "total_energy_E",
+            "required_flow_Q",
+            "horizon_T",
+            "damage_intensity",
+            "graph_split",
+            "damage_split",
+            "has_heldout_allocation",
+            "primary_axes",
+            "group_split",
+            "n_allocations",
+            "flagged_run_fraction",
+            "no_collapse_fraction",
+            "collapse_at_first_step_fraction",
+            "far_above_q_fraction",
+            "post_policy_below_q_fraction",
+            "recovery_unused_fraction_among_recovery_allocations",
+            "reconfiguration_unused_fraction_among_reconfiguration_allocations",
+            "maintained_step_ratio_range",
+            "maintained_flow_ratio_range",
+            "minimum_margin_range",
+            "observed_score_range",
+            "group_degeneracy_flags",
+            "exclusion_recommendation"
+          ],
+          "run_flags": [
+            "flag",
+            "count",
+            "fraction",
+            "graph_family_counts",
+            "damage_family_counts",
+            "allocation_split_counts"
+          ]
+        },
+        "status": "dry_run_degeneracy_report_v1_only"
+      },
+      "group_flag_counts": {
+        "all_no_collapse": 5,
+        "high_flag_fraction": 8,
+        "recovery_never_used": 4
+      }
+    },
+    "Q4_D0.28_T9": {
+      "degeneracy_summary": {
+        "exclusion_recommendation_by_group_split": {
+          "heldout_allocation": {
+            "keep": 9,
+            "review": 6
+          },
+          "heldout_damage_allocation": {
+            "keep": 3
+          },
+          "heldout_graph_allocation": {
+            "keep": 4,
+            "review": 1
+          },
+          "heldout_graph_damage_allocation": {
+            "keep": 1
+          }
+        },
+        "exclusion_recommendation_counts": {
+          "keep": 17,
+          "review": 7
+        },
+        "group_flag_counts": {
+          "all_no_collapse": 4,
+          "high_flag_fraction": 7,
+          "recovery_never_used": 4
+        },
+        "groups_evaluated": 24,
+        "non_claim": "degeneracy schema/reporting smoke test only; not an exclusion decision",
+        "run_flag_counts": {
+          "collapse_at_first_step": 1,
+          "far_above_q": 22,
+          "initially_collapsed": 0,
+          "no_alternate_path": 0,
+          "no_collapse": 96,
+          "post_policy_below_q": 0,
+          "reconfiguration_impossible": 0,
+          "recovery_unused": 32,
+          "unflagged": 164
+        },
+        "runs": 264,
+        "schema_fields": {
+          "group_summary": [
+            "seed",
+            "graph_family",
+            "damage_family",
+            "total_energy_E",
+            "required_flow_Q",
+            "horizon_T",
+            "damage_intensity",
+            "graph_split",
+            "damage_split",
+            "has_heldout_allocation",
+            "primary_axes",
+            "group_split",
+            "n_allocations",
+            "flagged_run_fraction",
+            "no_collapse_fraction",
+            "collapse_at_first_step_fraction",
+            "far_above_q_fraction",
+            "post_policy_below_q_fraction",
+            "recovery_unused_fraction_among_recovery_allocations",
+            "reconfiguration_unused_fraction_among_reconfiguration_allocations",
+            "maintained_step_ratio_range",
+            "maintained_flow_ratio_range",
+            "minimum_margin_range",
+            "observed_score_range",
+            "group_degeneracy_flags",
+            "exclusion_recommendation"
+          ],
+          "run_flags": [
+            "flag",
+            "count",
+            "fraction",
+            "graph_family_counts",
+            "damage_family_counts",
+            "allocation_split_counts"
+          ]
+        },
+        "status": "dry_run_degeneracy_report_v1_only"
+      },
+      "group_flag_counts": {
+        "all_no_collapse": 4,
+        "high_flag_fraction": 7,
+        "recovery_never_used": 4
+      }
+    },
+    "Q4_D0.32_T10": {
+      "degeneracy_summary": {
+        "exclusion_recommendation_by_group_split": {
+          "heldout_allocation": {
+            "keep": 10,
+            "review": 5
+          },
+          "heldout_damage_allocation": {
+            "keep": 3
+          },
+          "heldout_graph_allocation": {
+            "keep": 4,
+            "review": 1
+          },
+          "heldout_graph_damage_allocation": {
+            "keep": 1
+          }
+        },
+        "exclusion_recommendation_counts": {
+          "keep": 18,
+          "review": 6
+        },
+        "group_flag_counts": {
+          "all_no_collapse": 4,
+          "high_flag_fraction": 6,
+          "recovery_never_used": 4
+        },
+        "groups_evaluated": 24,
+        "non_claim": "degeneracy schema/reporting smoke test only; not an exclusion decision",
+        "run_flag_counts": {
+          "collapse_at_first_step": 1,
+          "far_above_q": 22,
+          "initially_collapsed": 0,
+          "no_alternate_path": 0,
+          "no_collapse": 76,
+          "post_policy_below_q": 0,
+          "reconfiguration_impossible": 0,
+          "recovery_unused": 32,
+          "unflagged": 184
+        },
+        "runs": 264,
+        "schema_fields": {
+          "group_summary": [
+            "seed",
+            "graph_family",
+            "damage_family",
+            "total_energy_E",
+            "required_flow_Q",
+            "horizon_T",
+            "damage_intensity",
+            "graph_split",
+            "damage_split",
+            "has_heldout_allocation",
+            "primary_axes",
+            "group_split",
+            "n_allocations",
+            "flagged_run_fraction",
+            "no_collapse_fraction",
+            "collapse_at_first_step_fraction",
+            "far_above_q_fraction",
+            "post_policy_below_q_fraction",
+            "recovery_unused_fraction_among_recovery_allocations",
+            "reconfiguration_unused_fraction_among_reconfiguration_allocations",
+            "maintained_step_ratio_range",
+            "maintained_flow_ratio_range",
+            "minimum_margin_range",
+            "observed_score_range",
+            "group_degeneracy_flags",
+            "exclusion_recommendation"
+          ],
+          "run_flags": [
+            "flag",
+            "count",
+            "fraction",
+            "graph_family_counts",
+            "damage_family_counts",
+            "allocation_split_counts"
+          ]
+        },
+        "status": "dry_run_degeneracy_report_v1_only"
+      },
+      "group_flag_counts": {
+        "all_no_collapse": 4,
+        "high_flag_fraction": 6,
+        "recovery_never_used": 4
+      }
+    },
+    "Q4_D0.32_T12": {
+      "degeneracy_summary": {
+        "exclusion_recommendation_by_group_split": {
+          "heldout_allocation": {
+            "keep": 11,
+            "review": 4
+          },
+          "heldout_damage_allocation": {
+            "keep": 3
+          },
+          "heldout_graph_allocation": {
+            "keep": 4,
+            "review": 1
+          },
+          "heldout_graph_damage_allocation": {
+            "keep": 1
+          }
+        },
+        "exclusion_recommendation_counts": {
+          "keep": 19,
+          "review": 5
+        },
+        "group_flag_counts": {
+          "all_no_collapse": 3,
+          "high_flag_fraction": 5,
+          "recovery_never_used": 4
+        },
+        "groups_evaluated": 24,
+        "non_claim": "degeneracy schema/reporting smoke test only; not an exclusion decision",
+        "run_flag_counts": {
+          "collapse_at_first_step": 1,
+          "far_above_q": 22,
+          "initially_collapsed": 0,
+          "no_alternate_path": 0,
+          "no_collapse": 61,
+          "post_policy_below_q": 0,
+          "reconfiguration_impossible": 0,
+          "recovery_unused": 32,
+          "unflagged": 199
+        },
+        "runs": 264,
+        "schema_fields": {
+          "group_summary": [
+            "seed",
+            "graph_family",
+            "damage_family",
+            "total_energy_E",
+            "required_flow_Q",
+            "horizon_T",
+            "damage_intensity",
+            "graph_split",
+            "damage_split",
+            "has_heldout_allocation",
+            "primary_axes",
+            "group_split",
+            "n_allocations",
+            "flagged_run_fraction",
+            "no_collapse_fraction",
+            "collapse_at_first_step_fraction",
+            "far_above_q_fraction",
+            "post_policy_below_q_fraction",
+            "recovery_unused_fraction_among_recovery_allocations",
+            "reconfiguration_unused_fraction_among_reconfiguration_allocations",
+            "maintained_step_ratio_range",
+            "maintained_flow_ratio_range",
+            "minimum_margin_range",
+            "observed_score_range",
+            "group_degeneracy_flags",
+            "exclusion_recommendation"
+          ],
+          "run_flags": [
+            "flag",
+            "count",
+            "fraction",
+            "graph_family_counts",
+            "damage_family_counts",
+            "allocation_split_counts"
+          ]
+        },
+        "status": "dry_run_degeneracy_report_v1_only"
+      },
+      "group_flag_counts": {
+        "all_no_collapse": 3,
+        "high_flag_fraction": 5,
+        "recovery_never_used": 4
+      }
+    },
+    "Q4_D0.32_T8": {
+      "degeneracy_summary": {
+        "exclusion_recommendation_by_group_split": {
+          "heldout_allocation": {
+            "keep": 10,
+            "review": 5
+          },
+          "heldout_damage_allocation": {
+            "keep": 3
+          },
+          "heldout_graph_allocation": {
+            "keep": 4,
+            "review": 1
+          },
+          "heldout_graph_damage_allocation": {
+            "keep": 1
+          }
+        },
+        "exclusion_recommendation_counts": {
+          "keep": 18,
+          "review": 6
+        },
+        "group_flag_counts": {
+          "all_no_collapse": 4,
+          "high_flag_fraction": 6,
+          "recovery_never_used": 4
+        },
+        "groups_evaluated": 24,
+        "non_claim": "degeneracy schema/reporting smoke test only; not an exclusion decision",
+        "run_flag_counts": {
+          "collapse_at_first_step": 1,
+          "far_above_q": 22,
+          "initially_collapsed": 0,
+          "no_alternate_path": 0,
+          "no_collapse": 91,
+          "post_policy_below_q": 0,
+          "reconfiguration_impossible": 0,
+          "recovery_unused": 32,
+          "unflagged": 169
+        },
+        "runs": 264,
+        "schema_fields": {
+          "group_summary": [
+            "seed",
+            "graph_family",
+            "damage_family",
+            "total_energy_E",
+            "required_flow_Q",
+            "horizon_T",
+            "damage_intensity",
+            "graph_split",
+            "damage_split",
+            "has_heldout_allocation",
+            "primary_axes",
+            "group_split",
+            "n_allocations",
+            "flagged_run_fraction",
+            "no_collapse_fraction",
+            "collapse_at_first_step_fraction",
+            "far_above_q_fraction",
+            "post_policy_below_q_fraction",
+            "recovery_unused_fraction_among_recovery_allocations",
+            "reconfiguration_unused_fraction_among_reconfiguration_allocations",
+            "maintained_step_ratio_range",
+            "maintained_flow_ratio_range",
+            "minimum_margin_range",
+            "observed_score_range",
+            "group_degeneracy_flags",
+            "exclusion_recommendation"
+          ],
+          "run_flags": [
+            "flag",
+            "count",
+            "fraction",
+            "graph_family_counts",
+            "damage_family_counts",
+            "allocation_split_counts"
+          ]
+        },
+        "status": "dry_run_degeneracy_report_v1_only"
+      },
+      "group_flag_counts": {
+        "all_no_collapse": 4,
+        "high_flag_fraction": 6,
+        "recovery_never_used": 4
+      }
+    },
+    "Q4_D0.32_T9": {
+      "degeneracy_summary": {
+        "exclusion_recommendation_by_group_split": {
+          "heldout_allocation": {
+            "keep": 10,
+            "review": 5
+          },
+          "heldout_damage_allocation": {
+            "keep": 3
+          },
+          "heldout_graph_allocation": {
+            "keep": 4,
+            "review": 1
+          },
+          "heldout_graph_damage_allocation": {
+            "keep": 1
+          }
+        },
+        "exclusion_recommendation_counts": {
+          "keep": 18,
+          "review": 6
+        },
+        "group_flag_counts": {
+          "all_no_collapse": 4,
+          "high_flag_fraction": 6,
+          "recovery_never_used": 4
+        },
+        "groups_evaluated": 24,
+        "non_claim": "degeneracy schema/reporting smoke test only; not an exclusion decision",
+        "run_flag_counts": {
+          "collapse_at_first_step": 1,
+          "far_above_q": 22,
+          "initially_collapsed": 0,
+          "no_alternate_path": 0,
+          "no_collapse": 82,
+          "post_policy_below_q": 0,
+          "reconfiguration_impossible": 0,
+          "recovery_unused": 32,
+          "unflagged": 178
+        },
+        "runs": 264,
+        "schema_fields": {
+          "group_summary": [
+            "seed",
+            "graph_family",
+            "damage_family",
+            "total_energy_E",
+            "required_flow_Q",
+            "horizon_T",
+            "damage_intensity",
+            "graph_split",
+            "damage_split",
+            "has_heldout_allocation",
+            "primary_axes",
+            "group_split",
+            "n_allocations",
+            "flagged_run_fraction",
+            "no_collapse_fraction",
+            "collapse_at_first_step_fraction",
+            "far_above_q_fraction",
+            "post_policy_below_q_fraction",
+            "recovery_unused_fraction_among_recovery_allocations",
+            "reconfiguration_unused_fraction_among_reconfiguration_allocations",
+            "maintained_step_ratio_range",
+            "maintained_flow_ratio_range",
+            "minimum_margin_range",
+            "observed_score_range",
+            "group_degeneracy_flags",
+            "exclusion_recommendation"
+          ],
+          "run_flags": [
+            "flag",
+            "count",
+            "fraction",
+            "graph_family_counts",
+            "damage_family_counts",
+            "allocation_split_counts"
+          ]
+        },
+        "status": "dry_run_degeneracy_report_v1_only"
+      },
+      "group_flag_counts": {
+        "all_no_collapse": 4,
+        "high_flag_fraction": 6,
+        "recovery_never_used": 4
+      }
+    },
+    "Q4_D0.34_T10": {
+      "degeneracy_summary": {
+        "exclusion_recommendation_by_group_split": {
+          "heldout_allocation": {
+            "keep": 10,
+            "review": 5
+          },
+          "heldout_damage_allocation": {
+            "keep": 3
+          },
+          "heldout_graph_allocation": {
+            "keep": 4,
+            "review": 1
+          },
+          "heldout_graph_damage_allocation": {
+            "keep": 1
+          }
+        },
+        "exclusion_recommendation_counts": {
+          "keep": 18,
+          "review": 6
+        },
+        "group_flag_counts": {
+          "all_no_collapse": 4,
+          "high_flag_fraction": 6,
+          "recovery_never_used": 4
+        },
+        "groups_evaluated": 24,
+        "non_claim": "degeneracy schema/reporting smoke test only; not an exclusion decision",
+        "run_flag_counts": {
+          "collapse_at_first_step": 1,
+          "far_above_q": 22,
+          "initially_collapsed": 0,
+          "no_alternate_path": 0,
+          "no_collapse": 75,
+          "post_policy_below_q": 0,
+          "reconfiguration_impossible": 0,
+          "recovery_unused": 32,
+          "unflagged": 185
+        },
+        "runs": 264,
+        "schema_fields": {
+          "group_summary": [
+            "seed",
+            "graph_family",
+            "damage_family",
+            "total_energy_E",
+            "required_flow_Q",
+            "horizon_T",
+            "damage_intensity",
+            "graph_split",
+            "damage_split",
+            "has_heldout_allocation",
+            "primary_axes",
+            "group_split",
+            "n_allocations",
+            "flagged_run_fraction",
+            "no_collapse_fraction",
+            "collapse_at_first_step_fraction",
+            "far_above_q_fraction",
+            "post_policy_below_q_fraction",
+            "recovery_unused_fraction_among_recovery_allocations",
+            "reconfiguration_unused_fraction_among_reconfiguration_allocations",
+            "maintained_step_ratio_range",
+            "maintained_flow_ratio_range",
+            "minimum_margin_range",
+            "observed_score_range",
+            "group_degeneracy_flags",
+            "exclusion_recommendation"
+          ],
+          "run_flags": [
+            "flag",
+            "count",
+            "fraction",
+            "graph_family_counts",
+            "damage_family_counts",
+            "allocation_split_counts"
+          ]
+        },
+        "status": "dry_run_degeneracy_report_v1_only"
+      },
+      "group_flag_counts": {
+        "all_no_collapse": 4,
+        "high_flag_fraction": 6,
+        "recovery_never_used": 4
+      }
+    },
+    "Q4_D0.34_T12": {
+      "degeneracy_summary": {
+        "exclusion_recommendation_by_group_split": {
+          "heldout_allocation": {
+            "keep": 11,
+            "review": 4
+          },
+          "heldout_damage_allocation": {
+            "keep": 3
+          },
+          "heldout_graph_allocation": {
+            "keep": 4,
+            "review": 1
+          },
+          "heldout_graph_damage_allocation": {
+            "keep": 1
+          }
+        },
+        "exclusion_recommendation_counts": {
+          "keep": 19,
+          "review": 5
+        },
+        "group_flag_counts": {
+          "all_no_collapse": 3,
+          "high_flag_fraction": 5,
+          "recovery_never_used": 4
+        },
+        "groups_evaluated": 24,
+        "non_claim": "degeneracy schema/reporting smoke test only; not an exclusion decision",
+        "run_flag_counts": {
+          "collapse_at_first_step": 1,
+          "far_above_q": 22,
+          "initially_collapsed": 0,
+          "no_alternate_path": 0,
+          "no_collapse": 60,
+          "post_policy_below_q": 0,
+          "reconfiguration_impossible": 0,
+          "recovery_unused": 32,
+          "unflagged": 200
+        },
+        "runs": 264,
+        "schema_fields": {
+          "group_summary": [
+            "seed",
+            "graph_family",
+            "damage_family",
+            "total_energy_E",
+            "required_flow_Q",
+            "horizon_T",
+            "damage_intensity",
+            "graph_split",
+            "damage_split",
+            "has_heldout_allocation",
+            "primary_axes",
+            "group_split",
+            "n_allocations",
+            "flagged_run_fraction",
+            "no_collapse_fraction",
+            "collapse_at_first_step_fraction",
+            "far_above_q_fraction",
+            "post_policy_below_q_fraction",
+            "recovery_unused_fraction_among_recovery_allocations",
+            "reconfiguration_unused_fraction_among_reconfiguration_allocations",
+            "maintained_step_ratio_range",
+            "maintained_flow_ratio_range",
+            "minimum_margin_range",
+            "observed_score_range",
+            "group_degeneracy_flags",
+            "exclusion_recommendation"
+          ],
+          "run_flags": [
+            "flag",
+            "count",
+            "fraction",
+            "graph_family_counts",
+            "damage_family_counts",
+            "allocation_split_counts"
+          ]
+        },
+        "status": "dry_run_degeneracy_report_v1_only"
+      },
+      "group_flag_counts": {
+        "all_no_collapse": 3,
+        "high_flag_fraction": 5,
+        "recovery_never_used": 4
+      }
+    },
+    "Q4_D0.34_T8": {
+      "degeneracy_summary": {
+        "exclusion_recommendation_by_group_split": {
+          "heldout_allocation": {
+            "keep": 10,
+            "review": 5
+          },
+          "heldout_damage_allocation": {
+            "keep": 3
+          },
+          "heldout_graph_allocation": {
+            "keep": 4,
+            "review": 1
+          },
+          "heldout_graph_damage_allocation": {
+            "keep": 1
+          }
+        },
+        "exclusion_recommendation_counts": {
+          "keep": 18,
+          "review": 6
+        },
+        "group_flag_counts": {
+          "all_no_collapse": 5,
+          "high_flag_fraction": 6,
+          "recovery_never_used": 4
+        },
+        "groups_evaluated": 24,
+        "non_claim": "degeneracy schema/reporting smoke test only; not an exclusion decision",
+        "run_flag_counts": {
+          "collapse_at_first_step": 1,
+          "far_above_q": 22,
+          "initially_collapsed": 0,
+          "no_alternate_path": 0,
+          "no_collapse": 92,
+          "post_policy_below_q": 0,
+          "reconfiguration_impossible": 0,
+          "recovery_unused": 32,
+          "unflagged": 168
+        },
+        "runs": 264,
+        "schema_fields": {
+          "group_summary": [
+            "seed",
+            "graph_family",
+            "damage_family",
+            "total_energy_E",
+            "required_flow_Q",
+            "horizon_T",
+            "damage_intensity",
+            "graph_split",
+            "damage_split",
+            "has_heldout_allocation",
+            "primary_axes",
+            "group_split",
+            "n_allocations",
+            "flagged_run_fraction",
+            "no_collapse_fraction",
+            "collapse_at_first_step_fraction",
+            "far_above_q_fraction",
+            "post_policy_below_q_fraction",
+            "recovery_unused_fraction_among_recovery_allocations",
+            "reconfiguration_unused_fraction_among_reconfiguration_allocations",
+            "maintained_step_ratio_range",
+            "maintained_flow_ratio_range",
+            "minimum_margin_range",
+            "observed_score_range",
+            "group_degeneracy_flags",
+            "exclusion_recommendation"
+          ],
+          "run_flags": [
+            "flag",
+            "count",
+            "fraction",
+            "graph_family_counts",
+            "damage_family_counts",
+            "allocation_split_counts"
+          ]
+        },
+        "status": "dry_run_degeneracy_report_v1_only"
+      },
+      "group_flag_counts": {
+        "all_no_collapse": 5,
+        "high_flag_fraction": 6,
+        "recovery_never_used": 4
+      }
+    },
+    "Q4_D0.34_T9": {
+      "degeneracy_summary": {
+        "exclusion_recommendation_by_group_split": {
+          "heldout_allocation": {
+            "keep": 10,
+            "review": 5
+          },
+          "heldout_damage_allocation": {
+            "keep": 3
+          },
+          "heldout_graph_allocation": {
+            "keep": 4,
+            "review": 1
+          },
+          "heldout_graph_damage_allocation": {
+            "keep": 1
+          }
+        },
+        "exclusion_recommendation_counts": {
+          "keep": 18,
+          "review": 6
+        },
+        "group_flag_counts": {
+          "all_no_collapse": 4,
+          "high_flag_fraction": 6,
+          "recovery_never_used": 4
+        },
+        "groups_evaluated": 24,
+        "non_claim": "degeneracy schema/reporting smoke test only; not an exclusion decision",
+        "run_flag_counts": {
+          "collapse_at_first_step": 1,
+          "far_above_q": 22,
+          "initially_collapsed": 0,
+          "no_alternate_path": 0,
+          "no_collapse": 81,
+          "post_policy_below_q": 0,
+          "reconfiguration_impossible": 0,
+          "recovery_unused": 32,
+          "unflagged": 179
+        },
+        "runs": 264,
+        "schema_fields": {
+          "group_summary": [
+            "seed",
+            "graph_family",
+            "damage_family",
+            "total_energy_E",
+            "required_flow_Q",
+            "horizon_T",
+            "damage_intensity",
+            "graph_split",
+            "damage_split",
+            "has_heldout_allocation",
+            "primary_axes",
+            "group_split",
+            "n_allocations",
+            "flagged_run_fraction",
+            "no_collapse_fraction",
+            "collapse_at_first_step_fraction",
+            "far_above_q_fraction",
+            "post_policy_below_q_fraction",
+            "recovery_unused_fraction_among_recovery_allocations",
+            "reconfiguration_unused_fraction_among_reconfiguration_allocations",
+            "maintained_step_ratio_range",
+            "maintained_flow_ratio_range",
+            "minimum_margin_range",
+            "observed_score_range",
+            "group_degeneracy_flags",
+            "exclusion_recommendation"
+          ],
+          "run_flags": [
+            "flag",
+            "count",
+            "fraction",
+            "graph_family_counts",
+            "damage_family_counts",
+            "allocation_split_counts"
+          ]
+        },
+        "status": "dry_run_degeneracy_report_v1_only"
+      },
+      "group_flag_counts": {
+        "all_no_collapse": 4,
+        "high_flag_fraction": 6,
+        "recovery_never_used": 4
+      }
+    },
+    "Q4_D0.3_T10": {
+      "degeneracy_summary": {
+        "exclusion_recommendation_by_group_split": {
+          "heldout_allocation": {
+            "keep": 9,
+            "review": 6
+          },
+          "heldout_damage_allocation": {
+            "keep": 3
+          },
+          "heldout_graph_allocation": {
+            "keep": 4,
+            "review": 1
+          },
+          "heldout_graph_damage_allocation": {
+            "keep": 1
+          }
+        },
+        "exclusion_recommendation_counts": {
+          "keep": 17,
+          "review": 7
+        },
+        "group_flag_counts": {
+          "all_no_collapse": 4,
+          "high_flag_fraction": 7,
+          "recovery_never_used": 4
+        },
+        "groups_evaluated": 24,
+        "non_claim": "degeneracy schema/reporting smoke test only; not an exclusion decision",
+        "run_flag_counts": {
+          "collapse_at_first_step": 1,
+          "far_above_q": 22,
+          "initially_collapsed": 0,
+          "no_alternate_path": 0,
+          "no_collapse": 81,
+          "post_policy_below_q": 0,
+          "reconfiguration_impossible": 0,
+          "recovery_unused": 32,
+          "unflagged": 179
+        },
+        "runs": 264,
+        "schema_fields": {
+          "group_summary": [
+            "seed",
+            "graph_family",
+            "damage_family",
+            "total_energy_E",
+            "required_flow_Q",
+            "horizon_T",
+            "damage_intensity",
+            "graph_split",
+            "damage_split",
+            "has_heldout_allocation",
+            "primary_axes",
+            "group_split",
+            "n_allocations",
+            "flagged_run_fraction",
+            "no_collapse_fraction",
+            "collapse_at_first_step_fraction",
+            "far_above_q_fraction",
+            "post_policy_below_q_fraction",
+            "recovery_unused_fraction_among_recovery_allocations",
+            "reconfiguration_unused_fraction_among_reconfiguration_allocations",
+            "maintained_step_ratio_range",
+            "maintained_flow_ratio_range",
+            "minimum_margin_range",
+            "observed_score_range",
+            "group_degeneracy_flags",
+            "exclusion_recommendation"
+          ],
+          "run_flags": [
+            "flag",
+            "count",
+            "fraction",
+            "graph_family_counts",
+            "damage_family_counts",
+            "allocation_split_counts"
+          ]
+        },
+        "status": "dry_run_degeneracy_report_v1_only"
+      },
+      "group_flag_counts": {
+        "all_no_collapse": 4,
+        "high_flag_fraction": 7,
+        "recovery_never_used": 4
+      }
+    },
+    "Q4_D0.3_T12": {
+      "degeneracy_summary": {
+        "exclusion_recommendation_by_group_split": {
+          "heldout_allocation": {
+            "keep": 11,
+            "review": 4
+          },
+          "heldout_damage_allocation": {
+            "keep": 3
+          },
+          "heldout_graph_allocation": {
+            "keep": 4,
+            "review": 1
+          },
+          "heldout_graph_damage_allocation": {
+            "keep": 1
+          }
+        },
+        "exclusion_recommendation_counts": {
+          "keep": 19,
+          "review": 5
+        },
+        "group_flag_counts": {
+          "all_no_collapse": 3,
+          "high_flag_fraction": 5,
+          "recovery_never_used": 4
+        },
+        "groups_evaluated": 24,
+        "non_claim": "degeneracy schema/reporting smoke test only; not an exclusion decision",
+        "run_flag_counts": {
+          "collapse_at_first_step": 1,
+          "far_above_q": 22,
+          "initially_collapsed": 0,
+          "no_alternate_path": 0,
+          "no_collapse": 65,
+          "post_policy_below_q": 0,
+          "reconfiguration_impossible": 0,
+          "recovery_unused": 32,
+          "unflagged": 195
+        },
+        "runs": 264,
+        "schema_fields": {
+          "group_summary": [
+            "seed",
+            "graph_family",
+            "damage_family",
+            "total_energy_E",
+            "required_flow_Q",
+            "horizon_T",
+            "damage_intensity",
+            "graph_split",
+            "damage_split",
+            "has_heldout_allocation",
+            "primary_axes",
+            "group_split",
+            "n_allocations",
+            "flagged_run_fraction",
+            "no_collapse_fraction",
+            "collapse_at_first_step_fraction",
+            "far_above_q_fraction",
+            "post_policy_below_q_fraction",
+            "recovery_unused_fraction_among_recovery_allocations",
+            "reconfiguration_unused_fraction_among_reconfiguration_allocations",
+            "maintained_step_ratio_range",
+            "maintained_flow_ratio_range",
+            "minimum_margin_range",
+            "observed_score_range",
+            "group_degeneracy_flags",
+            "exclusion_recommendation"
+          ],
+          "run_flags": [
+            "flag",
+            "count",
+            "fraction",
+            "graph_family_counts",
+            "damage_family_counts",
+            "allocation_split_counts"
+          ]
+        },
+        "status": "dry_run_degeneracy_report_v1_only"
+      },
+      "group_flag_counts": {
+        "all_no_collapse": 3,
+        "high_flag_fraction": 5,
+        "recovery_never_used": 4
+      }
+    },
+    "Q4_D0.3_T8": {
+      "degeneracy_summary": {
+        "exclusion_recommendation_by_group_split": {
+          "heldout_allocation": {
+            "keep": 9,
+            "review": 6
+          },
+          "heldout_damage_allocation": {
+            "keep": 3
+          },
+          "heldout_graph_allocation": {
+            "keep": 4,
+            "review": 1
+          },
+          "heldout_graph_damage_allocation": {
+            "keep": 1
+          }
+        },
+        "exclusion_recommendation_counts": {
+          "keep": 17,
+          "review": 7
+        },
+        "group_flag_counts": {
+          "all_no_collapse": 5,
+          "high_flag_fraction": 7,
+          "recovery_never_used": 4
+        },
+        "groups_evaluated": 24,
+        "non_claim": "degeneracy schema/reporting smoke test only; not an exclusion decision",
+        "run_flag_counts": {
+          "collapse_at_first_step": 1,
+          "far_above_q": 26,
+          "initially_collapsed": 0,
+          "no_alternate_path": 0,
+          "no_collapse": 94,
+          "post_policy_below_q": 0,
+          "reconfiguration_impossible": 0,
+          "recovery_unused": 32,
+          "unflagged": 166
+        },
+        "runs": 264,
+        "schema_fields": {
+          "group_summary": [
+            "seed",
+            "graph_family",
+            "damage_family",
+            "total_energy_E",
+            "required_flow_Q",
+            "horizon_T",
+            "damage_intensity",
+            "graph_split",
+            "damage_split",
+            "has_heldout_allocation",
+            "primary_axes",
+            "group_split",
+            "n_allocations",
+            "flagged_run_fraction",
+            "no_collapse_fraction",
+            "collapse_at_first_step_fraction",
+            "far_above_q_fraction",
+            "post_policy_below_q_fraction",
+            "recovery_unused_fraction_among_recovery_allocations",
+            "reconfiguration_unused_fraction_among_reconfiguration_allocations",
+            "maintained_step_ratio_range",
+            "maintained_flow_ratio_range",
+            "minimum_margin_range",
+            "observed_score_range",
+            "group_degeneracy_flags",
+            "exclusion_recommendation"
+          ],
+          "run_flags": [
+            "flag",
+            "count",
+            "fraction",
+            "graph_family_counts",
+            "damage_family_counts",
+            "allocation_split_counts"
+          ]
+        },
+        "status": "dry_run_degeneracy_report_v1_only"
+      },
+      "group_flag_counts": {
+        "all_no_collapse": 5,
+        "high_flag_fraction": 7,
+        "recovery_never_used": 4
+      }
+    },
+    "Q4_D0.3_T9": {
+      "degeneracy_summary": {
+        "exclusion_recommendation_by_group_split": {
+          "heldout_allocation": {
+            "keep": 9,
+            "review": 6
+          },
+          "heldout_damage_allocation": {
+            "keep": 3
+          },
+          "heldout_graph_allocation": {
+            "keep": 4,
+            "review": 1
+          },
+          "heldout_graph_damage_allocation": {
+            "keep": 1
+          }
+        },
+        "exclusion_recommendation_counts": {
+          "keep": 17,
+          "review": 7
+        },
+        "group_flag_counts": {
+          "all_no_collapse": 4,
+          "high_flag_fraction": 7,
+          "recovery_never_used": 4
+        },
+        "groups_evaluated": 24,
+        "non_claim": "degeneracy schema/reporting smoke test only; not an exclusion decision",
+        "run_flag_counts": {
+          "collapse_at_first_step": 1,
+          "far_above_q": 22,
+          "initially_collapsed": 0,
+          "no_alternate_path": 0,
+          "no_collapse": 86,
+          "post_policy_below_q": 0,
+          "reconfiguration_impossible": 0,
+          "recovery_unused": 32,
+          "unflagged": 174
+        },
+        "runs": 264,
+        "schema_fields": {
+          "group_summary": [
+            "seed",
+            "graph_family",
+            "damage_family",
+            "total_energy_E",
+            "required_flow_Q",
+            "horizon_T",
+            "damage_intensity",
+            "graph_split",
+            "damage_split",
+            "has_heldout_allocation",
+            "primary_axes",
+            "group_split",
+            "n_allocations",
+            "flagged_run_fraction",
+            "no_collapse_fraction",
+            "collapse_at_first_step_fraction",
+            "far_above_q_fraction",
+            "post_policy_below_q_fraction",
+            "recovery_unused_fraction_among_recovery_allocations",
+            "reconfiguration_unused_fraction_among_reconfiguration_allocations",
+            "maintained_step_ratio_range",
+            "maintained_flow_ratio_range",
+            "minimum_margin_range",
+            "observed_score_range",
+            "group_degeneracy_flags",
+            "exclusion_recommendation"
+          ],
+          "run_flags": [
+            "flag",
+            "count",
+            "fraction",
+            "graph_family_counts",
+            "damage_family_counts",
+            "allocation_split_counts"
+          ]
+        },
+        "status": "dry_run_degeneracy_report_v1_only"
+      },
+      "group_flag_counts": {
+        "all_no_collapse": 4,
+        "high_flag_fraction": 7,
+        "recovery_never_used": 4
+      }
+    }
+  },
+  "non_claim": "calibration candidate screen only; no primary support",
+  "status": "dry_run_calibration_sweep_v0_only"
+}
