@@ -574,7 +574,9 @@ N_eff^(0) を確保・拡張する介入:
 
 ソフトウェア工学における冗長性、クリーンアーキテクチャ、interface / contract、CI、rollback、observability は、この発想の実践的プロトタイプとして読める。これらは、構造消耗を局所化し、回復経路を残し、変更後も維持可能な経路集合を枯らさないための設計である。ただし、ソフトウェアで有効だったことは、そのまま別ドメインの support にはならない。共通座標に翻訳したうえで、そのドメイン固有の凍結検証へ進む必要がある。
 
-DeltaLint bench は、この手順の software 側の具体候補である。ただし、これはソフトウェア崩壊そのものを直接測るものではなく、分散契約矛盾という早期シグナルの検出 benchmark である。構造は単一ファイルではなく、API / caller、config / runtime、documentation / implementation、default producer / consumer、lifecycle producer / consumer などにまたがる contract set として定義する。support と呼べるのは、同一 model・同一 frozen context・同一 one-pass budget の下で、structural lens が generic review よりも blinded validation 後の unique valid structural root causes を増やした場合に限る。raw finding 数、PR merge 数、または provider 間の単純勝敗は主 endpoint ではない。
+DeltaLint bench は、この手順の software 側の具体候補である。ただし、これはソフトウェア崩壊そのものを直接測るものではなく、分散契約矛盾という早期シグナルの検出 benchmark である。構造は単一ファイルではなく、API / caller、config / runtime、documentation / implementation、default producer / consumer、lifecycle producer / consumer などにまたがる contract set として定義する。support と呼べるのは、同一 model・同一 frozen context・同一 one-pass budget の下で、structural lens が generic review よりも bounded validation 後の unique valid structural root causes を増やした場合に限る。raw finding 数、PR merge 数、または provider 間の単純勝敗は主 endpoint ではない。
+
+ただし、PR merge 実績を捨てる必要はない。それは field demonstration / maintainer-acceptance evidence として別層に置く。外部 OSS で maintainer review を通ったことは、候補が実運用上の修正価値を持ちうることを示す。しかし merge には candidate selection、patchability、project culture、maintainer availability、PR strategy、人間の再現と説明が混ざるため、no-cut benchmark の primary endpoint にはしない。実証上の昇格は、field demonstration と controlled benchmark を分離して記録する。
 
 この手順から導かれる設計原理は、次の四つに要約できる。
 

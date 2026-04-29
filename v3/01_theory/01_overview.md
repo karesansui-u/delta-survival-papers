@@ -268,7 +268,11 @@ Exp.39 の 2×2 prospective replication でも、同じ主比較は GPT-4.1-nano
 
 この含意は LLM に閉じない。ソフトウェア工学における冗長性、クリーンアーキテクチャ、interface / contract、CI、rollback、observability は、構造消耗を局所化し、回復経路を残し、変更後も維持可能な経路集合を枯らさないための実践的プロトタイプとして読める。同じ座標に写すことで、あるドメインの成功例は、別ドメインにおける設計候補を生成する。たとえば scope-as-repair は責任境界や変更範囲の明示へ、dependency-aware replay は上流変更に伴う下流判断の再同期へ、rollback は局所復元可能性の設計へ翻訳できる。
 
-この方向の software 側 extension として、DeltaLint bench は、ソフトウェア崩壊そのものを直接測るものではなく、より手前の「分散契約矛盾」を検出する operational benchmark として位置づける。ここでいうソフトウェア構造とは、API と caller、config と runtime、documentation と implementation、default producer と consumer、lifecycle producer と consumer など、複数 surface にまたがって保たれる contract set である。DeltaLint bench の主比較は、同一 model・同一 frozen context・同一 timeout の下で generic review と structural-lens review を比較し、blinded validation 後の unique valid structural root causes が増えるかを見る。したがって、これが通っても直ちに「ソフトウェア崩壊を予測した」とは言わない。言えるのは、構造持続の座標が、崩壊の前駆シグナルである分散契約矛盾の検出に operational value を持つ、という限定された主張である。
+この方向の software 側 extension として、DeltaLint track は、ソフトウェア崩壊そのものを直接測るものではなく、より手前の「分散契約矛盾」を検出する operational track として位置づける。ここでいうソフトウェア構造とは、API と caller、config と runtime、documentation と implementation、default producer と consumer、lifecycle producer と consumer など、複数 surface にまたがって保たれる contract set である。
+
+この track には二つの証拠層がある。第一に、2026 年 3 月中旬の外部 OSS field demonstration では、DeltaLint workflow から生成された候補を人間が選別・再現・修正し、外部リポジトリへ PR / Issue として提出した。その結果、Microsoft / Facebook / Bytedance / Sentry / coder / tRPC などを含む 12 リポジトリで 16 件の PR が merge された。これは未選別 raw detection の precision / recall 実験ではない。候補選別、修正しやすさ、PR 戦略、maintainer culture、Claude Code による修正補助、人間の再現・交渉が混ざるためである。しかし、実在プロジェクトの maintainer review を通ったという意味で、DeltaLint workflow が実運用上有用な分散契約矛盾候補を生成しうることを示す field demonstration / maintainer-acceptance evidence である。
+
+第二に、DeltaLint bench は、同一 model・同一 frozen context・同一 timeout の下で generic review と structural-lens review を比較し、bounded validation 後の unique valid structural root causes が増えるかを見る controlled benchmark である。2026-04-29 時点の Product-arm calibration では、五つの frozen OSS item のうち四つで Product-additive gain があり、同一 scope / additive rule の下で九つの Product-additive `valid_structural` root が credited された。したがって、これが通っても直ちに「ソフトウェア崩壊を予測した」とは言わない。言えるのは、構造持続の座標が、崩壊の前駆シグナルである分散契約矛盾の検出に operational value を持つ、という限定された主張である。
 
 同じ規律は、本稿群自身の書き方にも現れる。主理論 spine、companion papers、補論、Lean mapping、numerical sanity checks、no-support / silence 判定を分けることは、理論プログラムを検証可能・保守可能・拡張可能な構成物として扱うための方法論である。
 

@@ -1,8 +1,9 @@
 # DeltaLint Software Operational Benchmark Note
 
-Status: positioning and internal-calibration note for the DeltaLint bench track.
-This is not maintainer acceptance, not outside replication, and not a
-collapse-prediction claim.
+Status: positioning, field-demonstration, and internal-calibration note for the
+DeltaLint bench track. This includes maintainer-acceptance field evidence and a
+bounded internal benchmark, but it is not a raw precision / recall estimate, not
+outside replication of the benchmark, and not a collapse-prediction claim.
 
 Date: 2026-04-29
 
@@ -136,7 +137,50 @@ for example:
 That later track is valuable, but it should be separated from the current
 DeltaLint detection benchmark.
 
-## 8. Current Treatment
+## 8. Field Demonstration Layer
+
+Before the bounded benchmark track, DeltaLint was used as an operational
+workflow in public OSS. In mid-March 2026, over roughly two weeks, the workflow
+produced 39 submitted PRs and 26 reported issues. Sixteen PRs across twelve
+public repositories were merged, including projects under Microsoft, Facebook,
+Bytedance, Sentry, coder, and tRPC. Fourteen of the current sixteen primary
+merged PRs were submitted during a roughly 69-hour window from 2026-03-15 to
+2026-03-18, about 4.9 hours per PR on average.
+
+This is not a no-cut detector evaluation. It mixes candidate selection,
+maintainer culture, issue priority, patchability, PR strategy, Claude Code
+assistance, and human reproduction / communication. It should therefore not be
+used as a raw precision / recall result, a tool-superiority benchmark, or a
+software-collapse prediction.
+
+Its narrower value is field demonstration / maintainer-acceptance evidence:
+the workflow generated distributed-contract contradiction candidates that could
+be reproduced, patched, submitted, and accepted by maintainers under existing
+project review standards.
+
+Representative merged PRs:
+
+| Repository | Merged PR(s) | Structural contradiction captured |
+|---|---|---|
+| `microsoft/playwright` | `#39744` | `quality: 0` was treated as falsy and diverged from upstream `quality ?? 80` default semantics |
+| `microsoft/fluentui` | `#35877` | slot `onChange` was overwritten instead of merged, violating sibling component contract |
+| `facebook/lexical` | `#8235` | `getWritable()` return value was ignored, breaking the immutability protocol |
+| `bytedance/deer-flow` | `#1161`, `#1162`, `#1163` | Makefile target names, process termination, and help text diverged |
+| `promptfoo/promptfoo` | `#8163`, `#8165`, `#8182` | valid boundary values such as `0`, `null`, and `"0"` were treated as unspecified |
+| `getsentry/sentry` | `#110504` | `datetime.replace()` return value was discarded, so the UTC assumption was not applied |
+| `coder/code-server` | `#7709` | login UI exposed a config-file path unnecessarily |
+| `trpc/trpc` | `#7262` | streaming-batch error handling for calls after the first reused the first call context |
+| `D4Vinci/Scrapling` | `#201` | retry preparation destructively changed request kwargs and lost the HTTP method |
+| `abhigyanpatwari/GitNexus` | `#350` | documented relation type was absent from the allowlist and silently dropped |
+| `openclaw/openclaw` | `#47488` | webhook mode did not propagate into the runtime snapshot, invalidating stale checks |
+| `labstack/echo` | `#2925` | rate-limiter default documentation remained stale after implementation change |
+
+Additional field outcomes include two issue-induced merged fixes, four security
+vulnerability reports, one rejected PR, and a third-place result at AGI Lab
+Hackathon 2026 at GMO Yours. These are descriptive operational outcomes, not
+primary endpoints for the benchmark.
+
+## 9. Current Treatment
 
 The internal Product-arm calibration through 2026-04-29 is:
 
@@ -160,11 +204,12 @@ credited_product_additive_roots_total: 9
 DeltaLint bench is therefore:
 
 ```text
+field demonstration / maintainer-acceptance evidence
 initial internal software operational support
 early-signal structural contradiction detection
 Route C / L-side extension
 not M-supplement validation
 not direct collapse evidence
-not outside replication
-not maintainer acceptance
+not raw precision / recall
+not outside replication of the bounded benchmark
 ```

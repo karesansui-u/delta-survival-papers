@@ -48,7 +48,27 @@ target-domain mapping, indicators, baseline, metric, split, and decision rule to
 frozen before validation.
 
 
-4. Non-Claims
+4. Software / DeltaLint Boundary
+--------------------------------
+
+DeltaLint is a software-side operational track for distributed-contract
+contradictions. It is not direct evidence of software collapse.
+
+Use two evidence layers:
+
+1. Field demonstration / maintainer-acceptance evidence: public OSS PRs or
+   issues that were selected, reproduced, patched, submitted, and accepted by
+   external maintainers.
+2. Controlled benchmark evidence: frozen same-scope comparisons in which a
+   structural lens adds validated distributed-contract roots over matched
+   generic review.
+
+PR merge counts are not raw precision / recall and are not the primary benchmark
+endpoint. They may be cited as operational field evidence when the selection and
+human-workflow caveats are stated.
+
+
+5. Non-Claims
 -------------
 
 The v3 program does not claim:
@@ -60,10 +80,12 @@ The v3 program does not claim:
 - proxy success proves a universal law;
 - no-support in one proxy attempt refutes the mathematical kernel;
 - \(M\) is derived from the exponential kernel itself;
-- cross-domain transfer imports support.
+- cross-domain transfer imports support;
+- DeltaLint merged PRs alone prove raw detector precision, long-term software
+  collapse prediction, or M-side intervention-ranking support.
 
 
-5. Support Vocabulary
+6. Support Vocabulary
 ---------------------
 
 Use these labels consistently:
@@ -80,7 +102,7 @@ Use these labels consistently:
 | silence | the theory should not speak for this domain under current observability |
 
 
-6. M-Side Validation
+7. M-Side Validation
 --------------------
 
 For resource-side work, distinguish formal M-profile representation from empirical
