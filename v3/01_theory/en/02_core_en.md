@@ -4,7 +4,7 @@ Feasible-region shrinkage, logarithmic exponential kernels, and recovery-aware p
 
 Abstract
 
-This paper is a reader-facing synthesis of two companion theoretical papers: *The Minimal Form of Structural Persistence* and *The Balance Principle of Structural Persistence*. It adds no new theoretical kernel, theorem, or empirical support claim. The precise axioms, proofs, and limitations remain those of the two companion papers and the corresponding technical supplements.
+This paper is a reader-facing synthesis of two companion theoretical papers: *The Minimal Form of Structural Persistence* and *The Balance Principle of Structural Persistence*. The precise axioms, proofs, and limitations remain those of Paper 1 / Paper 2 and the corresponding technical supplements.
 
 Paper 1 treats structural loss not as resource exhaustion, but as shrinkage of the state region in which the system can continue as the target structure. It gives the closed-shrinkage minimal kernel
 \[
