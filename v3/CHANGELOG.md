@@ -6,6 +6,8 @@ v3 Changelog
 - Added M-profile validation and intervention-ranking preregistration templates.
 - Added candidate domain profiles for software / SaaS operational logs and Scania
   Component X.
+- Added a specification-fixed flow-network M testbed design for controlled
+  buffer / recovery / reconfiguration validation under fixed total energy.
 - Clarified that M-side risk prediction is preparatory support, while intervention
   ranking is the primary M-side validation target.
 
