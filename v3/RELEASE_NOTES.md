@@ -1,7 +1,7 @@
 v3 Release Notes
 ================
 
-Status: release-candidate audit draft
+Status: release-candidate audit recorded
 
 Date: 2026-04-29
 

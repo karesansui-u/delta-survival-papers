@@ -18,7 +18,8 @@ Start here:
 3. `01_theory/02_core.md`
 4. `CLAIMS.md`
 5. `RELEASE_NOTES.md`
-6. `03_domains/registry.tsv`
+6. `RELEASE_AUDIT_2026-04-29.md`
+7. `03_domains/registry.tsv`
 
 Then read the layer you need:
 

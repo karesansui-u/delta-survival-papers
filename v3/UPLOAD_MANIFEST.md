@@ -17,6 +17,7 @@ Include:
 - `CLAIMS.md`
 - `CHANGELOG.md`
 - `RELEASE_NOTES.md`
+- `RELEASE_AUDIT_2026-04-29.md`
 - `UPLOAD_MANIFEST.md`
 - `CONTRIBUTING.md`
 - `01_theory/`
