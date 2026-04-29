@@ -9,8 +9,11 @@ Files:
 - `simulator_spec.md`: simulator interface, graph families, damage families,
   policies, readouts, and degeneracy flags.
 - `preregistration_draft.md`: draft frozen-test plan for primary validation.
+- `freeze_manifest_draft_v0.md`: pre-freeze checklist for split/evaluator and
+  degeneracy rules.
 - `scripts/simulate_flow_network.py`: simulator v0 dry-run implementation.
-- `scripts/evaluate_flow_network.py`: evaluator v0 ranking-schema smoke test.
+- `scripts/evaluate_flow_network.py`: evaluator v1 split-aware ranking-schema
+  smoke test.
 - `dry_runs/`: non-primary smoke-test outputs.
 
 The purpose is to test whether buffer / recovery / reconfiguration allocation
@@ -30,7 +33,7 @@ The default run writes `dry_runs/v0_smoke/runs.csv` and
 `dry_runs/v0_smoke/summary.json`. These outputs are schema checks only and do
 not count as M-primary support.
 
-Evaluator v0 smoke test:
+Evaluator v1 smoke test:
 
 ```bash
 python3 analysis/m_flow_network_testbed/scripts/evaluate_flow_network.py
