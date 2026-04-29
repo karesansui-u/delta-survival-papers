@@ -63,7 +63,8 @@ Use this sequence:
    `06_templates/m_profile_validation_manifest_template.md`.
 5. If the test claims intervention-ranking support, also use
    `06_templates/intervention_ranking_prereg_template.md`.
-6. Record support, no-support, or silence in `05_evidence/`.
+6. Record support, no-support, silence, field demonstration, or bounded
+   calibration in `05_evidence/`.
 7. Update `CLAIMS.md` only if the claim taxonomy itself changes.
 
 Do not import support from one domain into another. Cross-domain transfer creates a

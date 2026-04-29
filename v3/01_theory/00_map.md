@@ -8,7 +8,7 @@
 
 本稿群は、単一の長大な論文ではなく、最小核、回復を含む形式への拡張、条件つき導出、写像手順、M（有効維持余力）の操作化、許容写像、仕様固定構造層、構造推定層、条件付き構造埋め込み層、Lean 形式化を分けて書いている。本補論は、それらの役割、依存関係、主張強度を一つの地図として示す。
 
-v3 では、個別ドメインを本文へ直接増殖させない。ドメインは `03_domains/registry.tsv` と個別 domain profile に登録し、support / no-support / outside rerun は `05_evidence/` に記録する。これにより、ドメインが増えても主理論 spine と claim boundary が崩れないようにする。
+v3 では、個別ドメインを本文へ直接増殖させない。ドメインは `03_domains/registry.tsv` と個別 domain profile に登録し、support / no-support / outside rerun / field demonstration / bounded benchmark は `05_evidence/` に記録する。これにより、ドメインが増えても主理論 spine と claim boundary が崩れないようにする。
 
 
 1. この地図が与えるもの

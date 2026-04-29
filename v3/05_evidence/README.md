@@ -6,6 +6,11 @@ Evidence is separated from theory claims.
 - `frozen_packages.tsv`: frozen tests or packages that define a support decision.
 - `outside_reruns.tsv`: independent or outside reruns.
 - `no_support.tsv`: failed frozen tests, weak-axis failures, and silence records.
+- `field_demonstrations.tsv`: operational field evidence such as maintainer
+  acceptance, deployments, or third-party practical use. These are not
+  no-cut benchmark endpoints.
+- `bounded_benchmarks.tsv`: controlled internal or external benchmark surfaces
+  whose endpoint, comparator, validation depth, and support scope are bounded.
 - DeltaLint software evidence is tracked as two layers: public OSS field
   demonstration / maintainer-acceptance evidence, and bounded internal
   benchmark calibration. The former is operational evidence, not raw precision /
