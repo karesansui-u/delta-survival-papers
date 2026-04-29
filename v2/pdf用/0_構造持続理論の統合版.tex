@@ -86,15 +86,12 @@ B_{n}:=\sum_{t<n} b_{t}, \qquad S_{n}=M_{n} e^{-B_{n}}
 
 {\def\LTcaptype{table} % do not increment counter
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 層
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-旧内部名
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 観測可能性
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
@@ -104,9 +101,9 @@ B_{n}:=\sum_{t<n} b_{t}, \qquad S_{n}=M_{n} e^{-B_{n}}
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-仕様固定構造層 & Route A & 構造、測度、境界を仕様から直接固定できる & 定理、有限時間境界、frozen package の強い検証 \\
-条件付き構造埋め込み層 & Route B & 既存理論の drift / 差分 / 停止境界を本理論の変数へ写せる & Foster-Lyapunov や queueing などとの formal bridge \\
-構造推定層 & Route C & 構造そのものは直接数えず、代理指標と凍結検証で推定する & 現実系での追加予測力、診断、介入候補の検査 \\
+仕様固定構造層 & 構造、測度、境界を仕様から直接固定できる & 定理、有限時間境界、frozen package の強い検証 \\
+条件付き構造埋め込み層 & 既存理論の drift / 差分 / 停止境界を本理論の変数へ写せる & Foster-Lyapunov や queueing などとの formal bridge \\
+構造推定層 & 構造そのものは直接数えず、代理指標と凍結検証で推定する & 現実系での追加予測力、診断、介入候補の検査 \\
 \end{longtable}
 }
 
@@ -388,7 +385,7 @@ A^{(0)} \supseteq A^{(1)} \supseteq \cdots \supseteq A^{(n)}
 \item
   技術補論（必要に応じて読む）: 補論\_構造持続の条件つき導出.md, 補論\_構造持続の収支原理の詳細展開.md
 \item
-  構造推定層 / LLM companion anchors: Companion\_RouteC\_推論時の構造劣化.md, Companion\_RouteC\_継続学習時の構造的忘却.md
+  構造推定層 / LLM companion anchors: Companion\_RouteC\_推論時の構造劣化.md, Companion\_RouteC\_継続学習時の構造的忘却.md（ファイル名の RouteC は旧内部名であり、本文上の分類は構造推定層である）
 \item
   仕様固定構造層 / CSP アンカー: 補論\_計算コストの構造的予測.md, 補論\_有限CSPにおける構造持続の予測力.md
 \item

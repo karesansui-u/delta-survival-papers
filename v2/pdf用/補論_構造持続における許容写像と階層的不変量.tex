@@ -521,10 +521,16 @@ Bernoulli-CSP Sigma finite-path wrapper & \texttt{Survival.BernoulliTypicalSigma
 Bernoulli-CSP Sigma good-event lower-bound certificate & \texttt{Survival.BernoulliTypicalSigma} \\
 Bernoulli-CSP Sigma endpoint-defect coarse transfer & \texttt{Survival.BernoulliTypicalSigma} \\
 Bernoulli-CSP admissible-map v0 sufficient package & \texttt{Survival.BernoulliAdmissibleMapV0} \\
+Foster-Lyapunov / queueing template & \texttt{Survival.FosterLyapunovTemplate}, \texttt{Survival.LyapunovBalanceEmbedding}, \texttt{Survival.QueueStability} \\
+Repair-Maintenance template & \texttt{Survival.RepairMaintenanceBalance}, \texttt{Survival.RepairMaintenanceTemplate}, \texttt{Survival.MaintenanceComponentDecomposition} \\
+cross-class unifying schema v1 & \texttt{Survival.CrossClassUnificationV1} \\
+registered limited-class interface closure v2 & \texttt{Survival.CrossClassUnificationV2} \\
 \end{longtable}
 }
 
-現時点で Lean 化されていない、または今後の wrapper として切り出すべき対象は次である。
+したがって、Bernoulli-CSP だけでなく、Foster-Lyapunov / queueing と Repair-Maintenance も登録済み限定クラスとして reader-facing な interface に載っている。Phase 7 v2 で閉じているのは、三つの登録済み限定クラスが ordered Sigma carrier、nonnegative tendency driver、finite-horizon certificate route、admissible-transfer guard からなる共通 interface を満たす、という限定された closure である。
+
+なお、現時点でも一般化されていない、または今後の stronger wrapper として切り出すべき対象は次である。
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -599,9 +605,9 @@ Bernoulli-CSP 側では、\texttt{Survival.BernoulliTypicalSigma} が累積 bad-
 
 \texttt{Survival.BernoulliAdmissibleMapV0} は、この transfer に必要な条件を、Bernoulli coarse readout の v0 sufficient package としてまとめる。ここで必要なのは terminal equality、endpoint defect budget、coarse monotonicity の三つであり、これらがあれば Phase-4 の lower-bound / typical-growth certificate は coarse 側へ移る。ただしこれは「十分条件の束」であり、Bernoulli-CSP における許容写像の必要十分特徴づけではない。
 
-したがって、本補論は新しい普遍法則を主張するものではない。既存の粗視化・総生成量・Bernoulli-CSP interface を、一つの数学的見取り図にまとめ、どの wrapper が閉じており、どこから先が set-level 粗視化、高確率化、限定クラス普遍性の未解決部分なのかを指定する文書である。
+したがって、本補論は新しい普遍法則を主張するものではない。既存の粗視化・総生成量・Bernoulli-CSP interface、および Phase 7 v2 の登録済み限定クラス interface closure を、一つの数学的見取り図にまとめ、どの wrapper が閉じており、どこから先が set-level 粗視化、高確率化、追加クラス登録、より強い限定クラス普遍性の未解決部分なのかを指定する文書である。
 
-第二法則級の統一へ向けた実行順序は、本文の主張ではなく作業地図として \texttt{analysis/second\_law\_level\_roadmap.md} に分けて記録する。そこでは、許容写像、\(\Sigma\) / total production、典型的非減少、限定クラス普遍性、将来の cross-class unification を別々の構成要素として扱う。
+第二法則級の統一へ向けた実行順序は、本文の主張ではなく作業地図として \texttt{analysis/second\_law\_level\_roadmap.md} に分けて記録する。そこでは、許容写像、\(\Sigma\) / total production、典型的非減少、限定クラス普遍性、Phase 7 v2 の登録済み限定クラス統一 interface、および将来の追加クラスや stronger interface を別々の構成要素として扱う。
 
 \section{本補論で言っていないこと}\label{ux672cux88dcux8ad6ux3067ux8a00ux3063ux3066ux3044ux306aux3044ux3053ux3068}
 
