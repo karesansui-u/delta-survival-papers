@@ -327,6 +327,26 @@ def pandoc_markdown_to_latex(markdown_text: str) -> str:
         )
         latex = result.stdout.strip() + "\n"
         latex = latex.replace(r"\def\LTcaptype{none}", r"\def\LTcaptype{table}")
+        latex = re.sub(
+            r"\\pandocbounded\{\\includesvg\[[^\]]*\]\{figures/([^}]+)\.svg\}\}",
+            r"\\includegraphics[width=\\linewidth]{../figures/\1.pdf}",
+            latex,
+        )
+        latex = re.sub(
+            r"\\includesvg\[[^\]]*\]\{figures/([^}]+)\.svg\}",
+            r"\\includegraphics[width=\\linewidth]{../figures/\1.pdf}",
+            latex,
+        )
+        latex = re.sub(
+            r"(\\includegraphics(?:\[[^\]]*\])?\{)figures/([^}]+)\.svg\}",
+            r"\1../figures/\2.pdf}",
+            latex,
+        )
+        latex = re.sub(
+            r"(\\includegraphics(?:\[[^\]]*\])?\{)figures/([^}]+)\.pdf\}",
+            r"\1../figures/\2.pdf}",
+            latex,
+        )
         return latex
     finally:
         tmp_path.unlink(missing_ok=True)

@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000">
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .frame { fill: none; stroke: #2f3b52; stroke-width: 3; }
+      .core { fill: #ffffff; stroke: #1f2937; stroke-width: 3; }
+      .layerA { fill: #e8f3ef; stroke: #2d6a4f; stroke-width: 2.5; }
+      .layerB { fill: #f4edf7; stroke: #6d4c7d; stroke-width: 2.5; }
+      .layerC { fill: #eef2fb; stroke: #3559a6; stroke-width: 2.5; }
+      .guard { fill: #fff8e8; stroke: #9a6a13; stroke-width: 2.5; }
+      .chip { fill: #ffffff; stroke: #8892a6; stroke-width: 1.6; }
+      .arrow { stroke: #4b5563; stroke-width: 2.4; fill: none; marker-end: url(#arrowhead); }
+      .title { font: 700 38px -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif; fill: #172033; }
+      .subtitle { font: 400 22px -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif; fill: #4b5563; }
+      .h1 { font: 700 27px -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif; fill: #172033; }
+      .h2 { font: 700 22px -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif; fill: #172033; }
+      .body { font: 400 19px -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif; fill: #273244; }
+      .small { font: 400 16px -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif; fill: #3f4a5f; }
+      .mono { font: 500 19px "SFMono-Regular", Menlo, Consolas, monospace; fill: #1f2937; }
+      .note { font: 600 18px -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif; fill: #5c3b00; }
+    </style>
+    <marker id="arrowhead" markerWidth="12" markerHeight="8" refX="10" refY="4" orient="auto">
+      <path d="M 0 0 L 12 4 L 0 8 z" fill="#4b5563" />
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1600" height="1000" />
+  <rect class="frame" x="54" y="58" width="1492" height="884" rx="18" />
+
+  <text class="title" x="800" y="112" text-anchor="middle">Figure 1. Observability Layers of Structural Persistence</text>
+  <text class="subtitle" x="800" y="148" text-anchor="middle">One structural kernel, different ways of specifying, estimating, or embedding its variables</text>
+
+  <rect class="core" x="500" y="265" width="600" height="250" rx="18" />
+  <text class="h1" x="800" y="315" text-anchor="middle">Common Structural Persistence Kernel</text>
+  <text class="mono" x="800" y="365" text-anchor="middle">m(V^n) = m(V^0) exp(-B_n)</text>
+  <text class="mono" x="800" y="405" text-anchor="middle">S_n = M_n exp(-B_n)</text>
+  <text class="mono" x="800" y="445" text-anchor="middle">B_n = sum_{t&lt;n}(d_t - r_t)</text>
+  <text class="small" x="800" y="488" text-anchor="middle">Set kernel first; resource term M is an added maintenance-side readout.</text>
+
+  <rect class="layerA" x="110" y="210" width="390" height="255" rx="16" />
+  <text class="h2" x="305" y="252" text-anchor="middle">Specification-Fixed</text>
+  <text class="h2" x="305" y="282" text-anchor="middle">Structural Layer</text>
+  <text class="body" x="150" y="326">V, m, horizon, and boundary</text>
+  <text class="body" x="150" y="356">are fixed before observation.</text>
+  <text class="small" x="150" y="398">Examples: SAT, Bernoulli-CSP,</text>
+  <text class="small" x="150" y="424">finite-horizon certificates.</text>
+
+  <rect class="layerC" x="1100" y="210" width="390" height="255" rx="16" />
+  <text class="h2" x="1295" y="252" text-anchor="middle">Structural-Inference</text>
+  <text class="h2" x="1295" y="282" text-anchor="middle">Layer</text>
+  <text class="body" x="1140" y="326">Structure is not directly counted.</text>
+  <text class="body" x="1140" y="356">Proxy signals are frozen, then tested.</text>
+  <text class="small" x="1140" y="398">Examples: LLM reasoning,</text>
+  <text class="small" x="1140" y="424">continual learning, software signals.</text>
+
+  <rect class="layerB" x="500" y="640" width="600" height="205" rx="16" />
+  <text class="h2" x="800" y="682" text-anchor="middle">Conditional Structural-Embedding Layer</text>
+  <text class="body" x="540" y="728">Existing drift, difference, or stopping-boundary</text>
+  <text class="body" x="540" y="758">theories are conditionally mapped into b_t, B_n.</text>
+  <text class="small" x="540" y="804">Examples: Foster-Lyapunov drift, queueing, Repair-Maintenance.</text>
+
+  <path class="arrow" d="M 500 345 C 565 345 610 345 660 345" />
+  <path class="arrow" d="M 1100 345 C 1035 345 990 345 940 345" />
+  <path class="arrow" d="M 800 640 C 800 594 800 560 800 520" />
+
+  <rect class="guard" x="245" y="520" width="1110" height="88" rx="14" />
+  <text class="note" x="800" y="554" text-anchor="middle">Admissible maps and hierarchical invariants guard cross-layer transfer.</text>
+  <text class="small" x="800" y="586" text-anchor="middle">Isomorphism: invariant B_n / positive gauge: covariant B_n / coarse-graining and proxy: guarded by bounds or frozen validation</text>
+
+  <rect class="chip" x="315" y="875" width="970" height="44" rx="12" />
+  <text class="small" x="800" y="903" text-anchor="middle">Phase 7 v2: registered limited classes instantiate a common interface. This is not a universal law over arbitrary domains.</text>
+</svg>
