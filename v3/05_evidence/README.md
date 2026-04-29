@@ -11,10 +11,11 @@ Evidence is separated from theory claims.
   no-cut benchmark endpoints.
 - `bounded_benchmarks.tsv`: controlled internal or external benchmark surfaces
   whose endpoint, comparator, validation depth, and support scope are bounded.
-- DeltaLint software evidence is tracked as two layers: public OSS field
-  demonstration / maintainer-acceptance evidence, and bounded internal
-  benchmark calibration. The former is operational evidence, not raw precision /
-  recall; the latter is the controlled support surface.
+- Software contract-coherence diagnostics evidence is tracked as two layers:
+  public OSS field demonstration / maintainer-acceptance evidence, and bounded
+  internal benchmark calibration. DeltaLint is the current implementation name.
+  The former is operational evidence, not raw precision / recall; the latter is
+  the controlled support surface.
 
 Do not delete failed attempts. They are part of the research program.
 

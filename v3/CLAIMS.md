@@ -48,11 +48,13 @@ target-domain mapping, indicators, baseline, metric, split, and decision rule to
 frozen before validation.
 
 
-4. Software / DeltaLint Boundary
---------------------------------
+4. Software Contract-Coherence Boundary
+---------------------------------------
 
-DeltaLint is a software-side operational track for distributed-contract
-contradictions. It is not direct evidence of software collapse.
+Software contract-coherence diagnostics is a software-side operational track for
+distributed-contract contradictions. DeltaLint is the current implementation /
+workflow name, not the theory-level object. This track is not direct evidence of
+software collapse.
 
 Use two evidence layers:
 

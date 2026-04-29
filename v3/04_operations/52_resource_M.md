@@ -465,7 +465,7 @@ LLM companion I では、これは in-context scope marker または外部代謝
 4. F-v2c の改善を依存 DAG の寄与だけに還元しない。再提示件数、除外ポリシー、学習安定性が交絡しうる。
 5. F-multi を実用性能として読まない。理想振り分け条件で得た上界 indicator である。
 6. Exp.36 / Exp.39 は $M$-component の直接証拠ではなく、L-side quality anchor として扱う。
-7. DeltaLint、SAT、Mixed-CSP の $M$-component 解釈は本節では扱わない。これらは §5-6 または別稿で扱う。
+7. Software contract-coherence diagnostics、SAT、Mixed-CSP の $M$-component 解釈は本節では扱わない。これらは §5-6 または別稿で扱う。
 
 
 4. Software / SaaS における写像
@@ -694,22 +694,22 @@ Prediction:
 
 短期には $I_{\mathrm{ext}\to\mathrm{recovery}}$ が最も効くが、同じ failure class が反復する場合、内部 $M_{\mathrm{recovery}}^{\mathrm{int}}$ の形成が長期の recurrence reduction には必要になる。
 
-5.4 DeltaLint との分離
+5.4 Software contract-coherence diagnostics との分離
 
-DeltaLint-like structural diagnostics は、software domain における強い候補である。ただし、本補論の検査標的である $M$ の維持能力成分の分解、または下流の intervention-ranking prediction を直接検査するものではない。
+Software contract-coherence diagnostics は、software domain における強い候補である。ただし、本補論の検査標的である $M$ の維持能力成分の分解、または下流の intervention-ranking prediction を直接検査するものではない。DeltaLint はこの診断 track の現在の実装名である。
 
-DeltaLint が主に観測するのは、静的コード内の未整理な前提不整合、scope mismatch、guard 欠落、順序依存、設定干渉である。これは $M$ 側というより、局所的な $\hat L$ または $\Delta L$ risk の観測に近い。したがって、DeltaLint は本補論の主 validation には含めない。
+この track が主に観測するのは、静的コード内の未整理な前提不整合、scope mismatch、guard 欠落、順序依存、設定干渉である。これは $M$ 側というより、局所的な $\hat L$ または $\Delta L$ risk の観測に近い。したがって、software contract-coherence diagnostics は本補論の主 validation には含めない。
 
-より正確には、DeltaLint bench が検査しうるのは、ソフトウェア崩壊そのものではなく、分散契約矛盾という早期シグナルである。ここでの software structure は、API / caller、config / runtime、documentation / implementation、default producer / consumer、lifecycle producer / consumer など、複数 surface にまたがって一貫性を保つ contract set として定義される。したがって DeltaLint bench は、長期保守不能化や構造死を直接測るものではなく、generic review に対して structural-lens prompt が unique valid structural root cause を増やすかを検査する operational benchmark である。
+より正確には、contract-coherence benchmark が検査しうるのは、ソフトウェア崩壊そのものではなく、分散契約矛盾という早期シグナルである。ここでの software structure は、API / caller、config / runtime、documentation / implementation、default producer / consumer、lifecycle producer / consumer など、複数 surface にまたがって一貫性を保つ contract set として定義される。したがって contract-coherence benchmark は、長期保守不能化や構造死を直接測るものではなく、generic review に対して structural-lens prompt が unique valid structural root cause を増やすかを検査する operational benchmark である。
 
-本補論では、DeltaLint を次のように位置づける。
+本補論では、software contract-coherence diagnostics とその現在の実装名である DeltaLint を次のように位置づける。
 
-- DeltaLint は本補論の $M$-framework の実証柱ではない。
-- DeltaLint は LLM companion I の unscoped contradiction / attribution repair に近い L-side static-code extension として、別 note で扱う。
+- Software contract-coherence diagnostics は本補論の $M$-framework の実証柱ではない。
+- この track は LLM companion I の unscoped contradiction / attribution repair に近い L-side static-code extension として、別 note で扱う。
 - DeltaLint の既存実績は、本補論においては動機づけ以上には使わない。
 - DeltaLint が $M_{\mathrm{recovery}}$ に関与するのは、triage、patch、CI gate、rollback、migration などの repair workflow に接続された場合に限られる。
 
-この分離により、本補論は $M$ 側の薄い主張を保ち、DeltaLint は静的コードにおける L-side predictor として、独立の baseline-controlled validation を持てる。
+この分離により、本補論は $M$ 側の薄い主張を保ち、software contract-coherence diagnostics は静的コードにおける L-side predictor として、独立の baseline-controlled validation を持てる。
 
 5.5 非主張
 
@@ -718,7 +718,7 @@ DeltaLint が主に観測するのは、静的コード内の未整理な前提�
 1. Software / SaaS が仕様固定構造層であるとは主張しない。
 2. $\hat L$ が真の $L$ と同一であるとは主張しない。
 3. $M_i$ が単一の universal metric で測れるとは主張しない。
-4. DeltaLint の既存実績だけで本補論が実証されたとは主張しない。DeltaLint は本補論の主 validation から切り離し、LLM companion I / L-side の static-code extension として別 note で扱う。
+4. DeltaLint 実装による既存実績だけで本補論が実証されたとは主張しない。Software contract-coherence diagnostics は本補論の主 validation から切り離し、LLM companion I / L-side の static-code extension として別 note で扱う。
 5. 外部供給 channel が常に望ましいとは主張しない。外部支援は短期維持を助けるが、自律的能力を代替しない場合がある。
 6. $M_{\mathrm{reconfiguration}}$ によって $F$ 自体を変更してよいとは主張しない。
 
@@ -1040,7 +1040,7 @@ $A_j$ についても、reasonable candidate は preregistration で固定され
 1. 現時点で本補論の M-framework が実証済みであるとは主張しない。
 2. Software / SaaS が仕様固定構造層であるとは主張しない。
 3. $\hat L_{\mathrm{pilot}}$ が真の $L$ であるとは主張しない。
-4. DeltaLint が本補論の validation であるとは主張しない。
+4. Software contract-coherence diagnostics が本補論の validation であるとは主張しない。
 5. 単一の $\rho_i$、$\Phi$、$A_j$ が全ドメインで正しいとは主張しない。
 6. 介入履歴なしの risk prediction だけで介入順位予測が検証されたとは主張しない。
 7. 観察データから推定した $\mathrm{rank}_{\mathrm{obs}}$ が、直ちに因果的効果順位を表すとは主張しない。randomized intervention assignment または明示的な causal identification がない限り、本補論の intervention-ranking support は observational support である。
@@ -1163,11 +1163,11 @@ $M_{\mathrm{buffer}}^{\mathrm{int}}$, $M_{\mathrm{recovery}}^{\mathrm{int}}$, $M
 
 ただし、この表は future work であり、本補論の empirical support ではない。
 
-7.10 DeltaLint は並行 track である
+7.10 Software contract-coherence diagnostics は並行 track である
 
-DeltaLint は、本補論の main validation ではない。DeltaLint が観測しているのは、主に静的コード中の未整理な前提不整合、scope mismatch、guard 欠落、順序依存、設定干渉である。これは $M$ の維持能力成分の構成ではなく、L-side / LLM companion I static-code extension に近い。
+Software contract-coherence diagnostics は、本補論の main validation ではない。この track が観測しているのは、主に静的コード中の未整理な前提不整合、scope mismatch、guard 欠落、順序依存、設定干渉である。これは $M$ の維持能力成分の構成ではなく、L-side / LLM companion I static-code extension に近い。DeltaLint はその実装名である。
 
-したがって、DeltaLint は別 note で扱う。その中心予測は、本補論の M-profile / intervention-ranking validation ではなく、次である。
+したがって、この track は別 note で扱う。その中心予測は、本補論の M-profile / intervention-ranking validation ではなく、次である。
 
 \[
   \text{generic review} + \text{structural lens}
@@ -1185,7 +1185,7 @@ DeltaLint は、本補論の main validation ではない。DeltaLint が観測�
 
 第二に、四ドメイン比較 (software 以外への拡張) の作成である。組織、学校、病院、企業、研究チームなどにも維持能力成分の分解の自然な対応候補がある (§7.9)。ただし、これは future-work note として独立に起草するのが望ましく、本補論の empirical support には含めない。
 
-第三に、DeltaLint / LLM companion I static-code extension の Phase 2 preregistration への拡張である。これは本補論の validation ではなく、LLM companion I の L-side 延長として別 track で進める。
+第三に、software contract-coherence diagnostics / LLM companion I static-code extension の Phase 2 preregistration への拡張である。これは本補論の validation ではなく、LLM companion I の L-side 延長として別 track で進める。
 
 
 8. 結論

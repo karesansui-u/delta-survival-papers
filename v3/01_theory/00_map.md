@@ -119,13 +119,13 @@ v3 では、個別ドメインを本文へ直接増殖させない。ドメイ�
 |---|---|---|
 | 仕様固定構造層 | 構造、測度、境界が仕様から事前固定される | SAT, Mixed-CSP, q-coloring, Bernoulli-CSP interface |
 | 条件付き構造埋め込み層 | 既存理論のドリフト、差分、停止境界を本理論の変数へ条件付きに写す。縦軸の中間段階ではなく、既存理論との横方向の bridge である | Foster-Lyapunov / queueing drift, bounded approximation candidates |
-| 構造推定層 | 構造そのものを直接数えるのではなく、代理指標と凍結検証によりその効果を推定する。多くの現実系で標準的な観測形である | LLM 推論劣化、継続学習、software / DeltaLint 系 |
+| 構造推定層 | 構造そのものを直接数えるのではなく、代理指標と凍結検証によりその効果を推定する。多くの現実系で標準的な観測形である | LLM 推論劣化、継続学習、software contract-coherence 系 |
 
 仕様固定構造層は、law-side theorem または限定 class universality を狙う層である。構造推定層は、自然測度が直ちに得られない現実ドメインで、観測指標と凍結写像により追加予測力、診断、介入候補を検査する層である。構造推定層の support は、主理論核の証明ではなく、凍結写像が out-of-sample に追加予測力を持つかによって決まる。
 
 この意味で、普遍性主張はまず仕様固定構造層の限定クラス普遍性定理として評価される。構造推定層では、同じ座標を代理指標と凍結検証によって実世界に写し、予測的・操作的 support を蓄積する。したがって、構造推定層での no-support は直ちに理論核の反証ではなく、proxy 設計または写像手順の失敗として記録される。
 
-Software / DeltaLint 系は、この構造推定層の中でも、ソフトウェア崩壊そのものではなく、分散契約矛盾という早期シグナルを検査する operational track として扱う。構造は、API / caller、config / runtime、documentation / implementation、lifecycle producer / consumer などにまたがる contract set である。この track は二層に分ける。第一に、外部 OSS での merged PR は field demonstration / maintainer-acceptance evidence であり、実運用上の有用性を示すが、raw precision / recall ではない。第二に、DeltaLint bench の主比較は provider 間競争ではなく、同一 model・同一 frozen context で generic review と structural-lens review を比較し、bounded validation 後の unique valid structural root causes が増えるかで判定する。
+Software contract-coherence 系は、この構造推定層の中でも、ソフトウェア崩壊そのものではなく、分散契約矛盾という早期シグナルを検査する operational track として扱う。構造は、API / caller、config / runtime、documentation / implementation、lifecycle producer / consumer などにまたがる contract set である。この track は二層に分ける。第一に、外部 OSS での merged PR は field demonstration / maintainer-acceptance evidence であり、実運用上の有用性を示すが、raw precision / recall ではない。第二に、contract-coherence benchmark の主比較は provider 間競争ではなく、同一 model・同一 frozen context で generic review と structural-lens review を比較し、bounded validation 後の unique valid structural root causes が増えるかで判定する。DeltaLint はこの track の現在の実装名である。
 
 
 7. G6-a / G6-b / G6-c の配置

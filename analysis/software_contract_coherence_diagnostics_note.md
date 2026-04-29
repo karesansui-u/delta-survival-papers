@@ -1,16 +1,19 @@
-# DeltaLint Software Operational Benchmark Note
+# Software Contract-Coherence Diagnostics Note
 
 Status: positioning, field-demonstration, and internal-calibration note for the
-DeltaLint bench track. This includes maintainer-acceptance field evidence and a
-bounded internal benchmark, but it is not a raw precision / recall estimate, not
-outside replication of the benchmark, and not a collapse-prediction claim.
+software contract-coherence diagnostics track. DeltaLint is the current
+implementation / workflow used in the field demonstration and bounded internal
+benchmark. This includes maintainer-acceptance field evidence and a bounded
+internal benchmark, but it is not a raw precision / recall estimate, not outside
+replication of the benchmark, and not a collapse-prediction claim.
 
 Date: 2026-04-29
 
 ## 1. Role
 
-DeltaLint bench is a software operational benchmark candidate for structural
-persistence theory.
+Software contract-coherence diagnostics is a software operational benchmark
+candidate for structural persistence theory. DeltaLint is one implementation of
+this diagnostic workflow, not the theory-level object.
 
 It should not be described as direct evidence of software collapse, structural
 death, or long-horizon maintainability failure. Its narrower role is:
@@ -24,7 +27,7 @@ This is an early-signal detection test, not a collapse endpoint test.
 
 ## 2. Software Structure Definition
 
-For the DeltaLint bench track, software structure is:
+For the contract-coherence diagnostics track, software structure is:
 
 ```text
 the distributed contract set that must remain mutually consistent across code,
@@ -64,7 +67,8 @@ opinions, and generic best-practice advice.
 
 ## 4. Theoretical Mapping
 
-DeltaLint bench maps to the L-side / Route C surface:
+Contract-coherence diagnostics maps to the L-side / structurally inferred
+surface:
 
 | Structural persistence term | Software bench interpretation |
 |---|---|
@@ -135,17 +139,17 @@ for example:
   incidents or accepted fixes.
 
 That later track is valuable, but it should be separated from the current
-DeltaLint detection benchmark.
+contract-coherence detection benchmark.
 
 ## 8. Field Demonstration Layer
 
-Before the bounded benchmark track, DeltaLint was used as an operational
-workflow in public OSS. In mid-March 2026, over roughly two weeks, the workflow
-produced 39 submitted PRs and 26 reported issues. Sixteen PRs across twelve
-public repositories were merged, including projects under Microsoft, Facebook,
-Bytedance, Sentry, coder, and tRPC. Fourteen of the current sixteen primary
-merged PRs were submitted during a roughly 69-hour window from 2026-03-15 to
-2026-03-18, about 4.9 hours per PR on average.
+Before the bounded benchmark track, the DeltaLint implementation was used as an
+operational workflow in public OSS. In mid-March 2026, over roughly two weeks,
+the workflow produced 39 submitted PRs and 26 reported issues. Sixteen PRs
+across twelve public repositories were merged, including projects under
+Microsoft, Facebook, Bytedance, Sentry, coder, and tRPC. Fourteen of the current
+sixteen primary merged PRs were submitted during a roughly 69-hour window from
+2026-03-15 to 2026-03-18, about 4.9 hours per PR on average.
 
 This is not a no-cut detector evaluation. It mixes candidate selection,
 maintainer culture, issue priority, patchability, PR strategy, Claude Code
@@ -201,13 +205,13 @@ items_without_product_additive_gain: 1
 credited_product_additive_roots_total: 9
 ```
 
-DeltaLint bench is therefore:
+Software contract-coherence diagnostics is therefore:
 
 ```text
 field demonstration / maintainer-acceptance evidence
 initial internal software operational support
 early-signal structural contradiction detection
-Route C / L-side extension
+structurally inferred / L-side extension
 not M-supplement validation
 not direct collapse evidence
 not raw precision / recall

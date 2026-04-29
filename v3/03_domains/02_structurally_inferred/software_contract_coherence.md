@@ -1,13 +1,15 @@
-Software Distributed-Contract Contradictions
-============================================
+Software Contract-Coherence Diagnostics
+=======================================
 
-domain_id: software_distributed_contracts
+domain_id: software_contract_coherence
 
-domain_name: Software distributed-contract contradiction detection
+domain_name: Software contract-coherence diagnostics
 
 observability_layer: structurally_inferred
 
 status: field_demonstration + internal_calibration
+
+Implementation name: DeltaLint
 
 
 1. Maintenance Target
@@ -37,8 +39,8 @@ status: field_demonstration + internal_calibration
   caller / callee contract drift.
 - \(r_t\): patch, propagation, synchronization, documentation update, test
   update, rollback, refactor, or maintainer-accepted repair. The current
-  DeltaLint benchmark primarily tests detection of \(d_t\), not a measured
-  recovery process.
+  contract-coherence benchmark primarily tests detection of \(d_t\), not a
+  measured recovery process.
 - \(L\): accumulated or item-level distributed-contract contradiction signal.
 - \(B\): not the primary coordinate in the current static-code track; use only
   when repair / recovery is explicitly measured.
@@ -53,8 +55,9 @@ status: field_demonstration + internal_calibration
   only.
 - domain baseline: same-scope generic review under the same frozen context,
   model, budget, and validation depth.
-- domain baseline + SP: structural-lens / DeltaLint workflow output compared
-  against the same-scope generic review by incremental validated root causes.
+- domain baseline + SP: structural-lens / contract-coherence workflow output
+  compared against the same-scope generic review by incremental validated root
+  causes. DeltaLint is the current implementation used for the recorded runs.
 - wide baseline, if any: static analyzers, type checks, tests, linters, or
   security scanners when available and recorded as separate comparison surfaces.
 
@@ -66,7 +69,7 @@ status: field_demonstration + internal_calibration
 - field demonstration record: `../../05_evidence/field_demonstrations.tsv`.
 - bounded benchmark record: `../../05_evidence/bounded_benchmarks.tsv`.
 - detailed analysis note:
-  `../../../analysis/deltalint_software_operational_benchmark_note.md`.
+  `../../../analysis/software_contract_coherence_diagnostics_note.md`.
 
 
 5. Claims
@@ -76,9 +79,9 @@ This domain supports:
 
 - an operational claim that the structural-contradiction coordinate can produce
   useful distributed-contract mismatch candidates in public OSS workflows;
-- an initial internal calibration claim that DeltaLint Product-arm / structural
-  workflow can add validated distributed-contract roots over same-scope generic
-  review on selected frozen OSS items.
+- an initial internal calibration claim that the DeltaLint implementation of
+  the contract-coherence workflow can add validated distributed-contract roots
+  over same-scope generic review on selected frozen OSS items.
 
 This domain does not support:
 
