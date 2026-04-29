@@ -93,6 +93,9 @@ Graph split:
 - calibration graph families: `layered_dag`, `grid`, `series_parallel`;
 - held-out graph family: `random_geometric`, unless calibration records it as
   structurally degenerate before primary execution.
+- this draft requires family-level heldout. Seed-level heldout is a separate
+  axis: if used, the freeze manifest must explicitly add a `seed_split` field
+  and state which seeds are calibration-only and which are primary-only.
 
 Damage split:
 
@@ -262,7 +265,9 @@ No-support must be recorded if:
 M-primary support requires all of the following:
 
 1. M-profile improves the primary ranking metric over the total-resource
-   baseline on held-out graph seeds.
+   baseline on held-out graph evaluation units. In this draft, that means the
+   held-out graph family. If seed-level heldout is added, the manifest must
+   separately require held-out graph seeds.
 2. Improvement holds on the held-out graph family.
 3. Improvement holds on at least one held-out damage family.
 4. Improvement holds on the held-out allocation mix or held-out simplex region.

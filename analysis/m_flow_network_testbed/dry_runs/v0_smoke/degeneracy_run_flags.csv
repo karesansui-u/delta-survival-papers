@@ -1,0 +1,10 @@
+flag,count,fraction,graph_family_counts,damage_family_counts,allocation_split_counts
+initially_collapsed,0,0.0,{},{},{}
+collapse_at_first_step,0,0.0,{},{},{}
+no_collapse,89,0.6742424242424242,"{""grid"": 26, ""layered_dag"": 38, ""random_geometric"": 25}","{""bottleneck_attack"": 24, ""random_attrition"": 9, ""repairable_wear"": 23, ""scalar_only_control"": 33}","{""calibration"": 82, ""primary_heldout"": 7}"
+far_above_q,31,0.23484848484848486,"{""grid"": 13, ""layered_dag"": 17, ""random_geometric"": 1}","{""bottleneck_attack"": 10, ""scalar_only_control"": 21}","{""calibration"": 27, ""primary_heldout"": 4}"
+post_policy_below_q,0,0.0,{},{},{}
+recovery_unused,0,0.0,{},{},{}
+reconfiguration_impossible,0,0.0,{},{},{}
+no_alternate_path,0,0.0,{},{},{}
+unflagged,43,0.32575757575757575,"{""grid"": 18, ""layered_dag"": 6, ""random_geometric"": 19}","{""bottleneck_attack"": 9, ""random_attrition"": 24, ""repairable_wear"": 10}","{""calibration"": 38, ""primary_heldout"": 5}"

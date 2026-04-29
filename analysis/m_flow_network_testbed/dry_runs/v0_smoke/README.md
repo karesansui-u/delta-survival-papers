@@ -7,6 +7,7 @@ Generated with:
 ```bash
 python3 analysis/m_flow_network_testbed/scripts/simulate_flow_network.py dry-run
 python3 analysis/m_flow_network_testbed/scripts/evaluate_flow_network.py
+python3 analysis/m_flow_network_testbed/scripts/report_flow_degeneracy.py
 ```
 
 This run checks that simulator v0 can emit:
@@ -18,5 +19,7 @@ This run checks that simulator v0 can emit:
 - degeneracy flags.
 - evaluator v1 can form intervention-ranking groups and compare total-resource,
   policy-prior, and M-profile ranking predictors across held-out split axes.
+- degeneracy report v1 can summarize run-level flags and group-level review
+  recommendations.
 
 It is not primary validation and does not count as M-support.

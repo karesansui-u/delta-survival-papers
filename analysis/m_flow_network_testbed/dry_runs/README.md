@@ -10,5 +10,6 @@ Dry-run outputs are used to check:
 - max-flow readouts;
 - degeneracy flags.
 - split-aware evaluator ranking-schema outputs.
+- degeneracy report outputs.
 
 They are not support evidence and must not be reported as primary validation.

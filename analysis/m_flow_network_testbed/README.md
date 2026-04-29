@@ -14,6 +14,7 @@ Files:
 - `scripts/simulate_flow_network.py`: simulator v0 dry-run implementation.
 - `scripts/evaluate_flow_network.py`: evaluator v1 split-aware ranking-schema
   smoke test.
+- `scripts/report_flow_degeneracy.py`: degeneracy report v1 smoke test.
 - `dry_runs/`: non-primary smoke-test outputs.
 
 The purpose is to test whether buffer / recovery / reconfiguration allocation
@@ -44,3 +45,15 @@ The default evaluator reads `dry_runs/v0_smoke/runs.csv` and writes
 `dry_runs/v0_smoke/evaluation_slice_metrics.csv`, and
 `dry_runs/v0_smoke/evaluation_summary.json`. These outputs check the
 split-aware ranking schema only; they are not support evidence.
+
+Degeneracy report v1 smoke test:
+
+```bash
+python3 analysis/m_flow_network_testbed/scripts/report_flow_degeneracy.py
+```
+
+The default report reads `dry_runs/v0_smoke/runs.csv` and writes
+`dry_runs/v0_smoke/degeneracy_run_flags.csv`,
+`dry_runs/v0_smoke/degeneracy_group_summary.csv`, and
+`dry_runs/v0_smoke/degeneracy_summary.json`. These outputs check reporting and
+exclusion-rule plumbing only; they are not exclusion decisions.
