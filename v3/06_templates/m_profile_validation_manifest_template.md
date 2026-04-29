@@ -120,17 +120,10 @@ No-support:
 - weak-axis failure rule:
 - leakage failure rule:
 
-Risk-prediction improvement does not by itself validate an intervention-effect
-claim. If a separate downstream intervention-effect study is proposed, use the
-`intervention_effect_prereg_template.md` and require robustness across the
-pre-frozen \(\rho_i\), \(A_j\), and \(\Phi\) families.
-
-
 8. Non-Claims
 -------------
 
 - no universal \(M\)-form is claimed;
-- no causal intervention effect is claimed unless separately identified;
 - no support transfers from another domain;
 - no post-hoc component remapping after seeing outcome-bearing data;
 - no claim that external supply is a fourth M component rather than a channel.

@@ -81,7 +81,7 @@ Run or record the following checks before creating an archive:
 - local Markdown links in `v3/`;
 - TSV column-count consistency for `03_domains/registry.tsv` and
   `05_evidence/*.tsv`;
-- stale internal route labels or older M-side ranking-first labels;
+- stale internal route labels or older M-side profile labels;
 - whitespace check with `git diff --check`.
 
 If an archive is uploaded to OSF, Zenodo, or another repository, record the

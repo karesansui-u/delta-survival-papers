@@ -20,15 +20,13 @@ is to build a controlled functional structure where:
 - the maintained function \(F\) is explicit;
 - collapse is mechanically defined;
 - damage and repair are observable;
-- raw energy can be allocated into different M-components;
-- optional intervention-effect hypotheses can be tested under the same total resource.
+- raw energy can be allocated into different M-components.
 
 The central question is:
 
 > Under the same damage process and the same total energy budget, does the
 > \(M\)-component allocation predict persistence better than a total-resource
-> baseline, and does an optional downstream intervention-effect rule add anything
-> beyond a strong policy-prior baseline?
+> baseline?
 
 
 2. Structural Object
@@ -64,8 +62,7 @@ The primary functional readouts are:
 - collapse time \(\tau_Q\);
 - maintained-flow ratio;
 - minimum margin \(\min_{k\le n}\mu_k\);
-- recovery time after damage;
-- optional intervention-effect agreement.
+- recovery time after damage.
 
 
 3. M-Component Interpretation
@@ -133,12 +130,12 @@ M-component is always optimal.
 | demand shock | temporary increase in \(Q\) | buffer |
 | repairable wear | repeated small losses on existing edges | recovery |
 
-These expectations are not support claims. They are used to freeze intervention
-ranking hypotheses before primary evaluation.
+These expectations are not support claims. They are used only to ensure that the
+calibration regime is not trivially favorable to one component.
 
 
-6. Intervention Policies
-------------------------
+6. Allocation Policies
+----------------------
 
 For a fixed total energy \(E\), compare at least the following policies:
 
@@ -150,7 +147,7 @@ For a fixed total energy \(E\), compare at least the following policies:
 | balanced | equal or near-equal split |
 | total-energy baseline | uses only \(E\), not the split |
 
-These anchors are not enough for downstream intervention-effect support. The frozen primary should use
+These anchors are not enough for M-profile support. The frozen primary should use
 an allocation grid over
 \[
   E_{\mathrm{buffer}}+E_{\mathrm{recovery}}+E_{\mathrm{reconfiguration}}=E
@@ -180,10 +177,10 @@ The M-profile model adds:
 - \(E_{\mathrm{reconfiguration}}/E\);
 - pre-fixed interaction terms between damage family and M-component, if frozen.
 
-A stronger calibration-best-policy baseline should also be included. It learns,
-from calibration data only, which policy or allocation region tends to work for
-observable graph and damage summaries. Downstream intervention-effect support requires beating this
-policy-prior baseline, not only the total-resource scalar baseline.
+A stronger calibration-best-allocation baseline should also be included. It
+learns, from calibration data only, which allocation region tends to work for
+observable graph and damage summaries. M-profile support requires beating this
+baseline, not only the total-resource scalar baseline.
 
 The central comparison is:
 
@@ -197,32 +194,22 @@ The central comparison is:
 8. Frozen Validation
 --------------------
 
-An optional downstream target is intervention-effect prediction, not only risk prediction.
-
-For each held-out instance, the frozen M-profile rule predicts an ordering of the
-intervention policies. The observed ordering is computed from collapse time,
-minimum margin, or maintained-flow ratio under the same damage seed.
+The frozen target is persistence prediction under fixed allocation and damage
+conditions.
 
 Primary metrics:
 
-- top-1 policy agreement;
-- top-2 policy agreement;
-- Kendall \(\tau\);
-- regret relative to the best observed policy.
+- collapse-time prediction error;
+- maintained-flow ratio prediction error;
+- minimum-margin prediction error;
+- regret relative to the best observed allocation, reported as a diagnostic.
 
 M-profile support:
 
 - M-profile improves held-out prediction of collapse time or maintained-flow
   ratio over the total-resource baseline.
 
-Downstream intervention-effect support:
-
-- the pre-frozen M-profile rule predicts intervention effects above the frozen
-  threshold, above the total-resource baseline, and above the calibration-best
-  policy baseline;
-- the effect holds on held-out allocation mixes or a held-out simplex region.
-
-M-strong support:
+Robustness support:
 
 - the result is stable across pre-frozen graph families, damage families,
   normalization choices, and \(\Phi\)-style aggregation choices.
@@ -241,8 +228,8 @@ Suggested split:
 - primary: run on held-out graph seeds and damage seeds;
 - outside rerun: provide a seed-locked package for independent execution.
 
-No downstream intervention-effect support is allowed if the \(Q\), damage intensity, or policy set is
-chosen after observing primary outcomes.
+No M-profile support is allowed if the \(Q\), damage intensity, or allocation
+grid is chosen after observing primary outcomes.
 
 
 10. Non-Claims
@@ -255,8 +242,6 @@ This testbed does not claim:
 - that a successful testbed result proves a universal resource law;
 - that \(M_{\mathrm{buffer}}, M_{\mathrm{recovery}}, M_{\mathrm{reconfiguration}}\)
   are directly observable physical quantities in real domains;
-- that intervention effects in real systems are causal without separate
-  identification.
 
 The result, if positive, would show something narrower and more useful:
 
@@ -265,10 +250,11 @@ The result, if positive, would show something narrower and more useful:
 > on whether it is allocated to buffer, recovery, or reconfiguration.
 
 Current status (2026-04-29): the guarded primary final candidate produced
-no downstream intervention-effect support under its frozen rule. The M-profile model improved over
-the total-resource regret baseline in aggregate, but it did not beat the
-calibration-best policy-prior baseline. This is recorded as controlled
-mechanistic no-support, not as a refutation of \(M\) as a design coordinate.
+no M-profile support under its strongest frozen baseline. The M-profile model
+improved over the total-resource baseline on one diagnostic surface, but it did
+not beat the calibration-best-allocation baseline. This is recorded as
+controlled mechanistic no-support, not as a refutation of \(M\) as the familiar
+effective-resource side.
 
 
 11. Implementation Roadmap
@@ -296,7 +282,6 @@ Phase 1: calibration.
 Phase 2: frozen primary.
 
 - compare total-resource baseline against M-profile model;
-- evaluate optional intervention-effect metrics;
 - record support / no-support in `05_evidence/`.
 
 Phase 3: outside rerun.

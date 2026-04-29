@@ -28,9 +28,8 @@ not a direct law for selecting the next intervention.
 | Level | Meaning |
 |---|---|
 | M-profile support | M-profile improves held-out prediction, diagnosis, or persistence readout over a domain baseline |
-| downstream intervention-effect support | optional intervention-effect direction agrees with observed intervention effectiveness above a frozen threshold |
-| robustness support | M-profile or downstream intervention-effect support is robust across pre-frozen \(\rho_i\), \(A_j\), and \(\Phi\) families |
-| M-replication support | M-profile or downstream intervention-effect support reproduces in a separate project, organization, archive, or outside run |
+| robustness support | M-profile support is robust across pre-frozen \(\rho_i\), \(A_j\), and \(\Phi\) families |
+| M-replication support | M-profile support reproduces in a separate project, organization, archive, or outside run |
 
-This prevents a small risk-prediction gain from being misread as evidence that
-the theory knows which intervention to choose.
+This prevents an M-profile readout from being misread as a built-in theory of
+which intervention to choose.

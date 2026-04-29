@@ -24,5 +24,3 @@ For M-side validation, use:
 - `../06_templates/m_profile_validation_manifest_template.md` for M-profile
   validation and weak-axis gates when the effective resource side is
   operationalized through component readouts.
-- `../06_templates/intervention_effect_prereg_template.md` only for separate
-  downstream intervention-effect studies.

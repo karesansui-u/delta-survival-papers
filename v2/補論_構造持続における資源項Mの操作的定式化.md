@@ -12,7 +12,7 @@
 \]
 と書き直す。
 
-本補論の役割は、普遍法則そのものを主張することではなく、構造消耗量と回復量の収支を現実ドメインへ写すときの $M$ 側の操作化を与えることである。ここでの $M$ は、その時点で、その対象構造の維持に実際に使える有効量である。成分分解は、この有効量を応用上読みやすくするための補助的な診断道具であり、必須の理論核ではない。介入効果予測は、この座標を用いた任意の下流応用仮説であり、主理論の claim には含めない。
+本補論の役割は、普遍法則そのものを主張することではなく、構造消耗量と回復量の収支を現実ドメインへ写すときの $M$ 側の操作化を与えることである。ここでの $M$ は、その時点で、その対象構造の維持に実際に使える有効量である。成分分解は、この有効量を応用上読みやすくするための補助的な診断道具であり、必須の理論核ではない。
 
 本補論は新しい普遍法則の証明ではない。また、経験的 pilot を完了した論文でもない。本補論の位置づけは、構造持続の収支原理の回復量・資源入力を実ドメインで測るための support-side operational mapping である。
 
@@ -27,7 +27,7 @@
 
 これらはいずれも L という「削られる側」の座標を具体化する方向に集中している。
 
-本補論は新しい普遍法則の証明ではない。本補論は、支える側の操作的座標系である。構造持続の最小形式と条件つき導出補論が与えた structural consumption \(L\)、および LLM companion I/II で経験的に観察された構造消耗と支援の相互作用を前提として、構造消耗を回復する資源・修復入力を実ドメインでどう記録するかを問う。維持能力成分の分解にもとづく intervention-effect study は、必要なら別途設計できる下流実験であって、普遍理論の中核そのものではない。
+本補論は新しい普遍法則の証明ではない。本補論は、支える側の操作的座標系である。構造持続の最小形式と条件つき導出補論が与えた structural consumption \(L\)、および LLM companion I/II で経験的に観察された構造消耗と支援の相互作用を前提として、構造消耗を回復する資源・修復入力を実ドメインでどう記録するかを問う。
 
 Paper 1 の最小形式 $S = M e^{-L}$ には、従来から理解されてきたリソース側が残る。それが有効維持余力 M である。M は「L とは別側で、構造がどれだけ持ちこたえられるか」を担う支え側の量として導入されたが、既存分冊ではその操作的な測り方はほとんど議論されていない。補論「構造持続写像の標準手順」は運用展開
 \[
@@ -62,12 +62,10 @@ raw resource \(R\) のうち、どれだけが対象構造を維持するため�
 
 - 本補論は M の完全理論ではない。現行スカラー M を raw resource から区別し、必要に応じて維持能力成分ベクトルへ分解するための分析フレームである。
 - 本補論は構造持続の収支原理の中核ではなく、その回復量・資源入力を実ドメインへ写す操作化層である。
-- 本補論では、M の操作的 readout が baseline にない情報を持つかを検査標的に置く。介入効果予測は、その分解を用いた任意の下流仮説として扱う。崩壊プロファイルや時間発展主張は後続の拡張とみなす。
+- 本補論では、M の操作的 readout が baseline にない情報を持つかを検査標的に置く。崩壊プロファイルや時間発展主張は後続の拡張とみなす。
 - 本補論は最初のドメインとしてソフトウェア / SaaS を置き、four-domain comparison や普遍理論の宣言には進まない。
 - 本補論は Paper 1 §3 の対数比の一意性定理と同じ設計原理 (Cauchy 関数方程式と連続性から一意関数形を強制する) を M 側に移植する候補を持つ。§2.5 では、この表現補題候補を本補論の短い theoretical pointer として置き、証明と公理列挙の詳細は別稿の補論に委ねる。
 - 本補論は仕様固定構造層の普遍法則宣言を行わない。ソフトウェアは構造推定層として扱う。
-
-介入効果予測を行う場合、それは $M$ の定義からただちに従う法則ではなく、静学式 $S = \Phi(M) e^{-L}$ と成分 profile を用いた応用仮説である。したがって、補論「構造持続写像の標準手順」における基準モデル設定と予測力の増分検証を通じて、別途 support / no-support を判定する。本補論は、この応用仮説を主理論の必要条件とはしない。
 
 本補論で扱う対象構造は、Paper 1 §2 の適用可能性条件 P1–P5 を満たすもの、すなわち観測前に対象構造・測度・制約列・時間地平が事前固定された構造維持問題に限る。観測後に F、$\Sigma$、R、成分集合を選び直してよいなら、本補論の予測は事後的適合によって空虚化するからである。
 
@@ -183,7 +181,7 @@ $\gamma_i$ を導入することで、本補論は次の観察を理論内で書
 $\Phi$ は、少なくとも非負性と各 effective component に関する単調非減少性を満たす集約関数である。
 \end{definition}
 
-本補論では $\Phi$ の関数形を一意に固定しない。むしろ、表現規律として、いくつかの候補族を明示し、その選択に対して M-profile の読みが頑健かを §6 で検査する。介入効果の順位づけは、必要な場合だけ別途扱う下流の工学的検査である。
+本補論では $\Phi$ の関数形を一意に固定しない。むしろ、表現規律として、いくつかの候補族を明示し、その選択に対して M-profile の読みが頑健かを §6 で検査する。
 
 候補の一つは積型である。scale separability (各成分を独立にスケールしたときの影響が他成分を変えずに乗法的に分離できる性質) と multiplicative composition ($h_i(\lambda\mu) = h_i(\lambda) h_i(\mu)$) を追加仮定として置くと、連続性と正規化から $\Phi$ は積型
 \[
@@ -211,7 +209,7 @@ $\Phi$ は、少なくとも非負性と各 effective component に関する単�
 | 一意な関数形 | $f(r) = -k \ln r$ | 積型・CES・bottleneck の候補族 |
 | 残る経験量 | 各ドメインにおける $m(V)$ の具体化 | 各ドメインにおける $\alpha_i$, $w_i$, $\rho$ とその頑健性 |
 
-この骨格対応により、本補論の維持能力成分の分解は単なる分類表ではなく、Paper 1 の方法論を support 側に移植するための候補族を持つ。ただし、本補論の load-bearing claim は積型の証明ではない。以降の節では $\Phi$ を単調非減少な集約として扱い、積型・CES・bottleneck 型のどれを採るかは domain 固有の経験的推定と §6 の robustness validation に委ねる。M-profile support は、この選択に対して robust であるべきである。介入効果仮説は、必要な場合だけ別途扱う下流応用である。
+この骨格対応により、本補論の維持能力成分の分解は単なる分類表ではなく、Paper 1 の方法論を support 側に移植するための候補族を持つ。ただし、本補論の load-bearing claim は積型の証明ではない。以降の節では $\Phi$ を単調非減少な集約として扱い、積型・CES・bottleneck 型のどれを採るかは domain 固有の経験的推定と §6 の robustness validation に委ねる。M-profile support は、この選択に対して robust であるべきである。
 
 以上により、本補論の最小形式は次で与えられる。
 
@@ -272,7 +270,6 @@ Lean では、維持能力成分を
 - 各ドメインでこの三成分が自然に測れること。
 - $\gamma_i$、$A_j$、$\Phi$ の経験的に最良な形。
 - software / SaaS における component signal の妥当性。
-- 介入効果予測が実データで成立すること。
 
 つまり、Lean は本補論の「外部供給を第四成分にしない」という文法と、「M interface 内部では三成分以外の独立座標を持たない」という表現定理を閉じる。さらに、M interface 上の任意の valid readout は三成分 profile から作られる標準商を一意に通る。経験的価値は、§6 の事前固定 validation で判定する。
 
@@ -354,7 +351,7 @@ row-level では、exact wrong-sum adoption が `subtle` の 25/40 mistakes = 0.
 
 この効果は外部プロセスによるものではない。prompt 内の source / dataset / temporal marker が、base LLM の解釈過程を修復方向へ誘導している。したがって、本補論ではこれを in-context $M_{\mathrm{recovery}}$ の indicator と呼ぶ。
 
-Exp.41 は、この方向が `gpt-4.1-mini` 固有でないことを検査した。`gpt-4.1-nano` では `scoped=27/30 = 0.90`, `structural=1/30 = 0.03`、`gemini-3.1-flash-lite-preview` では `scoped=30/30 = 1.00`, `structural=14/30 = 0.47` であり、二つの primary model の両方で `scoped > structural` が成立した。ただし `subtle` と `structural` の相対順序はモデル依存であった。したがって、本補論が受け取るべき invariant は、固定された subtle/structural ranking ではなく、scope marker が repair 的に働くという狭い方向である。
+Exp.41 は、この方向が `gpt-4.1-mini` 固有でないことを検査した。`gpt-4.1-nano` では `scoped=27/30 = 0.90`, `structural=1/30 = 0.03`、`gemini-3.1-flash-lite-preview` では `scoped=30/30 = 1.00`, `structural=14/30 = 0.47` であり、二つの primary model の両方で `scoped > structural` が成立した。ただし `subtle` と `structural` の大小関係はモデル依存であった。したがって、本補論が受け取るべき invariant は、固定された subtle/structural の大小関係ではなく、scope marker が repair 的に働くという狭い方向である。
 
 特に `gpt-4.1-nano` では `subtle=30/30 = 1.00` と天井に張りついたため、secondary ordering は固定的な invariant として扱わない。
 
@@ -472,7 +469,7 @@ LLM companion I では、これは in-context scope marker または外部代謝
 
 本補論の最初の具体ドメインは、software / SaaS / 継続運用される業務システムである。この選択は、ソフトウェアが最も普遍的な対象であるという主張ではない。むしろ、本補論の目的である $M$ の操作的定式化にとって、software / SaaS が扱いやすい 構造推定層だからである。
 
-理由は三つある。第一に、維持したい機能 $F$ と、それを担う構造 $\Sigma$ を比較的具体的に書ける。第二に、障害、変更、rollback、MTTR、lead time、deploy history などの観測ログが存在しうる。第三に、介入が内部 component ($I_{\mathrm{buffer}}, I_{\mathrm{recovery}}, I_{\mathrm{reconfiguration}}$) と外部供給 channel ($I_{\mathrm{ext}\to\mathrm{buffer}}, I_{\mathrm{ext}\to\mathrm{recovery}}, I_{\mathrm{ext}\to\mathrm{reconfiguration}}$) として比較的自然に定義できる。
+理由は二つある。第一に、維持したい機能 $F$ と、それを担う構造 $\Sigma$ を比較的具体的に書ける。第二に、障害、変更、rollback、MTTR、lead time、deploy history などの観測ログが存在しうる。
 
 4.1 構造推定層としての位置づけ
 
@@ -617,28 +614,28 @@ Software では、$M_{\mathrm{reconfiguration}}$ に architecture change, modula
 一方、機能そのものを捨てる、SLA を下げる、対応しない顧客を切り捨てる、別プロダクトへ転換する、という変更は $F$ の変更であり、本補論の $M_{\mathrm{reconfiguration}}$ ではない。
 
 
-5. 維持余力 profile と任意の介入効果仮説
+5. 維持余力 profile の診断的読み
 
-本補論の中心は、collapse profile の完全予測でも、介入効果を直接与える法則でもない。中心にあるのは、$M$ を有効維持余力の profile として分解し、総資源量や scalar $M$ だけでは見えない支え方の差を記述することである。
+本補論の中心は、collapse profile の完全予測でも、修正方針の自動選択でもない。中心にあるのは、$M$ を有効維持余力の profile として分解し、総資源量や scalar $M$ だけでは見えない支え方の差を記述することである。
 
-そのうえで、同じ $\hat L$、同じ raw resource $R$、同じ scalar $M_{\mathrm{total}}$ を持つ二つの software system でも、維持能力成分の構成が違えば、有効な支え方や候補介入が異なりうる。これは M-profile から作れる下流の工学的仮説であり、主理論の構成要素ではない。検査する場合には別途凍結検証を要する。
+同じ $\hat L$、同じ raw resource $R$、同じ scalar $M_{\mathrm{total}}$ を持つ二つの software system でも、維持能力成分の構成が違えば、どの種類の余力が厚く、どの種類の余力が薄いかは異なりうる。本補論では、この差を「支え方の profile」として記録する。
 
-5.1 Intervention families
+5.1 Component readout examples
 
-各成分に対応する介入族を次のように置く。
+各成分は、実ドメインでは直接測れないことが多い。したがって、最初に必要なのは修正方針を選ぶことではなく、各成分に対応する readout を事前固定することである。
 
-| intervention | 対応成分 / channel | software examples |
+| component / channel | software readout examples |
 |---|---|---|
-| $I_{\mathrm{buffer}}$ | $M_{\mathrm{buffer}}^{\mathrm{int}}$ を増やす | spare capacity, redundancy, caching, queue buffer, graceful degradation |
-| $I_{\mathrm{recovery}}$ | $M_{\mathrm{recovery}}^{\mathrm{int}}$ を増やす | rollback automation, restore drill, observability, incident runbook, patch path, contract test |
-| $I_{\mathrm{reconfiguration}}$ | $M_{\mathrm{reconfiguration}}^{\mathrm{int}}$ を増やす | feature flag, failover design, boundary redesign, modular replacement, migration tooling |
-| $I_{\mathrm{ext}\to\mathrm{buffer}}$ | $M_{\mathrm{ext}\to\mathrm{buffer}}$ を増やす | managed service redundancy, cloud failover, external capacity burst |
-| $I_{\mathrm{ext}\to\mathrm{recovery}}$ | $M_{\mathrm{ext}\to\mathrm{recovery}}$ を増やす | vendor escalation, external SRE, managed rollback support, upstream maintainer fix |
-| $I_{\mathrm{ext}\to\mathrm{reconfiguration}}$ | $M_{\mathrm{ext}\to\mathrm{reconfiguration}}$ を増やす | consultant-led migration, upstream redesign, external refactoring support |
+| $M_{\mathrm{buffer}}^{\mathrm{int}}$ | spare capacity, redundancy, queue/cache slack, rate limit margin, graceful degradation |
+| $M_{\mathrm{recovery}}^{\mathrm{int}}$ | rollback path, restore drill, observability coverage, incident runbook, patch path, contract test |
+| $M_{\mathrm{reconfiguration}}^{\mathrm{int}}$ | feature flag coverage, failover design, boundary redesign, modular replacement, migration tooling |
+| $M_{\mathrm{ext}\to\mathrm{buffer}}$ | managed redundancy, cloud failover, external capacity burst |
+| $M_{\mathrm{ext}\to\mathrm{recovery}}$ | vendor escalation, external SRE, managed rollback support, upstream maintainer response |
+| $M_{\mathrm{ext}\to\mathrm{reconfiguration}}$ | consultant-led migration, upstream redesign, external refactoring support |
 
-この分類は、介入の名前ではなく、介入がどの維持能力成分をどの channel から増やすかによって決まる。たとえば「vendor support」は、それが rollback を代行するなら $I_{\mathrm{ext}\to\mathrm{recovery}}$、容量を提供するなら $I_{\mathrm{ext}\to\mathrm{buffer}}$ である。
+この分類は、用語の名前ではなく、その readout がどの有効余力を表すかによって決まる。たとえば「vendor support」は、それが rollback を代行するなら $M_{\mathrm{ext}\to\mathrm{recovery}}$、容量を提供するなら $M_{\mathrm{ext}\to\mathrm{buffer}}$ の readout である。
 
-5.2 M-profile reading and optional intervention hypothesis
+5.2 M-profile reading
 
 本補論の最小検査標的は次である。
 
@@ -646,57 +643,17 @@ Software では、$M_{\mathrm{reconfiguration}}$ に architecture change, modula
 Comparable $\hat L$, comparable raw $R$, and comparable scalar $M_{\mathrm{total}}$ のもとで、維持能力成分 profile は held-out outcome または診断に対して scalar baseline にない情報を持つ。
 \end{quote}
 
-任意の下流仮説として、次の介入効果仮説を置ける。
+この検査標的は、「M-profile が自動的に修正方針を返す」という主張ではない。言えるのは、raw resource や scalar \(M\) だけでは見えない有効余力の偏りが、診断や予測に追加情報を持つかどうかである。
 
-- $M_{\mathrm{buffer}}$ は高いが $M_{\mathrm{recovery}}$ が低い系では、追加 capacity より rollback / restore / localization の改善が効きやすい。
-- $M_{\mathrm{recovery}}$ は十分だが $M_{\mathrm{reconfiguration}}$ が低い系では、局所 patch の追加より feature flag / boundary redesign / migration tooling が効きやすい。
-- $M_{\mathrm{ext}\to\mathrm{recovery}}$ 依存が高く内部 $M_{\mathrm{recovery}}^{\mathrm{int}}$ が低い系では、短期維持は改善するが、同じ failure class が反復する場合、自律的 $M_{\mathrm{recovery}}^{\mathrm{int}}$ または $M_{\mathrm{reconfiguration}}^{\mathrm{int}}$ への移行が必要になる。
+例:
 
-これは「どの介入も常に効く」という主張ではない。また、M-profile が自動的に介入選択を返すという主張でもない。むしろ、同じ総資源量に見える系でも、有効余力の形が異なれば、支え方や有望な介入候補が変わりうる、という検証可能な設計仮説である。
+- high $M_{\mathrm{buffer}}$, low $M_{\mathrm{recovery}}$: 障害時にしばらく耐えられるが、復旧・原因同定・再発防止は弱い可能性がある。
+- sufficient $M_{\mathrm{recovery}}$, low $M_{\mathrm{reconfiguration}}$: 局所復旧はできるが、同じ種類の変更で再発しやすい可能性がある。
+- high $M_{\mathrm{ext}\to\mathrm{recovery}}$, low internal $M_{\mathrm{recovery}}$: 外部支援で短期復旧はできるが、内部に回復能力が蓄積していない可能性がある。
 
-5.3 Example predictions
+5.3 Software contract-coherence diagnostics との分離
 
-以下は §6 で validation protocol に落とす候補である。
-
-**Case A: high $M_{\mathrm{buffer}}$, low $M_{\mathrm{recovery}}$**
-
-システムには redundancy や spare capacity があるが、rollback path が遅い、restore drill がない、observability が弱い。障害時には耐えられる時間はあるが、原因同定と復旧が遅れる。
-
-Prediction:
-
-\[
-  I_{\mathrm{recovery}} > I_{\mathrm{buffer}}
-\]
-
-すなわち、追加サーバや cache を増やすより、rollback automation、restore test、observability、incident runbook の改善が change failure impact や MTTR をより強く下げる。
-
-**Case B: sufficient $M_{\mathrm{recovery}}$, low $M_{\mathrm{reconfiguration}}$**
-
-rollback と patch はできるが、同じ種類の変更で繰り返し障害が起きる。責務境界が崩れ、local patch が別の箇所を壊し続ける。
-
-Prediction:
-
-\[
-  I_{\mathrm{reconfiguration}} > I_{\mathrm{recovery}}
-\]
-
-すなわち、さらに rollback を改善するより、feature flag、boundary redesign、modular replacement、migration tooling の方が incident recurrence や lead time 悪化を下げる。
-
-**Case C: high $M_{\mathrm{ext}\to\mathrm{recovery}}$, low internal $M_{\mathrm{recovery}}$**
-
-vendor や managed service による外部復旧は強いが、base team 内に原因同定・rollback・再発防止の能力が蓄積しない。
-
-Prediction:
-
-\[
-  I_{\mathrm{recovery}}^{\mathrm{internal}} \text{ eventually outranks additional } I_{\mathrm{ext}\to\mathrm{recovery}}
-\]
-
-短期には $I_{\mathrm{ext}\to\mathrm{recovery}}$ が最も効くが、同じ failure class が反復する場合、内部 $M_{\mathrm{recovery}}^{\mathrm{int}}$ の形成が長期の recurrence reduction には必要になる。
-
-5.4 Software contract-coherence diagnostics との分離
-
-Software contract-coherence diagnostics は、software domain における強い候補である。ただし、本補論の検査標的である $M$ の維持能力成分の分解、または下流の intervention-effect hypothesis を直接検査するものではない。DeltaLint はこの診断 track の現在の実装名である。
+Software contract-coherence diagnostics は、software domain における強い候補である。ただし、本補論の検査標的である $M$ の維持能力成分の分解を直接検査するものではない。DeltaLint はこの診断 track の現在の実装名である。
 
 この track が主に観測するのは、静的コード内の未整理な前提不整合、scope mismatch、guard 欠落、順序依存、設定干渉である。これは $M$ 側というより、局所的な $\hat L$ または $\Delta L$ risk の観測に近い。したがって、software contract-coherence diagnostics は本補論の主 validation には含めない。
 
@@ -711,7 +668,7 @@ Software contract-coherence diagnostics は、software domain における強い
 
 この分離により、本補論は $M$ 側の薄い主張を保ち、software contract-coherence diagnostics は静的コードにおける L-side predictor として、独立の baseline-controlled validation を持てる。
 
-5.5 非主張
+5.4 非主張
 
 本節では、次を主張しない。
 
@@ -732,15 +689,6 @@ Software contract-coherence diagnostics は、software domain における強い
 \begin{quote}
 raw resource \(R\) や既存 baseline を固定しても、M-profile readout は scalar baseline にない予測・診断情報を持つ。
 \end{quote}
-
-任意の下流仮説として、維持能力成分 profile から有効な介入候補を予測する検査を置ける。この主張を検査するには、静的コード上の bug-prone location だけでは足りない。必要なのは、少なくとも次の四つである。
-
-1. 対象となる software / SaaS system。
-2. 時間窓ごとの $\hat L$、raw $R$、component profile の測定。
-3. 実際に行われた介入 $I_{\mathrm{buffer}}, I_{\mathrm{recovery}}, I_{\mathrm{reconfiguration}}, I_{\mathrm{ext}\to j}$ の履歴。
-4. 介入後の outcome 変化。
-
-したがって、この下流 validation は operational data を必要とする。DeltaLint のような静的検出器は、局所 $\hat L$ の候補にはなりうるが、M の維持能力成分にもとづく介入効果仮説の検証を代替しない。
 
 6.1 検証対象
 
@@ -864,7 +812,6 @@ Component predictors
 | B2 scalar resource | B1 + raw $R$ / scalar $M_{\mathrm{total}}$ | scalar M baseline |
 | S1 loss-aware | B1 + $\hat L_{\mathrm{pilot}}$ | L-side control |
 | S2 component-aware | B1 + $\hat L_{\mathrm{pilot}}$ + $\widetilde M_{\mathrm{buffer}},\widetilde M_{\mathrm{recovery}},\widetilde M_{\mathrm{reconfiguration}}$ | 本補論の primary model |
-| S3 intervention-aware | S2 + intervention family indicators | optional downstream intervention-effect model |
 
 Primary comparison は、
 
@@ -874,7 +821,7 @@ Primary comparison は、
 
 を held-out log loss / Brier score で見る。ここで $<$ は loss が小さいことを表す。
 
-本補論の基本的な empirical claim は、S2 が B2 に対して baseline にない情報を持つかである。S3 は介入履歴がある場合にのみ置く任意の下流モデルであり、主理論や M の定義に必要なものではない。
+本補論の基本的な empirical claim は、S2 が B2 に対して baseline にない情報を持つかである。
 
 6.5 Primary predictive endpoint
 
@@ -892,41 +839,7 @@ binary outcome の場合、primary metric は Brier score または log loss と
 
 第一段階の safest default は binary outcome + Brier score である。理由は、calibration の解釈がしやすく、small-N の pilot でも破綻しにくいからである。
 
-6.6 Optional intervention-effect endpoint
-
-介入効果の順位づけは、M-profile を用いた任意の下流仮説である。したがって、実際の介入履歴と outcome が十分にある場合にのみ、別 endpoint として置く。
-
-各単位 $u$ について、観測された component profile から推奨介入候補または効果方向を出す。
-
-例:
-
-\[
-  \mathrm{rank}_{\mathrm{pred}}(u)
-  =
-  (I_{\mathrm{recovery}}, I_{\mathrm{reconfiguration}}, I_{\mathrm{buffer}}, I_{\mathrm{ext}\to\mathrm{recovery}}, \dots)
-\]
-
-実際の介入履歴と outcome から、効果順位を後から推定する。
-
-\[
-  \mathrm{rank}_{\mathrm{obs}}(u)
-\]
-
-評価は Kendall $\tau$、Spearman $\rho$、または top-1 / top-2 agreement で行う。
-
-$\mathrm{rank}_{\mathrm{obs}}$ の推定方法は preregistration で具体化する。候補は次である。
-
-- pre/post outcome difference;
-- difference-in-differences;
-- matched-pair analysis;
-- interrupted time-series;
-- randomized intervention assignment, if available.
-
-どの推定法を採るか、どの time window を使うか、どの covariate を調整するかは、outcome 観測前に固定する。観測後に都合のよい推定法を選ぶなら、intervention-effect validation ではなく post-hoc explanation である。
-
-ただし、この endpoint には介入履歴が必要である。介入履歴がない dataset では、介入効果仮説は検査されたとは言わない。その場合、§6.5 の risk prediction は M-profile support または preparatory evidence に留める。
-
-6.7 $\rho_i$ normalization robustness
+6.6 $\rho_i$ normalization robustness
 
 Component signal は単位が揃っていない。したがって、各 signal を $q_i=\rho_i(M_i)$ に正規化する必要がある。
 
@@ -941,21 +854,13 @@ Component signal は単位が揃っていない。したがって、各 signal �
 | $M_{\mathrm{reconfiguration}}$ | feature-flag coverage; migration tooling availability; recurrence reduction proxy |
 | $M_{\mathrm{ext}\to\mathrm{recovery}}$ | external response SLA score; vendor escalation success; upstream fix latency inverse |
 
-Rule:
-
-```text
-The optional intervention-effect conclusion is considered robust only if the dominant
-component / recommended intervention direction is stable across at least two
-reasonable normalization families.
-```
-
 All normalization parameters must be fitted on train folds only.
 
-ここでいう「reasonable normalization」とは、本節で preregister された $\rho_i$ 候補 family に属するものを指す。観測後に追加した normalization で ranking が逆転しても、それだけでは non-support と判定しない。逆に、preregistered family 内で ranking が反転するなら、本補論の strong support は成立しない。
+ここでいう「reasonable normalization」とは、本節で preregister された $\rho_i$ 候補 family に属するものを指す。観測後に追加した normalization でのみ結果が成立する場合、それは本補論の support ではなく exploratory result として扱う。
 
-6.8 $\Phi$ robustness
+6.7 $\Phi$ robustness
 
-§2.5 で述べた通り、本補論は $\Phi$ の一意性を主張しない。したがって、M-profile support は $\Phi$ の選択に対して robust でなければならない。下流の介入効果仮説を置く場合も同じである。
+§2.5 で述べた通り、本補論は $\Phi$ の一意性を主張しない。したがって、M-profile support は $\Phi$ の選択に対して robust でなければならない。
 
 検査する候補は次である。
 
@@ -966,11 +871,9 @@ All normalization parameters must be fitted on train folds only.
 | CES | $(\sum_i \alpha_i q_i^\rho)^{1/\rho}$ | substitutability continuum |
 | bottleneck / Leontief | $\min_i w_i q_i$ | weakest-component dominance |
 
-下流の介入効果仮説を強く主張するには、component-aware model が scalar baseline に勝つだけでなく、product / CES / bottleneck の複数候補で同じ intervention-effect direction を保つ必要がある。
-
 ここでいう「複数候補」は、preregistration で固定された $\Phi$ family に限る。観測後に追加した aggregator は探索的解析として報告できるが、primary / strong support の判定には用いない。
 
-6.9 $A_j$ internal/external aggregation robustness
+6.8 $A_j$ internal/external aggregation robustness
 
 外部供給 channel と内部能力を合わせる関数
 
@@ -993,22 +896,21 @@ All normalization parameters must be fitted on train folds only.
 
 $A_j$ についても、reasonable candidate は preregistration で固定された family に限る。観測後に追加した $A_j$ でのみ主張が成立する場合、それは本補論の support ではなく exploratory result として扱う。
 
-6.10 Support criteria
+6.9 Support criteria
 
 本補論の validation は、段階を分けて報告する。
 
 | support level | criterion |
 |---|---|
 | M-profile support | component-aware predictor improves held-out risk prediction or diagnosis over raw / scalar baselines |
-| downstream intervention-effect support | optional intervention-effect direction agrees with observed intervention effectiveness above a preregistered threshold |
-| robustness support | M-profile or optional downstream direction is robust across $\rho_i$, $\Phi$, and $A_j$ candidate families |
-| no-support | scalar or policy-prior baselines match or beat component-aware models, or downstream directions reverse under reasonable normalizations |
+| robustness support | M-profile support is robust across $\rho_i$, $\Phi$, and $A_j$ candidate families |
+| no-support | scalar baselines match or beat component-aware models, or results depend on post-hoc normalization / aggregation choices |
 
-この分類により、「M readout が baseline にない情報を持った」ことと、「下流の介入効果仮説が支持された」ことを混同しない。
+この分類により、「M readout が baseline にない情報を持った」ことだけを本補論の検査標的として扱う。
 
-ここで reasonable とは、§6.7 の $\rho_i$、§6.8 の $\Phi$、§6.9 の $A_j$ で preregister された候補 family に属するものを指す。
+ここで reasonable とは、§6.6 の $\rho_i$、§6.7 の $\Phi$、§6.8 の $A_j$ で preregister された候補 family に属するものを指す。
 
-6.11 Minimum preregistration checklist
+6.10 Minimum preregistration checklist
 
 実験前に、少なくとも以下を凍結する。
 
@@ -1024,16 +926,13 @@ $A_j$ についても、reasonable candidate は preregistration で固定され
 - $A_j$ candidate families。
 - primary metric。
 - M-profile support threshold。
-- optional downstream intervention-effect support threshold, if used。
 - minimum unit count per fold。
 - detectable effect size / power target for the primary endpoint。
 - handling of missing operational data。
 
 これらを観測後に選ぶなら、本補論の validation ではなく post-hoc analysis である。
 
-特に介入効果順位を下流 endpoint として使う場合、Kendall $\tau$ や top-k agreement に対して、事前に想定する effect size と必要な unit count を見積もる。十分な power がない pilot では、非有意な結果を strong non-support と解釈しない。
-
-6.12 本節の非主張
+6.11 本節の非主張
 
 本節は、次を主張しない。
 
@@ -1042,35 +941,32 @@ $A_j$ についても、reasonable candidate は preregistration で固定され
 3. $\hat L_{\mathrm{pilot}}$ が真の $L$ であるとは主張しない。
 4. Software contract-coherence diagnostics が本補論の validation であるとは主張しない。
 5. 単一の $\rho_i$、$\Phi$、$A_j$ が全ドメインで正しいとは主張しない。
-6. 介入履歴なしの risk prediction だけで介入効果仮説が検証されたとは主張しない。
-7. 観察データから推定した $\mathrm{rank}_{\mathrm{obs}}$ が、直ちに因果的効果順位を表すとは主張しない。randomized intervention assignment または明示的な causal identification がない限り、下流の介入効果 support は observational support である。
 
 
 7. 限界と次段階
 
-本補論の貢献は、支える側の項 $M$ を有効維持余力として読み直し、raw resource と同一視せず、必要に応じて維持能力成分と外部供給 channel に分け、設計・診断・比較可能な profile として扱うことである。介入効果予測は、この profile を用いた任意の下流仮説として位置づける。
+本補論の貢献は、支える側の項 $M$ を有効維持余力として読み直し、raw resource と同一視せず、必要に応じて維持能力成分と外部供給 channel に分け、設計・診断・比較可能な profile として扱うことである。
 
 ただし、本補論はこの段階で empirical pilot を完了したとは主張しない。本補論が与えるのは、次の三点である。
 
 1. $F / \Sigma / R / M$ の操作的分解。
-2. software / SaaS における component-based M-profile validation と、必要な場合の下流 intervention-effect hypothesis。
+2. software / SaaS における component-based M-profile validation。
 3. それらを検査するための preregistered validation protocol。
 
 したがって、本補論の現在地は「実証済み論文」ではなく、「強い実証可能性を持つ framework / protocol paper」である。
 
 7.1 Operational dataset の未取得
 
-§6 の validation は、単なる静的 code score では足りない。特に下流の介入効果仮説を主張するには、少なくとも次の情報が必要である。
+§6 の validation は、単なる静的 code score では足りない。少なくとも次の情報が必要である。
 
 - 対象 project / service / repository の集合。
 - time cutoff と train/test split。
 - target function $F$。
 - $\hat L_{\mathrm{pilot}}$ の事前固定。
 - $M_{\mathrm{buffer}}$, $M_{\mathrm{recovery}}$, $M_{\mathrm{reconfiguration}}$ と外部供給 channel の component / channel signals。
-- 実際に行われた介入履歴。
-- 介入後の outcome: change failure rate, escaped defects, MTTR, MTTD, rollback success, incident recurrence など。
+- outcome: change failure rate, escaped defects, MTTR, MTTD, rollback success, incident recurrence など。
 
-この operational dataset がない場合、risk prediction の改善は M-profile support または preparatory evidence に留まる。介入履歴と outcome がない dataset では、介入効果仮説は fully tested とは言わない。
+この operational dataset がない場合、risk prediction の改善は M-profile support ではなく preparatory evidence に留まる。
 
 7.2 Software は構造推定層であり仕様固定構造層ではない
 
@@ -1087,7 +983,7 @@ Software / SaaS は、本補論の最初の具体ドメインとして扱いや�
 - Paper 1 の $L$ は、構造維持可能集合の測度比から定義される。
 - 本補論の $\hat L_{\mathrm{pilot}}$ は、software process で観測可能な structural-risk signal から作る proxy である。
 
-したがって、$\hat L_{\mathrm{pilot}}$ が outcome を予測しても、それだけで Paper 1 の最小形式が software に直接適用されたとは言わない。本補論で問うのは、proxy と維持能力成分の分解が out-of-sample で scalar baselines にない情報を持つかである。介入効果予測は、必要な場合だけ置く別の下流検査である。
+したがって、$\hat L_{\mathrm{pilot}}$ が outcome を予測しても、それだけで Paper 1 の最小形式が software に直接適用されたとは言わない。本補論で問うのは、proxy と維持能力成分の分解が out-of-sample で scalar baselines にない情報を持つかである。
 
 7.4 Component signal は直接測定ではない
 
@@ -1097,35 +993,15 @@ $M_{\mathrm{buffer}}^{\mathrm{int}}$, $M_{\mathrm{recovery}}^{\mathrm{int}}$, $M
 
 また、同じ observed signal が複数の成分に関係する場合がある。たとえば feature flag は一見 $M_{\mathrm{reconfiguration}}$ の signal だが、rollback workflow と結びつくと $M_{\mathrm{recovery}}$ にも寄与する。このような signal は、どの成分の proxy として使うかを実験前に固定する必要がある。
 
-7.5 観察的 support と因果的 support
-
-§6 の $\mathrm{rank}_{\mathrm{obs}}$ は、多くの場合、観察データから推定される。しかし、観察された介入効果順位は、直ちに因果的な効果順位を意味しない。
-
-理由は単純である。team はランダムに介入を選ぶわけではない。多くの場合、効きそうな介入、予算が取れた介入、既に失敗が目立っている箇所への介入が選ばれる。この selection bias は、observed effectiveness と team の事前判断を交絡させる。
-
-したがって、randomized intervention assignment または明示的な causal-identification design がない限り、本補論の support は observational support に留まる。これは弱点ではあるが、明示しておくべき境界である。
-
-7.6 Underpowered pilot の扱い
-
-介入効果予測は、risk prediction より data-hungry である。介入履歴、outcome、component profile、十分な variation が必要になる。
-
-したがって、小さな pilot で非有意な結果が出ても、それだけで本補論の強い反証とは言わない。§6.11 の preregistration では、minimum unit count per fold と detectable effect size / power target を事前に置く必要がある。
-
-十分な power がない場合、結果は次のように扱う。
-
-- 方向が予測通りなら preparatory evidence。
-- 方向が不安定なら inconclusive。
-- 事前に十分な power があると判定されており、かつ scalar baseline が component-aware model を上回るなら non-support。
-
-7.7 $\rho_i$, $\Phi$, $A_j$ の一意性は主張しない
+7.5 $\rho_i$, $\Phi$, $A_j$ の一意性は主張しない
 
 本補論は $\Phi$ の universal form を主張しない。また、各成分の normalization $\rho_i$ や、内部能力と外部供給を合成する $A_j$ についても、単一の正しい形を主張しない。
 
-したがって、下流の介入効果仮説を強く主張するには、単一の scaling convention ではなく、複数の preregistered candidate family に対して方向が保たれる必要がある。M-profile support についても、単一の都合のよい normalization だけで成立する場合は探索的結果に留める。
+したがって、M-profile support についても、単一の都合のよい normalization だけで成立する場合は探索的結果に留める。
 
 この点で、§2.5 の product / CES / bottleneck family は、表現定理の勝利宣言ではない。それらは、representation sensitivity を検査するための候補族である。
 
-7.8 静的形式に留まる
+7.6 静的形式に留まる
 
 本補論は主に静的な形式
 
@@ -1140,13 +1016,13 @@ $M_{\mathrm{buffer}}^{\mathrm{int}}$, $M_{\mathrm{recovery}}^{\mathrm{int}}$, $M
 動的拡張では、少なくとも次を扱う必要がある。
 
 - $\dot L$: 構造消耗がどの速度で増えるか。
-- $\dot M_j$: 各成分が介入によってどの速度で変化するか。
+- $\dot M_j$: 各成分が投資・運用変更によってどの速度で変化するか。
 - 外部供給が内部能力の形成を促進するか、代替してしまうか。
 - collapse / recovery の time profile。
 
 これらは future work である。
 
-7.9 Domain generalization は未完
+7.7 Domain generalization は未完
 
 本補論は software / SaaS を最初の構造推定層として扱う。しかし、$M$ の維持能力成分の分解は、組織、学校、病院、企業、研究チームなどにも自然に現れる可能性がある。
 
@@ -1181,7 +1057,7 @@ Software contract-coherence diagnostics は、本補論の main validation で�
 
 次段階の研究課題として、少なくとも次の三点が残る。
 
-第一に、本補論用の operational dataset の選定と収集である。§6 の validation protocol は、software / SaaS 系の介入履歴と outcome に関する dataset を必要とする。SRE / DevOps / incident-management dataset、software delivery metrics、社内 operational log などが候補になる。どの dataset がどの程度 §6.3-6.6 の predictor および outcome に対応できるかは、今後の調査課題である。
+第一に、本補論用の operational dataset の選定と収集である。§6 の validation protocol は、software / SaaS 系の outcome に関する dataset を必要とする。SRE / DevOps / incident-management dataset、software delivery metrics、社内 operational log などが候補になる。どの dataset がどの程度 §6.3-6.6 の predictor および outcome に対応できるかは、今後の調査課題である。
 
 第二に、四ドメイン比較 (software 以外への拡張) の作成である。組織、学校、病院、企業、研究チームなどにも維持能力成分の分解の自然な対応候補がある (§7.9)。ただし、これは future-work note として独立に起草するのが望ましく、本補論の empirical support には含めない。
 
@@ -1192,6 +1068,6 @@ Software contract-coherence diagnostics は、本補論の main validation で�
 
 本補論は、構造持続の最小形式 $S = M e^{-L}$ の右辺のうち、従来から理解されてきた支える側の項 $M$ を有効維持余力として整理した。M の最小意味は、対象構造を維持するためにその時点で実際に使える有効量である。必要な場合には、内部の維持能力成分を $M_{\mathrm{buffer}}^{\mathrm{int}}, M_{\mathrm{recovery}}^{\mathrm{int}}, M_{\mathrm{reconfiguration}}^{\mathrm{int}}$ に分け、外部供給 channel を $M_{\mathrm{ext}\to\mathrm{buffer}}, M_{\mathrm{ext}\to\mathrm{recovery}}, M_{\mathrm{ext}\to\mathrm{reconfiguration}}$ として、それぞれの実効能力を $\widetilde M_j = A_j(M_j^{\mathrm{int}}, M_{\mathrm{ext}\to j})$ に集約できる。そのうえで、$\Phi$ による effective maintenance amount $M_{\mathrm{eff}} = \Phi(\widetilde M_{\mathrm{buffer}}, \widetilde M_{\mathrm{recovery}}, \widetilde M_{\mathrm{reconfiguration}})$ を通じて、構造持続量を書き直せる。
 
-本補論の固有の検査標的は、raw resource \(R\) が対象構造の維持に使える有効量 \(M\) になっているか、その操作的 readout が scalar baseline にない情報を持つかを調べることである。成分分解はそのための補助的な profile であり、M の定義から介入効果がただちに従うわけではない。本補論はこの検査標的を software / SaaS を最初の構造推定層として具体化し、$\rho_i$, $\Phi$, $A_j$ の候補族に対する頑健性検査を含む、事前固定可能な経験的検証プロトコルを定式化した。実際の preregistration と pilot 実行は、本補論の外、別の empirical program として進める。
+本補論の固有の検査標的は、raw resource \(R\) が対象構造の維持に使える有効量 \(M\) になっているか、その操作的 readout が scalar baseline にない情報を持つかを調べることである。成分分解はそのための補助的な profile である。本補論はこの検査標的を software / SaaS を最初の構造推定層として具体化し、$\rho_i$, $\Phi$, $A_j$ の候補族に対する頑健性検査を含む、事前固定可能な経験的検証プロトコルを定式化した。実際の preregistration と pilot 実行は、本補論の外、別の empirical program として進める。
 
 本補論は新しい普遍法則の証明ではなく、また empirical pilot 完了論文でもない。本補論の位置づけは、構造持続の収支原理の回復量・資源入力を実ドメインで測るための support-side operational mapping である。構造持続の最小形式と条件つき導出補論が構造消耗側の対数比の構造消耗を特徴づけ、LLM companion I と II が構造消耗と支援の相互作用を経験的に観察したのに対し、本補論は support 側の操作的座標系を提供する。そこから自然に出てくる次段階は、準備された protocol を operational data に適用する経験的 pilot であり、それは本補論の外、別の empirical program として進める。

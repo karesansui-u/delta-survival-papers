@@ -1167,7 +1167,7 @@ LLM companion I / II は、仕様固定構造層のような自然測度・MGF p
 
 この correspondence は強い。しかし、本稿は最適制御問題を解くものではない。どの \(u_t\) が最適か、制御コストと repair 効果の trade-off がどうなるか、部分観測下でどの policy が実装可能かは、別の制御理論層に属する。
 
-したがって、確率制御との関係は G6-b であり、具体的な制御モデルを定めれば G6-c に進める。M 補論の optional intervention-effect protocol は、この制御問題へ進むための operational input を与えるが、それ自体は最適制御定理ではない。
+したがって、確率制御との関係は G6-b であり、具体的な制御モデルを定めれば G6-c に進める。M 補論の operational readout は、この制御問題へ進むための support-side input を与えるが、それ自体は最適制御定理ではない。
 
 7.6 情報理論との関係
 

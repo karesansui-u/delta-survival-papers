@@ -70,8 +70,8 @@ Specification-fixed anchors:
 - finite CSP / Mixed-SAT / q-coloring remain the strongest theorem-side and
   rerun-supported anchors.
 - the flow-network M testbed is recorded as controlled mechanistic no-support
-  for an optional intervention-effect ranking rule under its frozen protocol. It
-  is not evidence against \(M\) as the familiar resource side.
+  for M-profile support under its strongest frozen baseline. It is not evidence
+  against \(M\) as the familiar resource side.
 
 Structurally inferred anchors:
 
@@ -110,7 +110,7 @@ The v3 release-candidate audit should check:
 - local Markdown links;
 - TSV column counts;
 - stale internal route labels in public prose;
-- stale \(M\)-side labels from older ranking-first drafts;
+- stale \(M\)-side labels from older intervention-first drafts;
 - use of effective maintenance slack / capability rather than effective
   maintenance resource;
 - evidence-ledger separation between field demonstrations, bounded benchmarks,

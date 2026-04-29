@@ -66,11 +66,9 @@ Use this sequence:
 3. If there is a frozen test, add a manifest using `06_templates/frozen_test_manifest_template.md`.
 4. If the test involves \(M\)-side component profiles, also use
    `06_templates/m_profile_validation_manifest_template.md`.
-5. If a separate downstream engineering study claims intervention effects, use
-   `06_templates/intervention_effect_prereg_template.md`.
-6. Record support, no-support, silence, field demonstration, or bounded
+5. Record support, no-support, silence, field demonstration, or bounded
    calibration in `05_evidence/`.
-7. Update `CLAIMS.md` only if the claim taxonomy itself changes.
+6. Update `CLAIMS.md` only if the claim taxonomy itself changes.
 
 Do not import support from one domain into another. Cross-domain transfer creates a
 candidate mapping or candidate intervention; it becomes support only after frozen
@@ -78,8 +76,8 @@ validation in the target domain.
 
 For \(M\)-side work, \(M\) is the familiar support-side effective maintenance
 amount: usable resource, slack, or capacity for the pre-fixed maintenance
-problem. Component profiles are optional diagnostic readouts. Intervention
-ranking is a separate downstream engineering claim, not part of the core theory.
+problem. Component profiles are optional diagnostic readouts, not a built-in
+theory for choosing interventions.
 
 
 4. Why This Layout Exists

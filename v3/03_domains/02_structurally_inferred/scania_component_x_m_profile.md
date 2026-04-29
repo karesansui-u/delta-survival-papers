@@ -35,7 +35,7 @@ status: candidate
 ----------------------------
 
 This is a public-data preparatory candidate for M-profile validation. It is weaker
-than software / SaaS operational logs for downstream intervention-effect support, but stronger
+than software / SaaS operational logs for M-profile support, but stronger
 than loss-only datasets when repair records and specifications are usable without
 post-hoc leakage.
 
@@ -64,9 +64,8 @@ Source links:
 
 - current status: candidate.
 - strongest realistic first test: M-profile support through held-out risk prediction.
-- downstream intervention-effect support may not be available from this public archive.
+- full M-profile support may not be available from this public archive.
 - M-profile manifest: use `../../06_templates/m_profile_validation_manifest_template.md`.
-- intervention-effect preregistration: use `../../06_templates/intervention_effect_prereg_template.md` only if intervention families and post-intervention outcomes can be frozen.
 
 
 6. Claims
@@ -79,7 +78,6 @@ This domain may support:
 
 This domain does not support:
 
-- downstream intervention-effect support;
 - causal claims about repairs without an identification design;
 - theorem-side evidence;
 - a universal \(M\)-law.

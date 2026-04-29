@@ -89,7 +89,7 @@ The v3 program does not claim:
 - \(M\) is derived from the exponential kernel itself;
 - cross-domain transfer imports support;
 - DeltaLint merged PRs alone prove raw detector precision, long-term software
-  collapse prediction, or M-side intervention effects.
+  collapse prediction, or M-side profile support.
 
 
 6. Support Vocabulary
@@ -127,6 +127,6 @@ amount that is usable for the pre-fixed maintenance problem.
 | M-profile support | an operational \(M\) readout improves held-out prediction or diagnosis over a domain baseline |
 | M-replication support | M-profile support reproduces in a separate project, organization, archive, or outside run |
 
-Claims about which intervention should be chosen first are optional downstream
-engineering studies. They are not part of the core theory and should not be used
-as the default evidential target for \(M\).
+Claims about which intervention should be chosen first are outside the core
+\(M\)-side evidence vocabulary and should not be used as the default evidential
+target for \(M\).
