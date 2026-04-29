@@ -35,7 +35,7 @@ The stable core is intentionally small:
 
 - minimal kernel: \(S = M e^{-L}\)
 - balance kernel: \(S = M e^{-B}\)
-- pure consumption: \(B_n = \sum_{t<n}(d_t-r_t)\)
+- cumulative net consumption: \(B_n = \sum_{t<n}(d_t-r_t)\)
 - observability layers:
   - specification-fixed structural layer
   - structurally inferred layer
@@ -78,4 +78,3 @@ This prevents three common failures:
 - treating Paper 1 as an obvious prelude instead of the first nontrivial representation theorem;
 - treating structurally inferred domains as theorem-side evidence;
 - treating a successful design transfer as support before target-domain validation.
-
