@@ -173,6 +173,11 @@ Calibration-selected candidate region:
 - \(T=12\) remains a calibration sensitivity point and is not part of the first
   primary candidate region unless the freeze decision explicitly justifies its
   inclusion.
+- target calibration collapse band: prefer candidates with calibration
+  collapse fraction approximately in \([0.55,0.75]\). Candidates outside this
+  band are not automatically invalid, but require an explicit freeze rationale
+  explaining why the setting is not too easy, too hard, or dominated by
+  endpoint degeneracy.
 
 Final primary-setting rule:
 
@@ -181,10 +186,15 @@ Final primary-setting rule:
    performance, or support/no-support implications.
 3. Record the chosen \(Q\), damage intensity, horizon, and selection rationale
    in the final freeze manifest before any outcome-bearing primary run.
-4. If multiple settings remain acceptable, prefer the setting with lower
-   calibration degeneracy, then lower first-step-collapse fraction, then lower
+4. Prefer candidates inside the target collapse band before applying
+   tie-breakers.
+5. If multiple settings remain acceptable, prefer the setting with lower
+   no-collapse fraction, then lower first-step-collapse fraction, then lower
    far-above-\(Q\) fraction.
-5. If held-out-allocation and full-grid diagnostics continue to disagree, keep
+6. If these criteria conflict, choose the setting with the most stable
+   diagnostics across held-out-allocation and full-grid reviews rather than the
+   single best calibration score.
+7. If held-out-allocation and full-grid diagnostics continue to disagree, keep
    the disagreement as a guardrail and report a sensitivity run on at least one
    neighboring setting.
 
