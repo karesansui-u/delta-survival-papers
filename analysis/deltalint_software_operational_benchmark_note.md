@@ -1,9 +1,10 @@
 # DeltaLint Software Operational Benchmark Note
 
-Status: positioning note for the DeltaLint bench track. This is not evidence,
-not a validation result, and not a collapse-prediction claim.
+Status: positioning and internal-calibration note for the DeltaLint bench track.
+This is not maintainer acceptance, not outside replication, and not a
+collapse-prediction claim.
 
-Date: 2026-04-28
+Date: 2026-04-29
 
 ## 1. Role
 
@@ -90,7 +91,7 @@ vs
 structural_lens_no_prior
 ```
 
-The primary endpoint after blinded validation is:
+The primary endpoint after bounded validation is:
 
 ```text
 incremental unique valid structural root causes
@@ -107,6 +108,11 @@ If the benchmark passes, the safe claim is:
 The structural-contradiction coordinate adds operational detection power for
 distributed software contract inconsistencies over matched generic review.
 ```
+
+The first internal Product-arm calibration now supplies a bounded version of
+this claim: five frozen OSS items, four items with positive Product-additive
+gain, one item with no Product-specific additive gain, and nine credited
+Product-additive `valid_structural` roots under the same-scope/additive rule.
 
 It would not yet support:
 
@@ -132,13 +138,33 @@ DeltaLint detection benchmark.
 
 ## 8. Current Treatment
 
+The internal Product-arm calibration through 2026-04-29 is:
+
+| item | Product-additive validated roots | treatment |
+|---|---:|---|
+| Formbricks | 0 | valid root, but no Product-specific additive gain over same-scope generic |
+| Flask | 1 | positive internal additive calibration |
+| httpx | 2 | positive internal additive calibration with partial static/test caveat |
+| Chi | 4 | positive internal additive calibration against completed Go static/test and prompt-pair baselines |
+| Traefik | 2 | positive internal additive calibration over same-scope generic; frontend static baseline open |
+
+Aggregate:
+
+```text
+items_total: 5
+items_with_product_additive_gain: 4
+items_without_product_additive_gain: 1
+credited_product_additive_roots_total: 9
+```
+
 DeltaLint bench is therefore:
 
 ```text
-software operational benchmark candidate
+initial internal software operational support
 early-signal structural contradiction detection
 Route C / L-side extension
 not M-supplement validation
 not direct collapse evidence
-not yet support until blinded validation and unblinding are complete
+not outside replication
+not maintainer acceptance
 ```

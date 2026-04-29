@@ -702,6 +702,8 @@ DeltaLint が主に観測するのは、静的コード内の未整理な前提�
 
 より正確には、DeltaLint bench が検査しうるのは、ソフトウェア崩壊そのものではなく、分散契約矛盾という早期シグナルである。ここでの software structure は、API / caller、config / runtime、documentation / implementation、default producer / consumer、lifecycle producer / consumer など、複数 surface にまたがって一貫性を保つ contract set として定義される。したがって DeltaLint bench は、長期保守不能化や構造死を直接測るものではなく、generic review に対して structural-lens prompt が unique valid structural root cause を増やすかを検査する operational benchmark である。
 
+2026年4月29日時点の内部 bench では、Product-arm additive ledger は Formbricks +0、Flask +1、httpx +2、Chi +4、Traefik +2 を記録し、合計9件の Product-additive valid structural root を得ている。この結果は L-side / distributed-contract detection の内部 calibration として扱い、本補論の $M$-framework validation には数えない。
+
 本補論では、DeltaLint を次のように位置づける。
 
 - DeltaLint は本補論の $M$-framework の実証柱ではない。
@@ -1175,7 +1177,7 @@ DeltaLint は、本補論の main validation ではない。DeltaLint が観測�
   \text{generic review}.
 \]
 
-同じ model、同じ frozen context、同じ one-pass budget の下で、structural lens が generic review より unique valid structural root causes を増やすかを検査する。これは本補論の validation ではなく、LLM companion I / L-side の別 track である。将来的には、既存 static tools への追加価値や、検出された分散契約矛盾が後の bug-fix、rollback、regression、maintenance slowdown を予測するかを調べる longitudinal track へ進める。ただし、その段階までは software collapse の直接検証とは呼ばない。
+同じ model、同じ frozen context、同じ one-pass budget の下で、structural lens が generic review より unique valid structural root causes を増やすかを検査する。2026年4月29日時点の内部 bench では、5件中4件で Product-arm の正の増分、合計9件の Product-additive valid structural root が記録されている。これは本補論の validation ではなく、LLM companion I / L-side の別 track である。将来的には、既存 static tools への追加価値や、検出された分散契約矛盾が後の bug-fix、rollback、regression、maintenance slowdown を予測するかを調べる longitudinal track へ進める。ただし、その段階までは software collapse の直接検証とは呼ばない。
 
 7.11 次段階の研究課題
 
