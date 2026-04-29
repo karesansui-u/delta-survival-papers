@@ -17,10 +17,20 @@ Layer Meanings
 | structurally_inferred | structure is not directly counted; proxy indicators and frozen validation are required |
 | conditional_embedding | an existing theory is mapped into \(d_t,r_t,b_t,B_n\) under stated conditions |
 
+Directory order:
+
+| Directory | Layer |
+|---|---|
+| `01_specification_fixed/` | `specification_fixed` |
+| `02_structurally_inferred/` | `structurally_inferred` |
+| `03_conditional_embedding/` | `conditional_embedding` |
+
+The numbered directories define the reading order. The `layer` values in `registry.tsv`
+remain unnumbered stable identifiers.
+
 
 Rule
 ----
 
 Do not add a new domain to the main theory text. Add it to the registry, then create a
 domain profile.
-
