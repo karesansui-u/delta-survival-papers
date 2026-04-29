@@ -24,10 +24,10 @@ status: candidate
 
 - \(V\): operational states compatible with the target function and service contract.
 - \(m\): not directly counted; represented through frozen operational proxies.
-- \(d_t\): deployment risk, dependency drift, incident load, unresolved defect accumulation, or structural-risk proxy.
+- \(d_t\): deployment risk, dependency drift, incident load, unresolved defect accumulation, or structural-risk indicator.
 - \(r_t\): rollback, repair workflow, runbook execution, replay, or verified remediation.
-- \(L\): accumulated structural-risk proxy.
-- \(B\): net structural-risk proxy after recovery / repair signals.
+- \(L\): accumulated structural-risk indicator.
+- \(B\): net structural-risk indicator after recovery / repair signals.
 - \(M\)-side readout: \(M_{\mathrm{buffer}}\), \(M_{\mathrm{recovery}}\), \(M_{\mathrm{reconfiguration}}\), plus external supply channels.
 
 

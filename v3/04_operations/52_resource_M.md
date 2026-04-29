@@ -224,7 +224,7 @@ $\Phi$ は、少なくとも非負性と各 effective component に関する単�
 
 2.6 Lean で閉じている範囲
 
-本補論の維持能力成分の分解は、`Survival/MaintenanceComponentDecomposition.lean` で形式化されている。Lean 側で閉じているのは、経験的な proxy の妥当性ではなく、M 側の表現文法と、M interface 上の表現定理である。
+本補論の維持能力成分の分解は、`Survival/MaintenanceComponentDecomposition.lean` で形式化されている。Lean 側で閉じているのは、経験的な観測・推定指標の妥当性ではなく、M 側の表現文法と、M interface 上の表現定理である。
 
 Lean では、維持能力成分を
 \[
@@ -478,7 +478,7 @@ Software / SaaS は、SAT や Mixed-CSP のような 仕様固定構造層では
 構造推定層としての勝ち筋は次である。
 
 \begin{quote}
-事前固定した代理構造消耗 $\hat L$ と component predictor が、raw size / age / churn / incident count などの基準モデルより、held-out outcome をよく予測するかを見る。
+事前固定した推定構造消耗 $\hat L$ と component predictor が、raw size / age / churn / incident count などの基準モデルより、held-out outcome をよく予測するかを見る。
 \end{quote}
 
 したがって、§4-5 は定理的閉包ではなく、実証可能な写像を定義する節である。ここでの目標は、後続の §6 で validation protocol を置けるだけの $F,\Sigma,R,\hat L,M_i,I_i$ を事前に固定することである。
@@ -499,7 +499,7 @@ Software / SaaS では、$F$ を二段階で定義する。
 \]
 を置く。これは、変更によって導入される不具合を、release 前後の短い時間窓で検出・局所化できるか、という限定された機能である。
 
-二段階に分ける理由は、broad $F$ が本補論の実務的射程を保つ一方で、narrow $F_{\mathrm{pilot}}$ は検証可能性を与えるからである。最初から「安全な変更継続」全体を評価対象にすると、outcome が広すぎて baseline 比較が曖昧になる。まずは bug detection / localization に絞り、そこで構造持続型 proxy が raw baseline を上回るかを検査するのが安全である。
+二段階に分ける理由は、broad $F$ が本補論の実務的射程を保つ一方で、narrow $F_{\mathrm{pilot}}$ は検証可能性を与えるからである。最初から「安全な変更継続」全体を評価対象にすると、outcome が広すぎて baseline 比較が曖昧になる。まずは bug detection / localization に絞り、そこで構造持続型の観測・推定指標が raw baseline を上回るかを検査するのが安全である。
 
 4.3 構造 $\Sigma$: code だけではない
 
@@ -552,13 +552,13 @@ Software / SaaS の $R$ は raw stock であり、それ自体はまだ有効維
 
 この区別が、本補論の中心である。
 
-4.5 代理構造消耗 $\hat L$
+4.5 推定構造消耗 $\hat L$
 
-Software では真の $L$ を直接測るのが難しいため、最初は代理構造消耗 $\hat L$ を事前固定する。
+Software では真の $L$ を直接測るのが難しいため、最初は推定構造消耗 $\hat L$ を事前固定する。
 
 候補は次である。
 
-| proxy | 定義の例 | 対応する構造消耗 |
+| 観測・推定指標 | 定義の例 | 対応する構造消耗 |
 |---|---|---|
 | boundary-crossing count | 1 change が横断する module / service / ownership boundary 数 | 影響範囲の拡大 |
 | rollback-impossibility rate | 失敗時に即時 rollback できない change の比率 | 回復経路の喪失 |
@@ -765,14 +765,14 @@ Baseline predictors
 | complexity | cyclomatic complexity, nesting depth, dependency count |
 | activity | churn, commit count, author count |
 | history | prior incidents, prior bug-fix count, prior rollback count |
-| scalar resource | team size, on-call hours, budget proxy, server capacity |
+| scalar resource | team size, on-call hours, budget indicator, server capacity |
 | scalar $M_{\mathrm{total}}$ | component signals を合計または単一スカラー化したもの |
 
 これらは quality-blind / scalar-resource baseline である。本補論の検査標的は、これらの baseline より component-aware predictor が out-of-sample で勝つかにかかっている。
 
 B2 scalar $M_{\mathrm{total}}$ baseline は straw-man にならないよう、train fold 上で学習した weighted combination を用いる。test fold には固定 weight を適用する。デフォルト候補は component signal の z-score 平均である。これは本補論の component-aware model が最も強い single-scalar summary を倒すことを担保するための guardrail である。
 
-Structure-loss proxy
+Structure-loss indicator
 
 第一段階の $\hat L_{\mathrm{pilot}}$ は、§4.5 の最小構成を用いる。
 
@@ -849,9 +849,9 @@ Component signal は単位が揃っていない。したがって、各 signal �
 
 | component | normalization candidates |
 |---|---|
-| $M_{\mathrm{buffer}}$ | min-max within train fold; percentile rank; log(1+capacity proxy) |
+| $M_{\mathrm{buffer}}$ | min-max within train fold; percentile rank; log(1+capacity indicator) |
 | $M_{\mathrm{recovery}}$ | inverse MTTR percentile; rollback success rate; restore drill recency score |
-| $M_{\mathrm{reconfiguration}}$ | feature-flag coverage; migration tooling availability; recurrence reduction proxy |
+| $M_{\mathrm{reconfiguration}}$ | feature-flag coverage; migration tooling availability; recurrence reduction indicator |
 | $M_{\mathrm{ext}\to\mathrm{recovery}}$ | external response SLA score; vendor escalation success; upstream fix latency inverse |
 
 All normalization parameters must be fitted on train folds only.
@@ -976,14 +976,14 @@ Software / SaaS は、本補論の最初の具体ドメインとして扱いや�
 
 7.3 $\hat L_{\mathrm{pilot}}$ は真の $L$ ではない
 
-§4-6 で用いる $\hat L_{\mathrm{pilot}}$ は、boundary-crossing count, rollback-impossibility rate などから作る実用 proxy である。これは Paper 1 の対数比の構造消耗 $L$ そのものではない。
+§4-6 で用いる $\hat L_{\mathrm{pilot}}$ は、boundary-crossing count, rollback-impossibility rate などから作る実用的な推定指標である。これは Paper 1 の対数比の構造消耗 $L$ そのものではない。
 
 この違いは重要である。
 
 - Paper 1 の $L$ は、構造維持可能集合の測度比から定義される。
-- 本補論の $\hat L_{\mathrm{pilot}}$ は、software process で観測可能な structural-risk signal から作る proxy である。
+- 本補論の $\hat L_{\mathrm{pilot}}$ は、software process で観測可能な structural-risk signal から作る推定指標である。
 
-したがって、$\hat L_{\mathrm{pilot}}$ が outcome を予測しても、それだけで Paper 1 の最小形式が software に直接適用されたとは言わない。本補論で問うのは、proxy と維持能力成分の分解が out-of-sample で scalar baselines にない情報を持つかである。
+したがって、$\hat L_{\mathrm{pilot}}$ が outcome を予測しても、それだけで Paper 1 の最小形式が software に直接適用されたとは言わない。本補論で問うのは、推定指標と維持能力成分の分解が out-of-sample で scalar baselines にない情報を持つかである。
 
 7.4 Component signal は直接測定ではない
 
@@ -991,7 +991,7 @@ $M_{\mathrm{buffer}}^{\mathrm{int}}$, $M_{\mathrm{recovery}}^{\mathrm{int}}$, $M
 
 このため、component signal の選択は preregistration で固定しなければならない。観測後に都合のよい signal を選ぶなら、それは本補論の validation ではなく、post-hoc interpretation である。
 
-また、同じ observed signal が複数の成分に関係する場合がある。たとえば feature flag は一見 $M_{\mathrm{reconfiguration}}$ の signal だが、rollback workflow と結びつくと $M_{\mathrm{recovery}}$ にも寄与する。このような signal は、どの成分の proxy として使うかを実験前に固定する必要がある。
+また、同じ observed signal が複数の成分に関係する場合がある。たとえば feature flag は一見 $M_{\mathrm{reconfiguration}}$ の signal だが、rollback workflow と結びつくと $M_{\mathrm{recovery}}$ にも寄与する。このような signal は、どの成分の観測指標として使うかを実験前に固定する必要がある。
 
 7.5 $\rho_i$, $\Phi$, $A_j$ の一意性は主張しない
 
@@ -1009,7 +1009,7 @@ $M_{\mathrm{buffer}}^{\mathrm{int}}$, $M_{\mathrm{recovery}}^{\mathrm{int}}$, $M
   S = \Phi(M) e^{-L}
 \]
 
-または、その software proxy 版を扱う。時間発展としての $\dot L$, $\dot M$, collapse profile, recovery profile は本補論の主対象ではない。
+または、その software 推定指標版を扱う。時間発展としての $\dot L$, $\dot M$, collapse profile, recovery profile は本補論の主対象ではない。
 
 これは特に $M_{\mathrm{ext}\to\mathrm{recovery}}$ の解釈で重要である。外部支援は短期には強い repair capacity を供給しうる。しかし、内部 $M_{\mathrm{recovery}}^{\mathrm{int}}$ が形成されなければ、同じ failure class の再発低減にはつながらない可能性がある。この短期/長期の差は、本補論では M-profile 上の設計仮説として述べるに留め、動的理論としては扱わない。
 

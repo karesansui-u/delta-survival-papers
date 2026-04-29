@@ -14,7 +14,7 @@ Layer Meanings
 | Layer | Meaning |
 |---|---|
 | specification_fixed | \(V,m\), drift, boundary, or exposure law can be fixed from the domain specification |
-| structurally_inferred | structure is not directly counted; proxy indicators and frozen validation are required |
+| structurally_inferred | structure is not directly counted; observation / inference indicators and frozen validation are required |
 | conditional_embedding | an existing theory is mapped into \(d_t,r_t,b_t,B_n\) under stated conditions |
 
 Directory order:

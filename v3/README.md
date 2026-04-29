@@ -58,7 +58,7 @@ New domains should not require edits to the core theory. They should enter throu
 ------------------------
 
 The strongest current empirical entry point is the specification-fixed
-structural layer, not the proxy layer.
+structural layer, not the structurally inferred indicator layer.
 
 Two frozen packages already have clean outside-rerun anchors:
 

@@ -27,7 +27,7 @@ Before a result can be called support, freeze:
 
 - target structure;
 - measurement unit or observation unit;
-- \(V,m\) or proxy readout;
+- \(V,m\) or indicator readout;
 - \(d_t,r_t,L,B,M\)-side indicators;
 - baseline family;
 - model class;
@@ -45,7 +45,7 @@ Do not:
 - move a domain from no-support to support without a new frozen test;
 - describe structurally inferred evidence as theorem-side evidence;
 - claim that transfer from another domain is support;
-- edit the main theory to accommodate a failed proxy;
+- edit the main theory to accommodate a failed indicator;
 - erase failed attempts.
 
 
@@ -60,4 +60,3 @@ Most contributions should edit:
 - a domain profile under `03_domains/`
 - evidence ledgers under `05_evidence/`
 - templates, if the contribution protocol needs clarification.
-

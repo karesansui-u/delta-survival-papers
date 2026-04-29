@@ -17,7 +17,7 @@ summaries.
 4. When recovery is represented on the same logarithmic scale, the balance kernel is
    \(S = M e^{-B}\), where \(B_n=\sum_{t<n}(d_t-r_t)\).
 5. The same variables can be used as a common coordinate for theorem-side anchors,
-   proxy-based prediction, and conditional embeddings, provided the observability layer
+   indicator-based prediction, and conditional embeddings, provided the observability layer
    is stated explicitly.
 
 The familiar resource side is \(M\). The nontrivial addition of this theory is
@@ -43,7 +43,7 @@ resource margin, alternative-path, or related coordinates derived from the theor
 
 The law-side claim belongs first to specification-fixed structural domains. In
 structurally inferred domains, SP features are proxies for the law-side \(L/B/M\)
-coordinates. A proxy should be treated as a stronger predictive instrument only
+coordinates. An inferred indicator should be treated as a stronger predictive instrument only
 when frozen validation shows incremental out-of-sample value over the domain
 baseline; otherwise it remains candidate, no-support, weak-axis failure, or
 silence.
@@ -98,8 +98,8 @@ The v3 program does not claim:
 - every domain has a unique natural \(V,m,d_t,r_t,M\);
 - structurally inferred domains have the same evidential strength as specification-fixed
   domains;
-- proxy success proves a universal law;
-- no-support in one proxy attempt refutes the mathematical kernel;
+- indicator success proves a universal law;
+- no-support in one indicator attempt refutes the mathematical kernel;
 - \(M\) is derived from the exponential kernel itself;
 - cross-domain transfer imports support;
 - DeltaLint merged PRs alone prove raw detector precision, long-term software

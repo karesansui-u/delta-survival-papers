@@ -1338,7 +1338,7 @@ realized fluctuation 自体が generic concentration / collapse interface の上
 \qquad
 \texttt{varianceProxy\_eq}
 \]
-により、この non-flat SAT process で用いられる bounded increment と variance proxy も
+により、この non-flat SAT process で用いられる bounded increment と分散上界量も
 明示式
 \[
 8\log(8/7),\qquad n\cdot(8\log(8/7))^2

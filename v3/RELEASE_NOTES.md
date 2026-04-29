@@ -53,7 +53,7 @@ v3 does not claim:
 - cross-domain transfer imports support;
 - merged PRs prove raw detector precision or long-term software collapse;
 - \(M\) directly chooses the next intervention;
-- a no-support proxy attempt refutes the mathematical kernel.
+- a no-support indicator attempt refutes the mathematical kernel.
 
 For \(M\)-side work, \(M\) should be read as the familiar support-side effective
 maintenance amount: usable resource, slack, or capacity for the pre-fixed
@@ -75,7 +75,7 @@ Specification-fixed anchors:
 
 Structurally inferred anchors:
 
-- LLM reasoning and continual learning remain observational / proxy-based
+- LLM reasoning and continual learning remain observational / indicator-based
   anchors.
 - Software contract-coherence diagnostics evidence is split into two ledgers
   using DeltaLint as the current implementation:

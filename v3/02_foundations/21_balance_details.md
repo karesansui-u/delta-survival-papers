@@ -778,7 +778,7 @@ best preregistered primary raw baseline は 2.804019 であり、`fm_plus_n` は
 \[
   0.440189 < 7.700105
 \]
-となり、CNF encoding size proxy では説明されなかった。
+となり、CNF encoding size 指標では説明されなかった。
 
 fold-level でも H1 の方向は q=3,4,5 のすべてで通った。ただし q=5 fold は
 \[
@@ -853,7 +853,7 @@ SAT / Bernoulli-CSP、Mixed-CSP、Exp43c q-coloring は、構造持続の収支�
 \[
   B_{\mathrm{eff}} = D_{\mathrm{obs}} - R_{\mathrm{obs}}^{\mathrm{rec}},
 \]
-ここで \(D_{\mathrm{obs}}\) は観測された構造消耗指標、\(R_{\mathrm{obs}}^{\mathrm{rec}}\) は観測された回復指標である。\(B_{\mathrm{eff}}\) は、§2 の \(B_n\) と同じ強度の pathwise quantity ではない。あくまで、観測可能な代理量である。
+ここで \(D_{\mathrm{obs}}\) は観測された構造消耗指標、\(R_{\mathrm{obs}}^{\mathrm{rec}}\) は観測された回復指標である。\(B_{\mathrm{eff}}\) は、§2 の \(B_n\) と同じ強度の pathwise quantity ではない。あくまで、観測可能な推定量である。
 
 構造推定層の最小検査は、次の形になる。
 

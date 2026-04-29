@@ -5,7 +5,7 @@ This file gives the operational reading of support labels used in v3.
 
 | Level | Meaning |
 |---|---|
-| candidate | proposed mapping, proxy, or intervention before frozen validation |
+| candidate | proposed mapping, indicator, or intervention before frozen validation |
 | frozen | mapping and test protocol fixed before outcome-bearing evaluation |
 | weak support | SP-only or compressed SP beats a simple baseline |
 | incremental support | domain baseline + SP beats domain baseline out-of-sample |

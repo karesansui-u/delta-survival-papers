@@ -14,7 +14,7 @@ Structural Persistence Theory for LLM reasoning degradation, catastrophic forget
 |---|---|
 | 仕様固定構造層 | 構造、測度、境界を仕様から直接固定できる層 |
 | 条件付き構造埋め込み層 | 既存理論の drift / 差分 / 停止境界を条件付きに写す bridge |
-| 構造推定層 | 構造を直接数えず、代理指標と凍結検証で推定する現実系の標準入口 |
+| 構造推定層 | 構造を直接数えず、観測・推定指標と凍結検証で推定する現実系の標準入口 |
 
 - 外向け導線: [`v3/01_theory/00_map.md`](v3/01_theory/00_map.md) -> [`v3/01_theory/01_overview.md`](v3/01_theory/01_overview.md) -> [`v3/01_theory/02_core.md`](v3/01_theory/02_core.md)
 - 主理論 spine: [`v3/01_theory/10_paper1_minimal_form.md`](v3/01_theory/10_paper1_minimal_form.md) -> [`v3/01_theory/11_paper2_balance_principle.md`](v3/01_theory/11_paper2_balance_principle.md)

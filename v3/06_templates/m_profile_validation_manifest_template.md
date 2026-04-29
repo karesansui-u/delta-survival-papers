@@ -43,7 +43,7 @@ intervention.
 
 Define the component signals before outcome-bearing evaluation.
 
-| Component | Frozen proxy / signal | Source table or log | Direction | Availability before outcome |
+| Component | Frozen observation indicator / signal | Source table or log | Direction | Availability before outcome |
 |---|---|---|---|---|
 | \(M_{\mathrm{buffer}}\) |  |  | higher is better / lower is better | yes / no |
 | \(M_{\mathrm{recovery}}\) |  |  | higher is better / lower is better | yes / no |
@@ -59,7 +59,7 @@ Define the component signals before outcome-bearing evaluation.
 Run this gate on training data only before the primary validation.
 
 - baseline feature set:
-- scalar resource proxy:
+- scalar resource indicator:
 - existing degradation / capacity features:
 - leakage guards:
 - redundancy test:

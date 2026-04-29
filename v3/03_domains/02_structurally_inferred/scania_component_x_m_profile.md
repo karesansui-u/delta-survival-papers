@@ -28,7 +28,7 @@ status: candidate
 - \(r_t\): repair or maintenance event readout if it can be coded without endpoint leakage.
 - \(L\): loss-only degradation coordinate.
 - \(B\): recovery-aware coordinate when a pre-fixed repair signal is valid.
-- \(M\)-side readout, if any: buffer / recovery / reconfiguration proxy candidates from specifications, repair records, and operational history.
+- \(M\)-side readout, if any: buffer / recovery / reconfiguration indicator candidates from specifications, repair records, and operational history.
 
 
 3. Why This Candidate Exists

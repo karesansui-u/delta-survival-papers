@@ -15,7 +15,7 @@ frozen_by:
 
 - target structure:
 - observation unit:
-- \(V,m\) or proxy:
+- \(V,m\) or observation / inference indicator:
 - SP coordinates:
 - inclusion / exclusion criteria:
 
@@ -38,4 +38,3 @@ frozen_by:
 - no causal claim unless separately identified;
 - no support transfer from another domain;
 - no post-hoc remapping on the outcome-bearing archive.
-
