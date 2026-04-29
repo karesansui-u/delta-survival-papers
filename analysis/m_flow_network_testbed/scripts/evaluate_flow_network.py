@@ -13,6 +13,7 @@ import argparse
 import csv
 import json
 import math
+import os
 from collections import defaultdict
 from pathlib import Path
 from typing import Any
@@ -356,7 +357,12 @@ def split_comparisons(group_rows: list[dict[str, Any]]) -> dict[str, Any]:
     return comparisons
 
 
-def evaluate(rows: list[dict[str, str]]) -> tuple[list[dict[str, Any]], list[dict[str, Any]], dict[str, Any]]:
+def evaluate(
+    rows: list[dict[str, str]],
+    *,
+    status: str,
+    non_claim: str,
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]], dict[str, Any]]:
     calibration_rows = [row for row in rows if is_calibration(row)]
     policy_prior = fit_policy_prior(calibration_rows)
     weights = fit_linear_m_profile(calibration_rows)
@@ -419,8 +425,8 @@ def evaluate(rows: list[dict[str, str]]) -> tuple[list[dict[str, Any]], list[dic
     )
 
     summary = {
-        "status": "dry_run_evaluator_v1_only",
-        "non_claim": "split-aware ranking smoke test only; not M-primary support",
+        "status": status,
+        "non_claim": non_claim,
         "runs": len(rows),
         "calibration_rows": len(calibration_rows),
         "groups_evaluated": len(group_rows),
@@ -478,14 +484,50 @@ def write_outputs(
     summary_path.write_text(json.dumps(summary, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 
 
+def fail_if_outputs_exist(out_dir: Path, filenames: tuple[str, ...], *, allow_overwrite: bool) -> None:
+    existing = [str(out_dir / name) for name in filenames if (out_dir / name).exists()]
+    if existing and not allow_overwrite:
+        raise SystemExit(
+            "refusing to overwrite existing evaluator output(s): "
+            + ", ".join(existing)
+            + " (use --allow-overwrite only for explicitly labeled reruns)"
+        )
+
+
+def require_primary_confirmation(args: argparse.Namespace) -> None:
+    if not args.confirm_frozen_primary:
+        raise SystemExit("--primary-run requires --confirm-frozen-primary")
+    if not os.environ.get("CONFIRM_M_FLOW_PRIMARY"):
+        raise SystemExit("--primary-run requires CONFIRM_M_FLOW_PRIMARY to be set")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--runs", type=Path, default=DEFAULT_RUNS)
     parser.add_argument("--out-dir", type=Path, default=DEFAULT_OUT_DIR)
+    parser.add_argument("--primary-run", action="store_true")
+    parser.add_argument("--confirm-frozen-primary", action="store_true")
+    parser.add_argument("--allow-overwrite", action="store_true")
     args = parser.parse_args()
 
+    if args.primary_run:
+        require_primary_confirmation(args)
+        fail_if_outputs_exist(
+            args.out_dir,
+            ("evaluation_group_rankings.csv", "evaluation_slice_metrics.csv", "evaluation_summary.json"),
+            allow_overwrite=args.allow_overwrite,
+        )
+        status = "primary_evaluator_v1_uninterpreted"
+        non_claim = (
+            "primary evaluator metrics only; support requires the frozen "
+            "support-rule decision and degeneracy review"
+        )
+    else:
+        status = "dry_run_evaluator_v1_only"
+        non_claim = "split-aware ranking smoke test only; not M-primary support"
+
     rows = read_rows(args.runs)
-    group_rows, slice_rows, summary = evaluate(rows)
+    group_rows, slice_rows, summary = evaluate(rows, status=status, non_claim=non_claim)
     write_outputs(group_rows, slice_rows, summary, args.out_dir)
     print(json.dumps(summary, ensure_ascii=False, indent=2, sort_keys=True))
     print(f"wrote: {args.out_dir / 'evaluation_group_rankings.csv'}")

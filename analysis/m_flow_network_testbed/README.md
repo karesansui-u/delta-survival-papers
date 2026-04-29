@@ -21,7 +21,12 @@ Files:
 - `scripts/report_flow_degeneracy.py`: degeneracy report v1 smoke test.
 - `scripts/run_calibration_sweep.py`: calibration sweep v0 over Q / damage /
   horizon candidates.
+- `scripts/run_primary_package.py`: guarded primary-package runner; prints the
+  plan by default and requires an explicit confirmation token to execute.
 - `dry_runs/`: non-primary smoke-test outputs.
+- `primary_packages/`: frozen pre-primary package configs, seed lists, command
+  records, and hashes. These packages are not support evidence until executed
+  and interpreted under the frozen rules.
 
 The purpose is to test whether buffer / recovery / reconfiguration allocation
 has predictive and intervention-ranking value beyond total resource in a
@@ -88,3 +93,14 @@ The review narrows the v0 sweep around `Q=4` and writes
 `dry_runs/calibration_review_v1/sweep_summary.csv` and
 `dry_runs/calibration_review_v1/sweep_diagnostics.json`. It is still a
 calibration pointer, not a freeze decision or support claim.
+
+Primary package final candidate v0:
+
+```bash
+python3 analysis/m_flow_network_testbed/scripts/run_primary_package.py \
+  --config analysis/m_flow_network_testbed/primary_packages/final_candidate_v0/config.json
+```
+
+This command only prints the execution plan. The guarded execution command is
+recorded in `primary_packages/final_candidate_v0/commands.md`. It has not been
+executed in the package record.

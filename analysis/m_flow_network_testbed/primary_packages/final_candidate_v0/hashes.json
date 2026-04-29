@@ -1,0 +1,16 @@
+{
+  "status": "hash_record_for_primary_package_candidate_v0",
+  "non_claim": "hash record only; primary not executed",
+  "sha256": {
+    "analysis/m_flow_network_testbed/freeze_manifest_final_candidate.md": "ed21fc2a6c2546a9ab887d6fde6e9a2d63ea65e001f4f90b4e635fea589236cc",
+    "analysis/m_flow_network_testbed/freeze_manifest_draft_v1.md": "9c195b234454283514d9a52c4fac796a621c24af8db73874006fafc062498868",
+    "analysis/m_flow_network_testbed/scripts/run_primary_package.py": "99d4447540030cae44a481b8d9602a9e7d074798f577e8589dd07c5662a1a1c7",
+    "analysis/m_flow_network_testbed/scripts/simulate_flow_network.py": "d4986985d23bdc9701104d9e6226a80ccc6bb8210c6d6dcefef01e72dbbe1c0b",
+    "analysis/m_flow_network_testbed/scripts/evaluate_flow_network.py": "e3c1a3823efecfbfcd339581cae76ab433bca90f88babda43ed755534cae51ba",
+    "analysis/m_flow_network_testbed/scripts/report_flow_degeneracy.py": "150e109d0935be9b2f054fdccb73dea667c03dc2d75ab976a810bba4964a26e6",
+    "analysis/m_flow_network_testbed/primary_packages/final_candidate_v0/seeds.txt": "d0ea2a83bec1ced7784b46be5c5b26d7a9e5bc01588fa10d790f6005ee5c6f87",
+    "analysis/m_flow_network_testbed/primary_packages/final_candidate_v0/config.json": "ebfd1d1d9b794de276209c33b1a593b055470f6d07d13c486694f0c037f69a77",
+    "analysis/m_flow_network_testbed/primary_packages/final_candidate_v0/commands.md": "3b9d663389e539f9c5a354e91f6699466d6517c56421237a1ace3fbbe24c2d61",
+    "analysis/m_flow_network_testbed/primary_packages/final_candidate_v0/README.md": "43b8059ccd119e6debc4ad6d599cbc830a2b17bd9cab6675fef469886a0417af"
+  }
+}

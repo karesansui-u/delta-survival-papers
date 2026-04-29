@@ -13,6 +13,7 @@ import csv
 import hashlib
 import json
 import math
+import os
 import random
 from collections import Counter, deque
 from dataclasses import dataclass
@@ -22,6 +23,7 @@ from typing import Any, Iterable
 
 HERE = Path(__file__).resolve().parents[1]
 DEFAULT_OUT_DIR = HERE / "dry_runs" / "v0_smoke"
+DEFAULT_PRIMARY_OUT_DIR = HERE / "primary_runs" / "primary_v1"
 
 GRAPH_FAMILIES = ("layered_dag", "grid", "series_parallel", "random_geometric")
 DAMAGE_FAMILIES = (
@@ -775,7 +777,7 @@ def parse_allocation(text: str) -> tuple[int, int, int]:
     return parts
 
 
-def summarize(rows: list[dict[str, Any]]) -> dict[str, Any]:
+def summarize(rows: list[dict[str, Any]], *, status: str, non_claim: str) -> dict[str, Any]:
     flags = Counter()
     for row in rows:
         for flag in str(row["degeneracy_flags"]).split("|"):
@@ -786,7 +788,7 @@ def summarize(rows: list[dict[str, Any]]) -> dict[str, Any]:
     by_allocation_split = Counter(row["allocation_split"] for row in rows)
     collapse_rows = [row for row in rows if row["collapse_time"] != ""]
     return {
-        "status": "dry_run_only",
+        "status": status,
         "run_count": len(rows),
         "graph_family_counts": dict(sorted(by_family.items())),
         "damage_family_counts": dict(sorted(by_damage.items())),
@@ -797,11 +799,11 @@ def summarize(rows: list[dict[str, Any]]) -> dict[str, Any]:
             sum(float(row["maintained_flow_ratio"]) for row in rows) / len(rows) if rows else 0.0
         ),
         "schema_fields": list(rows[0].keys()) if rows else [],
-        "non_claim": "schema smoke test only; not M-primary support",
+        "non_claim": non_claim,
     }
 
 
-def write_outputs(rows: list[dict[str, Any]], out_dir: Path) -> None:
+def write_outputs(rows: list[dict[str, Any]], out_dir: Path, *, status: str, non_claim: str) -> None:
     out_dir.mkdir(parents=True, exist_ok=True)
     runs_path = out_dir / "runs.csv"
     summary_path = out_dir / "summary.json"
@@ -810,7 +812,7 @@ def write_outputs(rows: list[dict[str, Any]], out_dir: Path) -> None:
             writer = csv.DictWriter(f, fieldnames=list(rows[0].keys()), lineterminator="\n")
             writer.writeheader()
             writer.writerows(rows)
-    summary = summarize(rows)
+    summary = summarize(rows, status=status, non_claim=non_claim)
     summary_path.write_text(json.dumps(summary, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 
 
@@ -830,7 +832,24 @@ def iter_plan(args: argparse.Namespace) -> Iterable[tuple[int, str, str, tuple[i
                     yield seed, graph_family, damage_family, allocation
 
 
-def run_dry_run(args: argparse.Namespace) -> None:
+def fail_if_outputs_exist(out_dir: Path, filenames: tuple[str, ...], *, allow_overwrite: bool) -> None:
+    existing = [str(out_dir / name) for name in filenames if (out_dir / name).exists()]
+    if existing and not allow_overwrite:
+        raise SystemExit(
+            "refusing to overwrite existing primary output(s): "
+            + ", ".join(existing)
+            + " (use --allow-overwrite only for explicitly labeled reruns)"
+        )
+
+
+def require_primary_confirmation(args: argparse.Namespace) -> None:
+    if not getattr(args, "confirm_frozen_primary", False):
+        raise SystemExit("primary-run requires --confirm-frozen-primary")
+    if not os.environ.get("CONFIRM_M_FLOW_PRIMARY"):
+        raise SystemExit("primary-run requires CONFIRM_M_FLOW_PRIMARY to be set")
+
+
+def run_plan(args: argparse.Namespace, *, status: str, non_claim: str) -> None:
     held_out_allocations = set(args.held_out_allocation or DEFAULT_HELD_OUT_ALLOCATIONS)
     rows = [
         run_instance(
@@ -849,34 +868,72 @@ def run_dry_run(args: argparse.Namespace) -> None:
         )
         for seed, graph_family, damage_family, allocation in iter_plan(args)
     ]
-    write_outputs(rows, args.out_dir)
-    summary = summarize(rows)
+    write_outputs(rows, args.out_dir, status=status, non_claim=non_claim)
+    summary = summarize(rows, status=status, non_claim=non_claim)
     print(json.dumps(summary, ensure_ascii=False, indent=2, sort_keys=True))
     print(f"wrote: {args.out_dir / 'runs.csv'}")
     print(f"wrote: {args.out_dir / 'summary.json'}")
+
+
+def run_dry_run(args: argparse.Namespace) -> None:
+    run_plan(
+        args,
+        status="dry_run_only",
+        non_claim="schema smoke test only; not M-primary support",
+    )
+
+
+def run_primary_run(args: argparse.Namespace) -> None:
+    require_primary_confirmation(args)
+    args.full_grid = True
+    fail_if_outputs_exist(
+        args.out_dir,
+        ("runs.csv", "summary.json"),
+        allow_overwrite=args.allow_overwrite,
+    )
+    run_plan(
+        args,
+        status="primary_run_raw_uninterpreted",
+        non_claim=(
+            "raw primary simulator output only; support requires the frozen "
+            "evaluator, degeneracy report, and support-rule decision"
+        ),
+    )
+
+
+def add_run_arguments(parser: argparse.ArgumentParser, *, default_out_dir: Path, primary_defaults: bool) -> None:
+    parser.add_argument("--out-dir", type=Path, default=default_out_dir)
+    parser.add_argument("--seed", type=int, default=2000 if primary_defaults else 1000)
+    parser.add_argument("--seeds", type=int, default=50 if primary_defaults else 1)
+    parser.add_argument("--layers", type=int, default=4)
+    parser.add_argument("--width", type=int, default=4)
+    parser.add_argument("--edge-density", type=float, default=0.45)
+    parser.add_argument("--capacity-max", type=int, default=4)
+    parser.add_argument("--required-flow", type=int, default=4 if primary_defaults else 3)
+    parser.add_argument("--horizon", type=int, default=8)
+    parser.add_argument("--damage-intensity", type=float, default=0.34 if primary_defaults else 0.18)
+    parser.add_argument("--allocation", type=parse_allocation, action="append")
+    parser.add_argument("--held-out-allocation", type=parse_allocation, action="append")
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest="cmd", required=True)
     dry = sub.add_parser("dry-run", help="Run a schema smoke test.")
-    dry.add_argument("--out-dir", type=Path, default=DEFAULT_OUT_DIR)
-    dry.add_argument("--seed", type=int, default=1000)
-    dry.add_argument("--seeds", type=int, default=1)
-    dry.add_argument("--layers", type=int, default=4)
-    dry.add_argument("--width", type=int, default=4)
-    dry.add_argument("--edge-density", type=float, default=0.45)
-    dry.add_argument("--capacity-max", type=int, default=4)
-    dry.add_argument("--required-flow", type=int, default=3)
-    dry.add_argument("--horizon", type=int, default=8)
-    dry.add_argument("--damage-intensity", type=float, default=0.18)
-    dry.add_argument("--allocation", type=parse_allocation, action="append")
-    dry.add_argument("--held-out-allocation", type=parse_allocation, action="append")
+    add_run_arguments(dry, default_out_dir=DEFAULT_OUT_DIR, primary_defaults=False)
     dry.add_argument("--full-grid", action="store_true")
+
+    primary = sub.add_parser("primary-run", help="Run the frozen primary simulator plan.")
+    add_run_arguments(primary, default_out_dir=DEFAULT_PRIMARY_OUT_DIR, primary_defaults=True)
+    primary.add_argument("--confirm-frozen-primary", action="store_true")
+    primary.add_argument("--allow-overwrite", action="store_true")
+
     args = parser.parse_args()
 
     if args.cmd == "dry-run":
         run_dry_run(args)
+    elif args.cmd == "primary-run":
+        run_primary_run(args)
 
 
 if __name__ == "__main__":

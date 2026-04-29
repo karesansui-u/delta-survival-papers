@@ -10,6 +10,7 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import os
 from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Any
@@ -207,6 +208,9 @@ def summarize(
     rows: list[dict[str, str]],
     run_flag_rows: list[dict[str, Any]],
     group_rows: list[dict[str, Any]],
+    *,
+    status: str,
+    non_claim: str,
 ) -> dict[str, Any]:
     group_flag_counts: Counter[str] = Counter()
     for row in group_rows:
@@ -219,8 +223,8 @@ def summarize(
         by_group_split[str(row["group_split"])][str(row["exclusion_recommendation"])] += 1
 
     return {
-        "status": "dry_run_degeneracy_report_v1_only",
-        "non_claim": "degeneracy schema/reporting smoke test only; not an exclusion decision",
+        "status": status,
+        "non_claim": non_claim,
         "runs": len(rows),
         "groups_evaluated": len(group_rows),
         "run_flag_counts": {
@@ -269,16 +273,52 @@ def write_outputs(
     )
 
 
+def fail_if_outputs_exist(out_dir: Path, filenames: tuple[str, ...], *, allow_overwrite: bool) -> None:
+    existing = [str(out_dir / name) for name in filenames if (out_dir / name).exists()]
+    if existing and not allow_overwrite:
+        raise SystemExit(
+            "refusing to overwrite existing degeneracy output(s): "
+            + ", ".join(existing)
+            + " (use --allow-overwrite only for explicitly labeled reruns)"
+        )
+
+
+def require_primary_confirmation(args: argparse.Namespace) -> None:
+    if not args.confirm_frozen_primary:
+        raise SystemExit("--primary-run requires --confirm-frozen-primary")
+    if not os.environ.get("CONFIRM_M_FLOW_PRIMARY"):
+        raise SystemExit("--primary-run requires CONFIRM_M_FLOW_PRIMARY to be set")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--runs", type=Path, default=DEFAULT_RUNS)
     parser.add_argument("--out-dir", type=Path, default=DEFAULT_OUT_DIR)
+    parser.add_argument("--primary-run", action="store_true")
+    parser.add_argument("--confirm-frozen-primary", action="store_true")
+    parser.add_argument("--allow-overwrite", action="store_true")
     args = parser.parse_args()
+
+    if args.primary_run:
+        require_primary_confirmation(args)
+        fail_if_outputs_exist(
+            args.out_dir,
+            ("degeneracy_run_flags.csv", "degeneracy_group_summary.csv", "degeneracy_summary.json"),
+            allow_overwrite=args.allow_overwrite,
+        )
+        status = "primary_degeneracy_report_v1_uninterpreted"
+        non_claim = (
+            "primary degeneracy report only; exclusion and support decisions "
+            "must follow the frozen manifest"
+        )
+    else:
+        status = "dry_run_degeneracy_report_v1_only"
+        non_claim = "degeneracy schema/reporting smoke test only; not an exclusion decision"
 
     rows = read_rows(args.runs)
     run_flag_rows = build_run_flag_rows(rows)
     group_rows = build_group_rows(rows)
-    summary = summarize(rows, run_flag_rows, group_rows)
+    summary = summarize(rows, run_flag_rows, group_rows, status=status, non_claim=non_claim)
     write_outputs(run_flag_rows, group_rows, summary, args.out_dir)
     print(json.dumps(summary, ensure_ascii=False, indent=2, sort_keys=True))
     print(f"wrote: {args.out_dir / 'degeneracy_run_flags.csv'}")

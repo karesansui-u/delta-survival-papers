@@ -112,11 +112,16 @@ winner.  The second protects against the upper-damage choice.  The third checks
 whether the selected damage intensity is stable under a slightly longer horizon.
 
 
-## 5. Still Unfrozen Before Primary Execution
+## 5. Primary-Package Freeze Status
 
 This document freezes only the Q / damage / horizon candidate and required
-sensitivity settings.  Before any primary run, a final primary package must
-still freeze:
+sensitivity settings.  The remaining primary-package fields are frozen in:
+
+```text
+analysis/m_flow_network_testbed/primary_packages/final_candidate_v0/
+```
+
+That package freezes:
 
 - exact seed list;
 - number of seeds;
@@ -129,6 +134,9 @@ still freeze:
 - output directory;
 - reproduction command;
 - manifest hash.
+
+The package is still not a primary result.  It records the pre-execution
+contract for a guarded one-time primary run.
 
 
 ## 6. Non-Claims

@@ -1,0 +1,93 @@
+{
+  "status": "primary_package_frozen_not_executed",
+  "non_claim": "This package freezes pre-primary execution settings only; it is not support evidence.",
+  "created_date": "2026-04-29",
+  "package_id": "m_flow_network_final_candidate_v0",
+  "confirm_guard": {
+    "env_var": "CONFIRM_M_FLOW_PRIMARY",
+    "token": "CONFIRM_M_FLOW_PRIMARY_AA90761"
+  },
+  "source_manifests": {
+    "final_candidate": {
+      "path": "analysis/m_flow_network_testbed/freeze_manifest_final_candidate.md",
+      "sha256": "ed21fc2a6c2546a9ab887d6fde6e9a2d63ea65e001f4f90b4e635fea589236cc"
+    },
+    "freeze_manifest_draft_v1": {
+      "path": "analysis/m_flow_network_testbed/freeze_manifest_draft_v1.md",
+      "sha256": "9c195b234454283514d9a52c4fac796a621c24af8db73874006fafc062498868"
+    }
+  },
+  "scripts": {
+    "primary_runner": "analysis/m_flow_network_testbed/scripts/run_primary_package.py",
+    "primary_runner_sha256": "99d4447540030cae44a481b8d9602a9e7d074798f577e8589dd07c5662a1a1c7",
+    "simulator": "analysis/m_flow_network_testbed/scripts/simulate_flow_network.py",
+    "simulator_sha256": "d4986985d23bdc9701104d9e6226a80ccc6bb8210c6d6dcefef01e72dbbe1c0b",
+    "evaluator": "analysis/m_flow_network_testbed/scripts/evaluate_flow_network.py",
+    "evaluator_sha256": "e3c1a3823efecfbfcd339581cae76ab433bca90f88babda43ed755534cae51ba",
+    "degeneracy_report": "analysis/m_flow_network_testbed/scripts/report_flow_degeneracy.py",
+    "degeneracy_report_sha256": "150e109d0935be9b2f054fdccb73dea667c03dc2d75ab976a810bba4964a26e6"
+  },
+  "output_root": "analysis/m_flow_network_testbed/primary_runs/final_candidate_v0",
+  "seeds": {
+    "path": "analysis/m_flow_network_testbed/primary_packages/final_candidate_v0/seeds.txt",
+    "sha256": "d0ea2a83bec1ced7784b46be5c5b26d7a9e5bc01588fa10d790f6005ee5c6f87",
+    "start": 2000,
+    "count": 30,
+    "selection_rule": "contiguous primary-only seed block; calibration smoke used seed 1000"
+  },
+  "simulator_common": {
+    "layers": 4,
+    "width": 4,
+    "edge_density": 0.45,
+    "capacity_max": 4,
+    "full_grid": true
+  },
+  "allocation_grid": [
+    [10, 0, 0],
+    [8, 2, 0],
+    [8, 0, 2],
+    [6, 4, 0],
+    [6, 2, 2],
+    [4, 3, 3],
+    [0, 8, 2],
+    [0, 2, 8],
+    [0, 10, 0],
+    [0, 0, 10],
+    [3, 4, 3]
+  ],
+  "held_out_allocations": [
+    [3, 4, 3]
+  ],
+  "primary_setting": {
+    "id": "primary_q4_d034_t8",
+    "required_flow_Q": 4,
+    "damage_intensity": 0.34,
+    "horizon_T": 8
+  },
+  "sensitivity_settings": [
+    {
+      "id": "sensitivity_heldout_top_q4_d028_t9",
+      "required_flow_Q": 4,
+      "damage_intensity": 0.28,
+      "horizon_T": 9
+    },
+    {
+      "id": "sensitivity_nearby_q4_d032_t8",
+      "required_flow_Q": 4,
+      "damage_intensity": 0.32,
+      "horizon_T": 8
+    },
+    {
+      "id": "sensitivity_harder_horizon_q4_d034_t9",
+      "required_flow_Q": 4,
+      "damage_intensity": 0.34,
+      "horizon_T": 9
+    }
+  ],
+  "primary_split_contract": {
+    "graph_family_heldout": "random_geometric",
+    "damage_family_heldout": "repairable_wear",
+    "allocation_heldout": [3, 4, 3],
+    "support_axis_note": "family-level graph and damage holdout plus allocation holdout; seed block is primary-only but not by itself a support axis"
+  }
+}
