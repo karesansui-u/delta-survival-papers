@@ -1,7 +1,7 @@
 # Lean 形式検証 ↔ 論文対応棚卸し
 
 棚卸し日: 2026-04-27
-対象: `lean/Survival/` 配下 149 ファイル
+対象: `lean/Survival/` 配下 151 ファイル
 対応文書: `delta-survival-paper/v2/` 配下の主理論 spine、Route C companions、補論群
 
 ## 現在の結論
@@ -9,7 +9,7 @@
 このファイルを、Lean 形式化と論文本文を結ぶ唯一の reader-facing theorem map とする。
 旧 SAT/CSP 専用 map は現行ツリーから外し、git history / OSF snapshot 側の archive として扱う。
 
-現時点の Lean 側は **150 Survival modules / sorry = 0 / axiom = 0** で閉じている。条件つき導出補論 §5 が
+現時点の Lean 側は **151 Survival modules / sorry = 0 / axiom = 0** で閉じている。条件つき導出補論 §5 が
 明示している 5 ファイルを超えて、停止時刻崩壊、martingale concentration、粗視化、有限状態 Markov
 microfoundation、SAT/k-SAT Chernoff-KL chain、Bernoulli-CSP 水平展開、Route A 非CSP skeletons まで
 含む。
@@ -299,6 +299,26 @@ ordered Sigma carrier
 | common v1 support | `CrossClassUnificationV1.supportsPhase7V1Schema`; `CrossClassUnificationV1.all_registered_classes_supportPhase7V1Schema` | all registered classes instantiate the v1 schema |
 | v1 extends v0 | `CrossClassUnificationV1.phase7V1Schema_implies_phase7V0` | v1 is an explanation layer on top of the v0 registry |
 | pathwise nondecrease discipline | `CrossClassUnificationV1.no_registered_class_requires_pathwiseNondecrease` | Bernoulli-style pathwise nondecrease is not a generic requirement |
+
+### Phase 7 v2 / Interface And Registered Instances
+
+`analysis/phase7_unifying_schema_v2.md` turns the v1 schema into an explicit
+interface and records that the three registered limited classes instantiate it.
+`Survival.CrossClassUnificationV2` is the first meta-theorem interface for the
+cross-class layer.
+
+| Phase-7 v2 role | Lean anchor | Reading discipline |
+|---|---|---|
+| abstract interface | `CrossClassUnificationV2.AbstractUnifyingSchemaInstance` | obligations a class must supply: Sigma carrier, tendency driver, certificate route, transfer guard, non-pathwise-genericity discipline |
+| abstract law-like profile | `CrossClassUnificationV2.AbstractLawLikeLimitedClassProfile`; `CrossClassUnificationV2.abstractLawLikeProfile_of_instance` | interface unpacking, not a theorem over arbitrary domains |
+| registered interface | `CrossClassUnificationV2.RegisteredUnifyingSchemaInstance`; `CrossClassUnificationV2.registeredInstanceOf` | specializes the interface to the three currently registered classes |
+| class instances | `CrossClassUnificationV2.bernoulliCSP_unifyingSchemaInstance`; `CrossClassUnificationV2.fosterLyapunovQueueing_unifyingSchemaInstance`; `CrossClassUnificationV2.repairMaintenance_unifyingSchemaInstance` | Bernoulli-CSP, Foster-Lyapunov / queueing, and Repair-Maintenance as schema instances |
+| registered closure | `CrossClassUnificationV2.all_registered_classes_satisfy_unifyingSchema` | all currently registered limited classes satisfy the v1 schema via v2 instances |
+
+This is the current strongest cross-class Lean statement.  It says the three
+registered classes instantiate a common interface.  It still does not claim a
+single universal inequality, a physical second law, or admission of arbitrary
+future domains.
 
 ## Paper 2 / Structural Persistence Balance Mapping
 

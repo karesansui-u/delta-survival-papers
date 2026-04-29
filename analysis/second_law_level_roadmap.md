@@ -403,8 +403,8 @@ or Bernoulli-style pathwise nondecrease for arbitrary repair systems.
 Current status:
 
 ```text
-Phase 7 v0 registry closed; Phase 7 v1 schema extracted; generic theorem still
-future work
+Phase 7 v0 registry closed; Phase 7 v1 schema extracted; Phase 7 v2 interface
+and registered-instance closure added
 ```
 
 This is the actual second-law-level target. It is no longer an empty future
@@ -423,6 +423,11 @@ The Phase 7 v1 schema extraction is recorded in:
 
 - `analysis/phase7_unifying_schema_v1.md`
 - `Survival.CrossClassUnificationV1`
+
+The Phase 7 v2 interface closure is recorded in:
+
+- `analysis/phase7_unifying_schema_v2.md`
+- `Survival.CrossClassUnificationV2`
 
 The narrow closed claim is:
 
@@ -462,10 +467,16 @@ axis. It remains a possible future driver, but the three registered classes are
 currently unified more cleanly by a Sigma carrier plus a class-specific tendency
 driver.
 
-This generic statement is not ready as a theorem today. The current correct
-claim is that the three-class profile is now visible, the v1 schema is
-machine-registered, and Phase 7 v2 should decide what the eventual theorem
-quantifies over.
+Phase 7 v2 turns this schema into an explicit interface and records that all
+three registered limited classes instantiate it.  The current correct claim is:
+
+```text
+The three registered limited classes instantiate a common Phase-7 interface.
+```
+
+This is a stable meta-theorem form.  It is still not a theorem over arbitrary
+future domains, not a necessary/sufficient admissible-map characterization, and
+not a single universal inequality.
 
 ## 4. What can be done now
 

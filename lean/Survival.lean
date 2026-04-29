@@ -72,6 +72,7 @@ import Survival.RepairMaintenanceBalance
 import Survival.RepairMaintenanceTemplate
 import Survival.CrossClassUnificationV0
 import Survival.CrossClassUnificationV1
+import Survival.CrossClassUnificationV2
 import Survival.MaintenanceComponentDecomposition
 import Survival.BinarySymmetricChannel
 import Survival.FatigueDamage
