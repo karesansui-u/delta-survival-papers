@@ -13,6 +13,18 @@ python3 analysis/m_flow_network_testbed/scripts/run_primary_package.py \
   --config analysis/m_flow_network_testbed/primary_packages/final_candidate_v0/config.json
 ```
 
+Runtime recorded at package creation:
+
+```text
+command alias: python3
+resolved sys.executable: /opt/homebrew/opt/python@3.14/bin/python3.14
+version: 3.14.3 (main, Feb  3 2026, 15:32:20) [Clang 17.0.0 (clang-1700.6.3.2)]
+platform: macOS-26.4-arm64-arm-64bit-Mach-O
+```
+
+The package runner prints the resolved `sys.executable` in the execution plan
+for all delegated subcommands.
+
 
 ## Guarded Primary Execution
 

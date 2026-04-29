@@ -7,6 +7,13 @@
     "env_var": "CONFIRM_M_FLOW_PRIMARY",
     "token": "CONFIRM_M_FLOW_PRIMARY_AA90761"
   },
+  "python_runtime": {
+    "command_alias": "python3",
+    "observed_sys_executable": "/opt/homebrew/opt/python@3.14/bin/python3.14",
+    "observed_version": "3.14.3 (main, Feb  3 2026, 15:32:20) [Clang 17.0.0 (clang-1700.6.3.2)]",
+    "observed_platform": "macOS-26.4-arm64-arm-64bit-Mach-O",
+    "note": "The package commands use python3; the print-plan records the resolved sys.executable for subcommands."
+  },
   "source_manifests": {
     "final_candidate": {
       "path": "analysis/m_flow_network_testbed/freeze_manifest_final_candidate.md",
