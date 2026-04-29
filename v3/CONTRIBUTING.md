@@ -8,15 +8,15 @@ or clarifications without weakening the claim boundaries.
 1. Adding a Domain
 ------------------
 
-1. Copy `templates/domain_profile_template.md` into the appropriate directory under
-   `domains/`.
+1. Copy `06_templates/domain_profile_template.md` into the appropriate directory under
+   `03_domains/`.
 2. Fill in the observability layer:
    - `specification_fixed`
    - `structurally_inferred`
    - `conditional_embedding`
-3. Add exactly one row to `domains/registry.tsv`.
+3. Add exactly one row to `03_domains/registry.tsv`.
 4. If there is a frozen test, add a manifest based on
-   `templates/frozen_test_manifest_template.md`.
+   `06_templates/frozen_test_manifest_template.md`.
 5. If the test fails, record the failure. Do not delete it.
 
 
@@ -52,12 +52,12 @@ Do not:
 4. When To Edit Core Files
 --------------------------
 
-Edit `theory/` or `foundations/` only when the theory statement itself changes.
+Edit `01_theory/` or `02_foundations/` only when the theory statement itself changes.
 
 Most contributions should edit:
 
-- `domains/registry.tsv`
-- a domain profile under `domains/`
-- evidence ledgers under `evidence/`
+- `03_domains/registry.tsv`
+- a domain profile under `03_domains/`
+- evidence ledgers under `05_evidence/`
 - templates, if the contribution protocol needs clarification.
 

@@ -1,0 +1,5 @@
+package_id	domain_id	status	frozen_surface	primary_metric	support_rule	result	pointer	last_updated
+mixed_csp_primary	finite_csp	supported	frozen Mixed-SAT/NAE-SAT package	log loss	drift-weighted coordinate beats raw-count baseline	support	v2/補論_有限CSPにおける構造持続の予測力.md	2026-04-29
+exp43c_qcoloring	finite_csp	supported	frozen q-coloring threshold-local package	log loss / qualitative support decision	first-moment coordinate beats raw / density / encoding-size baselines	support	v2/補論_有限CSPにおける構造持続の予測力.md	2026-04-29
+llm_reasoning_companion	llm_reasoning	observational_anchor	LLM reasoning companion experiments	task correctness / error modes	structural condition predicts failures beyond simple context-length reading	observational_anchor	v3/03_domains/structurally_inferred/llm_reasoning_degradation.md	2026-04-29
+continual_learning_companion	continual_learning	observational_anchor	continual-learning companion experiments	dependency consistency / retention	dependency-aware repair indicators improve selected readouts	observational_anchor	v3/03_domains/structurally_inferred/continual_learning_forgetting.md	2026-04-29

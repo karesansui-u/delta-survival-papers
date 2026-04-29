@@ -307,7 +307,7 @@ Exp.39 の 2×2 prospective replication でも、同じ主比較は GPT-4.1-nano
 - 構成地図・運用規律: 補論_構造持続理論の構成地図.md, 補論_構造持続理論の運用規律.md
 - 主理論核（先に読む）: 1_構造持続の最小形式.md, 2_構造持続の収支原理.md
 - 技術補論（必要に応じて読む）: 補論_構造持続の条件つき導出.md, 補論_構造持続の収支原理の詳細展開.md
-- 構造推定層 / LLM companion anchors: `domains/structurally_inferred/llm_reasoning_degradation.md`, `domains/structurally_inferred/continual_learning_forgetting.md`
+- 構造推定層 / LLM companion anchors: `03_domains/structurally_inferred/llm_reasoning_degradation.md`, `03_domains/structurally_inferred/continual_learning_forgetting.md`
 - 仕様固定構造層 / CSP アンカー: 補論_計算コストの構造的予測.md, 補論_有限CSPにおける構造持続の予測力.md
 - 開放系・写像・資源項: [構造持続の集合値力学的表現と符号付き指数核](補論_構造持続の集合値力学的表現と符号付き指数核.md), 補論_構造持続における許容写像と階層的不変量.md, 補論_構造持続写像の標準手順.md, 補論_構造持続における資源項Mの操作的定式化.md
 - 非CSP / 既存理論アンカー: 補論_構造持続の収支原理とFoster-Lyapunovドリフトの形式的埋め込み.md, 補論_非CSP古典例における構造持続の収支原理の最小アンカー.md

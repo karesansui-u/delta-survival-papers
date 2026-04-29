@@ -8,7 +8,7 @@
 
 本稿群は、単一の長大な論文ではなく、最小核、回復を含む形式への拡張、条件つき導出、写像手順、操作的資源項、許容写像、仕様固定構造層、構造推定層、条件付き構造埋め込み層、Lean 形式化を分けて書いている。本補論は、それらの役割、依存関係、主張強度を一つの地図として示す。
 
-v3 では、個別ドメインを本文へ直接増殖させない。ドメインは `domains/registry.tsv` と個別 domain profile に登録し、support / no-support / outside rerun は `evidence/` に記録する。これにより、ドメインが増えても主理論 spine と claim boundary が崩れないようにする。
+v3 では、個別ドメインを本文へ直接増殖させない。ドメインは `03_domains/registry.tsv` と個別 domain profile に登録し、support / no-support / outside rerun は `05_evidence/` に記録する。これにより、ドメインが増えても主理論 spine と claim boundary が崩れないようにする。
 
 
 1. この地図が与えるもの
@@ -53,15 +53,15 @@ v3 では、個別ドメインを本文へ直接増殖させない。ドメイ�
 
 外向きに最も短く読むなら、次の順でよい。
 
-1. `theory/00_map.md`
-2. `theory/01_overview.md`
-3. `theory/02_core.md`
-4. `theory/10_paper1_minimal_form.md`
-5. `theory/11_paper2_balance_principle.md`
+1. `01_theory/00_map.md`
+2. `01_theory/01_overview.md`
+3. `01_theory/02_core.md`
+4. `01_theory/10_paper1_minimal_form.md`
+5. `01_theory/11_paper2_balance_principle.md`
 6. `CLAIMS.md`
-7. `domains/registry.tsv`
+7. `03_domains/registry.tsv`
 8. 必要な domain profile
-9. 必要に応じて `operations/`, `foundations/`, `evidence/`
+9. 必要に応じて `04_operations/`, `02_foundations/`, `05_evidence/`
 
 この順序は、読者の認知負荷を下げるための順序である。Core Paper は Paper 1 / Paper 2 を外部読者向けに一つの導線として読むための統合短論文であり、分冊版の置き換えではない。論理依存そのものは、Paper 1 -> Paper 2 を主線とし、条件つき導出補論と集合値力学補論がその背後の技術条件を支える。
 

@@ -16,9 +16,9 @@ Structural Persistence Theory for LLM reasoning degradation, catastrophic forget
 | 条件付き構造埋め込み層 | 既存理論の drift / 差分 / 停止境界を条件付きに写す bridge |
 | 構造推定層 | 構造を直接数えず、代理指標と凍結検証で推定する現実系の標準入口 |
 
-- 外向け導線: [`v3/theory/00_map.md`](v3/theory/00_map.md) -> [`v3/theory/01_overview.md`](v3/theory/01_overview.md) -> [`v3/theory/02_core.md`](v3/theory/02_core.md)
-- 主理論 spine: [`v3/theory/10_paper1_minimal_form.md`](v3/theory/10_paper1_minimal_form.md) -> [`v3/theory/11_paper2_balance_principle.md`](v3/theory/11_paper2_balance_principle.md)
-- ドメイン registry: [`v3/domains/registry.tsv`](v3/domains/registry.tsv)
+- 外向け導線: [`v3/01_theory/00_map.md`](v3/01_theory/00_map.md) -> [`v3/01_theory/01_overview.md`](v3/01_theory/01_overview.md) -> [`v3/01_theory/02_core.md`](v3/01_theory/02_core.md)
+- 主理論 spine: [`v3/01_theory/10_paper1_minimal_form.md`](v3/01_theory/10_paper1_minimal_form.md) -> [`v3/01_theory/11_paper2_balance_principle.md`](v3/01_theory/11_paper2_balance_principle.md)
+- ドメイン registry: [`v3/03_domains/registry.tsv`](v3/03_domains/registry.tsv)
 - 主張境界: [`v3/CLAIMS.md`](v3/CLAIMS.md)
 - 共同運用: [`v3/CONTRIBUTING.md`](v3/CONTRIBUTING.md)
 - 証拠階層: [`analysis/current_evidence_map.md`](analysis/current_evidence_map.md)
@@ -32,7 +32,7 @@ Structural Persistence Theory for LLM reasoning degradation, catastrophic forget
 
 ### Japanese Main Track
 
-全体像だけを先に掴みたい場合は、まず [`v3/theory/00_map.md`](v3/theory/00_map.md) を読み、その後で [`v3/theory/01_overview.md`](v3/theory/01_overview.md) と [`v3/theory/02_core.md`](v3/theory/02_core.md) に進むのが最も迷いにくい導線です。
+全体像だけを先に掴みたい場合は、まず [`v3/01_theory/00_map.md`](v3/01_theory/00_map.md) を読み、その後で [`v3/01_theory/01_overview.md`](v3/01_theory/01_overview.md) と [`v3/01_theory/02_core.md`](v3/01_theory/02_core.md) に進むのが最も迷いにくい導線です。
 PDF は [`v2/pdf用/補論_構造持続理論の構成地図.pdf`](v2/pdf用/補論_構造持続理論の構成地図.pdf) と [`v2/pdf用/0_構造持続理論の統合版.pdf`](v2/pdf%E7%94%A8/0_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E7%90%86%E8%AB%96%E3%81%AE%E7%B5%B1%E5%90%88%E7%89%88.pdf) を参照してください。
 
 ## Evidence Status / 証拠の階層
