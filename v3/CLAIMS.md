@@ -41,6 +41,13 @@ under frozen, out-of-sample validation.
 Here SP means structural persistence coordinate: structural consumption, recovery,
 resource margin, alternative-path, or related coordinates derived from the theory.
 
+The law-side claim belongs first to specification-fixed structural domains. In
+structurally inferred domains, SP features are proxies for the law-side \(L/B/M\)
+coordinates. A proxy should be treated as a stronger predictive instrument only
+when frozen validation shows incremental out-of-sample value over the domain
+baseline; otherwise it remains candidate, no-support, weak-axis failure, or
+silence.
+
 
 3. Transfer Claim
 -----------------

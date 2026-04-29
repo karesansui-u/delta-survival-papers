@@ -125,6 +125,8 @@ v3 では、個別ドメインを本文へ直接増殖させない。ドメイ�
 
 この意味で、普遍性主張はまず仕様固定構造層の限定クラス普遍性定理として評価される。構造推定層では、同じ座標を代理指標と凍結検証によって実世界に写し、予測的・操作的 support を蓄積する。したがって、構造推定層での no-support は直ちに理論核の反証ではなく、proxy 設計または写像手順の失敗として記録される。
 
+この配置で重要なのは、構造推定層の proxy を法則そのものと混同しないことである。proxy が \(L/B/M\) の law-side 座標をよく近似していることが凍結検証で確認されるほど、その proxy は説明語彙から予測装置へ近づく。ただし、その近似度は主観的に宣言されるものではなく、held-out / future / fresh archive / outside rerun における baseline + SP の増分、または no-support / silence として判定される。
+
 Software contract-coherence 系は、この構造推定層の中でも、ソフトウェア崩壊そのものではなく、分散契約矛盾という早期シグナルを検査する operational track として扱う。構造は、API / caller、config / runtime、documentation / implementation、lifecycle producer / consumer などにまたがる contract set である。この track は二層に分ける。第一に、外部 OSS での merged PR は field demonstration / maintainer-acceptance evidence であり、実運用上の有用性を示すが、raw precision / recall ではない。第二に、contract-coherence benchmark の主比較は provider 間競争ではなく、同一 model・同一 frozen context で generic review と structural-lens review を比較し、bounded validation 後の unique valid structural root causes が増えるかで判定する。DeltaLint はこの track の現在の実装名である。
 
 

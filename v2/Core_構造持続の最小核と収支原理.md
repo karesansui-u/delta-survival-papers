@@ -217,6 +217,8 @@ b_t+b_{t+1}
 
 仕様固定構造層では、定理、有限時間境界、限定クラス統一 interface が主役になる。構造推定層では、proxy、frozen validation、baseline + structural persistence の追加予測力が主役になる。条件付き構造埋め込み層では、既存理論との formal bridge が主役になる。
 
+この切り分けにより、普遍法則候補は仕様固定構造層に限定される。構造推定層は、law-side の \(L/B/M\) 座標を観測困難ドメインへ移す proxy / engineering layer であり、proxy が真の座標をよく近似していることは、凍結後の追加予測力によってのみ評価される。近似が確認されるほど、構造持続座標は説明語彙から、崩壊、回復、設計変更後の readout を予測する装置へ近づく。
+
 
 10. 外向け価値
 

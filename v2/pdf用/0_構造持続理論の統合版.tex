@@ -109,6 +109,8 @@ B_{n}:=\sum_{t<n} b_{t}, \qquad S_{n}=M_{n} e^{-B_{n}}
 
 この表の上下は、理論の優劣ではなく観測可能性の違いである。全層に共通する核は \(S=Me^{-L}\), \(S=Me^{-B}\), \(B_{n}=\sum_{t<n}(d_{t}-r_{t})\) であり、違うのはその中に入る量をどの程度直接観測・固定できるかである。
 
+したがって、普遍法則候補として評価するのは、まず仕様固定構造層である。ここでは \(V,m,L/B\), collapse boundary が事前固定され、law-side の定理、有限時間境界、限定クラス普遍性を問うことができる。一方、構造推定層では、同じ \(L/B/M\) 座標を \(\hat L,\hat B\) や operational readout として近似する。この層は普遍法則そのものではなく、数学的に固定された座標を観測困難ドメインへ移す proxy / engineering layer である。proxy が law-side 座標をよく近似していることが凍結検証で確認されるほど、単なる説明語彙ではなく、崩壊、回復、設計変更後の readout を予測する装置に近づく。ただし、その近似度と価値は、凍結後に \(\text{domain baseline}+\text{SP}\) が domain baseline を改善するか、あるいは no-support / silence として記録されるかによってのみ判定される。
+
 この三層を支える数学的な見方は、構造維持問題の間の許容写像である。名前変更や測度保存同型では \(B_{n}\) は不変であり、正のゲージ変更では \(B_{n}\) は共変する。一方、粗視化や代理観測では一般に不変性は失われるため、許容条件、誤差境界、または凍結後の追加予測力で評価する。詳細は補論「構造持続における許容写像と階層的不変量」に置く。
 
 Lean 形式化では、この三層を横断する限定クラス統一 interface も Phase 7 v2 として登録している。Bernoulli-CSP、Foster-Lyapunov / queueing、Repair-Maintenance の三つの登録済み限定クラスは、ordered Sigma carrier、nonnegative tendency driver、finite-horizon certificate route、admissible-transfer guard からなる共通 interface を満たす。この位置づけは、任意ドメインに対する単一の普遍不等式を宣言するものではない。仕様固定構造層、条件付き構造埋め込み層、回復保守系で現れた class-level な法則候補を、同じ構造持続語彙で登録し、追加クラスを検査可能にするための interface closure である。
@@ -170,6 +172,8 @@ S = M e^{-L}
 このとき重要になるのが、構造粒度である。構造粒度とは、維持対象をどの細かさ・どの階層で定義するかを指す。全体の維持可能性は、最小構成要素の状態だけで決まるとは限らない。多くの系では、構造は入れ子状・多階層的であり、下位構造の消耗、上位構造の制約、階層間の依存、回復量の伝播が相互作用する。したがって、自然な \(V,m\) は単一の階層だけで固定されるとは限らず、維持条件に応じた構造粒度の設定と、多階層的な構造写像が必要になる。
 
 したがって、この理論の強さは、指数型そのものではなく、個別ドメインにおいて基準モデルを上回る追加の予測力を持てるかどうかにかかる。さらに重要なのは、構造持続指標が常に最強の単独モデルになることではなく、既存専門モデルに対して追加的・横断的な予測座標を与えるかである。ここで SP は structural persistence coordinate、すなわち構造持続理論から導かれる構造消耗・回復・余力の指標群を指す。すなわち、構造持続理論の経験的価値は、しばしば SP-only が domain baseline を置き換えるかではなく、domain baseline + SP が domain baseline を out-of-sample に改善するかで判定される。推論時の矛盾蓄積、継続学習時の前提更新、SAT における探索難度などは、その具体化候補として並んでいる。
+
+この点で、数学的基盤の役割は、任意の proxy を自動的に正しくすることではない。むしろ、何を近似しているのか、どこで外れたのか、次にどの観測単位や readout を改善すべきかを、\(L/B/M\) という共通座標上で評価できるようにすることである。構造推定層の proxy は、law-side 座標をよく近似していることが凍結検証で確認されるほど予測装置として強くなりうるが、その昇格は凍結後の追加予測力によってのみ認められる。
 
 この共通座標は、予測だけでなく設計にも効く。あるドメインで有効だった consumption localization、recovery preservation、margin preservation、alternative-path preservation は、別ドメインの candidate intervention を生成するための手がかりになる。ただし、その転用は support の輸入ではない。A ドメインで効いた設計は、B ドメインにおける凍結検証可能な仮説を作るにすぎず、B ドメインでの support は B 側の holdout / future / fresh archive / outside rerun で初めて成立する。
 
@@ -344,9 +348,11 @@ A^{(0)} \supseteq A^{(1)} \supseteq \cdots \supseteq A^{(n)}
 
 この含意は LLM に閉じない。ソフトウェア工学における冗長性、クリーンアーキテクチャ、interface / contract、CI、rollback、observability は、構造消耗を局所化し、回復経路を残し、変更後も維持可能な経路集合を枯らさないための実践的プロトタイプとして読める。同じ座標に写すことで、あるドメインの成功例は、別ドメインにおける設計候補を生成する。たとえば scope-as-repair は責任境界や変更範囲の明示へ、dependency-aware replay は上流変更に伴う下流判断の再同期へ、rollback は局所復元可能性の設計へ翻訳できる。
 
-この方向の software 側 extension として、DeltaLint bench は、ソフトウェア崩壊そのものを直接測るものではなく、より手前の「分散契約矛盾」を検出する operational benchmark として位置づける。ここでいうソフトウェア構造とは、API と caller、config と runtime、documentation と implementation、default producer と consumer、lifecycle producer と consumer など、複数 surface にまたがって保たれる contract set である。DeltaLint bench の主比較は、同一 model・同一 frozen context・同一 timeout の下で generic review と structural-lens review を比較し、bounded validation 後の unique valid structural root causes が増えるかを見る。したがって、これが通っても直ちに「ソフトウェア崩壊を予測した」とは言わない。言えるのは、構造持続の座標が、崩壊の前駆シグナルである分散契約矛盾の検出に operational value を持つ、という限定された主張である。
+この方向の software 側 extension として、software contract-coherence diagnostics は、ソフトウェア崩壊そのものを直接測るものではなく、より手前の「分散契約矛盾」を検出する operational track として位置づける。ここでいうソフトウェア構造とは、API と caller、config と runtime、documentation と implementation、default producer と consumer、lifecycle producer と consumer など、複数 surface にまたがって保たれる contract set である。DeltaLint はこの track の現在の実装名であり、理論上の対象そのものではない。
 
-2026年4月29日時点の内部 bench では、Product-arm additive ledger は Formbricks +0、Flask +1、httpx +2、Chi +4、Traefik +2 を記録し、5件中4件で正の増分、合計9件の Product-additive valid structural root を得た。ただしこれは maintainer acceptance や外部再現ではなく、分散契約矛盾検出という早期シグナルに対する内部 calibration である。
+この track には二つの証拠層がある。第一に、2026 年 3 月中旬の外部 OSS field demonstration では、DeltaLint workflow から生成された候補を人間が選別・再現・修正し、外部リポジトリへ PR / Issue として提出した。その結果、Microsoft / Facebook / Bytedance / Sentry / coder / tRPC などを含む 12 リポジトリで 16 件の PR が merge された。これは未選別 raw detection の precision / recall 実験ではない。候補選別、修正しやすさ、PR 戦略、maintainer culture、Claude Code による修正補助、人間の再現・交渉が混ざるためである。しかし、実在プロジェクトの maintainer review を通ったという意味で、DeltaLint workflow が実運用上有用な分散契約矛盾候補を生成しうることを示す field demonstration / maintainer-acceptance evidence である。
+
+第二に、contract-coherence benchmark は、同一 model・同一 frozen context・同一 timeout の下で generic review と structural-lens review を比較し、bounded validation 後の unique valid structural root causes が増えるかを見る controlled benchmark である。2026-04-29 時点の Product-arm calibration では、五つの frozen OSS item のうち四つで Product-additive gain があり、同一 scope / additive rule の下で九つの Product-additive \texttt{valid\_structural} root が credited された。したがって、これが通っても直ちに「ソフトウェア崩壊を予測した」とは言わない。言えるのは、構造持続の座標が、崩壊の前駆シグナルである分散契約矛盾の検出に operational value を持つ、という限定された主張である。
 
 同じ規律は、本稿群自身の書き方にも現れる。主理論 spine、companion papers、補論、Lean mapping、numerical sanity checks、no-support / silence 判定を分けることは、理論プログラムを検証可能・保守可能・拡張可能な構成物として扱うための方法論である。
 
@@ -387,11 +393,11 @@ A^{(0)} \supseteq A^{(1)} \supseteq \cdots \supseteq A^{(n)}
 \item
   技術補論（必要に応じて読む）: 補論\_構造持続の条件つき導出.md, 補論\_構造持続の収支原理の詳細展開.md
 \item
-  構造推定層 / LLM companion anchors: Companion\_RouteC\_推論時の構造劣化.md, Companion\_RouteC\_継続学習時の構造的忘却.md（ファイル名の RouteC は旧内部名であり、本文上の分類は構造推定層である）
+  構造推定層 / LLM companion anchors: \texttt{03\_domains/02\_structurally\_inferred/llm\_reasoning\_degradation.md}, \texttt{03\_domains/02\_structurally\_inferred/continual\_learning\_forgetting.md}
 \item
   仕様固定構造層 / CSP アンカー: 補論\_計算コストの構造的予測.md, 補論\_有限CSPにおける構造持続の予測力.md
 \item
-  開放系・写像・M（有効維持余力）: \href{補論_構造持続の集合値力学的表現と符号付き指数核.md}{構造持続の集合値力学的表現と符号付き指数核}, 補論\_構造持続における許容写像と階層的不変量.md, 補論\_構造持続写像の標準手順.md, 補論\_構造持続における資源項Mの操作的定式化.md（本文表示名: M（有効維持余力）の操作的定式化）
+  開放系・写像・M（有効維持余力）: \href{../02_foundations/23_set_valued_dynamics.md}{構造持続の集合値力学的表現と符号付き指数核}, \href{../02_foundations/22_admissible_maps.md}{構造持続における許容写像と階層的不変量}, \href{../04_operations/50_standard_mapping_procedure.md}{構造持続写像の標準手順}, \href{../04_operations/52_resource_M.md}{構造持続における M（有効維持余力）の操作的定式化}
 \item
   非CSP / 既存理論アンカー: 補論\_構造持続の収支原理とFoster-Lyapunovドリフトの形式的埋め込み.md, 補論\_非CSP古典例における構造持続の収支原理の最小アンカー.md
 \end{itemize}

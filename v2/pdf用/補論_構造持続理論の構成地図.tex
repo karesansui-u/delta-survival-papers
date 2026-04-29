@@ -12,6 +12,8 @@
 本補論は、構造持続理論の主理論 spine、companion papers、補論群、Lean 形式化、実証アンカーを、一つの構成地図として整理するための文書である。新しい定理、新しい実験、新しい support 判定を追加するものではない。目的は、どの文書がどの層の主張を担い、どの文書をどの順番で読むと誤読が少ないかを明示することである。
 
 本稿群は、単一の長大な論文ではなく、最小核、回復を含む形式への拡張、条件つき導出、写像手順、M（有効維持余力）の操作化、許容写像、仕様固定構造層、構造推定層、条件付き構造埋め込み層、Lean 形式化を分けて書いている。本補論は、それらの役割、依存関係、主張強度を一つの地図として示す。
+
+v3 では、個別ドメインを本文へ直接増殖させない。ドメインは \texttt{03\_domains/registry.tsv} と個別 domain profile に登録し、support / no-support / outside rerun / field demonstration / bounded benchmark は \texttt{05\_evidence/} に記録する。これにより、ドメインが増えても主理論 spine と claim boundary が崩れないようにする。
 \end{abstract}
 
 \section{この地図が与えるもの}\label{ux3053ux306eux5730ux56f3ux304cux4e0eux3048ux308bux3082ux306e}
@@ -103,22 +105,22 @@ Layer 6: Formal Layer & Lean theorem、reader-facing claim、numerical sanity ch
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  本補論（構成地図）
+  \texttt{01\_theory/00\_map.md}
 \item
-  Paper 0 統合版
+  \texttt{01\_theory/01\_overview.md}
 \item
-  Core Paper「構造持続の最小核と収支原理」 \# Paper 1 構造持続の最小形式
+  \texttt{01\_theory/02\_core.md} \# \texttt{01\_theory/10\_paper1\_minimal\_form.md}
 \end{enumerate}
 
-\section{Paper 2 構造持続の収支原理}\label{paper-2-ux69cbux9020ux6301ux7d9aux306eux53ceux652fux539fux7406}
+\section{\texorpdfstring{\texttt{01\_theory/11\_paper2\_balance\_principle.md}}{01\_theory/11\_paper2\_balance\_principle.md}}\label{theory11_paper2_balance_principle.md}
 
-\section{補論「構造持続理論の運用規律」}\label{ux88dcux8ad6ux69cbux9020ux6301ux7d9aux7406ux8ad6ux306eux904bux7528ux898fux5f8b}
+\section{\texorpdfstring{\texttt{CLAIMS.md}}{CLAIMS.md}}\label{claims.md}
 
-\section{仕様固定構造層 / 有限CSP補論}\label{ux4ed5ux69d8ux56faux5b9aux69cbux9020ux5c64-ux6709ux9650cspux88dcux8ad6}
+\section{\texorpdfstring{\texttt{03\_domains/registry.tsv}}{03\_domains/registry.tsv}}\label{domainsregistry.tsv}
 
-\section{構造推定層 / LLM companion I / II（ファイル名に残る RouteC は旧内部名）}\label{ux69cbux9020ux63a8ux5b9aux5c64-llm-companion-i-iiux30d5ux30a1ux30a4ux30ebux540dux306bux6b8bux308b-routec-ux306fux65e7ux5185ux90e8ux540d}
+\section{必要な domain profile}\label{ux5fc5ux8981ux306a-domain-profile}
 
-\section{必要に応じて資源項、許容写像、条件付き構造埋め込み、Lean / technical supplements}\label{ux5fc5ux8981ux306bux5fdcux3058ux3066ux8cc7ux6e90ux9805ux8a31ux5bb9ux5199ux50cfux6761ux4ef6ux4ed8ux304dux69cbux9020ux57cbux3081ux8fbcux307flean-technical-supplements}
+\section{\texorpdfstring{必要に応じて \texttt{04\_operations/}, \texttt{02\_foundations/}, \texttt{05\_evidence/}}{必要に応じて 04\_operations/, 02\_foundations/, 05\_evidence/}}\label{ux5fc5ux8981ux306bux5fdcux3058ux3066-04_operations-02_foundations-05_evidence}
 
 この順序は、読者の認知負荷を下げるための順序である。Core Paper は Paper 1 / Paper 2 を外部読者向けに一つの導線として読むための統合短論文であり、分冊版の置き換えではない。論理依存そのものは、\(Paper 1 -> Paper 2\)を主線とし、条件つき導出補論と集合値力学補論がその背後の技術条件を支える。
 
@@ -241,15 +243,12 @@ B_{n}&=\sum_{t<n}(d_{t}-r_{t})
 
 {\def\LTcaptype{table} % do not increment counter
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 外向け名
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-内部旧称
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 条件
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
@@ -259,9 +258,9 @@ B_{n}&=\sum_{t<n}(d_{t}-r_{t})
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-仕様固定構造層 & Route A & 構造、測度、境界が仕様から事前固定される & SAT, Mixed-CSP, q-coloring, Bernoulli-CSP interface \\
-条件付き構造埋め込み層 & Route B & 既存理論のドリフト、差分、停止境界を本理論の変数へ条件付きに写す。縦軸の中間段階ではなく、既存理論との横方向の bridge である & Foster-Lyapunov / queueing drift, bounded approximation candidates \\
-構造推定層 & Route C & 構造そのものを直接数えるのではなく、代理指標と凍結検証によりその効果を推定する。多くの現実系で標準的な観測形である & LLM 推論劣化、継続学習、software / DeltaLint 系 \\
+仕様固定構造層 & 構造、測度、境界が仕様から事前固定される & SAT, Mixed-CSP, q-coloring, Bernoulli-CSP interface \\
+条件付き構造埋め込み層 & 既存理論のドリフト、差分、停止境界を本理論の変数へ条件付きに写す。縦軸の中間段階ではなく、既存理論との横方向の bridge である & Foster-Lyapunov / queueing drift, bounded approximation candidates \\
+構造推定層 & 構造そのものを直接数えるのではなく、代理指標と凍結検証によりその効果を推定する。多くの現実系で標準的な観測形である & LLM 推論劣化、継続学習、software contract-coherence 系 \\
 \end{longtable}
 }
 
@@ -269,7 +268,9 @@ B_{n}&=\sum_{t<n}(d_{t}-r_{t})
 
 この意味で、普遍性主張はまず仕様固定構造層の限定クラス普遍性定理として評価される。構造推定層では、同じ座標を代理指標と凍結検証によって実世界に写し、予測的・操作的 support を蓄積する。したがって、構造推定層での no-support は直ちに理論核の反証ではなく、proxy 設計または写像手順の失敗として記録される。
 
-Software / DeltaLint 系は、この構造推定層の中でも、ソフトウェア崩壊そのものではなく、分散契約矛盾という早期シグナルを検査する operational benchmark として扱う。構造は、API / caller、config / runtime、documentation / implementation、lifecycle producer / consumer などにまたがる contract set である。主比較は provider 間競争ではなく、同一 model・同一 frozen context で generic review と structural-lens review を比較し、bounded validation 後の unique valid structural root causes が増えるかで判定する。2026年4月29日時点の内部 bench では、Product-arm additive ledger が5件中4件で正の増分、合計9件の Product-additive valid structural root を記録した。ただし、これは構造推定層の operational support であり、software collapse prediction や \(M\)-framework validation ではない。
+この配置で重要なのは、構造推定層の proxy を法則そのものと混同しないことである。proxy が \(L/B/M\) の law-side 座標をよく近似していることが凍結検証で確認されるほど、その proxy は説明語彙から予測装置へ近づく。ただし、その近似度は主観的に宣言されるものではなく、held-out / future / fresh archive / outside rerun における baseline + SP の増分、または no-support / silence として判定される。
+
+Software contract-coherence 系は、この構造推定層の中でも、ソフトウェア崩壊そのものではなく、分散契約矛盾という早期シグナルを検査する operational track として扱う。構造は、API / caller、config / runtime、documentation / implementation、lifecycle producer / consumer などにまたがる contract set である。この track は二層に分ける。第一に、外部 OSS での merged PR は field demonstration / maintainer-acceptance evidence であり、実運用上の有用性を示すが、raw precision / recall ではない。第二に、contract-coherence benchmark の主比較は provider 間競争ではなく、同一 model・同一 frozen context で generic review と structural-lens review を比較し、bounded validation 後の unique valid structural root causes が増えるかで判定する。DeltaLint はこの track の現在の実装名である。
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
