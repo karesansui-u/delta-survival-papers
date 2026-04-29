@@ -9,7 +9,7 @@
 このファイルを、Lean 形式化と論文本文を結ぶ唯一の reader-facing theorem map とする。
 旧 SAT/CSP 専用 map は現行ツリーから外し、git history / OSF snapshot 側の archive として扱う。
 
-現時点の Lean 側は **149 Survival modules / sorry = 0 / axiom = 0** で閉じている。条件つき導出補論 §5 が
+現時点の Lean 側は **150 Survival modules / sorry = 0 / axiom = 0** で閉じている。条件つき導出補論 §5 が
 明示している 5 ファイルを超えて、停止時刻崩壊、martingale concentration、粗視化、有限状態 Markov
 microfoundation、SAT/k-SAT Chernoff-KL chain、Bernoulli-CSP 水平展開、Route A 非CSP skeletons まで
 含む。
@@ -272,6 +272,33 @@ certificate route, and conditional coarse transfer.
 It does **not** prove the generic cross-class theorem yet. Phase 7 v1 should
 extract the actual schema, most likely around subadditivity, resource-cost lower
 bounds, and defect-controlled admissible maps.
+
+### Phase 7 v1 / Cross-Class Unifying Schema
+
+`analysis/phase7_unifying_schema_v1.md` extracts the first generic schema from
+the Phase-7 v0 registry. `Survival.CrossClassUnificationV1` keeps this at the
+same modest Lean level: a schema registry, not a theorem over all
+structural-maintenance problems.
+
+The main v1 correction is that subadditivity is not promoted as the single
+generic core. The shared schema is instead:
+
+```text
+ordered Sigma carrier
+  + nonnegative tendency driver
+  + finite-horizon certificate route
+  + admissible-transfer guard
+```
+
+| Phase-7 v1 role | Lean anchor | Reading discipline |
+|---|---|---|
+| tendency driver enum | `CrossClassUnificationV1.TendencyDriver` | one-sided emissions, conditional drift lower bounds, and resource-cost lower bounds are separate engines |
+| certificate route enum | `CrossClassUnificationV1.CertificateRoute` | Chernoff/KL, conditional-Azuma, and resource-bounded Azuma are registered routes, not an exhaustive taxonomy |
+| transfer guard enum | `CrossClassUnificationV1.TransferGuard` | endpoint-defect budget, stochastic compatibility, and resource-bounded compatibility remain explicit assumptions |
+| v1 schema profile | `CrossClassUnificationV1.Phase7V1SchemaProfile`; `CrossClassUnificationV1.schema` | schema extraction, not a universal theorem |
+| common v1 support | `CrossClassUnificationV1.supportsPhase7V1Schema`; `CrossClassUnificationV1.all_registered_classes_supportPhase7V1Schema` | all registered classes instantiate the v1 schema |
+| v1 extends v0 | `CrossClassUnificationV1.phase7V1Schema_implies_phase7V0` | v1 is an explanation layer on top of the v0 registry |
+| pathwise nondecrease discipline | `CrossClassUnificationV1.no_registered_class_requires_pathwiseNondecrease` | Bernoulli-style pathwise nondecrease is not a generic requirement |
 
 ## Paper 2 / Structural Persistence Balance Mapping
 

@@ -403,7 +403,8 @@ or Bernoulli-style pathwise nondecrease for arbitrary repair systems.
 Current status:
 
 ```text
-Phase 7 v0 registry closed; generic theorem still future work
+Phase 7 v0 registry closed; Phase 7 v1 schema extracted; generic theorem still
+future work
 ```
 
 This is the actual second-law-level target. It is no longer an empty future
@@ -417,6 +418,11 @@ The Phase 7 v0 registry is recorded in:
 
 - `analysis/phase7_cross_class_unification_v0.md`
 - `Survival.CrossClassUnificationV0`
+
+The Phase 7 v1 schema extraction is recorded in:
+
+- `analysis/phase7_unifying_schema_v1.md`
+- `Survival.CrossClassUnificationV1`
 
 The narrow closed claim is:
 
@@ -442,10 +448,24 @@ appropriate expectation-level tendency theorem; class-specific collapse
 statements then follow after margin and concentration assumptions.
 ```
 
+Phase 7 v1 extracts the first generic schema:
+
+```text
+ordered Sigma carrier
+  + nonnegative tendency driver
+  + finite-horizon certificate route
+  + admissible-transfer guard
+```
+
+The important v1 correction is that subadditivity is not the single generic
+axis. It remains a possible future driver, but the three registered classes are
+currently unified more cleanly by a Sigma carrier plus a class-specific tendency
+driver.
+
 This generic statement is not ready as a theorem today. The current correct
-claim is that the three-class profile is now visible and machine-registered;
-Phase 7 v1 should extract the generic schema without pretending that v0 already
-proves the full unification theorem.
+claim is that the three-class profile is now visible, the v1 schema is
+machine-registered, and Phase 7 v2 should decide what the eventual theorem
+quantifies over.
 
 ## 4. What can be done now
 
