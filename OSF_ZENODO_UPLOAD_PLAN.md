@@ -106,6 +106,7 @@ SAT/CSP 系の個別 OSF 公開リンクは v1.1 archive snapshot を指す。v2
 次回更新が必要になった場合は、今回の `v2_spine_2026-04-28` を基準に差分 bundle を作る。
 
 - `lean/PAPER_MAPPING.md` を唯一の reader-facing theorem map として同梱
+- Phase 7 v2 の限定クラス統一 interface を差分として含める。対象ファイルは少なくとも `analysis/phase7_unifying_schema_v2.md`, `lean/Survival/CrossClassUnificationV2.lean`, `README.md`, `OVERVIEW.md`, `lean/PAPER_MAPPING.md` とする。OSF / Zenodo の説明では、任意ドメインの単一普遍法則ではなく、registered limited classes instantiate a common structural-persistence interface として記述する。
 - `README.md`, `OVERVIEW.md`, `LEAN_FORMALIZATION_README.md` の導線を `PAPER_MAPPING.md` に一本化
 - 仕様固定・条件付き構造埋め込み skeletons は四型分類で説明し、個別ファイル一覧は `PAPER_MAPPING.md` に集約
 - 旧 SAT/CSP map は現行 tree から外し、git history / OSF archive snapshot の扱いにする

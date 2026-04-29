@@ -322,6 +322,33 @@ Foster-Lyapunov / queueing drift の補論は、G6-c iteration 1 として位置
 
 この補論の役割は、第二法則級の単一普遍法則を宣言することではない。むしろ、仕様固定構造層、条件付き構造埋め込み層、構造推定層が、強弱のラベルではなく、どの写像で何が保たれるかの違いであることを明確にする。Bernoulli-CSP interface の自然性も、SAT 風の構文を後から集めたものではなく、iid bad-event exposure と log-drift を保つテンプレート保存写像で閉じた限定クラスとして読む。
 
+\section{限定クラス統一 interface}\label{ux9650ux5b9aux30afux30e9ux30b9ux7d71ux4e00-interface}
+
+Lean 形式化の Phase 7 v2 は、三つの登録済み限定クラスが共通の構造持続 interface を満たすことを示す reader-facing anchor である。対象は Bernoulli-CSP、Foster-Lyapunov / queueing、Repair-Maintenance であり、共通 interface は次の四要素からなる。
+
+{\def\LTcaptype{table} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+要素
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+役割
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+ordered Sigma carrier & 累積量 Sigma\_n を順序つきの量として読む \\
+nonnegative tendency driver & 期待値または傾向レベルで非負方向を生む駆動構造を持つ \\
+finite-horizon certificate route & Chernoff、Azuma、資源制約境界など、有限地平の certificate 経路を持つ \\
+admissible-transfer guard & 許容写像で転用するときの保存・共変・境界条件を明示する \\
+\end{longtable}
+}
+
+この interface は、全ドメインに対する単一の普遍不等式ではない。むしろ、登録済み限定クラスを同じ形式で比較し、新しい候補クラスを追加するときに何を検査すべきかを定める拡張可能な枠である。Lean 側の対応は \texttt{Survival.CrossClassUnificationV2}、読者向けの整理は \texttt{analysis/phase7\_unifying\_schema\_v2.md} に置く。
+
 \section{構造粒度と多階層性}\label{ux69cbux9020ux7c92ux5ea6ux3068ux591aux968eux5c64ux6027}
 
 構造持続理論では、自然な \(V,m\) が常に一つの階層で一意に決まるとは限らない。多くの系では、構造は入れ子状・多階層的であり、下位構造の消耗、上位構造の制約、階層間の依存、回復量の伝播が相互作用する。
