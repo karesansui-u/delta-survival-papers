@@ -11,5 +11,6 @@ Dry-run outputs are used to check:
 - degeneracy flags.
 - split-aware evaluator ranking-schema outputs.
 - degeneracy report outputs.
+- calibration sweep outputs.
 
 They are not support evidence and must not be reported as primary validation.

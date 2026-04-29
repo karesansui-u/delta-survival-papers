@@ -15,6 +15,8 @@ Files:
 - `scripts/evaluate_flow_network.py`: evaluator v1 split-aware ranking-schema
   smoke test.
 - `scripts/report_flow_degeneracy.py`: degeneracy report v1 smoke test.
+- `scripts/run_calibration_sweep.py`: calibration sweep v0 over Q / damage /
+  horizon candidates.
 - `dry_runs/`: non-primary smoke-test outputs.
 
 The purpose is to test whether buffer / recovery / reconfiguration allocation
@@ -57,3 +59,13 @@ The default report reads `dry_runs/v0_smoke/runs.csv` and writes
 `dry_runs/v0_smoke/degeneracy_group_summary.csv`, and
 `dry_runs/v0_smoke/degeneracy_summary.json`. These outputs check reporting and
 exclusion-rule plumbing only; they are not exclusion decisions.
+
+Calibration sweep v0:
+
+```bash
+python3 analysis/m_flow_network_testbed/scripts/run_calibration_sweep.py
+```
+
+The default sweep writes `dry_runs/calibration_sweep_v0/sweep_summary.csv` and
+`dry_runs/calibration_sweep_v0/sweep_diagnostics.json`. The sweep is a
+calibration-screening tool only; it is not support evidence.
