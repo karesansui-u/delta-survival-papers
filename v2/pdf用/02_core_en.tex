@@ -1,0 +1,337 @@
+\documentclass[12pt,a4paper]{article}
+\input{survival_whitepaper_preamble.tex}
+
+\begin{document}
+
+\PaperTitleBlock
+  {Structural Persistence: Minimal Kernel and Balance Principle}
+  {Feasible-region shrinkage, logarithmic exponential kernels, and recovery-aware persistence}
+  {April 29, 2026}
+
+\begin{abstract}
+This paper is a reader-facing synthesis of two companion theoretical papers: \emph{The Minimal Form of Structural Persistence} and \emph{The Balance Principle of Structural Persistence}. It adds no new theoretical kernel, theorem, or empirical support claim. The precise axioms, proofs, and limitations remain those of the two companion papers and the corresponding technical supplements.
+
+The minimal form is not a trivial preliminary. Its first nontrivial move is to treat structural failure not as resource exhaustion, but as shrinkage of the feasible region in which a structure can still be maintained. Under a mild composition principle for measuring already-realized survival ratios, the structural loss scale is forced to be logarithmic. This yields the pathwise exponential kernel
+
+\[
+S = M e^{-L},
+\]
+
+where \(L\) is cumulative structural consumption and \(M\) is an effective maintenance surplus term on the resource side.
+
+The point is not that resources do not matter. Resources and slack were always part of the usual explanation of persistence. The new separation is between the resource-side term \(M\) and the shrinkage-side term \(L\): even when resources remain, the region compatible with the target structure may shrink until that structure can no longer be maintained.
+
+When repair, recovery, redundancy, rollback, reconfiguration, or external support are made explicit, each time step has structural consumption \(d_{t}\) and recovery \(r_{t}\). Their difference
+
+\[
+b_{t} = d_{t}-r_{t}
+\]
+
+is the net structural consumption. With
+
+\[
+B_{n}=\sum_{t<n} b_{t},
+\]
+
+the recovery-aware form is
+
+\[
+S_{n}=M_{n} e^{-B_{n}}.
+\]
+
+The purpose of this core paper is to show, in one reading path, how the closed shrinkage kernel \(S=Me^{-L}\) lifts to the open-system balance kernel \(S=Me^{-B}\).
+\end{abstract}
+
+\section{Role of this paper}\label{role-of-this-paper}
+
+This paper is the integrated reading path for the main theoretical spine.
+
+{\def\LTcaptype{table} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Document
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Role
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Paper 0 & Whole-program map: observability layers, evidence, Lean, supplements \\
+This Core Paper & Reader-facing synthesis of Paper 1 and Paper 2 \\
+Paper 1 & Strict spine for the loss scale, log-ratio uniqueness, telescoping product, and minimal kernel \\
+Paper 2 & Strict spine for two-step updates, recovery, net consumption, and the balance principle \\
+\end{longtable}
+}
+
+This paper is therefore not a replacement for the companion papers. It is the shortest public path through them.
+
+Paper 1 is not merely ``obvious.'' It fixes the object that is being measured: the set of states in which a structure can still be maintained. It then shows why the natural loss scale on survival ratios is logarithmic, and why post-hoc choices of the feasible set or measure would make the formalism empty.
+
+\section{The question}\label{the-question}
+
+Long-horizon systems, learning systems, reasoning systems, and constraint systems can lose a structure even when their resources have not literally reached zero. In such cases, the first question is not simply how much resource remains.
+
+The first question is how the region of states compatible with the target structure changes under constraints, contradictions, damage, updates, disturbances, repair, or reconfiguration.
+
+In minimal form, this becomes two questions.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  In a closed shrinkage mode with no explicit recovery, what is the natural scale for structural consumption?
+\item
+  In an open system with recovery, what quantity governs structural persistence?
+\end{enumerate}
+
+Paper 1 answers the first question. Paper 2 answers the second. This paper connects them.
+
+\section{Pre-fixed structural maintenance problems}\label{pre-fixed-structural-maintenance-problems}
+
+Let \(X\) be a system and let \(V\) denote the states compatible with maintaining the target structure. Write the initial feasible region as \(V^{(0)}\). Under accumulating constraints,
+
+\[
+V^{(0)} \supseteq V^{(1)} \supseteq \cdots \supseteq V^{(n)}.
+\]
+
+A measure \(m\) is fixed to compare the sizes of these feasible regions. Here ``measure'' simply means the ruler used to read the size of a state set: it may be counting measure, volume, probability weight, or another pre-specified finite measure.
+
+The target structure, measure, stage sequence, and time horizon must be fixed before observing the outcome. If \(V\) or \(m\) can be chosen after seeing the data, almost any monotone sequence can be represented and the theory loses empirical content.
+
+All log-ratios below are read on positive finite masses. Hitting zero is treated separately as a collapse boundary, not as an ordinary finite log-ratio update.
+
+\section{Structural consumption and the logarithmic scale}\label{structural-consumption-and-the-logarithmic-scale}
+
+Let \(r\in(0,1]\) be a survival ratio. A structural consumption scale \(f(r)\) should depend on the already-realized ratio, not on the absolute mass. The composition requirement is not a probabilistic independence assumption about how constraints are generated.
+
+It is a measurement requirement. If a shrinkage path factors as
+
+\[
+\begin{aligned}
+\frac{m(V^{(2)})}{m(V^{(0)})} \\
+&= \\
+\frac{m(V^{(1)})}{m(V^{(0)})} \\
+\frac{m(V^{(2)})}{m(V^{(1)})},
+\end{aligned}
+\]
+
+then the measured consumption should add:
+
+\[
+f(r_1r_2)=f(r_1)+f(r_2).
+\]
+
+Overlap, dependence, and redundancy among constraints are already absorbed into the actual feasible sets \(V^{(i)}\) and the ratios \(m(V^{(i)})/m(V^{(i-1)})\). The additivity axiom concerns the scale used to measure those ratios.
+
+Together with normalization and continuity, this functional equation forces
+
+\[
+f(r)=-k\log r.
+\]
+
+Taking \(k=1\) fixes the unit. The stage consumption is
+
+\[
+\begin{aligned}
+d_{i} \\
+&= \\
+-\log\frac{m(V^{(i)})}{m(V^{(i-1)})}.
+\end{aligned}
+\]
+
+\section{Telescoping product and the minimal kernel}\label{telescoping-product-and-the-minimal-kernel}
+
+Define cumulative structural consumption by
+
+\[
+L_{n}=\sum_{i=1}^{n} d_{i}.
+\]
+
+Then the telescoping product gives
+
+\[
+m(V^{(n)})=m(V^{(0)})e^{-L_{n}}.
+\]
+
+This is not the empirical claim that every real system decays exponentially. It is a representation theorem: once a pre-fixed feasible region is measured through log-ratios, the exponential kernel follows algebraically.
+
+Introducing the resource-side term \(M\), the reader-facing structural persistence quantity is
+
+\[
+S=Me^{-L}.
+\]
+
+The term \(M\) is not derived from the exponential kernel. It represents the effective maintenance surplus available to support the structure. The new law-side coordinate is \(L\), the shrinkage of the feasible region.
+
+\section{Recovery and two-step updates}\label{recovery-and-two-step-updates}
+
+Open systems may repair, restore, buffer, reroute, roll back, or reconfigure. A time step can therefore be read as a two-step update:
+
+\[
+\begin{aligned}
+V_{t}^- :&= K_{t}(V^{(t)}), \\
+\qquad \\
+V^{(t+1)} :&= R_{t}(V_{t}^-).
+\end{aligned}
+\]
+
+Here \(K_{t}\) is the shrinkage action and \(R_{t}\) is the recovery action within the fixed observation unit.
+
+Define
+
+\[
+\begin{aligned}
+d_{t} \\
+&= \\
+-\log\frac{m(V_{t}^-)}{m(V^{(t)})}, \\
+\qquad \\
+r_{t} \\
+&= \\
+\log\frac{m(V^{(t+1)})}{m(V_{t}^-)}.
+\end{aligned}
+\]
+
+Then
+
+\[
+\begin{aligned}
+b_{t}&=d_{t}-r_{t} \\
+&= \\
+-\log\frac{m(V^{(t+1)})}{m(V^{(t)})}.
+\end{aligned}
+\]
+
+The intermediate set cancels in the log-ratio accounting. This cancellation is not a claim that the physical order of consumption and recovery never matters. If changing the order changes the endpoint \(V^{(t+1)}\), then \(b_{t}\) changes as well.
+
+\section{The balance kernel}\label{the-balance-kernel}
+
+Define
+
+\[
+B_{n}=\sum_{t<n}b_{t}.
+\]
+
+The same telescoping argument gives
+
+\[
+m(V^{(n)})=m(V^{(0)})e^{-B_{n}}.
+\]
+
+With the resource-side term,
+
+\[
+S_{n}=M_{n} e^{-B_{n}}.
+\]
+
+If there is no recovery, then \(r_{t}=0\), \(b_{t}=d_{t}\), and \(B_{n}=L_{n}\). Thus the balance kernel does not replace the minimal kernel. It extends it.
+
+The central point is simple: in recovery-aware systems, persistence is governed not by consumption alone, but by net consumption.
+
+\section{Accounting is not equilibrium}\label{accounting-is-not-equilibrium}
+
+The word ``balance'' means accounting, not equilibrium. The signs of \(b_{t}\) give local accounting regimes on a pre-fixed observation unit.
+
+{\def\LTcaptype{table} % do not increment counter
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Condition & Reading \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+(b\_t\textgreater0) & consumption-dominant \\
+(b\_t=0) & locally maintained \\
+(b\_t\textless0) & recovery-dominant \\
+\end{longtable}
+}
+
+These regimes are grain-relative. If two adjacent intervals are merged,
+
+\[
+\begin{aligned}
+b_{t:t+2} \\
+&= \\
+-\log\frac{m(V^{(t+2)})}{m(V^{(t)})} \\
+&= \\
+b_{t}+b_{t+1}.
+\end{aligned}
+\]
+
+The cumulative quantity \(B_{n}\) is additively coherent under time aggregation, but regime labels and hitting boundaries depend on the pre-fixed observation unit. A path that is ``consumption followed by recovery'' at a fine grain may appear locally maintained at a coarser grain.
+
+\section{Observability layers}\label{observability-layers}
+
+The same kernel is read through three observability layers.
+
+{\def\LTcaptype{table} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Layer
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Reading
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Specification-fixed structural layer & Structure, measure, and boundary are directly fixed by the specification \\
+Conditional structural-embedding layer & Existing drift, difference, or hitting-bound theories are mapped conditionally into the structural variables \\
+Structurally inferred layer & The structure is not directly counted; observation and inference indicators are frozen and tested \\
+\end{longtable}
+}
+
+These are not different theories. They are different observational interfaces to the same kernel.
+
+The law-side claim belongs to the specification-fixed structural layer. The structurally inferred layer is an engineering layer: it uses observation and inference indicators to approximate the law-side coordinates \(L/B/M\). The quality of that approximation is judged only after freezing the mapping and testing whether the structural-persistence indicators add out-of-sample predictive value beyond the domain baseline.
+
+As the approximation improves, the structural persistence coordinates move from explanatory vocabulary toward predictive instrumentation. This is an empirical achievement, not something granted by the notation.
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{../figures/figure1_observability_layers_en.pdf}
+\caption{Figure 1. One structural persistence kernel read through three observability layers.}
+\end{figure}
+
+\section{Evidence status}\label{evidence-status}
+
+In the specification-fixed structural layer, two frozen empirical packages currently provide the hard public entry point:
+
+\begin{itemize}
+\tightlist
+\item
+  Mixed-CSP: three outside rerunners, each with 12,000 primary rows, zero checked core mismatches, and reproduced support flags.
+\item
+  Exp43c q-coloring: three outside rerunners, each with 4,000 primary rows, zero checked core mismatches, zero timeouts, zero malformed rows, and the same qualitative support decision.
+\end{itemize}
+
+This is not universal-law closure. It is package-scoped outside-rerun support for the first hard law-side footing.
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{../figures/figure2_kernel_balance_en.pdf}
+\caption{Figure 2. The minimal kernel lifts to the balance kernel by replacing cumulative consumption \(L\) with cumulative net consumption \(B\).}
+\end{figure}
+
+\section{Conclusion}\label{conclusion}
+
+The minimal kernel is
+
+\[
+S=Me^{-L}.
+\]
+
+The recovery-aware balance kernel is
+
+\[
+S=Me^{-B}.
+\]
+
+The contribution is not the statement that resources matter. The contribution is the separation between the resource-side term \(M\) and the structural shrinkage coordinates \(L\) and \(B\). This separation makes it possible to say when a structure fails because the feasible region compatible with that structure has been consumed, even if resources have not simply vanished.
+\end{document}

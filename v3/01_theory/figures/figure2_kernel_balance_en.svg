@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="520" viewBox="0 0 980 520" role="img" aria-labelledby="title desc">
+  <title id="title">From Minimal Kernel to Balance Kernel</title>
+  <desc id="desc">A diagram showing how structural persistence moves from cumulative consumption L to cumulative net consumption B when recovery is explicit.</desc>
+  <defs>
+    <linearGradient id="bg2" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#f9f7f1"/>
+      <stop offset="100%" stop-color="#edf3f4"/>
+    </linearGradient>
+    <filter id="shadow2" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#1f2933" flood-opacity="0.15"/>
+    </filter>
+    <style>
+      .title { font: 700 28px Georgia, "Times New Roman", serif; fill: #1e2a24; }
+      .label { font: 700 21px Georgia, "Times New Roman", serif; fill: #1e2a24; }
+      .small { font: 15px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #33423b; }
+      .tiny { font: 13px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #4b5d55; }
+      .math { font: 700 24px Georgia, "Times New Roman", serif; fill: #24342d; }
+      .panel { fill: #fffdf7; stroke-width: 2; rx: 20; filter: url(#shadow2); }
+      .stage { fill: #f7fbf8; stroke: #8fae91; stroke-width: 2; rx: 16; }
+      .recover { fill: #f8f4fb; stroke: #9a91bd; stroke-width: 2; rx: 16; }
+      .arrow { stroke: #56675e; stroke-width: 2.5; fill: none; marker-end: url(#arrowhead2); }
+      .thin { stroke: #829188; stroke-width: 1.8; fill: none; marker-end: url(#arrowhead2); }
+    </style>
+    <marker id="arrowhead2" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8 z" fill="#56675e"/>
+    </marker>
+  </defs>
+
+  <rect width="980" height="520" fill="url(#bg2)"/>
+  <text x="490" y="48" text-anchor="middle" class="title">From Minimal Kernel to Balance Kernel</text>
+  <text x="490" y="76" text-anchor="middle" class="small">Recovery does not change the exponential form; it changes what enters the exponent.</text>
+
+  <rect x="70" y="120" width="375" height="250" class="panel" stroke="#7aa17a"/>
+  <text x="258" y="154" text-anchor="middle" class="label">Closed shrinkage mode</text>
+  <rect x="115" y="190" width="95" height="55" class="stage"/>
+  <text x="162" y="224" text-anchor="middle" class="small">V(0)</text>
+  <path d="M212 218 C238 218 250 218 277 218" class="arrow"/>
+  <rect x="280" y="190" width="95" height="55" class="stage"/>
+  <text x="327" y="224" text-anchor="middle" class="small">V(n)</text>
+  <text x="258" y="292" text-anchor="middle" class="math">L_n = sum d_i</text>
+  <text x="258" y="328" text-anchor="middle" class="math">S = M e^{-L}</text>
+  <text x="258" y="354" text-anchor="middle" class="tiny">feasible-region shrinkage only</text>
+
+  <rect x="535" y="120" width="375" height="250" class="panel" stroke="#c38f66"/>
+  <text x="723" y="154" text-anchor="middle" class="label">Recovery-aware mode</text>
+  <rect x="568" y="190" width="84" height="55" class="stage"/>
+  <text x="610" y="224" text-anchor="middle" class="small">V(t)</text>
+  <path d="M654 218 C676 218 686 218 708 218" class="thin"/>
+  <rect x="710" y="190" width="84" height="55" class="stage"/>
+  <text x="752" y="224" text-anchor="middle" class="small">V-</text>
+  <path d="M796 218 C818 218 828 218 850 218" class="thin"/>
+  <rect x="852" y="190" width="84" height="55" class="recover"/>
+  <text x="894" y="224" text-anchor="middle" class="small">V(t+1)</text>
+  <text x="681" y="184" text-anchor="middle" class="tiny">d_t</text>
+  <text x="823" y="184" text-anchor="middle" class="tiny">r_t</text>
+  <text x="723" y="292" text-anchor="middle" class="math">B_n = sum(d_t - r_t)</text>
+  <text x="723" y="328" text-anchor="middle" class="math">S = M e^{-B}</text>
+  <text x="723" y="354" text-anchor="middle" class="tiny">net structural consumption</text>
+
+  <path d="M446 245 C484 245 496 245 533 245" class="arrow"/>
+  <text x="490" y="224" text-anchor="middle" class="small">add recovery</text>
+  <text x="490" y="421" text-anchor="middle" class="small">M is the resource-side maintenance surplus; L and B are shrinkage-side coordinates.</text>
+  <text x="490" y="448" text-anchor="middle" class="tiny">If r_t = 0, then B_n = L_n. The balance kernel reduces to the minimal kernel.</text>
+</svg>

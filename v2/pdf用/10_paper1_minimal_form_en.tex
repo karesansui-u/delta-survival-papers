@@ -1,0 +1,238 @@
+\documentclass[12pt,a4paper]{article}
+\input{survival_whitepaper_preamble.tex}
+
+\begin{document}
+
+\PaperTitleBlock
+  {The Minimal Form of Structural Persistence}
+  {Feasible-region shrinkage and the logarithmic exponential kernel}
+  {April 29, 2026}
+
+\begin{abstract}
+A structure can fail before its resources literally vanish. Constraints may accumulate until the region of states compatible with maintaining that structure becomes too small, or disappears entirely. This paper gives the minimal formal expression of that fact.
+
+For a pre-fixed structural maintenance problem, consider a nested sequence of feasible regions
+
+\[
+V^{(0)} \supseteq V^{(1)} \supseteq \cdots \supseteq V^{(n)}.
+\]
+
+Under natural axioms for measuring structural consumption - dependence only on survival ratios, normalization, additivity under composition, and continuity - the loss scale is uniquely logarithmic:
+
+\[
+f(r)=-k\log r.
+\]
+
+With \(k=1\), cumulative structural consumption satisfies
+
+\[
+m(V^{(n)})=m(V^{(0)})e^{-L_{n}}.
+\]
+
+The exponential kernel is therefore not an additional empirical decay law. It is the telescoping form forced by log-ratio measurement on a pre-fixed feasible region.
+
+Finally, an effective maintenance surplus term \(M\) is introduced externally, yielding the reader-facing persistence quantity
+
+\[
+S=Me^{-L}.
+\]
+
+The term \(M\) is not derived from the exponential kernel. It represents the resource-side capacity to support the structure. The new law-side coordinate in this paper is \(L\), the logarithmic shrinkage of the feasible region.
+\end{abstract}
+
+\section{Question}\label{question}
+
+What does it mean for a structure to persist?
+
+If persistence is described only by remaining resources, the question is underspecified. A system may still have resources while the set of states compatible with the target structure has already become too small.
+
+This paper therefore asks a narrower question: how should one measure the shrinkage of the state region in which a structure can still be maintained?
+
+The object is not bare existence. The object is existence as that structure, or the maintenance of the function, relation, or identity that defines the structure.
+
+\section{Setting}\label{setting}
+
+Fix a system \(X\). Let \(V^{(0)}\) be the initial set of states compatible with maintaining the target structure. Under accumulating constraints, assume
+
+\[
+V^{(0)} \supseteq V^{(1)} \supseteq \cdots \supseteq V^{(n)}.
+\]
+
+Each \(V^{(i)}\) is measurable. A finite measure \(m\) is fixed on the same representation, system, and time horizon. The value \(m(V^{(i)})\) measures the size of the remaining feasible region for maintaining the structure, not the current occupied state of the system.
+
+This paper concerns pre-fixed structural maintenance problems. The target structure, initial feasible region, measure, stage sequence, and time horizon are fixed before observing the outcome.
+
+The following applicability conditions are part of the formal discipline.
+
+P1. The initial feasible region \(V^{(0)}\) and the measure \(m\) are fixed before observation.
+
+P2. The stage sequence and time horizon \(T\) are fixed before observation.
+
+P3. When the original structure fails, the failure is recorded as a data point of that structural maintenance problem.
+
+P4. The initial feasible region is nontrivial in measure: \(0<m(V^{(0)})<m(X)\).
+
+P5. Natural changes of representation granularity should not by themselves create large changes in the predictions based on \(L\) or \(S\).
+
+These conditions prevent post-hoc vacuity. If \(V\) and \(m\) can be chosen after observing the data, any finite monotone decreasing sequence of positive masses can be represented.
+
+Indeed, given
+
+\[
+s_0\ge s_1\ge \cdots \ge s_{n}>0,
+\]
+
+take \(X=[0,s_0]\), let \(m\) be Lebesgue measure, and set \(V^{(i)}=[0,s_{i}]\). Then \(m(V^{(i)})=s_{i}\). Without pre-fixing, the representation carries no empirical content.
+
+\section{Structural consumption scale}\label{structural-consumption-scale}
+
+For a pair \(A\supseteq B\) with \(m(A)>0\), define structural consumption by a function of the survival ratio:
+
+\[
+D(A,B)=f\left(\frac{m(B)}{m(A)}\right).
+\]
+
+The function
+
+\[
+f:(0,1]\to[0,\infty)
+\]
+
+is required to satisfy four axioms.
+
+B1. Ratio dependence. Structural consumption depends only on \(m(B)/m(A)\), not on absolute scale.
+
+B2. Normalization. \(f(1)=0\).
+
+B3. Additivity. For \(r_1,r_2\in(0,1]\),
+
+\[
+f(r_1r_2)=f(r_1)+f(r_2).
+\]
+
+B4. Continuity. \(f\) is continuous on \((0,1]\).
+
+The additivity axiom is not a claim that constraints are generated independently. It is a composition axiom for the scale that measures already-realized survival ratios. Dependence, overlap, and redundancy among constraints are already reflected in the actual sets \(V^{(i)}\) and the ratios \(m(V^{(i)})/m(V^{(i-1)})\).
+
+\section{Uniqueness of the logarithmic ratio}\label{uniqueness-of-the-logarithmic-ratio}
+
+Theorem. If \(f\) satisfies B1-B4, then there exists \(k\ge0\) such that
+
+\[
+f(r)=-k\log r.
+\]
+
+If \(f\) is not identically zero, then \(k>0\).
+
+Proof. Define
+
+\[
+g(t)=f(e^{-t}), \qquad t\ge0.
+\]
+
+By B3,
+
+\[
+g(s+t)=g(s)+g(t).
+\]
+
+By B4, \(g\) is continuous. Hence the continuous Cauchy equation gives
+
+\[
+g(t)=kt
+\]
+
+for some \(k\ge0\). Therefore
+
+\[
+f(r)=g(-\log r)=-k\log r.
+\]
+
+This proves the claim.
+
+In what follows, \(k=1\) is taken as the unit convention.
+
+\section{Telescoping product and exponential kernel}\label{telescoping-product-and-exponential-kernel}
+
+Define the stage consumption by
+
+\[
+d_{i}=-\log\frac{m(V^{(i)})}{m(V^{(i-1)})},
+\]
+
+and cumulative structural consumption by
+
+\[
+L_{n}=\sum_{i=1}^{n}d_{i}.
+\]
+
+All ordinary log-ratio comparisons are read on positive finite masses. If a mass reaches zero, it is treated as a collapse boundary rather than as a finite update.
+
+Proposition. Under the nested sequence above,
+
+\[
+m(V^{(n)})=m(V^{(0)})e^{-L_{n}}.
+\]
+
+Proof. By definition,
+
+\[
+e^{-d_{i}}=\frac{m(V^{(i)})}{m(V^{(i-1)})}.
+\]
+
+Therefore
+
+\[
+\begin{aligned}
+e^{-L_{n}} \\
+&= \\
+\prod_{1\le i\le n} e^{-d_{i}} \\
+&= \\
+\prod_{1\le i\le n}\frac{m(V^{(i)})}{m(V^{(i-1)})} \\
+&= \\
+\frac{m(V^{(n)})}{m(V^{(0)})}.
+\end{aligned}
+\]
+
+Multiplying by \(m(V^{(0)})\) gives the result.
+
+The exponential expression is thus a pathwise representation identity. It is not the empirical claim that all real systems decay exponentially.
+
+\section{Structural persistence quantity}\label{structural-persistence-quantity}
+
+The proposition gives the remaining feasible mass. Persistence in an actual system may also depend on resources, slack, support, or other maintenance capacities.
+
+Introduce an effective maintenance surplus \(M>0\) and define
+
+\[
+S=Me^{-L}.
+\]
+
+The term \(M\) is external to the log-ratio theorem. It is the resource-side term that represents the capacity available to support the structure. The novelty of the minimal form is not that \(M\) exists. The novelty is the separation of \(M\) from the law-side shrinkage coordinate \(L\).
+
+\section{Claim boundary}\label{claim-boundary}
+
+This paper does not claim that every domain has a unique natural \(V\), \(m\), or time horizon. It does not claim that high-probability hitting bounds follow without additional assumptions. It does not claim a universal law for all systems.
+
+It claims the following: once a structural maintenance problem is pre-fixed, and once shrinkage of the feasible region is measured through the unique continuous additive scale on survival ratios, the exponential kernel follows.
+
+The empirical and modeling content lies in how \(V\), \(m\), and the stage sequence are fixed. That boundary is essential. It prevents the theory from becoming a post-hoc language that can explain anything.
+
+\section{Conclusion}\label{conclusion}
+
+Structural failure is not only resource exhaustion. It can be shrinkage of the feasible region in which the target structure can still be maintained.
+
+For a pre-fixed structural maintenance problem, the natural structural consumption scale is logarithmic, and the telescoping product yields
+
+\[
+m(V^{(n)})=m(V^{(0)})e^{-L_{n}}.
+\]
+
+With an external maintenance-surplus term, this gives
+
+\[
+S=Me^{-L}.
+\]
+
+The next paper extends this minimal kernel to recovery-aware systems by replacing \(L\) with cumulative net consumption \(B\).
+\end{document}

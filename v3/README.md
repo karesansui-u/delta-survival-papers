@@ -32,6 +32,14 @@ Then read the layer you need:
 - Upload description and records: `upload_description_2026-04-29.md`,
   `UPLOAD_RECORDS.md`
 
+English entry path:
+
+- `01_theory/en/02_core_en.md`
+- `01_theory/en/10_paper1_minimal_form_en.md`
+- `01_theory/en/11_paper2_balance_principle_en.md`
+- PDFs: `../v2/pdf用/02_core_en.pdf`, `../v2/pdf用/10_paper1_minimal_form_en.pdf`,
+  `../v2/pdf用/11_paper2_balance_principle_en.pdf`
+
 
 2. Stable Core
 --------------

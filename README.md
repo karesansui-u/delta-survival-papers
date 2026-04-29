@@ -27,8 +27,14 @@ Structural Persistence Theory for LLM reasoning degradation, catastrophic forget
 
 ### English Entry Points
 
-英語で最短に入りたい場合は、まず [`v2/pdf用/ENGLISH_ABSTRACT.pdf`](v2/pdf%E7%94%A8/ENGLISH_ABSTRACT.pdf) を読んでください。
-もう少し説明が必要なら [`ENGLISH_OVERVIEW.md`](ENGLISH_OVERVIEW.md) を参照してください。
+英語で最短に入りたい場合は、まず Core / Paper 1 / Paper 2 の英語版を読んでください。
+
+- Core English Markdown: [`v3/01_theory/en/02_core_en.md`](v3/01_theory/en/02_core_en.md)
+- Core English PDF: [`v2/pdf用/02_core_en.pdf`](v2/pdf%E7%94%A8/02_core_en.pdf)
+- Paper 1 English PDF: [`v2/pdf用/10_paper1_minimal_form_en.pdf`](v2/pdf%E7%94%A8/10_paper1_minimal_form_en.pdf)
+- Paper 2 English PDF: [`v2/pdf用/11_paper2_balance_principle_en.pdf`](v2/pdf%E7%94%A8/11_paper2_balance_principle_en.pdf)
+
+短い要約だけなら [`v2/pdf用/ENGLISH_ABSTRACT.pdf`](v2/pdf%E7%94%A8/ENGLISH_ABSTRACT.pdf) も使えます。もう少し説明が必要なら [`ENGLISH_OVERVIEW.md`](ENGLISH_OVERVIEW.md) を参照してください。
 
 ### Japanese Main Track
 

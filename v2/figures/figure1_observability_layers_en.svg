@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="560" viewBox="0 0 980 560" role="img" aria-labelledby="title desc">
+  <title id="title">Structural Persistence Observability Layers</title>
+  <desc id="desc">A diagram showing the common structural persistence kernel connected to specification-fixed, structurally inferred, and conditional structural-embedding layers.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#f8f6ef"/>
+      <stop offset="100%" stop-color="#e8f1ee"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#1f2933" flood-opacity="0.16"/>
+    </filter>
+    <style>
+      .title { font: 700 28px Georgia, "Times New Roman", serif; fill: #1e2a24; }
+      .label { font: 700 20px Georgia, "Times New Roman", serif; fill: #1e2a24; }
+      .small { font: 15px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #33423b; }
+      .tiny { font: 13px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #4b5d55; }
+      .math { font: 700 22px Georgia, "Times New Roman", serif; fill: #24342d; }
+      .box { fill: #fffdf7; stroke: #c8b98d; stroke-width: 2; rx: 22; filter: url(#shadow); }
+      .layer { fill: #fdfbf4; stroke-width: 2; rx: 18; filter: url(#shadow); }
+      .arrow { stroke: #56675e; stroke-width: 2.5; fill: none; marker-end: url(#arrowhead); }
+      .dash { stroke: #829188; stroke-width: 2; stroke-dasharray: 7 7; fill: none; marker-end: url(#arrowhead); }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8 z" fill="#56675e"/>
+    </marker>
+  </defs>
+
+  <rect width="980" height="560" fill="url(#bg)"/>
+  <text x="490" y="48" text-anchor="middle" class="title">One Kernel, Three Observability Layers</text>
+  <text x="490" y="76" text-anchor="middle" class="small">The layers differ by what can be specified, inferred, or embedded.</text>
+
+  <rect x="325" y="135" width="330" height="145" class="box"/>
+  <text x="490" y="170" text-anchor="middle" class="label">Common Kernel</text>
+  <text x="490" y="210" text-anchor="middle" class="math">S = M e^{-L}</text>
+  <text x="490" y="244" text-anchor="middle" class="math">S = M e^{-B}</text>
+  <text x="490" y="268" text-anchor="middle" class="tiny">B_n = sum(d_t - r_t)</text>
+
+  <rect x="66" y="130" width="235" height="118" class="layer" stroke="#7aa17a"/>
+  <text x="184" y="160" text-anchor="middle" class="label">Specification-fixed</text>
+  <text x="184" y="186" text-anchor="middle" class="label">structural layer</text>
+  <text x="184" y="215" text-anchor="middle" class="small">structure, measure, boundary</text>
+  <text x="184" y="238" text-anchor="middle" class="tiny">SAT / Mixed-CSP / q-coloring</text>
+
+  <rect x="679" y="130" width="235" height="118" class="layer" stroke="#8b93b8"/>
+  <text x="797" y="160" text-anchor="middle" class="label">Structurally</text>
+  <text x="797" y="186" text-anchor="middle" class="label">inferred layer</text>
+  <text x="797" y="215" text-anchor="middle" class="small">indicators + frozen validation</text>
+  <text x="797" y="238" text-anchor="middle" class="tiny">LLM / software / battery candidates</text>
+
+  <rect x="325" y="365" width="330" height="112" class="layer" stroke="#c38f66"/>
+  <text x="490" y="396" text-anchor="middle" class="label">Conditional structural</text>
+  <text x="490" y="422" text-anchor="middle" class="label">embedding layer</text>
+  <text x="490" y="449" text-anchor="middle" class="small">existing drift / difference / bounds</text>
+  <text x="490" y="472" text-anchor="middle" class="tiny">Foster-Lyapunov / queueing / repair</text>
+
+  <path d="M302 189 C318 189 308 189 323 189" class="arrow"/>
+  <path d="M657 189 C672 189 662 189 677 189" class="arrow"/>
+  <path d="M490 282 C490 315 490 333 490 362" class="arrow"/>
+
+  <path d="M202 252 C250 335 320 388 326 410" class="dash"/>
+  <path d="M778 252 C730 335 660 388 654 410" class="dash"/>
+
+  <text x="90" y="320" class="small">Law-side candidate</text>
+  <text x="90" y="346" class="tiny">directly fixed V, m, boundaries</text>
+  <text x="704" y="320" class="small">Engineering inference</text>
+  <text x="704" y="346" class="tiny">estimated through indicators</text>
+
+  <text x="490" y="525" text-anchor="middle" class="small">Support never transfers automatically; transfer creates new testable candidates.</text>
+</svg>

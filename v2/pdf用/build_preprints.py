@@ -12,7 +12,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 V2_DIR = ROOT.parent
-DEFAULT_DATE = "2026年4月12日"
+V3_DIR = V2_DIR.parent / "v3"
+DEFAULT_DATE_JA = "2026年4月12日"
+DEFAULT_DATE_EN = "April 29, 2026"
 TARGET_FILES = [
     V2_DIR / "0_構造持続理論の統合版.md",
     V2_DIR / "補論_構造持続理論の構成地図.md",
@@ -20,6 +22,9 @@ TARGET_FILES = [
     V2_DIR / "Core_構造持続の最小核と収支原理.md",
     V2_DIR / "1_構造持続の最小形式.md",
     V2_DIR / "2_構造持続の収支原理.md",
+    V3_DIR / "01_theory/en/02_core_en.md",
+    V3_DIR / "01_theory/en/10_paper1_minimal_form_en.md",
+    V3_DIR / "01_theory/en/11_paper2_balance_principle_en.md",
     V2_DIR / "Companion_RouteC_推論時の構造劣化.md",
     V2_DIR / "Companion_RouteC_継続学習時の構造的忘却.md",
     V2_DIR / "補論_構造持続の条件つき導出.md",
@@ -225,7 +230,7 @@ def normalize_markdown(md_path: Path) -> tuple[str, str, str, str]:
     idx = 3
     while idx < len(lines) and not lines[idx].strip():
         idx += 1
-    if idx >= len(lines) or lines[idx].strip() != "要旨":
+    if idx >= len(lines) or lines[idx].strip() not in {"要旨", "Abstract"}:
         raise ValueError(f"{md_path.name} does not contain a parseable abstract header.")
     idx += 1
 
@@ -329,22 +334,22 @@ def pandoc_markdown_to_latex(markdown_text: str) -> str:
         latex = result.stdout.strip() + "\n"
         latex = latex.replace(r"\def\LTcaptype{none}", r"\def\LTcaptype{table}")
         latex = re.sub(
-            r"\\pandocbounded\{\\includesvg\[[^\]]*\]\{figures/([^}]+)\.svg\}\}",
+            r"\\pandocbounded\{\\includesvg\[[^\]]*\]\{(?:\.\./)?figures/([^}]+)\.svg\}\}",
             r"\\includegraphics[width=\\linewidth]{../figures/\1.pdf}",
             latex,
         )
         latex = re.sub(
-            r"\\includesvg\[[^\]]*\]\{figures/([^}]+)\.svg\}",
+            r"\\includesvg\[[^\]]*\]\{(?:\.\./)?figures/([^}]+)\.svg\}",
             r"\\includegraphics[width=\\linewidth]{../figures/\1.pdf}",
             latex,
         )
         latex = re.sub(
-            r"(\\includegraphics(?:\[[^\]]*\])?\{)figures/([^}]+)\.svg\}",
+            r"(\\includegraphics(?:\[[^\]]*\])?\{)(?:\.\./)?figures/([^}]+)\.svg\}",
             r"\1../figures/\2.pdf}",
             latex,
         )
         latex = re.sub(
-            r"(\\includegraphics(?:\[[^\]]*\])?\{)figures/([^}]+)\.pdf\}",
+            r"(\\includegraphics(?:\[[^\]]*\])?\{)(?:\.\./)?figures/([^}]+)\.pdf\}",
             r"\1../figures/\2.pdf}",
             latex,
         )
@@ -357,12 +362,13 @@ def build_tex(md_path: Path) -> Path:
     _, title, subtitle, abstract_md, body_md = normalize_markdown(md_path)
     abstract_tex = pandoc_markdown_to_latex(abstract_md)
     body_tex = pandoc_markdown_to_latex(body_md)
+    paper_date = DEFAULT_DATE_JA if re.search(rf"[{CJK}]", title + subtitle) else DEFAULT_DATE_EN
 
     tex = (
         "\\documentclass[12pt,a4paper]{article}\n"
         "\\input{survival_whitepaper_preamble.tex}\n\n"
         "\\begin{document}\n\n"
-        f"\\PaperTitleBlock\n  {{{latex_escape(title)}}}\n  {{{latex_escape(subtitle)}}}\n  {{{DEFAULT_DATE}}}\n\n"
+        f"\\PaperTitleBlock\n  {{{latex_escape(title)}}}\n  {{{latex_escape(subtitle)}}}\n  {{{paper_date}}}\n\n"
         "\\begin{abstract}\n"
         f"{abstract_tex}"
         "\\end{abstract}\n\n"
