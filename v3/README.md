@@ -17,7 +17,8 @@ Start here:
 2. `01_theory/01_overview.md`
 3. `01_theory/02_core.md`
 4. `CLAIMS.md`
-5. `03_domains/registry.tsv`
+5. `RELEASE_NOTES.md`
+6. `03_domains/registry.tsv`
 
 Then read the layer you need:
 
@@ -26,6 +27,7 @@ Then read the layer you need:
 - Domain anchors: `03_domains/`
 - Operational rules: `04_operations/`
 - Evidence and rerun records: `05_evidence/`
+- Upload bundle guidance: `UPLOAD_MANIFEST.md`
 
 
 2. Stable Core
