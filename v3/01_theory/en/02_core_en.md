@@ -6,7 +6,7 @@ Abstract
 
 This paper is a reader-facing synthesis of two companion theoretical papers: *The Minimal Form of Structural Persistence* and *The Balance Principle of Structural Persistence*. It adds no new theoretical kernel, theorem, or empirical support claim. The precise axioms, proofs, and limitations remain those of the two companion papers and the corresponding technical supplements.
 
-The minimal form is not a trivial preliminary. Its first nontrivial move is to treat structural failure not as resource exhaustion, but as shrinkage of the feasible region in which a structure can still be maintained. Under a mild composition principle for measuring already-realized survival ratios, the structural loss scale is forced to be logarithmic. This yields the pathwise exponential kernel
+The minimal form is not a trivial preliminary. A structure can fail before its resources are exhausted: it fails when the system can no longer remain in states in which it continues to be that structure. In this sense, structural loss is not the disappearance of existence in general, but shrinkage of the state region in which the system can continue as the target structure. Under a mild composition principle for measuring already-realized survival ratios, the structural loss scale is forced to be logarithmic. This yields the pathwise exponential kernel
 \[
 S = M e^{-L},
 \]
@@ -45,7 +45,7 @@ Paper 1 is not merely "obvious." It fixes the object that is being measured: the
 
 2. The question
 
-Long-horizon systems, learning systems, reasoning systems, and constraint systems can lose a structure even when their resources have not literally reached zero. In such cases, the first question is not simply how much resource remains.
+A structure can fail before its resources are exhausted: it fails when the system can no longer remain in states in which it continues as that structure. In such cases, the first question is not simply how much resource remains.
 
 The first question is how the region of states compatible with the target structure changes under constraints, contradictions, damage, updates, disturbances, repair, or reconfiguration.
 
