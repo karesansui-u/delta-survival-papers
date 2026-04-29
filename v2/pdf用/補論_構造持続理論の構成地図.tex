@@ -82,7 +82,7 @@
 \bottomrule\noalign{}
 \endlastfoot
 Layer 0: Map / Discipline & 読み順、主張強度、support 判定、沈黙条件を定める & 本補論、補論「構造持続理論の運用規律」、補論「構造持続写像の標準手順」 \\
-Layer 1: Entry & 全体像を一つの導線で読む & Paper 0 統合版 \\
+Layer 1: Entry & 全体像と外向け主導線を読む & Paper 0 統合版、Core Paper「構造持続の最小核と収支原理」 \\
 Layer 2: Foundation & 回復を明示しない最小核 & Paper 1 最小形式 \\
 Layer 3: Core Extension & 構造消耗量と回復量を含む指数核 & Paper 2 収支原理、条件つき導出補論、集合値力学補論、許容写像補論、収支原理の詳細展開補論 \\
 Layer 4: Operational Mapping & 現実ドメインへの写像、資源項、設計原理 & 補論「構造持続写像の標準手順」、補論「資源項Mの操作的定式化」 \\
@@ -105,8 +105,10 @@ Layer 6: Formal Layer & Lean theorem、reader-facing claim、numerical sanity ch
 \item
   Paper 0 統合版
 \item
-  Paper 1 構造持続の最小形式 \# Paper 2 構造持続の収支原理
+  Core Paper「構造持続の最小核と収支原理」 \# Paper 1 構造持続の最小形式
 \end{enumerate}
+
+\section{Paper 2 構造持続の収支原理}\label{paper-2-ux69cbux9020ux6301ux7d9aux306eux53ceux652fux539fux7406}
 
 \section{補論「構造持続理論の運用規律」}\label{ux88dcux8ad6ux69cbux9020ux6301ux7d9aux7406ux8ad6ux306eux904bux7528ux898fux5f8b}
 
@@ -116,7 +118,7 @@ Layer 6: Formal Layer & Lean theorem、reader-facing claim、numerical sanity ch
 
 \section{必要に応じて資源項、許容写像、条件付き構造埋め込み、Lean / technical supplements}\label{ux5fc5ux8981ux306bux5fdcux3058ux3066ux8cc7ux6e90ux9805ux8a31ux5bb9ux5199ux50cfux6761ux4ef6ux4ed8ux304dux69cbux9020ux57cbux3081ux8fbcux307flean-technical-supplements}
 
-この順序は、読者の認知負荷を下げるための順序である。論理依存そのものは、\(Paper 1 -> Paper 2\)を主線とし、条件つき導出補論と集合値力学補論がその背後の技術条件を支える。
+この順序は、読者の認知負荷を下げるための順序である。Core Paper は Paper 1 / Paper 2 を外部読者向けに一つの導線として読むための骨子であり、分冊版の置き換えではない。論理依存そのものは、\(Paper 1 -> Paper 2\)を主線とし、条件つき導出補論と集合値力学補論がその背後の技術条件を支える。
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -316,7 +318,13 @@ Foster-Lyapunov / queueing drift の補論は、G6-c iteration 1 として位置
 
 この層は、現在は主に Lean modules と集合値力学補論の後半にある。読者が仕様固定構造層の横断性を評価するときは、PAPER\_MAPPING と Bernoulli-CSP universality modules を参照するのがよい。さらに、NumericalSanityChecks は、各 wrapper が小さな具体例で期待される定数を返すことを示す。これは経験的 support ではなく、reader-facing な numerical sanity check である。
 
-\section{許容写像と階層的不変量}\label{ux8a31ux5bb9ux5199ux50cfux3068ux968eux5c64ux7684ux4e0dux5909ux91cf}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{8}
+\tightlist
+\item
+  許容写像と階層的不変量
+\end{enumerate}
 
 補論「構造持続における許容写像と階層的不変量」は、観測可能性の三層を数学的に読み直すための深部補論である。そこでは、構造維持問題を対象、その間の許容写像を射として扱い、同型では \(B_{n}\) が不変、正ゲージ変更では \(B_{n}\) が共変、粗視化では保存・単調性・誤差境界の条件が必要、代理観測では凍結後の追加予測力で評価する、という階層を置く。
 

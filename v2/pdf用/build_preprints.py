@@ -17,6 +17,7 @@ TARGET_FILES = [
     V2_DIR / "0_構造持続理論の統合版.md",
     V2_DIR / "補論_構造持続理論の構成地図.md",
     V2_DIR / "補論_構造持続理論の運用規律.md",
+    V2_DIR / "Core_構造持続の最小核と収支原理.md",
     V2_DIR / "1_構造持続の最小形式.md",
     V2_DIR / "2_構造持続の収支原理.md",
     V2_DIR / "Companion_RouteC_推論時の構造劣化.md",
