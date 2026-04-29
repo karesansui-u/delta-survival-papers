@@ -252,6 +252,12 @@ The result, if positive, would show something narrower and more useful:
 11. Implementation Roadmap
 --------------------------
 
+The working design package is:
+
+- `analysis/m_flow_network_testbed/design_note.md`
+- `analysis/m_flow_network_testbed/simulator_spec.md`
+- `analysis/m_flow_network_testbed/preregistration_draft.md`
+
 Phase 0: simulator smoke test.
 
 - implement max-flow network generator;
