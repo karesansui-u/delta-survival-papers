@@ -16,9 +16,9 @@ Structural Persistence Theory for LLM reasoning degradation, catastrophic forget
 | 条件付き構造埋め込み層 | Route B | 既存理論の drift / 差分 / 停止境界を条件付きに写す bridge |
 | 構造推定層 | Route C | 構造を直接数えず、代理指標と凍結検証で推定する現実系の標準入口 |
 
-- 外向け導線: 構成地図 -> 統合版 -> Core Paper 骨子 -> 最小形式 -> 収支原理 -> 運用規律
+- 外向け導線: 構成地図 -> 統合版 -> Core Paper -> 最小形式 -> 収支原理 -> 運用規律
 - 主理論 spine: `v2/1` -> `v2/2`
-- Core Paper 骨子: [`v2/Core_構造持続の最小核と収支原理.md`](v2/Core_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%AE%E6%9C%80%E5%B0%8F%E6%A0%B8%E3%81%A8%E5%8F%8E%E6%94%AF%E5%8E%9F%E7%90%86.md)
+- Core Paper: [`v2/Core_構造持続の最小核と収支原理.md`](v2/Core_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%AE%E6%9C%80%E5%B0%8F%E6%A0%B8%E3%81%A8%E5%8F%8E%E6%94%AF%E5%8E%9F%E7%90%86.md)
 - 構成地図: [`v2/補論_構造持続理論の構成地図.md`](v2/補論_構造持続理論の構成地図.md)
 - 判定語彙: [`v2/補論_構造持続理論の運用規律.md`](v2/補論_構造持続理論の運用規律.md)
 - 証拠階層: [`analysis/current_evidence_map.md`](analysis/current_evidence_map.md)
@@ -47,16 +47,16 @@ PDF は [`v2/pdf用/補論_構造持続理論の構成地図.pdf`](v2/pdf用/補
 
 ## Core and Companion Papers (v2) / 主理論核と companion papers
 
-### Core Paper Skeleton — 構造持続の最小核と収支原理
+### Core Paper — 構造持続の最小核と収支原理
 
-外部読者向けに Paper 1 / Paper 2 を一本の導線として読むための骨子。新しい理論核ではなく、分冊版の最小形式と収支原理を、`S = M e^{-L}` から `S = M e^{-B}` へつなぐ統合読解版です。厳密な公理・定理・限界は Paper 1 / Paper 2 を基準とします。
+外部読者向けに Paper 1 / Paper 2 を一本の導線として読むための統合短論文です。新しい理論核ではなく、分冊版の最小形式と収支原理を、`S = M e^{-L}` から `S = M e^{-B}` へつなぐ読者向け導線です。Paper 1 を自明な前提として扱うのではなく、構造喪失を維持可能領域の縮小として定式化する第一の非自明な主張として読むための入口でもあります。厳密な公理・定理・限界は Paper 1 / Paper 2 を基準とします。
 
 - Markdown: [`v2/Core_構造持続の最小核と収支原理.md`](v2/Core_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%AE%E6%9C%80%E5%B0%8F%E6%A0%B8%E3%81%A8%E5%8F%8E%E6%94%AF%E5%8E%9F%E7%90%86.md)
 - PDF: [`v2/pdf用/Core_構造持続の最小核と収支原理.pdf`](v2/pdf%E7%94%A8/Core_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%AE%E6%9C%80%E5%B0%8F%E6%A0%B8%E3%81%A8%E5%8F%8E%E6%94%AF%E5%8E%9F%E7%90%86.pdf)
 
 ### Paper 1 — 構造持続の最小形式
 
-最小形式そのもの。事前固定された構造維持問題に対する表現定理として、構造を維持できる状態集合の縮小から残存可能性の指数形を導く。現行版では、A2 は対数比の公理的特徴づけ定理として与えられ、適用可能性条件と事後的表現選択による空虚化回避も明示している。
+最小形式そのもの。ここでいう「最小」は当たり前という意味ではなく、事前固定された構造維持問題に対する第一の非自明な表現定理を指します。構造を維持できる状態集合の縮小から残存可能性の指数形を導き、A2 は対数比の公理的特徴づけ定理として与えられ、適用可能性条件と事後的表現選択による空虚化回避も明示している。
 
 - Markdown: [`v2/1_構造持続の最小形式.md`](v2/1_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%AE%E6%9C%80%E5%B0%8F%E5%BD%A2%E5%BC%8F.md)
 - PDF: [`v2/pdf用/1_構造持続の最小形式.pdf`](v2/pdf%E7%94%A8/1_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%AE%E6%9C%80%E5%B0%8F%E5%BD%A2%E5%BC%8F.pdf)
@@ -101,7 +101,7 @@ PDF は [`v2/pdf用/補論_構造持続理論の構成地図.pdf`](v2/pdf用/補
 
 | Component | Status |
 |---|---|
-| v2 Core Paper skeleton | Reader-facing integration draft |
+| v2 Core Paper | Reader-facing integration paper |
 | v2 Paper 1 | Main preprint |
 | v2 Paper 2 | Main preprint / balance principle |
 | Conditional derivation | Supplement |
@@ -124,7 +124,7 @@ See [`PATENTS.md`](PATENTS.md) for a brief scope note.
 
 1. 構成地図: [`v2/補論_構造持続理論の構成地図.md`](v2/補論_構造持続理論の構成地図.md)
 2. 統合版: [`v2/0_構造持続理論の統合版.md`](v2/0_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E7%90%86%E8%AB%96%E3%81%AE%E7%B5%B1%E5%90%88%E7%89%88.md)
-3. Core Paper 骨子: [`v2/Core_構造持続の最小核と収支原理.md`](v2/Core_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%AE%E6%9C%80%E5%B0%8F%E6%A0%B8%E3%81%A8%E5%8F%8E%E6%94%AF%E5%8E%9F%E7%90%86.md)
+3. Core Paper: [`v2/Core_構造持続の最小核と収支原理.md`](v2/Core_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%AE%E6%9C%80%E5%B0%8F%E6%A0%B8%E3%81%A8%E5%8F%8E%E6%94%AF%E5%8E%9F%E7%90%86.md)
 4. 最小形式: [`v2/1_構造持続の最小形式.md`](v2/1_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%AE%E6%9C%80%E5%B0%8F%E5%BD%A2%E5%BC%8F.md)
 5. 収支原理: [`v2/2_構造持続の収支原理.md`](v2/2_構造持続の収支原理.md)
 6. 運用規律: [`v2/補論_構造持続理論の運用規律.md`](v2/補論_構造持続理論の運用規律.md)

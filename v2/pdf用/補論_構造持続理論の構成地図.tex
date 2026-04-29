@@ -93,6 +93,8 @@ Layer 6: Formal Layer & Lean theorem、reader-facing claim、numerical sanity ch
 
 この層分けで重要なのは、文書の重要度を順位づけることではない。重要なのは、役割を混ぜないことである。たとえば LLM companion は主理論核の証明ではなく、主理論核を LLM 推論や継続学習へ写した構造推定層の観測的アンカーである。Foster-Lyapunov 補論は、新しい安定性定理の証明ではなく、既存の drift calculus が構造持続の純消耗量 \(b_{t}\) へ条件付きに埋め込めることを示す bridge である。
 
+また、Layer 2 を Foundation と呼ぶのは、それが自明な前提だからではない。Paper 1 は、構造喪失を維持可能領域の縮小として定式化し、対数比尺度を一意化し、事後的表現選択による空虚化を防ぐ第一の非自明な主理論層である。Paper 2 は、その非自明な最小形式を回復を含む系へ拡張する。
+
 \section{最短読順}\label{ux6700ux77edux8aadux9806}
 
 外向きに最も短く読むなら、次の順でよい。
@@ -118,7 +120,7 @@ Layer 6: Formal Layer & Lean theorem、reader-facing claim、numerical sanity ch
 
 \section{必要に応じて資源項、許容写像、条件付き構造埋め込み、Lean / technical supplements}\label{ux5fc5ux8981ux306bux5fdcux3058ux3066ux8cc7ux6e90ux9805ux8a31ux5bb9ux5199ux50cfux6761ux4ef6ux4ed8ux304dux69cbux9020ux57cbux3081ux8fbcux307flean-technical-supplements}
 
-この順序は、読者の認知負荷を下げるための順序である。Core Paper は Paper 1 / Paper 2 を外部読者向けに一つの導線として読むための骨子であり、分冊版の置き換えではない。論理依存そのものは、\(Paper 1 -> Paper 2\)を主線とし、条件つき導出補論と集合値力学補論がその背後の技術条件を支える。
+この順序は、読者の認知負荷を下げるための順序である。Core Paper は Paper 1 / Paper 2 を外部読者向けに一つの導線として読むための統合短論文であり、分冊版の置き換えではない。論理依存そのものは、\(Paper 1 -> Paper 2\)を主線とし、条件つき導出補論と集合値力学補論がその背後の技術条件を支える。
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -147,7 +149,7 @@ Layer 6: Formal Layer & Lean theorem、reader-facing claim、numerical sanity ch
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-1 & Paper 1 & 構造維持可能集合の縮小から S = M exp(-L) を得る \\
+1 & Paper 1 & 構造維持可能集合の縮小、対数比尺度の一意性、空虚化防止条件から S = M exp(-L) を得る \\
 2 & Paper 2 & S = M exp(-L) を、回復量を含む S = M exp(-B) へ拡張する \\
 3 & 条件つき導出補論 & どこまでが恒等式で、どこからが弱依存・確率条件に依存するかを分ける \\
 4 & 集合値力学補論 / 許容写像補論 / 詳細展開補論 & d\_t, r\_t, b\_t, B\_n の pathwise kernel、許容写像の階層、応用上の背景を整理する \\
