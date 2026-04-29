@@ -658,7 +658,8 @@ def run_instance(
     initial_max_flow, previous_flows, _cut = max_flow(graph)
     buffer_budget, recovery_budget, reconfiguration_budget = allocation
     buffer_spent = apply_buffer(graph, buffer_budget)
-    reconfiguration_spent, active_bypass_edges = activate_reconfiguration(graph, reconfiguration_budget)
+    reconfiguration_spent = 0
+    active_bypass_edges = 0
     post_policy_max_flow, previous_flows, _cut = max_flow(graph)
 
     recovery_spent = 0
@@ -676,6 +677,12 @@ def run_instance(
             previous_flows=previous_flows,
         )
         recovery_spent += apply_recovery(graph, damaged, recovery_budget - recovery_spent)
+        reconfig_spent_now, active_now = activate_reconfiguration(
+            graph,
+            reconfiguration_budget - reconfiguration_spent,
+        )
+        reconfiguration_spent += reconfig_spent_now
+        active_bypass_edges += active_now
         q_t = q_for_step(required_flow_q, damage_family, damage_intensity, step, horizon)
         flow_t, previous_flows, _cut = max_flow(graph)
         margin_t = flow_t - q_t
