@@ -109,3 +109,11 @@ sha256:325c7553d9664c083d440fa2a3823bfc58513ed436e71140826216f071ee7b37
 size:267907 bytes
 source_commit:89b0cfa9ab8113d578e69f07dae5f306c7c7758a
 ```
+
+The archive was uploaded to OSF project `mdh7b` via the WaterButler API:
+
+```text
+osf_file_id:osfstorage/69f1c6e0a1f4ba559ad9480b
+download_url:https://files.us.osf.io/v1/resources/mdh7b/providers/osfstorage/69f1c6e0a1f4ba559ad9480b
+osf_reported_sha256:325c7553d9664c083d440fa2a3823bfc58513ed436e71140826216f071ee7b37
+```
