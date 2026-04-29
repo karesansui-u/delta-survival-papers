@@ -2,7 +2,7 @@
 
 This note is a short English entry point to the `delta-survival-paper` repository.
 It explains the main claim, the supporting evidence, and the architectural implications without requiring the Japanese preprints first.
-For a one-page version, see [`v2/pdf用/ENGLISH_ABSTRACT.pdf`](v2/pdf%E7%94%A8/ENGLISH_ABSTRACT.pdf).
+For the shortest PDF entry point, see [`v2/pdf用/ENGLISH_ABSTRACT.pdf`](v2/pdf%E7%94%A8/ENGLISH_ABSTRACT.pdf).
 
 ## Core Claim
 
@@ -29,6 +29,19 @@ m(V^{(n)}) = m(V^{(0)}) e^{-L}, \qquad L = \sum_i l_i.
 \]
 
 In the current v2 core, the log-ratio form itself is no longer treated as a mere definition. Paper 1 characterizes it axiomatically on ratio space, in explicit analogy with the Hartley/Shannon style of uniqueness arguments. The exponential form is therefore not an extra empirical assumption; it follows from cumulative multiplicative shrinkage once the loss scale is fixed in that way. In that sense, collapse here means loss of persistence as that structure, not necessarily annihilation of the underlying substrate.
+
+## Formal Layer and Limited-Class Unification
+
+The Lean 4 side currently contains 151 `Survival` modules with `sorry = 0` and `axiom = 0`. The formal layer includes the minimal exponential kernel, finite-horizon SAT / Bernoulli-CSP skeletons, admissible-map and saturation-defect wrappers, Foster-Lyapunov / queueing templates, Repair-Maintenance templates, and the Phase 7 cross-class interface.
+
+The strongest cross-class statement is intentionally phrased as limited-class unification rather than as a universal law over all domains. In Phase 7 v2, Bernoulli-CSP, Foster-Lyapunov / queueing, and Repair-Maintenance are registered as limited classes that instantiate a common structural-persistence interface:
+
+- an ordered Sigma carrier
+- a nonnegative tendency driver
+- a finite-horizon certificate route
+- an admissible-transfer guard
+
+This means that the project has a machine-checked interface closure for registered classes. It does not claim a single universal inequality for arbitrary domains. New domains must either be registered as new limited classes or treated as structural-inference settings whose support depends on frozen validation.
 
 ## Two Experimental Regimes
 
