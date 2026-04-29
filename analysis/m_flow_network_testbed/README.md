@@ -13,6 +13,8 @@ Files:
   split/evaluator and degeneracy rules.
 - `freeze_manifest_draft_v1.md`: adds the calibration-selected candidate
   region from calibration review v1.
+- `freeze_manifest_final_candidate.md`: records the pre-primary Q / damage /
+  horizon candidate and required sensitivity settings.
 - `scripts/simulate_flow_network.py`: simulator v0 dry-run implementation.
 - `scripts/evaluate_flow_network.py`: evaluator v1 split-aware ranking-schema
   smoke test.
