@@ -9,8 +9,10 @@ Files:
 - `simulator_spec.md`: simulator interface, graph families, damage families,
   policies, readouts, and degeneracy flags.
 - `preregistration_draft.md`: draft frozen-test plan for primary validation.
-- `freeze_manifest_draft_v0.md`: pre-freeze checklist for split/evaluator and
-  degeneracy rules.
+- `freeze_manifest_draft_v0.md`: initial pre-freeze checklist for
+  split/evaluator and degeneracy rules.
+- `freeze_manifest_draft_v1.md`: adds the calibration-selected candidate
+  region from calibration review v1.
 - `scripts/simulate_flow_network.py`: simulator v0 dry-run implementation.
 - `scripts/evaluate_flow_network.py`: evaluator v1 split-aware ranking-schema
   smoke test.
