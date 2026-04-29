@@ -6,8 +6,8 @@
 
 | 外向け名 | 旧内部名 | 読み方 |
 |---|---|---|
-| 仕様固定構造層 | Route A | 構造、測度、境界を仕様から直接固定できる |
-| 条件付き構造埋め込み層 | Route B | 既存理論の drift / 差分 / 停止境界を条件付きに写す |
+| 仕様固定構造層 | Route A | 構造、測度（状態集合の大きさを測るものさし）、境界を仕様から直接固定できる |
+| 条件付き構造埋め込み層 | Route B | 既存理論のドリフト / 差分 / 停止境界を条件付きに写す |
 | 構造推定層 | Route C | 構造を直接数えず、観測・推定指標と凍結検証で推定する |
 
 ## English Entry Points
@@ -44,7 +44,7 @@
 - [`v2/補論_構造持続理論の構成地図.md`](v2/補論_構造持続理論の構成地図.md)
   主理論 spine、companion papers、補論群、Lean 形式化、実証アンカーを層として読むための構成地図。
 - [`v2/補論_構造持続理論の運用規律.md`](v2/補論_構造持続理論の運用規律.md)
-  探索的写像、凍結検証、構造観測可能性の層 / G6 / support / no-support / silence の判定語彙。
+  探索的写像、凍結検証、構造観測可能性の層 / G6 / support / no-support / silence（支持 / 不支持 / 沈黙）の判定語彙。
 
 ## Main Theory Spine
 
@@ -110,10 +110,10 @@ Latest OSF mirror (Bernoulli-CSP links are the v1.1 archive snapshot):
 - Phase 6.2 Repair-Maintenance template: [`analysis/phase6_repair_maintenance_template.md`](analysis/phase6_repair_maintenance_template.md)
 - Phase 7 v0 cross-class registry: [`analysis/phase7_cross_class_unification_v0.md`](analysis/phase7_cross_class_unification_v0.md)
 - Phase 7 v1 unifying schema: [`analysis/phase7_unifying_schema_v1.md`](analysis/phase7_unifying_schema_v1.md)
-- Phase 7 v2 interface closure: [`analysis/phase7_unifying_schema_v2.md`](analysis/phase7_unifying_schema_v2.md)
+- Phase 7 v2 共通インターフェース閉包: [`analysis/phase7_unifying_schema_v2.md`](analysis/phase7_unifying_schema_v2.md)
 
-Mixed-CSP の true outside-group rerun は requested set が完了しており、3 名の外部実行者がそれぞれ `12000` 行 primary run、`0` checked core mismatches、support flags 全 true を返している。これは Mixed-CSP package に限った replication closure であり、詳細は [`analysis/route_a_mixed_csp/mixed_csp_true_outside_final_report.md`](analysis/route_a_mixed_csp/mixed_csp_true_outside_final_report.md) を参照。
+Mixed-CSP の true outside-group rerun は requested set が完了しており、3 名の外部実行者がそれぞれ `12000` 行 primary run、`0` checked core mismatches、support flags 全 true を返している。これは Mixed-CSP パッケージに限った再現閉包であり、詳細は [`analysis/route_a_mixed_csp/mixed_csp_true_outside_final_report.md`](analysis/route_a_mixed_csp/mixed_csp_true_outside_final_report.md) を参照。
 
-Exp43c q-coloring についても、3 名の外部実行者が同じ frozen package を再実行し、それぞれ `4000` 行 primary run、`0` checked core mismatches、`TIMEOUT = 0`、`MALFORMED = 0`、および同じ qualitative support decision を返している。これは Exp43c package に限った replication closure であり、詳細は [`analysis/exp43_qcoloring/exp43c_true_outside_final_report.md`](analysis/exp43_qcoloring/exp43c_true_outside_final_report.md) を参照。二つの仕様固定構造層 package をまとめた概要は [`analysis/g7_route_a_true_outside_replication_summary.md`](analysis/g7_route_a_true_outside_replication_summary.md) に置いている。
+Exp43c q-coloring についても、3 名の外部実行者が同じ凍結済み検証パッケージを再実行し、それぞれ `4000` 行 primary run、`0` checked core mismatches、`TIMEOUT = 0`、`MALFORMED = 0`、および同じ qualitative support decision を返している。これは Exp43c パッケージに限った再現閉包であり、詳細は [`analysis/exp43_qcoloring/exp43c_true_outside_final_report.md`](analysis/exp43_qcoloring/exp43c_true_outside_final_report.md) を参照。二つの仕様固定構造層パッケージをまとめた概要は [`analysis/g7_route_a_true_outside_replication_summary.md`](analysis/g7_route_a_true_outside_replication_summary.md) に置いている。
 
-現在の Lean 側は `151 Survival modules`、`sorry = 0`、`axiom = 0` の状態で、最小形式、弱依存、粗視化、停止時刻崩壊、有限状態 Markov 例、SAT/k-SAT Chernoff-KL chain、Bernoulli-CSP \(\Sigma\) lower-tail / good-event lower-bound / typical-growth / endpoint-defect coarse-transfer wrapper、Bernoulli coarse-readout admissible-map v0 wrapper、Foster-Lyapunov / queueing Phase 6.1 expectation / resource-bounded high-probability / coarse-transfer wrapper、Repair-Maintenance Phase 6.2 finite-prefix / \(\Sigma\) / resource-bounded certificate wrapper、Phase 7 v0 cross-class registry、Phase 7 v1 unifying-schema extraction、Phase 7 v2 interface closure、固定割当 NAE-SAT / XOR-SAT exposure instance、固定 coloring の q-coloring edge exposure instance、finite-alphabet forbidden-pattern CSP instance、hypergraph-coloring specialization、multi-forbidden-pattern witness bridge、exactly-one-SAT witness specialization、exactly-`r` cardinality-SAT family specialization、at-most / at-least threshold cardinality-SAT specialization、numerical sanity checks、さらに仕様固定・条件付き構造埋め込み skeletons（指数型、線形過負荷型、累積容量型、臨界パラメータ型）までを含む。SAT/k-SAT の finite-horizon / iid Bernoulli bad-event exposure は **SAT chain v1.0**、横断的な Bernoulli-CSP 層は **Bernoulli CSP universality v1.2** としてローカルに凍結している。OSF mirror は現時点では v1.1 archive snapshot を指している。
+現在の Lean 側は `151 Survival modules`、`sorry = 0`、`axiom = 0` の状態で、最小形式、弱依存、粗視化、停止時刻崩壊、有限状態 Markov 例、SAT/k-SAT Chernoff-KL chain、Bernoulli-CSP \(\Sigma\) lower-tail / good-event lower-bound / typical-growth / endpoint-defect 粗視化転送 wrapper、Bernoulli 粗視化読み出し許容写像 v0 wrapper、Foster-Lyapunov / queueing Phase 6.1 expectation / resource-bounded high-probability / coarse-transfer wrapper、Repair-Maintenance Phase 6.2 finite-prefix / \(\Sigma\) / resource-bounded certificate wrapper、Phase 7 v0 cross-class registry、Phase 7 v1 unifying-schema extraction、Phase 7 v2 共通インターフェース閉包、固定割当 NAE-SAT / XOR-SAT exposure instance、固定 coloring の q-coloring edge exposure instance、finite-alphabet forbidden-pattern CSP instance、hypergraph-coloring specialization、multi-forbidden-pattern witness bridge、exactly-one-SAT witness specialization、exactly-`r` cardinality-SAT family specialization、at-most / at-least threshold cardinality-SAT specialization、numerical sanity checks、さらに仕様固定・条件付き構造埋め込み skeletons（指数型、線形過負荷型、累積容量型、臨界パラメータ型）までを含む。SAT/k-SAT の finite-horizon / iid Bernoulli bad-event exposure は **SAT chain v1.0**、横断的な Bernoulli-CSP 層は **Bernoulli CSP universality v1.2** としてローカルに凍結している。OSF mirror は現時点では v1.1 archive snapshot を指している。

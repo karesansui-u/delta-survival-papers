@@ -12,8 +12,8 @@ Structural Persistence Theory for LLM reasoning degradation, catastrophic forget
 
 | 外向け名 | 読み方 |
 |---|---|
-| 仕様固定構造層 | 構造、測度、境界を仕様から直接固定できる層 |
-| 条件付き構造埋め込み層 | 既存理論の drift / 差分 / 停止境界を条件付きに写す bridge |
+| 仕様固定構造層 | 構造、測度（状態集合の大きさを測るものさし）、境界を仕様から直接固定できる層 |
+| 条件付き構造埋め込み層 | 既存理論のドリフト / 差分 / 停止境界を条件付きに写す橋渡し |
 | 構造推定層 | 構造を直接数えず、観測・推定指標と凍結検証で推定する現実系の標準入口 |
 
 - 外向け導線: [`v3/01_theory/00_map.md`](v3/01_theory/00_map.md) -> [`v3/01_theory/01_overview.md`](v3/01_theory/01_overview.md) -> [`v3/01_theory/02_core.md`](v3/01_theory/02_core.md)
@@ -39,10 +39,10 @@ PDF は [`v2/pdf用/補論_構造持続理論の構成地図.pdf`](v2/pdf用/補
 
 現時点の証拠階層は [`analysis/current_evidence_map.md`](analysis/current_evidence_map.md) に整理しています。README では現在地だけを示します。
 
-- 仕様固定構造層: SAT / Mixed-CSP / q-coloring では、自然測度・finite-horizon collapse chain・prospective empirical support が揃いつつあります。現時点で最も硬い経験的入口は、Mixed-CSP と Exp43c q-coloring の二つの frozen package です。Mixed-CSP は外部実行者 3 名が各 12,000 primary rows、0 checked core mismatches、support flags reproduced を返し、Exp43c q-coloring は外部実行者 3 名が各 4,000 primary rows、0 checked core mismatches、TIMEOUT 0、MALFORMED 0、同じ qualitative support decision を返しています。これは理論全体の証明ではありませんが、仕様固定構造層における law-side 座標の最初の強い足場です。
+- 仕様固定構造層: SAT / Mixed-CSP / q-coloring では、自然測度・有限時間の崩壊境界・事前固定された経験的検証が揃いつつあります。現時点で最も硬い経験的入口は、Mixed-CSP と Exp43c q-coloring の二つの凍結済み検証パッケージです。Mixed-CSP は外部実行者 3 名が各 12,000 行の primary run、0 checked core mismatches、support flags reproduced を返し、Exp43c q-coloring は外部実行者 3 名が各 4,000 行の primary run、0 checked core mismatches、TIMEOUT 0、MALFORMED 0、同じ qualitative support decision を返しています。これは理論全体の証明ではありません。しかし、仕様固定構造層における法則側座標の、最初の強い外部再現足場です。
 - 構造推定層: LLM 推論実験では、文脈長だけではなく構造矛盾の質が崩壊を予測することを、複数の preregistered / prospective checks で検査しています。
 - Formal layer: Lean 4 側は `151 Survival modules`, `sorry = 0`, `axiom = 0` で、主な theorem-to-paper mapping は [`lean/PAPER_MAPPING.md`](lean/PAPER_MAPPING.md) にまとめています。階層的不変量による統一枠組みへ何を積むかは [`analysis/second_law_level_roadmap.md`](analysis/second_law_level_roadmap.md) に、Phase 5 の admissible-map ladder は [`analysis/phase5_admissible_map_ladder.md`](analysis/phase5_admissible_map_ladder.md) に、Phase 6.1 の Foster-Lyapunov / queueing template は [`analysis/phase6_foster_lyapunov_template.md`](analysis/phase6_foster_lyapunov_template.md) に、Phase 6.2 の Repair-Maintenance template は [`analysis/phase6_repair_maintenance_template.md`](analysis/phase6_repair_maintenance_template.md) に、Phase 7 v0 の cross-class registry は [`analysis/phase7_cross_class_unification_v0.md`](analysis/phase7_cross_class_unification_v0.md) に、Phase 7 v1/v2 の unifying schema は [`analysis/phase7_unifying_schema_v1.md`](analysis/phase7_unifying_schema_v1.md) と [`analysis/phase7_unifying_schema_v2.md`](analysis/phase7_unifying_schema_v2.md) に分けて整理しています。
-- Limited-class unification: Phase 7 v2 は、Bernoulli-CSP、Foster-Lyapunov / queueing、Repair-Maintenance の三つの登録済み限定クラスが、ordered Sigma carrier、nonnegative tendency driver、finite-horizon certificate route、admissible-transfer guard からなる共通 interface を満たすことを Lean 側で登録しています。これは任意ドメインに対する単一普遍不等式ではなく、登録済みクラスに対する拡張可能な interface closure です。
+- 限定クラス統一: Phase 7 v2 は、Bernoulli-CSP、Foster-Lyapunov / queueing、Repair-Maintenance の三つの登録済み限定クラスが、順序つき \(\Sigma\) carrier、非負傾向の駆動構造、有限時間証明経路、許容写像による転送条件からなる共通インターフェースを満たすことを Lean 側で登録しています。これは任意ドメインに対する単一普遍不等式ではなく、登録済みクラスに対する拡張可能な共通インターフェース閉包です。
 - Non-CSP: Backblaze / C-MAPSS / Scania などは support / weakening / no-support を分けて記録し、同一 archive 内の rescue を避けています。
 
 ## Core and Companion Papers (v2) / 主理論核と companion papers
@@ -206,7 +206,7 @@ The current core layering includes:
 - `CrossClassUnificationV1.lean`: Phase 7 v1 の schema extraction。ordered \(\Sigma\) carrier, nonnegative tendency driver, finite-horizon certificate route, admissible-transfer guard を共通形として登録するが、subadditivity や Bernoulli-style pathwise nondecrease を generic requirement にはしない。
 - Phase 7 v1 schema: [`analysis/phase7_unifying_schema_v1.md`](analysis/phase7_unifying_schema_v1.md) records the first generic statement candidate after the v0 registry.
 - `CrossClassUnificationV2.lean`: Phase 7 v2 の interface / registered-instance closure。v1 schema を interface として切り出し、三つの登録済み limited class が instance として載ることを機械登録する。
-- Phase 7 v2 interface: [`analysis/phase7_unifying_schema_v2.md`](analysis/phase7_unifying_schema_v2.md) records the interface closure after the v1 schema extraction.
+- Phase 7 v2 common interface: [`analysis/phase7_unifying_schema_v2.md`](analysis/phase7_unifying_schema_v2.md) records the common-interface registration after the v1 schema extraction.
 - 仕様固定・条件付き構造埋め込み skeletons: 11 small Lean modules grouped into five finite-prefix forms: multiplicative/exponential survival, linear overload, cumulative-capacity thresholds, critical-parameter thresholds, and explicit repair / maintenance balance. Detailed module-to-claim mapping is kept in [`lean/PAPER_MAPPING.md`](lean/PAPER_MAPPING.md).
 
 The cross-domain Bernoulli-CSP layer is frozen locally as **Bernoulli CSP
