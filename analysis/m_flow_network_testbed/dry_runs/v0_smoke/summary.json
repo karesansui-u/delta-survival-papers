@@ -3,7 +3,7 @@
     "calibration": 120,
     "primary_heldout": 12
   },
-  "collapse_fraction": 0.26515151515151514,
+  "collapse_fraction": 0.32575757575757575,
   "damage_family_counts": {
     "bottleneck_attack": 33,
     "random_attrition": 33,
@@ -11,15 +11,15 @@
     "scalar_only_control": 33
   },
   "degeneracy_flag_counts": {
-    "far_above_q": 30,
-    "no_collapse": 97
+    "far_above_q": 31,
+    "no_collapse": 89
   },
   "graph_family_counts": {
     "grid": 44,
     "layered_dag": 44,
     "random_geometric": 44
   },
-  "mean_maintained_flow_ratio": 0.9564393939393939,
+  "mean_maintained_flow_ratio": 0.9406565656565657,
   "non_claim": "schema smoke test only; not M-primary support",
   "run_count": 132,
   "schema_fields": [

@@ -10,6 +10,7 @@ Files:
   policies, readouts, and degeneracy flags.
 - `preregistration_draft.md`: draft frozen-test plan for primary validation.
 - `scripts/simulate_flow_network.py`: simulator v0 dry-run implementation.
+- `scripts/evaluate_flow_network.py`: evaluator v0 ranking-schema smoke test.
 - `dry_runs/`: non-primary smoke-test outputs.
 
 The purpose is to test whether buffer / recovery / reconfiguration allocation
@@ -28,3 +29,14 @@ python3 analysis/m_flow_network_testbed/scripts/simulate_flow_network.py dry-run
 The default run writes `dry_runs/v0_smoke/runs.csv` and
 `dry_runs/v0_smoke/summary.json`. These outputs are schema checks only and do
 not count as M-primary support.
+
+Evaluator v0 smoke test:
+
+```bash
+python3 analysis/m_flow_network_testbed/scripts/evaluate_flow_network.py
+```
+
+The default evaluator reads `dry_runs/v0_smoke/runs.csv` and writes
+`dry_runs/v0_smoke/evaluation_group_rankings.csv` plus
+`dry_runs/v0_smoke/evaluation_summary.json`. These outputs check the ranking
+schema only; they are not support evidence.

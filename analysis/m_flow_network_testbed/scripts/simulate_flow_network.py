@@ -643,7 +643,9 @@ def run_instance(
     damage_intensity: float,
 ) -> dict[str, Any]:
     graph_seed = stable_hash({"seed": seed, "graph_family": graph_family})
-    damage_seed = stable_hash({"seed": seed, "damage_family": damage_family, "allocation": allocation})
+    # Keep the damage stream fixed across allocations so intervention ranking
+    # compares policies against the same stochastic environment.
+    damage_seed = stable_hash({"seed": seed, "graph_family": graph_family, "damage_family": damage_family})
     graph_rng = random.Random(int(graph_seed, 16))
     damage_rng = random.Random(int(damage_seed, 16))
     graph = generate_graph(

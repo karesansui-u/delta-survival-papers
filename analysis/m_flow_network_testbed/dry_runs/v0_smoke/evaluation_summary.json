@@ -1,0 +1,110 @@
+{
+  "calibration_rows": 60,
+  "groups_evaluated": 12,
+  "m_profile_linear_weights": {
+    "buffer": 1.9002023109750175,
+    "reconfiguration": 1.9702631078525705,
+    "recovery": 1.8628118467530799
+  },
+  "model_metrics": {
+    "m_profile_linear": {
+      "kendall_tau": 0.060425173078187344,
+      "regret": 0.09041666666666666,
+      "top1_tie_adjusted": 0.4166666666666667,
+      "top2_contains_observed_best": 0.5
+    },
+    "policy_prior": {
+      "kendall_tau": 0.393006429354563,
+      "regret": 0.08159722222222231,
+      "top1_tie_adjusted": 0.4166666666666667,
+      "top2_contains_observed_best": 0.9166666666666666
+    },
+    "total_resource_tie": {
+      "kendall_tau": 0.0,
+      "regret": 0.18487373737373738,
+      "top1_tie_adjusted": 0.24242424242424243,
+      "top2_contains_observed_best": 1.0
+    }
+  },
+  "non_claim": "ranking smoke test only; not M-primary support",
+  "policy_prior": {
+    "damage": {
+      "bottleneck_attack|balanced": 2.045,
+      "bottleneck_attack|buffer_heavy": 2.0023333333333335,
+      "bottleneck_attack|reconfiguration_heavy": 2.0149999999999997,
+      "bottleneck_attack|recovery_heavy": 2.0549999999999997,
+      "random_attrition|balanced": 1.5733333333333333,
+      "random_attrition|buffer_heavy": 1.6848333333333332,
+      "random_attrition|reconfiguration_heavy": 1.7529166666666667,
+      "random_attrition|recovery_heavy": 1.4954166666666666,
+      "scalar_only_control|balanced": 2.0599999999999996,
+      "scalar_only_control|buffer_heavy": 2.054,
+      "scalar_only_control|reconfiguration_heavy": 2.0549999999999997,
+      "scalar_only_control|recovery_heavy": 2.0475
+    },
+    "exact": {
+      "grid|bottleneck_attack|balanced": 2.04,
+      "grid|bottleneck_attack|buffer_heavy": 1.9806666666666666,
+      "grid|bottleneck_attack|reconfiguration_heavy": 2.0149999999999997,
+      "grid|bottleneck_attack|recovery_heavy": 2.05,
+      "grid|random_attrition|balanced": 1.1466666666666665,
+      "grid|random_attrition|buffer_heavy": 1.405,
+      "grid|random_attrition|reconfiguration_heavy": 1.6775,
+      "grid|random_attrition|recovery_heavy": 1.4175,
+      "grid|scalar_only_control|balanced": 2.05,
+      "grid|scalar_only_control|buffer_heavy": 2.0439999999999996,
+      "grid|scalar_only_control|reconfiguration_heavy": 2.045,
+      "grid|scalar_only_control|recovery_heavy": 2.04,
+      "layered_dag|bottleneck_attack|balanced": 2.05,
+      "layered_dag|bottleneck_attack|buffer_heavy": 2.024,
+      "layered_dag|bottleneck_attack|reconfiguration_heavy": 2.0149999999999997,
+      "layered_dag|bottleneck_attack|recovery_heavy": 2.0599999999999996,
+      "layered_dag|random_attrition|balanced": 2.0,
+      "layered_dag|random_attrition|buffer_heavy": 1.9646666666666668,
+      "layered_dag|random_attrition|reconfiguration_heavy": 1.8283333333333331,
+      "layered_dag|random_attrition|recovery_heavy": 1.5733333333333333,
+      "layered_dag|scalar_only_control|balanced": 2.07,
+      "layered_dag|scalar_only_control|buffer_heavy": 2.064,
+      "layered_dag|scalar_only_control|reconfiguration_heavy": 2.065,
+      "layered_dag|scalar_only_control|recovery_heavy": 2.0549999999999997
+    },
+    "fallback": 1.9075277777777777,
+    "graph": {
+      "grid|balanced": 1.7455555555555555,
+      "grid|buffer_heavy": 1.8098888888888889,
+      "grid|reconfiguration_heavy": 1.9124999999999999,
+      "grid|recovery_heavy": 1.8358333333333334,
+      "layered_dag|balanced": 2.0399999999999996,
+      "layered_dag|buffer_heavy": 2.0175555555555555,
+      "layered_dag|reconfiguration_heavy": 1.9694444444444443,
+      "layered_dag|recovery_heavy": 1.896111111111111
+    },
+    "policy": {
+      "balanced": 1.8927777777777777,
+      "buffer_heavy": 1.9137222222222223,
+      "reconfiguration_heavy": 1.940972222222222,
+      "recovery_heavy": 1.8659722222222221
+    }
+  },
+  "runs": 132,
+  "schema_fields": {
+    "group_rankings": [
+      "seed",
+      "graph_family",
+      "damage_family",
+      "total_energy_E",
+      "required_flow_Q",
+      "horizon_T",
+      "damage_intensity",
+      "n_allocations",
+      "has_heldout_allocation",
+      "observed_best_allocations",
+      "total_resource_regret",
+      "policy_prior_regret",
+      "m_profile_regret",
+      "policy_prior_kendall_tau",
+      "m_profile_kendall_tau"
+    ]
+  },
+  "status": "dry_run_evaluator_only"
+}
