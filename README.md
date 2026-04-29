@@ -6,24 +6,24 @@ Structural Persistence Theory for LLM reasoning degradation, catastrophic forget
 
 ## Current Focus / 現在の主対象
 
-このリポジトリの主対象は、`v2` にある構成地図、統合版、主理論 spine 2 本、運用規律、仕様固定構造層 / 構造推定層の検証アンカー、および補論群です。
+このリポジトリの主対象は、`v3` にある公開運用版です。`v3` は、構成地図、統合版、Core Paper、主理論 spine、数学的基礎、ドメイン registry、証拠 ledger、共同運用テンプレートを分けた構造です。`v2` は preprint bundle と PDF 生成物を含む安定アーカイブとして残します。
 
 仕様固定構造層、条件付き構造埋め込み層、構造推定層は、異なる理論ではなく、同一の構造持続核を異なる観測レベルで扱うための層です。
 
-| 外向け名 | 旧内部名 | 読み方 |
-|---|---|---|
-| 仕様固定構造層 | Route A | 構造、測度、境界を仕様から直接固定できる層 |
-| 条件付き構造埋め込み層 | Route B | 既存理論の drift / 差分 / 停止境界を条件付きに写す bridge |
-| 構造推定層 | Route C | 構造を直接数えず、代理指標と凍結検証で推定する現実系の標準入口 |
+| 外向け名 | 読み方 |
+|---|---|
+| 仕様固定構造層 | 構造、測度、境界を仕様から直接固定できる層 |
+| 条件付き構造埋め込み層 | 既存理論の drift / 差分 / 停止境界を条件付きに写す bridge |
+| 構造推定層 | 構造を直接数えず、代理指標と凍結検証で推定する現実系の標準入口 |
 
-- 外向け導線: 構成地図 -> 統合版 -> Core Paper -> 最小形式 -> 収支原理 -> 運用規律
-- 主理論 spine: `v2/1` -> `v2/2`
-- Core Paper: [`v2/Core_構造持続の最小核と収支原理.md`](v2/Core_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%AE%E6%9C%80%E5%B0%8F%E6%A0%B8%E3%81%A8%E5%8F%8E%E6%94%AF%E5%8E%9F%E7%90%86.md)
-- 構成地図: [`v2/補論_構造持続理論の構成地図.md`](v2/補論_構造持続理論の構成地図.md)
-- 判定語彙: [`v2/補論_構造持続理論の運用規律.md`](v2/補論_構造持続理論の運用規律.md)
+- 外向け導線: [`v3/theory/00_map.md`](v3/theory/00_map.md) -> [`v3/theory/01_overview.md`](v3/theory/01_overview.md) -> [`v3/theory/02_core.md`](v3/theory/02_core.md)
+- 主理論 spine: [`v3/theory/10_paper1_minimal_form.md`](v3/theory/10_paper1_minimal_form.md) -> [`v3/theory/11_paper2_balance_principle.md`](v3/theory/11_paper2_balance_principle.md)
+- ドメイン registry: [`v3/domains/registry.tsv`](v3/domains/registry.tsv)
+- 主張境界: [`v3/CLAIMS.md`](v3/CLAIMS.md)
+- 共同運用: [`v3/CONTRIBUTING.md`](v3/CONTRIBUTING.md)
 - 証拠階層: [`analysis/current_evidence_map.md`](analysis/current_evidence_map.md)
 
-`v1/` は旧版アーカイブです。
+`v1/` は旧版アーカイブ、`v2/` は preprint bundle、`v3/` は今後の公開運用版です。
 
 ### English Entry Points
 
@@ -32,7 +32,7 @@ Structural Persistence Theory for LLM reasoning degradation, catastrophic forget
 
 ### Japanese Main Track
 
-全体像だけを先に掴みたい場合は、まず構成地図 [`v2/補論_構造持続理論の構成地図.md`](v2/補論_構造持続理論の構成地図.md) を読み、その後で統合版 [`v2/0_構造持続理論の統合版.md`](v2/0_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E7%90%86%E8%AB%96%E3%81%AE%E7%B5%B1%E5%90%88%E7%89%88.md) に進むのが最も迷いにくい導線です。
+全体像だけを先に掴みたい場合は、まず [`v3/theory/00_map.md`](v3/theory/00_map.md) を読み、その後で [`v3/theory/01_overview.md`](v3/theory/01_overview.md) と [`v3/theory/02_core.md`](v3/theory/02_core.md) に進むのが最も迷いにくい導線です。
 PDF は [`v2/pdf用/補論_構造持続理論の構成地図.pdf`](v2/pdf用/補論_構造持続理論の構成地図.pdf) と [`v2/pdf用/0_構造持続理論の統合版.pdf`](v2/pdf%E7%94%A8/0_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E7%90%86%E8%AB%96%E3%81%AE%E7%B5%B1%E5%90%88%E7%89%88.pdf) を参照してください。
 
 ## Evidence Status / 証拠の階層

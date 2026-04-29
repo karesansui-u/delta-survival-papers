@@ -1,0 +1,3 @@
+rerun_id	package_id	domain_id	runner_count	result	summary	pointer	last_updated
+mixed_csp_outside_3x	mixed_csp_primary	finite_csp	3	clean_success	3/3 outside reruns reproduced the qualitative support decision	v2/補論_有限CSPにおける構造持続の予測力.md	2026-04-29
+exp43c_qcoloring_outside_3x	exp43c_qcoloring	finite_csp	3	clean_success	3/3 outside reruns reproduced the qualitative support decision	v2/補論_有限CSPにおける構造持続の予測力.md	2026-04-29

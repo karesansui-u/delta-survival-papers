@@ -1,0 +1,3 @@
+record_id	domain_id	attempt	status	reason	pointer	last_updated
+backblaze_v1_loss_only	non_csp_classical	Backblaze Q4 2025 v1 loss-only frozen rule	no_support	high ranking signal did not pass the frozen log-loss support rule	v2/補論_構造持続の収支原理の詳細展開.md	2026-04-29
+cardinality_sat_exp44_history	finite_csp	Cardinality-SAT Exp44 history	no_support_or_draft_history	kept as no-go / calibration history, not primary validation support	v2/補論_有限CSPにおける構造持続の予測力.md	2026-04-29
