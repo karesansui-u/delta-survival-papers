@@ -54,7 +54,28 @@ New domains should not require edits to the core theory. They should enter throu
 `03_domains/registry.tsv`, a domain profile, and the evidence ledgers.
 
 
-3. Extension Rule
+3. Current Hard Evidence
+------------------------
+
+The strongest current empirical entry point is the specification-fixed
+structural layer, not the proxy layer.
+
+Two frozen packages already have clean outside-rerun anchors:
+
+- Mixed-CSP: 3/3 outside reruns reproduced the qualitative support decision.
+- Exp43c q-coloring: 3/3 outside reruns reproduced the qualitative support decision.
+
+This is not a proof of the whole theory and not a universal-law declaration.
+It is the first hard law-side footing: frozen packages in which a structural
+\(L\) / first-moment coordinate is evaluated against raw baselines and then
+successfully rerun outside the author's environment.
+
+See `05_evidence/outside_reruns.tsv`,
+`05_evidence/frozen_packages.tsv`, and
+`../analysis/g7_route_a_true_outside_replication_summary.md`.
+
+
+4. Extension Rule
 -----------------
 
 Adding a domain means adding a registered mapping, not extending the theory by prose.
@@ -80,7 +101,7 @@ problem. Component profiles are optional diagnostic readouts, not a built-in
 theory for choosing interventions.
 
 
-4. Why This Layout Exists
+5. Why This Layout Exists
 -------------------------
 
 The theory can grow across many domains only if the main text does not become a list of

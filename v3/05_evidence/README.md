@@ -17,6 +17,18 @@ Evidence is separated from theory claims.
   The former is operational evidence, not raw precision / recall; the latter is
   the controlled support surface.
 
+Current strongest outside-rerun anchors:
+
+- Mixed-CSP: frozen specification-fixed package, 3/3 clean outside reruns.
+- Exp43c q-coloring: frozen specification-fixed package, 3/3 clean outside
+  reruns.
+
+These two records are the current hard entry point for the law-side layer. They
+do not prove the whole theory and do not declare a universal law. They show that
+two frozen specification-fixed packages can be rerun outside the author's
+environment while preserving the support decision for the structural coordinate
+against raw baselines.
+
 Do not delete failed attempts. They are part of the research program.
 
 For M-side validation, use:
