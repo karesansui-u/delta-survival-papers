@@ -70,7 +70,7 @@ Specification-fixed anchors:
 - finite CSP / Mixed-SAT / q-coloring remain the strongest theorem-side and
   rerun-supported anchors.
 - the flow-network M testbed is recorded as controlled mechanistic no-support
-  for M-profile support under its strongest frozen baseline. It is not evidence
+  for optional M-component diagnostic support under its strongest frozen baseline. It is not evidence
   against \(M\) as the familiar resource side.
 
 Structurally inferred anchors:

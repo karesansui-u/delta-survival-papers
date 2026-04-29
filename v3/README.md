@@ -72,7 +72,7 @@ Two frozen packages already have clean outside-rerun anchors:
 
 - Mixed-CSP: 3/3 outside reruns, each with 12000 primary rows, 0 checked
   core mismatches, and reproduced support flags.
-- Exp43c q-coloring: 3/3 outside reruns, each with 4000 primary rows, 0
+- q-coloring (Exp43c package): 3/3 outside reruns, each with 4000 primary rows, 0
   checked core mismatches, TIMEOUT = 0, MALFORMED = 0, and the same
   qualitative support decision.
 

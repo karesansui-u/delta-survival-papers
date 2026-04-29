@@ -20,7 +20,7 @@ Evidence is separated from theory claims.
 Current strongest outside-rerun anchors:
 
 - Mixed-CSP: frozen specification-fixed package, 3/3 clean outside reruns.
-- Exp43c q-coloring: frozen specification-fixed package, 3/3 clean outside
+- q-coloring (Exp43c package): frozen specification-fixed package, 3/3 clean outside
   reruns.
 
 These two records are the current hard entry point for the law-side layer. They
@@ -31,8 +31,8 @@ against raw baselines.
 
 Do not delete failed attempts. They are part of the research program.
 
-For M-side validation, use:
+For optional M-side component diagnostics, use:
 
-- `../06_templates/m_profile_validation_manifest_template.md` for M-profile
-  validation and weak-axis gates when the effective resource side is
-  operationalized through component readouts.
+- `../06_templates/m_profile_validation_manifest_template.md` for component
+  diagnostic validation and weak-axis gates when the effective resource side is
+  operationalized through optional component readouts.

@@ -8,13 +8,13 @@ Structural Persistence Theory for LLM reasoning degradation, catastrophic forget
 
 このリポジトリの主対象は、`v3` にある公開運用版です。`v3` は、構成地図、統合版、Core Paper、主理論 spine、数学的基礎、ドメイン registry、証拠 ledger、共同運用テンプレートを分けた構造です。`v2` は preprint bundle と PDF 生成物を含む安定アーカイブとして残します。
 
-仕様固定構造層、条件付き構造埋め込み層、構造推定層は、異なる理論ではなく、同一の構造持続核を異なる観測レベルで扱うための層です。
+仕様固定構造レイヤー、条件付き構造埋め込みレイヤー、構造推定レイヤーは、異なる理論ではなく、同一の構造持続核を異なる観測レベルで扱うためのレイヤーです。
 
 | 外向け名 | 読み方 |
 |---|---|
-| 仕様固定構造層 | 構造、測度（状態集合の大きさを測るものさし）、境界を仕様から直接固定できる層 |
-| 条件付き構造埋め込み層 | 既存理論のドリフト / 差分 / 停止境界を条件付きに写す橋渡し |
-| 構造推定層 | 構造を直接数えず、観測・推定指標と凍結検証で推定する現実系の標準入口 |
+| 仕様固定構造レイヤー | 構造、測度（状態集合の大きさを測るものさし）、境界を仕様から直接固定できるレイヤー |
+| 条件付き構造埋め込みレイヤー | 既存理論のドリフト / 差分 / 停止境界を条件付きに写す橋渡し |
+| 構造推定レイヤー | 構造を直接数えず、観測・推定指標と凍結検証で推定する現実系の標準入口 |
 
 - 外向け導線: [`v3/01_theory/00_map.md`](v3/01_theory/00_map.md) -> [`v3/01_theory/01_overview.md`](v3/01_theory/01_overview.md) -> [`v3/01_theory/02_core.md`](v3/01_theory/02_core.md)
 - 主理論 spine: [`v3/01_theory/10_paper1_minimal_form.md`](v3/01_theory/10_paper1_minimal_form.md) -> [`v3/01_theory/11_paper2_balance_principle.md`](v3/01_theory/11_paper2_balance_principle.md)
@@ -45,8 +45,8 @@ PDF は [`v2/pdf用/補論_構造持続理論の構成地図.pdf`](v2/pdf用/補
 
 現時点の証拠階層は [`analysis/current_evidence_map.md`](analysis/current_evidence_map.md) に整理しています。README では現在地だけを示します。
 
-- 仕様固定構造層: SAT / Mixed-CSP / q-coloring では、自然測度・有限時間の崩壊境界・事前固定された経験的検証が揃いつつあります。現時点で最も硬い経験的入口は、Mixed-CSP と Exp43c q-coloring の二つの凍結済み検証パッケージです。Mixed-CSP は外部実行者 3 名が各 12,000 行の primary run、0 checked core mismatches、support flags reproduced を返し、Exp43c q-coloring は外部実行者 3 名が各 4,000 行の primary run、0 checked core mismatches、TIMEOUT 0、MALFORMED 0、同じ qualitative support decision を返しています。これは理論全体の証明ではありません。しかし、仕様固定構造層における法則側座標の、最初の強い外部再現足場です。
-- 構造推定層: LLM 推論実験では、文脈長だけではなく構造矛盾の質が崩壊を予測することを、複数の preregistered / prospective checks で検査しています。
+- 仕様固定構造レイヤー: SAT / Mixed-CSP / q-coloring では、自然測度・有限時間の崩壊境界・事前固定された経験的検証が揃いつつあります。現時点で最も硬い経験的入口は、Mixed-CSP と q-coloring（内部パッケージ名 Exp43c）の二つの凍結済み検証パッケージです。Mixed-CSP は外部実行者 3 名が各 12,000 行の primary run、0 checked core mismatches、support flags reproduced を返し、q-coloring は外部実行者 3 名が各 4,000 行の primary run、0 checked core mismatches、TIMEOUT 0、MALFORMED 0、同じ qualitative support decision を返しています。これは理論全体の証明ではありません。しかし、仕様固定構造レイヤーにおける法則側座標の、最初の強い外部再現足場です。
+- 構造推定レイヤー: LLM 推論実験では、文脈長だけではなく構造矛盾の質が崩壊を予測することを、複数の preregistered / prospective checks で検査しています。
 - Formal layer: Lean 4 側は `151 Survival modules`, `sorry = 0`, `axiom = 0` で、主な theorem-to-paper mapping は [`lean/PAPER_MAPPING.md`](lean/PAPER_MAPPING.md) にまとめています。階層的不変量による統一枠組みへ何を積むかは [`analysis/second_law_level_roadmap.md`](analysis/second_law_level_roadmap.md) に、Phase 5 の admissible-map ladder は [`analysis/phase5_admissible_map_ladder.md`](analysis/phase5_admissible_map_ladder.md) に、Phase 6.1 の Foster-Lyapunov / queueing template は [`analysis/phase6_foster_lyapunov_template.md`](analysis/phase6_foster_lyapunov_template.md) に、Phase 6.2 の Repair-Maintenance template は [`analysis/phase6_repair_maintenance_template.md`](analysis/phase6_repair_maintenance_template.md) に、Phase 7 v0 の cross-class registry は [`analysis/phase7_cross_class_unification_v0.md`](analysis/phase7_cross_class_unification_v0.md) に、Phase 7 v1/v2 の unifying schema は [`analysis/phase7_unifying_schema_v1.md`](analysis/phase7_unifying_schema_v1.md) と [`analysis/phase7_unifying_schema_v2.md`](analysis/phase7_unifying_schema_v2.md) に分けて整理しています。
 - 限定クラス統一: Phase 7 v2 は、Bernoulli-CSP、Foster-Lyapunov / queueing、Repair-Maintenance の三つの登録済み限定クラスが、順序つき \(\Sigma\) carrier、非負傾向の駆動構造、有限時間証明経路、許容写像による転送条件からなる共通インターフェースを満たすことを Lean 側で登録しています。これは任意ドメインに対する単一普遍不等式ではなく、登録済みクラスに対する拡張可能な共通インターフェース閉包です。
 - Non-CSP: Backblaze / C-MAPSS / Scania などは support / weakening / no-support を分けて記録し、同一 archive 内の rescue を避けています。
@@ -78,14 +78,14 @@ PDF は [`v2/pdf用/補論_構造持続理論の構成地図.pdf`](v2/pdf用/補
 
 ### Paper 2 — 構造持続の収支原理
 
-主理論 spine の第二層。構造持続の最小核 `S = M e^{-L}` を、回復を含む `S = M e^{-B}` へ拡張する短い原理论文です。仕様固定構造層、構造推定層、条件付き構造埋め込み層の詳細は補論へ分離しています。
+主理論 spine の第二層。構造持続の最小核 `S = M e^{-L}` を、回復を含む `S = M e^{-B}` へ拡張する短い原理论文です。仕様固定構造レイヤー、構造推定レイヤー、条件付き構造埋め込みレイヤーの詳細は補論へ分離しています。
 
 - Markdown: [`v2/2_構造持続の収支原理.md`](v2/2_構造持続の収支原理.md)
 - PDF: [`v2/pdf用/2_構造持続の収支原理.pdf`](v2/pdf用/2_構造持続の収支原理.pdf)
 
 ### LLM Companion I — 推論時の構造劣化
 
-構造推定層の companion anchor 1。主理論 spine そのものではなく、未整理矛盾や external metabolism が消耗側 / 回復側指標として観測量を予測するかを検査する観測的アンカーです。
+構造推定レイヤーの companion anchor 1。主理論 spine そのものではなく、未整理矛盾や external metabolism が消耗側 / 回復側指標として観測量を予測するかを検査する観測的アンカーです。
 
 推論時の未整理矛盾や上書きが、論理一貫性を保てる経路を削るという具体例。現時点の主張は、外部代謝が未整理の矛盾放置より良い、という点に絞っている。
 
@@ -95,7 +95,7 @@ PDF は [`v2/pdf用/補論_構造持続理論の構成地図.pdf`](v2/pdf用/補
 
 ### LLM Companion II — 継続学習時の構造的忘却
 
-構造推定層の companion anchor 2。主理論 spine の証明ではなく、前提更新と依存再編の失敗がどのように structural forgetting として現れるかを観測的に示す companion layer です。
+構造推定レイヤーの companion anchor 2。主理論 spine の証明ではなく、前提更新と依存再編の失敗がどのように structural forgetting として現れるかを観測的に示す companion layer です。
 
 継続学習における前提更新と依存知識の崩れを、構造持続の別相として扱う。
 
@@ -134,8 +134,8 @@ See [`PATENTS.md`](PATENTS.md) for a brief scope note.
 4. 最小形式: [`v2/1_構造持続の最小形式.md`](v2/1_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%AE%E6%9C%80%E5%B0%8F%E5%BD%A2%E5%BC%8F.md)
 5. 収支原理: [`v2/2_構造持続の収支原理.md`](v2/2_構造持続の収支原理.md)
 6. 運用規律: [`v2/補論_構造持続理論の運用規律.md`](v2/補論_構造持続理論の運用規律.md)
-7. 仕様固定構造層 / 有限CSP: [`v2/補論_有限CSPにおける構造持続の予測力.md`](v2/%E8%A3%9C%E8%AB%96_%E6%9C%89%E9%99%90CSP%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%AE%E4%BA%88%E6%B8%AC%E5%8A%9B.md)
-8. 構造推定層 / LLM: [`v2/Companion_RouteC_推論時の構造劣化.md`](v2/Companion_RouteC_推論時の構造劣化.md), [`v2/Companion_RouteC_継続学習時の構造的忘却.md`](v2/Companion_RouteC_継続学習時の構造的忘却.md)
+7. 仕様固定構造レイヤー / 有限CSP: [`v2/補論_有限CSPにおける構造持続の予測力.md`](v2/%E8%A3%9C%E8%AB%96_%E6%9C%89%E9%99%90CSP%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%AE%E4%BA%88%E6%B8%AC%E5%8A%9B.md)
+8. 構造推定レイヤー / LLM: [`v2/Companion_RouteC_推論時の構造劣化.md`](v2/Companion_RouteC_推論時の構造劣化.md), [`v2/Companion_RouteC_継続学習時の構造的忘却.md`](v2/Companion_RouteC_継続学習時の構造的忘却.md)
 9. 資源項 \(M\): [`v2/補論_構造持続における資源項Mの操作的定式化.md`](v2/補論_構造持続における資源項Mの操作的定式化.md)
 10. 既存理論 bridge: [`v2/補論_構造持続の収支原理とFoster-Lyapunovドリフトの形式的埋め込み.md`](v2/補論_構造持続の収支原理とFoster-Lyapunovドリフトの形式的埋め込み.md), [`v2/補論_非CSP古典例における構造持続の収支原理の最小アンカー.md`](v2/補論_非CSP古典例における構造持続の収支原理の最小アンカー.md)
 11. Lean / 詳細補論: [`lean/PAPER_MAPPING.md`](lean/PAPER_MAPPING.md), [`v2/補論_構造持続の条件つき導出.md`](v2/補論_構造持続の条件つき導出.md), [`v2/補論_構造持続における許容写像と階層的不変量.md`](v2/補論_構造持続における許容写像と階層的不変量.md), [`v2/補論_構造持続の収支原理の詳細展開.md`](v2/補論_構造持続の収支原理の詳細展開.md)

@@ -118,7 +118,7 @@ When the horizon is clear, write
 S=Me^{-B}.
 \]
 
-The term \(M_n\) is not derived from this pathwise identity. It represents the effective maintenance surplus available to support the structure.
+The term \(M_n\) is not derived from this pathwise identity. It is the resource-side scalar representing the effective maintenance surplus available to support the structure. The boundary \(M_n=0\) may appear as functional failure or halt even when some feasible region remains. This paper does not claim a universal predictive decomposition of \(M_n\).
 
 5. Relation to the minimal form
 

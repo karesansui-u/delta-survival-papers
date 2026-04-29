@@ -1,9 +1,9 @@
-Software / SaaS M-Profile
-=========================
+Software / SaaS Optional M-Component Diagnostic
+===============================================
 
 domain_id: software_saas_m_profile
 
-domain_name: Software / SaaS operational M-profile
+domain_name: Software / SaaS optional M-component diagnostic
 
 observability_layer: structurally_inferred
 
@@ -23,16 +23,16 @@ status: candidate
 -------------------------
 
 - \(V\): operational states compatible with the target function and service contract.
-- \(m\): not directly counted; represented through frozen operational proxies.
+- \(m\): not directly counted; represented through frozen operational observation / estimation indicators.
 - \(d_t\): deployment risk, dependency drift, incident load, unresolved defect accumulation, or structural-risk indicator.
 - \(r_t\): rollback, repair workflow, runbook execution, replay, or verified remediation.
 - \(L\): accumulated structural-risk indicator.
 - \(B\): net structural-risk indicator after recovery / repair signals.
-- \(M\)-side readout: \(M_{\mathrm{buffer}}\), \(M_{\mathrm{recovery}}\), \(M_{\mathrm{reconfiguration}}\), plus external supply channels.
+- \(M\)-side readout: scalar effective maintenance surplus \(M\), optionally decomposed into \(M_{\mathrm{buffer}}\), \(M_{\mathrm{recovery}}\), \(M_{\mathrm{reconfiguration}}\), plus external supply channels as diagnostic readouts.
 
 
-3. M-Profile Candidate Signals
-------------------------------
+3. Optional M-Component Candidate Signals
+-----------------------------------------
 
 | Component | Candidate software / SaaS indicators |
 |---|---|
@@ -47,7 +47,7 @@ status: candidate
 
 - simple baseline: activity count, deployment count, incident count, age, team size, or traffic volume.
 - domain baseline: standard software-delivery / incident-risk model.
-- domain baseline + SP: domain baseline plus frozen L/B/M-profile coordinates.
+- domain baseline + SP: domain baseline plus frozen L/B coordinates and, optionally, scalar \(M\) or M-component readouts.
 - wide baseline, if any: domain-specific operational model with all pre-approved covariates.
 
 
@@ -55,7 +55,7 @@ status: candidate
 --------------------
 
 - current status: candidate / silence until an operational log with intervention records and outcome windows is frozen.
-- M-profile manifest: use `../../06_templates/m_profile_validation_manifest_template.md`.
+- M-component diagnostic manifest: use `../../06_templates/m_profile_validation_manifest_template.md`.
 - evidence record: not yet supported.
 
 
@@ -64,7 +64,7 @@ status: candidate
 
 This domain may support:
 
-- M-profile support if M-profile features improve held-out risk prediction or diagnosis over a domain baseline;
+- optional M-component diagnostic support if component readouts improve held-out risk prediction or diagnosis over a domain baseline;
 
 This domain does not support:
 

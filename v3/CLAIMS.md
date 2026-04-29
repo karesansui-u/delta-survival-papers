@@ -39,17 +39,19 @@ domain model. The central empirical test is often:
 under frozen, out-of-sample validation.
 
 Here SP means structural persistence coordinate: structural consumption, recovery,
-resource margin, alternative-path, or related coordinates derived from the theory.
+net consumption, alternative-path, or related coordinates derived from the theory.
+The scalar resource-side term \(M\) may be recorded as an effective maintenance
+surplus, but decomposed \(M\)-profiles are not part of the core law-side claim.
 
 The law-side claim belongs first to specification-fixed structural domains. In
-structurally inferred domains, SP features are proxies for the law-side \(L/B/M\)
-coordinates. An inferred indicator should be treated as a stronger predictive instrument only
+structurally inferred domains, SP features are inferred indicators for the law-side
+\(L/B\) coordinates. An inferred indicator should be treated as a stronger predictive instrument only
 when frozen validation shows incremental out-of-sample value over the domain
 baseline; otherwise it remains candidate, no-support, weak-axis failure, or
 silence.
 
 The strongest current empirical footing is package-scoped and law-side: two
-specification-fixed frozen packages, Mixed-CSP and Exp43c q-coloring, each have
+specification-fixed frozen packages, Mixed-CSP and q-coloring, each have
 3/3 clean outside reruns with decision-relevant outputs reproduced. This is
 stronger than a local rerun or a published procedure alone, but it is still a
 scoped empirical footing. It does not by itself establish universal-law closure,
@@ -132,15 +134,15 @@ available for maintaining the target structure at the relevant time.
 
 Thus \(M\) is not the new mathematical core. It is the conventional resource /
 slack side, made explicit so that it can be separated from the new structural
-coordinates \(L\) and \(B\). Decomposing \(M\) into component profiles can be
-useful for diagnosis, but the minimal meaning of \(M\) is simply the effective
-amount that is usable for the pre-fixed maintenance problem.
+coordinates \(L\) and \(B\). The minimal meaning of \(M\) is simply the effective
+amount that is usable for the pre-fixed maintenance problem. \(M=0\) is a
+resource-side boundary and may appear as functional failure or halt.
 
 | Label | Meaning |
 |---|---|
-| M-profile support | an operational \(M\) readout improves held-out prediction or diagnosis over a domain baseline |
-| M-replication support | M-profile support reproduces in a separate project, organization, archive, or outside run |
+| scalar-M readout | an effective resource/slack indicator recorded for the pre-fixed maintenance problem |
+| M-component diagnostic | optional exploratory decomposition of \(M\); not a core claim and not law-side support |
 
-Claims about which intervention should be chosen first are outside the core
-\(M\)-side evidence vocabulary and should not be used as the default evidential
-target for \(M\).
+Claims about component decompositions or which intervention should be chosen
+first are outside the core \(M\)-side evidence vocabulary and should not be used
+as the default evidential target for \(M\).

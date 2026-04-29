@@ -1,13 +1,14 @@
 v3 Changelog
 ============
 
-## M-profile validation scaffolding
+## Optional M-component diagnostic scaffolding
 
-- Added M-profile validation templates.
+- Added optional M-component diagnostic templates.
 - Added candidate domain profiles for software / SaaS operational logs and Scania
   Component X.
 - Added a specification-fixed flow-network M testbed design for controlled
-  buffer / recovery / reconfiguration validation under fixed total energy.
+  optional buffer / recovery / reconfiguration diagnostics under fixed total
+  energy.
 - Clarified that \(M\) is the familiar effective maintenance amount / resource
   side; component profiles are optional readouts rather than intervention
   selection rules.

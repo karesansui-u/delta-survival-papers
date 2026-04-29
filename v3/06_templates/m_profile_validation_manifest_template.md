@@ -1,5 +1,5 @@
-M-Profile Validation Manifest Template
-======================================
+Optional M-Component Diagnostic Manifest Template
+================================================
 
 manifest_id:
 
@@ -13,16 +13,18 @@ frozen_by:
 1. Validation Role
 ------------------
 
-- target support level: M-profile support / M-replication support
+- target support level: optional M-component diagnostic / exploratory resource-side evidence
 - validation type: risk prediction / diagnosis / persistence readout
 - observability layer:
 - claim boundary:
 
-Use this manifest when the test involves \(M_{\mathrm{buffer}}\),
-\(M_{\mathrm{recovery}}\), \(M_{\mathrm{reconfiguration}}\), or external supply
-channels. A risk-prediction or diagnosis improvement is M-profile support.
-\(M\) is treated here as the familiar effective maintenance amount made
-operational through component readouts. It is not assumed to directly choose an
+Use this manifest only when an optional test decomposes the scalar resource-side
+term \(M\) into \(M_{\mathrm{buffer}}\), \(M_{\mathrm{recovery}}\),
+\(M_{\mathrm{reconfiguration}}\), or external supply channels. The core theory
+does not require this decomposition. A successful result may be recorded as an
+exploratory M-component diagnostic signal, not as law-side support.
+\(M\) itself is treated as the familiar effective maintenance surplus available
+for the pre-fixed maintenance problem. It is not assumed to directly choose an
 intervention.
 
 
@@ -66,8 +68,8 @@ Run this gate on training data only before the primary validation.
 - maximum allowed correlation / predictability from baseline features:
 - action if weak-axis gate fails:
 
-The M-profile must not merely rename the baseline, capacity, age, degradation,
-or target-leakage features. If the M-axis fails this gate, record weak-axis
+The optional M-component readout must not merely rename the baseline, capacity,
+age, degradation, or target-leakage features. If the M-axis fails this gate, record weak-axis
 failure rather than support.
 
 
@@ -97,8 +99,8 @@ Freeze all candidate families before outcome-bearing evaluation.
 - simple baseline:
 - domain baseline:
 - scalar \(M\) baseline:
-- domain baseline + M-profile:
-- domain baseline + L/B + M-profile:
+- domain baseline + optional M-component readout:
+- domain baseline + L/B + optional M-component readout:
 - model class:
 - train / validation / test split:
 - primary metric:
@@ -108,7 +110,7 @@ Freeze all candidate families before outcome-bearing evaluation.
 7. Support Rules
 ----------------
 
-M-profile support:
+M-component diagnostic signal:
 
 - rule:
 - minimum effect size:
@@ -124,6 +126,7 @@ No-support:
 -------------
 
 - no universal \(M\)-form is claimed;
+- no component decomposition is part of the core \(S=Me^{-L}\) or \(S=Me^{-B}\) claim;
 - no support transfers from another domain;
 - no post-hoc component remapping after seeing outcome-bearing data;
 - no claim that external supply is a fourth M component rather than a channel.

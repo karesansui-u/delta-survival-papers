@@ -89,5 +89,5 @@ This domain does not support:
 - raw detector precision / recall;
 - provider superiority;
 - M-side profile support;
-- support transfer to software / SaaS operational M-profile validation;
+- support transfer to software / SaaS optional M-component diagnostic validation;
 - universal law claims.

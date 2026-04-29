@@ -2,10 +2,10 @@
 
 Status: active program-execution memo after Backblaze v2 same-domain
 observational support, the first C-MAPSS FD001 cross-domain loss-only primary,
-Scania horizon-bridge no-support, Oxford Part 1 battery M-profile no-support,
+Scania horizon-bridge no-support, Oxford Part 1 battery optional M-component no-support,
 the controlled M-flow network primary no-support result,
 the completed three-run Mixed-CSP true outside-group rerun set, and the
-completed three-run Exp43c true outside-group rerun set. This is not a freeze
+completed three-run q-coloring (Exp43c package) true outside-group rerun set. This is not a freeze
 document, not validation evidence,
 and not a new claim source.
 
@@ -32,7 +32,7 @@ The program is not starting from zero.
 
 Already closed or strengthened:
 
-- Route A primary anchors: Mixed-CSP and Exp43c q-coloring;
+- Route A primary anchors: Mixed-CSP and q-coloring (Exp43c package);
 - Route C observational anchors: Exp.40 / 41 / 42 and Route C companion II;
 - G6-c iteration 1: minimal Foster-Lyapunov algebraic embedding;
 - G4 v1 and G4 v2 algebraic non-CSP skeletons;
@@ -46,7 +46,7 @@ Still open:
 - no cross-domain non-CSP empirical support beyond drive reliability;
 - the requested true outside-group Mixed-CSP rerun set has returned cleanly:
   `3/3` completed, `3/3` clean success, `0` pending;
-- the returned Exp43c true outside-group rerun set has returned cleanly:
+- the returned q-coloring (Exp43c package) true outside-group rerun set has returned cleanly:
   `3/3` completed, `3/3` clean success, `4000` rows in each returned run,
   `0` checked core mismatches in each returned run, `TIMEOUT = 0`,
   `MALFORMED = 0`, and the same qualitative support decision;
@@ -68,7 +68,7 @@ New information:
   reversal rather than execution failure, but no primary-window selection or
   freeze should be made from this v1 design.
 - Oxford Path Dependent Part 1 has now completed its one-time held-out battery
-  M-profile primary and produced a no-support result:
+  optional M-component primary and produced a no-support result:
   `primary RMSE = 0.23508673118782375` versus
   `B3 RMSE = 0.2296038662551124`, with `H1 = false`, `H2 = false`,
   `H3 = true`, and `primary_support = false`.
@@ -76,7 +76,7 @@ New information:
   final-candidate primary at
   `analysis/m_flow_network_testbed/primary_runs/final_candidate_v0/`.
   The primary setting was `Q=4`, `damage_intensity=0.34`, `T=8`, seed block
-  `2000..2029`. The frozen-rule outcome is no M-primary support: M-profile
+  `2000..2029`. The frozen-rule outcome is no optional M-component diagnostic support: the component readout
   improved over total-resource regret (`0.2204` vs `0.2372`) but did not beat
   the policy-prior baseline (`0.1506`). Sensitivity settings retained the same
   qualitative pattern.
@@ -315,10 +315,10 @@ Reason:
 - capacity / degradation endpoints are available in principle;
 - protocol order and periodicity are central to the dataset design;
 - public and reproducible;
-- M-profile features can be frozen before any primary run.
+- optional M-component features can be frozen before any primary run.
 
 NASA Randomized/Recommissioned remains the second feasibility candidate if we
-want another public battery M-profile attempt.
+want another public battery optional M-component attempt.
 MIT-Stanford/TRI remains a later hard-baseline challenge.
 
 ### Next artifact
@@ -331,7 +331,7 @@ repair-flow acquisition path.
 ```
 
 Do not rescue Oxford on the same archive. Keep Oxford as a no-support battery
-M-profile outcome and keep the current FD001 result as a weakening outcome,
+optional M-component outcome and keep the current FD001 result as a weakening outcome,
 not as a failed theory test and not as a hidden support result. Record the
 Oxford lesson in the mapping-attempt ledger: the frozen primary was not only
 no-support, but also a weak-axis warning because the added M/SP coordinates
@@ -344,9 +344,9 @@ path margin, then freeze an independent SP-axis gate before any primary run.
 ### Current state
 
 The program now has real validated anchors, a Mixed-CSP external package, an
-Exp43c external package, published-remote outside-workspace reruns for both
+q-coloring (Exp43c package) external package, published-remote outside-workspace reruns for both
 Route A packages, final handoff checklists for both, a completed three-run
-Mixed-CSP outside-group rerun set, and a completed three-run Exp43c
+Mixed-CSP outside-group rerun set, and a completed three-run q-coloring (Exp43c package)
 outside-group rerun set. What remains open is independent review and
 outside-group return depth beyond these package-level successes, not
 project-side reproducibility.
@@ -359,7 +359,7 @@ Start with the strongest, cleanest, most deterministic package first. The
 current recommended order is:
 
 1. Mixed-CSP primary package;
-2. Exp43c q-coloring primary package;
+2. q-coloring (Exp43c package) primary package;
 3. Backblaze v2 observational package.
 
 Reason:
@@ -599,7 +599,7 @@ So the next concrete order becomes:
 4. choose the next non-CSP empirical branch: NASA Randomized/Recommissioned
    battery feasibility or future repair-flow data acquisition under the
    candidate-criteria gate;
-5. keep Oxford Part 1 as a closed no-support battery M-profile outcome without
+5. keep Oxford Part 1 as a closed no-support battery optional M-component outcome without
    same-archive rescue.
 
 This keeps the program moving on the actual open gaps rather than adding more

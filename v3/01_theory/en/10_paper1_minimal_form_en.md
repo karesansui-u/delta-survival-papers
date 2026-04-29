@@ -20,11 +20,11 @@ m(V^{(n)})=m(V^{(0)})e^{-L_n}.
 \]
 The exponential kernel is therefore not an additional empirical decay law. It is the telescoping form forced by log-ratio measurement on a pre-fixed feasible region.
 
-Finally, an effective maintenance surplus term \(M\) is introduced externally, yielding the reader-facing persistence quantity
+Finally, an effective maintenance surplus term \(M\) is introduced externally as a resource-side scalar, yielding the reader-facing persistence quantity
 \[
 S=Me^{-L}.
 \]
-The term \(M\) is not derived from the exponential kernel. It represents the resource-side capacity to support the structure. The new law-side coordinate in this paper is \(L\), the logarithmic shrinkage of the feasible region.
+The term \(M\) is not derived from the exponential kernel. It represents the effective maintenance surplus available to support the structure. The new law-side coordinate in this paper is \(L\), the logarithmic shrinkage of the feasible region.
 
 1. Question
 
@@ -165,7 +165,7 @@ Introduce an effective maintenance surplus \(M>0\) and define
 S=Me^{-L}.
 \]
 
-The term \(M\) is external to the log-ratio theorem. It is the resource-side term that represents the capacity available to support the structure. The novelty of the minimal form is not that \(M\) exists. The novelty is the separation of \(M\) from the law-side shrinkage coordinate \(L\).
+The term \(M\) is external to the log-ratio theorem. It is the resource-side scalar that represents the effective maintenance surplus available to support the structure. The boundary \(M=0\) may appear as functional failure or halt on the resource side. The novelty of the minimal form is not that \(M\) exists. The novelty is the separation of \(M\) from the law-side shrinkage coordinate \(L\). This paper does not claim a universal predictive decomposition of \(M\).
 
 7. Claim boundary
 

@@ -17,19 +17,21 @@ This file gives the operational reading of support labels used in v3.
 The strongest common empirical target is usually incremental support, not SP-only dominance.
 
 
-M-Side Support
---------------
+M-Side Readouts
+---------------
 
 For \(M\)-side work, use the following stricter reading. \(M\) is the familiar
-support-side effective maintenance amount: usable resource, slack, or capacity
-for the pre-fixed maintenance problem. Component profiles are optional readouts,
-not a direct law for selecting the next intervention.
+support-side effective maintenance surplus: usable resource, slack, or capacity
+for the pre-fixed maintenance problem. The core theory treats \(M\) as a scalar
+resource-side term. Component profiles are optional diagnostic readouts, not a
+law-side coordinate and not a built-in theory of which intervention to choose.
 
 | Level | Meaning |
 |---|---|
-| M-profile support | M-profile improves held-out prediction, diagnosis, or persistence readout over a domain baseline |
-| robustness support | M-profile support is robust across pre-frozen \(\rho_i\), \(A_j\), and \(\Phi\) families |
-| M-replication support | M-profile support reproduces in a separate project, organization, archive, or outside run |
+| scalar-M readout | scalar \(M\) or \(M=0\) boundary is pre-fixed and improves held-out persistence readout over a domain baseline |
+| optional M-component diagnostic | a pre-frozen component readout improves held-out prediction, diagnosis, or persistence readout over a domain baseline |
+| robustness diagnostic | optional component diagnostic is robust across pre-frozen \(\rho_i\), \(A_j\), and \(\Phi\) families |
+| M-component replication | optional component diagnostic reproduces in a separate project, organization, archive, or outside run |
 
-This prevents an M-profile readout from being misread as a built-in theory of
-which intervention to choose.
+This prevents an \(M\)-component readout from being misread as a built-in theory
+of which intervention to choose.

@@ -16,6 +16,8 @@
 
 本補論は新しい普遍法則の証明ではない。また、経験的 pilot を完了した論文でもない。本補論の位置づけは、構造持続の収支原理の回復量・資源入力を実ドメインで測るための support-side operational mapping である。
 
+現在の主理論の読みにおいて、Paper 1 / Paper 2 / Core Paper が必要とする \(M\) は、有効維持余力を表すスカラーで十分である。以下の成分分解は、\(M\) の普遍的な内訳や予測力を主張するものではなく、必要な場合に使う任意の診断語彙である。したがって、\(M_{\mathrm{buffer}},M_{\mathrm{recovery}},M_{\mathrm{reconfiguration}}\) の経験的支持は、本理論の中核である \(L/B\) の対数比座標とは分けて読む。
+
 
 1. はじめに
 
@@ -181,7 +183,7 @@ $\gamma_i$ を導入することで、本補論は次の観察を理論内で書
 $\Phi$ は、少なくとも非負性と各 effective component に関する単調非減少性を満たす集約関数である。
 \end{definition}
 
-本補論では $\Phi$ の関数形を一意に固定しない。むしろ、表現規律として、いくつかの候補族を明示し、その選択に対して M-profile の読みが頑健かを §6 で検査する。
+本補論では $\Phi$ の関数形を一意に固定しない。むしろ、任意の追加診断として、いくつかの候補族を明示し、その選択に対して M 成分読み出しが頑健かを §6 で検査する。
 
 候補の一つは積型である。scale separability (各成分を独立にスケールしたときの影響が他成分を変えずに乗法的に分離できる性質) と multiplicative composition ($h_i(\lambda\mu) = h_i(\lambda) h_i(\mu)$) を追加仮定として置くと、連続性と正規化から $\Phi$ は積型
 \[
@@ -209,7 +211,7 @@ $\Phi$ は、少なくとも非負性と各 effective component に関する単�
 | 一意な関数形 | $f(r) = -k \ln r$ | 積型・CES・bottleneck の候補族 |
 | 残る経験量 | 各ドメインにおける $m(V)$ の具体化 | 各ドメインにおける $\alpha_i$, $w_i$, $\rho$ とその頑健性 |
 
-この骨格対応により、本補論の維持能力成分の分解は単なる分類表ではなく、Paper 1 の方法論を support 側に移植するための候補族を持つ。ただし、本補論の load-bearing claim は積型の証明ではない。以降の節では $\Phi$ を単調非減少な集約として扱い、積型・CES・bottleneck 型のどれを採るかは domain 固有の経験的推定と §6 の robustness validation に委ねる。M-profile support は、この選択に対して robust であるべきである。
+この骨格対応により、本補論の維持能力成分の分解は単なる分類表ではなく、スカラー \(M\) を必要に応じて診断的に細分するための候補族を持つ。ただし、本補論の load-bearing claim は積型の証明ではなく、主理論核が必要とするのもスカラーとしての \(M\) である。以降の節では $\Phi$ を単調非減少な集約として扱い、積型・CES・bottleneck 型のどれを採るかは domain 固有の経験的推定と §6 の robustness validation に委ねる。M 成分診断を support として読む場合は、この選択に対して robust であるべきである。
 
 以上により、本補論の最小形式は次で与えられる。
 
@@ -448,7 +450,7 @@ LLM companion II §7.5 は、持続知能に少なくとも三つの役割が必
 
 ここで output-side realization は第五の維持能力成分ではない。これは、すでに保持・修復・再編された構造が実際の応答へ反映されるかどうかの出力段階であり、本補論の維持能力成分 profile には含めない。
 
-この対応により、LLM companion II の結論は本補論の M-profile 読みに接続する。条件 (i) 内部に長期的な矛盾解消代謝機構を持たず、条件 (ii) 推論呼び出しの境界を越えて信念を持ち越す機構が弱い系では、単なる capacity 増強ではなく、$M_{\mathrm{recovery}}$ の供給が重要になる可能性が高い。
+この対応により、LLM companion II の結論は本補論の任意 M 成分診断に接続する。条件 (i) 内部に長期的な矛盾解消代謝機構を持たず、条件 (ii) 推論呼び出しの境界を越えて信念を持ち越す機構が弱い系では、単なる capacity 増強ではなく、$M_{\mathrm{recovery}}$ に相当する回復余力が重要になる可能性が高い。
 
 LLM companion I では、これは in-context scope marker または外部代謝として現れた。LLM companion II では、F-v2c の依存 DAG controller として現れた。どちらも、raw resource を増やすのではなく、衝突をどう整理し直すかを変えている。この点で、LLM companion I / II は本補論の基本的読み——raw resource が同じでも、それが対象構造の維持に使える有効量 \(M\) へどう変換されるかが異なりうる——への準備的根拠を与える。
 
@@ -635,7 +637,7 @@ Software では、$M_{\mathrm{reconfiguration}}$ に architecture change, modula
 
 この分類は、用語の名前ではなく、その readout がどの有効余力を表すかによって決まる。たとえば「vendor support」は、それが rollback を代行するなら $M_{\mathrm{ext}\to\mathrm{recovery}}$、容量を提供するなら $M_{\mathrm{ext}\to\mathrm{buffer}}$ の readout である。
 
-5.2 M-profile reading
+5.2 M-component diagnostic reading
 
 本補論の最小検査標的は次である。
 
@@ -643,7 +645,7 @@ Software では、$M_{\mathrm{reconfiguration}}$ に architecture change, modula
 Comparable $\hat L$, comparable raw $R$, and comparable scalar $M_{\mathrm{total}}$ のもとで、維持能力成分 profile は held-out outcome または診断に対して scalar baseline にない情報を持つ。
 \end{quote}
 
-この検査標的は、「M-profile が自動的に修正方針を返す」という主張ではない。言えるのは、raw resource や scalar \(M\) だけでは見えない有効余力の偏りが、診断や予測に追加情報を持つかどうかである。
+この検査標的は、「M 成分診断が自動的に修正方針を返す」という主張ではない。言えるのは、raw resource や scalar \(M\) だけでは見えない有効余力の偏りが、診断や予測に追加情報を持つかどうかである。
 
 例:
 
@@ -687,7 +689,7 @@ Software contract-coherence diagnostics は、software domain における強い
 本補論の第一検査標的は、次の形を持つ。
 
 \begin{quote}
-raw resource \(R\) や既存 baseline を固定しても、M-profile readout は scalar baseline にない予測・診断情報を持つ。
+raw resource \(R\) や既存 baseline を固定しても、M 成分 readout は scalar baseline にない予測・診断情報を持つ。
 \end{quote}
 
 6.1 検証対象
@@ -860,7 +862,7 @@ All normalization parameters must be fitted on train folds only.
 
 6.7 $\Phi$ robustness
 
-§2.5 で述べた通り、本補論は $\Phi$ の一意性を主張しない。したがって、M-profile support は $\Phi$ の選択に対して robust でなければならない。
+§2.5 で述べた通り、本補論は $\Phi$ の一意性を主張しない。したがって、M 成分診断の support は $\Phi$ の選択に対して robust でなければならない。
 
 検査する候補は次である。
 
@@ -902,11 +904,11 @@ $A_j$ についても、reasonable candidate は preregistration で固定され
 
 | support level | criterion |
 |---|---|
-| M-profile support | component-aware predictor improves held-out risk prediction or diagnosis over raw / scalar baselines |
-| robustness support | M-profile support is robust across $\rho_i$, $\Phi$, and $A_j$ candidate families |
+| optional M-component diagnostic support | component-aware predictor improves held-out risk prediction or diagnosis over raw / scalar baselines |
+| robustness support | optional M-component diagnostic support is robust across $\rho_i$, $\Phi$, and $A_j$ candidate families |
 | no-support | scalar baselines match or beat component-aware models, or results depend on post-hoc normalization / aggregation choices |
 
-この分類により、「M readout が baseline にない情報を持った」ことだけを本補論の検査標的として扱う。
+この分類により、「M 成分の読み出しが baseline にない情報を持った」ことだけを、主理論核とは別の任意診断として扱う。
 
 ここで reasonable とは、§6.6 の $\rho_i$、§6.7 の $\Phi$、§6.8 の $A_j$ で preregister された候補 family に属するものを指す。
 
@@ -925,7 +927,7 @@ $A_j$ についても、reasonable candidate は preregistration で固定され
 - $\Phi$ candidate families。
 - $A_j$ candidate families。
 - primary metric。
-- M-profile support threshold。
+- optional M-component diagnostic support threshold。
 - minimum unit count per fold。
 - detectable effect size / power target for the primary endpoint。
 - handling of missing operational data。
@@ -950,7 +952,7 @@ $A_j$ についても、reasonable candidate は preregistration で固定され
 ただし、本補論はこの段階で empirical pilot を完了したとは主張しない。本補論が与えるのは、次の三点である。
 
 1. $F / \Sigma / R / M$ の操作的分解。
-2. software / SaaS における component-based M-profile validation。
+2. software / SaaS における任意の component-based M diagnostic validation。
 3. それらを検査するための preregistered validation protocol。
 
 したがって、本補論の現在地は「実証済み論文」ではなく、「強い実証可能性を持つ framework / protocol paper」である。
@@ -966,7 +968,7 @@ $A_j$ についても、reasonable candidate は preregistration で固定され
 - $M_{\mathrm{buffer}}$, $M_{\mathrm{recovery}}$, $M_{\mathrm{reconfiguration}}$ と外部供給 channel の component / channel signals。
 - outcome: change failure rate, escaped defects, MTTR, MTTD, rollback success, incident recurrence など。
 
-この operational dataset がない場合、risk prediction の改善は M-profile support ではなく preparatory evidence に留まる。
+この operational dataset がない場合、risk prediction の改善は M 成分診断 support ではなく preparatory evidence に留まる。
 
 7.2 Software は構造推定層であり仕様固定構造層ではない
 
@@ -997,7 +999,7 @@ $M_{\mathrm{buffer}}^{\mathrm{int}}$, $M_{\mathrm{recovery}}^{\mathrm{int}}$, $M
 
 本補論は $\Phi$ の universal form を主張しない。また、各成分の normalization $\rho_i$ や、内部能力と外部供給を合成する $A_j$ についても、単一の正しい形を主張しない。
 
-したがって、M-profile support についても、単一の都合のよい normalization だけで成立する場合は探索的結果に留める。
+したがって、M 成分診断 support についても、単一の都合のよい normalization だけで成立する場合は探索的結果に留める。
 
 この点で、§2.5 の product / CES / bottleneck family は、表現定理の勝利宣言ではない。それらは、representation sensitivity を検査するための候補族である。
 
@@ -1011,7 +1013,7 @@ $M_{\mathrm{buffer}}^{\mathrm{int}}$, $M_{\mathrm{recovery}}^{\mathrm{int}}$, $M
 
 または、その software 推定指標版を扱う。時間発展としての $\dot L$, $\dot M$, collapse profile, recovery profile は本補論の主対象ではない。
 
-これは特に $M_{\mathrm{ext}\to\mathrm{recovery}}$ の解釈で重要である。外部支援は短期には強い repair capacity を供給しうる。しかし、内部 $M_{\mathrm{recovery}}^{\mathrm{int}}$ が形成されなければ、同じ failure class の再発低減にはつながらない可能性がある。この短期/長期の差は、本補論では M-profile 上の設計仮説として述べるに留め、動的理論としては扱わない。
+これは特に $M_{\mathrm{ext}\to\mathrm{recovery}}$ の解釈で重要である。外部支援は短期には強い repair capacity を供給しうる。しかし、内部 $M_{\mathrm{recovery}}^{\mathrm{int}}$ が形成されなければ、同じ failure class の再発低減にはつながらない可能性がある。この短期/長期の差は、本補論では M 成分上の設計仮説として述べるに留め、動的理論としては扱わない。
 
 動的拡張では、少なくとも次を扱う必要がある。
 
@@ -1043,7 +1045,7 @@ $M_{\mathrm{buffer}}^{\mathrm{int}}$, $M_{\mathrm{recovery}}^{\mathrm{int}}$, $M
 
 Software contract-coherence diagnostics は、本補論の main validation ではない。この track が観測しているのは、主に静的コード中の未整理な前提不整合、scope mismatch、guard 欠落、順序依存、設定干渉である。これは $M$ の維持能力成分の構成ではなく、L-side / LLM companion I static-code extension に近い。DeltaLint はその実装名である。
 
-したがって、この track は別 note で扱う。その中心予測は、本補論の M-profile validation ではなく、次である。
+したがって、この track は別 note で扱う。その中心予測は、本補論の M 成分診断 validation ではなく、次である。
 
 \[
   \text{generic review} + \text{structural lens}

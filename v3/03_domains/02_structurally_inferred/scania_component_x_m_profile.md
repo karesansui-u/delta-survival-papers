@@ -1,9 +1,9 @@
-Scania Component X M-Profile Candidate
-======================================
+Scania Component X Optional M-Component Candidate
+=================================================
 
 domain_id: scania_component_x_m_profile
 
-domain_name: Scania Component X predictive-maintenance M-profile candidate
+domain_name: Scania Component X optional M-component predictive-maintenance candidate
 
 observability_layer: structurally_inferred
 
@@ -23,19 +23,19 @@ status: candidate
 -------------------------
 
 - \(V\): operational states compatible with continued Component X function.
-- \(m\): not directly counted; represented through frozen operational and specification proxies.
+- \(m\): not directly counted; represented through frozen operational and specification observation / estimation indicators.
 - \(d_t\): degradation or risk accumulation from time-series counters / histograms.
 - \(r_t\): repair or maintenance event readout if it can be coded without endpoint leakage.
 - \(L\): loss-only degradation coordinate.
 - \(B\): recovery-aware coordinate when a pre-fixed repair signal is valid.
-- \(M\)-side readout, if any: buffer / recovery / reconfiguration indicator candidates from specifications, repair records, and operational history.
+- \(M\)-side readout, if any: scalar effective maintenance surplus \(M\), optionally decomposed into buffer / recovery / reconfiguration indicator candidates from specifications, repair records, and operational history.
 
 
 3. Why This Candidate Exists
 ----------------------------
 
-This is a public-data preparatory candidate for M-profile validation. It is weaker
-than software / SaaS operational logs for M-profile support, but stronger
+This is a public-data preparatory candidate for optional M-component diagnostic validation. It is weaker
+than software / SaaS operational logs for M-component diagnostic support, but stronger
 than loss-only datasets when repair records and specifications are usable without
 post-hoc leakage.
 
@@ -55,7 +55,7 @@ Source links:
 
 - simple baseline: age / usage / time / generic degradation features.
 - domain baseline: standard predictive-maintenance model.
-- domain baseline + SP: domain baseline plus frozen L/B/M-profile coordinates.
+- domain baseline + SP: domain baseline plus frozen L/B coordinates and, optionally, scalar \(M\) or M-component readouts.
 - wide baseline, if any: pre-approved domain model with all non-leaky covariates.
 
 
@@ -63,9 +63,9 @@ Source links:
 --------------------
 
 - current status: candidate.
-- strongest realistic first test: M-profile support through held-out risk prediction.
-- full M-profile support may not be available from this public archive.
-- M-profile manifest: use `../../06_templates/m_profile_validation_manifest_template.md`.
+- strongest realistic first test: optional M-component diagnostic support through held-out risk prediction.
+- full M-component diagnostic support may not be available from this public archive.
+- M-component diagnostic manifest: use `../../06_templates/m_profile_validation_manifest_template.md`.
 
 
 6. Claims
@@ -73,8 +73,8 @@ Source links:
 
 This domain may support:
 
-- M-profile support if recovery-aware or M-profile features improve held-out prediction beyond a domain baseline;
-- weak evidence for operational M-profile extraction if repair records are usable without leakage.
+- optional M-component diagnostic support if recovery-aware or component readouts improve held-out prediction beyond a domain baseline;
+- weak evidence for operational M-component extraction if repair records are usable without leakage.
 
 This domain does not support:
 

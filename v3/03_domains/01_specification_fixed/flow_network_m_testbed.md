@@ -147,12 +147,12 @@ For a fixed total energy \(E\), compare at least the following policies:
 | balanced | equal or near-equal split |
 | total-energy baseline | uses only \(E\), not the split |
 
-These anchors are not enough for M-profile support. The frozen primary should use
+These anchors are not enough for optional M-component diagnostic support. The frozen primary should use
 an allocation grid over
 \[
   E_{\mathrm{buffer}}+E_{\mathrm{recovery}}+E_{\mathrm{reconfiguration}}=E
 \]
-and include held-out allocation mixes. This prevents the M-profile model from
+and include held-out allocation mixes. This prevents the component-readout model from
 merely memorizing four policy labels.
 
 The optional oracle policy may be reported as an upper bound, but it is not a
@@ -170,7 +170,7 @@ The main baseline is a total-resource model:
 - graph size and density;
 - damage intensity.
 
-The M-profile model adds:
+The optional M-component model adds:
 
 - \(E_{\mathrm{buffer}}/E\);
 - \(E_{\mathrm{recovery}}/E\);
@@ -179,13 +179,13 @@ The M-profile model adds:
 
 A stronger calibration-best-allocation baseline should also be included. It
 learns, from calibration data only, which allocation region tends to work for
-observable graph and damage summaries. M-profile support requires beating this
+observable graph and damage summaries. Optional M-component diagnostic support requires beating this
 baseline, not only the total-resource scalar baseline.
 
 The central comparison is:
 
 \[
-  \text{total-resource baseline} + \text{M-profile}
+  \text{total-resource baseline} + \text{M-component readout}
   >
   \text{total-resource baseline}.
 \]
@@ -204,9 +204,9 @@ Primary metrics:
 - minimum-margin prediction error;
 - regret relative to the best observed allocation, reported as a diagnostic.
 
-M-profile support:
+Optional M-component diagnostic support:
 
-- M-profile improves held-out prediction of collapse time or maintained-flow
+- M-component readout improves held-out prediction of collapse time or maintained-flow
   ratio over the total-resource baseline.
 
 Robustness support:
@@ -228,7 +228,7 @@ Suggested split:
 - primary: run on held-out graph seeds and damage seeds;
 - outside rerun: provide a seed-locked package for independent execution.
 
-No M-profile support is allowed if the \(Q\), damage intensity, or allocation
+No optional M-component diagnostic support is allowed if the \(Q\), damage intensity, or allocation
 grid is chosen after observing primary outcomes.
 
 
@@ -237,7 +237,7 @@ grid is chosen after observing primary outcomes.
 
 This testbed does not claim:
 
-- that software, SaaS, batteries, or organizations have the same M-profile;
+- that software, SaaS, batteries, or organizations have the same M-component readout;
 - that a total-resource failure in this testbed refutes the M formalism;
 - that a successful testbed result proves a universal resource law;
 - that \(M_{\mathrm{buffer}}, M_{\mathrm{recovery}}, M_{\mathrm{reconfiguration}}\)
@@ -250,7 +250,7 @@ The result, if positive, would show something narrower and more useful:
 > on whether it is allocated to buffer, recovery, or reconfiguration.
 
 Current status (2026-04-29): the guarded primary final candidate produced
-no M-profile support under its strongest frozen baseline. The M-profile model
+no optional M-component diagnostic support under its strongest frozen baseline. The component-readout model
 improved over the total-resource baseline on one diagnostic surface, but it did
 not beat the calibration-best-allocation baseline. This is recorded as
 controlled mechanistic no-support, not as a refutation of \(M\) as the familiar
@@ -281,7 +281,7 @@ Phase 1: calibration.
 
 Phase 2: frozen primary.
 
-- compare total-resource baseline against M-profile model;
+- compare total-resource baseline against optional M-component model;
 - record support / no-support in `05_evidence/`.
 
 Phase 3: outside rerun.
