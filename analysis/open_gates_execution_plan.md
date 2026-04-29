@@ -3,6 +3,7 @@
 Status: active program-execution memo after Backblaze v2 same-domain
 observational support, the first C-MAPSS FD001 cross-domain loss-only primary,
 Scania horizon-bridge no-support, Oxford Part 1 battery M-profile no-support,
+the guarded M-flow network final-candidate primary package,
 the completed three-run Mixed-CSP true outside-group rerun set, and the
 completed three-run Exp43c true outside-group rerun set. This is not a freeze
 document, not validation evidence,
@@ -71,6 +72,12 @@ New information:
   `primary RMSE = 0.23508673118782375` versus
   `B3 RMSE = 0.2296038662551124`, with `H1 = false`, `H2 = false`,
   `H3 = true`, and `primary_support = false`.
+- The controlled M-flow network testbed has a guarded final-candidate primary
+  package at `analysis/m_flow_network_testbed/primary_packages/final_candidate_v0/`.
+  It freezes `Q=4`, `damage_intensity=0.34`, `T=8`, seed block `2000..2029`,
+  the allocation grid, held-out graph/damage/allocation axes, three
+  sensitivity settings, script hashes, and guarded execution commands. It has
+  not been executed and is not support evidence.
 
 ## 2. Workstream A — G4 Repair-Flow Empirical Gap
 
@@ -585,10 +592,12 @@ So the next concrete order becomes:
 1. keep the two Route A outside-return sets scoped to package-level G7;
 2. open a fresh versioned Cardinality-SAT redesign if Route A width is
    reopened; do not run primary from Exp44b v1;
-3. choose the next non-CSP empirical branch: NASA Randomized/Recommissioned
+3. execute the guarded M-flow controlled primary only if we want a synthetic
+   M-side mechanistic test before another real-domain attempt;
+4. choose the next non-CSP empirical branch: NASA Randomized/Recommissioned
    battery feasibility or future repair-flow data acquisition under the
    candidate-criteria gate;
-4. keep Oxford Part 1 as a closed no-support battery M-profile outcome without
+5. keep Oxford Part 1 as a closed no-support battery M-profile outcome without
    same-archive rescue.
 
 This keeps the program moving on the actual open gaps rather than adding more
