@@ -215,7 +215,20 @@ b_t+b_{t+1}
 仕様固定構造層では、定理、有限時間境界、限定クラス統一 interface が主役になる。構造推定層では、proxy、frozen validation、baseline + structural persistence の追加予測力が主役になる。条件付き構造埋め込み層では、既存理論との formal bridge が主役になる。
 
 
-10. 本稿で言っていないこと
+10. 外向け価値
+
+この統合読解版で見せたい価値は、単に二つの式を並べることではない。第一に、\(L\) と \(B\) は、自然対数で測られる無次元の対数比であり、事前固定された写像のもとで構造消耗と回復を定量的に読むための共通座標になる。単位規約 \(k=1\) を取ると、この座標は自然対数単位、すなわち nats で読める。
+
+第二に、経験的価値は、構造持続座標だけが常に最強の単独モデルになることではない。多くの現実ドメインには、既存専門モデルや強い domain baseline がすでにある。したがって中心的な検査は、構造持続座標を追加した
+\[
+\text{domain baseline}+\text{SP}
+\]
+が、凍結された out-of-sample 条件で domain baseline 単独を改善するかである。ここで SP は structural persistence coordinate、すなわち構造消耗、回復、余力、代替経路などの指標群を指す。
+
+第三に、この座標は設計転用の言語になる。あるドメインで効いた consumption localization、recovery preservation、margin preservation、alternative-path preservation は、別ドメインの candidate intervention を作る手がかりになる。ただし、転用されるのは support ではない。別ドメインでの support は、そのドメインで写像、指標、baseline、metric、split、判定規則を凍結し、holdout、future surface、fresh archive、または outside rerun で検証して初めて成立する。
+
+
+11. 本稿で言っていないこと
 
 本稿は、すべての系が指数減衰するという経験法則を主張しない。
 
@@ -228,7 +241,7 @@ b_t+b_{t+1}
 本稿が主張するのは、事前固定された構造維持問題において、構造消耗を対数比として測ると最小核 \(S=Me^{-L}\) が現れ、回復を同じ尺度で差し引くと収支核 \(S=Me^{-B}\) が得られる、という一点である。
 
 
-11. 結論
+12. 結論
 
 構造持続理論の最小核は、維持可能領域の縮小を対数比で測ることから現れる。
 
