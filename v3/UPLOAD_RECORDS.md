@@ -27,4 +27,4 @@ For each upload, record:
 
 | Date | Platform | Title | URL | DOI | Source commit | Archive filename | Checksum | Notes |
 |---|---|---|---|---|---|---|---|---|
-| 2026-04-29 | pending | Structural Persistence Theory v3 public working structure | pending | pending | `94c96c5ae7eedd64efc8ec63261482079a7e6352` | pending | pending | Upload description prepared in `upload_description_2026-04-29.md`; release-candidate audit recorded in `RELEASE_AUDIT_2026-04-29.md` |
+| 2026-04-29 | local_archive_prepared | Structural Persistence Theory v3 public working structure | pending | pending | `89b0cfa9ab8113d578e69f07dae5f306c7c7758a` | `structural-persistence-theory-v3_2026-04-29_89b0cfa.zip` | `sha256:325c7553d9664c083d440fa2a3823bfc58513ed436e71140826216f071ee7b37` | Local archive prepared at `/tmp/structural-persistence-theory-v3_2026-04-29_89b0cfa.zip`; size `267907` bytes; `unzip -l` summary reported `61` files; full `v3/` directory included under archive prefix |

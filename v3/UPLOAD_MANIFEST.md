@@ -95,8 +95,17 @@ Use `upload_description_2026-04-29.md` as the initial OSF / Zenodo description
 for source commit:
 
 ```text
-94c96c5ae7eedd64efc8ec63261482079a7e6352
+89b0cfa9ab8113d578e69f07dae5f306c7c7758a
 ```
 
 After uploading, update `UPLOAD_RECORDS.md` with the URL, DOI, archive filename,
 and checksum if available.
+
+The first local archive was prepared as:
+
+```text
+/tmp/structural-persistence-theory-v3_2026-04-29_89b0cfa.zip
+sha256:325c7553d9664c083d440fa2a3823bfc58513ed436e71140826216f071ee7b37
+size:267907 bytes
+source_commit:89b0cfa9ab8113d578e69f07dae5f306c7c7758a
+```

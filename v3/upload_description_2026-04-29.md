@@ -8,7 +8,7 @@ Date: 2026-04-29
 Source commit:
 
 ```text
-94c96c5ae7eedd64efc8ec63261482079a7e6352
+89b0cfa9ab8113d578e69f07dae5f306c7c7758a
 ```
 
 
@@ -105,5 +105,5 @@ Suggested wording:
 
 ```text
 Structural Persistence Theory v3 public working structure, source commit
-94c96c5ae7eedd64efc8ec63261482079a7e6352.
+89b0cfa9ab8113d578e69f07dae5f306c7c7758a.
 ```
