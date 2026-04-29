@@ -50,6 +50,8 @@ Primary evaluation freezes:
 - held-out graph family;
 - damage families;
 - held-out damage family;
+- allocation grid;
+- held-out allocation mix or held-out simplex region;
 - energy grid;
 - policies;
 - baseline features;
@@ -91,14 +93,27 @@ At least one family is held out from rule selection and used only in primary
 evaluation.
 
 
-## 6. Policies
+## 6. Allocation Grid and Policies
 
-Policies receive the same total energy \(E\):
+Policies receive the same total energy \(E\). The primary object is not a
+four-class policy label, but an allocation vector:
+
+\[
+  (E_{\mathrm{buffer}},E_{\mathrm{recovery}},E_{\mathrm{reconfiguration}}),
+  \qquad
+  E_{\mathrm{buffer}}+E_{\mathrm{recovery}}+E_{\mathrm{reconfiguration}}=E.
+\]
+
+Named policies are anchor points:
 
 - buffer-heavy;
 - recovery-heavy;
 - reconfiguration-heavy;
 - balanced.
+
+The frozen allocation grid must include mixed allocations as well as extremes.
+At least one allocation mix or simplex region is held out from calibration and
+used only in primary evaluation.
 
 Optional oracle policy is reported only as an upper bound.
 
@@ -123,6 +138,13 @@ M-profile model:
 - \(E_{\mathrm{recovery}}/E\);
 - \(E_{\mathrm{reconfiguration}}/E\);
 - pre-frozen interactions, if any.
+
+Calibration-best-policy baseline:
+
+- calibration-estimated best policy or allocation region from observable graph
+  and damage summaries;
+- no access to the held-out allocation mix outcomes;
+- included as a strong policy-prior baseline.
 
 The M-profile model must not receive damage-family oracle labels unless the
 total-resource baseline also receives them and the label is declared observable.
@@ -157,8 +179,10 @@ M-primary support requires all of the following:
    on held-out graph seeds.
 2. Improvement holds on the held-out graph family.
 3. Improvement holds on at least one held-out damage family.
-4. Scalar-only control does not show a spurious large M advantage.
-5. Degenerate cells remain below the pre-frozen maximum fraction.
+4. Improvement holds on the held-out allocation mix or held-out simplex region.
+5. M-profile beats the calibration-best-policy baseline.
+6. Scalar-only control does not show a spurious large M advantage.
+7. Degenerate cells remain below the pre-frozen maximum fraction.
 
 M-preparatory support requires:
 
@@ -168,7 +192,9 @@ M-preparatory support requires:
 No-support is recorded if:
 
 - total-resource baseline matches or beats M-profile on the primary metric;
+- calibration-best-policy baseline matches or beats M-profile on the primary metric;
 - M-profile only wins after excluding unfavorable frozen regimes;
+- M-profile only memorizes named policy labels and fails on held-out allocation mixes;
 - held-out topology or held-out damage reverses the effect;
 - most primary cells are degenerate;
 - the M model is given generator-rule information not available to the baseline.

@@ -119,6 +119,21 @@ must therefore include these guardrails.
    the M model only wins after post-hoc regime filtering, record no-support or
    degeneracy rather than support.
 
+7. Allocation-grid generalization.
+
+   Primary evaluation must include more than the four named policies. A frozen
+   simplex grid of allocations should include both extreme and mixed budgets, and
+   at least one held-out allocation mix must be excluded from calibration. This
+   prevents the M model from merely memorizing labels such as "buffer-heavy" or
+   "recovery-heavy".
+
+8. Strong policy-prior baseline.
+
+   Include a calibration-best-policy baseline that learns, on calibration data,
+   which policy or allocation family tends to work for observable graph and
+   damage summaries. M support requires beating this stronger prior, not merely a
+   total-energy scalar baseline.
+
 
 ## 6. Damage Families
 
@@ -137,17 +152,39 @@ The "expected useful component" column is a preregistration hypothesis, not a
 support claim.
 
 
-## 7. Policy Families
+## 7. Allocation Grid and Policy Families
 
 All policies receive the same total budget \(E\).
 
-| Policy | Allocation |
+The four named policies are readable anchors, not the full primary grid.
+
+| Anchor policy | Example allocation |
 |---|---|
 | buffer-heavy | large \(E_{\mathrm{buffer}}\) |
 | recovery-heavy | large \(E_{\mathrm{recovery}}\) |
 | reconfiguration-heavy | large \(E_{\mathrm{reconfiguration}}\) |
 | balanced | near-equal allocation |
 | scalar baseline | sees only total \(E\), not allocation |
+
+The frozen allocation grid should sample the simplex:
+
+\[
+  E_{\mathrm{buffer}}+E_{\mathrm{recovery}}+E_{\mathrm{reconfiguration}}=E.
+\]
+
+Example for \(E=10\):
+
+```text
+(10,0,0), (8,2,0), (8,0,2),
+(6,4,0), (6,2,2), (6,0,4),
+(4,4,2), (4,2,4), (2,4,4),
+(0,10,0), (0,8,2), (0,2,8),
+(0,0,10), (3,3,4), (3,4,3), (4,3,3)
+```
+
+Primary evaluation must contain at least one held-out allocation mix or held-out
+simplex region. A positive result should show interpolation or extrapolation
+over allocation structure, not only classification among four named policies.
 
 Optional oracle policies can be reported as an upper bound but cannot be used as
 support baselines.
@@ -173,7 +210,10 @@ M-strong support:
 Non-support:
 
 - total-resource baseline matches or beats M-profile;
+- calibration-best-policy baseline matches or beats M-profile;
 - M-profile only wins in one hand-picked regime;
+- M-profile only distinguishes the four named policy labels but fails on held-out
+  allocation mixes;
 - the predictor effectively receives the true generator rule;
 - most primary cells are degenerate;
 - held-out topology or held-out damage destroys the effect.

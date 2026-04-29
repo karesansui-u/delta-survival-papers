@@ -141,13 +141,21 @@ ranking hypotheses before primary evaluation.
 
 For a fixed total energy \(E\), compare at least the following policies:
 
-| Policy | Energy allocation |
+| Anchor policy | Energy allocation |
 |---|---|
 | buffer-heavy | high \(E_{\mathrm{buffer}}\), low recovery/reconfiguration |
 | recovery-heavy | high \(E_{\mathrm{recovery}}\), low buffer/reconfiguration |
 | reconfiguration-heavy | high \(E_{\mathrm{reconfiguration}}\), low buffer/recovery |
 | balanced | equal or near-equal split |
 | total-energy baseline | uses only \(E\), not the split |
+
+These anchors are not enough for primary support. The frozen primary should use
+an allocation grid over
+\[
+  E_{\mathrm{buffer}}+E_{\mathrm{recovery}}+E_{\mathrm{reconfiguration}}=E
+\]
+and include held-out allocation mixes. This prevents the M-profile model from
+merely memorizing four policy labels.
 
 The optional oracle policy may be reported as an upper bound, but it is not a
 baseline for support.
@@ -170,6 +178,11 @@ The M-profile model adds:
 - \(E_{\mathrm{recovery}}/E\);
 - \(E_{\mathrm{reconfiguration}}/E\);
 - pre-fixed interaction terms between damage family and M-component, if frozen.
+
+A stronger calibration-best-policy baseline should also be included. It learns,
+from calibration data only, which policy or allocation region tends to work for
+observable graph and damage summaries. M-primary support requires beating this
+policy-prior baseline, not only the total-resource scalar baseline.
 
 The central comparison is:
 
@@ -204,7 +217,9 @@ Preparatory support:
 M-primary support:
 
 - the pre-frozen M-profile rule predicts intervention ranking above the frozen
-  threshold and above the total-resource baseline.
+  threshold, above the total-resource baseline, and above the calibration-best
+  policy baseline;
+- the effect holds on held-out allocation mixes or a held-out simplex region.
 
 M-strong support:
 

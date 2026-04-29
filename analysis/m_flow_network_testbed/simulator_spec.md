@@ -22,7 +22,7 @@ horizon_T: integer
 damage_family: random_attrition | bottleneck_attack | clustered_failure | demand_shock | repairable_wear | scalar_only_control
 damage_intensity: float
 total_energy_E: integer
-policy: buffer_heavy | recovery_heavy | reconfiguration_heavy | balanced
+policy: named policy or allocation_grid policy
 allocation: {buffer: integer, recovery: integer, reconfiguration: integer}
 ```
 
@@ -68,7 +68,33 @@ Initial capacity is generated from the config and then modified by the policy.
 All capacities are clipped to the frozen range.
 
 
-## 4. Policies
+## 4. Allocation Grid and Policies
+
+The simulator must support arbitrary frozen allocation triples:
+
+\[
+  (E_{\mathrm{buffer}},E_{\mathrm{recovery}},E_{\mathrm{reconfiguration}})
+  \in \mathbb{Z}_{\ge 0}^3
+\]
+
+with
+
+\[
+  E_{\mathrm{buffer}}+E_{\mathrm{recovery}}+E_{\mathrm{reconfiguration}}=E.
+\]
+
+Named policies are aliases for selected regions of this simplex:
+
+| Name | Example allocation rule |
+|---|---|
+| buffer_heavy | \(E_{\mathrm{buffer}}\) largest |
+| recovery_heavy | \(E_{\mathrm{recovery}}\) largest |
+| reconfiguration_heavy | \(E_{\mathrm{reconfiguration}}\) largest |
+| balanced | all components within one grid step |
+
+The primary config should include an explicit `allocation_grid` list. At least
+one allocation or simplex region must be held out during calibration and used
+only in primary evaluation.
 
 ### 4.1 Buffer action
 
@@ -185,6 +211,19 @@ The M-profile model receives all baseline features plus:
 - \(E_{\mathrm{reconfiguration}}/E\);
 - pre-frozen interaction features, if allowed.
 
+Strong policy-prior baseline:
+
+- graph family or observable graph summaries;
+- initial margin;
+- damage intensity;
+- calibration-estimated best policy or allocation-region prior;
+- no direct access to held-out primary outcomes.
+
+This baseline is meant to represent the strongest simple objection: perhaps the
+simulator only teaches that one named policy works in one regime. M-profile
+support requires beating this policy-prior baseline on held-out graph seeds,
+held-out damage regimes, and held-out allocation mixes.
+
 
 ## 8. Degeneracy Flags
 
@@ -209,6 +248,7 @@ Every primary run must be reproducible from:
 - graph seed;
 - damage seed;
 - policy name;
+- allocation triple;
 - simulator commit hash;
 - evaluator commit hash.
 
