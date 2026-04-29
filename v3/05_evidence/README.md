@@ -22,6 +22,7 @@ Do not delete failed attempts. They are part of the research program.
 For M-side validation, use:
 
 - `../06_templates/m_profile_validation_manifest_template.md` for M-profile
-  validation and weak-axis gates.
-- `../06_templates/intervention_ranking_prereg_template.md` for the stronger
-  downstream M-ranking validation.
+  validation and weak-axis gates when the effective resource side is
+  operationalized through component readouts.
+- `../06_templates/intervention_effect_prereg_template.md` only for separate
+  downstream intervention-effect studies.

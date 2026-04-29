@@ -3,13 +3,14 @@ v3 Changelog
 
 ## M-profile validation scaffolding
 
-- Added M-profile validation and intervention-ranking preregistration templates.
+- Added M-profile validation and optional intervention-effect preregistration templates.
 - Added candidate domain profiles for software / SaaS operational logs and Scania
   Component X.
 - Added a specification-fixed flow-network M testbed design for controlled
   buffer / recovery / reconfiguration validation under fixed total energy.
-- Clarified that \(M\) is first an effective-maintenance-slack / capability
-  profile; intervention ranking is a stronger downstream validation target.
+- Clarified that \(M\) is the familiar effective maintenance amount / resource
+  side; component profiles are optional readouts and intervention-effect
+  prediction is a separate downstream validation target.
 
 ## v3 initial layout
 

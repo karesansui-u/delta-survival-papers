@@ -56,7 +56,7 @@ status: candidate
 
 - current status: candidate / silence until an operational log with intervention records and outcome windows is frozen.
 - M-profile manifest: use `../../06_templates/m_profile_validation_manifest_template.md`.
-- intervention-ranking preregistration: use `../../06_templates/intervention_ranking_prereg_template.md`.
+- optional intervention-effect preregistration: use `../../06_templates/intervention_effect_prereg_template.md` only for a separate downstream intervention-effect study.
 - evidence record: not yet supported.
 
 
@@ -66,8 +66,7 @@ status: candidate
 This domain may support:
 
 - M-profile support if M-profile features improve held-out risk prediction or diagnosis over a domain baseline;
-- M-ranking support if pre-frozen M-component deficits predict which intervention family works best;
-- M-strong support only if the intervention-ranking direction is robust across \(\rho_i\), \(A_j\), and \(\Phi\) candidate families.
+- optional downstream intervention-effect support only if pre-frozen M readouts predict observed intervention effects above a frozen threshold.
 
 This domain does not support:
 

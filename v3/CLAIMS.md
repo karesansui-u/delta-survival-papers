@@ -20,6 +20,11 @@ summaries.
    proxy-based prediction, and conditional embeddings, provided the observability layer
    is stated explicitly.
 
+The familiar resource side is \(M\). The nontrivial addition of this theory is
+not that resources matter, but that resource insufficiency is not the only way a
+structure becomes unmaintainable. The theory separates the support-side quantity
+\(M\) from the structural-compatibility shrinkage coordinates \(L\) and \(B\).
+
 
 2. Empirical Value Claim
 ------------------------
@@ -84,7 +89,7 @@ The v3 program does not claim:
 - \(M\) is derived from the exponential kernel itself;
 - cross-domain transfer imports support;
 - DeltaLint merged PRs alone prove raw detector precision, long-term software
-  collapse prediction, or M-side intervention-ranking support.
+  collapse prediction, or M-side intervention effects.
 
 
 6. Support Vocabulary
@@ -104,24 +109,24 @@ Use these labels consistently:
 | silence | the theory should not speak for this domain under current observability |
 
 
-7. M-Side Validation
---------------------
+7. Resource / M-Side Boundary
+-----------------------------
 
-For resource-side work, distinguish formal M-profile representation from empirical
-validation.
+For resource-side work, \(M\) should be read as the familiar effective
+maintenance amount: the support-side resource, slack, or usable capacity
+available for maintaining the target structure at the relevant time.
 
-Here \(M\) should be read as effective maintenance slack / capability: a
-design coordinate for the amount, quality, placement, reachability, and timing
-of support-side capacity. It is not, by itself, a law that directly chooses the
-next intervention. Intervention ranking is a stronger downstream hypothesis.
+Thus \(M\) is not the new mathematical core. It is the conventional resource /
+slack side, made explicit so that it can be separated from the new structural
+coordinates \(L\) and \(B\). Decomposing \(M\) into component profiles can be
+useful for diagnosis, but the minimal meaning of \(M\) is simply the effective
+amount that is usable for the pre-fixed maintenance problem.
 
 | Label | Meaning |
 |---|---|
-| M-profile support | \(M\)-profile features improve held-out prediction or diagnosis over a domain baseline |
-| M-ranking support | pre-frozen M-component deficits predict observed intervention-effect ranking above threshold |
-| M-strong support | M-ranking support is robust across pre-frozen \(\rho_i\), \(A_j\), and \(\Phi\) candidate families |
-| M-replication support | M-profile or M-ranking support reproduces in a separate project, organization, archive, or outside run |
+| M-profile support | an operational \(M\) readout improves held-out prediction or diagnosis over a domain baseline |
+| M-replication support | M-profile support reproduces in a separate project, organization, archive, or outside run |
 
-Risk-prediction improvement alone does not validate intervention ranking.
-Without intervention records and post-intervention outcomes, M-side evidence
-remains profile-level support rather than ranking support.
+Claims about which intervention should be chosen first are optional downstream
+engineering studies. They are not part of the core theory and should not be used
+as the default evidential target for \(M\).

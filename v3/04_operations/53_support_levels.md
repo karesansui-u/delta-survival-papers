@@ -20,18 +20,17 @@ The strongest common empirical target is usually incremental support, not SP-onl
 M-Side Support
 --------------
 
-For \(M_{\mathrm{buffer}}\), \(M_{\mathrm{recovery}}\), and
-\(M_{\mathrm{reconfiguration}}\), use the following stricter reading.
-\(M\) is first a support-side design coordinate: it records effective
-maintenance slack / capability, not a direct law for selecting the next
-intervention.
+For \(M\)-side work, use the following stricter reading. \(M\) is the familiar
+support-side effective maintenance amount: usable resource, slack, or capacity
+for the pre-fixed maintenance problem. Component profiles are optional readouts,
+not a direct law for selecting the next intervention.
 
 | Level | Meaning |
 |---|---|
 | M-profile support | M-profile improves held-out prediction, diagnosis, or persistence readout over a domain baseline |
-| M-ranking support | predicted intervention ranking agrees with observed intervention effectiveness above the frozen threshold |
-| M-strong support | M-ranking support is robust across pre-frozen \(\rho_i\), \(A_j\), and \(\Phi\) families |
-| M-replication support | M-profile or M-ranking support reproduces in a separate project, organization, archive, or outside run |
+| downstream intervention-effect support | optional intervention-effect direction agrees with observed intervention effectiveness above a frozen threshold |
+| robustness support | M-profile or downstream intervention-effect support is robust across pre-frozen \(\rho_i\), \(A_j\), and \(\Phi\) families |
+| M-replication support | M-profile or downstream intervention-effect support reproduces in a separate project, organization, archive, or outside run |
 
-This prevents a small risk-prediction gain from being misread as evidence that the
-theory knows which intervention to choose.
+This prevents a small risk-prediction gain from being misread as evidence that
+the theory knows which intervention to choose.

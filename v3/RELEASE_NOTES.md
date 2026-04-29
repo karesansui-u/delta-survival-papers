@@ -55,10 +55,11 @@ v3 does not claim:
 - \(M\) directly chooses the next intervention;
 - a no-support proxy attempt refutes the mathematical kernel.
 
-For \(M\)-side work, \(M\) should be read as effective maintenance slack /
-capability. It is a design and diagnosis coordinate for support-side amount,
-quality, placement, reachability, and timing. Intervention ranking is a stronger
-downstream hypothesis and requires a separate preregistered support rule.
+For \(M\)-side work, \(M\) should be read as the familiar support-side effective
+maintenance amount: usable resource, slack, or capacity for the pre-fixed
+maintenance problem. Component profiles are optional diagnostic readouts.
+Intervention-effect prediction is a separate downstream engineering hypothesis,
+not part of the core theory.
 
 
 4. Evidence Status
@@ -69,8 +70,8 @@ Specification-fixed anchors:
 - finite CSP / Mixed-SAT / q-coloring remain the strongest theorem-side and
   rerun-supported anchors.
 - the flow-network M testbed is recorded as controlled mechanistic no-support
-  for simple M-ranking under its frozen rule. It is not evidence against \(M\)
-  as a design coordinate.
+  for an optional intervention-effect ranking rule under its frozen protocol. It
+  is not evidence against \(M\) as the familiar resource side.
 
 Structurally inferred anchors:
 

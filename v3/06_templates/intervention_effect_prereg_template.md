@@ -1,5 +1,5 @@
-Intervention-Ranking Preregistration Template
-=============================================
+Optional Intervention-Effect Preregistration Template
+=====================================================
 
 prereg_id:
 
@@ -13,14 +13,16 @@ frozen_by:
 1. Purpose
 ----------
 
-This template tests a strong downstream M-side claim:
+This template tests an optional downstream M-side claim:
 
-> systems with different M-component profiles should require different first
-> interventions, even under comparable \(L\), raw resource, and scalar \(M\).
+> systems with different M-component profiles may respond differently to
+> intervention families, even under comparable \(L\), raw resource, and scalar
+> \(M\).
 
-Risk prediction or diagnosis can support the M-profile as a design coordinate.
-Intervention ranking is a stronger claim: it asks whether that coordinate can
-also forecast which maintenance action works best.
+Risk prediction or diagnosis can support the M-profile as an effective-resource
+readout. Intervention-effect prediction is a separate engineering claim: it asks
+whether that readout can help forecast which maintenance action works. It is not
+required for the core theory.
 
 
 2. Units and Eligibility
@@ -52,7 +54,7 @@ Define the deficit score for each component:
 | \(M_{\mathrm{recovery}}\) |  | rollback / repair workflow / runbook / replay |
 | \(M_{\mathrm{reconfiguration}}\) |  | modularization / feature flag / migration tooling |
 
-Predicted intervention ranking rule:
+Predicted intervention-effect rule:
 
 1.
 2.
@@ -79,8 +81,8 @@ design.
 5. Evaluation
 -------------
 
-- primary ranking metric: Kendall tau / Spearman rho / top-1 agreement / top-2 agreement
-- M-ranking support threshold:
+- primary effect-direction metric: Kendall tau / Spearman rho / top-1 agreement / top-2 agreement
+- downstream intervention-effect support threshold:
 - uncertainty criterion:
 - no-support threshold:
 - minimum power / sample-size condition:
@@ -91,7 +93,7 @@ design.
 6. Robustness
 -------------
 
-Strong support requires the intervention-ranking direction to remain stable
+Strong downstream support requires the intervention-effect direction to remain stable
 across the pre-frozen candidate families.
 
 - \(\rho_i\) normalizations to test:
@@ -109,9 +111,9 @@ Use these labels:
 | Label | Criterion |
 |---|---|
 | M-profile support | M-profile improves held-out prediction, diagnosis, or persistence readout over domain baseline |
-| M-ranking support | predicted intervention ranking agrees with observed intervention effectiveness above threshold |
-| M-strong support | M-ranking support is robust across \(\rho_i\), \(A_j\), and \(\Phi\) families |
-| M-replication support | M-profile or M-ranking support reproduces in a separate project, organization, archive, or outside run |
+| downstream intervention-effect support | predicted intervention direction agrees with observed intervention effectiveness above threshold |
+| robust downstream support | intervention-effect support is robust across \(\rho_i\), \(A_j\), and \(\Phi\) families |
+| M-replication support | M-profile or downstream intervention-effect support reproduces in a separate project, organization, archive, or outside run |
 | no-support | ranking fails the frozen support rule |
 | weak-axis failure | M-profile mostly duplicates baseline, scalar resource, degradation, age, or target leakage |
 | silence | intervention logs or outcome observability are insufficient |
@@ -122,5 +124,5 @@ Use these labels:
 
 - no claim that the observed intervention effect is causal unless identified;
 - no claim that the same intervention order transfers to another domain;
-- no claim that risk-prediction improvement validates intervention ranking;
+- no claim that risk-prediction improvement validates intervention effects;
 - no post-hoc replacement of component signals, normalization, aggregation, or metric.

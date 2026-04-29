@@ -68,7 +68,7 @@ All checked rows matched their file header width.
 - The bounded Product-arm calibration is recorded as a controlled benchmark
   surface.
 - Neither layer is direct software-collapse evidence, raw precision / recall, or
-  M-side intervention-ranking support.
+  M-side intervention-effect support.
 
 
 5. Remaining Open Items

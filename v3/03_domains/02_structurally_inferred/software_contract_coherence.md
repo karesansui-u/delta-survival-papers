@@ -88,6 +88,6 @@ This domain does not support:
 - direct software-collapse prediction;
 - raw detector precision / recall;
 - provider superiority;
-- M-side intervention-ranking support;
+- M-side intervention-effect support;
 - support transfer to software / SaaS operational M-profile validation;
 - universal law claims.
