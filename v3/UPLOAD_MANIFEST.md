@@ -29,6 +29,7 @@ Include:
 - `04_operations/`
 - `05_evidence/`
 - `06_templates/`
+- `07_exports/`
 
 Do not upload ignored local system files such as `.DS_Store`.
 
@@ -136,4 +137,21 @@ The archive was uploaded to OSF project `mdh7b` via the WaterButler API:
 osf_file_id:osfstorage/69f2ab150e70496d2b4bd884
 download_url:https://files.us.osf.io/v1/resources/mdh7b/providers/osfstorage/69f2ab150e70496d2b4bd884
 osf_reported_sha256:ecbef92124992d88e95c81e0d50e748e6e46af7dfd72000939526973fc789d8e
+```
+
+The 2026-04-30 Core/PDF refresh was prepared as:
+
+```text
+/tmp/delta-survival-osf/structural-persistence-theory-v3_2026-04-30_c2185ec3.zip
+sha256:74c2012388827be3099bfeb03aa1c8b58a52c6f57c3a16b0f8fb2fa1b7f80165
+size:1182950 bytes
+source_commit:c2185ec3b49584175dce3f78374e62d9703e6c36
+```
+
+The archive was uploaded to OSF project `mdh7b` via the WaterButler API:
+
+```text
+osf_file_id:osfstorage/69f2ffda8f11259a91435450
+download_url:https://files.us.osf.io/v1/resources/mdh7b/providers/osfstorage/69f2ffda8f11259a91435450
+osf_reported_sha256:74c2012388827be3099bfeb03aa1c8b58a52c6f57c3a16b0f8fb2fa1b7f80165
 ```
