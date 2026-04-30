@@ -1,21 +1,16 @@
 Core_Structural_Persistence_Minimal_Kernel_and_Balance_Principle_EN
 Structural Persistence: Minimal Kernel and Balance Principle
-Feasible-region shrinkage, logarithmic exponential kernels, and recovery-aware persistence
+Feasible-region shrinkage, log-ratios, exponential kernels, and recovery-aware persistence
 
 Abstract
 
-A structure can become unmaintainable even when resources remain. The state region in which it can continue as that structure may be lost first.
+A structure can become unmaintainable even when resources remain. This paper separates that failure into a resource-side effective maintenance surplus \(M\) and shrinkage of the state region compatible with the target structural condition, read as \(L/B\).
 
 This paper is a reader-facing synthesis of two companion theoretical papers: *The Minimal Form of Structural Persistence* and *The Balance Principle of Structural Persistence*. The precise axioms, proofs, and limitations remain those of Paper 1 / Paper 2 and the corresponding technical supplements.
 
-Paper 1 fixes a specified function or structural condition on the target system \(X\), formalizes shrinkage of the state region in which \(X\) can continue as that structure, and derives the closed-shrinkage exponential kernel \(e^{-L}\). When the effective maintenance surplus \(M\) is made explicit as a resource-side scalar, the structural persistence quantity is written \(S=Me^{-L}\). Paper 2 extends this minimal kernel to open systems with repair, recovery, and reconfiguration, yielding the recovery-aware kernel \(e^{-B}\) in terms of cumulative net structural consumption \(B\).
+In the closed shrinkage case, a pre-fixed feasible region \(V\) and ruler \(m\) yield the exponential kernel \(e^{-L}\) by reading survival ratios on a logarithmic scale. With the resource-side scalar \(M\) made explicit, the structural persistence potential is written \(S=Me^{-L}\).
 
-The reason a structure becomes unmaintainable is not limited to a shortage of resources or slack. Even when resources remain, the state region in which the target can continue as that structure may narrow until no state satisfies the maintenance conditions. The new point is not the exponential notation itself, nor the claim that resources matter. That is already familiar. The central point is to separate the support-side effective maintenance surplus \(M\) from the shrinkage-side cumulative structural consumption \(L\), making it possible to quantify the mechanism by which a structure becomes unmaintainable even when resources remain.
-
-Measuring the remaining fraction of the state region under natural compositional requirements uniquely leads to a logarithmic ratio scale. The closed-shrinkage exponential kernel is \(e^{-L}\). With effective maintenance surplus made explicit, the structural persistence quantity is \(S=Me^{-L}\).
-
-When repair, recovery, redundancy, rollback, reconfiguration, or external support are made explicit, each time step has structural consumption \(d_t\) and recovery \(r_t\). Their difference \(b_t=d_t-r_t\) is the net structural consumption. With \(B_n=\sum_{t<n} b_t\), the recovery-aware form is \(S_n=M_n e^{-B_n}\).
-The purpose of this core paper is to show, in one reading path, how the closed shrinkage kernel \(e^{-L}\) lifts to the open-system balance kernel \(e^{-B}\). The term \(M\) is not derived from the kernel. It is the resource-side effective maintenance surplus available at that time.
+For open systems with repair, recovery, reconfiguration, or external support, each time step has structural consumption \(d_t\) and recovery \(r_t\). Their difference \(b_t=d_t-r_t\) accumulates to \(B_n\), giving the recovery-aware form \(S_n=M_n e^{-B_n}\). The novelty is not the exponential notation itself. It is the pre-fixed coordinate that separates resource-side surplus from feasible-region shrinkage, making it possible to describe how a structure becomes unmaintainable even when resources remain.
 
 1. Role of this paper
 
@@ -30,41 +25,45 @@ This paper is the integrated reading path for the main theoretical spine.
 
 This paper is therefore not a replacement for the companion papers. It is the shortest public path through them.
 
-Paper 1 is not merely "obvious." It fixes the object that is being measured: the set of states in which a structure can still be maintained. It then shows why the natural loss scale on survival ratios is logarithmic, and why post-hoc choices of the feasible set or ruler \(m\) would make the formalism empty.
+Paper 1 is not merely "obvious." It fixes the object that is being measured: the set of states in which a structure can still be maintained. It then shows that, if shrinkage is measured by a scale that composes additively over chained survival ratios, the log-ratio scale is unique. It also explains why post-hoc choices of the feasible set or ruler \(m\) would make the formalism empty.
 
 2. The question
 
-This theory does not begin by projecting abstract mathematics onto reality. In businesses, organizations, institutions, development practice, learning systems, and reasoning systems, a structure can become unmaintainable even when resources and slack still remain. The starting question of this paper is whether that phenomenon can be formalized not as simple resource shortage, but as shrinkage of the state region in which the target can continue as that structure.
+This theory does not begin by projecting abstract mathematics onto reality. In businesses, organizations, institutions, development practice, learning systems, and reasoning systems, a structure can become unmaintainable even when resources and slack still remain. The starting question of this paper is whether that phenomenon can be formalized not as simple resource shortage, but as shrinkage of the state region compatible with the target structural condition.
 
-This paper fixes a function or structural condition to be maintained on a target system \(X\). It then considers the region of states in which \(X\) can continue as that structure.
+This paper fixes a function or structural condition to be maintained on a target system \(X\). It then considers the region of states in which \(X\) remains compatible with that structural condition.
 
-More concretely, the question is why a system can become unable to maintain its structure even when resources remain. Is there a principle shared across domains?
+Intuitively, an organization may still have people and budget, yet lose the coherent decision states or executable procedures that let it continue as that organization. Software may still run and have compute resources, yet lose the states in which changes remain coherent or recovery paths remain available. What is lost is not existence in general, but the state region in which the system remains compatible with the target structural condition.
 
-A structure can become unmaintainable even when resources remain. If the state region narrows and no state satisfies the maintenance conditions, the system can no longer continue as that structure.
+More concretely, the question is why a system can become unable to maintain its structure even when resources remain. Is there a descriptive coordinate that can be reused across domains?
 
-The boundary at which a system can no longer continue as the target structure, the structural maintenance boundary, may appear differently across domains: collapse, functional failure, operational halt, phase transition, or structural reorganization. These are not treated as separate universal phenomena. Under a pre-fixed structural-maintenance map, they may be read as different manifestations of the same boundary. What can be separated is the route to that boundary. One route is shrinkage of the feasible region, read on the \(V,L,B\) side. Another route is exhaustion of effective maintenance surplus \(M\), which may appear as failure or halt even when some feasible structural region remains. The minimal kernel formalizes the former and keeps \(M\) explicit as the resource-side effective maintenance surplus.
+A structure can become unmaintainable even when resources remain. If the state region narrows and no state satisfies the maintenance conditions, the system can no longer remain compatible with that structural condition.
 
-Thus the question is not simply how much resource remains, but how the region of states compatible with the target structure changes under constraints, contradictions, damage, updates, disturbances, repair, or reconfiguration.
+The boundary at which a system can no longer remain compatible with the target structural condition, the structural maintenance boundary, may appear differently across domains: collapse, functional failure, operational halt, phase transition, or structural reorganization. These are not treated as separate universal phenomena. Under a pre-fixed structural-maintenance map, they may be read as different manifestations of the same boundary. What can be separated is the route to that boundary. One route is shrinkage of the feasible region, read on the \(V,L,B\) side. Another route is exhaustion of effective maintenance surplus \(M\), which may appear as failure or halt even when some feasible structural region remains. The minimal kernel formalizes the former and keeps \(M\) explicit as the resource-side effective maintenance surplus.
+
+Thus the question is not simply how much resource remains, but how the region of states compatible with the target structural condition changes under constraints, contradictions, damage, updates, disturbances, repair, or reconfiguration.
 
 This question splits into two parts.
 
-1. Without recovery, how should we measure shrinkage of the state region in which the system can continue as that structure?
+1. Without recovery, how should we measure shrinkage of the state region in which the system remains compatible with that structural condition?
 2. With recovery, how should structural consumption and recovery be balanced on the same scale?
 
 Paper 1 answers the first question. Paper 2 answers the second. This paper connects them.
 
 3. What must be fixed before measuring structure
 
-Let \(X\) be a system and let \(V\) denote the states compatible with maintaining the target structure. Write the initial feasible region as \(V^{(0)}\). Under accumulating constraints,
+Let \(X\) be a system and let \(V\) denote the states compatible with maintaining the target structural condition. Write the initial feasible region as \(V^{(0)}\). Under accumulating constraints,
 \[
 V^{(0)} \supseteq V^{(1)} \supseteq \cdots \supseteq V^{(n)}.
 \]
 
-A ruler \(m\) is fixed to compare the sizes of these feasible regions. Mathematically, \(m\) is a finite measure; reader-facing, it is the convention used to read the size of a state set. It may be counting measure, volume, probability weight, or another pre-specified finite measure.
+A ruler \(m\) is fixed to compare the sizes of these feasible regions. Mathematically, \(m\) is a finite measure; reader-facing, it is the convention used to read the size of a state set. It may be counting measure in a finite system, probability mass under a pre-fixed distribution, volume or weighted volume in a continuous state space, or another pre-specified finite measure. If a coordinate transform or feature extraction changes the meaning of \(m\), that map must also be fixed in advance. The detailed discipline for choosing this ruler and freezing the corresponding map is only summarized here; it is specified in Section 13 and the v3 operations files.
 
 The nontrivial step is not the act of taking a logarithm. It is fixing, before seeing the outcome, which state set counts as structurally feasible and which ruler \(m\) is used to read its mass. The same observed system can yield different \(L\) values if one post-hoc switches between a consistency set, a success set, or a function-maintenance set. If \(V\) or \(m\) can be chosen after seeing the data, almost any monotone sequence can be represented and the theory loses empirical content. This pre-fixing of \(V\), \(m\), the stage sequence, and the time horizon is therefore not a bookkeeping prelude; it is what turns the formalism into an empirical claim.
 
 All log-ratios below are read on positive finite masses. Hitting zero is treated separately as a collapse boundary, not as an ordinary finite log-ratio update.
+
+As the simplest specification-fixed example, consider a finite CSP. Let \(X\) be the set of all candidate assignments, let \(V^{(i)}\) be the candidate set satisfying the first \(i\) constraints, and let \(m(V)=|V|\) be the number of candidates. Then \(d_i\) reads how much constraint \(i\) removed from the maintainable candidate set. If relaxation or repair expands the candidate set again, that expansion is read, in Paper 2, as \(r_t\) on the same log-ratio scale.
 
 4. How to measure shrinkage
 
@@ -108,11 +107,13 @@ m(V^{(n)})=m(V^{(0)})e^{-L_n}.
 
 This is not the empirical claim that every real system decays exponentially. It is a representation theorem: once a pre-fixed feasible region is measured through log-ratios, the exponential kernel follows algebraically.
 
-The law-side kernel is therefore \(e^{-L}\). Introducing the resource-side term \(M\), the structural persistence quantity is
+The law-side kernel is therefore \(e^{-L}\). Introducing the resource-side term \(M\), the structural persistence potential is
 \[
 S=Me^{-L}.
 \]
-The term \(M\) is not derived from the exponential kernel. It represents the effective maintenance surplus available to support the structure. The boundary \(M=0\) is a resource-side boundary and may appear as failure or halt. The new law-side coordinate is \(L\), the shrinkage of the feasible region.
+Here \(S\) is the structural persistence potential for the target structural condition. In general, it is not itself a probability or a physical observable; it is a comparison quantity defined under pre-fixed choices of \(M,V,m\), and the boundary convention. Reaching \(S=0\), or a pre-fixed threshold \(S\le S_c\), means reaching the structural maintenance boundary for that condition. For finite \(L\) or \(B\), \(e^{-L}\) and \(e^{-B}\) remain positive, so \(S=0\) is read mainly as \(M=0\), a zero-mass boundary, or a limiting boundary. This is not the empirical claim that physical collapse must occur. Observationally, the boundary may appear as collapse, functional failure, halt, phase transition, or structural reorganization, depending on the domain.
+
+The term \(M\) is not derived from the exponential kernel. It represents the resource-side effective maintenance surplus available for the target structural condition, and is treated here as a pre-fixed resource-side readout. This does not assume that \(M\) and \(L/B\) vary independently in the real dynamics. A shortage of effective maintenance surplus can act as a constraint that affects future feasible regions \(V\), recovery terms \(r_t\), cumulative net consumption \(B\), or observed boundaries. The structural maintenance boundary can be reached through the feasible-region route represented by \(L\), the resource-side route represented by \(M=0\), or both. The new law-side coordinate is \(L\), the shrinkage of the feasible region.
 
 6. What changes when recovery is included
 
@@ -144,6 +145,8 @@ b_t=d_t-r_t
 
 The intermediate set cancels in the log-ratio accounting. This cancellation is an accounting identity for a given start point, intermediate point, and endpoint. It is not a claim that the physical order of consumption and recovery never matters. If changing the order changes the endpoint \(V^{(t+1)}\), then \(b_t\) changes as well. What is order-invariant here is the log-ratio reading, not the underlying dynamics.
 
+If reconfiguration changes the target structural condition itself, the old and new structures may not be directly comparable with the same ruler. In that case, a common map or common embedding must be fixed in advance before the two structures are read in the same coordinate.
+
 7. The balance kernel
 
 Define
@@ -158,6 +161,8 @@ With the resource-side term,
 \[
 S_n=M_n e^{-B_n}.
 \]
+
+If recovery exceeds cumulative consumption, then \(B_n<0\) and \(e^{-B_n}>1\). Under the pre-fixed ruler \(m\), this means that the feasible region has expanded beyond the initial reference level.
 
 If there is no recovery, then \(r_t=0\), \(b_t=d_t\), and \(B_n=L_n\). Thus the balance kernel does not replace the minimal kernel. It extends it.
 
@@ -223,16 +228,44 @@ Thus Lean supports the law-side skeleton. Empirical support and structurally inf
 
 The current evidence should be read by strength.
 
-- **Hard evidence**: the hard footing lies in the specification-fixed structural layer. Mixed-CSP and q-coloring each have frozen empirical packages with three outside rerunners reproducing decision-relevant outputs. This is not a proof of the whole theory, but it is the strongest current package-scoped outside-rerun support for the law-side candidate.
+- **Hard evidence**: the hard footing lies in the specification-fixed structural layer. Mixed-CSP and q-coloring each have frozen empirical packages with three outside rerunners reproducing decision-relevant outputs. Mixed-CSP has 12,000 primary rows per returned run, 0 checked core mismatches, and reproduced support flags. q-coloring has 4,000 primary rows per returned run, 0 checked core mismatches, TIMEOUT = 0, MALFORMED = 0, and the qualitative support decision reproduced. This is not a proof of the whole theory, but it is the strongest current package-scoped outside-rerun support for the law-side candidate.
 - **Auxiliary and exploratory evidence**: in the structurally inferred layer, LLM reasoning, continual learning, and software diagnostics provide evidence through frozen observation and inference indicators. The question there is whether the indicators add information beyond the domain baseline, not whether the true \(V,m,L/B\) have been directly counted.
 - **Theoretical anchors**: in the conditional structural-embedding layer, Foster-Lyapunov / queueing, Repair-Maintenance, reliability, and decay systems act as anchors. They map existing drift, difference, and boundary arguments into the structural-persistence vocabulary; they are not new empirical wins.
 - **Evidence ledger**: Backblaze, C-MAPSS, Scania, Oxford battery, and the M-flow network testbed belong to the ledger of support, weakening, and no-support. They are recorded to preserve where the framework works, weakens, or fails.
 
 ![Figure 2. The minimal kernel lifts to the balance kernel by replacing cumulative consumption \(L\) with cumulative net consumption \(B\).](../figures/figure2_kernel_balance_en.svg)
 
-12. Conclusion
+12. What this makes possible
 
-The law-side minimal kernel is \(e^{-L}\). With resource-side effective maintenance surplus made explicit, the structural persistence quantity is
+The value of this core paper is not merely that it places two formulas side by side. The coordinate makes it possible to separate routes to unmaintainability into a resource-side route and a feasible-region shrinkage route.
+
+First, the theory separates the support side from the shrinkage side. The familiar resource-side term is kept as effective maintenance surplus \(M\), while the loss of states compatible with the target structural condition is read as \(L\), or as \(B\) when recovery is present. This makes it possible to read collapse, functional failure, halt, phase transition, and structural reorganization as possible manifestations of a structural maintenance boundary, while still distinguishing the route by which that boundary is reached.
+
+Second, \(L\) and \(B\) provide candidate common coordinates for structural consumption and recovery across domains. They are dimensionless log-ratios, readable in natural-log units when \(k=1\). This unit convention alone does not justify cross-domain comparison. Comparison becomes meaningful only under pre-fixed maps specifying \(V\), the ruler \(m\), the observation unit, and the boundary in each domain.
+
+Third, the framework separates where law-side claims are made from where observation or inference indicators are tested. The specification-fixed structural layer can support law-side claims. The structurally inferred layer tests whether frozen indicators add predictive information beyond the domain baseline. The conditional structural-embedding layer connects existing theories to the same vocabulary. This separation keeps support, no-support, and silence distinct.
+
+Fourth, the empirical question is not whether structural-persistence indicators are always the strongest standalone model. Many domains already have strong domain baselines. The central test is whether
+\[
+\text{domain baseline}+\text{structural-persistence indicators}
+\]
+improves over the domain baseline alone under frozen out-of-sample conditions.
+
+Fifth, the coordinate gives a language for design transfer. Localization of consumption, preservation of recovery paths, preservation of safety margin, and preservation of alternative paths can become candidate interventions in another domain. What transfers is not support itself. Support in the new domain must be established by freezing the map, indicators, baseline, metric, split, and decision rule, and then testing on held-out data, future data, a fresh archive, or an outside rerun.
+
+13. Minimal operational discipline
+
+This paper does not reproduce the full procedure for mapping structural persistence into a concrete domain. The detailed procedure is kept in the v3 operations files: the standard mapping procedure, operational discipline, support levels, and failure ledger. Here we state only the minimal discipline needed to read this core paper.
+
+The theory separates mapping discovery from validation. A structural condition, ruler, observation or inference indicator, or recovery indicator found during exploration is not support by itself. Support is assigned only after the structural condition, mapping, indicators, baseline, metric, data split, and decision rule have been frozen, and only if the frozen rule succeeds on unused data, a future surface, a fresh archive, or an outside rerun.
+
+In the specification-fixed structural layer, one first fixes the system \(X\), the function or structural condition to be maintained, the feasible region \(V\), the ruler \(m\), the observation unit, the time horizon, and the structural-maintenance boundary. In the structurally inferred layer, one does not claim to directly count the true \(V,m,L/B\); one tests whether frozen observation or inference indicators add information beyond the domain baseline. In the conditional structural-embedding layer, one maps existing differences, drifts, stopping boundaries, and stability conditions into the \(L/B\) vocabulary.
+
+A frozen mapping that fails is recorded as no-support. It is not promoted to support by retuning the indicator or boundary on the same data. Failures are kept as a ledger of where a mapping failed and where the theory should remain silent.
+
+14. Conclusion
+
+The law-side minimal kernel is \(e^{-L}\). With resource-side effective maintenance surplus made explicit, the structural persistence potential is
 \[
 S=Me^{-L}.
 \]

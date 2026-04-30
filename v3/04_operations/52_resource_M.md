@@ -6,13 +6,13 @@
 
 本補論は、構造持続の最小形式 $S = M e^{-L}$ のうち、支える側の項 $M$ を有効維持余力として整理する。ここで重要なのは、$M$ の存在そのものが新しいということではない。構造が維持できない原因を資源不足や余力不足として見る考え方は、従来から自然に用いられてきた。本理論の新規性は、支える側の $M$ だけでは説明できなかった維持可能領域の縮小を、$L$ や $B$ として分離した点にある。本補論の役割は、その既知のリソース側を、主理論の座標と矛盾しない形で記録する操作的整理である。
 
-具体的には、内部の維持能力成分を $M^{\mathrm{int}} = (M_{\mathrm{buffer}}^{\mathrm{int}}, M_{\mathrm{recovery}}^{\mathrm{int}}, M_{\mathrm{reconfiguration}}^{\mathrm{int}})$、外部供給 channel を $M^{\mathrm{external}} = (M_{\mathrm{ext}\to\mathrm{buffer}}, M_{\mathrm{ext}\to\mathrm{recovery}}, M_{\mathrm{ext}\to\mathrm{reconfiguration}})$ と分け、raw resource $R$ から維持能力成分への写像 $\gamma_i$、内部能力と外部供給を合わせる集約 $\widetilde M_j = A_j(M^{\mathrm{int}}_j, M_{\mathrm{ext}\to j})$、複数の effective component を結合する $\Phi$ を通じて、系の構造持続量を
+具体的には、内部の維持能力成分を $M^{\mathrm{int}} = (M_{\mathrm{buffer}}^{\mathrm{int}}, M_{\mathrm{recovery}}^{\mathrm{int}}, M_{\mathrm{reconfiguration}}^{\mathrm{int}})$、外部供給 channel を $M^{\mathrm{external}} = (M_{\mathrm{ext}\to\mathrm{buffer}}, M_{\mathrm{ext}\to\mathrm{recovery}}, M_{\mathrm{ext}\to\mathrm{reconfiguration}})$ と分け、raw resource $R$ から維持能力成分への写像 $\gamma_i$、内部能力と外部供給を合わせる集約 $\widetilde M_j = A_j(M^{\mathrm{int}}_j, M_{\mathrm{ext}\to j})$、複数の effective component を結合する $\Phi$ を通じて、系の構造持続ポテンシャルを
 \[
   S = \Phi(\widetilde M_{\mathrm{buffer}}, \widetilde M_{\mathrm{recovery}}, \widetilde M_{\mathrm{reconfiguration}}) \, e^{-L}
 \]
 と書き直す。
 
-本補論の役割は、普遍法則そのものを主張することではなく、構造消耗量と回復量の収支を現実ドメインへ写すときの $M$ 側の操作化を与えることである。ここでの $M$ は、その時点で、その対象構造の維持に実際に使える有効量である。成分分解は、この有効量を応用上読みやすくするための補助的な診断道具であり、必須の理論核ではない。
+本補論の役割は、普遍法則そのものを主張することではなく、構造消耗量と回復量の収支を現実ドメインへ写すときの $M$ 側の操作化を与えることである。ここでの $M$ は、その時点で、対象となる構造条件の維持に実際に使える有効量である。成分分解は、この有効量を応用上読みやすくするための補助的な診断道具であり、必須の理論核ではない。
 
 本補論は新しい普遍法則の証明ではない。また、経験的 pilot を完了した論文でもない。本補論の位置づけは、構造持続の収支原理の回復量・資源入力を実ドメインで測るための support-side operational mapping である。
 
@@ -42,7 +42,7 @@ Paper 1 の最小形式 $S = M e^{-L}$ には、従来から理解されてき�
 現行のスカラー M だけでは、次のような観察を十分に記録できない。
 
 - 資源が潤沢にあるにもかかわらず、機能が維持できない。
-- raw resource R は同じでも、その時点で対象構造に投入できる有効量が異なる。
+- raw resource R は同じでも、その時点で対象となる構造条件に投入できる有効量が異なる。
 - 崩壊の仕方が系ごとに質的に異なる (即時、徐々、相転移)。
 - 余力が、耐える、戻す、作り変える、外から支える、などの異なる維持機能として現れる。
 
@@ -53,7 +53,7 @@ Paper 1 の最小形式 $S = M e^{-L}$ には、従来から理解されてき�
 本補論の問いは、一文に要約される。
 
 \begin{quote}
-raw resource \(R\) のうち、どれだけが対象構造を維持するための有効量 \(M\) として、その時点で使えるのか。
+raw resource \(R\) のうち、どれだけが対象となる構造条件を維持するための有効量 \(M\) として、その時点で使えるのか。
 \end{quote}
 
 この問いに答えるには、M を raw resource と同一視せず、「構造が持ちこたえるために実際に使える有効量」として読む必要がある。成分分解はそのための一つの操作的手段であり、本補論はその最小の定式化を与えることを目的とする。
@@ -69,7 +69,7 @@ raw resource \(R\) のうち、どれだけが対象構造を維持するため�
 - 本補論は Paper 1 §3 の対数比の一意性定理と同じ設計原理 (Cauchy 関数方程式と連続性から一意関数形を強制する) を M 側に移植する候補を持つ。§2.5 では、この表現補題候補を本補論の短い theoretical pointer として置き、証明と公理列挙の詳細は別稿の補論に委ねる。
 - 本補論は仕様固定構造層の普遍法則宣言を行わない。ソフトウェアは構造推定層として扱う。
 
-本補論で扱う対象構造は、Paper 1 §2 の適用可能性条件 P1–P5 を満たすもの、すなわち観測前に対象構造・測度・制約列・時間地平が事前固定された構造維持問題に限る。観測後に F、$\Sigma$、R、成分集合を選び直してよいなら、本補論の予測は事後的適合によって空虚化するからである。
+本補論で扱う構造条件は、Paper 1 §2 の適用可能性条件 P1–P5 を満たすもの、すなわち観測前に対象となる構造条件・測度・制約列・時間地平が事前固定された構造維持問題に限る。観測後に F、$\Sigma$、R、成分集合を選び直してよいなら、本補論の予測は事後的適合によって空虚化するからである。
 
 1.4 LLM companion I / II との概観的接続
 
@@ -100,7 +100,7 @@ raw resource \(R\) のうち、どれだけが対象構造を維持するため�
 
 2.2 維持能力成分と供給 channel の定義
 
-M の最小意味は、対象構造の維持に使える有効量である。応用上、この有効量をどの機能として使えるかを区別したい場合には、内部の維持能力成分と外部供給 channel に分けて扱う。集約関数 $\Phi$ が直接受け取る同列の座標は $M_{\mathrm{buffer}}, M_{\mathrm{recovery}}, M_{\mathrm{reconfiguration}}$ の三つである。外部供給は第四の維持能力成分ではなく、外部から他成分を供給する channel / externalization profile として扱う。以下では、記号を短くするため $\mathrm{external}$ を $\mathrm{ext}$ と略記する。
+M の最小意味は、対象となる構造条件の維持に使える有効量である。応用上、この有効量をどの機能として使えるかを区別したい場合には、内部の維持能力成分と外部供給 channel に分けて扱う。集約関数 $\Phi$ が直接受け取る同列の座標は $M_{\mathrm{buffer}}, M_{\mathrm{recovery}}, M_{\mathrm{reconfiguration}}$ の三つである。外部供給は第四の維持能力成分ではなく、外部から他成分を供給する channel / externalization profile として扱う。以下では、記号を短くするため $\mathrm{external}$ を $\mathrm{ext}$ と略記する。
 
 \begin{definition}[維持能力成分と外部供給 channel]
 \[
@@ -140,7 +140,7 @@ $M_{\mathrm{reconfiguration}}$ は、target function $F$ を保つ範囲の再�
 
 この制限が必要なのは、再編を無制限に許すと理論が空虚化するためである。たとえば、ある企業が破綻後に別業種で存続した場合、それは元の target function を保ったのではなく、別の $F$ に乗り換えたのである。これを「再編して生き延びた」と扱うと、どんな結果でも事後的に説明できてしまう。
 
-この制限は、Paper 1 §2 が「基体そのものの消滅ではなく、ある構造としての持続の失敗」を扱うと述べた立場と一貫する。$F$ 自体の遷移は、本補論の枠組みではなく、構造持続の集合値力学的表現 (別補論) の $R_t$ 作用のうち target structure 自体を書き換える部分として、将来の拡張対象となる。
+この制限は、Paper 1 §2 が「基体そのものの消滅ではなく、ある構造としての持続の失敗」を扱うと述べた立場と一貫する。$F$ 自体の遷移は、本補論の枠組みではなく、構造持続の集合値力学的表現 (別補論) の $R_t$ 作用のうち対象となる構造条件自体を書き換える部分として、将来の拡張対象となる。
 
 2.4 Raw resource から維持能力成分への写像 $\gamma_i$
 
@@ -238,7 +238,7 @@ Lean では、維持能力成分を
 \]
 の二値型として別に定義する。これにより、external は第四の維持能力成分ではなく、三つの成分を供給する channel であることが型レベルで固定される。
 
-さらに Lean では、任意の raw mechanism を直接分類するのではなく、それが M 側の観測 interface に入ったときの効果を component profile として扱う。したがって「第四成分が存在しない」という主張は、現実世界の原因機構が三種類しかないという主張ではない。正確には、M として観測される効果は $M_{\mathrm{buffer}},M_{\mathrm{recovery}},M_{\mathrm{reconfiguration}}$ の三座標に還元され、同じ三座標を持つ二つの mechanism を M interface 内部で区別する独立な第四座標は存在しない、という表現定理である。三座標で表現できない候補が現れた場合、それは第四の M 成分ではなく、対象構造・測度・環境・同一性条件など、M interface の外側に置くべき候補として扱う。
+さらに Lean では、任意の raw mechanism を直接分類するのではなく、それが M 側の観測 interface に入ったときの効果を component profile として扱う。したがって「第四成分が存在しない」という主張は、現実世界の原因機構が三種類しかないという主張ではない。正確には、M として観測される効果は $M_{\mathrm{buffer}},M_{\mathrm{recovery}},M_{\mathrm{reconfiguration}}$ の三座標に還元され、同じ三座標を持つ二つの mechanism を M interface 内部で区別する独立な第四座標は存在しない、という表現定理である。三座標で表現できない候補が現れた場合、それは第四の M 成分ではなく、対象となる構造条件・測度・環境・同一性条件など、M interface の外側に置くべき候補として扱う。
 
 この主張はさらに、標準商としても定式化される。Lean 側では、raw mechanism を「同じ三成分 profile を持つなら同一視する」同値関係で割った `ObservationQuotient` を作り、任意の M-side readout がこの標準商を一意に通ることを証明している。したがって三成分 profile は単なる便利な座標ではなく、M interface 上で識別可能な差分を失わない最小完全観測商として機能する。
 
@@ -452,7 +452,7 @@ LLM companion II §7.5 は、持続知能に少なくとも三つの役割が必
 
 この対応により、LLM companion II の結論は本補論の任意 M 成分診断に接続する。条件 (i) 内部に長期的な矛盾解消代謝機構を持たず、条件 (ii) 推論呼び出しの境界を越えて信念を持ち越す機構が弱い系では、単なる capacity 増強ではなく、$M_{\mathrm{recovery}}$ に相当する回復余力が重要になる可能性が高い。
 
-LLM companion I では、これは in-context scope marker または外部代謝として現れた。LLM companion II では、F-v2c の依存 DAG controller として現れた。どちらも、raw resource を増やすのではなく、衝突をどう整理し直すかを変えている。この点で、LLM companion I / II は本補論の基本的読み——raw resource が同じでも、それが対象構造の維持に使える有効量 \(M\) へどう変換されるかが異なりうる——への準備的根拠を与える。
+LLM companion I では、これは in-context scope marker または外部代謝として現れた。LLM companion II では、F-v2c の依存 DAG controller として現れた。どちらも、raw resource を増やすのではなく、衝突をどう整理し直すかを変えている。この点で、LLM companion I / II は本補論の基本的読み——raw resource が同じでも、それが対象となる構造条件の維持に使える有効量 \(M\) へどう変換されるかが異なりうる——への準備的根拠を与える。
 
 3.6 非主張
 
@@ -1068,8 +1068,8 @@ Software contract-coherence diagnostics は、本補論の main validation で�
 
 8. 結論
 
-本補論は、構造持続の最小形式 $S = M e^{-L}$ の右辺のうち、従来から理解されてきた支える側の項 $M$ を有効維持余力として整理した。M の最小意味は、対象構造を維持するためにその時点で実際に使える有効量である。必要な場合には、内部の維持能力成分を $M_{\mathrm{buffer}}^{\mathrm{int}}, M_{\mathrm{recovery}}^{\mathrm{int}}, M_{\mathrm{reconfiguration}}^{\mathrm{int}}$ に分け、外部供給 channel を $M_{\mathrm{ext}\to\mathrm{buffer}}, M_{\mathrm{ext}\to\mathrm{recovery}}, M_{\mathrm{ext}\to\mathrm{reconfiguration}}$ として、それぞれの実効能力を $\widetilde M_j = A_j(M_j^{\mathrm{int}}, M_{\mathrm{ext}\to j})$ に集約できる。そのうえで、$\Phi$ による effective maintenance amount $M_{\mathrm{eff}} = \Phi(\widetilde M_{\mathrm{buffer}}, \widetilde M_{\mathrm{recovery}}, \widetilde M_{\mathrm{reconfiguration}})$ を通じて、構造持続量を書き直せる。
+本補論は、構造持続の最小形式 $S = M e^{-L}$ の右辺のうち、従来から理解されてきた支える側の項 $M$ を有効維持余力として整理した。M の最小意味は、対象となる構造条件を維持するためにその時点で実際に使える有効量である。必要な場合には、内部の維持能力成分を $M_{\mathrm{buffer}}^{\mathrm{int}}, M_{\mathrm{recovery}}^{\mathrm{int}}, M_{\mathrm{reconfiguration}}^{\mathrm{int}}$ に分け、外部供給 channel を $M_{\mathrm{ext}\to\mathrm{buffer}}, M_{\mathrm{ext}\to\mathrm{recovery}}, M_{\mathrm{ext}\to\mathrm{reconfiguration}}$ として、それぞれの実効能力を $\widetilde M_j = A_j(M_j^{\mathrm{int}}, M_{\mathrm{ext}\to j})$ に集約できる。そのうえで、$\Phi$ による effective maintenance amount $M_{\mathrm{eff}} = \Phi(\widetilde M_{\mathrm{buffer}}, \widetilde M_{\mathrm{recovery}}, \widetilde M_{\mathrm{reconfiguration}})$ を通じて、構造持続ポテンシャルを書き直せる。
 
-本補論の固有の検査標的は、raw resource \(R\) が対象構造の維持に使える有効量 \(M\) になっているか、その操作的 readout が scalar baseline にない情報を持つかを調べることである。成分分解はそのための補助的な profile である。本補論はこの検査標的を software / SaaS を最初の構造推定層として具体化し、$\rho_i$, $\Phi$, $A_j$ の候補族に対する頑健性検査を含む、事前固定可能な経験的検証プロトコルを定式化した。実際の preregistration と pilot 実行は、本補論の外、別の empirical program として進める。
+本補論の固有の検査標的は、raw resource \(R\) が対象となる構造条件の維持に使える有効量 \(M\) になっているか、その操作的 readout が scalar baseline にない情報を持つかを調べることである。成分分解はそのための補助的な profile である。本補論はこの検査標的を software / SaaS を最初の構造推定層として具体化し、$\rho_i$, $\Phi$, $A_j$ の候補族に対する頑健性検査を含む、事前固定可能な経験的検証プロトコルを定式化した。実際の preregistration と pilot 実行は、本補論の外、別の empirical program として進める。
 
 本補論は新しい普遍法則の証明ではなく、また empirical pilot 完了論文でもない。本補論の位置づけは、構造持続の収支原理の回復量・資源入力を実ドメインで測るための support-side operational mapping である。構造持続の最小形式と条件つき導出補論が構造消耗側の対数比の構造消耗を特徴づけ、LLM companion I と II が構造消耗と支援の相互作用を経験的に観察したのに対し、本補論は support 側の操作的座標系を提供する。そこから自然に出てくる次段階は、準備された protocol を operational data に適用する経験的 pilot であり、それは本補論の外、別の empirical program として進める。

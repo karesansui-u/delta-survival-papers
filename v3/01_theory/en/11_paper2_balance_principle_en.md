@@ -43,7 +43,7 @@ Let \(X\) be a system, and let
 \[
 V^{(t)}\subseteq X
 \]
-be the feasible region compatible with maintaining the target structure at time \(t\). A finite measure \(m\) is fixed in advance. The target structure, measure, observation unit, and time horizon are also fixed in advance.
+be the feasible region compatible with maintaining the target structural condition at time \(t\). A finite measure \(m\) is fixed in advance. The target structural condition, measure, observation unit, and time horizon are also fixed in advance.
 
 Within one observation unit, write the update as
 \[
@@ -118,7 +118,9 @@ When the horizon is clear, write
 S=Me^{-B}.
 \]
 
-The term \(M_n\) is not derived from this pathwise identity. It is the resource-side scalar representing the effective maintenance surplus available to support the structure. The boundary \(M_n=0\) may appear as functional failure or halt even when some feasible region remains. This paper does not claim a universal predictive decomposition of \(M_n\).
+Here \(S_n\) is the structural persistence potential for the target structural condition. Reaching \(S_n=0\), or a pre-fixed threshold \(S_n\le S_c\), means reaching the structural maintenance boundary for that condition. Observationally, the boundary may appear as collapse, functional failure, halt, phase transition, or structural reorganization.
+
+The term \(M_n\) is not derived from this pathwise identity. It is the resource-side scalar representing the effective maintenance surplus available for the target structural condition. The structural maintenance boundary can be reached through the feasible-region route represented by cumulative net consumption \(B_n\), the resource-side route represented by \(M_n=0\), or both. This paper does not claim a universal predictive decomposition of \(M_n\).
 
 5. Relation to the minimal form
 
@@ -169,7 +171,7 @@ Therefore, empirical claims about consumption, maintenance, recovery, collapse b
 
 7. Application and limitation
 
-The kernel of this paper is pathwise algebraic. It states that, once the target structure, measure, observation unit, consumption, and recovery are fixed,
+The kernel of this paper is pathwise algebraic. It states that, once the target structural condition, measure, observation unit, consumption, and recovery are fixed,
 \[
 m(V^{(n)})=m(V^{(0)})e^{-B_n}.
 \]

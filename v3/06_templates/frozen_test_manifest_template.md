@@ -13,7 +13,7 @@ frozen_by:
 1. Frozen Mapping
 -----------------
 
-- target structure:
+- target structural condition:
 - observation unit:
 - \(V,m\) or observation / inference indicator:
 - SP coordinates:

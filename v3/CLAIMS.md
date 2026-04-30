@@ -9,7 +9,7 @@ summaries.
 --------------
 
 1. In a pre-fixed structural maintenance problem, structural loss can be represented by
-   shrinkage of the feasible region that preserves the target structure.
+   shrinkage of the feasible region compatible with the target structural condition.
 2. Under ratio dependence, normalization, additivity, and continuity, the structural
    consumption scale is forced to be logarithmic up to a unit convention.
 3. With \(k=1\), cumulative structural consumption is measured in natural-log units
@@ -24,6 +24,12 @@ The familiar resource side is \(M\). The nontrivial addition of this theory is
 not that resources matter, but that resource insufficiency is not the only way a
 structure becomes unmaintainable. The theory separates the support-side quantity
 \(M\) from the structural-compatibility shrinkage coordinates \(L\) and \(B\).
+
+\(S\) is a structural persistence potential for the stated structural condition.
+\(S=0\), or a pre-fixed threshold \(S\le S_c\), is a structural-maintenance
+boundary. Its observational form may be collapse, functional failure, halt, phase
+transition, or structural reorganization. The boundary can be reached through the
+\(L/B\)-side feasible-region route, the \(M=0\) resource-side route, or both.
 
 
 2. Empirical Value Claim
@@ -130,13 +136,14 @@ Use these labels consistently:
 
 For resource-side work, \(M\) should be read as the familiar effective
 maintenance amount: the support-side resource, slack, or usable capacity
-available for maintaining the target structure at the relevant time.
+available for maintaining the target structural condition at the relevant time.
 
 Thus \(M\) is not the new mathematical core. It is the conventional resource /
 slack side, made explicit so that it can be separated from the new structural
 coordinates \(L\) and \(B\). The minimal meaning of \(M\) is simply the effective
 amount that is usable for the pre-fixed maintenance problem. \(M=0\) is a
-resource-side boundary and may appear as functional failure or halt.
+resource-side route to the structural-maintenance boundary and may appear as
+functional failure or halt even when some feasible structural region remains.
 
 | Label | Meaning |
 |---|---|

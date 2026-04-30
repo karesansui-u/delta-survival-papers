@@ -44,7 +44,7 @@ The term \(M\) is not derived from the exponential kernel. It represents the eff
 
 What does it mean for a structure to persist?
 
-If persistence is described only by remaining resources, the question is underspecified. A system may still have resources while the set of states compatible with the target structure has already become too small.
+If persistence is described only by remaining resources, the question is underspecified. A system may still have resources while the set of states compatible with the target structural condition has already become too small.
 
 This paper therefore asks a narrower question: how should one measure the shrinkage of the state region in which a structure can still be maintained?
 
@@ -52,7 +52,7 @@ The object is not bare existence. The object is existence as that structure, or 
 
 \section{Setting}\label{setting}
 
-Fix a system \(X\). Let \(V^{(0)}\) be the initial set of states compatible with maintaining the target structure. Under accumulating constraints, assume
+Fix a system \(X\). Let \(V^{(0)}\) be the initial set of states compatible with maintaining the target structural condition. Under accumulating constraints, assume
 
 \[
 V^{(0)} \supseteq V^{(1)} \supseteq \cdots \supseteq V^{(n)}.
@@ -60,7 +60,7 @@ V^{(0)} \supseteq V^{(1)} \supseteq \cdots \supseteq V^{(n)}.
 
 Each \(V^{(i)}\) is measurable. A finite measure \(m\) is fixed on the same representation, system, and time horizon. The value \(m(V^{(i)})\) measures the size of the remaining feasible region for maintaining the structure, not the current occupied state of the system.
 
-This paper concerns pre-fixed structural maintenance problems. The target structure, initial feasible region, measure, stage sequence, and time horizon are fixed before observing the outcome.
+This paper concerns pre-fixed structural maintenance problems. The target structural condition, initial feasible region, measure, stage sequence, and time horizon are fixed before observing the outcome.
 
 The following applicability conditions are part of the formal discipline.
 
@@ -198,17 +198,19 @@ Multiplying by \(m(V^{(0)})\) gives the result.
 
 The exponential expression is thus a pathwise representation identity. It is not the empirical claim that all real systems decay exponentially.
 
-\section{Structural persistence quantity}\label{structural-persistence-quantity}
+\section{Structural persistence potential}\label{structural-persistence-potential}
 
 The proposition gives the remaining feasible mass. Persistence in an actual system may also depend on resources, slack, support, or other maintenance capacities.
 
-Introduce an effective maintenance surplus \(M>0\) and define
+Introduce an effective maintenance surplus \(M\ge 0\) and define
 
 \[
 S=Me^{-L}.
 \]
 
-The term \(M\) is external to the log-ratio theorem. It is the resource-side scalar that represents the effective maintenance surplus available to support the structure. The boundary \(M=0\) may appear as functional failure or halt on the resource side. The novelty of the minimal form is not that \(M\) exists. The novelty is the separation of \(M\) from the law-side shrinkage coordinate \(L\). This paper does not claim a universal predictive decomposition of \(M\).
+Here \(S\) is the structural persistence potential for the target structural condition. Reaching \(S=0\), or a pre-fixed threshold \(S\le S_{c}\), means reaching the structural maintenance boundary for that condition. Observationally, the boundary may appear as collapse, functional failure, halt, phase transition, or structural reorganization.
+
+The term \(M\) is external to the log-ratio theorem. It is the resource-side scalar that represents the effective maintenance surplus available for the target structural condition. The boundary \(M=0\) is a resource-side boundary and may appear as functional failure or halt. The novelty of the minimal form is not that \(M\) exists. The novelty is the separation of \(M\) from the law-side shrinkage coordinate \(L\). This paper does not claim a universal predictive decomposition of \(M\).
 
 \section{Claim boundary}\label{claim-boundary}
 
@@ -220,7 +222,7 @@ The empirical and modeling content lies in how \(V\), \(m\), and the stage seque
 
 \section{Conclusion}\label{conclusion}
 
-Structural failure is not only resource exhaustion. It can be shrinkage of the feasible region in which the target structure can still be maintained.
+Structural failure is not only resource exhaustion. It can be shrinkage of the feasible region in which the target structural condition can still be maintained.
 
 For a pre-fixed structural maintenance problem, the natural structural consumption scale is logarithmic, and the telescoping product yields
 

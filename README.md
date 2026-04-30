@@ -27,8 +27,15 @@ English entry path:
 - [`v3/01_theory/en/10_paper1_minimal_form_en.md`](v3/01_theory/en/10_paper1_minimal_form_en.md)
 - [`v3/01_theory/en/11_paper2_balance_principle_en.md`](v3/01_theory/en/11_paper2_balance_principle_en.md)
 
-PDFs are generated under [`v2/pdf用/`](v2/pdf%E7%94%A8/) for compatibility with
-the existing build pipeline.
+Current exported PDFs:
+
+- [`v3/07_exports/pdf/02_core_en.pdf`](v3/07_exports/pdf/02_core_en.pdf)
+- [`v3/07_exports/pdf/10_paper1_minimal_form_en.pdf`](v3/07_exports/pdf/10_paper1_minimal_form_en.pdf)
+- [`v3/07_exports/pdf/11_paper2_balance_principle_en.pdf`](v3/07_exports/pdf/11_paper2_balance_principle_en.pdf)
+- [`v3/07_exports/pdf/Core_構造持続の最小核と収支原理.pdf`](v3/07_exports/pdf/Core_構造持続の最小核と収支原理.pdf)
+
+The PDF build pipeline still writes into `v2/pdf用/` for
+compatibility. `v3/07_exports/pdf/` is the public export surface.
 
 ## Core Claim
 

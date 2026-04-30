@@ -25,7 +25,7 @@ or clarifications without weakening the claim boundaries.
 
 Before a result can be called support, freeze:
 
-- target structure;
+- target structural condition;
 - measurement unit or observation unit;
 - \(V,m\) or indicator readout;
 - \(d_t,r_t,L,B,M\)-side indicators;
