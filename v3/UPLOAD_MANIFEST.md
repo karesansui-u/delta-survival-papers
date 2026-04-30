@@ -21,6 +21,7 @@ Include:
 - `UPLOAD_MANIFEST.md`
 - `UPLOAD_RECORDS.md`
 - `upload_description_2026-04-29.md`
+- `upload_description_2026-04-30.md`
 - `CONTRIBUTING.md`
 - `01_theory/`
 - `02_foundations/`
@@ -91,12 +92,9 @@ source commit hash in the upload description.
 6. Upload Description and Records
 ---------------------------------
 
-Use `upload_description_2026-04-29.md` as the initial OSF / Zenodo description
-for source commit:
-
-```text
-89b0cfa9ab8113d578e69f07dae5f306c7c7758a
-```
+Use `upload_description_2026-04-29.md` for the first OSF / Zenodo description.
+Use `upload_description_2026-04-30.md` for the 2026-04-30 refresh and later
+updates unless a newer upload description is added.
 
 After uploading, update `UPLOAD_RECORDS.md` with the URL, DOI, archive filename,
 and checksum if available.
@@ -117,3 +115,8 @@ osf_file_id:osfstorage/69f1c6e0a1f4ba559ad9480b
 download_url:https://files.us.osf.io/v1/resources/mdh7b/providers/osfstorage/69f1c6e0a1f4ba559ad9480b
 osf_reported_sha256:325c7553d9664c083d440fa2a3823bfc58513ed436e71140826216f071ee7b37
 ```
+
+The 2026-04-30 refresh should be recorded in `UPLOAD_RECORDS.md` after upload.
+The upload description intentionally points readers to `UPLOAD_RECORDS.md` for
+the exact source commit and checksum, so archive metadata can be maintained
+without requiring a self-referential commit hash.

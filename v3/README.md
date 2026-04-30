@@ -29,7 +29,7 @@ Then read the layer you need:
 - Operational rules: `04_operations/`
 - Evidence and rerun records: `05_evidence/`
 - Upload bundle guidance: `UPLOAD_MANIFEST.md`
-- Upload description and records: `upload_description_2026-04-29.md`,
+- Upload description and records: `upload_description_2026-04-30.md`,
   `UPLOAD_RECORDS.md`
 
 English entry path:
