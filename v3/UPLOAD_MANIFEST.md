@@ -134,9 +134,11 @@ source_commit:d933ac6371f17bfc432b4fd11f9a547e66d7fa9a
 The archive was uploaded to OSF project `mdh7b` via the WaterButler API:
 
 ```text
-osf_file_id:osfstorage/69f2ab150e70496d2b4bd884
-download_url:https://files.us.osf.io/v1/resources/mdh7b/providers/osfstorage/69f2ab150e70496d2b4bd884
+original_root_osf_file_id:osfstorage/69f2ab150e70496d2b4bd884
+archive_osf_file_id:osfstorage/69f303304780d1de10d948bd
+archive_download_url:https://files.us.osf.io/v1/resources/mdh7b/providers/osfstorage/69f303304780d1de10d948bd
 osf_reported_sha256:ecbef92124992d88e95c81e0d50e748e6e46af7dfd72000939526973fc789d8e
+root_copy_status:removed_after_archive_copy
 ```
 
 The 2026-04-30 Core/PDF refresh was prepared as:
