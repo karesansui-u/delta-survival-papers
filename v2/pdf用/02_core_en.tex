@@ -366,6 +366,8 @@ This paper does not reproduce the full procedure for mapping structural persiste
 
 The theory separates mapping discovery from validation. A structural condition, ruler, observation or inference indicator, or recovery indicator found during exploration is not support by itself. Support is assigned only after the structural condition, mapping, indicators, baseline, metric, data split, and decision rule have been frozen, and only if the frozen rule succeeds on unused data, a future surface, a fresh archive, or an outside rerun.
 
+If coarse-graining, reconfiguration, or action order can change the readout of endpoints or boundaries, the observation unit, common map, embedding, and decision boundary are also part of what must be frozen.
+
 In the specification-fixed structural layer, one first fixes the system \(X\), the function or structural condition to be maintained, the feasible region \(V\), the ruler \(m\), the observation unit, the time horizon, and the structural-maintenance boundary. In the structurally inferred layer, one does not claim to directly count the true \(V,m,L/B\); one tests whether frozen observation or inference indicators add information beyond the domain baseline. In the conditional structural-embedding layer, one maps existing differences, drifts, stopping boundaries, and stability conditions into the \(L/B\) vocabulary.
 
 A frozen mapping that fails is recorded as no-support. It is not promoted to support by retuning the indicator or boundary on the same data. Failures are kept as a ledger of where a mapping failed and where the theory should remain silent.
