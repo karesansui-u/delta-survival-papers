@@ -3,6 +3,8 @@ Evidence Ledgers
 
 Evidence is separated from theory claims.
 
+- Large row-level artifacts should follow
+  `../04_operations/55_artifact_storage_policy.md`.
 - `evidence_status_dashboard.md`: reader-facing snapshot of supported,
   observational, no-support, invalid-run, and exact-anchor records.
 - `frozen_packages.tsv`: frozen tests or packages that define a support decision.
