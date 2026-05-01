@@ -52,9 +52,9 @@ Paper 1 answers the first question. Paper 2 answers the second. This paper conne
 
 3. What must be fixed before measuring structure
 
-Fix a substrate \(X\) and a maintenance condition \(G\). Also fix, as the observation unit, whether states, actions, or paths are being counted. Write the resulting comparison-target space as \(\Omega_X\). If only states are counted, \(\Omega_X=X\).
+Fix a substrate \(X\) and a maintenance condition \(G\). Also fix, as the observation unit, whether states, actions, or paths are being counted. If only states are counted, the comparison targets are states of \(X\). If actions or paths are counted, the corresponding action or path space must be fixed separately.
 
-Let \(V_G\subseteq\Omega_X\) be the set of targets that satisfy \(G\), or that can maintain or recover \(G\) under allowed repair, update, or operation. Whether \(V_G\) is read as the set of current states satisfying \(G\), or as a set of actions or paths that include allowed operations, must be fixed with the observation unit \(\Omega_X\). If \(V_G\) is a state set, recovery-induced expansion is placed in the later \(r_t\) term. If \(V_G\) is an action or path set, the allowed operation is already being counted, and the same recovery should not be counted again. Likewise, each application must pre-fix whether resource conditions required for allowed operations are included in \(V_G\) or kept outside as the effective maintenance surplus \(M\). When the context is clear, write this simply as \(V\). Write the initial feasible region as \(V^{(0)}\). Under accumulating constraints,
+Let \(V_G\) be the set of targets that satisfy \(G\), or that can maintain or recover \(G\) under allowed repair, update, or operation. Whether \(V_G\) is read as the set of current states satisfying \(G\), or as a set of actions or paths that include allowed operations, must be fixed with the observation unit. If \(V_G\) is a state set, recovery-induced expansion is placed in the later \(r_t\) term. If \(V_G\) is an action or path set, the allowed operation is already being counted, and the same recovery should not be counted again. Likewise, each application must pre-fix whether resource conditions required for allowed operations are included in \(V_G\) or kept outside as the effective maintenance surplus \(M\). When the context is clear, write this simply as \(V\). Write the initial feasible region as \(V^{(0)}\). Under accumulating constraints,
 \[
 V^{(0)} \supseteq V^{(1)} \supseteq \cdots \supseteq V^{(n)}.
 \]
@@ -219,7 +219,7 @@ The second distinction concerns observability, operationalization, and claim str
 
 | Main classification | Reading |
 |---|---|
-| Specification-fixed layer | The maintenance condition \(G\), comparison-target space \(\Omega_X\), feasible region \(V_G\), ruler \(m\), update sequence, boundary, and time horizon can be fixed directly from the specification |
+| Specification-fixed layer | The maintenance condition \(G\), the state/action/path targets being counted, feasible region \(V_G\), ruler \(m\), update sequence, boundary, and time horizon can be fixed directly from the specification |
 | Inference layer | \(V_G\) and \(m\) are not directly counted; observation or inference indicators are frozen and tested |
 
 These are not different theories, and they are not fixed labels for domains. They classify claim packages or validation packages, not whole domains. The difference is how directly \(V,m,d_t,r_t\) can be specified and how explicitly the effective maintenance surplus \(M\) can be read as a resource-side quantity.
@@ -311,7 +311,7 @@ The theory separates mapping discovery from validation. A structural condition, 
 
 If coarse-graining, reconfiguration, or action order can change the readout of endpoints or boundaries, the observation unit, common map, embedding, and decision boundary are also part of what must be frozen.
 
-In the specification-fixed layer, one first fixes the substrate or state space \(X\), the maintenance condition \(G\), the comparison-target space \(\Omega_X\), the feasible region \(V_G\), the ruler \(m\), the observation unit, the time horizon, and the structural-maintenance boundary. In the inference layer, one does not claim to directly count the true \(V,m,L,B\); one tests whether frozen observation or inference indicators add information beyond the domain baseline. Existing-theory connection is recorded as an attribute of a claim package when existing differences, drifts, stopping boundaries, or stability conditions are mapped into the \(L\) and \(B\) vocabulary.
+In the specification-fixed layer, one first fixes the substrate or state space \(X\), the maintenance condition \(G\), the state/action/path targets being counted, the feasible region \(V_G\), the ruler \(m\), the observation unit, the time horizon, and the structural-maintenance boundary. In the inference layer, one does not claim to directly count the true \(V,m,L,B\); one tests whether frozen observation or inference indicators add information beyond the domain baseline. Existing-theory connection is recorded as an attribute of a claim package when existing differences, drifts, stopping boundaries, or stability conditions are mapped into the \(L\) and \(B\) vocabulary.
 
 A frozen mapping that fails is recorded as no-support. It is not promoted to support by retuning the indicator or boundary on the same data. Failures are kept as a ledger of where a mapping failed and where the theory should remain silent.
 

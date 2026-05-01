@@ -15,8 +15,9 @@ result.
 Every claim package should state, before validation or interpretation:
 
 1. the maintenance problem: substrate or state space \(X\), target condition
-   \(G\), comparison-target space \(\Omega_X\), feasible region \(V_G\), ruler
-   \(m\), update or observation unit, time horizon, and boundary convention;
+   \(G\), the state/action/path targets being counted, feasible region \(V_G\),
+   ruler \(m\), update or observation unit, time horizon, and boundary
+   convention;
 2. the observability classification: `specification_fixed` or `inference`;
 3. any optional `existing-theory connection` attribute, with the exact drift,
    balance, rank, cutset, path-ratio, stopping-boundary, or stability quantity
@@ -25,9 +26,10 @@ Every claim package should state, before validation or interpretation:
    anchor, or another pre-declared ledger label.
 
 There are two observability classifications. `specification_fixed` means
-\(G,\Omega_X,V_G,m\), the update rule, and the boundary can be fixed from the
-domain specification. `inference` means the true \(V_G,m,L,B\) are not directly
-counted, so frozen observation or inference indicators are tested instead.
+\(G,V_G,m\), the counted targets, the update rule, and the boundary can be fixed
+from the domain specification. `inference` means the true \(V_G,m,L,B\) are not
+directly counted, so frozen observation or inference indicators are tested
+instead.
 
 Existing-theory connection is not a third observability layer. It is an
 attribute of a specific claim package, and it only covers the named quantity or
