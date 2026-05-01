@@ -28,7 +28,7 @@ stopping-set recovery package. It is not validation evidence and does not
 change any support / no-support decision.
 
 The point is to preserve design lessons that should transfer to future
-specification-fixed, structurally inferred, and conditional-embedding packages.
+specification-fixed, inference-layer, and existing-theory connection packages.
 
 
 1. Change Of Structural Condition Means A New Package

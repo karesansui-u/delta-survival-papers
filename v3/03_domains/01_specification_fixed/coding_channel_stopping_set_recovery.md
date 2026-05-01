@@ -5,7 +5,7 @@ domain_id: coding_channel_stopping_set_recovery
 
 domain_name: Coding-channel stopping-set recovery / finite BEC iterative decoding
 
-observability_layer: specification_fixed
+classification: specification_fixed
 
 status: no_support_v2_orderwise_terms
 

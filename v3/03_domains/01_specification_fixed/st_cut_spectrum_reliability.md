@@ -5,7 +5,7 @@ domain_id: st_cut_spectrum_reliability
 
 domain_name: S-t cut-spectrum reliability
 
-observability_layer: specification_fixed
+classification: specification_fixed
 
 status: supported_kappa2_kappa3; invalid_run_v0
 

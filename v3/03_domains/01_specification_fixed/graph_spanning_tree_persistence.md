@@ -5,7 +5,7 @@ domain_id: graph_spanning_tree_persistence
 
 domain_name: Graph spanning-tree persistence
 
-observability_layer: specification_fixed
+classification: specification_fixed
 
 status: no_support_primary_v0; supported_matched_residual_v1
 

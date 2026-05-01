@@ -26,10 +26,10 @@ The stable core remains:
 - minimal kernel: \(S = M e^{-L}\)
 - balance kernel: \(S = M e^{-B}\)
 - cumulative net consumption: \(B_n=\sum_{t<n}(d_t-r_t)\)
-- observability layers:
-  - specification-fixed structural layer
-  - structurally inferred layer
-  - conditional structural-embedding layer
+- classification and connection:
+  - specification-fixed layer
+  - inference layer
+  - existing-theory connection attribute
 
 Paper 1 is not an obvious prelude. It is the first representation theorem: once
 the feasible-region ratio is measured by the axiomatized structural-consumption
@@ -49,7 +49,7 @@ Use `CLAIMS.md` as the public claim boundary.
 v3 does not claim:
 
 - all systems empirically decay exponentially;
-- structurally inferred domains have theorem-side strength;
+- inference-layer domains have theorem-side strength;
 - cross-domain transfer imports support;
 - merged PRs prove raw detector precision or long-term software collapse;
 - \(M\) directly chooses the next intervention;

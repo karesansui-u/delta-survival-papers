@@ -303,5 +303,5 @@ The most reusable lessons across domains are:
    primary validation candidates.
 
 These lessons apply directly to future specification-fixed domains, and more
-strongly still to structurally inferred domains where \(V\), \(m\), and the
+strongly still to inference-layer domains where \(V\), \(m\), and the
 readout map are less directly observable.

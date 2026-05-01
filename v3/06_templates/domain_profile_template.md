@@ -5,7 +5,7 @@ domain_id:
 
 domain_name:
 
-observability_layer:
+classification:
 
 status:
 
@@ -54,4 +54,3 @@ status:
 This domain supports:
 
 This domain does not support:
-

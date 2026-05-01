@@ -5,7 +5,7 @@ domain_id: coding_channel_recovery
 
 domain_name: Coding-channel recovery / finite BEC linear-code reliability
 
-observability_layer: specification_fixed
+classification: specification_fixed
 
 status: supported_v0; invalid_run_v1_rate625_cw4; no_support_v1b_rate625_cw3
 

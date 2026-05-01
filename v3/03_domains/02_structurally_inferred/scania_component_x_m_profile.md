@@ -5,7 +5,7 @@ domain_id: scania_component_x_m_profile
 
 domain_name: Scania Component X optional M-component predictive-maintenance candidate
 
-observability_layer: inference
+classification: inference
 
 status: candidate
 

@@ -5,7 +5,7 @@ domain_id: flow_network_m_testbed
 
 domain_name: Structural maintenance flow-network testbed
 
-observability_layer: specification_fixed
+classification: specification_fixed
 
 status: design
 

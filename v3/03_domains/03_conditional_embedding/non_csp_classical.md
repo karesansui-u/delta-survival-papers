@@ -55,7 +55,7 @@ G4 v1 では、C1 と C2 を最重視する。C3 は rhetoric 上の価値、C4 
 
 3. G4 v1 package
 
-G4 v1 は、次の三層で構成する。
+G4 v1 は、次の三部で構成する。
 
 primary anchor は queueing / Foster-Lyapunov drift であり、`QueueStability.lean` と
 `LyapunovBalanceEmbedding.lean` が open-system drift balance を支える。

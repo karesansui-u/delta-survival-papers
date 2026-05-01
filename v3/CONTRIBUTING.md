@@ -10,10 +10,10 @@ or clarifications without weakening the claim boundaries.
 
 1. Copy `06_templates/domain_profile_template.md` into the appropriate directory under
    `03_domains/`.
-2. Fill in the observability layer:
+2. Fill in the claim-package classification:
    - `specification_fixed`
-   - `structurally_inferred`
-   - `conditional_embedding`
+   - `inference`
+   - `connection_attribute`
 3. Add exactly one row to `03_domains/registry.tsv`.
 4. If there is a frozen test, add a manifest based on
    `06_templates/frozen_test_manifest_template.md`.
@@ -43,7 +43,7 @@ Do not:
 
 - tune the mapping on the outcome-bearing archive and call it support;
 - move a domain from no-support to support without a new frozen test;
-- describe structurally inferred evidence as theorem-side evidence;
+- describe inference-layer evidence as theorem-side evidence;
 - claim that transfer from another domain is support;
 - edit the main theory to accommodate a failed indicator;
 - erase failed attempts.

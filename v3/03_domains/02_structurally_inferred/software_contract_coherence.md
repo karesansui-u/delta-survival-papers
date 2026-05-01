@@ -5,7 +5,7 @@ domain_id: software_contract_coherence
 
 domain_name: Software contract-coherence diagnostics
 
-observability_layer: inference
+classification: inference
 
 status: field_demonstration + internal_calibration
 
