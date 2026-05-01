@@ -92,6 +92,15 @@ random-ensemble algebraic envelope: if the full-rank failure probability for an
 success probability at least \(1-2^{-s}\). This is not the exact random-matrix
 full-rank product formula and not a BEC erasure-count concentration theorem.
 
+Lean module `Survival.LinearCodeBECConcentrationBoundary` records the finite
+event-level bridge from BEC erasure-count concentration to recovery failure. If
+the tail event \(|E|+s>r\) has probability at most \(\delta\), and rank failure
+on the row-slack side is bounded by \(2^{-s}\), then total unique-recovery
+failure is bounded by \(\delta+2^{-s}\). Conversely, if \(|E|>r\) has
+probability at least \(1-\delta\), then unique-recovery failure is at least
+\(1-\delta\). This module assumes the erasure-count concentration envelope; it
+does not prove the binomial Chernoff bound.
+
 
 3. Low-Order Dependency Coordinate
 ----------------------------------

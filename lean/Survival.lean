@@ -118,6 +118,7 @@ import Survival.FinitePathLocalDetailedBalanceBridge
 import Survival.LinearCodeErasureAccountingToy
 import Survival.LinearCodeBECRankBoundary
 import Survival.LinearCodeRandomParityCheckFullRank
+import Survival.LinearCodeBECConcentrationBoundary
 import Survival.FiniteCSPFirstMomentCollapseBound
 import Survival.FosterLyapunovSignBridge
 import Survival.FiniteStateMarkovMeanBridge
