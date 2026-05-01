@@ -455,6 +455,14 @@ Exp41 は、この結果が GPT-4.1-mini 固有であるかどうかを調べる
 
 なお、Exp40/42/41 は一つの算術課題ファミリにおける前向き検査であり、タスク横断の普遍性を単独で示すものではない。Exp42 は instruction-following 反論を弱め、scope-as-repair の内部に attribution、時間・データセット範囲、明示的命令という階層があることを GPT-4.1-mini 上で示したが、この階層が他モデルや他課題で同じ形を保つとはまだ主張しない。Exp41 は scoped-vs-structural の width を確認した一方、subtle / structural の ordering がモデル依存であることも示した。今後の検査では、より細かい attribution / temporal marker の dose-response、複数モデルでの failure-mode 分解、および算術以外の課題ファミリへの拡張が必要である。
 
+9.7 将来計画: 構造境界検出と blind continuation
+
+上の結果には、構造境界を検出できるかどうかに関する近接した観察が含まれる。Exp42 では structural_anchor の失敗 20 件中 18 件が数値を返さない失敗であり、subtle 条件で多く見られた wrong-value uptake とは異なる失敗様式を示した。Exp41 では、この失敗様式がモデル依存であり、GPT-4.1-nano では structural 条件でほぼ非完答に近い挙動が出た一方、Gemini 3.1 Flash Lite では structural 失敗の多くが数値誤答として継続された。
+
+これは、構造境界を検出できる系が停止・拒否・修復要求へ切り替える場合と、境界を検出できない系が局所的な出力可能性だけを見て生成を続ける場合を分けて測る必要を示している。ただし、Exp40/42/41 の primary endpoint は論理一貫性維持率と scope-as-repair であり、blind continuation や calibrated stop ではなかった。したがって、この観察は既存データの示唆にとどまり、現時点では support claim にしない。
+
+この候補は、別の future package として扱う。計画メモは `05_evidence/llm_structural_blind_persistence_plan.md` に置く。そこでは、同じ可視資源 \(M\) が残っていても、構造維持可能領域 \(V_G\) が空化または near-empty になったときに、モデルが「誤ったまま続ける」のか、「矛盾・不可能性・修復必要性を検出して止まる」のかを、事前固定された endpoint として測る。
+
 §4で挙げた他の指標候補（構造的矛盾の数、指示の衝突数、参照元間の不整合密度など）を本稿の有効経路縮小の枠組みのもとで体系的に再定式化することは、今後の課題として残る。
 
 10. 限界

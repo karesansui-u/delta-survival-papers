@@ -44,7 +44,18 @@ Primary source ledgers:
 | software contract coherence | operational field / bounded benchmark layer | internal operational support | contract-coherence diagnostics; not direct software-collapse evidence |
 
 
-3. Exact Anchors And Coverage Bridges
+3. Proposed Diagnostic Plans, Not Evidence
+------------------------------------------
+
+These records are design notes or future-package sketches. They do not change
+support status.
+
+| domain | plan | status | scope |
+|---|---|---|---|
+| LLM reasoning | structural-blind persistence | proposed_future_package | future endpoint for blind continuation vs calibrated stop under matched visible resources |
+
+
+4. Exact Anchors And Coverage Bridges
 -------------------------------------
 
 These are useful anchors, but they should not be read as incremental
@@ -60,7 +71,7 @@ prediction support unless a separate frozen prediction package passes.
 | non-CSP classical anchors | serial reliability, constant-fraction decay, repair-maintenance balance | coverage / existing-theory connection attribute | does not close the non-CSP empirical gate |
 
 
-4. No-Support And Invalid-Run Records
+5. No-Support And Invalid-Run Records
 -------------------------------------
 
 | package | status | what failed | what remains |
@@ -75,7 +86,7 @@ prediction support unless a separate frozen prediction package passes.
 | Cardinality-SAT Exp44 history | no_support_or_draft_history | informative window / calibration readiness failed | remains proposed stress extension, not validation evidence |
 
 
-5. Governance Reading
+6. Governance Reading
 ---------------------
 
 Use the following interpretation rules when citing these records.
@@ -92,7 +103,7 @@ Use the following interpretation rules when citing these records.
 7. A successor run must use a new manifest and must not relabel failed rows.
 
 
-6. Current Evidence Shape
+7. Current Evidence Shape
 -------------------------
 
 The current program has three strong pillars:
@@ -110,3 +121,5 @@ The main open gaps are:
    policy-prior or domain baselines;
 4. successor designs that separate known absorbers, such as rank dependency vs
    stopping-set pressure.
+5. a frozen LLM structural-blind persistence package, if the proposed
+   blind-continuation endpoint remains meaningful after existing-row audit.
