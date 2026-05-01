@@ -85,6 +85,13 @@ positive, and unique recovery is impossible. This is an arbitrary fixed-code
 linear-algebra boundary. It is not a random-code achievability theorem and not a
 Shannon-capacity proof.
 
+Lean module `Survival.LinearCodeRandomParityCheckFullRank` records the next
+random-ensemble algebraic envelope: if the full-rank failure probability for an
+\(r\times e\) random binary submatrix is bounded by \(2^e/2^r\), then row slack
+\(e+s\le r\) implies failure probability at most \(2^{-s}\), equivalently
+success probability at least \(1-2^{-s}\). This is not the exact random-matrix
+full-rank product formula and not a BEC erasure-count concentration theorem.
+
 
 3. Low-Order Dependency Coordinate
 ----------------------------------
