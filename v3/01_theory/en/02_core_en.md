@@ -18,7 +18,7 @@ This paper is the integrated reading path for the main theoretical spine.
 
 | Document | Role |
 |---|---|
-| Paper 0 | Whole-program map: three layers, evidence, Lean, supplements |
+| Paper 0 | Whole-program map: two observability layers, connection attributes, evidence, Lean, supplements |
 | This Core Paper | Reader-facing synthesis of Paper 1 and Paper 2 |
 | Paper 1 | Strict spine for measuring shrinkage, log-ratio uniqueness, telescoping product, and the minimal kernel |
 | Paper 2 | Strict spine for two-step updates, recovery, net consumption, and the balance principle |
@@ -193,7 +193,7 @@ b_t+b_{t+1}.
 \]
 The cumulative quantity \(B_n\) is additively coherent under time aggregation, but regime labels and hitting boundaries depend on the pre-fixed observation unit. A path that is "consumption followed by recovery" at a fine grain may appear locally maintained at a coarser grain.
 
-9. Kernel modes and three layers
+9. Kernel modes, two observability layers, and connection attributes
 
 This paper separates two distinctions.
 
@@ -215,17 +215,24 @@ m(V^{(n)})=m(V^{(0)})e^{-B_n}.
 \]
 Thus the difference between \(L\) and \(B\) is not an observability-layer difference. It is the difference between reading shrinkage without explicit recovery and reading net consumption with recovery. If \(r_t=0\), then \(B_n\) reduces to \(L_n\).
 
-The second distinction concerns observability, connection to existing theories, and claim strength. The same kernel is read through three layers with different modes of fixing, connecting, and estimating the relevant quantities.
+The second distinction concerns observability, operationalization, and claim strength. The same kernel is read first through two observability layers.
 
-| Layer | Reading |
+| Main classification | Reading |
 |---|---|
-| Specification-fixed structural layer | The structure, ruler \(m\), update sequence, boundary, and time horizon can be fixed directly from the specification |
-| Existing-theory connection layer (conditional structural embedding) | Existing drift, difference, hitting-bound, or stability theories are mapped conditionally into this paper's variables |
-| Structurally inferred layer | The structure is not directly counted; observation and inference indicators are frozen and tested |
+| Specification-fixed layer | The maintenance condition \(G\), comparison-target space \(\Omega_X\), feasible region \(V_G\), ruler \(m\), update sequence, boundary, and time horizon can be fixed directly from the specification |
+| Inference layer | \(V_G\) and \(m\) are not directly counted; observation or inference indicators are frozen and tested |
 
-These are not different theories, and they are not fixed labels for domains. They are different observational interfaces to the same kernel. The difference is how directly \(V,m,d_t,r_t\) can be specified, and how explicitly the effective maintenance surplus \(M\) can be read as a resource-side quantity.
+These are not different theories, and they are not fixed labels for domains. They classify claim packages or validation packages, not whole domains. The difference is how directly \(V,m,d_t,r_t\) can be specified and how explicitly the effective maintenance surplus \(M\) can be read as a resource-side quantity.
 
-In the specification-fixed structural layer, the theorem-side kernel is not the full \(S\)-formula including the resource term \(M\). It is the set-valued kernel on pre-fixed \(V,m\):
+Separately, some claim packages have an existing-theory connection attribute. This means that existing drift, balance, rank, path-ratio, hitting-bound, or stability quantities can be mapped conditionally into this paper's variables. This is not a third layer; it is an attribute attached to a particular claim package.
+
+| Attribute | Reading |
+|---|---|
+| Existing-theory connection | A specific quantity, difference, boundary, or assumption-conditioned theorem in an existing theory corresponds formally to this vocabulary |
+| Analogy only | The vocabulary or intuition is similar, but no formal correspondence is claimed |
+| No current connection claim | No connection to an existing theory is claimed at present |
+
+In the specification-fixed layer, the theorem-side kernel is not the full \(S\)-formula including the resource term \(M\). It is the set-valued kernel on pre-fixed \(V,m\):
 \[
 m(V^{(n)})=m(V^{(0)})e^{-L_n},
 \qquad
@@ -233,15 +240,19 @@ m(V^{(n)})=m(V^{(0)})e^{-B_n}.
 \]
 The formulas \(S=Me^{-L}\) and \(S=Me^{-B}\) should be read as structural persistence potentials obtained by placing the resource-side effective maintenance surplus \(M\) outside that set-valued kernel.
 
-In the structurally inferred layer, observation and inference indicators such as \(\hat L\), \(\hat B\), contradiction, dependency breakage, or contract coherence are candidate readouts of the law-side coordinates, not the coordinates themselves. Strong or incremental support is assigned only after freezing the mapping, indicators, split, metric, and domain baseline, and only if the model with structural-persistence indicators improves over the domain baseline on unused data. Failed mappings are recorded as no-support, and unmeasurable cases as silence.
+In specification-fixed models, this set-valued kernel can also connect to operational endpoints. For finite CSPs, a first-moment loss fixed by the exposure model gives a one-sided bound on non-emptiness. For BEC binary linear codes, the erasure-rank loss \(a(E)\log 2\) reads the unique-recovery boundary exactly. These are theorem-side anchors, not empirical support claims: they show that \(L\) can connect to independently defined collapse or recovery endpoints.
 
-The existing-theory connection layer is, more strictly, a conditional structural embedding. It is not an intermediate strength level between the other two. It is a lateral bridge: existing drift, difference, hitting-bound, and stability conditions are mapped conditionally into vocabulary such as \(d_t,r_t,b_t,B_n\).
+In the inference layer, observation and inference indicators such as \(\hat L\), \(\hat B\), contradiction, dependency breakage, or contract coherence are candidate readouts of the law-side coordinates, not the coordinates themselves. Strong or incremental support is assigned only after freezing the mapping, indicators, split, metric, and domain baseline, and only if the model with structural-persistence indicators improves over the domain baseline on unused data. Failed mappings are recorded as no-support, and unmeasurable cases as silence.
+
+The existing-theory connection attribute is, more strictly, a conditional structural embedding. It is not an intermediate strength level between the two observability layers. It is a lateral bridge: existing drift, difference, hitting-bound, and stability conditions are mapped conditionally into vocabulary such as \(d_t,r_t,b_t,B_n\).
+
+For example, in A06/A19, erasure-rank accounting is a specification-fixed exact anchor, the frozen prediction test based on low-order dependency pressure belongs to the inference side, and the rank correspondence to coding theory is an existing-theory connection attribute. The same domain can therefore appear in different rows depending on the claim package being discussed.
 
 The fact that \(L\) and \(B\) are dimensionless log-ratios, readable in natural-log units, does not by itself justify quantitative comparison across domains. Cross-domain comparison becomes meaningful only under pre-fixed maps specifying \(V\), the ruler \(m\), the observation unit, and the boundary in each domain. Under those conditions, \(L\) and \(B\) provide candidate common coordinates for shrinkage and recovery.
 
 As the approximation improves, the structural persistence coordinates move from explanatory vocabulary toward predictive instrumentation. This is an empirical achievement, not something granted by the notation.
 
-![Figure 1. One structural persistence kernel read through three layers.](../figures/figure1_observability_layers_en.svg)
+![Figure 1. One structural persistence kernel read through two observability layers and a connection attribute.](../figures/figure1_observability_layers_en.svg)
 
 10. What the Lean formalization covers
 
@@ -261,13 +272,14 @@ Thus Lean supports the law-side skeleton. Empirical support and structurally inf
 
 11. Evidence status
 
-The current evidence should be read by strength.
+The current evidence and theorem-side anchors should be read by strength.
 
-- **Hard evidence**: the hard footing lies in the specification-fixed structural layer. Mixed-CSP and q-coloring each have frozen empirical packages with three outside rerunners reproducing decision-relevant outputs. Mixed-CSP has 12,000 primary rows per returned run, 0 checked core mismatches, and reproduced support flags. q-coloring has 4,000 primary rows per returned run, 0 checked core mismatches, TIMEOUT = 0, MALFORMED = 0, and the qualitative support decision reproduced. This is not a proof of the whole theory, but it is the strongest current package-scoped outside-rerun support for the law-side candidate.
+- **Theorem-side anchors, not empirical evidence**: in the specification-fixed layer, finite CSPs provide a small first-moment collapse bound, and BEC binary linear codes provide an erasure-rank unique-recovery boundary. The first states that a pre-fixed \(L_n^{\mathrm{FM}}\) gives a one-sided bound on non-emptiness; the second states that \(L_E=a(E)\log 2\) reads the unique-recovery boundary exactly. These are not predictive wins or outside reruns. They are the minimal specification-fixed answer to the concern that \(L\) is only a post-hoc name.
+- **Hard evidence**: the hard footing lies in the specification-fixed layer. Mixed-CSP and q-coloring each have frozen empirical packages with three outside rerunners reproducing decision-relevant outputs. Mixed-CSP has 12,000 primary rows per returned run, 0 checked core mismatches, and reproduced support flags. q-coloring has 4,000 primary rows per returned run, 0 checked core mismatches, TIMEOUT = 0, MALFORMED = 0, and the qualitative support decision reproduced. This is not a proof of the whole theory, but it is the strongest current package-scoped outside-rerun support for the law-side candidate.
 - **Specification-fixed non-CSP finite-network support**: A12 \(s\)-\(t\) cut-spectrum reliability tests whether the pre-fixed low-order cut-spectrum pressure \(\log(1+H_{\mathrm{cut},2})\) adds predictive value to a natural graph baseline under fixed finite graphs, terminals, independent edge failures, and a fixed collapse boundary. The first v0 package is recorded as an invalid run because the \(\kappa=3\) generation surface was too thin, but the successor \(\kappa=2\) and \(\kappa=3\) surfaces both passed their frozen primary gates. Relative log-loss improvement was 1.66% for \(\kappa=2\) and 2.09% for \(\kappa=3\), with paired graph-id bootstrap positive rate 1.0 in both packages. This is additional specification-fixed finite-network support outside CSP; it is not support for arbitrary \(\kappa\), real networks, exact reliability superiority, A31 spanning-tree persistence, or the \(M\)-side term.
 - **Specification-fixed finite coding-channel support**: A06/A19 coding-channel recovery tests whether the pre-fixed low-order parity-check column-dependency pressure \(\log(1+H_{\mathrm{dep},4})\) adds predictive value to a natural coding baseline under fixed binary linear codes, a BEC erasure law, and the rank-defined unique-recovery boundary. In primary v0, the rank accounting audit and label/sample audit passed on 240 codes, 960 code/\(q\) rows, and 245,760 erasure samples. Relative log-loss improvement was 2.11%, with paired code-id bootstrap positive rate 1.0. This is specification-fixed support on the finite BEC sparse parity-check surface; it is not Shannon-capacity theorem support, arbitrary-code support, non-BEC support, final-rank oracle support, exact failure-probability superiority, or \(M\)-side validation.
-- **Auxiliary and exploratory evidence**: in the structurally inferred layer, LLM reasoning, continual learning, and software diagnostics provide evidence through frozen observation and inference indicators. The question there is whether the indicators add information beyond the domain baseline, not whether the true \(V,m,L,B\) have been directly counted.
-- **Theoretical anchors**: in the existing-theory connection layer, Foster-Lyapunov / queueing, Repair-Maintenance, reliability, and decay systems act as anchors. They map existing drift, difference, and boundary arguments into the structural-persistence vocabulary; they are not new empirical wins.
+- **Auxiliary and exploratory evidence**: in the inference layer, LLM reasoning, continual learning, and software diagnostics provide evidence through frozen observation and inference indicators. The question there is whether the indicators add information beyond the domain baseline, not whether the true \(V,m,L,B\) have been directly counted.
+- **Existing-theory connection attribute**: Foster-Lyapunov / queueing, Repair-Maintenance, reliability, and decay systems contain claim packages that map existing drift, difference, and boundary arguments into the structural-persistence vocabulary. This is an attribute of those claims, not a third observability layer, and it is not a new empirical win.
 - **Evidence ledger**: Backblaze, C-MAPSS, Scania, Oxford battery, and the M-flow network testbed belong to the ledger of support, weakening, and no-support. They are recorded to preserve where the framework works, weakens, or fails.
 
 ![Figure 2. The minimal kernel lifts to the balance kernel by replacing cumulative consumption \(L\) with cumulative net consumption \(B\).](../figures/figure2_kernel_balance_en.svg)
@@ -280,7 +292,7 @@ First, the theory separates the support side from the shrinkage side. The famili
 
 Second, \(L\) and \(B\) provide candidate common coordinates for structural consumption and recovery across domains. They are dimensionless log-ratios, readable in natural-log units when \(k=1\). This unit convention alone does not justify cross-domain comparison. Comparison becomes meaningful only under pre-fixed maps specifying \(V\), the ruler \(m\), the observation unit, and the boundary in each domain.
 
-Third, the framework separates where law-side claims are made from where observation or inference indicators are tested. The specification-fixed structural layer can support law-side claims. The structurally inferred layer tests whether frozen indicators add predictive information beyond the domain baseline. The existing-theory connection layer connects existing theories to the same vocabulary. This separation keeps support, no-support, and silence distinct.
+Third, the framework separates where law-side claims are made from where observation or inference indicators are tested. The specification-fixed layer can support law-side claims. The inference layer tests whether frozen indicators add predictive information beyond the domain baseline. Existing-theory connection is recorded as a claim-level attribute when existing theories are mapped to the same vocabulary. This separation keeps support, no-support, and silence distinct.
 
 Fourth, the empirical question is not whether structural-persistence indicators are always the strongest standalone model. Many domains already have strong domain baselines. The central test is whether
 \[
@@ -298,7 +310,7 @@ The theory separates mapping discovery from validation. A structural condition, 
 
 If coarse-graining, reconfiguration, or action order can change the readout of endpoints or boundaries, the observation unit, common map, embedding, and decision boundary are also part of what must be frozen.
 
-In the specification-fixed structural layer, one first fixes the substrate or state space \(X\), the maintenance condition \(G\), the comparison-target space \(\Omega_X\), the feasible region \(V_G\), the ruler \(m\), the observation unit, the time horizon, and the structural-maintenance boundary. In the structurally inferred layer, one does not claim to directly count the true \(V,m,L,B\); one tests whether frozen observation or inference indicators add information beyond the domain baseline. In the existing-theory connection layer, one maps existing differences, drifts, stopping boundaries, and stability conditions into the \(L\) and \(B\) vocabulary.
+In the specification-fixed layer, one first fixes the substrate or state space \(X\), the maintenance condition \(G\), the comparison-target space \(\Omega_X\), the feasible region \(V_G\), the ruler \(m\), the observation unit, the time horizon, and the structural-maintenance boundary. In the inference layer, one does not claim to directly count the true \(V,m,L,B\); one tests whether frozen observation or inference indicators add information beyond the domain baseline. Existing-theory connection is recorded as an attribute of a claim package when existing differences, drifts, stopping boundaries, or stability conditions are mapped into the \(L\) and \(B\) vocabulary.
 
 A frozen mapping that fails is recorded as no-support. It is not promoted to support by retuning the indicator or boundary on the same data. Failures are kept as a ledger of where a mapping failed and where the theory should remain silent.
 
@@ -313,6 +325,6 @@ The recovery-aware balance kernel replaces \(L\) by cumulative net structural co
 S=Me^{-B}.
 \]
 
-At the specification-fixed structural layer, the hardest theorem-side kernel is the set-valued accounting kernel on pre-fixed \(V,m\). The formulas \(S=Me^{-L}\) and \(S=Me^{-B}\) are structural persistence potentials obtained by connecting the resource-side surplus \(M\) to that kernel.
+At the specification-fixed layer, the hardest theorem-side kernel is the set-valued accounting kernel on pre-fixed \(V,m\). The formulas \(S=Me^{-L}\) and \(S=Me^{-B}\) are structural persistence potentials obtained by connecting the resource-side surplus \(M\) to that kernel.
 
 There are at least two routes to unmaintainability. The first is shortage of effective maintenance surplus \(M\). The second is shrinkage of the structural maintenance feasible region \(V_G\) supporting the maintenance condition \(G\). The contribution of this paper is to provide the minimal coordinate for reading these two routes without conflating them.

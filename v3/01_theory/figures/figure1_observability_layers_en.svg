@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="980" height="560" viewBox="0 0 980 560" role="img" aria-labelledby="title desc">
-  <title id="title">Structural Persistence Observability Layers</title>
-  <desc id="desc">A diagram showing the common structural persistence kernel connected to specification-fixed, existing-theory connection, and structurally inferred layers.</desc>
+  <title id="title">Structural Persistence Observability Layers and Connection Attribute</title>
+  <desc id="desc">A diagram showing the common structural persistence kernel connected to two observability layers and an existing-theory connection attribute.</desc>
   <defs>
     <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
       <stop offset="0%" stop-color="#f8f6ef"/>
@@ -17,6 +17,7 @@
       .math { font: 700 22px Georgia, "Times New Roman", serif; fill: #24342d; }
       .box { fill: #fffdf7; stroke: #c8b98d; stroke-width: 2; rx: 22; filter: url(#shadow); }
       .layer { fill: #fdfbf4; stroke-width: 2; rx: 18; filter: url(#shadow); }
+      .attribute { fill: #fff8f1; stroke: #c38f66; stroke-width: 2; stroke-dasharray: 7 6; rx: 18; }
       .arrow { stroke: #56675e; stroke-width: 2.5; fill: none; marker-end: url(#arrowhead); }
       .dash { stroke: #829188; stroke-width: 2; stroke-dasharray: 7 7; fill: none; marker-end: url(#arrowhead); }
     </style>
@@ -26,8 +27,8 @@
   </defs>
 
   <rect width="980" height="560" fill="url(#bg)"/>
-  <text x="490" y="48" text-anchor="middle" class="title">One Kernel, Three Observability Layers</text>
-  <text x="490" y="76" text-anchor="middle" class="small">The layers differ by what can be specified, inferred, or embedded.</text>
+  <text x="490" y="48" text-anchor="middle" class="title">One Kernel, Two Observability Layers</text>
+  <text x="490" y="76" text-anchor="middle" class="small">Existing-theory connection is a claim-level attribute, not a third layer.</text>
 
   <rect x="325" y="135" width="330" height="145" class="box"/>
   <text x="490" y="170" text-anchor="middle" class="label">Common Kernel</text>
@@ -37,19 +38,19 @@
 
   <rect x="66" y="130" width="235" height="118" class="layer" stroke="#7aa17a"/>
   <text x="184" y="160" text-anchor="middle" class="label">Specification-fixed</text>
-  <text x="184" y="186" text-anchor="middle" class="label">structural layer</text>
+  <text x="184" y="186" text-anchor="middle" class="label">layer</text>
   <text x="184" y="215" text-anchor="middle" class="small">structure, measure, boundary</text>
   <text x="184" y="238" text-anchor="middle" class="tiny">SAT / Mixed-CSP / q-coloring</text>
 
   <rect x="679" y="130" width="235" height="118" class="layer" stroke="#8b93b8"/>
-  <text x="797" y="160" text-anchor="middle" class="label">Structurally</text>
-  <text x="797" y="186" text-anchor="middle" class="label">inferred layer</text>
+  <text x="797" y="160" text-anchor="middle" class="label">Inference</text>
+  <text x="797" y="186" text-anchor="middle" class="label">layer</text>
   <text x="797" y="215" text-anchor="middle" class="small">indicators + frozen validation</text>
   <text x="797" y="238" text-anchor="middle" class="tiny">LLM / software / battery candidates</text>
 
-  <rect x="325" y="365" width="330" height="112" class="layer" stroke="#c38f66"/>
+  <rect x="325" y="365" width="330" height="112" class="attribute"/>
   <text x="490" y="396" text-anchor="middle" class="label">Existing-theory</text>
-  <text x="490" y="422" text-anchor="middle" class="label">connection layer</text>
+  <text x="490" y="422" text-anchor="middle" class="label">connection attribute</text>
   <text x="490" y="449" text-anchor="middle" class="small">conditional structural embedding</text>
   <text x="490" y="472" text-anchor="middle" class="tiny">Foster-Lyapunov / queueing / repair</text>
 
