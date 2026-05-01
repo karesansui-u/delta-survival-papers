@@ -38,3 +38,10 @@ Primary v0:
 - governance summary: `primary_v0/governance_summary.json`
 - replication packet plan: `replication_packet_v0_plan.md`
 - decision: support
+
+Local rerun v0:
+
+- result summary: `rerun_v0_local_result_summary.md`
+- artifact manifest: `rerun_v0_local_artifact_manifest.md`
+- local raw directory: `rerun_v0_local/`
+- decision: reproduced the existing support decision; not new evidence
