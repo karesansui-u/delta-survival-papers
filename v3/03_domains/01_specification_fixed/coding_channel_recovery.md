@@ -101,6 +101,11 @@ probability at least \(1-\delta\), then unique-recovery failure is at least
 \(1-\delta\). This module assumes the erasure-count concentration envelope; it
 does not prove the binomial Chernoff bound.
 
+Lean module `Survival.LinearCodeBECCapacityStyleBoundary` bundles the finite
+achievability-side and converse-side envelopes into a capacity-style wrapper. It
+does not prove the BEC capacity theorem; it only packages the finite assumptions
+already separated above.
+
 
 3. Low-Order Dependency Coordinate
 ----------------------------------

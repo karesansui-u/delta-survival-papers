@@ -315,6 +315,21 @@ Lean 側では、この最後の行数スラック変換だけを `Survival.Line
 
 Lean 側では、この消失数集中との接続を `Survival.LinearCodeBECConcentrationBoundary` に置く。このモジュールは、有限確率空間上の事象として、消失数 tail、階数失敗、復元失敗の包含関係を和事象境界で合成する。二項分布、Chernoff 指数、漸近極限はまだ形式化しない。
 
+以上をまとめると、BEC 側には次の有限 capacity-style envelope が得られる。
+
+達成側では、消失数集中包絡と行数スラック階数失敗包絡が与えられていれば、
+\[
+  \Pr[\text{failure}]\le \delta+2^{-s},
+  \qquad
+  \Pr[\text{success}]\ge 1-\delta-2^{-s}.
+\]
+逆向きでは、\(|E|>r\) が高確率で起きるなら、
+\[
+  \Pr[\text{failure}]\ge 1-\delta.
+\]
+
+Lean 側では、この二つを `Survival.LinearCodeBECCapacityStyleBoundary` に薄い wrapper として置く。これは前段の有限事象境界を読みやすく束ねるためのものであり、二項分布 Chernoff 境界、ランダム行列の正確な full-rank 確率公式、または BEC 容量定理を新たに証明するものではない。
+
 ただし、この \(L_E\) は最終消失集合 \(E\) とその階数を使う判定対象側の会計である。これを予測モデルの特徴量に使えば、最終ラベルを見ているのと同じオラクルになりうる。A06/A19 の予測パッケージが低次依存圧
 \[
   \log(1+H_{\mathrm{dep},r})
@@ -325,12 +340,13 @@ Lean 側では、この消失数集中との接続を `Survival.LinearCodeBECCon
 4. 何を主張し、何を主張しないか
 ---------------------------------
 
-本補論が主張するのは、次の四点である。
+本補論が主張するのは、次の五点である。
 
 1. 有限 CSP 型の仕様固定曝露モデルでは、事前固定された一次モーメント消耗量 \(L_n^{\mathrm{FM}}\) が、非空性判定対象に一側の崩壊境界を与える。
 2. BEC 線形符号では、消失ランク消耗量 \(L_E=a(E)\log 2\) が一意復元境界を厳密に読み、さらに \(|E|>r\) なら一意復元不能という有限の逆向き境界を与える。
 3. ランダム検査行列側では、失敗確率の和事象境界が与えられた場合に、行数スラック \(s\) が full-rank 失敗確率を \(2^{-s}\) 以下へ押さえる。
 4. BEC 消失数側では、消失数集中境界が与えられた場合に、復元失敗確率を \(\delta+2^{-s}\) 以下へ押さえる達成側包絡と、\(|E|>r\) が高確率なら復元失敗も高確率になる逆向き包絡が得られる。
+5. これらの有限包絡は、薄い capacity-style wrapper として束ねられる。
 
 本補論が主張しないのは、次である。
 
@@ -363,7 +379,7 @@ Lean 側では、有限 CSP の一次モーメント崩壊境界を
 \]
 を導く。ここでも \(L\) は実現後の count ratio ではなく、曝露モデルから与えられる一次モーメント側の消耗量として仮定される。
 
-一方、BEC 側の消失ランク会計は `Survival.LinearCodeErasureAccountingToy` に置く。こちらは消失数と階数プロファイルから \(a(E)\log 2\) の厳密会計が出ることを固定する。さらに `Survival.LinearCodeBECRankBoundary` は、検査行数 \(r\) に対して \(|E|>r\) なら階数不足が避けられず、一意復元不能であり、厳密損失が正になることを固定する。`Survival.LinearCodeRandomParityCheckFullRank` は、ランダム検査行列の失敗確率包絡が与えられたとき、行数スラックから \(2^{-s}\) の full-rank 失敗境界を導く。`Survival.LinearCodeBECConcentrationBoundary` は、消失数集中包絡が与えられたとき、その tail と階数失敗を和事象境界で合成する。これらの Lean モジュールは、経験的支持や任意ドメインの予測勝利を証明するものではない。
+一方、BEC 側の消失ランク会計は `Survival.LinearCodeErasureAccountingToy` に置く。こちらは消失数と階数プロファイルから \(a(E)\log 2\) の厳密会計が出ることを固定する。さらに `Survival.LinearCodeBECRankBoundary` は、検査行数 \(r\) に対して \(|E|>r\) なら階数不足が避けられず、一意復元不能であり、厳密損失が正になることを固定する。`Survival.LinearCodeRandomParityCheckFullRank` は、ランダム検査行列の失敗確率包絡が与えられたとき、行数スラックから \(2^{-s}\) の full-rank 失敗境界を導く。`Survival.LinearCodeBECConcentrationBoundary` は、消失数集中包絡が与えられたとき、その tail と階数失敗を和事象境界で合成する。`Survival.LinearCodeBECCapacityStyleBoundary` は、これらを有限の達成側 / 逆向き側 envelope として束ねる。これらの Lean モジュールは、経験的支持や任意ドメインの予測勝利を証明するものではない。
 
 
 5. 失敗台帳からの制約

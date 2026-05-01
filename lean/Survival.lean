@@ -119,6 +119,7 @@ import Survival.LinearCodeErasureAccountingToy
 import Survival.LinearCodeBECRankBoundary
 import Survival.LinearCodeRandomParityCheckFullRank
 import Survival.LinearCodeBECConcentrationBoundary
+import Survival.LinearCodeBECCapacityStyleBoundary
 import Survival.FiniteCSPFirstMomentCollapseBound
 import Survival.FosterLyapunovSignBridge
 import Survival.FiniteStateMarkovMeanBridge
