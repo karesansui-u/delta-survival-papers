@@ -7,6 +7,9 @@ Evidence is separated from theory claims.
   `../04_operations/55_artifact_storage_policy.md`.
 - `evidence_status_dashboard.md`: reader-facing snapshot of supported,
   observational, no-support, invalid-run, and exact-anchor records.
+- `specification_fixed_replication_strengthening_plan.md`: next-step plan for
+  strengthening rerun discipline around supported non-CSP specification-fixed
+  packages.
 - `frozen_packages.tsv`: frozen tests or packages that define a support decision.
 - `outside_reruns.tsv`: independent or outside reruns.
 - `no_support.tsv`: failed frozen tests, weak-axis failures, and silence records.
