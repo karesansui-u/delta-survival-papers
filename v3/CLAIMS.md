@@ -80,8 +80,7 @@ They do not replace frozen prediction packages.
 For existing theories, v3 claims only the mapped part. For example, a rank
 accounting bridge or finite capacity-style wrapper does not prove Shannon
 capacity, a path-ratio identity does not prove a physical fluctuation theorem,
-and a Foster-Lyapunov sign bridge
-does not prove positive recurrence.
+and a Foster-Lyapunov sign bridge does not prove positive recurrence.
 
 
 3. Empirical Support Claim
