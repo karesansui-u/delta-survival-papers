@@ -2734,15 +2734,23 @@ module-to-claim 対応は \(\texttt{lean/PAPER\_MAPPING.md}\) に置き、本文
 \texttt{Survival.SerialReliability},\quad
 \texttt{Survival.ConstantFractionDecay},\quad
 \texttt{Survival.BranchingProcessExtinction},\quad
-\texttt{Survival.BinarySymmetricChannel}
+\texttt{Survival.BinarySymmetricChannel},\quad
+\texttt{Survival.LinearCodeErasureAccountingToy}
 \]
 がこれに入る。直列信頼性の \(\prod_i p_i\)、一定割合減衰の \(q^n\)、分岐過程の expectation-level
-\(m^n\)、binary channel の block success \((1-p)^n\) は、いずれも適切な一ステップ構造消耗を置くと
+\(m^n\)、binary channel の block success \((1-p)^n\)、および線形符号 BEC の
+erasure-rank accounting \(a(E)=|E|-\operatorname{rank}(H_E)\) は、いずれも適切な一ステップ構造消耗を置くと
 \[
 \exp(-L_n)
 \]
 の形へ戻る。したがって、独立部分の積が対数構造消耗の和へ変換されるという B3 型の加法性を、CSP 以外の
-素朴な物理・工学・情報例で確認する層である。
+素朴な物理・工学・情報例で確認する層である。とくに
+\(\texttt{LinearCodeErasureAccountingToy}\) は、empirical proxy ではなく、
+消失集合を固定した後の exact accounting
+\[
+\frac{m(V_E)}{m(V_0)}=2^{-a(E)},\qquad L_E=a(E)\log 2
+\]
+だけを Lean 上で閉じる。
 
 第二は、線形過負荷型である。
 \[

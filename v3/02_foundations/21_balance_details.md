@@ -1183,6 +1183,22 @@ LLM companion I / II は、仕様固定構造層のような自然測度・MGF p
 
 また、SAT / Bernoulli-CSP の Chernoff-KL 出口では、MGF 最適化から Bernoulli relative entropy が現れる。これは、仕様固定構造層では単なる比喩ではなく、Lean 上でも閉じた実際の情報理論的計算である。
 
+符号理論側では、A06/A19 の BEC 線形符号復元に対して、消失集合 \(E\) と
+消失列部分行列 \(H_E\) の rank が固定された後の exact accounting も
+Lean 側に切り出されている。`Survival.LinearCodeErasureAccountingToy`
+は、曖昧性次元
+\[
+a(E)=|E|-\operatorname{rank}(H_E)
+\]
+から、compatible multiplicity \(2^{a(E)}\)、distinguishable message-cell
+mass の retained ratio \(2^{-a(E)}\)、および exact loss
+\[
+L_E=a(E)\log 2
+\]
+が出ることだけを形式化する。これは final erasure rank を予測特徴量に
+することでも、低次 dependency pressure proxy の empirical support を
+Lean で証明することでもない。
+
 しかし、構造持続の収支原理は情報理論そのものではない。情報理論は、通信、符号化、不確実性、分布間距離を扱う。構造持続の収支原理は、事前固定された構造条件を維持できる状態集合の比を扱う。両者は対数比という共通形式を持つが、何を測っているかが異なる。
 
 | 情報理論 | 構造持続の収支原理 |

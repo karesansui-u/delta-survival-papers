@@ -70,6 +70,14 @@ package, the final erasure-set rank, final ambiguity dimension, exact recovery
 indicator, and exact finite-block failure probability must not be used as
 model features.
 
+Lean module `Survival.LinearCodeErasureAccountingToy` records the finite
+accounting skeleton for this anchor. It fixes only an erasure-count /
+erased-column-rank profile, defines \(a(E)=|E|-\operatorname{rank}(H_E)\),
+the compatible multiplicity \(2^{a(E)}\), the retained distinguishable
+message-cell ratio \(2^{-a(E)}\), and proves that the exact loss is
+\(a(E)\log 2\). This is not a formalization of the empirical
+\(\log(1+H_{\mathrm{dep},r})\) proxy and not a proof of prediction support.
+
 
 3. Low-Order Dependency Coordinate
 ----------------------------------

@@ -160,7 +160,7 @@ Foster-Lyapunov / queueing drift の補論は、G6-c iteration 1 として位置
 
 この interface は、k-SAT、NAE-SAT、XOR-SAT、q-coloring、hypergraph coloring、finite-alphabet forbidden-pattern CSP、cardinality-SAT、threshold-cardinality-SAT を、同じ finite-horizon / iid bad-event exposure の型に載せる。これにより、個別構文の違いではなく、禁止パターンが有効状態空間をどれだけ削るかという共通座標で読める。
 
-このレイヤーは、現在は主に Lean modules と集合値力学補論の後半にある。読者が仕様固定構造レイヤーの横断性を評価するときは、PAPER_MAPPING と Bernoulli-CSP universality modules を参照するのがよい。さらに、NumericalSanityChecks は、各 wrapper が小さな具体例で期待される定数を返すことを示す。これは経験的 support ではなく、reader-facing な numerical sanity check である。
+このレイヤーは、現在は主に Lean modules と集合値力学補論の後半にある。読者が仕様固定構造レイヤーの横断性を評価するときは、PAPER_MAPPING と Bernoulli-CSP universality modules を参照するのがよい。さらに、NumericalSanityChecks は、各 wrapper が小さな具体例で期待される定数を返すことを示す。A06/A19 については `LinearCodeErasureAccountingToy` が、BEC 線形符号の消失 rank profile から \(a(E)\log 2\) の exact accounting が出ることだけを固定する。これらは経験的 support ではなく、reader-facing な numerical / accounting sanity check である。
 
 
 9. 許容写像と階層的不変量
