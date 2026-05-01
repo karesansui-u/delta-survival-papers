@@ -1,0 +1,3 @@
+# Local raw rerun outputs. Keep summaries, manifests, hashes, and small
+# diagnostics tracked, but do not accidentally add large rerun CSV directories.
+05_evidence/**/rerun_*_local/

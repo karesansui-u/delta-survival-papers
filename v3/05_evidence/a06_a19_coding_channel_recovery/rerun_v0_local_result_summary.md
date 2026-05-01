@@ -123,7 +123,7 @@ B1 + SP scalar test log loss:      0.4289932917900723
 relative log-loss improvement:     0.02107037792674442
 bootstrap positive rate:           1.0
 
-decision_reproduction:             clean_reproduction
+decision_reproduction:             clean_decision_reproduction_with_schema_note
 ```
 
 The hazard guardrail also reproduced.
