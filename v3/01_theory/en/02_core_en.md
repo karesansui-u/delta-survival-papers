@@ -18,7 +18,7 @@ This paper is the integrated reading path for the main theoretical spine.
 
 | Document | Role |
 |---|---|
-| Paper 0 | Whole-program map: observability layers, evidence, Lean, supplements |
+| Paper 0 | Whole-program map: three layers, evidence, Lean, supplements |
 | This Core Paper | Reader-facing synthesis of Paper 1 and Paper 2 |
 | Paper 1 | Strict spine for measuring shrinkage, log-ratio uniqueness, telescoping product, and the minimal kernel |
 | Paper 2 | Strict spine for two-step updates, recovery, net consumption, and the balance principle |
@@ -193,7 +193,7 @@ b_t+b_{t+1}.
 \]
 The cumulative quantity \(B_n\) is additively coherent under time aggregation, but regime labels and hitting boundaries depend on the pre-fixed observation unit. A path that is "consumption followed by recovery" at a fine grain may appear locally maintained at a coarser grain.
 
-9. Kernel modes and observability layers
+9. Kernel modes and three layers
 
 This paper separates two distinctions.
 
@@ -215,12 +215,12 @@ m(V^{(n)})=m(V^{(0)})e^{-B_n}.
 \]
 Thus the difference between \(L\) and \(B\) is not an observability-layer difference. It is the difference between reading shrinkage without explicit recovery and reading net consumption with recovery. If \(r_t=0\), then \(B_n\) reduces to \(L_n\).
 
-The second distinction concerns observability and claim strength. The same kernel is read through three observability layers.
+The second distinction concerns observability, connection to existing theories, and claim strength. The same kernel is read through three layers with different modes of fixing, connecting, and estimating the relevant quantities.
 
 | Layer | Reading |
 |---|---|
 | Specification-fixed structural layer | The structure, ruler \(m\), update sequence, boundary, and time horizon can be fixed directly from the specification |
-| Conditional structural-embedding layer | Existing drift, difference, hitting-bound, or stability theories are mapped conditionally into this paper's variables |
+| Existing-theory connection layer (conditional structural embedding) | Existing drift, difference, hitting-bound, or stability theories are mapped conditionally into this paper's variables |
 | Structurally inferred layer | The structure is not directly counted; observation and inference indicators are frozen and tested |
 
 These are not different theories, and they are not fixed labels for domains. They are different observational interfaces to the same kernel. The difference is how directly \(V,m,d_t,r_t\) can be specified, and how explicitly the effective maintenance surplus \(M\) can be read as a resource-side quantity.
@@ -235,13 +235,13 @@ The formulas \(S=Me^{-L}\) and \(S=Me^{-B}\) should be read as structural persis
 
 In the structurally inferred layer, observation and inference indicators such as \(\hat L\), \(\hat B\), contradiction, dependency breakage, or contract coherence are candidate readouts of the law-side coordinates, not the coordinates themselves. Strong or incremental support is assigned only after freezing the mapping, indicators, split, metric, and domain baseline, and only if the model with structural-persistence indicators improves over the domain baseline on unused data. Failed mappings are recorded as no-support, and unmeasurable cases as silence.
 
-The conditional structural-embedding layer is not an intermediate strength level between the other two. It is a lateral bridge: existing drift, difference, hitting-bound, and stability conditions are mapped conditionally into vocabulary such as \(d_t,r_t,b_t,B_n\).
+The existing-theory connection layer is, more strictly, a conditional structural embedding. It is not an intermediate strength level between the other two. It is a lateral bridge: existing drift, difference, hitting-bound, and stability conditions are mapped conditionally into vocabulary such as \(d_t,r_t,b_t,B_n\).
 
 The fact that \(L\) and \(B\) are dimensionless log-ratios, readable in natural-log units, does not by itself justify quantitative comparison across domains. Cross-domain comparison becomes meaningful only under pre-fixed maps specifying \(V\), the ruler \(m\), the observation unit, and the boundary in each domain. Under those conditions, \(L\) and \(B\) provide candidate common coordinates for shrinkage and recovery.
 
 As the approximation improves, the structural persistence coordinates move from explanatory vocabulary toward predictive instrumentation. This is an empirical achievement, not something granted by the notation.
 
-![Figure 1. One structural persistence kernel read through three observability layers.](../figures/figure1_observability_layers_en.svg)
+![Figure 1. One structural persistence kernel read through three layers.](../figures/figure1_observability_layers_en.svg)
 
 10. What the Lean formalization covers
 
@@ -267,7 +267,7 @@ The current evidence should be read by strength.
 - **Specification-fixed non-CSP finite-network support**: A12 \(s\)-\(t\) cut-spectrum reliability tests whether the pre-fixed low-order cut-spectrum pressure \(\log(1+H_{\mathrm{cut},2})\) adds predictive value to a natural graph baseline under fixed finite graphs, terminals, independent edge failures, and a fixed collapse boundary. The first v0 package is recorded as an invalid run because the \(\kappa=3\) generation surface was too thin, but the successor \(\kappa=2\) and \(\kappa=3\) surfaces both passed their frozen primary gates. Relative log-loss improvement was 1.66% for \(\kappa=2\) and 2.09% for \(\kappa=3\), with paired graph-id bootstrap positive rate 1.0 in both packages. This is additional specification-fixed finite-network support outside CSP; it is not support for arbitrary \(\kappa\), real networks, exact reliability superiority, A31 spanning-tree persistence, or the \(M\)-side term.
 - **Specification-fixed finite coding-channel support**: A06/A19 coding-channel recovery tests whether the pre-fixed low-order parity-check column-dependency pressure \(\log(1+H_{\mathrm{dep},4})\) adds predictive value to a natural coding baseline under fixed binary linear codes, a BEC erasure law, and the rank-defined unique-recovery boundary. In primary v0, the rank accounting audit and label/sample audit passed on 240 codes, 960 code/\(q\) rows, and 245,760 erasure samples. Relative log-loss improvement was 2.11%, with paired code-id bootstrap positive rate 1.0. This is specification-fixed support on the finite BEC sparse parity-check surface; it is not Shannon-capacity theorem support, arbitrary-code support, non-BEC support, final-rank oracle support, exact failure-probability superiority, or \(M\)-side validation.
 - **Auxiliary and exploratory evidence**: in the structurally inferred layer, LLM reasoning, continual learning, and software diagnostics provide evidence through frozen observation and inference indicators. The question there is whether the indicators add information beyond the domain baseline, not whether the true \(V,m,L,B\) have been directly counted.
-- **Theoretical anchors**: in the conditional structural-embedding layer, Foster-Lyapunov / queueing, Repair-Maintenance, reliability, and decay systems act as anchors. They map existing drift, difference, and boundary arguments into the structural-persistence vocabulary; they are not new empirical wins.
+- **Theoretical anchors**: in the existing-theory connection layer, Foster-Lyapunov / queueing, Repair-Maintenance, reliability, and decay systems act as anchors. They map existing drift, difference, and boundary arguments into the structural-persistence vocabulary; they are not new empirical wins.
 - **Evidence ledger**: Backblaze, C-MAPSS, Scania, Oxford battery, and the M-flow network testbed belong to the ledger of support, weakening, and no-support. They are recorded to preserve where the framework works, weakens, or fails.
 
 ![Figure 2. The minimal kernel lifts to the balance kernel by replacing cumulative consumption \(L\) with cumulative net consumption \(B\).](../figures/figure2_kernel_balance_en.svg)
@@ -280,7 +280,7 @@ First, the theory separates the support side from the shrinkage side. The famili
 
 Second, \(L\) and \(B\) provide candidate common coordinates for structural consumption and recovery across domains. They are dimensionless log-ratios, readable in natural-log units when \(k=1\). This unit convention alone does not justify cross-domain comparison. Comparison becomes meaningful only under pre-fixed maps specifying \(V\), the ruler \(m\), the observation unit, and the boundary in each domain.
 
-Third, the framework separates where law-side claims are made from where observation or inference indicators are tested. The specification-fixed structural layer can support law-side claims. The structurally inferred layer tests whether frozen indicators add predictive information beyond the domain baseline. The conditional structural-embedding layer connects existing theories to the same vocabulary. This separation keeps support, no-support, and silence distinct.
+Third, the framework separates where law-side claims are made from where observation or inference indicators are tested. The specification-fixed structural layer can support law-side claims. The structurally inferred layer tests whether frozen indicators add predictive information beyond the domain baseline. The existing-theory connection layer connects existing theories to the same vocabulary. This separation keeps support, no-support, and silence distinct.
 
 Fourth, the empirical question is not whether structural-persistence indicators are always the strongest standalone model. Many domains already have strong domain baselines. The central test is whether
 \[
@@ -298,7 +298,7 @@ The theory separates mapping discovery from validation. A structural condition, 
 
 If coarse-graining, reconfiguration, or action order can change the readout of endpoints or boundaries, the observation unit, common map, embedding, and decision boundary are also part of what must be frozen.
 
-In the specification-fixed structural layer, one first fixes the substrate or state space \(X\), the maintenance condition \(G\), the comparison-target space \(\Omega_X\), the feasible region \(V_G\), the ruler \(m\), the observation unit, the time horizon, and the structural-maintenance boundary. In the structurally inferred layer, one does not claim to directly count the true \(V,m,L,B\); one tests whether frozen observation or inference indicators add information beyond the domain baseline. In the conditional structural-embedding layer, one maps existing differences, drifts, stopping boundaries, and stability conditions into the \(L\) and \(B\) vocabulary.
+In the specification-fixed structural layer, one first fixes the substrate or state space \(X\), the maintenance condition \(G\), the comparison-target space \(\Omega_X\), the feasible region \(V_G\), the ruler \(m\), the observation unit, the time horizon, and the structural-maintenance boundary. In the structurally inferred layer, one does not claim to directly count the true \(V,m,L,B\); one tests whether frozen observation or inference indicators add information beyond the domain baseline. In the existing-theory connection layer, one maps existing differences, drifts, stopping boundaries, and stability conditions into the \(L\) and \(B\) vocabulary.
 
 A frozen mapping that fails is recorded as no-support. It is not promoted to support by retuning the indicator or boundary on the same data. Failures are kept as a ledger of where a mapping failed and where the theory should remain silent.
 

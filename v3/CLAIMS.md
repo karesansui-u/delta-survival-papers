@@ -29,7 +29,12 @@ structure becomes unmaintainable. The theory separates the support-side quantity
 \(S=0\), or a pre-fixed threshold \(S\le S_c\), is a structural-maintenance
 boundary. Its observational form may be collapse, functional failure, halt, phase
 transition, or structural reorganization. The boundary can be reached through the
-\(L/B\)-side feasible-region route, the \(M=0\) resource-side route, or both.
+\(L\)- or \(B\)-side feasible-region route, the \(M=0\) resource-side route, or both.
+
+In specification-fixed structural domains, the hardest theorem-side kernel is the
+set-valued accounting kernel on pre-fixed \(V,m\). The \(S=Me^{-L}\) and
+\(S=Me^{-B}\) formulas connect that kernel to the external resource-side term \(M\);
+they should not be read as deriving \(M\) from the exponential kernel.
 
 
 2. Empirical Value Claim
@@ -51,17 +56,18 @@ surplus, but decomposed \(M\)-profiles are not part of the core law-side claim.
 
 The law-side claim belongs first to specification-fixed structural domains. In
 structurally inferred domains, SP features are inferred indicators for the law-side
-\(L/B\) coordinates. An inferred indicator should be treated as a stronger predictive instrument only
-when frozen validation shows incremental out-of-sample value over the domain
-baseline; otherwise it remains candidate, no-support, weak-axis failure, or
-silence.
+\(L\) or \(B\) coordinates. An inferred indicator should be treated as a stronger
+predictive instrument only when frozen validation shows incremental out-of-sample
+value over the domain baseline; otherwise it remains candidate, no-support,
+weak-axis failure, or silence.
 
-The strongest current empirical footing is package-scoped and law-side: two
-specification-fixed frozen packages, Mixed-CSP and q-coloring, each have
-3/3 clean outside reruns with decision-relevant outputs reproduced. This is
-stronger than a local rerun or a published procedure alone, but it is still a
-scoped empirical footing. It does not by itself establish universal-law closure,
-non-CSP support, or structurally inferred-domain causal evidence.
+The strongest current outside-rerun empirical footing is package-scoped and law-side:
+two specification-fixed frozen packages, Mixed-CSP and q-coloring, each have
+3/3 clean outside reruns with decision-relevant outputs reproduced. In addition,
+finite non-CSP specification-fixed support is recorded for scoped A31, A12, and
+A06/A19 packages. These non-CSP results are finite-surface support claims, not
+outside-rerun-level closure and not arbitrary-network, arbitrary-code, Shannon-limit,
+\(M\)-side, or structurally inferred-domain causal evidence.
 
 
 3. Transfer Claim

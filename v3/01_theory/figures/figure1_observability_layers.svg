@@ -46,8 +46,8 @@
   <text x="797" y="219" text-anchor="middle" class="tiny">LLM / software / battery candidates</text>
 
   <rect x="325" y="365" width="330" height="112" class="layer" stroke="#c38f66"/>
-  <text x="490" y="399" text-anchor="middle" class="label">条件付き構造埋め込みレイヤー</text>
-  <text x="490" y="429" text-anchor="middle" class="small">existing drift / difference / hitting bounds</text>
+  <text x="490" y="399" text-anchor="middle" class="label">既存理論接続レイヤー</text>
+  <text x="490" y="429" text-anchor="middle" class="small">conditional structural embedding</text>
   <text x="490" y="454" text-anchor="middle" class="tiny">Foster-Lyapunov / queueing / repair-maintenance</text>
 
   <path d="M302 189 C318 189 308 189 323 189" class="arrow"/>
