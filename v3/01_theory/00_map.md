@@ -151,7 +151,7 @@ Software contract-coherence 系は、この構造推定レイヤーの中でも�
 | G6-b correspondence | 量・符号・役割の対応表が作れる | 構造対応であって定理移植ではない |
 | G6-c formal embedding | 既存理論の差分・drift・balance が b_t, B_n へ埋め込める | 元理論の仮定は保持される |
 
-Foster-Lyapunov / queueing drift の補論は、G6-c iteration 1 として位置づける。すなわち、正再帰性や幾何的エルゴード性を新しく証明するのではなく、既存の drift algebra が構造持続の \(b_t=d_t-r_t\) と同じ符号構造を持つことを、reader-facing かつ Lean 対応可能な形で示す。
+Foster-Lyapunov / queueing drift の補論は、G6-c iteration 1 として位置づける。すなわち、正再帰性や幾何的エルゴード性を新しく証明するのではなく、既存の drift algebra が構造持続の \(b_t=d_t-r_t\) と同じ符号構造を持つことを、reader-facing かつ Lean 対応可能な形で示す。Lean 側では `FosterLyapunovSignBridge` が、\(\phi=-\log m\) のとき \(b=\phi_{t+1}-\phi_t\) であり、安定化 drift は \(\mathbb E[b\mid x]\le-\epsilon\) 側であることを、過剰な recurrence theorem なしに固定する。
 
 
 8. Bernoulli-CSP universality interface の位置

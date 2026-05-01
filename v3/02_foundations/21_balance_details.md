@@ -1141,7 +1141,25 @@ LLM companion I / II は、仕様固定構造層のような自然測度・MGF p
 
 §2.2 の \(d_t,r_t\ge 0\) という二段階 sign convention に合わせて読むなら、\(Z_t\) の増加分を構造消耗量 \(d_t\)、減少分を回復量 \(r_t\) に分ければよい。その差し引きが、ここで直接定義した \(b_t=Z_{t+1}-Z_t\) に一致する。
 
-この意味で、Lyapunov drift calculus は構造持続の収支原理の G6-c formal embedding として扱える。より正確には、任意の Lyapunov drift process は、\(Z_t\) を構造負荷、\(R_t=e^{-Z_t}\) を相対維持量と読むことで、構造持続の収支原理の期待値レベルの傾向層に埋め込める。この最小代数的埋め込みは、補論「構造持続の収支原理と Foster-Lyapunov ドリフトの形式的埋め込み」および Lean の LyapunovBalanceEmbedding で読者向け / machine-checked に記録されている。
+この意味で、Lyapunov drift calculus は構造持続の収支原理の G6-c formal embedding として扱える。より正確には、任意の Lyapunov drift process は、\(Z_t\) を構造負荷、\(R_t=e^{-Z_t}\) を相対維持量と読むことで、構造持続の収支原理の期待値レベルの傾向層に埋め込める。この最小代数的埋め込みは、補論「構造持続の収支原理と Foster-Lyapunov ドリフトの形式的埋め込み」および Lean の `Survival.LyapunovBalanceEmbedding` で読者向け / machine-checked に記録されている。
+
+ただし、符号は重要である。負荷または badness potential を
+\[
+  \phi(x)=-\log m(V_x)
+\]
+と置くなら、Core 型の一歩の純消耗量は
+\[
+  b(x,y)=\phi(y)-\phi(x)
+       =-\log \frac{m(V_y)}{m(V_x)}
+\]
+である。したがって \(b>0\) は potential が増える方向、すなわち悪化
+または崩壊傾向であり、Foster-Lyapunov 型の安定 drift は
+\(\mathbb E[b\mid x]\le -\epsilon\) 側である。この sign guardrail は
+Lean の `Survival.FosterLyapunovSignBridge` に切り出している。同 module は
+positive recurrence を証明せず、`potentialIncrement`,
+`expectedNetChange`, `OutsideSafeNegativeDrift`,
+`EverywherePositiveDrift`, および stationary marginal で mean increment が
+0 になる恒等式だけを固定する。
 
 ただし、ここにも限界がある。queueing theory の安定性定理をそのまま構造持続の収支原理の定理として使うには、Markov 性、irreducibility、petite set、moment 条件など、元の theorem が要求する仮定を保持しなければならない。構造持続の収支原理がそれらを不要にするわけではない。したがって本稿が主張できるのは、drift 条件の形式的埋め込みであり、queueing stability theorem 全体の無条件な再証明ではない。
 

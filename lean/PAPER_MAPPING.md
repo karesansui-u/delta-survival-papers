@@ -188,6 +188,7 @@ anchors without strengthening them:
 | Phase-6 role | Lean anchor | Reading discipline |
 |---|---|---|
 | Lyapunov / load increment | `FosterLyapunovTemplate.lyapunov_increment_eq_consumption_sub_recovery` | pathwise load difference, not recurrence |
+| sign guardrail | `FosterLyapunovSignBridge.potentialIncrement_structuralPotential_eq_coreNetChangeFromMass`; `FosterLyapunovSignBridge.outsideSafeNegativeDrift_expectedNetChange_neg`; `FosterLyapunovSignBridge.positive_drift_is_destabilizing_direction` | `φ=-log m` gives `b=φ_next-φ_current`; negative expected net change is stabilizing direction, positive expected net change is destabilizing direction |
 | cumulative action | `FosterLyapunovTemplate.lyapunov_cumulativeAction_eq_load_diff` | telescopes to `Z n - Z 0` |
 | exponential maintenance update | `FosterLyapunovTemplate.lyapunov_relativeMaintenance_succ_eq_mul_exp_neg_increment` | signed-action coordinate, not a stability theorem |
 | queue overload skeleton | `FosterLyapunovTemplate.queue_increment_eq_excessDemand`; `FosterLyapunovTemplate.queue_stable_increment_nonpos`; `FosterLyapunovTemplate.queue_overloaded_increment_pos` | deterministic finite-prefix skeleton |
@@ -544,11 +545,12 @@ drift は `log(2^k / allowed)` になる。部分二項和が \(0\) と \(2^k\) 
 | [`BucklingThreshold.lean`](Survival/BucklingThreshold.lean) | load ramp `P_n = P_0 + n ΔP` が critical load `Pcr` に到達/超過すると座屈閾値到達 | A10。機械構造体の critical-load threshold skeleton |
 | [`PercolationThreshold.lean`](Survival/PercolationThreshold.lean) | occupation ramp `p_n = p_0 + n Δp` が critical occupation `p_c` に到達/超過すると percolation threshold 到達 | A11/A12。巨大成分・パーコレーション転移の threshold skeleton |
 
-### C3. G6-c formal mapping（1）
+### C3. G6-c formal mapping（2）
 
 | ファイル | 主定理 | 評価 |
 |---------|-------|------|
 | [`LyapunovBalanceEmbedding.lean`](Survival/LyapunovBalanceEmbedding.lean) | Lyapunov/load sequence `Z_t` から `b_t = Z_{t+1}-Z_t`, `B_n = Z_n-Z_0`, `R_{t+1}=R_t exp(-b_t)`、queue excess demand への wrapper | G6-c。Foster-Lyapunov / queueing drift を構造持続の収支原理の期待値レベルの傾向へ埋め込む最小代数 skeleton |
+| [`FosterLyapunovSignBridge.lean`](Survival/FosterLyapunovSignBridge.lean) | `φ=-log m` なら `b(x,y)=φ(y)-φ(x)=-log(m(y)/m(x))`、outside-safe negative drift は `E[b|x]≤-ε`、positive drift は destabilizing direction、stationary marginal では mean increment が 0 | G6-c sign guardrail。安定化 drift と positive Core net change の符号取り違えを防ぐ有限状態・期待値レベル skeleton |
 
 ### D. 表現安定性・粗視化（5）— Paper 1 §2 P5
 
