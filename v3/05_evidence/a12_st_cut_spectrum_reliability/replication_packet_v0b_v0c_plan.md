@@ -114,6 +114,13 @@ The generator path evolved between v0b and v0c to add the constructive
 - using the current generator for v0b must be reported as a hash-drift rerun,
   even if the support decision reproduces.
 
+The command below uses the current tracked generator path. Since the current
+tracked generator has the v0c hash, the v0b command is a convenient
+current-generator hash-drift rerun, not a clean v0b exact replay. A clean v0b
+exact replay requires either checking out the manifest-era script at the v0b
+hash or packaging that historical script under a frozen name such as
+`scripts/generate_smoke_v0b_kappa2_frozen.py`.
+
 
 5. Frozen Surfaces
 ------------------
@@ -186,7 +193,7 @@ Forbidden prediction features include:
 A clean rerun should write to a new output directory and should not overwrite
 the committed primary outputs.
 
-### v0b Kappa-2
+### v0b Kappa-2 Current-Generator Hash-Drift Rerun
 
 Recommended output directory:
 
@@ -194,7 +201,9 @@ Recommended output directory:
 05_evidence/a12_st_cut_spectrum_reliability/rerun_v0b_kappa2_local
 ```
 
-Generation:
+Generation using the current tracked generator. This should be reported as
+`decision_reproduction_with_hash_or_numeric_drift` unless the v0b
+manifest-era generator hash is restored before execution:
 
 ```bash
 python3 -B 05_evidence/a12_st_cut_spectrum_reliability/scripts/generate_smoke.py \
@@ -221,6 +230,13 @@ python3 -B 05_evidence/a12_st_cut_spectrum_reliability/scripts/evaluate_smoke.py
   --c-grid 0.01,0.1,1,10 \
   --bootstrap-replicates 2000 \
   --bootstrap-seed 73141
+```
+
+For a clean v0b exact replay, replace the generator path with the historical
+v0b manifest-era generator whose SHA256 is:
+
+```text
+22d306820903a36a72b7d3926e5f1b16a71cb431c3fcb8987b5f891930e5b503
 ```
 
 ### v0c Kappa-3
