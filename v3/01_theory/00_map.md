@@ -153,6 +153,19 @@ Software contract-coherence 系は、この構造推定レイヤーの中でも�
 
 Foster-Lyapunov / queueing drift の補論は、G6-c iteration 1 として位置づける。すなわち、正再帰性や幾何的エルゴード性を新しく証明するのではなく、既存の drift algebra が構造持続の \(b_t=d_t-r_t\) と同じ符号構造を持つことを、reader-facing かつ Lean 対応可能な形で示す。Lean 側では `FosterLyapunovSignBridge` が、\(\phi=-\log m\) のとき \(b=\phi_{t+1}-\phi_t\) であり、安定化 drift は \(\mathbb E[b\mid x]\le-\epsilon\) 側であることを、過剰な recurrence theorem なしに固定する。
 
+以下の bridge 群は、理論を広げるためだけでなく、過剰対応を防ぐための guardrail でもある。何を示していて、何を示していないかは次のように読む。
+
+| Bridge | 示すこと | 示さないこと |
+|---|---|---|
+| Housekeeping / stationary total production | stationary start では Core 型 net change の期待値が 0 になり、正の維持生成は別項 \(C\) が担う | 物理的 NESS、housekeeping entropy production の一般導出 |
+| Stationary current | detailed balance と zero current の同値、stationary かつ nonzero current の有限 witness | entropy production、fluctuation theorem、熱浴解釈 |
+| Finite path-ratio | 明示された forward / reverse PMF と coverage 条件の下で有限 path-ratio identity が成り立つ | Core の \(B_n\) が path-ratio entropy production であること、物理的 fluctuation theorem |
+| Markov path-ratio | 有限状態 Markov path PMF への特殊化と deterministic time reversal | reverse chain が物理的 reverse protocol であること |
+| Structural residual | 同じ path 上で \(\sigma=B+C+R\) と分解し、\(R=0\) の仮定下だけ \(\sigma=B+C\) を返す | Core から無条件に \(\sigma=B+C\) が出ること |
+| Local detailed-balance reading | system / medium split を別データとして持ち、exact reading 仮定下だけ \(\sigma=S_{\mathrm{sys}}+S_{\mathrm{med}}\) を返す | Core から local detailed balance、heat/work/reservoir 解釈が導かれること |
+| A06/A19 erasure-rank toy | 固定された erasure-rank profile から \(a(E)\log 2\) の exact accounting が出る | 低次 dependency proxy の empirical support、final-rank oracle を使った予測勝利 |
+| Foster-Lyapunov sign bridge | \(b=\phi_{t+1}-\phi_t\)、negative expected \(b\) が安定化側、positive expected \(b\) が悪化側であること | positive recurrence、geometric ergodicity、queueing stability theorem 全体 |
+
 
 8. Bernoulli-CSP universality interface の位置
 
