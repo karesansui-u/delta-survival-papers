@@ -211,6 +211,12 @@ Replication discipline:
 - Treat this as global redundancy ordering support, not exact reliability
   superiority.
 
+Recommended next artifact:
+
+```text
+05_evidence/a31_graph_spanning_tree_persistence/replication_packet_matched_residual_v1_plan.md
+```
+
 
 7. Artifact Policy
 ------------------
@@ -244,15 +250,18 @@ This plan does not claim:
 - exact accounting anchors are prediction support.
 
 
-9. Immediate Next Step
-----------------------
+9. Current Packet Status And Next Step
+--------------------------------------
 
-The next concrete step should be:
+First-round internal rerun packet plans now cover:
 
 ```text
-create A06/A19 replication_packet_v0_plan.md
+05_evidence/a06_a19_coding_channel_recovery/replication_packet_v0_plan.md
+05_evidence/a12_st_cut_spectrum_reliability/replication_packet_v0b_v0c_plan.md
+05_evidence/a31_graph_spanning_tree_persistence/replication_packet_matched_residual_v1_plan.md
 ```
 
-That plan should specify the minimal rerun command, expected outputs, artifact
-bundle policy, and mismatch reporting rules for the supported A06/A19 v0
-package.
+The next concrete step is to choose one package for an actual local clean
+rerun or outside-rerun handoff. The recommended order remains A06/A19 first,
+then A12, then A31, because A06/A19 is the strongest information-theory-facing
+non-CSP support package and already has a Lean exact-accounting anchor.

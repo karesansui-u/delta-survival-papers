@@ -73,6 +73,7 @@ Matched residual v1:
 - freeze manifest: `freeze_manifest_matched_residual_v1.md`
 - primary output: `primary_matched_residual_v1/`
 - result summary: `primary_matched_residual_v1_result_summary.md`
+- replication packet plan: `replication_packet_matched_residual_v1_plan.md`
 - decision: `support`
 - purpose: test whether `log_tau` has residual value inside graph-state groups
   matched on B1-style local robustness features.
