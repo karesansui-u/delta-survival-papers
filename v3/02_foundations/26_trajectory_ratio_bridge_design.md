@@ -244,12 +244,27 @@ v3 design が主張することは、より限定されている。
      \]
      として定義され、\(R=0\) は別仮定である
 
-現時点で Lean に入っているのは v3-a, v3-b, v3-c の最小版である。v3-b は、二つの有限状態 Markov data から
+4. **v3-d: local detailed-balance reading**
+   - same path \(\gamma\) 上に system-boundary term \(S_{\mathrm{sys}}(\gamma)\) と medium term \(S_{\mathrm{med}}(\gamma)\) を並べる
+   - equality ではなく
+     \[
+     R_{\mathrm{ldb}}(\gamma)=\sigma(\gamma)-\{S_{\mathrm{sys}}(\gamma)+S_{\mathrm{med}}(\gamma)\}
+     \]
+     を residual として保持する
+   - Lean status: `Survival.FinitePathLocalDetailedBalanceBridge` で最小 system/medium residual coupling を実装済み
+   - 注意: local detailed balance は証明されるのではなく、`HasExactLocalDetailedBalanceReading` として別仮定にする
+
+現時点で Lean に入っているのは v3-a, v3-b, v3-c, v3-d の最小版である。v3-b は、二つの有限状態 Markov data から
 forward / reverse path PMF を作り、deterministic time reversal で v3-a の finite identity に接続する。
 ただし、reverse Markov data が物理的 reverse protocol であること、local detailed balance、heat/work/reservoir
 解釈はまだ入っていない。v3-c は、structural observable \(B_N(\gamma)\) と housekeeping cost
 \(C_N(\gamma)\) を同じ path 上に並べ、trajectory ratio との差を residual \(R_N(\gamma)\) として保持する。
 したがって、\(B+C=\sigma\) はデフォルトの theorem ではなく、zero residual 仮定の下でのみ得られる。
+v3-d は、stochastic thermodynamics 側の system / medium split について同じ安全策をとる。すなわち、
+\[
+\sigma(\gamma)=S_{\mathrm{sys}}(\gamma)+S_{\mathrm{med}}(\gamma)
+\]
+はデフォルトではなく、local-detailed-balance residual がゼロである場合に限って得られる。
 
 v3-c の Lean module は次を与える。
 
@@ -263,6 +278,18 @@ v3-c の Lean module は次を与える。
 | `finite_integral_structural_residual_identity_of_reverseMassCoverage` | residual を含めた \(\sum P e^{-(B+C+R)}=1\) |
 | `finite_integral_structural_total_identity_of_zeroResidual` | coverage と \(R=0\) の下で \(\sum P e^{-(B+C)}=1\) |
 
+v3-d の Lean module は次を与える。
+
+| Lean theorem / definition | 内容 |
+|---|---|
+| `SystemMediumEntropyData` | forward support 上の system-boundary term と medium term を別データとして持つ |
+| `localDetailedBalanceResidual` | \(R_{\mathrm{ldb}}=\sigma-(S_{\mathrm{sys}}+S_{\mathrm{med}})\) |
+| `HasExactLocalDetailedBalanceReading` | \(R_{\mathrm{ldb}}=0\) を明示仮定として表す |
+| `totalEntropyProduction_add_residual_eq_trajectoryRatio` | \(S_{\mathrm{sys}}+S_{\mathrm{med}}+R_{\mathrm{ldb}}=\sigma\) の定義的分解 |
+| `trajectoryRatio_eq_totalEntropyProduction_of_exactReading` | exact reading の下で \(\sigma=S_{\mathrm{sys}}+S_{\mathrm{med}}\) |
+| `finite_integral_system_medium_residual_identity_of_reverseMassCoverage` | residual を含めた \(\sum P e^{-(S_{\mathrm{sys}}+S_{\mathrm{med}}+R_{\mathrm{ldb}})}=1\) |
+| `finite_integral_totalEntropy_identity_of_exactReading` | coverage と exact reading の下で \(\sum P e^{-(S_{\mathrm{sys}}+S_{\mathrm{med}})}=1\) |
+
 
 8. 結論
 
@@ -270,4 +297,4 @@ trajectory-ratio bridge は、NESS analogy の中で初めて stochastic thermod
 
 本補論の結論は単純である。
 
-Core の \(B_n\) は構造会計であり、path probability ratio ではない。trajectory-level entropy production を扱うには、forward / reverse path measure、reversal map、support 条件を追加で固定する必要がある。その追加構造の上でなら、有限 path-ratio identity から始めることができる。Lean v3-a は、この最小 identity を機械検証したものであり、Lean v3-b はそれを有限状態 Markov path PMF に特殊化したものである。Lean v3-c は、同じ path 上に structural observable と cost observable を置き、trajectory ratio との差を residual として明示化することで、Core の \(B_n\) と \(\sigma\) の同一視を避けたまま correspondence を検討する足場を与える。
+Core の \(B_n\) は構造会計であり、path probability ratio ではない。trajectory-level entropy production を扱うには、forward / reverse path measure、reversal map、support 条件を追加で固定する必要がある。その追加構造の上でなら、有限 path-ratio identity から始めることができる。Lean v3-a は、この最小 identity を機械検証したものであり、Lean v3-b はそれを有限状態 Markov path PMF に特殊化したものである。Lean v3-c は、同じ path 上に structural observable と cost observable を置き、trajectory ratio との差を residual として明示化することで、Core の \(B_n\) と \(\sigma\) の同一視を避けたまま correspondence を検討する足場を与える。Lean v3-d は、local detailed balance 風の system / medium split にも同じ残差規律を課し、物理的 entropy-production reading は追加仮定の下でのみ得られることを形式化する。

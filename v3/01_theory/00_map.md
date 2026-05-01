@@ -74,7 +74,7 @@ Hard Evidence Snapshot
 8. 必要な domain profile
 9. 必要に応じて `04_operations/`, `02_foundations/`, `05_evidence/`
 
-この順序は、読者の認知負荷を下げるための順序である。Core Paper は Paper 1 / Paper 2 を外部読者向けに一つの導線として読むための統合短論文であり、分冊版の置き換えではない。論理依存そのものは、Paper 1 -> Paper 2 を主線とし、条件つき導出補論、集合値力学補論、定常総生成量補論、定常 current 補論がその背後の技術条件を支える。trajectory-ratio bridge 補論は、stochastic thermodynamics 側の path-ratio 構造に進む前の追加仮定を固定し、有限 path-ratio identity、その有限状態 Markov path specialization、structural observable residual coupling を Lean 上で閉じた bridge である。
+この順序は、読者の認知負荷を下げるための順序である。Core Paper は Paper 1 / Paper 2 を外部読者向けに一つの導線として読むための統合短論文であり、分冊版の置き換えではない。論理依存そのものは、Paper 1 -> Paper 2 を主線とし、条件つき導出補論、集合値力学補論、定常総生成量補論、定常 current 補論がその背後の技術条件を支える。trajectory-ratio bridge 補論は、stochastic thermodynamics 側の path-ratio 構造に進む前の追加仮定を固定し、有限 path-ratio identity、その有限状態 Markov path specialization、structural observable residual coupling、local detailed-balance reading を Lean 上で閉じた bridge である。
 
 
 4. 論理依存順

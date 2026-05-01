@@ -931,6 +931,60 @@ R(\gamma)=\sigma(\gamma)-(B(\gamma)+C(\gamma))
 を返す。これは correspondence の足場であり、Core の \(B_n\) が trajectory-level entropy production であるという
 主張ではない。
 
+18.11. さらに、
+\[
+\texttt{Survival.FinitePathLocalDetailedBalanceBridge}
+\]
+では、local detailed balance 風の system / medium split を、有限 path support 上の追加データとして分離した。
+ここで
+\[
+\texttt{SystemMediumEntropyData}
+\]
+は system-boundary term \(S_{\mathrm{sys}}(\gamma)\) と medium term
+\(S_{\mathrm{med}}(\gamma)\) を持つ。これらは path probability ratio から自動的に導出されるのではなく、
+別に与えられる observable である。
+\[
+\texttt{localDetailedBalanceResidual}
+\]
+は
+\[
+R_{\mathrm{ldb}}(\gamma)
+=\sigma(\gamma)-\{S_{\mathrm{sys}}(\gamma)+S_{\mathrm{med}}(\gamma)\}
+\]
+として定義される。したがって
+\[
+\texttt{totalEntropyProduction\_add\_residual\_eq\_trajectoryRatio}
+\]
+は、\(S_{\mathrm{sys}}+S_{\mathrm{med}}+R_{\mathrm{ldb}}=\sigma\) という定義的分解だけを示す。
+さらに
+\[
+\texttt{trajectoryRatio\_eq\_totalEntropyProduction\_of\_exactReading}
+\]
+は、別仮定
+\[
+\texttt{HasExactLocalDetailedBalanceReading}
+\]
+の下で初めて \(\sigma=S_{\mathrm{sys}}+S_{\mathrm{med}}\) を返す。
+
+有限和 identity についても、coverage と exact reading を分ける。
+\[
+\texttt{finite\_integral\_system\_medium\_residual\_identity\_of\_reverseMassCoverage}
+\]
+は residual を含む
+\[
+\sum P(\gamma)e^{-(S_{\mathrm{sys}}(\gamma)+S_{\mathrm{med}}(\gamma)+R_{\mathrm{ldb}}(\gamma))}=1
+\]
+を示す。一方、
+\[
+\texttt{finite\_integral\_totalEntropy\_identity\_of\_exactReading}
+\]
+は、coverage と exact reading の両方を仮定したときだけ
+\[
+\sum P(\gamma)e^{-(S_{\mathrm{sys}}(\gamma)+S_{\mathrm{med}}(\gamma))}=1
+\]
+を返す。これは local detailed balance の物理的成立を証明するものではなく、その成立を仮定した場合に
+finite path-ratio identity を entropy-production notation で読める、という bridge である。
+
 19. さらに、
 \[
 \texttt{Survival.FiniteStateMarkovErgodicProduction}
