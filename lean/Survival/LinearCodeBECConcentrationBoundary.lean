@@ -116,7 +116,12 @@ theorem failureProb_le_tail_add_rankFailure
       (fun ω => ¬ withinRowSlack erasureCount rows slack ω) rankFailure)
 
 /-- Achievability-side finite BEC envelope: erasure-count concentration plus a
-rank-failure row-slack envelope gives a total failure bound. -/
+rank-failure row-slack envelope gives a total failure bound.
+
+The `rankFailure` event may be chosen as the rank-failure event restricted to
+the row-slack region, or as any separately fixed event whose probability already
+has the stated envelope.  This theorem only combines the two envelopes by a
+union bound. -/
 theorem failureProb_le_tailBound_add_rankBound
     (P : PMF Ω) (failure rankFailure : Ω → Prop)
     [DecidablePred failure] [DecidablePred rankFailure]
