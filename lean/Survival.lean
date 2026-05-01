@@ -116,6 +116,7 @@ import Survival.FiniteStateMarkovTrajectoryRatioBridge
 import Survival.FinitePathStructuralObservableBridge
 import Survival.FinitePathLocalDetailedBalanceBridge
 import Survival.LinearCodeErasureAccountingToy
+import Survival.LinearCodeBECRankBoundary
 import Survival.FiniteCSPFirstMomentCollapseBound
 import Survival.FosterLyapunovSignBridge
 import Survival.FiniteStateMarkovMeanBridge

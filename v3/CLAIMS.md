@@ -70,10 +70,11 @@ against an independently stated endpoint or boundary. It is not empirical
 support by itself.
 
 Current examples include finite CSP first-moment collapse, BEC erasure-rank
-unique recovery, A12 cutset reliability embedding, A31 spanning-tree accounting,
-stationary-current and trajectory-ratio guardrails, and Foster-Lyapunov sign
-bridges. These anchors strengthen the vocabulary and the boundary discipline.
-They do not replace frozen prediction packages.
+unique recovery and finite row-budget converse, A12 cutset reliability
+embedding, A31 spanning-tree accounting, stationary-current and trajectory-ratio
+guardrails, and Foster-Lyapunov sign bridges. These anchors strengthen the
+vocabulary and the boundary discipline. They do not replace frozen prediction
+packages.
 
 For existing theories, v3 claims only the mapped part. For example, a rank
 accounting bridge does not prove Shannon capacity, a path-ratio identity does

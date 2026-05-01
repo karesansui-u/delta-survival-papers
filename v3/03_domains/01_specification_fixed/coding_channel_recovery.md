@@ -78,6 +78,13 @@ message-cell ratio \(2^{-a(E)}\), and proves that the exact loss is
 \(a(E)\log 2\). This is not a formalization of the empirical
 \(\log(1+H_{\mathrm{dep},r})\) proxy and not a proof of prediction support.
 
+Lean module `Survival.LinearCodeBECRankBoundary` records the finite deterministic
+row-budget converse: if the erasure count exceeds the parity-check row count
+\(r\), then \(H_E\) cannot have full column rank, \(a(E)>0\), exact loss is
+positive, and unique recovery is impossible. This is an arbitrary fixed-code
+linear-algebra boundary. It is not a random-code achievability theorem and not a
+Shannon-capacity proof.
+
 
 3. Low-Order Dependency Coordinate
 ----------------------------------
