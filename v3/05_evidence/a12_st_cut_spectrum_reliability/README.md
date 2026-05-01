@@ -50,3 +50,9 @@ Governance note:
 - future successor packages may introduce a separately hashed evaluator with
   explicit primary status fields, but existing frozen script hashes are left
   unchanged.
+
+Replication packet:
+
+- `replication_packet_v0b_v0c_plan.md` defines the rerun-ready packet plan for
+  the supported kappa=2 and kappa=3 surfaces, including hash-drift handling for
+  the evolved generator.
