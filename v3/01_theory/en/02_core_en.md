@@ -25,6 +25,8 @@ This paper is the integrated reading path for the main theoretical spine.
 
 This paper is therefore not a replacement for the companion papers. It is the shortest public path through them.
 
+This table describes the current internal document structure. For public presentation, this Core paper, the minimal form, the balance principle, and the main specification-fixed anchors may be bundled as a first public paper. The estimation layer, frozen validation, support / no-support ledger, and real-domain observation or estimation indicators are cleaner as a second public paper because they rely on a different kind of evidence.
+
 Paper 1 is not merely "obvious." It fixes the structural maintenance feasible region supporting the maintenance condition \(G\). It then shows that, if shrinkage is measured by a scale that composes additively over chained survival ratios, the log-ratio scale is unique. It also explains why post-hoc choices of the feasible set or ruler \(m\) would make the formalism empty.
 
 2. The question
@@ -148,6 +150,16 @@ b_t=d_t-r_t
 -\log\frac{m(V^{(t+1)})}{m(V^{(t)})}.
 \]
 
+This reading is visible even in a small finite example. Suppose \(m(V^{(t)})=100\), damage reduces the mass to \(m(V_t^-)=40\), and repair raises it to \(m(V^{(t+1)})=80\). Then
+\[
+d_t=\log\frac{100}{40},
+\qquad
+r_t=\log\frac{80}{40},
+\qquad
+b_t=\log\frac{100}{80}.
+\]
+If repair fully restores the original feasible region, then \(b_t=0\). If it improves the feasible region beyond the original reference, then \(b_t<0\). Recovery here is not a subjective judgment that things have become better; it is re-expansion of the feasible region measured by the same ruler.
+
 The intermediate set cancels in the log-ratio accounting. This cancellation is an accounting identity for a given start point, intermediate point, and endpoint. It is not a claim that the physical order of consumption and recovery never matters. If changing the order changes the endpoint \(V^{(t+1)}\), then \(b_t\) changes as well. What is order-invariant here is the log-ratio reading, not the underlying dynamics.
 
 If reconfiguration changes the target structural condition itself, the old and new structures may not be directly comparable with the same ruler. In that case, a common map or common embedding must be fixed in advance before the two structures are read in the same coordinate.
@@ -220,7 +232,7 @@ The second distinction concerns observability, operationalization, and claim str
 | Main classification | Reading |
 |---|---|
 | Specification-fixed layer | The maintenance condition \(G\), the state/action/path targets being counted, feasible region \(V_G\), ruler \(m\), update sequence, boundary, and time horizon can be fixed directly from the specification |
-| Inference layer | \(V_G\) and \(m\) are not directly counted; observation or inference indicators are frozen and tested |
+| Estimation layer | \(V_G\) and \(m\) are not directly counted; observation or estimation indicators are frozen and tested |
 
 These are not different theories, and they are not fixed labels for domains. They classify claim packages or validation packages, not whole domains. The difference is how directly \(V,m,d_t,r_t\) can be specified and how explicitly the effective maintenance surplus \(M\) can be read as a resource-side quantity.
 
@@ -242,7 +254,7 @@ The formulas \(S=Me^{-L}\) and \(S=Me^{-B}\) should be read as structural persis
 
 In specification-fixed models, this set-valued kernel can also connect to operational endpoints. For finite CSPs, a first-moment loss fixed by the exposure model gives a one-sided collapse bound on non-emptiness, and a controlled second-moment ratio gives a one-sided survival bound. For BEC binary linear codes, the erasure-rank loss \(a(E)\log 2\) reads the unique-recovery boundary exactly, and erasing more coordinates than parity-check rows gives a finite converse to unique recovery. On the random parity-check side, once a failure-probability envelope is fixed, row slack bounds full-rank failure by \(2^{-s}\). On the BEC erasure-count side, once a concentration envelope is fixed, its tail combines with rank failure to bound recovery failure. Together these yield a finite achievability/converse-style bound bundle, but not the BEC capacity theorem itself. These are theorem-side anchors, not empirical support claims: they show that \(L\) can connect to independently defined collapse or recovery endpoints.
 
-In the inference layer, observation and inference indicators such as \(\hat L\), \(\hat B\), contradiction, dependency breakage, or contract coherence are candidate readouts of the law-side coordinates, not the coordinates themselves. Strong or incremental support is assigned only after freezing the mapping, indicators, split, metric, and domain baseline, and only if the model with structural-persistence indicators improves over the domain baseline on unused data. Failed mappings are recorded as no-support, and unmeasurable cases as silence.
+In the estimation layer, observation and estimation indicators such as \(\hat L\), \(\hat B\), contradiction, dependency breakage, or contract coherence are candidate readouts of the law-side coordinates, not the coordinates themselves. Strong or incremental support is assigned only after freezing the mapping, indicators, split, metric, and domain baseline, and only if the model with structural-persistence indicators improves over the domain baseline on unused data. Failed mappings are recorded as no-support, and unmeasurable cases as silence.
 
 The existing-theory connection attribute is, more strictly, a conditional structural embedding. It is not an intermediate strength level between the two observability layers. It is a lateral bridge: existing drift, difference, hitting-bound, and stability conditions are mapped conditionally into vocabulary such as \(d_t,r_t,b_t,B_n\).
 
@@ -279,7 +291,7 @@ The current evidence and theorem-side anchors should be read by strength.
 - **Hardest current initial empirical evidence**: the strongest empirical footing lies in the specification-fixed layer. Mixed-CSP and q-coloring each have frozen empirical packages with three outside rerunners reproducing decision-relevant outputs. Mixed-CSP has 12,000 primary rows per returned run, 0 checked core mismatches, and reproduced support flags. q-coloring has 4,000 primary rows per returned run, 0 checked core mismatches, TIMEOUT = 0, MALFORMED = 0, and the qualitative support decision reproduced. This is not a proof of the whole theory, but it is the strongest current package-scoped outside-rerun support for the law-side candidate.
 - **Specification-fixed finite-network support**: finite \(s\)-\(t\) cut-spectrum reliability tests whether the pre-fixed low-order cut-spectrum pressure \(\log(1+H_{\mathrm{cut},2})\) adds predictive value to a natural graph baseline under fixed finite graphs, terminals, independent edge failures, and a fixed collapse boundary. Two frozen finite generation surfaces passed their primary gates, with relative log-loss improvements of 1.66% and 2.09% and paired graph-id bootstrap positive rate 1.0 in both packages. This is additional specification-fixed finite-network support outside CSP; it is not support for arbitrary graph families, real networks, exact reliability superiority, spanning-tree persistence, or the \(M\)-side term.
 - **Specification-fixed finite coding-channel support**: finite BEC linear-code recovery tests whether the pre-fixed low-order parity-check column-dependency pressure \(\log(1+H_{\mathrm{dep},4})\) adds predictive value to a natural coding baseline under fixed binary linear codes, a BEC erasure law, and the rank-defined unique-recovery boundary. In the main frozen package, the rank accounting audit and label/sample audit passed on 240 codes, 960 code/\(q\) rows, and 245,760 erasure samples. Relative log-loss improvement was 2.11%, with paired code-id bootstrap positive rate 1.0. This is specification-fixed support on the finite BEC sparse parity-check surface; it is not Shannon-capacity theorem support, arbitrary-code support, non-BEC support, final-rank oracle support, exact failure-probability superiority, or \(M\)-side validation.
-- **Auxiliary and exploratory evidence**: in the inference layer, LLM reasoning, continual learning, and software diagnostics provide evidence through frozen observation and inference indicators. The question there is whether the indicators add information beyond the domain baseline, not whether the true \(V,m,L,B\) have been directly counted.
+- **Auxiliary and exploratory evidence**: in the estimation layer, LLM reasoning, continual learning, and software diagnostics provide evidence through frozen observation and estimation indicators. The question there is whether the indicators add information beyond the domain baseline, not whether the true \(V,m,L,B\) have been directly counted.
 - **Existing-theory connection attribute**: Foster-Lyapunov / queueing, Repair-Maintenance, reliability, and decay systems contain claim packages that map existing drift, difference, and boundary arguments into the structural-persistence vocabulary. This is an attribute of those claims, not a third observability layer, and it is not a new empirical win.
 - **Evidence ledger**: Backblaze, C-MAPSS, Scania, Oxford battery, and the M-flow network testbed belong to the ledger of support, weakening, and no-support. They are recorded to preserve where the framework works, weakens, or fails.
 
@@ -293,7 +305,7 @@ First, the theory separates the support side from the shrinkage side. The famili
 
 Second, \(L\) and \(B\) provide candidate common coordinates for structural consumption and recovery across domains. They are dimensionless log-ratios, readable in natural-log units when \(k=1\). This unit convention alone does not justify cross-domain comparison. Comparison becomes meaningful only under pre-fixed maps specifying \(V\), the ruler \(m\), the observation unit, and the boundary in each domain.
 
-Third, the framework separates where law-side claims are made from where observation or inference indicators are tested. The specification-fixed layer can support law-side claims. The inference layer tests whether frozen indicators add predictive information beyond the domain baseline. Existing-theory connection is recorded as a claim-level attribute when existing theories are mapped to the same vocabulary. This separation keeps support, no-support, and silence distinct.
+Third, the framework separates where law-side claims are made from where observation or estimation indicators are tested. The specification-fixed layer can support law-side claims. The estimation layer tests whether frozen indicators add predictive information beyond the domain baseline. Existing-theory connection is recorded as a claim-level attribute when existing theories are mapped to the same vocabulary. This separation keeps support, no-support, and silence distinct.
 
 Fourth, the empirical question is not whether structural-persistence indicators are always the strongest standalone model. Many domains already have strong domain baselines. The central test is whether
 \[
@@ -307,11 +319,11 @@ Fifth, the coordinate gives a language for design transfer. Localization of cons
 
 This paper does not reproduce the full procedure for mapping structural persistence into a concrete domain. The detailed procedure is kept in the v3 operations files: the standard mapping procedure, operational discipline, support levels, and failure ledger. Here we state only the minimal discipline needed to read this core paper.
 
-The theory separates mapping discovery from validation. A structural condition, ruler, observation or inference indicator, or recovery indicator found during exploration is not support by itself. Support is assigned only after the structural condition, mapping, indicators, baseline, metric, data split, and decision rule have been frozen, and only if the frozen rule succeeds on unused data, a future surface, a fresh archive, or an outside rerun.
+The theory separates mapping discovery from validation. A structural condition, ruler, observation or estimation indicator, or recovery indicator found during exploration is not support by itself. Support is assigned only after the structural condition, mapping, indicators, baseline, metric, data split, and decision rule have been frozen, and only if the frozen rule succeeds on unused data, a future surface, a fresh archive, or an outside rerun.
 
 If coarse-graining, reconfiguration, or action order can change the readout of endpoints or boundaries, the observation unit, common map, embedding, and decision boundary are also part of what must be frozen.
 
-In the specification-fixed layer, one first fixes the substrate or state space \(X\), the maintenance condition \(G\), the state/action/path targets being counted, the feasible region \(V_G\), the ruler \(m\), the observation unit, the time horizon, and the structural-maintenance boundary. In the inference layer, one does not claim to directly count the true \(V,m,L,B\); one tests whether frozen observation or inference indicators add information beyond the domain baseline. Existing-theory connection is recorded as an attribute of a claim package when existing differences, drifts, stopping boundaries, or stability conditions are mapped into the \(L\) and \(B\) vocabulary.
+In the specification-fixed layer, one first fixes the substrate or state space \(X\), the maintenance condition \(G\), the state/action/path targets being counted, the feasible region \(V_G\), the ruler \(m\), the observation unit, the time horizon, and the structural-maintenance boundary. In the estimation layer, one does not claim to directly count the true \(V,m,L,B\); one tests whether frozen observation or estimation indicators add information beyond the domain baseline. Existing-theory connection is recorded as an attribute of a claim package when existing differences, drifts, stopping boundaries, or stability conditions are mapped into the \(L\) and \(B\) vocabulary.
 
 A frozen mapping that fails is recorded as no-support. It is not promoted to support by retuning the indicator or boundary on the same data. Failures are kept as a ledger of where a mapping failed and where the theory should remain silent.
 
