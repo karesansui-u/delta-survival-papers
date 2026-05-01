@@ -36,4 +36,5 @@ Primary v0:
 - run directory: `primary_v0/`
 - result summary: `primary_v0_result_summary.md`
 - governance summary: `primary_v0/governance_summary.json`
+- replication packet plan: `replication_packet_v0_plan.md`
 - decision: support
