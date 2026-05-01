@@ -267,9 +267,9 @@ The core Lean-covered parts are, roughly:
 3. the fact that registered limited classes such as Bernoulli-CSP, Foster-Lyapunov / queueing, and Repair-Maintenance satisfy a common unifying interface.
 4. small specification-fixed operational anchors: the finite-PMF first-moment collapse bound \(\Pr[Z>0]\le\mathbb E[Z]\) and the BEC erasure-rank accounting identity \(L_E=a(E)\log 2\).
 
-Lean does not by itself prove that every domain has a natural feasible region \(V\), ruler \(m\), or observation unit. It also does not prove that structurally inferred indicators approximate the true \(L\) or \(B\), which real resource should be read as \(M\), that an empirical package obtains outside-rerun support, or that a single universal law holds for all systems.
+Lean does not by itself prove that every domain has a natural feasible region \(V\), ruler \(m\), or observation unit. It also does not prove that inference-layer indicators approximate the true \(L\) or \(B\), which real resource should be read as \(M\), that an empirical package obtains outside-rerun support, or that a single universal law holds for all systems.
 
-Thus Lean supports the law-side skeleton. Empirical support and structurally inferred validity are still judged by frozen validation, holdout tests, outside reruns, and the support / no-support / silence discipline.
+Thus Lean supports the law-side skeleton. Empirical support and inference-layer validity are still judged by frozen validation, holdout tests, outside reruns, and the support / no-support / silence discipline.
 
 11. Evidence status
 

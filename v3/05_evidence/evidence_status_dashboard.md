@@ -33,13 +33,13 @@ Primary source ledgers:
 | coding channel | A06/A19 primary v0 | supported | finite BEC sparse parity-check surface; low-order dependency pressure improves natural coding baseline |
 
 
-2. Observational Or Structurally Inferred Anchors
--------------------------------------------------
+2. Inference-Layer And Observational Anchors
+--------------------------------------------
 
 | domain | package | status | scope |
 |---|---|---|---|
 | Backblaze drive reliability | Q3 2025 v2 loss-only | same-domain observational support | fresh untouched archive; calibration-aware loss-only readout passed frozen same-domain rule |
-| LLM reasoning | companion package | observational anchor | structurally inferred reasoning degradation; not theorem-side evidence |
+| LLM reasoning | companion package | observational anchor | inference-layer reasoning degradation; not theorem-side evidence |
 | continual learning | companion package | observational anchor | dependency-aware repair indicators improve selected readouts; not a general continual-learning law |
 | software contract coherence | operational field / bounded benchmark layer | internal operational support | contract-coherence diagnostics; not direct software-collapse evidence |
 
@@ -52,11 +52,12 @@ prediction support unless a separate frozen prediction package passes.
 
 | domain | anchor | status | boundary |
 |---|---|---|---|
+| finite CSP first-moment collapse | pre-fixed \(L_n^{\mathrm{FM}}\) bounds non-emptiness | theorem-side operational anchor | one-sided Markov / first-moment bound; not a sharp threshold or empirical support |
 | A31 graph spanning-tree persistence | \(V(G)=\) spanning trees, \(m(V)=\tau(G)\) | exact specification-fixed accounting anchor | primary_v0 prediction support failed; matched residual v1 is the supported successor |
 | A06/A19 coding-channel recovery | rank-based BEC unique recovery accounting | exact specification-fixed accounting anchor plus supported v0 predictor | support is finite-surface v0 only; not arbitrary-code or Shannon-capacity support |
 | A06-stop stopping-set recovery | exact BEC peeling failure / residual core anchor | exact decoder-specific anchor; v2 prediction no-support | not A06/A19 rank support and not arbitrary decoder support |
-| Foster-Lyapunov / queueing | \(b_t\) as drift / service-arrival balance | conditional embedding | formal bridge, not a new positive-recurrence theorem |
-| non-CSP classical anchors | serial reliability, constant-fraction decay, repair-maintenance balance | coverage / conditional bridge | does not close the non-CSP empirical gate |
+| Foster-Lyapunov / queueing | \(b_t\) as drift / service-arrival balance | existing-theory connection attribute | formal bridge, not a new positive-recurrence theorem |
+| non-CSP classical anchors | serial reliability, constant-fraction decay, repair-maintenance balance | coverage / existing-theory connection attribute | does not close the non-CSP empirical gate |
 
 
 4. No-Support And Invalid-Run Records

@@ -17,8 +17,8 @@ summaries.
 4. When recovery is represented on the same logarithmic scale, the balance kernel is
    \(S = M e^{-B}\), where \(B_n=\sum_{t<n}(d_t-r_t)\).
 5. The same variables can be used as a common coordinate for theorem-side anchors,
-   indicator-based prediction, and conditional embeddings, provided the observability layer
-   is stated explicitly.
+   inference-layer prediction, and existing-theory connection attributes, provided the
+   claim-level classification is stated explicitly.
 
 The familiar resource side is \(M\). The nontrivial addition of this theory is
 not that resources matter, but that resource insufficiency is not the only way a
@@ -55,11 +55,16 @@ The scalar resource-side term \(M\) may be recorded as an effective maintenance
 surplus, but decomposed \(M\)-profiles are not part of the core law-side claim.
 
 The law-side claim belongs first to specification-fixed structural domains. In
-structurally inferred domains, SP features are inferred indicators for the law-side
+inference-layer domains, SP features are inferred indicators for the law-side
 \(L\) or \(B\) coordinates. An inferred indicator should be treated as a stronger
 predictive instrument only when frozen validation shows incremental out-of-sample
 value over the domain baseline; otherwise it remains candidate, no-support,
 weak-axis failure, or silence.
+
+Theorem-side operational anchors are not empirical support by themselves. Finite
+CSP first-moment collapse and BEC erasure-rank unique recovery show that a
+pre-fixed structural coordinate can connect to an independently defined endpoint;
+they do not replace frozen prediction packages.
 
 The strongest current outside-rerun empirical footing is package-scoped and law-side:
 two specification-fixed frozen packages, Mixed-CSP and q-coloring, each have
@@ -67,7 +72,7 @@ two specification-fixed frozen packages, Mixed-CSP and q-coloring, each have
 finite non-CSP specification-fixed support is recorded for scoped A31, A12, and
 A06/A19 packages. These non-CSP results are finite-surface support claims, not
 outside-rerun-level closure and not arbitrary-network, arbitrary-code, Shannon-limit,
-\(M\)-side, or structurally inferred-domain causal evidence.
+\(M\)-side, or inference-layer causal evidence.
 
 
 3. Transfer Claim
@@ -110,7 +115,7 @@ The v3 program does not claim:
 
 - all systems empirically decay exponentially;
 - every domain has a unique natural \(V,m,d_t,r_t,M\);
-- structurally inferred domains have the same evidential strength as specification-fixed
+- inference-layer domains have the same evidential strength as specification-fixed
   domains;
 - indicator success proves a universal law;
 - no-support in one indicator attempt refutes the mathematical kernel;

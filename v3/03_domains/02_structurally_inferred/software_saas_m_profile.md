@@ -5,7 +5,7 @@ domain_id: software_saas_m_profile
 
 domain_name: Software / SaaS optional M-component diagnostic
 
-observability_layer: structurally_inferred
+observability_layer: inference
 
 status: candidate
 
