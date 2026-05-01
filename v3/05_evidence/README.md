@@ -3,6 +3,8 @@ Evidence Ledgers
 
 Evidence is separated from theory claims.
 
+- `evidence_status_dashboard.md`: reader-facing snapshot of supported,
+  observational, no-support, invalid-run, and exact-anchor records.
 - `frozen_packages.tsv`: frozen tests or packages that define a support decision.
 - `outside_reruns.tsv`: independent or outside reruns.
 - `no_support.tsv`: failed frozen tests, weak-axis failures, and silence records.
@@ -11,6 +13,10 @@ Evidence is separated from theory claims.
   no-cut benchmark endpoints.
 - `bounded_benchmarks.tsv`: controlled internal or external benchmark surfaces
   whose endpoint, comparator, validation depth, and support scope are bounded.
+- `cross_domain_failure_lessons.md`: reusable design lessons from invalid,
+  no-support, and below-gate packages across domains.
+- `cross_domain_design_lessons_from_a06_stop.md`: focused lessons from the
+  A06-stop stopping-set package.
 - Software contract-coherence diagnostics evidence is tracked as two layers:
   public OSS field demonstration / maintainer-acceptance evidence, and bounded
   internal benchmark calibration. DeltaLint is the current implementation name.

@@ -1,0 +1,33 @@
+{
+  "audits": {
+    "endpoint_degenerate": false,
+    "label_sample_audit": "passed",
+    "peeling_accounting_audit": "passed",
+    "split_integrity_audit": "passed"
+  },
+  "decision": "no_support",
+  "domain_id": "coding_channel_stopping_set_recovery",
+  "governance_note": "Raw evaluator status keeps the generic smoke harness label; official decision is governed by the frozen manifest, primary result summary, this governance summary, frozen_packages.tsv, and no_support.tsv.",
+  "guardrails": {
+    "hazard_bootstrap_positive_rate": 0.9895,
+    "hazard_relative_log_loss_improvement": 0.005291805681602346,
+    "hazard_guardrail_pass": true,
+    "rankdep_bootstrap_positive_rate": 0.83,
+    "rankdep_relative_log_loss_improvement": 0.0013452546405952437,
+    "rankdep_guardrail_pass": false
+  },
+  "manifest": "05_evidence/a06_stop_coding_channel_stopping_set_recovery/freeze_manifest_v2_orderwise_terms.md",
+  "package_id": "a06_stop_coding_channel_stopping_set_recovery_v2_orderwise_terms",
+  "primary_metric": "code-id grouped binomial log loss",
+  "primary_result": {
+    "B1_degree_SP_stop_orderwise_norm_terms_test_log_loss": 0.5125517028275622,
+    "B1_degree_test_log_loss": 0.5158353988587047,
+    "bootstrap_positive_rate": 0.9925,
+    "primary_gate_passed": false,
+    "relative_log_loss_improvement": 0.0063657826477354264,
+    "test_code_balanced_prevalence": 0.257049560546875
+  },
+  "raw_evaluation_status": "smoke_evaluated_not_evidence",
+  "scope": "finite synthetic BEC sparse parity-check codes with rate 0.50, column-weight 3, n in {24,32}, q in {0.18,0.24,0.30,0.36}; order-wise normalized stopping-set bundle j=2..5",
+  "status": "official_primary_no_support"
+}

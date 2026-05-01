@@ -1,0 +1,43 @@
+{
+  "B1_SP_stop_scalar_test_log_loss": 0.5142016072581437,
+  "B1_test_log_loss": 0.5169736974803354,
+  "bootstrap_positive_rate": 0.728,
+  "bootstrap_replicates": 500,
+  "bootstrap_seed": 12341,
+  "clean_guardrails_would_pass": false,
+  "elapsed_s": 0.4348624580015894,
+  "endpoint_degenerate": false,
+  "hazard_guardrail_bootstrap_positive_rate": 0.728,
+  "hazard_guardrail_relative_log_loss_improvement": 0.0017052056838425293,
+  "label_sample_audit": {
+    "K": 64,
+    "audited_label_rows": 64,
+    "audited_samples": 4096,
+    "peeling_accounting": "failure iff residual core S_infty is nonempty",
+    "rank_accounting_guardrail": "a(E)=|E|-rank_GF2(H_E); failure iff a(E)>0",
+    "status": "passed"
+  },
+  "notes": [
+    "Smoke output is not validation evidence.",
+    "Primary scoring used code-id grouped binomial log loss.",
+    "Peeling residual is used for label/accounting audit, not as a prediction feature."
+  ],
+  "primary_model": "B1_SP_stop_scalar",
+  "rankdep_guardrail_bootstrap_positive_rate": 0.728,
+  "rankdep_guardrail_relative_log_loss_improvement": 0.0017915587594013842,
+  "relative_log_loss_improvement": 0.005362149439521841,
+  "smoke_support_rule_would_pass": false,
+  "split_integrity_audit": {
+    "code_count_by_split": {
+      "test": 2,
+      "train": 12,
+      "validation": 2
+    },
+    "feature_row_count": 64,
+    "label_row_count": 64,
+    "sample_row_count": 4096,
+    "status": "passed"
+  },
+  "status": "smoke_evaluated_not_evidence",
+  "test_code_balanced_prevalence": 0.265625
+}

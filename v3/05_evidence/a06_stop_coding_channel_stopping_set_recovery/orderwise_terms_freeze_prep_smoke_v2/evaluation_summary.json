@@ -1,0 +1,54 @@
+{
+  "bootstrap_positive_rate": 0.999,
+  "bootstrap_replicates": 1000,
+  "bootstrap_seed": 15341,
+  "clean_guardrails_would_pass": false,
+  "elapsed_s": 5.070329292000679,
+  "endpoint_degenerate": false,
+  "hazard_baseline": "B1_degree_hazard",
+  "hazard_baseline_test_log_loss": 0.505468640559161,
+  "hazard_guardrail_bootstrap_positive_rate": 1.0,
+  "hazard_guardrail_relative_log_loss_improvement": 0.00945310409487331,
+  "hazard_model": "B1_degree_hazard_SP_stop_orderwise_norm_terms",
+  "hazard_model_test_log_loss": 0.5006903928832611,
+  "label_sample_audit": {
+    "K": 128,
+    "audited_label_rows": 320,
+    "audited_samples": 40960,
+    "peeling_accounting": "failure iff residual core S_infty is nonempty",
+    "rank_accounting_guardrail": "a(E)=|E|-rank_GF2(H_E); failure iff a(E)>0",
+    "status": "passed"
+  },
+  "notes": [
+    "Smoke output is not validation evidence.",
+    "Primary scoring used code-id grouped binomial log loss.",
+    "Peeling residual is used for label/accounting audit, not as a prediction feature."
+  ],
+  "primary_baseline": "B1_degree",
+  "primary_baseline_test_log_loss": 0.5097949732191456,
+  "primary_model": "B1_degree_SP_stop_orderwise_norm_terms",
+  "primary_model_test_log_loss": 0.5041867679825616,
+  "primary_smoke_gate_would_pass": true,
+  "rankdep_baseline": "B1_degree_rankdep",
+  "rankdep_baseline_test_log_loss": 0.5033376799757282,
+  "rankdep_guardrail_bootstrap_positive_rate": 0.804,
+  "rankdep_guardrail_relative_log_loss_improvement": 0.0026535862301461963,
+  "rankdep_model": "B1_degree_rankdep_SP_stop_orderwise_norm_terms",
+  "rankdep_model_test_log_loss": 0.5020020300390309,
+  "relative_log_loss_improvement": 0.011000903365465725,
+  "smoke_support_rule_name_note": "Legacy alias for primary_smoke_gate_would_pass; guardrails are reported separately and are not included in this value.",
+  "smoke_support_rule_would_pass": true,
+  "split_integrity_audit": {
+    "code_count_by_split": {
+      "test": 16,
+      "train": 48,
+      "validation": 16
+    },
+    "feature_row_count": 320,
+    "label_row_count": 320,
+    "sample_row_count": 40960,
+    "status": "passed"
+  },
+  "status": "smoke_evaluated_not_evidence",
+  "test_code_balanced_prevalence": 0.2518310546875
+}

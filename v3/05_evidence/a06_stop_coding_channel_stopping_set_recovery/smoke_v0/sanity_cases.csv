@@ -1,0 +1,4 @@
+case,passed
+identity_singletons_not_stopping,True
+triangle_all_three_stopping,True
+parallel_pair_stopping,True

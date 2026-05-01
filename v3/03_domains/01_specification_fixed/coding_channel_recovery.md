@@ -7,7 +7,7 @@ domain_name: Coding-channel recovery / finite BEC linear-code reliability
 
 observability_layer: specification_fixed
 
-status: supported_v0
+status: supported_v0; invalid_run_v1_rate625_cw4; no_support_v1b_rate625_cw3
 
 
 1. Maintenance Target
@@ -46,6 +46,16 @@ of distinguishable message cells has been reduced by the factor
 
 \[
 2^{-a(E)}.
+\]
+
+To align this domain with the Core set-valued kernel, \(V_E\) is not the
+set of compatible codewords. Compatible codewords expand under erasure. The
+shrinking object is the distinguishable message-cell mass. With \(V_0\) the
+initial fully distinguishable message-cell mass, the specification-fixed
+readout is
+
+\[
+\frac{m(V_E)}{m(V_0)} = 2^{-a(E)}.
 \]
 
 Thus the exact loss coordinate is
@@ -182,3 +192,34 @@ The package established that:
 This is finite synthetic coding-channel support. It is not Shannon-capacity
 theorem support, arbitrary-code support, non-BEC support, exact
 failure-probability superiority, or \(M\)-side validation.
+
+
+Successor packages:
+
+```text
+v1_rate625_cw4: invalid_run_generation_infeasible
+v1b_rate625_cw3: no_support
+```
+
+The rate-0.625 / column-weight-4 successor surface was invalid before outcome
+evaluation. With a fixed even column weight, every parity-check column lies in
+the even-parity subspace of \(\mathbb F_2^r\), so the generator could not
+produce full row-rank parity-check matrices. This is recorded as an invalid
+generation surface, not no-support for the dependency-pressure coordinate.
+
+The independently seeded rate-0.625 / column-weight-3 successor package ran
+to completion. The scalar dependency coordinate was directionally positive,
+but the relative log-loss improvement was 0.8524 percent, below the frozen
+1 percent support gate:
+
+```text
+B1 test log loss:             0.5320604873602987
+B1 + SP scalar test log loss: 0.5275253598451052
+relative improvement:         0.008523706651650663
+bootstrap positive rate:      1.0
+decision:                     no_support
+```
+
+This successor result limits the immediate scope of the v0 support. It does
+not invalidate the exact rank-accounting anchor, and it does not erase the
+supported v0 surface.

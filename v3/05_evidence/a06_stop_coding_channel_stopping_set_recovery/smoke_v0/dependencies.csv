@@ -1,0 +1,17 @@
+code_id,dependency_subset_tests,dependency_count_status,min_dependency_order,N_dep_2,N_dep_3,N_dep_4
+code_n24_k12_cw3_000,12926,exact,4,0,0,9
+code_n24_k12_cw3_001,12926,exact,2,1,22,243
+code_n24_k12_cw3_002,12926,exact,4,0,0,14
+code_n24_k12_cw3_003,12926,exact,2,1,22,246
+code_n24_k12_cw3_004,12926,exact,4,0,0,7
+code_n24_k12_cw3_005,12926,exact,2,1,22,238
+code_n24_k12_cw3_006,12926,exact,2,2,44,470
+code_n24_k12_cw3_007,12926,exact,4,0,0,14
+code_n32_k16_cw3_000,41416,exact,2,1,30,437
+code_n32_k16_cw3_001,41416,exact,2,1,30,441
+code_n32_k16_cw3_002,41416,exact,4,0,0,6
+code_n32_k16_cw3_003,41416,exact,2,1,30,439
+code_n32_k16_cw3_004,41416,exact,4,0,0,8
+code_n32_k16_cw3_005,41416,exact,4,0,0,9
+code_n32_k16_cw3_006,41416,exact,4,0,0,1
+code_n32_k16_cw3_007,41416,exact,2,1,30,444
