@@ -719,6 +719,218 @@ E[\Sigma_n] = s_0 + n\langle \pi,\phi\rangle
 expectation interface ではなく、actual finite-horizon Markov chain の path-space expectation に
 よって直接実現されることが Lean 上で保証されたことになる。
 
+18.6. さらに、
+\[
+\texttt{Survival.FiniteStateMarkovHousekeepingBridge}
+\]
+では、NESS analogy に入る前の guardrail として、stationary start における状態ポテンシャル差の
+期待値が 0 になることを切り出した。任意の状態ポテンシャル \(\phi\) に対して、
+\[
+\texttt{stationary\_expected\_netChange\_eq\_zero}
+\]
+が示すのは、定常分布の下で一歩の net structural change が平均ゼロになる、という有限状態の
+会計恒等式である。さらに housekeeping / maintenance cost \(C\) を別項として置くと、
+\[
+\texttt{stationary\_expected\_totalProduction\_eq\_cost}
+\]
+により、stationary mean total production は stationary mean cost に一致する。
+\[
+\texttt{stationary\_expected\_totalProduction\_nonneg},
+\qquad
+\texttt{positive\_housekeeping\_of\_positive\_cost}
+\]
+は、cost が非負なら stationary mean total production も非負であり、cost の定常平均が正なら
+total production の定常平均も正であることを示す。これは NESS theorem ではなく、Core の
+\(b_t\) と housekeeping entropy production 風の cost \(C_t\) を混同しないための
+stationary total-production bridge である。
+
+18.7. さらに、
+\[
+\texttt{Survival.FiniteStateMarkovStationaryCurrent}
+\]
+では、NESS analogy の次段階として stationary current を finite-state Markov chain 上で切り出した。
+ここで定義される
+\[
+\texttt{stationaryCurrent}
+\]
+は、stationary pair-flow の反対称成分
+\[
+J(x,y)=\pi(x)K(x,y)-\pi(y)K(y,x)
+\]
+であり、Core の \(b_t\) ではない。
+\[
+\texttt{stationaryCurrent\_antisymm}
+\]
+は \(J(x,y)=-J(y,x)\) を示し、
+\[
+\texttt{detailedBalance\_iff\_current\_eq\_zero}
+\]
+は detailed balance と zero current の同値を示す。また
+\[
+\texttt{detailedBalanceENN\_implies\_stationary}
+\]
+により、underlying probability mass 上の detailed balance は \(\pi K=\pi\) を含意する。
+この module は、定常分布が保たれていても detailed balance が破れて current が残りうるという
+NESS analogy の入口を形式化する。とくに
+\[
+\texttt{stationary\_with\_nonzero\_current\_witness}
+\]
+により、三状態 deterministic cycle と uniform stationary distribution で、stationarity と
+nonzero current が両立する具体例を与える。ただし、path probability ratio、entropy production
+rate、fluctuation theorem はまだ導入していない。
+
+18.8. さらに、
+\[
+\texttt{Survival.FinitePathTrajectoryRatioBridge}
+\]
+では、trajectory-ratio bridge の最小有限版を Lean 上で切り出した。ここでは Core の
+\(B_n\) とは別に、有限 path space 上の forward PMF \(P\)、reverse PMF \(Q\)、reversal map
+\(\theta\) を外部データとして固定する。
+\[
+\texttt{ForwardSupport}
+\]
+は \(P(\gamma)>0\) の support subtype を表し、
+\[
+\texttt{ReversePositiveOnForward}
+\]
+は forward support 上で \(Q(\theta\gamma)>0\) を保証する片側 support guard である。この下で
+\[
+\texttt{trajectoryRatio}
+\]
+を \(\log P(\gamma)-\log Q(\theta\gamma)\) として定義し、
+\[
+\texttt{exp\_neg\_trajectoryRatio\_eq\_ratioWeight}
+\]
+により
+\[
+e^{-\sigma(\gamma)}
+=\frac{Q(\theta\gamma)}{P(\gamma)}
+\]
+の点別恒等式を証明する。さらに
+\[
+\texttt{forward\_weighted\_ratio\_sum\_eq\_reverse\_mass\_along\_forward\_support}
+\]
+は、forward-weighted ratio sum が reversed forward support を走査した reverse mass に一致することを示す。
+ここでいう reverse mass は、\(\theta\) が非単射なら set image 上の質量ではなく multiplicity つきの和である。
+同じ coverage 仮定の下で
+\[
+\texttt{finite\_integral\_ratio\_identity\_of\_reverseMassCoverage}
+\]
+は ratioWeight 版の有限 identity が \(1\) に閉じることを示す。さらに
+\[
+\texttt{finite\_integral\_exp\_neg\_ratio\_identity\_of\_reverseMassCoverage}
+\]
+により、文書上の指数形
+\[
+\sum_{\gamma:P(\gamma)>0}P(\gamma)e^{-\sigma(\gamma)}=1
+\]
+も薄い wrapper theorem として閉じる。
+このとき必要な別仮定が `ReverseMassCoverage` である。
+
+これは stochastic thermodynamics の fluctuation theorem ではない。証明されているのは、明示的に与えた二つの
+有限 path measure に対する有限 ratio identity であり、Core の \(B_n\) と entropy production を
+同一視する theorem は与えていない。
+
+18.9. さらに、
+\[
+\texttt{Survival.FiniteStateMarkovTrajectoryRatioBridge}
+\]
+では、v3-a の有限 path-ratio identity を有限状態 Markov path PMF に特殊化した。ここで定義される
+\[
+\texttt{MarkovData}
+\]
+は初期分布と遷移 kernel を持つだけの明示的 Markov data であり、reverse chain の物理的意味は仮定しない。
+有限長 path space
+\[
+\texttt{Trajectory}
+\]
+と recursive path PMF
+\[
+\texttt{pathPMF}
+\]
+を構成し、deterministic time reversal
+\[
+\texttt{timeReverse}
+\]
+を \(i\mapsto \mathrm{rev}(i)\) によって定義する。
+\[
+\texttt{timeReverse\_involutive},
+\quad
+\texttt{timeReverse\_bijective}
+\]
+により、この reversal が有限 trajectory 上の involution / bijection であることも確認する。
+
+その上で
+\[
+\texttt{MarkovReversePositiveOnForward},
+\quad
+\texttt{MarkovReverseMassCoverage}
+\]
+を、v3-a の support guard / coverage 条件を Markov path PMF に代入したものとして定義し、
+\[
+\texttt{markov\_finite\_integral\_exp\_neg\_ratio\_identity}
+\]
+により、二つの有限状態 Markov data から作った forward / reverse path PMF 上で
+\[
+\sum_{\gamma:P_{\mathrm{fwd}}(\gamma)>0}
+P_{\mathrm{fwd}}(\gamma)e^{-\sigma(\gamma)}=1
+\]
+型の有限 identity を得る。
+
+これは Markov path specialization であって、物理的 reverse protocol の導出ではない。local detailed balance、
+medium entropy、heat/work/reservoir の解釈、および Core の \(B_n\) との分解 theorem はまだ導入していない。
+
+18.10. さらに、
+\[
+\texttt{Survival.FinitePathStructuralObservableBridge}
+\]
+では、同じ有限 path support 上に trajectory ratio と structural observables を並べる v3-c の最小層を追加した。
+ここで
+\[
+\texttt{StructuralObservableData}
+\]
+は、forward support 上の structural net observable \(B(\gamma)\) と housekeeping / maintenance observable
+\(C(\gamma)\) を持つ。これらは path probability ratio とは別データであり、同一視されない。
+\[
+\texttt{trajectoryResidual}
+\]
+は
+\[
+R(\gamma)=\sigma(\gamma)-(B(\gamma)+C(\gamma))
+\]
+として定義される。したがって
+\[
+\texttt{structuralTotal\_add\_residual\_eq\_trajectoryRatio}
+\]
+は、\(B+C+R=\sigma\) という定義的分解だけを示す。さらに
+\[
+\texttt{trajectoryRatio\_eq\_structuralTotal\_of\_zeroResidual}
+\]
+は、別仮定
+\[
+\texttt{HasZeroResidual}
+\]
+の下で初めて \(\sigma=B+C\) を返す。
+
+有限和 identity についても同じ線引きを保つ。
+\[
+\texttt{finite\_integral\_structural\_residual\_identity\_of\_reverseMassCoverage}
+\]
+は、coverage 仮定の下で residual を含む
+\[
+\sum P(\gamma)e^{-(B(\gamma)+C(\gamma)+R(\gamma))}=1
+\]
+を示す。一方、
+\[
+\texttt{finite\_integral\_structural\_total\_identity\_of\_zeroResidual}
+\]
+は、coverage と \(R=0\) の両方を仮定したときだけ
+\[
+\sum P(\gamma)e^{-(B(\gamma)+C(\gamma))}=1
+\]
+を返す。これは correspondence の足場であり、Core の \(B_n\) が trajectory-level entropy production であるという
+主張ではない。
+
 19. さらに、
 \[
 \texttt{Survival.FiniteStateMarkovErgodicProduction}

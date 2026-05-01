@@ -50,7 +50,7 @@ Hard Evidence Snapshot
 | Layer 0: Map / Discipline | 読み順、主張強度、support 判定、沈黙条件を定める | 本補論、補論「構造持続理論の運用規律」、補論「構造持続写像の標準手順」 |
 | Layer 1: Entry | 全体像と外向け主導線を読む | Paper 0 統合版、Core Paper「構造持続の最小核と収支原理」 |
 | Layer 2: Foundation | 回復を明示しない最小核 | Paper 1 最小形式 |
-| Layer 3: Core Extension | 構造消耗量と回復量を含む指数核 | Paper 2 収支原理、条件つき導出補論、集合値力学補論、許容写像補論、収支原理の詳細展開補論 |
+| Layer 3: Core Extension | 構造消耗量と回復量を含む指数核 | Paper 2 収支原理、条件つき導出補論、集合値力学補論、定常総生成量補論、定常 current 補論、trajectory-ratio bridge 補論、許容写像補論、収支原理の詳細展開補論 |
 | Layer 4: Operational Mapping | 現実ドメインへの写像、M（有効維持余力）、設計原理 | 補論「構造持続写像の標準手順」、補論「M（有効維持余力）の操作的定式化」 |
 | Layer 5: Anchors / Bridges | 仕様固定構造レイヤー、構造推定レイヤー、条件付き構造埋め込みレイヤーのアンカー | CSP 補論、計算コスト補論、LLM companions、Foster-Lyapunov 補論、非CSP補論 |
 | Layer 6: Formal Layer | Lean theorem、reader-facing claim、numerical sanity check の対応 | Lean modules, PAPER_MAPPING, NumericalSanityChecks |
@@ -74,7 +74,7 @@ Hard Evidence Snapshot
 8. 必要な domain profile
 9. 必要に応じて `04_operations/`, `02_foundations/`, `05_evidence/`
 
-この順序は、読者の認知負荷を下げるための順序である。Core Paper は Paper 1 / Paper 2 を外部読者向けに一つの導線として読むための統合短論文であり、分冊版の置き換えではない。論理依存そのものは、Paper 1 -> Paper 2 を主線とし、条件つき導出補論と集合値力学補論がその背後の技術条件を支える。
+この順序は、読者の認知負荷を下げるための順序である。Core Paper は Paper 1 / Paper 2 を外部読者向けに一つの導線として読むための統合短論文であり、分冊版の置き換えではない。論理依存そのものは、Paper 1 -> Paper 2 を主線とし、条件つき導出補論、集合値力学補論、定常総生成量補論、定常 current 補論がその背後の技術条件を支える。trajectory-ratio bridge 補論は、stochastic thermodynamics 側の path-ratio 構造に進む前の追加仮定を固定し、有限 path-ratio identity、その有限状態 Markov path specialization、structural observable residual coupling を Lean 上で閉じた bridge である。
 
 
 4. 論理依存順
@@ -86,7 +86,7 @@ Hard Evidence Snapshot
 | 1 | Paper 1 | 構造維持可能集合の縮小、対数比尺度の一意性、空虚化防止条件から S = M exp(-L) を得る |
 | 2 | Paper 2 | S = M exp(-L) を、回復量を含む S = M exp(-B) へ拡張する |
 | 3 | 条件つき導出補論 | どこまでが恒等式で、どこからが弱依存・確率条件に依存するかを分ける |
-| 4 | 集合値力学補論 / 許容写像補論 / 詳細展開補論 | d_t, r_t, b_t, B_n の pathwise kernel、許容写像の階層、応用上の背景を整理する |
+| 4 | 集合値力学補論 / 定常総生成量補論 / 定常 current 補論 / trajectory-ratio bridge 補論 / 許容写像補論 / 詳細展開補論 | d_t, r_t, b_t, B_n の pathwise kernel、定常維持と housekeeping cost の分離、定常 pair-flow と detailed balance の分離、finite path-ratio identity とその追加仮定、許容写像の階層、応用上の背景を整理する |
 | 5 | Lean mapping | 対応する代数核と finite-horizon skeleton が機械検証されている範囲を確認する |
 
 この順序で読むと、構造推定レイヤーの経験的主張や設計原理に入る前に、理論核の範囲を確認できる。
