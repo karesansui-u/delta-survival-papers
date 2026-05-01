@@ -1,25 +1,25 @@
 補論_構造持続理論の構成地図
 構造持続理論の構成地図
-— Architecture Map / 読み順・層・依存関係 —
+— 読み順・層・依存関係 —
 
 要旨
 
-本補論は、構造持続理論の主理論 spine、companion papers、補論群、Lean 形式化、実証アンカーを、一つの構成地図として整理するための文書である。新しい定理、新しい実験、新しい support 判定を追加するものではない。目的は、どの文書がどの層の主張を担い、どの文書をどの順番で読むと誤読が少ないかを明示することである。
+本補論は、構造持続理論の主理論の背骨、関連論文、補論群、Lean 形式化、実証アンカーを、一つの構成地図として整理するための文書である。新しい定理、新しい実験、新しい支持判定を追加するものではない。目的は、どの文書がどの層の主張を担い、どの文書をどの順番で読むと誤読が少ないかを明示することである。
 
 本稿群は、単一の長大な論文ではなく、最小核、回復を含む形式への拡張、条件つき導出、写像手順、M（有効維持余力）の操作化、許容写像、仕様固定構造レイヤー、構造推定レイヤー、条件付き構造埋め込みレイヤー、Lean 形式化を分けて書いている。本補論は、それらの役割、依存関係、主張強度を一つの地図として示す。
 
-v3 では、個別ドメインを本文へ直接増殖させない。ドメインは `03_domains/registry.tsv` と個別 domain profile に登録し、support / no-support / outside rerun / field demonstration / bounded benchmark は `05_evidence/` に記録する。これにより、ドメインが増えても主理論 spine と主張境界が崩れないようにする。
+v3 では、個別ドメインを本文へ直接増殖させない。ドメインは `03_domains/registry.tsv` と個別ドメイン・プロファイルに登録し、支持 / 非支持 / 外部再実行 / 現場受理実例 / 有界ベンチマークは `05_evidence/` に記録する。これにより、ドメインが増えても主理論の背骨と主張境界が崩れないようにする。
 
-Hard Evidence Snapshot
+硬い証拠のスナップショット
 
 現時点で最も硬い経験的入口は、仕様固定構造レイヤーにある二つの凍結済み検証パッケージである。
 
-| package | 外部再実行の状態 | 判定に関わる出力 |
+| パッケージ | 外部再実行の状態 | 判定に関わる出力 |
 |---|---|---|
-| Mixed-CSP | 外部実行者 3 名による 3/3 clean rerun | 各 12,000 primary rows、checked core mismatches 0、support flags reproduced |
-| q-coloring（内部パッケージ名 Exp43c） | 外部実行者 3 名による 3/3 clean rerun | 各 4,000 primary rows、checked core mismatches 0、TIMEOUT 0、MALFORMED 0、qualitative support decision reproduced |
+| Mixed-CSP | 外部実行者 3 名による 3/3 クリーン再実行 | 各 12,000 主要出力行、確認対象の核心項目不一致 0、支持判定フラグ再現 |
+| q-coloring（内部パッケージ名 Exp43c） | 外部実行者 3 名による 3/3 クリーン再実行 | 各 4,000 主要出力行、確認対象の核心項目不一致 0、時間切れ 0、形式不正 0、定性的支持判定再現 |
 
-これは普遍法則の閉包ではない。しかし、仕様固定構造レイヤーにおいて、\(L\) / first-moment 型の法則側座標が raw baseline と比較され、その凍結済み検証パッケージが著者環境外で同じ判定関係出力を返したという意味で、local rerun や単なる手順公開より強い package-scoped replication support である。詳細は [`../05_evidence/outside_reruns.tsv`](../05_evidence/outside_reruns.tsv) と [`../../analysis/g7_route_a_true_outside_replication_summary.md`](../../analysis/g7_route_a_true_outside_replication_summary.md) に置く。
+これは普遍法則の閉包ではない。しかし、仕様固定構造レイヤーにおいて、\(L\) / 一次モーメント型の法則側座標が生の基準モデルと比較され、その凍結済み検証パッケージが著者環境外で同じ判定関係出力を返したという意味で、手元での再実行や単なる手順公開より強い、パッケージ単位の外部再現支持である。詳細は [`../05_evidence/outside_reruns.tsv`](../05_evidence/outside_reruns.tsv) と [`../../analysis/g7_route_a_true_outside_replication_summary.md`](../../analysis/g7_route_a_true_outside_replication_summary.md) に置く。
 
 
 1. この地図が与えるもの
@@ -30,15 +30,15 @@ Hard Evidence Snapshot
 |---|---|
 | 層の地図 | 主理論、操作化、実証アンカー、形式化を分ける |
 | 読み順 | 読者向けの最短導線と、論理依存順を分ける |
-| 主張強度の位置づけ | 仕様固定構造レイヤー / 条件付き構造埋め込みレイヤー / 構造推定レイヤー、G6-a / G6-b / G6-c、support status の混同を避ける |
+| 主張強度の位置づけ | 仕様固定構造レイヤー / 条件付き構造埋め込みレイヤー / 構造推定レイヤー、G6-a / G6-b / G6-c、支持状態の混同を避ける |
 
 本補論が与えないものは、次の三つである。
 
 | 非主張 | 理由 |
 |---|---|
 | 新しい理論核 | 主理論核は Paper 1 / Paper 2 にあり、条件つき導出と集合値力学はそれを支える技術補論である |
-| 新しい経験的 support | 経験的 support は凍結検証、fresh archive、outside rerun で別途定まる |
-| 普遍法則の宣言 | 普遍性の評価は観測可能性レイヤーごとの evidence と外部再現の蓄積に依存する |
+| 新しい経験的支持 | 経験的支持は凍結検証、新規アーカイブ、外部再実行で別途定まる |
+| 普遍法則の宣言 | 普遍性の評価は観測可能性レイヤーごとの証拠と外部再現の蓄積に依存する |
 
 
 2. 七層の構成
@@ -47,17 +47,17 @@ Hard Evidence Snapshot
 
 | レイヤー | 役割 | 主な文書 |
 |---|---|---|
-| Layer 0: Map / Discipline | 読み順、主張強度、support 判定、沈黙条件を定める | 本補論、補論「構造持続理論の運用規律」、補論「構造持続写像の標準手順」 |
-| Layer 1: Entry | 全体像と外向け主導線を読む | Paper 0 統合版、Core Paper「構造持続の最小核と収支原理」 |
-| Layer 2: Foundation | 回復を明示しない最小核 | Paper 1 最小形式 |
-| Layer 3: Core Extension | 構造消耗量と回復量を含む指数核 | Paper 2 収支原理、条件つき導出補論、集合値力学補論、定常総生成量補論、定常 current 補論、trajectory-ratio bridge 補論、許容写像補論、収支原理の詳細展開補論 |
-| Layer 4: Operational Mapping | 現実ドメインへの写像、M（有効維持余力）、設計原理 | 補論「構造持続写像の標準手順」、補論「M（有効維持余力）の操作的定式化」 |
-| Layer 5: Anchors / Bridges | 仕様固定構造レイヤー、構造推定レイヤー、条件付き構造埋め込みレイヤーのアンカー | CSP 補論、計算コスト補論、LLM companions、Foster-Lyapunov 補論、非CSP補論 |
-| Layer 6: Formal Layer | Lean theorem、reader-facing claim、numerical sanity check の対応 | Lean modules, PAPER_MAPPING, NumericalSanityChecks |
+| 第0層: 地図 / 規律 | 読み順、主張強度、支持判定、沈黙条件を定める | 本補論、補論「構造持続理論の運用規律」、補論「構造持続写像の標準手順」 |
+| 第1層: 入口 | 全体像と外向け主導線を読む | Paper 0 統合版、Core 論文「構造持続の最小核と収支原理」 |
+| 第2層: 基礎 | 回復を明示しない最小核 | Paper 1 最小形式 |
+| 第3層: 核の拡張 | 構造消耗量と回復量を含む指数核 | Paper 2 収支原理、条件つき導出補論、集合値力学補論、定常総生成量補論、定常カレント補論、経路確率比の橋渡し補論、許容写像補論、収支原理の詳細展開補論 |
+| 第4層: 操作的写像 | 現実ドメインへの写像、M（有効維持余力）、設計原理 | 補論「構造持続写像の標準手順」、補論「M（有効維持余力）の操作的定式化」 |
+| 第5層: アンカー / 橋渡し | 仕様固定構造レイヤー、構造推定レイヤー、条件付き構造埋め込みレイヤーのアンカー | CSP 補論、計算コスト補論、LLM 関連論文、Foster-Lyapunov 補論、非CSP補論 |
+| 第6層: 形式化層 | Lean で検査した定理、読者向け主張、数値的な健全性確認の対応 | Lean モジュール群、PAPER_MAPPING、NumericalSanityChecks |
 
-このレイヤー分けで重要なのは、文書の重要度を順位づけることではない。重要なのは、役割を混ぜないことである。たとえば LLM companion は主理論核の証明ではなく、主理論核を LLM 推論や継続学習へ写した構造推定レイヤーの観測的アンカーである。Foster-Lyapunov 補論は、新しい安定性定理の証明ではなく、既存の drift calculus が構造持続の純消耗量 \(b_t\) へ条件付きに埋め込めることを示す bridge である。
+このレイヤー分けで重要なのは、文書の重要度を順位づけることではない。重要なのは、役割を混ぜないことである。たとえば LLM 関連論文は主理論核の証明ではなく、主理論核を LLM 推論や継続学習へ写した構造推定レイヤーの観測的アンカーである。Foster-Lyapunov 補論は、新しい安定性定理の証明ではなく、既存のドリフト計算が構造持続の純消耗量 \(b_t\) へ条件付きに埋め込めることを示す橋渡しである。
 
-また、Layer 2 を Foundation と呼ぶのは、それが自明な前提だからではない。Paper 1 は、構造喪失を維持可能領域の縮小として定式化し、対数比尺度を一意化し、事後的表現選択による空虚化を防ぐ第一の非自明な主理論層である。Paper 2 は、その非自明な最小形式を回復を含む系へ拡張する。
+また、第2層を基礎と呼ぶのは、それが自明な前提だからではない。Paper 1 は、構造喪失を維持可能領域の縮小として定式化し、対数比尺度を一意化し、事後的表現選択による空虚化を防ぐ第一の非自明な主理論層である。Paper 2 は、その非自明な最小形式を回復を含む系へ拡張する。
 
 
 3. 最短読順
@@ -71,10 +71,10 @@ Hard Evidence Snapshot
 5. `01_theory/11_paper2_balance_principle.md`
 6. `CLAIMS.md`
 7. `03_domains/registry.tsv`
-8. 必要な domain profile
+8. 必要なドメイン・プロファイル
 9. 必要に応じて `04_operations/`, `02_foundations/`, `05_evidence/`
 
-この順序は、読者の認知負荷を下げるための順序である。Core Paper は Paper 1 / Paper 2 を外部読者向けに一つの導線として読むための統合短論文であり、分冊版の置き換えではない。論理依存そのものは、Paper 1 -> Paper 2 を主線とし、条件つき導出補論、集合値力学補論、定常総生成量補論、定常 current 補論がその背後の技術条件を支える。trajectory-ratio bridge 補論は、stochastic thermodynamics 側の path-ratio 構造に進む前の追加仮定を固定し、有限 path-ratio identity、その有限状態 Markov path specialization、structural observable residual coupling、local detailed-balance reading を Lean 上で閉じた bridge である。
+この順序は、読者の認知負荷を下げるための順序である。Core 論文は Paper 1 / Paper 2 を外部読者向けに一つの導線として読むための統合短論文であり、分冊版の置き換えではない。論理依存そのものは、Paper 1 -> Paper 2 を主線とし、条件つき導出補論、集合値力学補論、定常総生成量補論、定常カレント補論がその背後の技術条件を支える。経路確率比の橋渡し補論は、確率熱力学側の経路確率比構造に進む前の追加仮定を固定し、有限経路確率比の恒等式、その有限状態 Markov 経路への特殊化、構造観測量の残差分解、局所詳細釣り合い読みを Lean 上で閉じた橋渡しである。
 
 
 4. 論理依存順
@@ -86,21 +86,21 @@ Hard Evidence Snapshot
 | 1 | Paper 1 | 構造維持可能集合の縮小、対数比尺度の一意性、空虚化防止条件から S = M exp(-L) を得る |
 | 2 | Paper 2 | S = M exp(-L) を、回復量を含む S = M exp(-B) へ拡張する |
 | 3 | 条件つき導出補論 | どこまでが恒等式で、どこからが弱依存・確率条件に依存するかを分ける |
-| 4 | 集合値力学補論 / 定常総生成量補論 / 定常 current 補論 / trajectory-ratio bridge 補論 / 許容写像補論 / 詳細展開補論 | d_t, r_t, b_t, B_n の pathwise kernel、定常維持と housekeeping cost の分離、定常 pair-flow と detailed balance の分離、finite path-ratio identity とその追加仮定、許容写像の階層、応用上の背景を整理する |
-| 5 | Lean mapping | 対応する代数核と finite-horizon skeleton が機械検証されている範囲を確認する |
+| 4 | 集合値力学補論 / 定常総生成量補論 / 定常カレント補論 / 経路確率比の橋渡し補論 / 許容写像補論 / 詳細展開補論 | \(d_t,r_t,b_t,B_n\) の経路ごとの核、定常維持と維持コストの分離、定常ペア流と詳細釣り合いの分離、有限経路確率比の恒等式とその追加仮定、許容写像の階層、応用上の背景を整理する |
+| 5 | Lean 対応 | 対応する代数核と有限時間地平の骨格が機械検証されている範囲を確認する |
 
 この順序で読むと、構造推定レイヤーの経験的主張や設計原理に入る前に、理論核の範囲を確認できる。
 
 
 5. 中心式と内部定義
 
-本稿群の reader-facing な中心式は、次の二つである。第三行は、回復を含む式に入る内部定義である。
+本稿群の読者向け中心式は、次の二つである。第三行は、回復を含む式に入る内部定義である。
 
 | レイヤー | 式 | 読み方 |
 |---|---|---|
 | 最小核 | S = M exp(-L) | 累積構造消耗量 L が構造持続ポテンシャルを指数的に削る |
-| recovery-aware | S = M exp(-B) | 累積純消耗量 B が、回復を含む構造持続ポテンシャルを決める |
-| internal definition | B_n = sum_{t<n}(d_t-r_t) | 消耗量 d_t から回復量 r_t を差し引いた純消耗量の累積 |
+| 回復込み | S = M exp(-B) | 累積純消耗量 B が、回復を含む構造持続ポテンシャルを決める |
+| 内部定義 | B_n = sum_{t<n}(d_t-r_t) | 消耗量 d_t から回復量 r_t を差し引いた純消耗量の累積 |
 
 対象期間が文脈上固定されているとき、読者向けには \(S=Me^{-B}\) と書ける。有限時間地平を明示するときは \(B_n\), \(S_n\), \(M_n\) を付ける。ここで添字 \(n\) は、時点または期間を固定していないことを明示するためのものであり、式の思想を変えるものではない。
 
@@ -128,17 +128,17 @@ Hard Evidence Snapshot
 
 | 外向け名 | 条件 | 現在の代表例 |
 |---|---|---|
-| 仕様固定構造レイヤー | 構造、測度、境界が仕様から事前固定される | SAT, Mixed-CSP, q-coloring, Bernoulli-CSP interface |
-| 条件付き構造埋め込みレイヤー | 既存理論のドリフト、差分、停止境界を本理論の変数へ条件付きに写す。縦軸の中間段階ではなく、既存理論との横方向の橋渡しである | Foster-Lyapunov / queueing drift, bounded approximation candidates |
-| 構造推定レイヤー | 構造そのものを直接数えるのではなく、観測・推定指標と凍結検証によりその効果を推定する。多くの現実系で標準的な観測形である | LLM 推論劣化、継続学習、software contract-coherence 系 |
+| 仕様固定構造レイヤー | 構造、測度、境界が仕様から事前固定される | SAT, Mixed-CSP, q-coloring, ベルヌーイ型 CSP インターフェース |
+| 条件付き構造埋め込みレイヤー | 既存理論のドリフト、差分、停止境界を本理論の変数へ条件付きに写す。縦軸の中間段階ではなく、既存理論との横方向の橋渡しである | Foster-Lyapunov / 待ち行列ドリフト、有界近似候補 |
+| 構造推定レイヤー | 構造そのものを直接数えるのではなく、観測・推定指標と凍結検証によりその効果を推定する。多くの現実系で標準的な観測形である | LLM 推論劣化、継続学習、ソフトウェア契約整合性系 |
 
-仕様固定構造レイヤーは、法則側定理または限定クラス普遍性を狙うレイヤーである。構造推定レイヤーは、自然測度が直ちに得られない現実ドメインで、観測指標と凍結写像により追加予測力、診断、介入候補を検査するレイヤーである。構造推定レイヤーの support は、主理論核の証明ではなく、凍結写像が out-of-sample に追加予測力を持つかによって決まる。
+仕様固定構造レイヤーは、法則側定理または限定クラス普遍性を狙うレイヤーである。構造推定レイヤーは、自然測度が直ちに得られない現実ドメインで、観測指標と凍結写像により追加予測力、診断、介入候補を検査するレイヤーである。構造推定レイヤーの支持は、主理論核の証明ではなく、凍結写像が未使用データに追加予測力を持つかによって決まる。
 
-この意味で、普遍性主張はまず仕様固定構造レイヤーの限定クラス普遍性定理として評価される。構造推定レイヤーでは、同じ座標を観測・推定指標と凍結検証によって実世界に写し、予測的・操作的 support を蓄積する。したがって、構造推定レイヤーでの no-support は直ちに理論核の反証ではなく、観測・推定指標設計または写像手順の失敗として記録される。
+この意味で、普遍性主張はまず仕様固定構造レイヤーの限定クラス普遍性定理として評価される。構造推定レイヤーでは、同じ座標を観測・推定指標と凍結検証によって実世界に写し、予測的・操作的支持を蓄積する。したがって、構造推定レイヤーでの非支持は直ちに理論核の反証ではなく、観測・推定指標設計または写像手順の失敗として記録される。
 
-この配置で重要なのは、構造推定レイヤーの観測・推定指標を法則そのものと混同しないことである。推定指標が \(L/B\) の法則側座標をよく近似していることが凍結検証で確認されるほど、その指標は説明語彙から予測装置へ近づく。\(M\) はこの座標に混ぜ込まず、有効維持余力を表すリソース側のスカラーとして別に読む。ただし、その近似度は主観的に宣言されるものではなく、held-out / future / fresh archive / outside rerun における baseline + SP の増分、または no-support / silence として判定される。
+この配置で重要なのは、構造推定レイヤーの観測・推定指標を法則そのものと混同しないことである。推定指標が \(L/B\) の法則側座標をよく近似していることが凍結検証で確認されるほど、その指標は説明語彙から予測装置へ近づく。\(M\) はこの座標に混ぜ込まず、有効維持余力を表すリソース側のスカラーとして別に読む。ただし、その近似度は主観的に宣言されるものではなく、保留データ / 将来データ / 新規アーカイブ / 外部再実行における基準モデル + 構造持続指標の増分、または非支持 / 沈黙として判定される。
 
-Software contract-coherence 系は、この構造推定レイヤーの中でも、ソフトウェア崩壊そのものではなく、分散契約矛盾という早期シグナルを検査する operational track として扱う。構造は、API / caller、config / runtime、documentation / implementation、lifecycle producer / consumer などにまたがる contract set である。この track は二層に分ける。第一に、外部 OSS での merged PR は field demonstration / maintainer-acceptance evidence であり、実運用上の有用性を示すが、raw precision / recall ではない。第二に、contract-coherence benchmark の主比較は provider 間競争ではなく、同一 model・同一 frozen context で generic review と structural-lens review を比較し、bounded validation 後の unique valid structural root causes が増えるかで判定する。DeltaLint はこの track の現在の実装名である。
+ソフトウェア契約整合性系は、この構造推定レイヤーの中でも、ソフトウェア崩壊そのものではなく、分散契約矛盾という早期シグナルを検査する操作的トラックとして扱う。構造は、API / 呼び出し側、設定 / 実行時、文書 / 実装、ライフサイクル上の生成側 / 消費側などにまたがる契約集合である。このトラックは二層に分ける。第一に、外部 OSS で採用された PR は、現場受理実例であり、実運用上の有用性を示すが、生の適合率 / 再現率ではない。第二に、契約整合性ベンチマークの主比較は提供者間競争ではなく、同一モデル・同一凍結文脈で、一般レビューと構造レンズ付きレビューを比較し、有界検証後の一意で妥当な構造的根本原因が増えるかで判定する。DeltaLint はこのトラックの現在の実装名である。
 
 
 7. G6-a / G6-b / G6-c の配置
@@ -147,65 +147,65 @@ Software contract-coherence 系は、この構造推定レイヤーの中でも�
 
 | 強度 | 意味 | 注意 |
 |---|---|---|
-| G6-a analogy | 直感や語彙が似ている | 証明ではない |
-| G6-b correspondence | 量・符号・役割の対応表が作れる | 構造対応であって定理移植ではない |
-| G6-c formal embedding | 既存理論の差分・drift・balance が b_t, B_n へ埋め込める | 元理論の仮定は保持される |
+| G6-a 類比 | 直感や語彙が似ている | 証明ではない |
+| G6-b 対応 | 量・符号・役割の対応表が作れる | 構造対応であって定理移植ではない |
+| G6-c 形式的埋め込み | 既存理論の差分・ドリフト・収支が \(b_t,B_n\) へ埋め込める | 元理論の仮定は保持される |
 
-Foster-Lyapunov / queueing drift の補論は、G6-c iteration 1 として位置づける。すなわち、正再帰性や幾何的エルゴード性を新しく証明するのではなく、既存の drift algebra が構造持続の \(b_t=d_t-r_t\) と同じ符号構造を持つことを、reader-facing かつ Lean 対応可能な形で示す。Lean 側では `FosterLyapunovSignBridge` が、\(\phi=-\log m\) のとき \(b=\phi_{t+1}-\phi_t\) であり、安定化 drift は \(\mathbb E[b\mid x]\le-\epsilon\) 側であることを、過剰な recurrence theorem なしに固定する。
+Foster-Lyapunov / 待ち行列ドリフトの補論は、G6-c の第一反復として位置づける。すなわち、正再帰性や幾何的エルゴード性を新しく証明するのではなく、既存のドリフト代数が構造持続の \(b_t=d_t-r_t\) と同じ符号構造を持つことを、読者向けかつ Lean 対応可能な形で示す。Lean 側では、Foster-Lyapunov 符号規約のモジュール `FosterLyapunovSignBridge` が、\(\phi=-\log m\) のとき \(b=\phi_{t+1}-\phi_t\) であり、安定化ドリフトは \(\mathbb E[b\mid x]\le-\epsilon\) 側であることを、過剰な再帰性定理なしに固定する。
 
-以下の bridge 群は、理論を広げるためだけでなく、過剰対応を防ぐための guardrail でもある。何を示していて、何を示していないかは次のように読む。
+以下の橋渡し形式化群は、理論を広げるためだけでなく、過剰対応を防ぐための防御線でもある。何を示していて、何を示していないかは次のように読む。
 
-| Bridge | 示すこと | 示さないこと |
+| 橋渡し形式化 | 示していること | 示していないこと |
 |---|---|---|
-| Housekeeping / stationary total production | stationary start では Core 型 net change の期待値が 0 になり、正の維持生成は別項 \(C\) が担う | 物理的 NESS、housekeeping entropy production の一般導出 |
-| Stationary current | detailed balance と zero current の同値、stationary かつ nonzero current の有限 witness | entropy production、fluctuation theorem、熱浴解釈 |
-| Finite path-ratio | 明示された forward / reverse PMF と coverage 条件の下で有限 path-ratio identity が成り立つ | Core の \(B_n\) が path-ratio entropy production であること、物理的 fluctuation theorem |
-| Markov path-ratio | 有限状態 Markov path PMF への特殊化と deterministic time reversal | reverse chain が物理的 reverse protocol であること |
-| Structural residual | 同じ path 上で \(\sigma=B+C+R\) と分解し、\(R=0\) の仮定下だけ \(\sigma=B+C\) を返す | Core から無条件に \(\sigma=B+C\) が出ること |
-| Local detailed-balance reading | system / medium split を別データとして持ち、exact reading 仮定下だけ \(\sigma=S_{\mathrm{sys}}+S_{\mathrm{med}}\) を返す | Core から local detailed balance、heat/work/reservoir 解釈が導かれること |
-| A06/A19 erasure-rank toy | 固定された erasure-rank profile から \(a(E)\log 2\) の exact accounting が出る | 低次 dependency proxy の empirical support、final-rank oracle を使った予測勝利 |
-| Foster-Lyapunov sign bridge | \(b=\phi_{t+1}-\phi_t\)、negative expected \(b\) が安定化側、positive expected \(b\) が悪化側であること | positive recurrence、geometric ergodicity、queueing stability theorem 全体 |
+| 定常総生成量 | 定常初期分布では本稿型の純構造変化の期待値が 0 になり、正の維持生成は別項 \(C\) が担う | 物理的な非平衡定常状態、維持散逸の一般導出 |
+| 定常カレント | 詳細釣り合いとゼロカレントの同値、定常かつ非ゼロカレントを持つ有限具体例 | エントロピー生産、揺らぎ定理、熱浴解釈 |
+| 有限経路確率比 | 明示された前向き・逆向きの確率質量関数と質量被覆条件の下で、有限経路確率比の恒等式が成り立つ | 本稿の \(B_n\) が経路確率比型のエントロピー生産であること、物理的な揺らぎ定理 |
+| Markov 経路確率比 | 有限状態 Markov 経路の確率質量関数への特殊化と、決定的な時間反転写像 | 逆向き連鎖が物理的な逆プロトコルであること |
+| 構造観測量の残差 | 同じ経路上で \(\sigma=B+C+R\) と分解し、\(R=0\) の仮定下だけ \(\sigma=B+C\) を返す | 本稿から無条件に \(\sigma=B+C\) が出ること |
+| 局所詳細釣り合い読み | 系側 / 媒質側の分割を別データとして持ち、厳密読み仮定下だけ \(\sigma=S_{\mathrm{sys}}+S_{\mathrm{med}}\) を返す | 本稿から局所詳細釣り合い、熱・仕事・熱浴解釈が導かれること |
+| A06/A19 消失ランク会計の小例 | 固定された消失数とランクのプロファイルから \(a(E)\log 2\) の厳密会計が出る | 低次依存圧の代理指標の経験的支持、最終ランクを使うオラクルによる予測勝利 |
+| Foster-Lyapunov 符号規約 | \(b=\phi_{t+1}-\phi_t\)、\(b\) の期待値が負なら安定化側、正なら悪化側であること | 正再帰性、幾何的エルゴード性、待ち行列安定性定理全体 |
 
 
-8. Bernoulli-CSP universality interface の位置
+8. ベルヌーイ型 CSP 統一インターフェースの位置
 
-本稿群の数学的核は、指数式だけではない。もう一つの核は、Bernoulli-CSP universality interface である。
+本稿群の数学的核は、指数式だけではない。もう一つの核は、ベルヌーイ型 CSP 統一インターフェースである。
 
-この interface は、k-SAT、NAE-SAT、XOR-SAT、q-coloring、hypergraph coloring、finite-alphabet forbidden-pattern CSP、cardinality-SAT、threshold-cardinality-SAT を、同じ finite-horizon / iid bad-event exposure の型に載せる。これにより、個別構文の違いではなく、禁止パターンが有効状態空間をどれだけ削るかという共通座標で読める。
+このインターフェースは、k-SAT、NAE-SAT、XOR-SAT、q-coloring、hypergraph coloring、有限アルファベット禁止パターン CSP、cardinality-SAT、threshold-cardinality-SAT を、同じ有限時間地平 / 独立同分布の悪事象曝露の型に載せる。これにより、個別構文の違いではなく、禁止パターンが有効状態空間をどれだけ削るかという共通座標で読める。
 
-このレイヤーは、現在は主に Lean modules と集合値力学補論の後半にある。読者が仕様固定構造レイヤーの横断性を評価するときは、PAPER_MAPPING と Bernoulli-CSP universality modules を参照するのがよい。さらに、NumericalSanityChecks は、各 wrapper が小さな具体例で期待される定数を返すことを示す。A06/A19 については `LinearCodeErasureAccountingToy` が、BEC 線形符号の消失 rank profile から \(a(E)\log 2\) の exact accounting が出ることだけを固定する。これらは経験的 support ではなく、reader-facing な numerical / accounting sanity check である。
+このレイヤーは、現在は主に Lean モジュール群と集合値力学補論の後半にある。読者が仕様固定構造レイヤーの横断性を評価するときは、PAPER_MAPPING とベルヌーイ型 CSP 統一インターフェースのモジュール群を参照するのがよい。さらに、NumericalSanityChecks は、各包み込み定義が小さな具体例で期待される定数を返すことを示す。A06/A19 については `LinearCodeErasureAccountingToy` が、BEC 線形符号の消失ランク・プロファイルから \(a(E)\log 2\) の厳密会計が出ることだけを固定する。これらは経験的支持ではなく、読者向けの数値・会計の健全性確認である。
 
 
 9. 許容写像と階層的不変量
 
 補論「構造持続における許容写像と階層的不変量」は、観測可能性の三つのレイヤーを数学的に読み直すための深部補論である。そこでは、構造維持問題を対象、その間の許容写像を射として扱い、同型では \(B_n\) が不変、正ゲージ変更では \(B_n\) が共変、粗視化では保存・単調性・誤差境界の条件が必要、観測指標による推定では凍結後の追加予測力で評価する、という階層を置く。
 
-この補論の役割は、第二法則級の単一普遍法則を宣言することではない。むしろ、仕様固定構造レイヤー、条件付き構造埋め込みレイヤー、構造推定レイヤーが、強弱のラベルではなく、どの写像で何が保たれるかの違いであることを明確にする。Bernoulli-CSP interface の自然性も、SAT 風の構文を後から集めたものではなく、iid bad-event exposure と log-drift を保つテンプレート保存写像で閉じた限定クラスとして読む。
+この補論の役割は、第二法則級の単一普遍法則を宣言することではない。むしろ、仕様固定構造レイヤー、条件付き構造埋め込みレイヤー、構造推定レイヤーが、強弱のラベルではなく、どの写像で何が保たれるかの違いであることを明確にする。ベルヌーイ型 CSP インターフェースの自然性も、SAT 風の構文を後から集めたものではなく、独立同分布の悪事象曝露と対数ドリフトを保つテンプレート保存写像で閉じた限定クラスとして読む。
 
 
-10. 限定クラス統一 interface
+10. 限定クラス統一インターフェース
 
-Lean 形式化の Phase 7 v2 は、三つの登録済み限定クラスが共通の構造持続 interface を満たすことを示す reader-facing anchor である。対象は Bernoulli-CSP、Foster-Lyapunov / queueing、Repair-Maintenance であり、共通 interface は次の四要素からなる。
+Lean 形式化の Phase 7 v2 は、三つの登録済み限定クラスが共通の構造持続インターフェースを満たすことを示す読者向けアンカーである。対象はベルヌーイ型 CSP、Foster-Lyapunov / 待ち行列、修復・保守型モデルであり、共通インターフェースは次の四要素からなる。
 
 | 要素 | 役割 |
 |---|---|
-| ordered Sigma carrier | 累積量 Sigma_n を順序つきの量として読む |
-| nonnegative tendency driver | 期待値または傾向レベルで非負方向を生む駆動構造を持つ |
-| finite-horizon certificate route | Chernoff、Azuma、資源制約境界など、有限地平の certificate 経路を持つ |
-| admissible-transfer guard | 許容写像で転用するときの保存・共変・境界条件を明示する |
+| 順序つきの累積量 | 累積量 \(\Sigma_n\) を順序つきの量として読む |
+| 非負傾向を生む駆動構造 | 期待値または傾向レベルで非負方向を生む駆動構造を持つ |
+| 有限時間地平の証明経路 | Chernoff、Azuma、資源制約境界など、有限時間地平の証明経路を持つ |
+| 許容写像での転用条件 | 許容写像で転用するときの保存・共変・境界条件を明示する |
 
-この interface は、全ドメインに対する単一の普遍不等式ではない。むしろ、登録済み限定クラスを同じ形式で比較し、新しい候補クラスを追加するときに何を検査すべきかを定める拡張可能な枠である。Lean 側の対応は `Survival.CrossClassUnificationV2`、読者向けの整理は `analysis/phase7_unifying_schema_v2.md` に置く。
+このインターフェースは、全ドメインに対する単一の普遍不等式ではない。むしろ、登録済み限定クラスを同じ形式で比較し、新しい候補クラスを追加するときに何を検査すべきかを定める拡張可能な枠である。Lean 側の対応は `Survival.CrossClassUnificationV2`、読者向けの整理は `analysis/phase7_unifying_schema_v2.md` に置く。
 
 
 11. 構造粒度と多階層性
 
 構造持続理論では、自然な \(V,m\) が常に一つの階層で一意に決まるとは限らない。多くの系では、構造は入れ子状・多階層的であり、下位構造の消耗、上位構造の制約、階層間の依存、回復量の伝播が相互作用する。
 
-したがって、現実ドメインへの適用では、まず構造粒度を定める必要がある。構造粒度とは、維持対象をどの細かさ、どの階層、どの境界で見るかである。これはドメイン写像の一部である。ただし、その選択を support と呼ぶには、写像を凍結した後に別データ・別時期・別条件で検証する必要がある。
+したがって、現実ドメインへの適用では、まず構造粒度を定める必要がある。構造粒度とは、維持対象をどの細かさ、どの階層、どの境界で見るかである。これはドメイン写像の一部である。ただし、その選択を支持と呼ぶには、写像を凍結した後に別データ・別時期・別条件で検証する必要がある。
 
 
 12. この地図の使い方
 
-各補論には、その文脈で必要な限界と非主張を短く残す。ただし、観測可能性の三つのレイヤー、G6 分類、mapping status、support 判定、silence 条件の完全な定義は、補論「構造持続理論の運用規律」と補論「構造持続写像の標準手順」に集約する。
+各補論には、その文脈で必要な限界と非主張を短く残す。ただし、観測可能性の三つのレイヤー、G6 分類、写像状態、支持判定、沈黙条件の完全な定義は、補論「構造持続理論の運用規律」と補論「構造持続写像の標準手順」に集約する。
 
 この分担により、各補論は自分の数学的核または経験的核に集中できる。全体の規律は失われず、むしろ独立した参照点として見えるようになる。
