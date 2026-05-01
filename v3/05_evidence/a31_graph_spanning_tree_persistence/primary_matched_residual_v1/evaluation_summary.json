@@ -1,0 +1,74 @@
+{
+  "bootstrap_pass": true,
+  "bootstrap_replicates": 2000,
+  "bootstrap_seed": 95051,
+  "chosen_horizon_fraction": 0.15,
+  "decision": "support",
+  "effect_threshold": 0.03,
+  "endpoint_degenerate": false,
+  "label_count_audit": {
+    "audited_label_rows": 9645,
+    "audited_state_count": 3215,
+    "future_trajectories": 64,
+    "status": "passed"
+  },
+  "min_group_size": 4,
+  "min_logtau_spread": 0.5,
+  "notes": [
+    "Primary support uses path_b05 and held-out test only.",
+    "All split summaries are diagnostics only.",
+    "Positive low-minus-high means lower log_tau states collapsed more often within matched groups."
+  ],
+  "primary_key": "path_b05",
+  "primary_support": true,
+  "split_summaries": {
+    "all": {
+      "matched_group_count": 155,
+      "matched_state_count": 2770,
+      "mean_low_minus_high": 0.05091366045339637,
+      "median_low_minus_high": 0.03125,
+      "positive_group_count": 131,
+      "positive_group_rate": 0.8451612903225807,
+      "primary_key": "path_b05",
+      "split": "all"
+    },
+    "test": {
+      "matched_group_count": 47,
+      "matched_state_count": 380,
+      "mean_low_minus_high": 0.03880762411347518,
+      "median_low_minus_high": 0.0234375,
+      "positive_group_count": 35,
+      "positive_group_rate": 0.7446808510638298,
+      "primary_key": "path_b05",
+      "split": "test"
+    },
+    "train": {
+      "matched_group_count": 119,
+      "matched_state_count": 1561,
+      "mean_low_minus_high": 0.05070617990786059,
+      "median_low_minus_high": 0.03125,
+      "positive_group_count": 99,
+      "positive_group_rate": 0.8319327731092437,
+      "primary_key": "path_b05",
+      "split": "train"
+    },
+    "validation": {
+      "matched_group_count": 51,
+      "matched_state_count": 385,
+      "mean_low_minus_high": 0.04826899509803921,
+      "median_low_minus_high": 0.03125,
+      "positive_group_count": 42,
+      "positive_group_rate": 0.8235294117647058,
+      "primary_key": "path_b05",
+      "split": "validation"
+    }
+  },
+  "status": "matched_residual_v1_evaluated",
+  "tail_fraction": 0.3333333333333333,
+  "test_bootstrap_positive_rate": 1.0,
+  "test_effect_pass": true,
+  "test_graph_balanced_prevalence": 0.12594039351851852,
+  "test_group_count_pass": true,
+  "test_min_groups": 30,
+  "validation_direction_pass": true
+}

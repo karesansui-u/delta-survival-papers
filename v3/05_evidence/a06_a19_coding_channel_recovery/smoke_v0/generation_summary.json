@@ -1,0 +1,35 @@
+{
+  "code_count": 80,
+  "codes_per_cell": 40,
+  "column_weight": 3,
+  "dependency_count_method": "exact_gf2_subset_rank_low_order",
+  "dependency_order": 4,
+  "feature_row_count": 320,
+  "label_row_count": 320,
+  "n_values": [
+    24,
+    32
+  ],
+  "output_files": [
+    "codes.csv",
+    "dependencies.csv",
+    "features.csv",
+    "erasure_samples.csv",
+    "labels.csv"
+  ],
+  "q_values": [
+    0.18,
+    0.24,
+    0.3,
+    0.36
+  ],
+  "rates": [
+    0.5
+  ],
+  "sample_row_count": 40960,
+  "samples": 128,
+  "seed": 81221,
+  "split_method": "seeded_random_permutation_within_n_k_column_weight_train_remainder_val_floor20_test_floor20",
+  "split_seed": 81231,
+  "status": "smoke_generated_not_evidence"
+}

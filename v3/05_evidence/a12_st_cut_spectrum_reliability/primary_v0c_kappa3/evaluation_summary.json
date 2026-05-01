@@ -1,0 +1,48 @@
+{
+  "B1_SP_scalar_test_log_loss": 0.4330664624793408,
+  "B1_hazard_SP_scalar_test_log_loss": 0.4295577115905518,
+  "B1_hazard_test_log_loss": 0.43094334078508734,
+  "B1_test_log_loss": 0.4423180021090647,
+  "attribution_models": [
+    "B1_SP_terms",
+    "B1_SP_bundle"
+  ],
+  "bootstrap_positive_rate": 1.0,
+  "bootstrap_replicates": 2000,
+  "bootstrap_seed": 73241,
+  "endpoint_degenerate": false,
+  "guardrail_models": [
+    "B1_hazard",
+    "B1_hazard_SP_scalar",
+    "B2_guardrail"
+  ],
+  "hazard_guardrail_bootstrap_positive_rate": 0.9905,
+  "hazard_guardrail_relative_log_loss_improvement": 0.003215339612885609,
+  "label_sample_audit": {
+    "K": 256,
+    "audited_label_rows": 320,
+    "audited_samples": 81920,
+    "status": "passed"
+  },
+  "notes": [
+    "Smoke output is not validation evidence.",
+    "Primary scoring used graph-id grouped binomial log loss.",
+    "No exact reliability, Monte Carlo reliability estimate, or realized target state is used as a feature."
+  ],
+  "primary_model": "B1_SP_scalar",
+  "primary_support_rule_would_pass_on_smoke": true,
+  "relative_log_loss_improvement": 0.020916036845913213,
+  "split_integrity_audit": {
+    "feature_row_count": 320,
+    "graph_count_by_split": {
+      "test": 16,
+      "train": 48,
+      "validation": 16
+    },
+    "label_row_count": 320,
+    "sample_row_count": 81920,
+    "status": "passed"
+  },
+  "status": "smoke_evaluated_not_evidence",
+  "test_graph_balanced_prevalence": 0.18170166015625
+}

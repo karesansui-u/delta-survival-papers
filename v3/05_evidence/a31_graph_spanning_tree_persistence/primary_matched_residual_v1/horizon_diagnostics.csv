@@ -1,0 +1,4 @@
+horizon_fraction,calibration_graph_balanced_prevalence,nondegenerate
+0.05,0.02385344328703704,False
+0.1,0.0637086467978395,False
+0.15,0.12661253375771606,True
