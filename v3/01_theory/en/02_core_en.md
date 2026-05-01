@@ -265,6 +265,7 @@ The core Lean-covered parts are, roughly:
 1. the minimal algebra behind log-ratios, telescoping products, and the exponential kernel;
 2. the balance algebra using \(d_t\), \(r_t\), \(b_t=d_t-r_t\), and \(B_n\);
 3. the fact that registered limited classes such as Bernoulli-CSP, Foster-Lyapunov / queueing, and Repair-Maintenance satisfy a common unifying interface.
+4. small specification-fixed operational anchors: the finite-PMF first-moment collapse bound \(\Pr[Z>0]\le\mathbb E[Z]\) and the BEC erasure-rank accounting identity \(L_E=a(E)\log 2\).
 
 Lean does not by itself prove that every domain has a natural feasible region \(V\), ruler \(m\), or observation unit. It also does not prove that structurally inferred indicators approximate the true \(L\) or \(B\), which real resource should be read as \(M\), that an empirical package obtains outside-rerun support, or that a single universal law holds for all systems.
 

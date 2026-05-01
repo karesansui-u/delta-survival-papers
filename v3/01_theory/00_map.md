@@ -176,7 +176,7 @@ Foster-Lyapunov / 待ち行列ドリフトの補論は、G6-c の第一反復と
 
 このインターフェースは、k-SAT、NAE-SAT、XOR-SAT、q-coloring、hypergraph coloring、有限アルファベット禁止パターン CSP、cardinality-SAT、threshold-cardinality-SAT を、同じ有限時間地平 / 独立同分布の悪事象曝露の型に載せる。これにより、個別構文の違いではなく、禁止パターンが有効状態空間をどれだけ削るかという共通座標で読める。
 
-このインターフェースは、現在は主に Lean モジュール群と集合値力学補論の後半にある。読者が仕様固定レイヤーの横断性を評価するときは、PAPER_MAPPING とベルヌーイ型 CSP 統一インターフェースのモジュール群を参照するのがよい。さらに、NumericalSanityChecks は、各包み込み定義が小さな具体例で期待される定数を返すことを示す。A06/A19 については `LinearCodeErasureAccountingToy` が、BEC 線形符号の消失ランク・プロファイルから \(a(E)\log 2\) の厳密会計が出ることだけを固定する。[仕様固定操作的定理補論](../02_foundations/27_specification_fixed_operational_theorems.md)は、有限 CSP の一次モーメント消耗量が非空性に一側境界を与えること、BEC 消失ランク消耗量が一意復元境界を厳密に読むことをまとめる。これらは経験的支持ではなく、読者向けの定理側アンカーと数値・会計の健全性確認である。
+このインターフェースは、現在は主に Lean モジュール群と集合値力学補論の後半にある。読者が仕様固定レイヤーの横断性を評価するときは、PAPER_MAPPING とベルヌーイ型 CSP 統一インターフェースのモジュール群を参照するのがよい。さらに、NumericalSanityChecks は、各包み込み定義が小さな具体例で期待される定数を返すことを示す。一次モーメント崩壊境界については `FiniteCSPFirstMomentCollapseBound` が、有限 PMF 上で \(\Pr[Z>0]\le\mathbb E[Z]\) と、その \(A e^{-L}\)、\(e^{-\lambda}\) への接続を固定する。A06/A19 については `LinearCodeErasureAccountingToy` が、BEC 線形符号の消失ランク・プロファイルから \(a(E)\log 2\) の厳密会計が出ることだけを固定する。[仕様固定操作的定理補論](../02_foundations/27_specification_fixed_operational_theorems.md)は、有限 CSP の一次モーメント消耗量が非空性に一側境界を与えること、BEC 消失ランク消耗量が一意復元境界を厳密に読むことをまとめる。これらは経験的支持ではなく、読者向けの定理側アンカーと数値・会計の健全性確認である。
 
 
 9. 許容写像と階層的不変量

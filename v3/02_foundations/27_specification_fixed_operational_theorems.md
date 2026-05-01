@@ -257,6 +257,25 @@ Core の縮小核と揃えるため、ここで数える \(V_E\) は「両立す
 
 したがって、本補論は証拠記録ではない。仕様固定レイヤーの定理側アンカーである。
 
+Lean 側では、有限 CSP の一次モーメント崩壊境界を
+`Survival.FiniteCSPFirstMomentCollapseBound` に置く。このモジュールは、有限 PMF 上の自然数値 count \(Z\) に対して
+\[
+  \Pr[Z>0]\le \mathbb E[Z]
+\]
+を固定し、さらに
+\[
+  \mathbb E[Z]\le A e^{-L},
+  \qquad
+  L\ge \log A+\lambda
+\]
+から
+\[
+  \Pr[Z>0]\le e^{-\lambda}
+\]
+を導く。ここでも \(L\) は実現後の count ratio ではなく、曝露モデルから与えられる一次モーメント側の消耗量として仮定される。
+
+一方、BEC 側の消失ランク会計は `Survival.LinearCodeErasureAccountingToy` に置く。こちらは消失数と階数プロファイルから \(a(E)\log 2\) の厳密会計が出ることを固定する。どちらの Lean モジュールも、経験的支持や任意ドメインの予測勝利を証明するものではない。
+
 
 5. 失敗台帳からの制約
 ----------------------
