@@ -85,7 +85,8 @@ H_{\mathrm{cut},r}(G,q)=
 \sum_{j=\kappa}^{\kappa+r}N_j(G;s,t)q^j.
 \]
 
-The primary SP coordinate for the v0 package is the scalar log-pressure:
+The primary SP coordinate for the A12 frozen packages is the scalar
+log-pressure:
 
 \[
 \log(1+H_{\mathrm{cut},2}(G,q)).
@@ -94,21 +95,93 @@ The primary SP coordinate for the v0 package is the scalar log-pressure:
 The term vector
 \((N_{\kappa}q^{\kappa},N_{\kappa+1}q^{\kappa+1},
 N_{\kappa+2}q^{\kappa+2})\) and the scalar-plus-vector bundle may be reported as
-attribution diagnostics, but they are not the v0 primary coordinate.
+attribution diagnostics, but they are not the primary support coordinate for
+the v0b/v0c successor packages.
 
 The coordinate is intentionally local in cut order. It is not the exact
 reliability and should be described as a frozen low-order loss proxy.
 
-For v0, the scalar log-pressure is support-bearing. Term-vector and bundle
-variants are attribution ablations and must not be promoted to primary after
-test results are known.
+For the supported v0b/v0c successor packages, the scalar log-pressure is
+support-bearing. Term-vector and bundle variants are attribution ablations and
+must not be promoted to primary after test results are known.
 
 
-4. Prediction Surface
+4. Operational Cutset Embedding
+-------------------------------
+
+A12 does not claim a new general network reliability theorem. The point is
+more modest: for fixed finite \(s\)-\(t\) reliability systems under independent
+edge failures, the frozen cut-pressure coordinate corresponds to the low-order
+cutset expansion of the operational failure probability.
+
+Let
+
+\[
+\mathcal C_{\mathrm{inc}}(G;s,t)
+=\{C\subseteq E:\ C\text{ is inclusion-minimal among }s\text{-}t\text{ cutsets}\}.
+\]
+
+This is the set of inclusion-minimal cutsets, not only the cutsets of minimum
+cardinality. Define
+
+\[
+\kappa=\min_{C\in\mathcal C_{\mathrm{inc}}}|C|,
+\qquad
+N_j=\left|\{C\in\mathcal C_{\mathrm{inc}}:\ |C|=j\}\right|.
+\]
+
+If \(F\subseteq E\) is the random failed-edge set under independent edge
+failure probability \(q\), then
+
+\[
+\{s\not\leftrightarrow t\}
+=
+\bigcup_{C\in\mathcal C_{\mathrm{inc}}}\{C\subseteq F\}.
+\]
+
+Therefore the cutset union-bound pressure gives
+
+\[
+\Pr_q(s\not\leftrightarrow t)
+\le
+\sum_{C\in\mathcal C_{\mathrm{inc}}}q^{|C|}
+=
+\sum_j N_jq^j.
+\]
+
+For a fixed finite graph whose intact graph connects \(s\) and \(t\), with
+\(\kappa\ge1\), distinct minimum-size cutset events overlap only through
+failures of at least \(\kappa+1\) distinct edges. Hence their intersections
+contribute \(O(q^{\kappa+1})\), and the low-failure expansion has leading term
+
+\[
+\Pr_q(s\not\leftrightarrow t)
+=
+N_\kappa q^\kappa + O(q^{\kappa+1})
+\qquad(q\to0).
+\]
+
+The A12 coordinate
+
+\[
+H_{\mathrm{cut},2}(G,q)
+=
+\sum_{j=\kappa}^{\kappa+2}N_j(G;s,t)q^j
+\]
+
+is therefore a frozen low-order truncation of the cutset union-bound pressure,
+not the full reliability and not the full union bound. The v0b/v0c frozen
+support records that this low-order pressure coordinate added prediction value
+over the pre-fixed natural graph baseline on two finite synthetic surfaces. It
+does not prove exact reliability superiority, arbitrary-\(\kappa\) support, or
+real-network support.
+
+
+5. Prediction Surface
 ---------------------
 
 Empirical support, if sought, must use held-out graphs, held-out graph families,
-or held-out failure samples. The clean v0 target is:
+or held-out failure samples. The clean A12 target is:
 
 \[
 Y_{G,q,k}=1\{\text{failure sample }k\text{ disconnects }s\text{ from }t\}.
@@ -136,7 +209,7 @@ Secondary targets should not be silently substituted for the primary target
 after results are known.
 
 
-5. Baselines and Oracle Exclusions
+6. Baselines and Oracle Exclusions
 ----------------------------------
 
 Primary comparison:
@@ -160,10 +233,10 @@ Recommended \(B1\) natural graph baseline:
 The \(B1\) baseline must include \(\kappa\). Otherwise the SP coordinate could
 win merely by rediscovering min-cut size.
 
-The v0 surface is restricted to \(\kappa\in\{2,3\}\). If a later package allows
-\(\kappa=1\), \(s\)-\(t\)-separating bridge indicators become too close to
-first-order cutset counts and must remain outside the baseline unless the
-package is explicitly redesigned.
+The supported v0b/v0c surfaces are restricted to \(\kappa\in\{2,3\}\). If a
+later package allows \(\kappa=1\), \(s\)-\(t\)-separating bridge indicators
+become too close to first-order cutset counts and must remain outside the
+baseline unless the package is explicitly redesigned.
 
 The \(B1_{\mathrm{hazard}}\) guardrail adds \(q^{\kappa}\),
 \(q^{\kappa+1}\), and \(q^{\kappa+2}\), but no cutset counts. This diagnostic
@@ -194,7 +267,7 @@ Wide guardrail baseline, if used:
 The wide baseline is a guardrail unless a manifest explicitly makes it primary.
 
 
-6. Frozen Validation Status
+7. Frozen Validation Status
 ---------------------------
 
 The first frozen primary package is recorded as an invalid run:
@@ -247,10 +320,10 @@ not arbitrary-\(\kappa\), real-world network, exact-reliability, A31, or
 \(M\)-side support.
 
 
-7. Frozen Validation Candidate Discipline
+8. Frozen Validation Candidate Discipline
 -----------------------------------------
 
-A v0 package should freeze:
+Any future A12 prediction package should freeze:
 
 1. graph generator or external graph source;
 2. terminal selection rule;
@@ -266,12 +339,12 @@ A v0 package should freeze:
    - paired graph-id bootstrap positive rate is at least 90 percent;
    - oracle-exclusion and label audits pass.
 
-Horizon selection is not needed for the independent edge-failure v0 surface.
+Horizon selection is not needed for an independent edge-failure A12 surface.
 If a sequential deletion version is used later, the horizon rule must be
 prevalence-only and must not inspect model performance.
 
 
-7. A31 Boundary
+9. A31 Boundary
 ---------------
 
 A31 should not be rescued by moving its no-support endpoint into this domain.
@@ -291,25 +364,30 @@ package with a separately frozen graph family, seed block, external archive, or
 endpoint. The failed rows may be used for diagnosis, not relabeled as support.
 
 
-8. Validation Status
+10. Validation Status
 --------------------
 
-- candidate / frozen / supported / no-support / silence: candidate.
-- freeze manifest draft:
-  `../../05_evidence/st_cut_spectrum_reliability_freeze_manifest_draft.md`.
+- current status: `supported_kappa2_kappa3; invalid_run_v0`.
+- invalid frozen primary:
+  `../../05_evidence/a12_st_cut_spectrum_reliability/primary_v0_invalid_run_summary.md`.
+- supported successor records:
+  `../../05_evidence/a12_st_cut_spectrum_reliability/primary_v0b_kappa2_result_summary.md`;
+  `../../05_evidence/a12_st_cut_spectrum_reliability/primary_v0c_kappa3_result_summary.md`.
+- replication summary:
+  `../../05_evidence/a12_st_cut_spectrum_reliability/replication_summary.md`.
 - smoke harness:
   `../../05_evidence/a12_st_cut_spectrum_reliability/`; smoke outputs are not
   evidence.
-- evidence record: none yet.
 
 
-9. Claims
+11. Claims
 ---------
 
-This domain may support, after a frozen successful run:
+This domain currently supports, within the two frozen finite synthetic
+successor surfaces:
 
 - incremental predictive support for a low-order cut-spectrum coordinate in
-  finite \(s\)-\(t\) reliability prediction;
+  finite \(\kappa=2\) and \(\kappa=3\) \(s\)-\(t\) reliability prediction;
 - a specification-fixed reliability kernel based on
   \(V_G\), \(m_q\), \(R_G(q)\), and \(L_G(q)\);
 - a disciplined separation between exact reliability accounting and empirical
@@ -319,7 +397,7 @@ This domain does not support:
 
 - a new network reliability theorem;
 - superiority over exact reliability computation;
-- support before a frozen held-out package exists;
+- arbitrary-\(\kappa\) support;
 - real-world infrastructure reliability;
 - all-terminal reliability unless separately frozen;
 - A31 spanning-tree prediction support;
