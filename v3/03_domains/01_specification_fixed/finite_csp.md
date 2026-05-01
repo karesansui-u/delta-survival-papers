@@ -108,6 +108,20 @@ Exp43c の結果は、SAT / NAE-SAT mixed CSP だけでなく、SAT 構文の外
 
 は、充足割当て数の第一モーメント対数である。
 
+定理側の補助アンカーとして、有限 PMF 上では一次モーメントが非空性の崩壊側を押さえ、
+\[
+  \Pr[Z>0]\le \mathbb E[Z],
+\]
+二次モーメント比が制御できる場合には存続側も
+\[
+  \Pr[Z>0]\ge \frac{\mathbb E[Z]^2}{\mathbb E[Z^2]},
+  \qquad
+  \frac{\mathbb E[Z^2]}{\mathbb E[Z]^2}\le C
+  \Rightarrow
+  \Pr[Z>0]\ge \frac1C
+\]
+で押さえられる。これは任意 CSP の鋭いしきい値定理ではなく、仕様固定 count に対する finite operational anchor である。
+
 本補論の問いは、第一モーメントそのものを証明することではない。それは制約族の仕様から従う。問いは、その \(L\) または \(n\log 2-L\) が、raw count や raw density よりも、有限インスタンスの feasibility を out-of-sample に予測するかである。
 
 

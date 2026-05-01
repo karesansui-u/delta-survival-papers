@@ -76,7 +76,7 @@ v3 では、個別ドメインを本文へ直接増殖させない。ドメイ�
 8. 必要なドメイン・プロファイル
 9. 必要に応じて `04_operations/`, `02_foundations/`, `05_evidence/`
 
-この順序は、読者の認知負荷を下げるための順序である。Core 論文は Paper 1 / Paper 2 を外部読者向けに一つの導線として読むための統合短論文であり、分冊版の置き換えではない。論理依存そのものは、Paper 1 -> Paper 2 を主線とし、条件つき導出補論、集合値力学補論、定常総生成量補論、定常カレント補論がその背後の技術条件を支える。経路確率比の橋渡し補論は、確率熱力学側の経路確率比構造に進む前の追加仮定を固定し、有限経路確率比の恒等式、その有限状態 Markov 経路への特殊化、構造観測量の残差分解、局所詳細釣り合い読みを Lean 上で閉じた橋渡しである。[仕様固定操作的定理補論](../02_foundations/27_specification_fixed_operational_theorems.md)は、有限 CSP の一次モーメント崩壊境界と BEC 消失ランク復元境界を、経験的支持ではない定理側アンカーとして整理する。
+この順序は、読者の認知負荷を下げるための順序である。Core 論文は Paper 1 / Paper 2 を外部読者向けに一つの導線として読むための統合短論文であり、分冊版の置き換えではない。論理依存そのものは、Paper 1 -> Paper 2 を主線とし、条件つき導出補論、集合値力学補論、定常総生成量補論、定常カレント補論がその背後の技術条件を支える。経路確率比の橋渡し補論は、確率熱力学側の経路確率比構造に進む前の追加仮定を固定し、有限経路確率比の恒等式、その有限状態 Markov 経路への特殊化、構造観測量の残差分解、局所詳細釣り合い読みを Lean 上で閉じた橋渡しである。[仕様固定操作的定理補論](../02_foundations/27_specification_fixed_operational_theorems.md)は、有限 CSP の一次モーメント崩壊境界・二次モーメント存続境界と BEC 消失ランク復元境界を、経験的支持ではない定理側アンカーとして整理する。
 
 
 4. 論理依存順
@@ -166,6 +166,7 @@ Foster-Lyapunov / 待ち行列ドリフトの補論は、G6-c の第一反復と
 | Markov 経路確率比 | 有限状態 Markov 経路の確率質量関数への特殊化と、決定的な時間反転写像 | 逆向き連鎖が物理的な逆プロトコルであること |
 | 構造観測量の残差 | 同じ経路上で \(\sigma=B+C+R\) と分解し、\(R=0\) の仮定下だけ \(\sigma=B+C\) を返す | 本稿から無条件に \(\sigma=B+C\) が出ること |
 | 局所詳細釣り合い読み | 系側 / 媒質側の分割を別データとして持ち、厳密読み仮定下だけ \(\sigma=S_{\mathrm{sys}}+S_{\mathrm{med}}\) を返す | 本稿から局所詳細釣り合い、熱・仕事・熱浴解釈が導かれること |
+| 有限 CSP モーメント境界 | 一次モーメントが非空性の崩壊側を押さえ、二次モーメント比が制御できる場合に非空性の存続側を押さえる | 任意 CSP の鋭いしきい値定理、二次モーメント比の一般制御 |
 | A06/A19 消失ランク会計と行数境界 | 固定された消失数とランクのプロファイルから \(a(E)\log 2\) の厳密会計が出て、\(|E|>r\) なら一意復元不能になる。ランダム検査行列側では、失敗確率包絡と行数スラックから \(2^{-s}\) 境界が出る。消失数集中包絡が与えられた場合は、tail と階数失敗を合成し、有限 capacity-style envelope として束ねられる | 低次依存圧の代理指標の経験的支持、最終ランクを使うオラクルによる予測勝利、容量達成定理、二項分布 Chernoff 境界そのもの |
 | Foster-Lyapunov 符号規約 | \(b=\phi_{t+1}-\phi_t\)、\(b\) の期待値が負なら安定化側、正なら悪化側であること | 正再帰性、幾何的エルゴード性、待ち行列安定性定理全体 |
 
@@ -176,7 +177,7 @@ Foster-Lyapunov / 待ち行列ドリフトの補論は、G6-c の第一反復と
 
 このインターフェースは、k-SAT、NAE-SAT、XOR-SAT、q-coloring、hypergraph coloring、有限アルファベット禁止パターン CSP、cardinality-SAT、threshold-cardinality-SAT を、同じ有限時間地平 / 独立同分布の悪事象曝露の型に載せる。これにより、個別構文の違いではなく、禁止パターンが有効状態空間をどれだけ削るかという共通座標で読める。
 
-このインターフェースは、現在は主に Lean モジュール群と集合値力学補論の後半にある。読者が仕様固定レイヤーの横断性を評価するときは、PAPER_MAPPING とベルヌーイ型 CSP 統一インターフェースのモジュール群を参照するのがよい。さらに、NumericalSanityChecks は、各包み込み定義が小さな具体例で期待される定数を返すことを示す。一次モーメント崩壊境界については `FiniteCSPFirstMomentCollapseBound` が、有限 PMF 上で \(\Pr[Z>0]\le\mathbb E[Z]\) と、その \(A e^{-L}\)、\(e^{-\lambda}\) への接続を固定する。A06/A19 については `LinearCodeErasureAccountingToy` が、BEC 線形符号の消失ランク・プロファイルから \(a(E)\log 2\) の厳密会計が出ることを固定し、`LinearCodeBECRankBoundary` が \(|E|>r\) なら一意復元不能になる有限行数境界を固定する。さらに `LinearCodeRandomParityCheckFullRank` は、失敗確率包絡が与えられた場合に、行数スラックから \(2^{-s}\) の full-rank 失敗境界が出ることを固定し、`LinearCodeBECConcentrationBoundary` は、消失数集中包絡が与えられた場合に tail と階数失敗を和事象境界で合成する。`LinearCodeBECCapacityStyleBoundary` は、これらを有限の達成側 / 逆向き側 envelope として束ねる。[仕様固定操作的定理補論](../02_foundations/27_specification_fixed_operational_theorems.md)は、有限 CSP の一次モーメント消耗量が非空性に一側境界を与えること、BEC 消失ランク消耗量が一意復元境界を厳密に読むこと、消失数が検査行数を超えると一意復元不能になること、行数スラックが random full-rank 側の失敗境界を与えること、消失数 tail が復元失敗確率へ合成されること、そしてそれらが有限 capacity-style envelope として束ねられることをまとめる。これらは経験的支持ではなく、読者向けの定理側アンカーと数値・会計の健全性確認である。
+このインターフェースは、現在は主に Lean モジュール群と集合値力学補論の後半にある。読者が仕様固定レイヤーの横断性を評価するときは、PAPER_MAPPING とベルヌーイ型 CSP 統一インターフェースのモジュール群を参照するのがよい。さらに、NumericalSanityChecks は、各包み込み定義が小さな具体例で期待される定数を返すことを示す。一次モーメント崩壊境界については `FiniteCSPFirstMomentCollapseBound` が、有限 PMF 上で \(\Pr[Z>0]\le\mathbb E[Z]\) と、その \(A e^{-L}\)、\(e^{-\lambda}\) への接続を固定する。二次モーメント存続境界については `FiniteCSPSecondMomentSurvivalBound` が、有限 PMF 上で \(\Pr[Z>0]\ge\mathbb E[Z]^2/\mathbb E[Z^2]\) と、二次モーメント比 \(R_Z\le C\) から \(\Pr[Z>0]\ge1/C\) が出ることを固定する。A06/A19 については `LinearCodeErasureAccountingToy` が、BEC 線形符号の消失ランク・プロファイルから \(a(E)\log 2\) の厳密会計が出ることを固定し、`LinearCodeBECRankBoundary` が \(|E|>r\) なら一意復元不能になる有限行数境界を固定する。さらに `LinearCodeRandomParityCheckFullRank` は、失敗確率包絡が与えられた場合に、行数スラックから \(2^{-s}\) の full-rank 失敗境界が出ることを固定し、`LinearCodeBECConcentrationBoundary` は、消失数集中包絡が与えられた場合に tail と階数失敗を和事象境界で合成する。`LinearCodeBECCapacityStyleBoundary` は、これらを有限の達成側 / 逆向き側 envelope として束ねる。[仕様固定操作的定理補論](../02_foundations/27_specification_fixed_operational_theorems.md)は、有限 CSP の一次モーメント消耗量が非空性に一側の崩壊境界を与えること、二次モーメント比が制御できる場合に一側の存続境界を与えること、BEC 消失ランク消耗量が一意復元境界を厳密に読むこと、消失数が検査行数を超えると一意復元不能になること、行数スラックが random full-rank 側の失敗境界を与えること、消失数 tail が復元失敗確率へ合成されること、そしてそれらが有限 capacity-style envelope として束ねられることをまとめる。これらは経験的支持ではなく、読者向けの定理側アンカーと数値・会計の健全性確認である。
 
 
 9. 許容写像と階層的不変量

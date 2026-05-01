@@ -69,18 +69,20 @@ A theorem-side anchor shows that a pre-fixed coordinate closes mathematically
 against an independently stated endpoint or boundary. It is not empirical
 support by itself.
 
-Current examples include finite CSP first-moment collapse, BEC erasure-rank
-unique recovery, finite row-budget converse, random parity-check row-slack
-envelope, BEC erasure-count concentration bridge, finite BEC capacity-style
-wrapper, A12 cutset reliability embedding, A31 spanning-tree accounting,
-stationary-current and trajectory-ratio guardrails, and Foster-Lyapunov sign
-bridges. These anchors strengthen the vocabulary and the boundary discipline.
-They do not replace frozen prediction packages.
+Current examples include finite CSP first-moment collapse, finite CSP
+second-moment survival under a controlled second-moment ratio, BEC
+erasure-rank unique recovery, finite row-budget converse, random parity-check
+row-slack envelope, BEC erasure-count concentration bridge, finite BEC
+capacity-style wrapper, A12 cutset reliability embedding, A31 spanning-tree
+accounting, stationary-current and trajectory-ratio guardrails, and
+Foster-Lyapunov sign bridges. These anchors strengthen the vocabulary and the
+boundary discipline. They do not replace frozen prediction packages.
 
 For existing theories, v3 claims only the mapped part. For example, a rank
 accounting bridge or finite capacity-style wrapper does not prove Shannon
-capacity, a path-ratio identity does not prove a physical fluctuation theorem,
-and a Foster-Lyapunov sign bridge does not prove positive recurrence.
+capacity, a second-moment survival anchor does not prove a sharp CSP threshold,
+a path-ratio identity does not prove a physical fluctuation theorem, and a
+Foster-Lyapunov sign bridge does not prove positive recurrence.
 
 
 3. Empirical Support Claim

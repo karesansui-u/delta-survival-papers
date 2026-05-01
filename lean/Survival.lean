@@ -121,6 +121,7 @@ import Survival.LinearCodeRandomParityCheckFullRank
 import Survival.LinearCodeBECConcentrationBoundary
 import Survival.LinearCodeBECCapacityStyleBoundary
 import Survival.FiniteCSPFirstMomentCollapseBound
+import Survival.FiniteCSPSecondMomentSurvivalBound
 import Survival.FosterLyapunovSignBridge
 import Survival.FiniteStateMarkovMeanBridge
 import Survival.FiniteStateMarkovErgodicProduction
