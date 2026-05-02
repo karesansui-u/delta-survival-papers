@@ -128,6 +128,7 @@
 7. 設計教訓
 
 現時点の失敗台帳から得られる教訓は、推定レイヤーの中核である。
+詳細な記録は、証拠ダッシュボード、非支持台帳、失敗教訓メモ（`05_evidence/evidence_status_dashboard.md`, `05_evidence/no_support.tsv`, `05_evidence/cross_domain_failure_lessons.md`）に置く。
 
 第一に、厳密会計アンカーは、そのまま予測支持ではない。ある量が仕様固定の厳密会計として美しくても、特定の予測終点に対して追加予測力を持つとは限らない。
 
