@@ -18,7 +18,8 @@ Every claim package should state, before validation or interpretation:
    \(G\), the state/action/path targets being counted, feasible region \(V_G\),
    ruler \(m\), update or observation unit, time horizon, and boundary
    convention;
-2. the observability classification: `specification_fixed` or `inference`;
+2. the observability classification: `specification_fixed` or `inference`
+   (the registry label for the estimation layer);
 3. any optional `existing-theory connection` attribute, with the exact drift,
    balance, rank, cutset, path-ratio, stopping-boundary, or stability quantity
    being connected;
@@ -27,9 +28,9 @@ Every claim package should state, before validation or interpretation:
 
 There are two observability classifications. `specification_fixed` means
 \(G,V_G,m\), the counted targets, the update rule, and the boundary can be fixed
-from the domain specification. `inference` means the true \(V_G,m,L,B\) are not
-directly counted, so frozen observation or inference indicators are tested
-instead.
+from the domain specification. `inference` is the registry label for the
+estimation layer: the true \(V_G,m,L,B\) are not directly counted, so frozen
+observation or estimation indicators are tested instead.
 
 Existing-theory connection is not a third observability layer. It is an
 attribute of a specific claim package, and it only covers the named quantity or
@@ -52,7 +53,7 @@ conditional theorem that has actually been mapped.
    familiar effective maintenance surplus or usable resource side.
 
 The nontrivial addition of the theory is not that resources matter. It is the
-separation between the support-side quantity \(M\) and the law-side shrinkage
+separation between the resource-side quantity \(M\) and the law-side shrinkage
 coordinates \(L\) and \(B\). A system can approach a maintenance boundary
 because the feasible structural region shrinks, because the effective resource
 side reaches \(M=0\), or because both happen together.
@@ -81,6 +82,23 @@ trajectory-ratio guardrails, and Foster-Lyapunov sign bridges. These anchors
 strengthen the vocabulary and the boundary discipline. They do not replace
 frozen prediction packages.
 
+For finite BEC rank accounting, the compatible ambiguity grows as
+\(2^{a(E)}\). The structural-loss coordinate is not defined on that growing
+ambiguity mass. It is defined on retained distinguishable message-cell mass:
+\[
+\frac{m(V_E)}{m(V_0)}=2^{-a(E)},
+\qquad
+L_E=-\log\frac{m(V_E)}{m(V_0)}=a(E)\log 2.
+\]
+
+For finite \(s\)-\(t\) cutset reliability, the operational embedding includes
+the union-bound skeleton
+\[
+\Pr(s\not\leftrightarrow t)\le \sum_j N_j q^j
+\]
+under a fixed independent edge-failure law. Low-order cut-spectrum coordinates
+are frozen low-order cutset proxies, not exact reliability superiority.
+
 For existing theories, v3 claims only the mapped part. For example, a rank
 accounting bridge or finite capacity-style bound bundle does not prove Shannon
 capacity, a second-moment survival anchor does not prove a sharp CSP threshold,
@@ -107,16 +125,16 @@ contract-coherence, or a related coordinate derived from the theory.
 
 In `specification_fixed` packages, support can bear on the law-side coordinate
 because \(V_G,m\), the update rule, and the boundary are fixed by construction.
-In `inference` packages, support is weaker: it shows that a frozen indicator
-adds predictive value beyond the domain baseline. It does not prove that the
-indicator is the true \(L\), \(B\), or mechanism.
+In estimation-layer (`inference`) packages, support is weaker: it shows that a
+frozen indicator adds predictive value beyond the domain baseline. It does not
+prove that the indicator is the true \(L\), \(B\), or mechanism.
 
 The strongest current outside-rerun empirical footing is package-scoped:
 Mixed-CSP and q-coloring each have 3/3 clean outside reruns with
 decision-relevant outputs reproduced. Finite non-CSP support is also recorded
 for scoped finite \(s\)-\(t\) cutset reliability and finite BEC linear-code
-packages, with spanning-tree persistence recorded as an exact endpoint-accounting anchor
-plus separate scoped prediction results. These are finite-surface support
+packages, with spanning-tree persistence recorded as an exact endpoint-accounting
+anchor plus separate scoped prediction results. These are finite-surface support
 claims, not arbitrary-network, arbitrary-code, Shannon-limit, real-world causal,
 \(M\)-side, or universal-law evidence.
 
@@ -135,8 +153,8 @@ metric, split, and decision rule to be frozen before validation.
 5. Software Contract-Coherence Boundary
 ---------------------------------------
 
-Software contract-coherence diagnostics is an inference-layer operational track
-for distributed-contract contradictions. DeltaLint is the current
+Software contract-coherence diagnostics is an estimation-layer (`inference`)
+operational track for distributed-contract contradictions. DeltaLint is the current
 implementation and workflow name, not the theory-level object. This track is
 not direct evidence of software collapse.
 
@@ -158,7 +176,7 @@ the selection and human-workflow caveats are stated.
 -----------------------------
 
 For resource-side work, \(M\) should be read as the effective maintenance
-amount: the support-side slack, capacity, budget, attention, time, or other
+amount: the resource-side slack, capacity, budget, attention, time, or other
 usable resource available for maintaining the target condition \(G\).
 
 The minimal meaning of \(M\) is scalar. Optional component decompositions of
@@ -184,7 +202,7 @@ The v3 program does not claim:
 - every domain has a unique natural \(G,V_G,m,d_t,r_t,M\);
 - package-level support promotes a whole domain;
 - theorem-side anchors are empirical support;
-- inference-layer support has the same evidential strength as
+- estimation-layer support has the same evidential strength as
   specification-fixed support;
 - indicator success proves a universal law or mechanism;
 - no-support in one frozen package refutes the mathematical kernel;
