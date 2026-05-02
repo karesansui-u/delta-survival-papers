@@ -65,7 +65,7 @@
 | 回復込み収支 | `02_core.md` §6-7、`11_paper2_balance_principle.md` | \(d_t,r_t,b_t,B_n\) を導入し、有限集合例を残す |
 | 構造持続ポテンシャル | `02_core.md` §5, §7 | \(M\) は資源側、\(L/B\) は維持可能領域側として分ける |
 | 仕様固定レイヤー | `02_core.md` §9、`00_map.md` §6 | 推定レイヤーとの違いを短く示す |
-| 操作的アンカー | `02_foundations/27_specification_fixed_operational_theorems.md`、`03_domains/01_specification_fixed/st_cut_spectrum_reliability.md`、`03_domains/01_specification_fixed/graph_spanning_tree_persistence.md` | 有限 CSP と BEC 線形符号を最小例として扱い、有限グラフは必要に応じて短く触れる。詳細証明は補論へ |
+| 操作的アンカー | `02_foundations/27_specification_fixed_operational_theorems.md`、`03_domains/01_specification_fixed/st_cut_spectrum_reliability.md`、`03_domains/01_specification_fixed/graph_spanning_tree_persistence.md` | 有限 CSP と BEC 線形符号を最小例として扱い、有限グラフは必要に応じて短く触れる。未来シナリオ維持検査は仕様固定では有限シナリオ会計として扱う。詳細証明は補論へ |
 | Lean 形式化 | `00_map.md` §7-10、`../lean/PAPER_MAPPING.md` | 何を検査し、何を検査していないかを表で示す |
 | 主張境界 | `02_core.md` §13、`CLAIMS.md` | 鋭いしきい値定理、Shannon 容量定理、物理的エントロピー生産との非同一視を明記する |
 | 証拠状態の確認 | `05_evidence/evidence_status_dashboard.md` | 支持、非支持、無効実行、外部再実行、厳密アンカーの最新状態を確認する |
@@ -108,7 +108,7 @@
 |---|---|---|
 | 推定レイヤーの必要性 | `02_core.md` §9、`04_operations/` | 直接 \(V,m\) を数えられない場合の扱いを説明する |
 | 観測・推定指標 | `04_operations/`、個別分析ノート | 構造座標・資源側量と指標を混同しない |
-| 未来シナリオ維持検査 | `22_public_second_draft.md` §3 | 想定される変更・外乱・修復要求の下で、機能を維持できる経路集合を測る方法として扱う |
+| 未来シナリオ維持検査 | `20_public_first_draft.md` §8、`22_public_second_draft.md` §3 | 仕様固定では有限シナリオ会計、推定レイヤーでは観測・推定版として扱う |
 | 凍結検証 | `04_operations/54_failure_ledger.md`、`05_evidence/` | 支持、非支持、無効実行、沈黙の判定規律を中心に置く |
 | LLM / 継続学習 | 対応する個別論文・分析ノート | 推定レイヤーの観測的アンカーとして扱う |
 | ソフトウェア診断 | DeltaLint / 契約診断 関連文書 | 現場受理実例と有界ベンチマークを分ける |
