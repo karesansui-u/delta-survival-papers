@@ -71,7 +71,7 @@ As the simplest specification-fixed example, consider a finite CSP. Let \(X\) be
 
 4. How to measure shrinkage
 
-Let \(r\in(0,1]\) be a survival ratio. A structural consumption scale \(f(r)\) should depend on the already-realized ratio, not on the absolute mass. The composition requirement is not a probabilistic independence assumption about how constraints are generated.
+Let \(\rho\in(0,1]\) be a survival ratio. A structural consumption scale \(f(\rho)\) should depend on the already-realized ratio, not on the absolute mass. The composition requirement is not a probabilistic independence assumption about how constraints are generated.
 
 It is a measurement requirement. If a shrinkage path factors as
 \[
@@ -82,14 +82,14 @@ It is a measurement requirement. If a shrinkage path factors as
 \]
 then the measured consumption should add:
 \[
-f(r_1r_2)=f(r_1)+f(r_2).
+f(\rho_1\rho_2)=f(\rho_1)+f(\rho_2).
 \]
 
 Overlap, dependence, and redundancy among constraints are already absorbed into the actual feasible sets \(V^{(i)}\) and the ratios \(m(V^{(i)})/m(V^{(i-1)})\). The additivity axiom concerns the scale used to measure those ratios.
 
 Together with normalization and continuity, this functional equation forces
 \[
-f(r)=-k\log r,
+f(\rho)=-k\log \rho,
 \qquad k>0.
 \]
 Taking \(k=1\) fixes the unit. The stage consumption is
@@ -252,7 +252,17 @@ m(V^{(n)})=m(V^{(0)})e^{-B_n}.
 \]
 The formulas \(S=Me^{-L}\) and \(S=Me^{-B}\) should be read as structural persistence potentials obtained by placing the resource-side effective maintenance surplus \(M\) outside that set-valued kernel.
 
-In specification-fixed models, this set-valued kernel can also connect to operational endpoints. For finite CSPs, a first-moment loss fixed by the exposure model gives a one-sided collapse bound on non-emptiness, and a controlled second-moment ratio gives a one-sided survival bound. For BEC binary linear codes, the erasure-rank loss \(a(E)\log 2\) reads the unique-recovery boundary exactly, and erasing more coordinates than parity-check rows gives a finite converse to unique recovery. On the random parity-check side, once a failure-probability envelope is fixed, row slack bounds full-rank failure by \(2^{-s}\). On the BEC erasure-count side, once a concentration envelope is fixed, its tail combines with rank failure to bound recovery failure. Together these yield a finite achievability/converse-style bound bundle, but not the BEC capacity theorem itself. These are theorem-side anchors, not empirical support claims: they show that \(L\) can connect to independently defined collapse or recovery endpoints.
+In specification-fixed models, this set-valued kernel can also connect to operational endpoints. For finite CSPs, a first-moment loss fixed by the exposure model gives a one-sided collapse bound on non-emptiness, and a controlled second-moment ratio gives a one-sided survival bound. For BEC binary linear codes, compatible ambiguity grows as \(2^{a(E)}\), but the shrinking object is retained distinguishable message-cell mass:
+\[
+\frac{m(V_E)}{m(V_0)}=2^{-a(E)},
+\qquad
+L_E=-\log\frac{m(V_E)}{m(V_0)}=a(E)\log 2.
+\]
+Thus the erasure-rank loss reads the unique-recovery boundary exactly, and erasing more coordinates than parity-check rows gives a finite converse to unique recovery. On the random parity-check side, once a failure-probability envelope is fixed, row slack bounds full-rank failure by \(2^{-s}\). On the BEC erasure-count side, once a concentration envelope is fixed, its tail combines with rank failure to bound recovery failure. Together these yield a finite achievability/converse-style bound bundle, but not the BEC capacity theorem itself. For finite \(s\)-\(t\) cutsets under a fixed independent edge-failure law, the operational embedding includes
+\[
+\Pr(s\not\leftrightarrow t)\le \sum_j N_j q^j,
+\]
+where \(N_j\) counts size-\(j\) minimal cutsets; low-order cut-spectrum coordinates are frozen low-order proxies, not exact reliability superiority. These are theorem-side anchors, not empirical support claims: they show that \(L\) can connect to independently defined collapse or recovery endpoints.
 
 In the estimation layer, observation and estimation indicators such as \(\hat L\), \(\hat B\), contradiction, dependency breakage, or contract coherence are candidate readouts of the law-side coordinates, not the coordinates themselves. Strong or incremental support is assigned only after freezing the mapping, indicators, split, metric, and domain baseline, and only if the model with structural-persistence indicators improves over the domain baseline on unused data. Failed mappings are recorded as no-support, and unmeasurable cases as silence.
 
@@ -279,15 +289,15 @@ The core Lean-covered parts are, roughly:
 3. the fact that registered limited classes such as Bernoulli-CSP, Foster-Lyapunov / queueing, and Repair-Maintenance satisfy a common unifying interface.
 4. small specification-fixed operational anchors: the finite-PMF first-moment collapse bound \(\Pr[Z>0]\le\mathbb E[Z]\), the second-moment survival bound \(\Pr[Z>0]\ge\mathbb E[Z]^2/\mathbb E[Z^2]\), the BEC erasure-rank accounting identity \(L_E=a(E)\log 2\), the finite converse that \(|E|>r\) precludes unique recovery, the random parity-check row-slack envelope, the BEC erasure-count concentration bridge, and a finite capacity-style bound bundle. These are not sharp CSP threshold theorems or the BEC capacity theorem.
 
-Lean does not by itself prove that every domain has a natural feasible region \(V\), ruler \(m\), or observation unit. It also does not prove that inference-layer indicators approximate the true \(L\) or \(B\), which real resource should be read as \(M\), that an empirical package obtains outside-rerun support, or that a single universal law holds for all systems.
+Lean does not by itself prove that every domain has a natural feasible region \(V\), ruler \(m\), or observation unit. It also does not prove that estimation-layer (`inference`) indicators approximate the true \(L\) or \(B\), which real resource should be read as \(M\), that an empirical package obtains outside-rerun support, or that a single universal law holds for all systems.
 
-Thus Lean supports the law-side skeleton. Empirical support and inference-layer validity are still judged by frozen validation, holdout tests, outside reruns, and the support / no-support / silence discipline.
+Thus Lean supports the law-side skeleton. Empirical support and estimation-layer validity are still judged by frozen validation, holdout tests, outside reruns, and the support / no-support / silence discipline.
 
 11. Evidence status
 
 The current evidence and theorem-side anchors should be read by strength.
 
-- **Theorem-side anchors, not empirical evidence**: in the specification-fixed layer, finite CSPs provide a first-moment collapse bound and a second-moment survival bound. The first states that a pre-fixed \(L_n^{\mathrm{FM}}\) gives a one-sided bound on non-emptiness; the second states that a controlled second-moment ratio gives a one-sided lower bound on survival probability. BEC binary linear codes provide erasure-rank unique-recovery anchors: \(L_E=a(E)\log 2\) reads the unique-recovery boundary exactly, and \(|E|>r\) makes unique recovery impossible. For random parity-check matrices, a fixed failure envelope plus row slack gives a \(2^{-s}\) full-rank failure bound; for BEC erasure counts, a fixed concentration envelope combines with rank failure by a union bound. These pieces can be bundled as a finite capacity-style bound bundle, but they are not sharp CSP thresholds or the BEC capacity theorem. They are not predictive wins or outside reruns. They are the minimal specification-fixed answer to the concern that \(L\) is only a post-hoc name.
+- **Theorem-side anchors, not empirical evidence**: in the specification-fixed layer, finite CSPs provide a first-moment collapse bound and a second-moment survival bound. The first states that a pre-fixed \(L_n^{\mathrm{FM}}\) gives a one-sided bound on non-emptiness; the second states that a controlled second-moment ratio gives a one-sided lower bound on survival probability. BEC binary linear codes provide erasure-rank unique-recovery anchors: compatible ambiguity grows as \(2^{a(E)}\), retained distinguishable mass shrinks as \(2^{-a(E)}\), and \(L_E=a(E)\log 2\) reads the unique-recovery boundary exactly. Also, \(|E|>r\) makes unique recovery impossible. For random parity-check matrices, a fixed failure envelope plus row slack gives a \(2^{-s}\) full-rank failure bound; for BEC erasure counts, a fixed concentration envelope combines with rank failure by a union bound. These pieces can be bundled as a finite capacity-style bound bundle, but they are not sharp CSP thresholds or the BEC capacity theorem. They are not predictive wins or outside reruns. They are the minimal specification-fixed answer to the concern that \(L\) is only a post-hoc name.
 - **Hardest current initial empirical evidence**: the strongest empirical footing lies in the specification-fixed layer. Mixed-CSP and q-coloring each have frozen empirical packages with three outside rerunners reproducing decision-relevant outputs. Mixed-CSP has 12,000 primary rows per returned run, 0 checked core mismatches, and reproduced support flags. q-coloring has 4,000 primary rows per returned run, 0 checked core mismatches, TIMEOUT = 0, MALFORMED = 0, and the qualitative support decision reproduced. This is not a proof of the whole theory, but it is the strongest current package-scoped outside-rerun support for the law-side candidate.
 - **Specification-fixed finite-network support**: finite \(s\)-\(t\) cut-spectrum reliability tests whether the pre-fixed low-order cut-spectrum pressure \(\log(1+H_{\mathrm{cut},2})\) adds predictive value to a natural graph baseline under fixed finite graphs, terminals, independent edge failures, and a fixed collapse boundary. Two frozen finite generation surfaces passed their primary gates, with relative log-loss improvements of 1.66% and 2.09% and paired graph-id bootstrap positive rate 1.0 in both packages. This is additional specification-fixed finite-network support outside CSP; it is not support for arbitrary graph families, real networks, exact reliability superiority, spanning-tree persistence, or the \(M\)-side term.
 - **Specification-fixed finite coding-channel support**: finite BEC linear-code recovery tests whether the pre-fixed low-order parity-check column-dependency pressure \(\log(1+H_{\mathrm{dep},4})\) adds predictive value to a natural coding baseline under fixed binary linear codes, a BEC erasure law, and the rank-defined unique-recovery boundary. In the main frozen package, the rank accounting audit and label/sample audit passed on 240 codes, 960 code/\(q\) rows, and 245,760 erasure samples. Relative log-loss improvement was 2.11%, with paired code-id bootstrap positive rate 1.0. This is specification-fixed support on the finite BEC sparse parity-check surface; it is not Shannon-capacity theorem support, arbitrary-code support, non-BEC support, final-rank oracle support, exact failure-probability superiority, or \(M\)-side validation.
@@ -301,7 +311,7 @@ The current evidence and theorem-side anchors should be read by strength.
 
 The value of this core paper is not merely that it places two formulas side by side. The coordinate makes it possible to separate routes to unmaintainability into a resource-side route and a feasible-region shrinkage route.
 
-First, the theory separates the support side from the shrinkage side. The familiar resource-side term is kept as effective maintenance surplus \(M\), while the loss of states compatible with the target structural condition is read as \(L\), or as \(B\) when recovery is present. This makes it possible to read collapse, functional failure, halt, phase transition, and structural reorganization as possible manifestations of a structural maintenance boundary, while still distinguishing the route by which that boundary is reached.
+First, the theory separates the resource side from the shrinkage side. The familiar resource-side term is kept as effective maintenance surplus \(M\), while the loss of states compatible with the target structural condition is read as \(L\), or as \(B\) when recovery is present. This makes it possible to read collapse, functional failure, halt, phase transition, and structural reorganization as possible manifestations of a structural maintenance boundary, while still distinguishing the route by which that boundary is reached.
 
 Second, \(L\) and \(B\) provide candidate common coordinates for structural consumption and recovery across domains. They are dimensionless log-ratios, readable in natural-log units when \(k=1\). This unit convention alone does not justify cross-domain comparison. Comparison becomes meaningful only under pre-fixed maps specifying \(V\), the ruler \(m\), the observation unit, and the boundary in each domain.
 

@@ -172,7 +172,7 @@ The kernel of this paper is pathwise algebraic. It states that, once the mainten
 m(V^{(n)})=m(V^{(0)})e^{-B_n}.
 \]
 
-In real domains, one must still decide what structure is being maintained, what measure compares feasible regions, and what observation or inference indicators approximate \(d_t\), \(r_t\), or \(B_t\). Discovery on the same data is not support. Support requires frozen mappings, frozen indicators, baselines, metrics, splits, and decision rules, followed by holdout, future-surface, fresh-archive, or outside-rerun validation.
+In real domains, one must still decide what structure is being maintained, what measure compares feasible regions, and what observation or estimation indicators approximate \(d_t\), \(r_t\), or \(B_t\). Discovery on the same data is not support. Support requires frozen mappings, frozen indicators, baselines, metrics, splits, and decision rules, followed by holdout, future-surface, fresh-archive, or outside-rerun validation.
 
 The paper does not claim that every domain has a unique natural \(V,m,d_t,r_t\). It does not claim that expectation-level tendencies imply high-probability hitting bounds without bounded increments, moment-generating functions, Chernoff/KL structure, margin conditions, or other additional assumptions. It does not claim universal-law closure.
 
