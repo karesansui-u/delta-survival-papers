@@ -23,8 +23,8 @@ Every claim package should state, before validation or interpretation:
 3. any optional `existing-theory connection` attribute, with the exact drift,
    balance, rank, cutset, path-ratio, stopping-boundary, or stability quantity
    being connected;
-4. the evidence state: candidate, frozen, support, no-support, silence, formal
-   anchor, or another pre-declared ledger label.
+4. the evidence state: candidate, frozen, support, no-support, silence,
+   invalid-run, formal anchor, or another pre-declared ledger label.
 
 There are two observability classifications. `specification_fixed` means
 \(G,V_G,m\), the counted targets, the update rule, and the boundary can be fixed
@@ -37,8 +37,8 @@ attribute of a specific claim package, and it only covers the named quantity or
 conditional theorem that has actually been mapped.
 
 
-1. Core Law-Side Claims
------------------------
+1. Core Structural-Coordinate Claims
+------------------------------------
 
 1. In a pre-fixed structural maintenance problem, structural loss is represented
    by shrinkage of the feasible region compatible with the target condition
@@ -53,8 +53,8 @@ conditional theorem that has actually been mapped.
    familiar effective maintenance surplus or usable resource side.
 
 The nontrivial addition of the theory is not that resources matter. It is the
-separation between the resource-side quantity \(M\) and the law-side shrinkage
-coordinates \(L\) and \(B\). A system can approach a maintenance boundary
+separation between the resource-side quantity \(M\) and the structural
+shrinkage coordinates \(L\) and \(B\). A system can approach a maintenance boundary
 because the feasible structural region shrinks, because the effective resource
 side reaches \(M=0\), or because both happen together.
 
@@ -123,11 +123,25 @@ Here SP means a structural persistence coordinate: structural consumption,
 recovery, net consumption, alternative-path, cut-spectrum, dependency-pressure,
 contract-coherence, or a related coordinate derived from the theory.
 
-In `specification_fixed` packages, support can bear on the law-side coordinate
+In `specification_fixed` packages, support can bear on the structural coordinate
 because \(V_G,m\), the update rule, and the boundary are fixed by construction.
 In estimation-layer (`inference`) packages, support is weaker: it shows that a
 frozen indicator adds predictive value beyond the domain baseline. It does not
 prove that the indicator is the true \(L\), \(B\), or mechanism.
+
+Estimation-layer indicators must be read as candidate readouts, not as the
+structural coordinates themselves. A frozen package should therefore separate:
+
+1. support: the package passes its pre-fixed rule;
+2. no-support: the package is valid but fails its pre-fixed rule;
+3. silence: the target, label, comparison, or observable is not fixed enough for
+   the theory to speak;
+4. invalid-run: the frozen specification is not actually executed, for example
+   because the generator, algebraic constraints, or audit checks fail before the
+   main decision rule can be evaluated.
+
+No-support may not be renamed as support after inspection. Silence is neither
+success nor failure. Invalid-run is not evidence against the coordinate.
 
 The strongest current outside-rerun empirical footing is package-scoped:
 Mixed-CSP and q-coloring each have 3/3 clean outside reruns with
@@ -172,22 +186,22 @@ benchmark endpoint. They may be cited as operational field evidence only when
 the selection and human-workflow caveats are stated.
 
 
-6. Resource / M-Side Boundary
------------------------------
+6. Resource / M Boundary
+------------------------
 
 For resource-side work, \(M\) should be read as the effective maintenance
 amount: the resource-side slack, capacity, budget, attention, time, or other
 usable resource available for maintaining the target condition \(G\).
 
 The minimal meaning of \(M\) is scalar. Optional component decompositions of
-\(M\) are diagnostics, not core law-side claims. \(M=0\) is a resource-side
+\(M\) are diagnostics, not core structural-coordinate claims. \(M=0\) is a resource-side
 route to the maintenance boundary and may appear as functional failure or halt
 even when some feasible structural region remains.
 
 | Label | Meaning |
 |---|---|
 | scalar-M readout | effective resource or slack indicator for the pre-fixed maintenance problem |
-| M-component diagnostic | optional exploratory decomposition of \(M\); not a core claim and not law-side support |
+| M-component diagnostic | optional exploratory decomposition of \(M\); not a core structural-coordinate claim |
 
 Claims about component decompositions or which intervention should be chosen
 first are outside the default \(M\)-side evidence vocabulary.
@@ -231,3 +245,4 @@ Use these labels consistently:
 | no-support | frozen test fails its pre-fixed support rule |
 | weak-axis failure | SP feature mostly renames or duplicates the baseline |
 | silence | the theory should not speak for this package under current observability |
+| invalid-run | frozen specification was not validly executed; do not score as support or no-support |
