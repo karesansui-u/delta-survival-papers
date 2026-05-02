@@ -62,9 +62,10 @@
 | 回復込み収支 | `02_core.md` §6-7、`11_paper2_balance_principle.md` | \(d_t,r_t,b_t,B_n\) を導入し、有限集合例を残す |
 | 構造持続ポテンシャル | `02_core.md` §5, §7 | \(M\) はリソース側、\(L/B\) は維持可能領域側として分ける |
 | 仕様固定レイヤー | `02_core.md` §9、`00_map.md` §6 | 推定レイヤーとの違いを短く示す |
-| 操作的アンカー | `02_foundations/27_specification_fixed_operational_theorems.md` | 有限 CSP と BEC 線形符号を最小例として扱う。詳細証明は補論へ |
-| Lean 形式化 | `00_map.md` §7-10、Lean 対応表 | 何を検査し、何を検査していないかを表で示す |
+| 操作的アンカー | `02_foundations/27_specification_fixed_operational_theorems.md`、`03_domains/01_specification_fixed/st_cut_spectrum_reliability.md`、`03_domains/01_specification_fixed/graph_spanning_tree_persistence.md` | 有限 CSP と BEC 線形符号を最小例として扱い、有限グラフは必要に応じて短く触れる。詳細証明は補論へ |
+| Lean 形式化 | `00_map.md` §7-10、`../lean/PAPER_MAPPING.md` | 何を検査し、何を検査していないかを表で示す |
 | 主張境界 | `02_core.md` §13、`CLAIMS.md` | 鋭いしきい値定理、Shannon 容量定理、物理的エントロピー生産との非同一視を明記する |
+| 証拠状態の確認 | `05_evidence/evidence_status_dashboard.md` | 支持、非支持、無効実行、外部再実行、厳密アンカーの最新状態を確認する |
 
 この素材対応表は、公開第一稿を新規ファイルとしてすぐ生成するための指示ではない。まずは重複、語彙、主張境界を揃え、本文化する段階で必要な素材を選ぶための編集地図である。
 
@@ -102,8 +103,9 @@
 | 観測・推定指標 | `04_operations/`、個別分析ノート | 法則側座標と指標を混同しない |
 | 凍結検証 | `04_operations/54_failure_ledger.md`、`05_evidence/` | 支持、非支持、無効実行、沈黙の判定規律を中心に置く |
 | LLM / 継続学習 | 対応する個別論文・分析ノート | 推定レイヤーの観測的アンカーとして扱う |
-| ソフトウェア診断 | DeltaLint / contract diagnostics 関連文書 | 現場受理実例と有界ベンチマークを分ける |
+| ソフトウェア診断 | DeltaLint / 契約診断 関連文書 | 現場受理実例と有界ベンチマークを分ける |
 | 失敗台帳 | `05_evidence/no_support.tsv`、`05_evidence/cross_domain_failure_lessons.md` | 失敗を救済せず、設計教訓として使う |
+| 証拠状態の確認 | `05_evidence/evidence_status_dashboard.md` | 第二稿に載せる支持、非支持、沈黙の現在状態を確認する |
 
 
 6. 最小形式と収支原理の扱い
