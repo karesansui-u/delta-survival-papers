@@ -12,7 +12,7 @@ V^{(0)} \supseteq V^{(1)} \supseteq \cdots \supseteq V^{(n)}.
 \]
 Under natural axioms for measuring structural consumption - dependence only on survival ratios, normalization, additivity under composition, and continuity - the loss scale is uniquely logarithmic:
 \[
-f(r)=-k\log r.
+f(\rho)=-k\log \rho.
 \]
 With \(k=1\), cumulative structural consumption satisfies
 \[
@@ -38,16 +38,16 @@ The object is not bare existence. The object is existence as a system bearing \(
 
 2. Setting
 
-Fix a substrate or state space \(X\) and a maintenance condition \(G\). Treat the pair as a structural maintenance problem \(\Pi=(X,G)\). Also fix, as the observation unit, whether states, actions, or paths are being counted, and write the resulting comparison-target space as \(\Omega_X\). If only states are counted, \(\Omega_X=X\).
+Fix a substrate or state space \(X\) and a maintenance condition \(G\). Treat the pair as a structural maintenance problem \(\Pi=(X,G)\). Also fix, as the observation unit, whether states, actions, or paths are being counted. If only states are counted, the comparison targets are states of \(X\). If actions or paths are counted, the corresponding comparison range is fixed separately.
 
-Let \(V^{(0)}\subseteq\Omega_X\) be the initial set of targets that satisfy \(G\), or that can maintain \(G\) under allowed repair, update, or operation. Under accumulating constraints, assume
+Let \(V^{(0)}\) be the initial set of targets that satisfy \(G\), or that can maintain \(G\) under allowed repair, update, or operation. Under accumulating constraints, assume
 \[
 V^{(0)} \supseteq V^{(1)} \supseteq \cdots \supseteq V^{(n)}.
 \]
 
-Each \(V^{(i)}\) is measurable in the comparison-target space \(\Omega_X\). A finite measure \(m\) is fixed on the same structural maintenance problem, representation, and time horizon. The value \(m(V^{(i)})\) measures the size of the remaining feasible region for maintaining \(G\), not the current occupied state of the system.
+Each \(V^{(i)}\) is measurable in the fixed comparison range. A finite measure \(m\) is fixed on the same structural maintenance problem, representation, and time horizon. The value \(m(V^{(i)})\) measures the size of the remaining feasible region for maintaining \(G\), not the current occupied state of the system.
 
-This paper concerns pre-fixed structural maintenance problems. The substrate \(X\), maintenance condition \(G\), comparison-target space \(\Omega_X\), initial feasible region, measure, stage sequence, and time horizon are fixed before observing the outcome.
+This paper concerns fixed structural maintenance problems. The substrate \(X\), maintenance condition \(G\), observation unit, initial feasible region, measure, stage sequence, and time horizon are fixed before observing the outcome.
 
 The following applicability conditions are part of the formal discipline.
 
@@ -57,7 +57,7 @@ P2. The stage sequence and time horizon \(T\) are fixed before observation.
 
 P3. When the original structure fails, the failure is recorded as a data point of that structural maintenance problem.
 
-P4. The initial feasible region is nontrivial in measure: \(0<m(V^{(0)})<m(\Omega_X)\).
+P4. The initial feasible region is nontrivial in measure: \(m(V^{(0)})\) is positive, and when the whole comparison range has a measure, \(V^{(0)}\) does not coincide with that whole range.
 
 P5. Natural changes of representation granularity should not by themselves create large changes in the predictions based on \(L\) or \(S\).
 
@@ -85,9 +85,9 @@ B1. Ratio dependence. Structural consumption depends only on \(m(B)/m(A)\), not 
 
 B2. Normalization. \(f(1)=0\).
 
-B3. Additivity. For \(r_1,r_2\in(0,1]\),
+B3. Additivity. For \(\rho_1,\rho_2\in(0,1]\),
 \[
-f(r_1r_2)=f(r_1)+f(r_2).
+f(\rho_1\rho_2)=f(\rho_1)+f(\rho_2).
 \]
 
 B4. Continuity. \(f\) is continuous on \((0,1]\).
@@ -98,7 +98,7 @@ The additivity axiom is not a claim that constraints are generated independently
 
 Theorem. If \(f\) satisfies B1-B4, then there exists \(k\ge0\) such that
 \[
-f(r)=-k\log r.
+f(\rho)=-k\log \rho.
 \]
 If \(f\) is not identically zero, then \(k>0\).
 
@@ -116,7 +116,7 @@ g(t)=kt
 \]
 for some \(k\ge0\). Therefore
 \[
-f(r)=g(-\log r)=-k\log r.
+f(\rho)=g(-\log \rho)=-k\log \rho.
 \]
 This proves the claim.
 

@@ -39,11 +39,7 @@ This difference is the balance principle of structural persistence. Here "balanc
 
 2. Two-step update
 
-Fix a substrate or state space \(X\) and a maintenance condition \(G\). Also fix, as the observation unit, whether states, actions, or paths are being counted, and write the resulting comparison-target space as \(\Omega_X\). Let
-\[
-V^{(t)}\subseteq\Omega_X
-\]
-be the feasible region compatible with maintaining \(G\) at time \(t\). A finite measure \(m\) is fixed in advance. The maintenance condition \(G\), measure, observation unit, and time horizon are also fixed in advance.
+Fix a substrate or state space \(X\) and a maintenance condition \(G\). Also fix, as the observation unit, whether states, actions, or paths are being counted. If only states are counted, the comparison targets are states of \(X\). If actions or paths are counted, the corresponding comparison range is fixed separately. Let \(V^{(t)}\) be the feasible region compatible with maintaining \(G\) at time \(t\). A finite measure \(m\) is fixed in advance. The maintenance condition \(G\), measure, observation unit, and time horizon are also fixed in advance.
 
 Within one observation unit, write the update as
 \[
