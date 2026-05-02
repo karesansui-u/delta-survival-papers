@@ -217,7 +217,7 @@ and the cumulative structural consumption \(L_n=\sum_i d_i\) gives
 \[
 m(V^{(n)})=m(V^{(0)})e^{-L_n}.
 \]
-When recovery, repair, redundancy, external support, or rollback are made explicit, the net consumption is
+When recovery, repair, redundancy, external support, or local restoration are made explicit, the net consumption is
 \[
 b_t=d_t-r_t,
 \]
@@ -313,13 +313,13 @@ Fourth, the empirical question is not whether structural-persistence indicators 
 \]
 improves over the domain baseline alone under frozen out-of-sample conditions.
 
-Fifth, the coordinate gives a language for design transfer. Localization of consumption, preservation of recovery paths, preservation of safety margin, and preservation of alternative paths can become candidate interventions in another domain. What transfers is not support itself. Support in the new domain must be established by freezing the map, indicators, baseline, metric, split, and decision rule, and then testing on held-out data, future data, a fresh archive, or an outside rerun.
+Fifth, the coordinate gives a language for design transfer. Localization of consumption, preservation of recovery paths, preservation of safety margin, and preservation of alternative paths can become candidate interventions in another domain. What transfers is not support itself. Support in the new domain must be established by freezing the map, indicators, baseline, metric, split, and decision rule, and then testing on held-out data, future data, a fresh dataset, or an outside rerun.
 
 13. Minimal operational discipline
 
 This paper does not reproduce the full procedure for mapping structural persistence into a concrete domain. The detailed procedure is kept in the v3 operations files: the standard mapping procedure, operational discipline, support levels, and failure ledger. Here we state only the minimal discipline needed to read this core paper.
 
-The theory separates mapping discovery from validation. A structural condition, ruler, observation or estimation indicator, or recovery indicator found during exploration is not support by itself. Support is assigned only after the structural condition, mapping, indicators, baseline, metric, data split, and decision rule have been frozen, and only if the frozen rule succeeds on unused data, a future surface, a fresh archive, or an outside rerun.
+The theory separates mapping discovery from validation. A structural condition, ruler, observation or estimation indicator, or recovery indicator found during exploration is not support by itself. Support is assigned only after the structural condition, mapping, indicators, baseline, metric, data split, and decision rule have been frozen, and only if the frozen rule succeeds on unused data, future data, a fresh dataset, or an outside rerun.
 
 If coarse-graining, reconfiguration, or action order can change the readout of endpoints or boundaries, the observation unit, common map, embedding, and decision boundary are also part of what must be frozen.
 
