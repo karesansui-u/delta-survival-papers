@@ -20,6 +20,9 @@ Evidence is separated from theory claims.
   whose endpoint, comparator, validation depth, and support scope are bounded.
 - `cross_domain_failure_lessons.md`: reusable design lessons from invalid,
   no-support, and below-gate packages across domains.
+- `nat_readout_audit.md`: audit note separating exact structural nat, sampled
+  future-scenario nat, predictive log loss, and estimation-layer proxy
+  indicators.
 - `cross_domain_design_lessons_from_a06_stop.md`: focused lessons from the
   A06-stop stopping-set package.
 - Software contract-coherence diagnostics evidence is tracked as two layers:

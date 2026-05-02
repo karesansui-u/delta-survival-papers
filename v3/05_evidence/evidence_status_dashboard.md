@@ -17,6 +17,7 @@ Primary source ledgers:
 05_evidence/no_support.tsv
 05_evidence/outside_reruns.tsv
 05_evidence/cross_domain_failure_lessons.md
+05_evidence/nat_readout_audit.md
 ```
 
 
@@ -101,6 +102,9 @@ Use the following interpretation rules when citing these records.
 6. `exact anchor` means the specification-fixed accounting object is well
    defined; it is not automatically a predictive win.
 7. A successor run must use a new manifest and must not relabel failed rows.
+8. `nat_readout_audit.md` separates exact structural nat, sampled scenario nat,
+   predictive log loss, and estimation-layer proxy indicators. It does not
+   change any support status.
 
 
 7. Current Evidence Shape

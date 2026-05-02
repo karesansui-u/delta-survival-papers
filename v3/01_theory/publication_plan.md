@@ -114,6 +114,7 @@
 | ソフトウェア診断 | DeltaLint / 契約診断 関連文書 | 現場受理実例と有界ベンチマークを分ける |
 | 失敗台帳 | `05_evidence/no_support.tsv`、`05_evidence/cross_domain_failure_lessons.md` | 失敗を救済せず、設計教訓として使う |
 | 証拠状態の確認 | `05_evidence/evidence_status_dashboard.md` | 第二稿に載せる支持、非支持、沈黙の現在状態を確認する |
+| nat 読出し監査 | `05_evidence/nat_readout_audit.md` | exact nat、sampled scenario nat、推定指標を混同しない |
 
 
 6. 最小形式と収支原理の扱い
