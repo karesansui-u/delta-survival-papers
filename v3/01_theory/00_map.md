@@ -16,9 +16,9 @@ v3 では、個別ドメインを本文へ直接増殖させない。ドメイ�
 
 この公開第一稿の本文候補は [`20_public_first_draft.md`](20_public_first_draft.md) に置く。これは `02_core.md` の正本性を置き換えるものではなく、公開第一稿として `02_core.md`、最小形式、収支原理、仕様固定アンカーを一本化したときの読者導線を検査するための初稿である。
 
-公開第二稿の章立て候補は [`21_public_second_draft_outline.md`](21_public_second_draft_outline.md) に置く。これは、推定レイヤー、凍結検証、支持・非支持・沈黙、失敗台帳を扱う第二稿を組むための編集地図であり、新しい支持判定や実験結果を追加するものではない。
-
 公開第二稿の本文候補は [`22_public_second_draft.md`](22_public_second_draft.md) に置く。これは、第一稿の基礎座標を前提に、推定レイヤーと検証規律を一本で読めるかを検査するための初稿である。
+
+公開第二稿の旧章立てメモは [`notes/21_public_second_draft_outline.md`](notes/21_public_second_draft_outline.md) に保管する。これは `22_public_second_draft.md` に本文化済みであり、現役の読者導線ではない。
 
 証拠のスナップショット
 
