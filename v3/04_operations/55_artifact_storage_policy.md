@@ -44,6 +44,33 @@ The following files should normally remain as ordinary tracked files:
 These files are the human-readable and machine-readable decision surface.
 
 
+2b. Public / Private Boundary
+-----------------------------
+
+This public `v3` tree is for theory-facing and reader-facing materials. It may
+contain high-level summaries, non-enabling explanations, frozen public ledgers,
+hashes, manifests, and abstract figures.
+
+Do not place patent-sensitive or non-public implementation work products in
+this tree. In particular, keep the following outside `v3` unless an explicit
+release decision has been made:
+
+- raw experiment results;
+- full configs and run requests;
+- local scripts or implementation details for private mechanisms;
+- controller rules, thresholds, selection policies, or routing internals;
+- detailed claim-boundary tables tied to private experiments;
+- notes mapping an experiment directly to a patent claim;
+- model checkpoints, adapters, embeddings, caches, databases, and run logs;
+- copied files from private repositories.
+
+Private or patent-sensitive continual-learning work should live in the private
+experiment repositories, such as `delta-infinity-seed` for experiments and
+`delta-memorygit` for versioned memory implementation work. Public `v3`
+materials should summarize the problem and the non-sensitive claim boundary
+without exposing enabling implementation detail.
+
+
 3. Bundle Or Externalize When Large
 -----------------------------------
 

@@ -1,3 +1,41 @@
 # Local raw rerun outputs. Keep summaries, manifests, hashes, and small
 # diagnostics tracked, but do not accidentally add large rerun CSV directories.
 05_evidence/**/rerun_*_local/
+
+# Public v3 keeps reader-facing evidence summaries, manifests, and ledgers.
+# Raw/generated evidence artifacts live in the private archive, not in this repo.
+05_evidence/**/primary_*/
+05_evidence/**/smoke_*/
+05_evidence/**/freeze_prep_*/
+05_evidence/**/normalized_pressure_freeze_prep_*/
+05_evidence/**/orderwise_terms_freeze_prep_*/
+05_evidence/**/matched_residual_smoke_*/
+05_evidence/**/scripts/
+
+# Patent-sensitive and non-public local work products.
+# Keep implementation experiments, controller details, raw results, and copied
+# private-repo docs outside the public v3 tree.
+tmp_*/
+tmp_*.md
+tmp_*.json
+private/
+private_*/
+confidential/
+nonpublic/
+internal/
+configs/
+results/
+runs/
+logs/
+outputs/
+artifacts/
+*_claim_boundary*
+*_controller*
+*.db
+*.sqlite
+*.parquet
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.bin

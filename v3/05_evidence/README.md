@@ -5,6 +5,9 @@ Evidence is separated from theory claims.
 
 - Large row-level artifacts should follow
   `../04_operations/55_artifact_storage_policy.md`.
+- Public `v3` intentionally keeps summaries, manifests, dashboards, and TSV
+  ledgers only. Raw CSV/JSON outputs, generated experiment directories, and
+  local evidence scripts are archived outside the public tree.
 - `evidence_status_dashboard.md`: reader-facing snapshot of supported,
   observational, no-support, invalid-run, and exact-anchor records.
 - `specification_fixed_replication_strengthening_plan.md`: next-step plan for
