@@ -15,7 +15,7 @@ Start here:
 
 1. `01_theory/00_map.md`
 2. `01_theory/01_overview.md`
-3. `01_theory/02_core.md`
+3. `01_theory/02_accounting_framework.md`
 4. `CLAIMS.md`
 5. `RELEASE_NOTES.md`
 6. `RELEASE_AUDIT_2026-04-29.md`
@@ -23,7 +23,7 @@ Start here:
 
 Then read the layer you need:
 
-- Main spine: `01_theory/10_paper1_minimal_form.md`, `01_theory/11_paper2_balance_principle.md`
+- Main spine: `01_theory/10_log_ratio_accounting.md`, `01_theory/11_balance_accounting.md`
 - Mathematical foundations: `02_foundations/`
 - Domain anchors: `03_domains/`
 - Operational rules: `04_operations/`
@@ -37,7 +37,10 @@ English entry path:
 - `01_theory/en/02_core_en.md`
 - `01_theory/en/10_paper1_minimal_form_en.md`
 - `01_theory/en/11_paper2_balance_principle_en.md`
-- PDFs: `07_exports/pdf/02_core_en.pdf`,
+- Japanese PDFs: `07_exports/pdf/02_core.pdf`,
+  `07_exports/pdf/20_public_first_draft.pdf`,
+  `07_exports/pdf/22_public_second_draft.pdf`
+- English PDFs: `07_exports/pdf/02_core_en.pdf`,
   `07_exports/pdf/10_paper1_minimal_form_en.pdf`,
   `07_exports/pdf/11_paper2_balance_principle_en.pdf`
 

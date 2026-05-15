@@ -18,11 +18,11 @@ using log-ratio coordinates.
    Whole map of the v3 organization.
 2. [`v3/01_theory/01_overview.md`](v3/01_theory/01_overview.md)
    Reader-facing overview of the theory.
-3. [`v3/01_theory/02_core.md`](v3/01_theory/02_core.md)
+3. [`v3/01_theory/02_accounting_framework.md`](v3/01_theory/02_accounting_framework.md)
    Core paper combining the Paper 1 / Paper 2 reading path.
-4. [`v3/01_theory/10_paper1_minimal_form.md`](v3/01_theory/10_paper1_minimal_form.md)
+4. [`v3/01_theory/10_log_ratio_accounting.md`](v3/01_theory/10_log_ratio_accounting.md)
    Minimal form: structural depletion and the \(S = M e^{-L}\) kernel.
-5. [`v3/01_theory/11_paper2_balance_principle.md`](v3/01_theory/11_paper2_balance_principle.md)
+5. [`v3/01_theory/11_balance_accounting.md`](v3/01_theory/11_balance_accounting.md)
    Balance principle: recovery and the \(S = M e^{-B}\) kernel.
 
 English:

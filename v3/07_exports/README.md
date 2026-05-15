@@ -8,6 +8,9 @@ exports for readers and OSF/GitHub navigation.
 
 Current main PDFs:
 
+- `pdf/02_core.pdf`
+- `pdf/20_public_first_draft.pdf`
+- `pdf/22_public_second_draft.pdf`
 - `pdf/02_core_en.pdf`
 - `pdf/10_paper1_minimal_form_en.pdf`
 - `pdf/11_paper2_balance_principle_en.pdf`

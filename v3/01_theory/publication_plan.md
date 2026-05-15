@@ -3,7 +3,7 @@
 
 要旨
 
-本メモは、v3 の内部文書構成と、公開時の論文単位を分けて整理するための編集メモである。新しい理論主張、実験、支持判定を追加するものではない。現時点の正本は `02_core.md` であり、本メモはその読者導線に合わせて、公開第一稿と公開第二稿の候補構成を管理する。
+本メモは、v3 の内部文書構成と、公開時の論文単位を分けて整理するための編集メモである。新しい理論主張、実験、支持判定を追加するものではない。現時点の正本は `02_accounting_framework.md` であり、本メモはその読者導線に合わせて、公開第一稿と公開第二稿の候補構成を管理する。
 
 
 1. 現在の内部構成
@@ -14,10 +14,10 @@
 |---|---|
 | `00_map.md` | 全体地図、読み順、主張強度、証拠状態の位置づけ |
 | `01_overview.md` | 統合版の入口、主理論と観測レイヤーの導線 |
-| `02_core.md` | 現在の正本。構造維持問題、最小核、収支原理、二つの観測レイヤーの読者向け中心 |
-| `10_paper1_minimal_form.md` | 最小形式。縮小、対数比の一意性、望遠鏡積の基礎分冊 |
-| `11_paper2_balance_principle.md` | 収支原理。消耗、回復、純消耗量、回復込み指数核の基礎分冊 |
-| `20_public_first_draft.md` | 公開第一稿の本文候補。`02_core.md`、最小形式、収支原理、仕様固定アンカーを一本化した初稿 |
+| `02_accounting_framework.md` | 現在の正本。構造維持問題、最小核、収支原理、二つの観測レイヤーの読者向け中心 |
+| `10_log_ratio_accounting.md` | 最小形式。縮小、対数比の一意性、望遠鏡積の基礎分冊 |
+| `11_balance_accounting.md` | 収支原理。消耗、回復、純消耗量、回復込み指数核の基礎分冊 |
+| `20_public_first_draft.md` | 公開第一稿の本文候補。`02_accounting_framework.md`、最小形式、収支原理、仕様固定アンカーを一本化した初稿 |
 | `22_public_second_draft.md` | 公開第二稿の本文候補。推定レイヤーと検証規律を一本化した初稿 |
 | `notes/21_public_second_draft_outline.md` | 公開第二稿の旧章立てメモ。`22_public_second_draft.md` に本文化済みのため保管扱い |
 | `02_foundations/27_specification_fixed_operational_theorems.md` | 仕様固定レイヤーの操作的定理アンカー |
@@ -26,7 +26,7 @@
 
 この内部構成は、公開論文の分割をそのまま意味しない。内部では細かく分け、公開時には証拠の種類と読者導線に応じて束ねる。
 
-`02_core.md` は、公開第一稿または公開第二稿へ改名・変形しない。引き続き理論の正本として残し、公開第一稿と公開第二稿は、その正本をもとに読者導線を検査する本文候補として扱う。
+`02_accounting_framework.md` は、公開第一稿または公開第二稿へ改名・変形しない。引き続き理論の正本として残し、公開第一稿と公開第二稿は、その正本をもとに読者導線を検査する本文候補として扱う。
 
 
 2. 公開第一稿の候補
@@ -56,25 +56,25 @@
 
 3. 公開第一稿の素材対応
 
-公開第一稿を実際に組むときは、`02_core.md` を骨格として使い、最小形式、収支原理、仕様固定操作的定理補論から必要な証明・アンカーだけを差し込む。
+公開第一稿を実際に組むときは、`02_accounting_framework.md` を骨格として使い、最小形式、収支原理、仕様固定操作的定理補論から必要な証明・アンカーだけを差し込む。
 
 | 公開第一稿の章 | 主な素材 | 編集方針 |
 |---|---|---|
-| 問い | `02_core.md` §2、`01_overview.md` 冒頭 | 資源不足ではなく維持可能領域の縮小を見る、という導入に絞る |
-| 構造維持問題 | `02_core.md` §3 | \(X,G,V,m\) と観測単位を定義する。記号を増やしすぎない |
-| 縮小の尺度 | `10_paper1_minimal_form.md`、`02_core.md` §4 | 対数比の一意性を本文では短く、証明詳細は付録または保管分冊へ |
-| 収縮モード | `02_core.md` §5、`10_paper1_minimal_form.md` | \(m(V^{(n)})=m(V^{(0)})e^{-L_n}\) を主線に置く |
-| 回復込み収支 | `02_core.md` §6-7、`11_paper2_balance_principle.md` | \(d_t,r_t,b_t,B_n\) を導入し、有限集合例を残す |
-| 構造持続ポテンシャル | `02_core.md` §5, §7 | \(M\) は資源側、\(L/B\) は維持可能領域側として分ける |
-| 仕様固定レイヤー | `02_core.md` §9、`00_map.md` §6 | 推定レイヤーとの違いを短く示す |
+| 問い | `02_accounting_framework.md` §2、`01_overview.md` 冒頭 | 資源不足ではなく維持可能領域の縮小を見る、という導入に絞る |
+| 構造維持問題 | `02_accounting_framework.md` §3 | \(X,G,V,m\) と観測単位を定義する。記号を増やしすぎない |
+| 縮小の尺度 | `10_log_ratio_accounting.md`、`02_accounting_framework.md` §4 | 対数比の一意性を本文では短く、証明詳細は付録または保管分冊へ |
+| 収縮モード | `02_accounting_framework.md` §5、`10_log_ratio_accounting.md` | \(m(V^{(n)})=m(V^{(0)})e^{-L_n}\) を主線に置く |
+| 回復込み収支 | `02_accounting_framework.md` §6-7、`11_balance_accounting.md` | \(d_t,r_t,b_t,B_n\) を導入し、有限集合例を残す |
+| 構造持続ポテンシャル | `02_accounting_framework.md` §5, §7 | \(M\) は資源側、\(L/B\) は維持可能領域側として分ける |
+| 仕様固定レイヤー | `02_accounting_framework.md` §9、`00_map.md` §6 | 推定レイヤーとの違いを短く示す |
 | 操作的アンカー | `02_foundations/27_specification_fixed_operational_theorems.md`、`03_domains/01_specification_fixed/st_cut_spectrum_reliability.md`、`03_domains/01_specification_fixed/graph_spanning_tree_persistence.md` | 有限 CSP と BEC 線形符号を最小例として扱い、有限グラフは必要に応じて短く触れる。未来シナリオ維持検査は仕様固定では有限シナリオ会計として扱う。詳細証明は補論へ |
 | Lean 形式化 | `00_map.md` §7-10、`../lean/PAPER_MAPPING.md` | 何を検査し、何を検査していないかを表で示す |
-| 主張境界 | `02_core.md` §13、`CLAIMS.md` | 鋭いしきい値定理、Shannon 容量定理、物理的エントロピー生産との非同一視を明記する |
+| 主張境界 | `02_accounting_framework.md` §13、`CLAIMS.md` | 鋭いしきい値定理、Shannon 容量定理、物理的エントロピー生産との非同一視を明記する |
 | 証拠状態の確認 | `05_evidence/evidence_status_dashboard.md` | 支持、非支持、無効実行、外部再実行、厳密アンカーの最新状態を確認する |
 
 この素材対応表は、公開第一稿を新規ファイルとしてすぐ生成するための指示ではない。まずは重複、語彙、主張境界を揃え、本文化する段階で必要な素材を選ぶための編集地図である。
 
-現時点の本文候補は `20_public_first_draft.md` に置く。このファイルは `02_core.md` の正本性を置き換えるものではなく、公開第一稿として実際に一本で読めるかを検査するための統合初稿である。
+現時点の本文候補は `20_public_first_draft.md` に置く。このファイルは `02_accounting_framework.md` の正本性を置き換えるものではなく、公開第一稿として実際に一本で読めるかを検査するための統合初稿である。
 
 
 4. 公開第二稿の候補
@@ -108,7 +108,7 @@
 
 | 公開第二稿の章 | 主な素材 | 編集方針 |
 |---|---|---|
-| 推定レイヤーの必要性 | `02_core.md` §9、`04_operations/` | 直接 \(V,m\) を数えられない場合の扱いを説明する |
+| 推定レイヤーの必要性 | `02_accounting_framework.md` §9、`04_operations/` | 直接 \(V,m\) を数えられない場合の扱いを説明する |
 | 観測・推定指標 | `04_operations/`、個別分析ノート | 構造座標・資源側量と指標を混同しない |
 | 未来シナリオ維持検査 | `20_public_first_draft.md` §8、`22_public_second_draft.md` §3 | 仕様固定では有限シナリオ会計、推定レイヤーでは観測・推定版として扱う |
 | 凍結検証 | `04_operations/54_failure_ledger.md`、`05_evidence/` | 支持、非支持、無効実行、沈黙の判定規律を中心に置く |
@@ -122,16 +122,16 @@
 
 6. 最小形式と収支原理の扱い
 
-`10_paper1_minimal_form.md` と `11_paper2_balance_principle.md` は、v3 編集中は現役の内部基礎分冊として保持する。公開第一稿では、その内容を基礎理論本文に統合する候補である。
+`10_log_ratio_accounting.md` と `11_balance_accounting.md` は、v3 編集中は現役の内部基礎分冊として保持する。公開第一稿では、その内容を基礎理論本文に統合する候補である。
 
 統合後も、これらを削除しない。証明・厳密版の参照元、付録素材、または保管された基礎分冊として残す。物理的な移動やファイル名変更は、公開第一稿の本文構成が固まるまで行わない。
 
 したがって、現時点では次を行わない。
 
-- `10_paper1_minimal_form.md` の削除
-- `11_paper2_balance_principle.md` の削除
+- `10_log_ratio_accounting.md` の削除
+- `11_balance_accounting.md` の削除
 - `archive/` への移動
-- `02_core.md` から Paper 1 / Paper 2 への参照削除
+- `02_accounting_framework.md` から Paper 1 / Paper 2 への参照削除
 
 
 7. 非方針

@@ -162,7 +162,7 @@ superseded_by: ../22_public_second_draft.md
 
 | 章 | 主な素材 | 使い方 |
 |---|---|---|
-| 推定レイヤーの必要性 | `01_theory/02_core.md`, `01_theory/20_public_first_draft.md` | 第一稿の構造座標と資源側量を前提にする |
+| 推定レイヤーの必要性 | `01_theory/02_accounting_framework.md`, `01_theory/20_public_first_draft.md` | 第一稿の構造座標と資源側量を前提にする |
 | 凍結検証 | `04_operations/54_failure_ledger.md`, `05_evidence/` | 支持・非支持・沈黙の判定規律を説明する |
 | 失敗台帳 | `05_evidence/no_support.tsv`, `05_evidence/cross_domain_failure_lessons.md` | 失敗から得た設計教訓を整理する |
 | 証拠状態 | `05_evidence/evidence_status_dashboard.md` | 現在の支持、非支持、無効実行、観測的アンカーを確認する |

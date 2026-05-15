@@ -16,7 +16,7 @@ Read in this order:
 
 1. [`v3/01_theory/00_map.md`](v3/01_theory/00_map.md)
 2. [`v3/01_theory/01_overview.md`](v3/01_theory/01_overview.md)
-3. [`v3/01_theory/02_core.md`](v3/01_theory/02_core.md)
+3. [`v3/01_theory/02_accounting_framework.md`](v3/01_theory/02_accounting_framework.md)
 4. [`v3/CLAIMS.md`](v3/CLAIMS.md)
 5. [`v3/03_domains/registry.tsv`](v3/03_domains/registry.tsv)
 6. [`v3/05_evidence/README.md`](v3/05_evidence/README.md)
@@ -29,6 +29,9 @@ English entry path:
 
 Current exported PDFs:
 
+- [`v3/07_exports/pdf/02_core.pdf`](v3/07_exports/pdf/02_core.pdf)
+- [`v3/07_exports/pdf/20_public_first_draft.pdf`](v3/07_exports/pdf/20_public_first_draft.pdf)
+- [`v3/07_exports/pdf/22_public_second_draft.pdf`](v3/07_exports/pdf/22_public_second_draft.pdf)
 - [`v3/07_exports/pdf/02_core_en.pdf`](v3/07_exports/pdf/02_core_en.pdf)
 - [`v3/07_exports/pdf/10_paper1_minimal_form_en.pdf`](v3/07_exports/pdf/10_paper1_minimal_form_en.pdf)
 - [`v3/07_exports/pdf/11_paper2_balance_principle_en.pdf`](v3/07_exports/pdf/11_paper2_balance_principle_en.pdf)

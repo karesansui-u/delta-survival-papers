@@ -54,7 +54,7 @@ Recommended external reading order:
 1. `README.md`
 2. `01_theory/00_map.md`
 3. `01_theory/01_overview.md`
-4. `01_theory/02_core.md`
+4. `01_theory/02_accounting_framework.md`
 5. `CLAIMS.md`
 6. `03_domains/registry.tsv`
 7. `05_evidence/README.md`
