@@ -226,6 +226,12 @@ The v3 program does not claim:
   re-proved;
 - DeltaLint merged PRs alone prove raw detector precision, long-term software
   collapse prediction, or M-side profile support.
+- MemoryGit or any LLM long-term memory-control note proves full belief
+  revision, arbitrary natural-conversation safety, AGI, recursive
+  self-improvement, or a literal implementation of human memory.
+- private small-suite closure for MemoryGit or selected-readout telemetry proves
+  safety on product traffic, independent large blind logs, or general continual
+  learning.
 
 
 8. Support Vocabulary

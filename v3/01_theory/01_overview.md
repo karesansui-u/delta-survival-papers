@@ -281,6 +281,8 @@ Exp.39 の 2×2 prospective replication でも、同じ主比較は GPT-4.1-nano
 
 この方向は、長期的な一貫性を持つ知能システム、すなわち内部モデルを育てながら持続するパートナー型知能を考えるときに自然である。記憶を増やすことそのものよりも、矛盾をどう解消し、何を休眠させ、いつ再活性化し、どこまで安全に戻せるかが中心になるからである。
 
+この含意を LLM の長期記憶に寄せて読むと、MemoryGit 型の設計境界が出てくる。ここでいう長期記憶は、入力をただ蓄積する total recall ではない。入力を直ちに確定事実へ変換せず、出所、発話上の役割、範囲、権限、削除状態、認識上の状態、安定度、現在使用可能性を分けて保持する有限の記憶制御層である。この発想は古典 AI の truth maintenance system / assumption-based truth maintenance system の系譜に接続するが、主張はより限定される。すなわち、完全な belief revision ではなく、自然言語会話から生じる記憶汚染を、有限個の operational state、構造的検査、review、rollback、ledger によって抑える設計候補である。内部実装台帳では、この方向を検査する小型テレメトリがあるが、公開 v3 では外部再実行済み証拠ではなく設計上の現在地として扱う。詳細な境界は `03_domains/02_structurally_inferred/llm_long_term_memory_control.md` に分けて置く。
+
 
 8. 限界と今後の課題
 
@@ -317,7 +319,7 @@ LLM 推論劣化と継続学習忘却の観察は、推定レイヤーの観測�
 - 構成地図・運用規律: 補論_構造持続理論の構成地図.md, 補論_構造持続理論の運用規律.md
 - 主理論核（先に読む）: 1_構造持続の最小形式.md, 2_構造持続の収支原理.md
 - 技術補論（必要に応じて読む）: 補論_構造持続の条件つき導出.md, 補論_構造持続の収支原理の詳細展開.md
-- 推定レイヤー / LLM補助アンカー: `03_domains/02_structurally_inferred/llm_reasoning_degradation.md`, `03_domains/02_structurally_inferred/continual_learning_forgetting.md`
+- 推定レイヤー / LLM補助アンカー: `03_domains/02_structurally_inferred/llm_reasoning_degradation.md`, `03_domains/02_structurally_inferred/continual_learning_forgetting.md`, `03_domains/02_structurally_inferred/llm_long_term_memory_control.md`
 - 証拠状態の現在スナップショット: `05_evidence/evidence_status_dashboard.md`
 - 仕様固定レイヤー / CSP・非CSP有限アンカー: 補論_計算コストの構造的予測.md, 補論_有限CSPにおける構造持続の予測力.md, [仕様固定レイヤーにおける操作的定理](../02_foundations/27_specification_fixed_operational_theorems.md), `03_domains/01_specification_fixed/st_cut_spectrum_reliability.md`, `03_domains/01_specification_fixed/graph_spanning_tree_persistence.md`, `03_domains/01_specification_fixed/coding_channel_recovery.md`
 - 開放系・写像・M（有効維持余力）: [構造持続の集合値力学的表現と符号付き指数核](../02_foundations/23_set_valued_dynamics.md), [構造持続における許容写像と階層的不変量](../02_foundations/22_admissible_maps.md), [構造持続写像の標準手順](../04_operations/50_standard_mapping_procedure.md), [構造持続における M（有効維持余力）の操作的定式化](../04_operations/52_resource_M.md)
