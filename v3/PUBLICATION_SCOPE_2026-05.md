@@ -4,6 +4,12 @@ Status: current publication gate
 
 Date: 2026-05-18
 
+OSF caution: the May 2026 two-PDF bundle is safe as a standalone artifact, but
+the OSF project `mdh7b` may still expose earlier legacy uploads. Do not describe
+the OSF project as restricted to the May 2026 bundle until the legacy public
+folder and older full-v3 archive have been removed or the project has been made
+private.
+
 This repository is still private. Do not flip the full GitHub repository to
 public visibility as-is. The working tree contains public theory drafts together
 with non-public implementation experiments, memory-control cases, scripts, and
@@ -73,6 +79,10 @@ pass:
 - controller details, repair rules, prompt packets, or model-routing logic
 - patent-support notes or implementation-specific claim mappings
 
+This includes experimental result archives and OSF legacy folders such as
+`archive_root_legacy_2026-04-30/` when they contain experiment-result folders,
+raw rerun bundles, or full working-structure archives.
+
 Current examples that should stay private unless separately redacted:
 
 - `03_domains/02_structurally_inferred/llm_input_qualification_*`
@@ -91,6 +101,22 @@ If a public GitHub repository is needed, create a clean public branch or a
 separate clean repository from an allowlist. The minimum allowlist is the
 two-PDF public set above. A wider source release should be produced only after a
 fresh redaction review.
+
+## OSF Visibility Rule
+
+For OSF project `mdh7b`, the intended current public artifact is only:
+
+- `public_structural_persistence_2026-05_restricted_pdf_bundle_73966cc.zip`
+
+Remove or hide these legacy public entries before treating OSF as clean under
+the May 2026 publication gate:
+
+- `archive_root_legacy_2026-04-30/`
+- `structural-persistence-theory-v3_2026-04-30_c2185ec3.zip`
+
+If removal is not possible immediately, keep the OSF project private or clearly
+mark the project as containing legacy public materials that are not part of the
+current restricted release.
 
 ## Required Pre-Publication Checks
 

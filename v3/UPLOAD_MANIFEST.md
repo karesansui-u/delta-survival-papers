@@ -21,6 +21,14 @@ For the current public/private boundary, use:
 The current safe public unit is the two-PDF public set under
 `07_exports/pdf/public_structural_persistence_2026-05/`.
 
+OSF remediation note:
+
+The May 2026 restricted bundle is safe as a standalone artifact, but OSF project
+`mdh7b` should not be treated as restricted-only while older legacy entries are
+still visible. Remove or hide `archive_root_legacy_2026-04-30/` and
+`structural-persistence-theory-v3_2026-04-30_c2185ec3.zip` before using OSF as
+the public canonical entry point for this restricted release.
+
 
 1. Upload Scope
 ---------------
