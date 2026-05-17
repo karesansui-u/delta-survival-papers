@@ -15,6 +15,7 @@
 # Patent-sensitive and non-public local work products.
 # Keep implementation experiments, controller details, raw results, and copied
 # private-repo docs outside the public v3 tree.
+scripts/
 tmp_*/
 tmp_*.md
 tmp_*.json
@@ -31,6 +32,17 @@ outputs/
 artifacts/
 *_claim_boundary*
 *_controller*
+
+# Memory / agent implementation experiments. These may be described publicly at
+# a non-enabling level, but cases, scripts, provider smoke results, and adapter
+# details should stay in the private archive unless separately redacted.
+03_domains/02_structurally_inferred/llm_input_qualification_*
+05_evidence/*input_qualification*
+05_evidence/*memory_qualification*
+05_evidence/*conversation_log*
+05_evidence/*hermes*
+07_exports/pdf/llm_input_qualification_*
+
 *.db
 *.sqlite
 *.parquet

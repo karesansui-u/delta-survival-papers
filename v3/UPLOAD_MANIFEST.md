@@ -1,15 +1,60 @@
 v3 Upload Manifest
 ==================
 
-Status: release-candidate upload manifest
+Status: superseded full-v3 manifest; current policy is restricted public export
 
-Date: 2026-04-29
+Date: 2026-05-18
+
+Important:
+
+Do not upload the full `v3/` directory as a public bundle without a fresh
+redaction pass. This manifest originally described the 2026-04 release-candidate
+structure, before the repository accumulated non-public implementation
+experiments, input-qualification cases, Hermes / MemoryGit materials, provider
+smoke outputs, and patent-sensitive evaluation details.
+
+For the current public/private boundary, use:
+
+- `PUBLICATION_SCOPE_2026-05.md`
+- `07_exports/pdf/public_structural_persistence_2026-05/README.md`
+
+The current safe public unit is the two-PDF public set under
+`07_exports/pdf/public_structural_persistence_2026-05/`.
 
 
 1. Upload Scope
 ---------------
 
-Upload the full `v3/` directory as the public working structure.
+Do not upload the full `v3/` directory as the public working structure in its
+current mixed state.
+
+Current May 2026 public scope:
+
+- `07_exports/pdf/public_structural_persistence_2026-05/README.md`
+- `07_exports/pdf/public_structural_persistence_2026-05/01_structural_persistence_fixed_spec_layer_ja.pdf`
+- `07_exports/pdf/public_structural_persistence_2026-05/02_structural_persistence_estimation_layer_ja.pdf`
+- `07_exports/pdf/public_structural_persistence_2026-05.zip`
+
+The corresponding source drafts may be released only through a clean source
+bundle or clean branch:
+
+- `01_theory/20_public_first_draft.md`
+- `01_theory/22_public_second_draft.md`
+
+Keep private unless separately redacted:
+
+- `scripts/`
+- raw/generated experimental outputs;
+- `05_evidence/*input_qualification*`;
+- `05_evidence/*memory_qualification*`;
+- `05_evidence/*conversation_log*`;
+- `05_evidence/*hermes*`;
+- `03_domains/02_structurally_inferred/llm_input_qualification_*`;
+- `07_exports/pdf/llm_input_qualification_memory_update_control_ja.pdf`;
+- controller details, repair rules, provider smoke outputs, prompt packets, and
+  implementation-specific claim mappings.
+
+Historical 2026-04 full-v3 scope, retained below for archive provenance:
 
 Include:
 
@@ -63,7 +108,8 @@ Recommended external reading order:
 4. Evidence Ledgers
 -------------------
 
-The evidence ledgers are part of the upload and should not be omitted:
+For the historical 2026-04 full-v3 release-candidate, the evidence ledgers were
+part of the upload and should not be omitted:
 
 - `05_evidence/frozen_packages.tsv`
 - `05_evidence/outside_reruns.tsv`
@@ -71,8 +117,11 @@ The evidence ledgers are part of the upload and should not be omitted:
 - `05_evidence/field_demonstrations.tsv`
 - `05_evidence/bounded_benchmarks.tsv`
 
-Failed attempts and no-support records are part of the research program. Do not
-remove them from public bundles.
+Failed attempts and no-support records are part of the research program. For a
+future evidence release, do not remove them merely because they are negative.
+However, evidence materials that contain raw cases, provider outputs, scripts,
+implementation-specific repair rules, or patent-sensitive details must remain
+private until a separate redaction pass produces a public evidence package.
 
 
 5. Pre-Upload Checks
@@ -80,10 +129,14 @@ remove them from public bundles.
 
 Run or record the following checks before creating an archive:
 
+- confirm the intended release type: PDF-only, source, evidence, or full archive;
 - local Markdown links in `v3/`;
 - TSV column-count consistency for `03_domains/registry.tsv` and
   `05_evidence/*.tsv`;
 - stale internal route labels or older M-side profile labels;
+- local paths and private terms in PDF text: `/Users`, `Project`, `private`;
+- implementation-sensitive terms: `Hermes`, `MemoryGit`, `input qualification`,
+  `provider`, `smoke`, `controller`, `raw`, `claim_boundary`;
 - whitespace check with `git diff --check`.
 
 If an archive is uploaded to OSF, Zenodo, or another repository, record the
