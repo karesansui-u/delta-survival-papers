@@ -1041,9 +1041,9 @@ LLM companion I / II は、仕様固定レイヤーのような自然測度・MG
 | G6-b | correspondence | 量、符号、条件の対応表が作れる | 差分を明示したうえで使う |
 | G6-c | formal embedding / conditional reduction | 既存理論の差分・drift・balance が、本理論の変数へ仮定保持つきで埋め込める | 限定クラスの law-side credibility に効く |
 
-本稿では、既存理論との接続をこの三段階で区別する。analogy だけでは理論的接続としては弱い。correspondence は有用だが、まだ theorem transfer を保証しない。formal embedding または条件つき reduction がある場合にのみ、既存理論の差分・drift・balance を構造持続の収支原理の変数として読むことができる。
+本稿では、既存理論との接続をこの三段階で区別する。analogy だけでは理論的接続としては弱い。correspondence は有用だが、まだ theorem-transfer を保証しない。formal embedding または条件つき reduction がある場合でも、まず主張できるのは、既存理論の差分・drift・balance を構造持続の収支原理の変数として読むための仮定保持つき写像である。元理論の安定性定理や物理定理そのものが自動的に移植されるわけではない。
 
-この区別は重要である。構造持続の収支原理が熱力学に「似ている」ことは、それだけでは何も証明しない。一方、queueing theory の Lyapunov drift 条件のように、符号つき累積純消耗量として直接書き換えられるものは、より強い意味で構造持続の収支原理の特例または埋め込みとして扱える。
+この区別は重要である。構造持続の収支原理が熱力学に「似ている」ことは、それだけでは何も証明しない。一方、queueing theory の Lyapunov drift 条件のように、符号つき累積純消耗量として直接書き換えられるものは、より強い意味で構造持続の収支原理との代数互換性を持つ。ただし、その強さは theorem-transfer ではなく、元理論の仮定を保持した記法互換性として読む。
 
 7.2 熱力学との関係
 
@@ -1141,7 +1141,7 @@ LLM companion I / II は、仕様固定レイヤーのような自然測度・MG
 
 §2.2 の \(d_t,r_t\ge 0\) という二段階 sign convention に合わせて読むなら、\(Z_t\) の増加分を構造消耗量 \(d_t\)、減少分を回復量 \(r_t\) に分ければよい。その差し引きが、ここで直接定義した \(b_t=Z_{t+1}-Z_t\) に一致する。
 
-この意味で、Lyapunov drift calculus は構造持続の収支原理の G6-c formal embedding として扱える。より正確には、任意の Lyapunov drift process は、\(Z_t\) を構造負荷、\(R_t=e^{-Z_t}\) を相対維持量と読むことで、構造持続の収支原理の期待値レベルの傾向層に埋め込める。この最小代数的埋め込みは、補論「構造持続の収支原理と Foster-Lyapunov ドリフトの形式的埋め込み」および Lean の `Survival.LyapunovBalanceEmbedding` で読者向け / machine-checked に記録されている。
+この意味で、Lyapunov drift calculus は、構造持続の収支原理との G6-b/c 境界にある algebraic compatibility として扱う。より正確には、任意の Lyapunov drift process は、\(Z_t\) を構造負荷、\(R_t=e^{-Z_t}\) を相対維持量と読むことで、構造持続の収支原理の期待値レベルの傾向層と同じ差分代数に写せる。ただしこれは theorem-transfer ではない。Markov chain stability theorem の仮定や結論を本稿へ移すものではなく、既存 drift 条件を本稿の \(b_t,B_n,R_t\) 記法に写す最小代数互換性である。この互換性は、補論「構造持続の収支原理と Foster-Lyapunov ドリフトの形式的埋め込み」および Lean の `Survival.LyapunovBalanceEmbedding` で読者向け / machine-checked に記録されている。
 
 ただし、符号は重要である。負荷または badness potential を
 \[
@@ -1161,7 +1161,7 @@ positive recurrence を証明せず、`potentialIncrement`,
 `EverywherePositiveDrift`, および stationary marginal で mean increment が
 0 になる恒等式だけを固定する。
 
-ただし、ここにも限界がある。queueing theory の安定性定理をそのまま構造持続の収支原理の定理として使うには、Markov 性、irreducibility、petite set、moment 条件など、元の theorem が要求する仮定を保持しなければならない。構造持続の収支原理がそれらを不要にするわけではない。したがって本稿が主張できるのは、drift 条件の形式的埋め込みであり、queueing stability theorem 全体の無条件な再証明ではない。
+ただし、ここにも限界がある。queueing theory の安定性定理をそのまま構造持続の収支原理の定理として使うには、Markov 性、irreducibility、petite set、moment 条件など、元の theorem が要求する仮定を保持しなければならない。構造持続の収支原理がそれらを不要にするわけではない。したがって本稿が主張できるのは、drift 条件との algebraic compatibility / sign-convention bridge であり、queueing stability theorem 全体の無条件な再証明でも、正再帰性や幾何エルゴード性の新しい証明でもない。
 
 この接続は重要である。なぜなら、構造持続の収支原理が単なる熱力学的比喩ではなく、既存の確率過程安定性理論と同じ drift algebra を共有していることを示すからである。
 
@@ -1255,15 +1255,15 @@ Lean で証明することでもない。
 |---|---|---|
 | 熱力学第二法則 | G6-a / G6-b | closed loss-only と open recovery の強い analogy / correspondence |
 | 非平衡熱力学・散逸構造 | G6-b | 外部流による維持という correspondence |
-| queueing / Foster-Lyapunov drift | G6-c (minimal algebraic embedding) | $b_t=W(X_{t+1})-W(X_t)$ による formal embedding |
+| queueing / Foster-Lyapunov drift | G6-b/c boundary (algebraic compatibility) | $b_t=W(X_{t+1})-W(X_t)$ による drift 記法互換性; theorem-transfer ではない |
 | 確率制御 | G6-b、具体モデルでは G6-c 可能 | $r_t(u_t)$ を制御入力として読む correspondence |
 | 情報理論 | G6-b、Bernoulli-CSP では局所的 G6-c | 対数比と Chernoff-KL 出口 |
 
-このうち queueing / Foster-Lyapunov drift は、G6-c の minimal algebraic embedding であると同時に、G4 v1 の primary non-CSP anchor でもある。これは double-counting ではない。G6 は既存理論との formal-mapping credibility を測る gate であり、G4 は非CSP domain coverage を測る gate である。同一の artifact が両方に寄与するのは、構造持続の収支原理の \(b_t,B_n,R_t,d_t,r_t\) が既存 drift calculus と自然に噛み合うことの帰結である。
+このうち queueing / Foster-Lyapunov drift は、G6-b/c 境界にある algebraic compatibility を持つと同時に、G4 v1 の primary non-CSP anchor でもある。これは double-counting ではない。G6 は既存理論との formal-mapping credibility を測る gate であり、G4 は非CSP domain coverage を測る gate である。同一の artifact が両方に寄与するのは、構造持続の収支原理の \(b_t,B_n,R_t,d_t,r_t\) が既存 drift calculus と自然に噛み合うことの帰結である。ただし、この寄与は theorem-transfer ではなく、元の安定性定理の仮定を保持したうえでの記法互換性である。
 
 この G4 v1 / v2 の読者向け整理は、補論「非CSP古典例における構造持続の収支原理の最小アンカー」に置く。そこでは queueing / Foster-Lyapunov を G4 v1 primary anchor、serial reliability と constant-fraction decay を回復量を含まない対照アンカーとして扱う。さらに G4 v2 として、repair / maintenance reliability-fatigue balance を追加し、`RepairMaintenanceBalance.lean` によって損傷量 \(d_t\) と回復量 \(r_t\) の差し引きが累積損傷、残余余白、相対維持量を決めることを形式化する。branching、fatigue、consensus、buckling、percolation は secondary / coverage skeleton として位置づける。
 
-ここで強調すべきなのは、non-CSP 側の最も強い言い方は universal law declaration ではなく、**conditional law-side bridge** だという点である。すなわち、(i) 自然な測度または構造量 \(m\) が事前固定され、(ii) 回復量 \(r_t\) が domain-native な変数として観測でき、(iii) collapse / hitting boundary が明示的仮定の下で読める場合に限り、構造持続の収支原理は既存の stochastic stability theory の内部へ law-side に近い形で埋め込まれる。queueing / Foster-Lyapunov drift は現在この条件を最も強く満たす。一方、repair / maintenance balance は near-bridge repair-maintenance anchor であり、Backblaze や C-MAPSS の observational loss-only branches、LLM companion I / II はまだこの law-side bridge を閉じない。
+ここで強調すべきなのは、non-CSP 側の最も強い安全な言い方は universal law declaration ではなく、**conditional law-side orientation** だという点である。すなわち、(i) 自然な測度または構造量 \(m\) が事前固定され、(ii) 回復量 \(r_t\) が domain-native な変数として観測でき、(iii) collapse / hitting boundary が明示的仮定の下で読める場合に限り、構造持続の収支原理は既存の stochastic stability theory と同じ drift-and-balance 記法で接続できる。queueing / Foster-Lyapunov drift は現在この条件を最も強く満たすが、その接続は theorem-transfer ではなく algebraic compatibility である。一方、repair / maintenance balance は near-bridge repair-maintenance anchor であり、Backblaze や C-MAPSS の observational loss-only branches、LLM companion I / II はまだこの law-side orientation を閉じない。
 
 この表から分かるように、構造持続の収支原理は既存理論の外に立つ完全に新しい数学ではない。むしろ、既存理論に散在する drift / recovery / log-ratio の構造を、構造維持可能性という対象に向けて再配置する枠組みである。
 
@@ -1323,7 +1323,7 @@ Lean 対応は次の範囲に限られる。表中の SBP は、Lean 側の `Str
 | local identity | SBP local | positive mass assumptions の下で証明済み |
 | 経路ごとの核 | SBP pathwise | positive finite trajectory assumptions の下で証明済み |
 | loss-only 回収 | SBP loss-only | pure contraction / zero gain の特例として証明済み |
-| Lyapunov embedding | SBP Lyapunov | 最小代数的埋め込みとして証明済み |
+| Lyapunov compatibility | SBP Lyapunov | drift 記法との最小代数互換性として証明済み; 安定性定理の移植ではない |
 | repair balance | SBP repair | finite-prefix damage-minus-repair skeleton として証明済み |
 
 ここでいう positive finite trajectory assumptions は、各段階の \(m(V^{(t)})\) と中間質量が正であり、対数比が well-defined であるという仮定である。この仮定は測度 \(m\) の自然性を証明するものではない。対象となる構造条件、測度 \(m\)、構造消耗量 \(d_t\)、回復量 \(r_t\) を各ドメインで事前固定できるかは、Lean ではなく運用上の gate である。
@@ -1358,7 +1358,7 @@ Lean 対応は次の範囲に限られる。表中の SBP は、Lean 側の `Str
 
 第二に、推定レイヤーでは、consumption condition を揃えたうえで recovery indicator が観測量 \(Y\) を改善しない、または structure-aware model が quality-blind baseline を out-of-sample に上回らないなら、そのドメインでの \(R_{\mathrm{obs}}^{\mathrm{rec}}\) 読みは失敗する。より強い検査では、SP-only model が simple baseline を上回るだけでなく、既存専門モデルまたは強い domain baseline に構造持続指標を加えた baseline + SP が、domain baseline 単独を out-of-sample に改善するかを見る。ここで SP は structural persistence coordinate、すなわち本稿の consumption / recovery / margin 指標群を指す。構造持続の収支原理の経験的価値は、各ドメインの最強モデルを置き換えることではなく、既存予測枠組みに対して追加的な consumption / recovery 座標を与えることにある。したがって、外向けの価値は「凍結検証」そのものではなく、凍結された写像による予測力の増分検証である。
 
-第三に、既存理論との対応では、formal reduction と呼んだものが元理論の仮定を保持していない、または単なる記号置換にすぎないと判明すれば、G6-c claim は G6-b correspondence へ下げなければならない。
+第三に、既存理論との対応では、formal reduction と呼んだものが元理論の仮定を保持していない、または単なる記号置換にすぎないと判明すれば、G6-c claim は G6-b correspondence へ下げなければならない。とくに Foster-Lyapunov drift については、本稿は最初から theorem-transfer ではなく algebraic compatibility として扱う。
 
 第四に、測度 \(m\) や対象となる構造条件が凍結検証後に都合よく選ばれている場合、その適用は無効である。探索フェーズで候補写像を作ること自体は許されるが、support 判定に使う構造条件、測度、時間地平、観測量、metric、baseline は検証前に固定されていなければならない。凍結写像が失敗した場合、それは理論核の即時棄却ではなく、その写像の no-support または、そのドメインでは理論が黙るべき silence 判定として扱う。
 
@@ -1370,9 +1370,9 @@ Lean 対応は次の範囲に限られる。表中の SBP は、Lean 側の `Str
    SAT / NAE mixed CSP の次に、Exp43c q-coloring は、drift-weighted / first-moment coordinate が raw edge count / density / encoding-size baseline を上回るかを検査し、primary validation として通過した。次に仕様固定レイヤーの幅をさらに広げる場合は、Exp44b Cardinality-SAT のような family で同じ基準を検査する。ただし、random CSP の sharp threshold を粗い grid で見る設計は避け、calibration / freeze / validation を分離した threshold-local protocol を維持する必要がある。Exp44b は現時点では draft / dry-run のみであり、primary 実行には calibration closeout と別途 freeze package が必要である。
 
 2. G4 non-CSP anchors の次 iteration。
-   queueing / Foster-Lyapunov drift の最小代数的埋め込みは、補論と Lean の LyapunovBalanceEmbedding によって G6-c iteration 1 として閉じている。これを受けて、G4 v1 では queueing / Foster-Lyapunov を primary anchor、serial reliability と constant-fraction decay を loss-only control anchors として置く。この G4 v1 package は補論「非CSP古典例における構造持続の収支原理の最小アンカー」に整理されている。さらに G4 v2 iteration 1 として、repair / maintenance reliability-fatigue balance を RepairMaintenanceBalance と同補論 §11 に整理した。次に進む場合は、positive recurrence / geometric ergodicity への G6-c iteration 2、stochastic reliability / optimal maintenance theorem への拡張、または maintenance log を用いた operational pilot を、明示的に scope lock する必要がある。
+   queueing / Foster-Lyapunov drift との最小代数互換性は、補論と Lean の LyapunovBalanceEmbedding によって閉じている。これを受けて、G4 v1 では queueing / Foster-Lyapunov を primary anchor、serial reliability と constant-fraction decay を loss-only control anchors として置く。この G4 v1 package は補論「非CSP古典例における構造持続の収支原理の最小アンカー」に整理されている。さらに G4 v2 iteration 1 として、repair / maintenance reliability-fatigue balance を RepairMaintenanceBalance と同補論 §11 に整理した。次に進む場合は、positive recurrence / geometric ergodicity への theorem-transfer claim、stochastic reliability / optimal maintenance theorem への拡張、または maintenance log を用いた operational pilot を、現在の algebraic compatibility から明確に分離して scope lock する必要がある。
 
-ここで reader-facing に追加された gate は、non-CSP domain を law-side に近い bridge と呼べる条件を明示することである。現在の program では、`analysis/law_side_upgrade_gate.md` がその 3 条件、すなわち自然な \(m\)、観測可能な \(r_t\)、条件つき collapse / hitting boundary を固定している。これに照らすと、queueing / Foster-Lyapunov は conditional law-side bridge、repair / maintenance balance は near-bridge repair-maintenance anchor、serial reliability と constant-fraction decay は loss-only controls、Backblaze / C-MAPSS / LLM companion は observational tier に留まる。この整理により、G4 / G6-c は “何でも収支語彙で言い換えられる” という弱い枠組みではなく、既存安定性理論にどこまで law-side に近づけるかを段階的に評価する gate として読める。
+ここで reader-facing に追加された gate は、non-CSP domain を law-side に近い connection と呼べる条件を明示することである。現在の program では、`analysis/law_side_upgrade_gate.md` がその 3 条件、すなわち自然な \(m\)、観測可能な \(r_t\)、条件つき collapse / hitting boundary を固定している。これに照らすと、queueing / Foster-Lyapunov は algebraic compatibility を持つ primary anchor、repair / maintenance balance は near-bridge repair-maintenance anchor、serial reliability と constant-fraction decay は loss-only controls、Backblaze / C-MAPSS / LLM companion は observational tier に留まる。この整理により、G4 / G6 は “何でも収支語彙で言い換えられる” という弱い枠組みではなく、既存安定性理論にどこまで近づけるかを段階的に評価する gate として読める。
    loss-only observational 側では、Backblaze drive reliability に対する二つの frozen run が現在の reference point である。Q4 2025 v1 は高い ranking signal を持ちながら preregistered log-loss support を通らず、closed no-support となった。これに対して Q3 2025 v2 は、fresh untouched archive 上の calibration-aware same-domain redesign として separately frozen され、loss-only primary support を通った。ただし、これは same-domain second attempt の observational support であり、回復量 evidence でも、Q4 2025 no-support を erase する evidence でもない。したがって、現時点で増えたのは「non-CSP loss-only observational anchor が一つ立った」という事実であって、non-CSP empirical gate 全体が解けたわけではない。
 
 3. Lean theorem map の reader-facing 整理。
@@ -1422,12 +1422,12 @@ Lean 対応は次の範囲に限られる。表中の SBP は、Lean 側の `Str
 
 仕様固定レイヤーでは、SAT / Bernoulli-CSP / Mixed-CSP / Exp43c q-coloring が、自然測度と bad-event exposure の上でこの構造を強く閉じる。Cardinality-SAT は、この幅をさらに広げるための proposed stress extension であり、現時点では Exp44 no-go history と Exp44b draft / dry-run を持つ validation candidate に留まる。推定レイヤーでは、LLM companion I / II の scope-as-repair、external metabolism、dependency-aware replay が、回復量の observable indicator として働く。ただし、推定レイヤーは high-probability theorem ではなく、observational prediction の層である。
 
-既存理論との関係では、熱力学や情報理論とは analogy / correspondence を持ち、queueing / Lyapunov drift とは最小代数的な formal embedding を持つ。さらに、serial reliability と constant-fraction decay は回復量を含まない指数核の非CSP対照アンカーとして働き、repair / maintenance balance は回復量 \(r_t\) を非CSP repair-maintenance anchor として明示する。しかし、本稿はこれらを置き換えない。本稿の役割は、対象となる構造条件を事前固定したうえで、何が構造を削り、何がそれを補い、どの収支を越えると崩壊へ向かうかを、一つのドリフトと収支の枠組みとして記述することである。
+既存理論との関係では、熱力学や情報理論とは analogy / correspondence を持ち、queueing / Lyapunov drift とは最小代数互換性を持つ。さらに、serial reliability と constant-fraction decay は回復量を含まない指数核の非CSP対照アンカーとして働き、repair / maintenance balance は回復量 \(r_t\) を非CSP repair-maintenance anchor として明示する。しかし、本稿はこれらを置き換えない。本稿の役割は、対象となる構造条件を事前固定したうえで、何が構造を削り、何がそれを補い、どの収支を越えると崩壊へ向かうかを、一つのドリフトと収支の枠組みとして記述することである。
 
 この枠組みは、設計原理としても読める。すなわち、崩壊しない系を無条件に作るのではなく、崩壊しにくく、改修可能性を失いにくく、局所的に修復できる系を作るための会計座標である。具体的には、構造消耗を局所化し、回復量を残し、margin を使い切らず、代替経路を保持する。ソフトウェア工学の冗長性、クリーンアーキテクチャ、rollback、observability は、この設計原理の一つの実践例として読めるが、それを別ドメインへ移す場合は candidate intervention として扱い、凍結検証によってのみ support とする。
 
-この非CSP側の最も強い安全な言い方は、queueing / Foster-Lyapunov drift を中心とする restricted drift-based stability class における **conditional law-side bridge** である。これは、構造持続の収支原理が一般 non-CSP universal law だと言うことではない。むしろ、自然な \(m\)、観測可能な \(r_t\)、条件つき collapse / hitting boundary が揃う限定クラスでは、構造持続の収支原理が既存安定性理論の内部に law-side に近い形で埋め込まれる、と言うのである。Repair / maintenance balance は、その class を empirical \(r_t\) 側へ広げる near-bridge repair-maintenance anchor である。
+この非CSP側の最も強い安全な言い方は、queueing / Foster-Lyapunov drift を中心とする restricted drift-based stability class における **conditional algebraic compatibility** である。これは、構造持続の収支原理が一般 non-CSP universal law だと言うことではない。むしろ、自然な \(m\)、観測可能な \(r_t\)、条件つき collapse / hitting boundary が揃う限定クラスでは、構造持続の収支原理が既存安定性理論の drift notation と互換に読める、と言うのである。元の positive recurrence / geometric ergodicity theorem を本稿へ移すには、元理論の仮定を別途保持する必要がある。Repair / maintenance balance は、その class を empirical \(r_t\) 側へ広げる near-bridge repair-maintenance anchor である。
 
 非CSP empirical 側では、Backblaze v2 が calibration-aware loss-only design として same-domain observational support を与えた一方、Backblaze v1 は closed no-support のまま残っている。この組は、構造持続の収支原理の loss-only operationalization が industrial reliability domain でも観測可能であることを示すが、その証拠の重みは仕様固定レイヤー primary や独立再現と同じではない。ここで重要なのは、v1 を消すことではなく、calibration を明示した frozen redesign が fresh archive では通りうることを記録することである。
 
-したがって、本稿は普遍法則の最終宣言ではない。より正確には、構造持続理論を universal-law candidate として強化するための主理論層である。Exp43c q-coloring により、SAT 以外に見える仕様固定レイヤー family への幅は一段広がった。また、Mixed-CSP package については、3 名の外部実行者による独立再実行が 3/3 clean success を返しており、Exp43c q-coloring package についても、3 名の外部実行者による独立再実行が 3/3 clean success を返している。したがって仕様固定レイヤーでは、二つの frozen package で著者環境外でも qualitative support decision が再現されることを示している。今後の決定的な進展は、さらなる異質 family、追加の独立 review、non-CSP formal embedding、および推定レイヤーの前向き検査によって与えられる。
+したがって、本稿は普遍法則の最終宣言ではない。より正確には、構造持続理論を universal-law candidate として強化するための主理論層である。Exp43c q-coloring により、SAT 以外に見える仕様固定レイヤー family への幅は一段広がった。また、Mixed-CSP package については、3 名の外部実行者による独立再実行が 3/3 clean success を返しており、Exp43c q-coloring package についても、3 名の外部実行者による独立再実行が 3/3 clean success を返している。したがって仕様固定レイヤーでは、二つの frozen package で著者環境外でも qualitative support decision が再現されることを示している。今後の決定的な進展は、さらなる異質 family、追加の独立 review、non-CSP formal / algebraic bridges の精密化、および推定レイヤーの前向き検査によって与えられる。

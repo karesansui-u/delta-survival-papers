@@ -255,3 +255,18 @@ MemoryGit が主に扱うのは第一の層である。第二の層に対して�
 安全な要約は次である。
 
 > MemoryGit は、LLM システムのための有限で policy-gated な記憶制御層である。messy language の解釈には LLM を使うが、memory pollution が次の前提として再帰的に増殖しないようにする境界は、構造化された状態、明示的な検査、review、rollback、ledger に置く。
+
+
+12. アダプタ接続補助資料
+-------------------------
+
+本プロファイルの実装接続ノートとして、入力資格状態をメモリプロバイダの前段に置くアダプタ設計を別紙に分ける。
+
+- `03_domains/02_structurally_inferred/llm_input_qualification_memory_provider_adapter_design.md`
+- `03_domains/02_structurally_inferred/llm_input_qualification_state_schema.json`
+- `05_evidence/llm_input_qualification_minimal_cases.jsonl`
+- `05_evidence/llm_input_qualification_minimal_result_summary.md`
+- `05_evidence/llm_input_qualification_paraphrase_stress_cases.jsonl`
+- `05_evidence/llm_input_qualification_paraphrase_stress_result_summary.md`
+
+この補助資料は、Hermes、Mem0、ローカル記憶、セッション検索、ベクトル検索などを置き換えるものではない。既存の記憶プロバイダへ送る前に入力資格状態を付け、検索後に状態付き選択読出しを行い、回答・行動・共有・学習更新の直前に使用権限を確認するための、最小の公開設計である。

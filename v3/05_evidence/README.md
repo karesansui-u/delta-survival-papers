@@ -33,6 +33,16 @@ Evidence is separated from theory claims.
   internal benchmark calibration. DeltaLint is the current implementation name.
   The former is operational evidence, not raw precision / recall; the latter is
   the controlled support surface.
+- `conversation_log_derived_memory_qualification_protocol_ja.md`: public-safe
+  synthetic protocol for transcript / meeting / radio-like memory qualification
+  failures. It intentionally avoids redistributing raw conversation logs.
+- `conversation_log_derived_memory_qualification_result_summary.md`: smoke
+  result comparing a naive current-premise baseline with structural input
+  qualification on conversation-log-derived synthetic cases.
+- `hermes_conversation_log_cross_session_results.md`: black-box Hermes Agent
+  cross-session smoke on the same synthetic conversation-log-derived cases.
+  Each case uses an isolated temporary Hermes home so the user's normal Hermes
+  memory is not modified.
 
 Current strongest outside-rerun anchors:
 
