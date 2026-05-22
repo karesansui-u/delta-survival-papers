@@ -19,12 +19,33 @@ Current machine-checked status:
 - SAT/k-SAT finite-horizon chain: frozen as **SAT chain v1.0**
 - Bernoulli bad-event CSP layer: frozen as **Bernoulli CSP universality v1.2**
 
-The top-level Lean entry file is [`Survival.lean`](Survival.lean).  It is the
-complete import spine for the current formal development: building this target
-checks the core survival equations, log-ratio and exponential uniqueness
-claims, repair/resource accounting, finite collapse and concentration wrappers,
-SAT/CSP examples, second-moment and KL/Chernoff bridges, weak-dependence
-extensions, finite channel skeletons, and multi-attractor/free-energy modules.
+## Top-Level Import Spine
+
+The top-level Lean entry file is [`Survival.lean`](Survival.lean).
+
+Direct GitHub link:
+[`lean/Survival.lean`](https://github.com/karesansui-u/delta-survival-papers/blob/main/lean/Survival.lean)
+
+`Survival.lean` is the complete import spine for the current formal
+development.  Building this target checks the full imported theorem stack,
+rather than a single isolated file.  Its header summarizes the covered scope:
+
+- survival-equation algebraic properties;
+- hazard-rate monotonicity and penalty-function behavior;
+- survival-selection / H-theorem style arrow-of-time statements;
+- SAT first-moment correspondence and ratio prediction;
+- Cauchy/log-ratio uniqueness of the exponential kernel;
+- Hill-number and Jensen-style upper bounds;
+- axioms-to-exponential derivation chains;
+- error propagation and sensitivity bounds;
+- multiplicative versus additive model comparisons;
+- Paley-Zygmund / second-moment threshold lower bounds;
+- SAT overlap decomposition and threshold bracketing;
+- KL-divergence identities, Jensen gaps, and second-moment connections;
+- weak-dependence and correlated-second-moment bounds;
+- robust survival envelopes such as conservative `mu * exp(-delta * (1 + rho))`;
+- finite channel and capacity-style skeletons;
+- multi-attractor, transition, and free-energy modules.
 
 Reader-facing theorem map: [`PAPER_MAPPING.md`](PAPER_MAPPING.md).  The
 information-theory companion note is
