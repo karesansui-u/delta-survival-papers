@@ -25,6 +25,35 @@ information-theory companion note is
 
 ---
 
+## Theory Entry Points
+
+This Lean directory formalizes the mathematical core of **Structural Persistence
+Accounting**.  For the prose theory and public reading path, start here:
+
+| Entry point | Role |
+|---|---|
+| [`../v3/01_theory/20_public_first_draft.md`](../v3/01_theory/20_public_first_draft.md) | Public first-draft paper: structural persistence accounting, specification-fixed anchors, and finite operational examples |
+| [`../v3/01_theory/02_accounting_framework.md`](../v3/01_theory/02_accounting_framework.md) | Core accounting framework: maintainable regions, log-ratio accounting, repair-inclusive balance, and observability layers |
+| [`../v3/01_theory/10_log_ratio_accounting.md`](../v3/01_theory/10_log_ratio_accounting.md) | Minimal log-ratio kernel behind `S = M e^{-L}` |
+| [`../v3/01_theory/11_balance_accounting.md`](../v3/01_theory/11_balance_accounting.md) | Repair-inclusive balance principle behind `S = M e^{-B}` |
+| [`../v3/01_theory/en/02_core_en.md`](../v3/01_theory/en/02_core_en.md) | English core overview |
+| [`../README.md`](../README.md) | Repository-level public entry path |
+
+The relationship is:
+
+```text
+Structural Persistence Accounting prose
+  -> claim and boundary map
+  -> Lean theorem map
+  -> machine-checked finite theorem stack
+```
+
+The Lean layer is therefore best read as the formal spine for the
+specification-fixed part of the accounting theory, not as a replacement for the
+prose definitions, evidence ledgers, or empirical claim boundaries.
+
+---
+
 ## What Is Proved Here?
 
 The Lean development supports a finite, assumption-explicit theorem stack:
