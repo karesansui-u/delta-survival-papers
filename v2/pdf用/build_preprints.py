@@ -15,7 +15,13 @@ V2_DIR = ROOT.parent
 V3_DIR = V2_DIR.parent / "v3"
 DEFAULT_DATE_JA = "2026年4月12日"
 DEFAULT_DATE_EN = "April 29, 2026"
+DATE_OVERRIDES = {
+    "長期LLMエージェントのための入力資格状態に基づく記憶更新制御": "2026年5月17日",
+    "入力資格状態制御による長期LLMエージェントの記憶学習推論整合性": "2026年5月22日",
+}
 TARGET_FILES = [
+    V2_DIR / "入力資格状態制御による長期LLMエージェントの記憶学習推論整合性.md",
+    V2_DIR / "長期LLMエージェントのための入力資格状態に基づく記憶更新制御.md",
     V2_DIR / "0_構造持続理論の統合版.md",
     V2_DIR / "補論_構造持続理論の構成地図.md",
     V2_DIR / "補論_構造持続理論の運用規律.md",
@@ -362,11 +368,20 @@ def build_tex(md_path: Path) -> Path:
     _, title, subtitle, abstract_md, body_md = normalize_markdown(md_path)
     abstract_tex = pandoc_markdown_to_latex(abstract_md)
     body_tex = pandoc_markdown_to_latex(body_md)
-    paper_date = DEFAULT_DATE_JA if re.search(rf"[{CJK}]", title + subtitle) else DEFAULT_DATE_EN
+    paper_date = DATE_OVERRIDES.get(
+        md_path.stem,
+        DEFAULT_DATE_JA if re.search(rf"[{CJK}]", title + subtitle) else DEFAULT_DATE_EN,
+    )
+    monofont_stems = {
+        "長期LLMエージェントのための入力資格状態に基づく記憶更新制御",
+        "入力資格状態制御による長期LLMエージェントの記憶学習推論整合性",
+    }
+    font_override = "\\setmonofont{Hiragino Sans}\n" if md_path.stem in monofont_stems else ""
 
     tex = (
         "\\documentclass[12pt,a4paper]{article}\n"
         "\\input{survival_whitepaper_preamble.tex}\n\n"
+        f"{font_override}"
         "\\begin{document}\n\n"
         f"\\PaperTitleBlock\n  {{{latex_escape(title)}}}\n  {{{latex_escape(subtitle)}}}\n  {{{paper_date}}}\n\n"
         "\\begin{abstract}\n"
