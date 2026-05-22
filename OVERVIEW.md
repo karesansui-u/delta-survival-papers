@@ -65,11 +65,12 @@ See:
 
 Lean formalization is in [`lean/`](lean/):
 
-- `151 Survival modules`
-- `sorry = 0`
-- `axiom = 0`
+- `165 Survival modules`
+- no project-level `sorry`, `admit`, or declared `axiom` in the imported
+  `Survival` target
 
-The reader-facing theorem map is [`lean/PAPER_MAPPING.md`](lean/PAPER_MAPPING.md).
+The reader-facing theorem map is [`lean/PAPER_MAPPING.md`](lean/PAPER_MAPPING.md),
+and the Lean landing page is [`lean/README.md`](lean/README.md).
 
 ## OSF
 

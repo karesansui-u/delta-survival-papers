@@ -197,7 +197,7 @@ PDF は [`v2/pdf用/0_構造持続理論の統合版.pdf`](v2/pdf%E7%94%A8/0_%E6
 
 - Route A: SAT / Mixed-CSP / q-coloring では、自然測度・finite-horizon collapse chain・prospective empirical support が揃いつつあります。Mixed-CSP は外部実行者 3 名による frozen package rerun で primary output と support flags が再現されています。
 - Route C: LLM 推論実験では、文脈長だけではなく構造矛盾の質が崩壊を予測することを、複数の preregistered / prospective checks で検査しています。
-- Formal layer: Lean 4 側は `139 Survival modules`, `sorry = 0`, `axiom = 0` で、主な theorem-to-paper mapping は [`lean/PAPER_MAPPING.md`](lean/PAPER_MAPPING.md) にまとめています。
+- Formal layer: Lean 4 側は `165 Survival modules` で、imported `Survival` target には project-level の `sorry` / `admit` / declared `axiom` を置いていません。主な theorem-to-paper mapping は [`lean/PAPER_MAPPING.md`](lean/PAPER_MAPPING.md) にまとめています。
 - Non-CSP: Backblaze / C-MAPSS / Scania などは support / weakening / no-support を分けて記録し、同一 archive 内の rescue を避けています。
 
 ## Core and Companion Papers (v2) / 主理論核と companion papers
@@ -253,7 +253,7 @@ Route C companion anchor 2。主理論 spine の証明ではなく、前提更�
 | v2 Paper 3 | Main theory draft |
 | Route C Companion I | Companion preprint |
 | Route C Companion II | Companion preprint |
-| Lean 4 formalization | Complete (`139 Survival modules`, `sorry = 0`, `axiom = 0`) |
+| Lean 4 formalization | Complete (`165 Survival modules`; no project-level `sorry`, `admit`, or declared `axiom` in imported `Survival` target) |
 | OSF project | [osf.io/mdh7b/overview](https://osf.io/mdh7b/overview) |
 | Raw data and summaries | [DATA.md](DATA.md) |
 
@@ -308,7 +308,8 @@ delta-survival-paper/
 ## Formal Verification / 形式検証
 
 Lean formalization is in [`lean/`](lean/). Current status:
-`139 Survival modules`, `sorry = 0`, `axiom = 0`.
+`165 Survival modules`; no project-level `sorry`, `admit`, or declared `axiom`
+in the imported `Survival` target.
 
 The current core layering includes:
 

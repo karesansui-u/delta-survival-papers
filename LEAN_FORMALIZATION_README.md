@@ -35,7 +35,7 @@ achievability/converse envelopes.
 
 ## Main entry points
 
-- overview of the formalization: [`lean/readme.md`](lean/readme.md)
+- overview of the formalization: [`lean/README.md`](lean/README.md)
 - paper-to-Lean theorem map: [`lean/PAPER_MAPPING.md`](lean/PAPER_MAPPING.md)
 - information-theory bridge note:
   [`lean/INFORMATION_THEORY_CONNECTION.md`](lean/INFORMATION_THEORY_CONNECTION.md)
