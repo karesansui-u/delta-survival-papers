@@ -90,9 +90,11 @@ structural layer.
 This is not a proof of a universal law. It is package-scoped replication support
 for the first law-side empirical anchors.
 
-Lean formalization is in [`lean/`](lean/). Current status is `151 Survival
-modules`, `sorry = 0`, `axiom = 0`. The theorem-to-paper map is
-[`lean/PAPER_MAPPING.md`](lean/PAPER_MAPPING.md).
+Lean formalization is in [`lean/`](lean/). Current status is `165 Survival
+modules`, with no project-level `sorry`, `admit`, or declared `axiom` in the
+imported `Survival` target. The theorem-to-paper map is
+[`lean/PAPER_MAPPING.md`](lean/PAPER_MAPPING.md), and the strengthened Lean
+landing page is [`lean/readme.md`](lean/readme.md).
 
 The current evidence map is [`analysis/current_evidence_map.md`](analysis/current_evidence_map.md).
 

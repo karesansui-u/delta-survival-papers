@@ -1,16 +1,85 @@
-# Survival Model — Formal Verification in Lean 4
+# Survival Model — Lean 4 Formal Verification
 
-Formal verification of the mathematical framework used across the structural
-persistence papers and supplements.
+This directory is the machine-checked mathematical core behind the structural
+persistence / survival papers.  It is not only a code appendix: it is the place
+where the exponential survival kernel, finite-horizon collapse bounds, repair
+and resource accounting, SAT/CSP examples, and information-theoretic bridges are
+made explicit as Lean statements.
 
-- **134 imported `Survival/*` modules**
-- `sorry = 0`, `axiom = 0` for the imported development
-- Top-level target: `Survival`
+**Main point.**  The central quantity is not introduced as a metaphor.  In the
+formal layer, cumulative structural loss `delta` is tied to log-ratio algebra,
+KL divergence, Chernoff profiles, finite channel skeletons, and capacity-style
+finite envelopes under stated assumptions.
+
+Current machine-checked status:
+
+- **165 imported `Survival/*` modules**
+- Top-level build target: `Survival`
+- No project-level `sorry`, `admit`, or declared `axiom` in the imported target
 - SAT/k-SAT finite-horizon chain: frozen as **SAT chain v1.0**
+- Bernoulli bad-event CSP layer: frozen as **Bernoulli CSP universality v1.2**
 
-Reader-facing theorem map: [`PAPER_MAPPING.md`](PAPER_MAPPING.md).
-Older SAT/CSP map files are retained as local archive snapshots, but the
-intended entry point is the single paper mapping.
+Reader-facing theorem map: [`PAPER_MAPPING.md`](PAPER_MAPPING.md).  The
+information-theory companion note is
+[`INFORMATION_THEORY_CONNECTION.md`](INFORMATION_THEORY_CONNECTION.md).
+
+---
+
+## What Is Proved Here?
+
+The Lean development supports a finite, assumption-explicit theorem stack:
+
+```text
+local loss / repair / resource accounting
+  -> telescoping exponential kernel
+  -> finite path measures and drift/concentration statements
+  -> SAT/CSP bad-event exposure models
+  -> Chernoff/KL collapse and hitting-time bounds
+  -> information-theoretic readings of delta
+```
+
+The development deliberately separates:
+
+- algebraic identities from probabilistic assumptions;
+- finite-horizon statements from asymptotic claims;
+- CSP examples from non-CSP Route A examples;
+- channel-skeleton analogies from full Shannon theorems.
+
+That separation is part of the claim boundary.  The repository proves the
+finite statements it imports; it does not hide infinite-horizon or universal-law
+assumptions inside informal prose.
+
+---
+
+## Information-Theory Bridge
+
+The Lean layer contains theorem files whose job is to connect `delta` to
+information-theoretic quantities and finite channel-style envelopes.
+
+| Information-theoretic theme | Lean entry points | What is formalized |
+|---|---|---|
+| KL divergence | `KLDivergence` | `D_KL(P_SAT || P_0) = delta` for independent constraints; `E[D_KL] >= delta` via Jensen-style algebra; the Jensen gap is connected to second-moment ratios |
+| Bernoulli KL / Chernoff profiles | `BernoulliCSPTemplate`, `BernoulliCSPPathChernoff`, `SATStateDependentCountChernoffKLAlgebra` | Bernoulli relative entropy, lower-tail exponential tilts, optimized MGF identities, and KL-shaped finite collapse profiles |
+| First/second moment bridge | `SATFirstMoment`, `SATSecondMoment`, `SecondMomentBound`, `PairCorrelation`, `CorrelatedSecondMoment` | Expected solution counts, pair-correlation decomposition, second-moment survival bounds, and correlated sandwich estimates |
+| Channel reliability skeleton | `BinarySymmetricChannel` | Uncoded independent-channel identity: block success equals `exp (- cumulativeLoss)` |
+| Linear-code erasure boundary | `LinearCodeErasureAccountingToy`, `LinearCodeBECRankBoundary`, `LinearCodeBECConcentrationBoundary`, `LinearCodeBECCapacityStyleBoundary` | Finite BEC-style achievability/converse envelopes using erasure counts, rank slack, and concentration-style ingredients |
+| Capacity-style survival envelope | `FiniteCSPFirstMomentCollapseBound`, `FiniteCSPSecondMomentSurvivalBound`, BEC wrappers | Finite analogues of "below capacity survives / above capacity collapses" under explicit hypotheses |
+
+Important boundary: `BinarySymmetricChannel` and
+`LinearCodeBECCapacityStyleBoundary` do **not** claim to prove Shannon's coding
+theorem.  They package finite skeletons and finite achievability/converse-style
+ingredients so that the survival equation can be read next to standard
+information-theoretic objects without overclaiming.
+
+The most direct files to inspect are:
+
+```text
+Survival/KLDivergence.lean
+Survival/BernoulliCSPTemplate.lean
+Survival/SATStateDependentCountChernoffKLAlgebra.lean
+Survival/BinarySymmetricChannel.lean
+Survival/LinearCodeBECCapacityStyleBoundary.lean
+```
 
 ---
 
@@ -19,23 +88,24 @@ intended entry point is the single paper mapping.
 | Layer | Representative modules | What is verified |
 |---|---|---|
 | Minimal structural persistence core | `Basic`, `Penalty`, `FullFormula`, `TelescopingExp`, `GeneralStateDynamics` | Survival equations, telescoping exponential identities, signed exponential kernels |
-| Axiomatic information-loss layer | `LogUniqueness`, `CauchyExponential`, `AxiomsToExp`, `WeakDependence`, `RobustSurvival`, `SignedWeakDependence` | Log-ratio uniqueness, independence-to-exponential derivation, weak/signed dependence bounds |
-| Coarse-graining and representation stability | `CoarseGraining`, `ScaleInvariance`, `CoarseTotalProduction`, `CoarseStochasticTotalProduction`, `CoarseTypicalNondecrease` | Coarse representation compatibility and preservation of total-production style statements |
-| Repair/resource budget layer | `MinimumRepairRate`, `ResourceBudget`, `TotalProduction`, `ResourceBoundedDynamics`, `ResourceBudgetToSigmaDrift`, `ResourceBoundedStochasticCollapse` | Repair lower bounds, resource-to-drift bridges, high-probability resource-bounded collapse |
+| Log-ratio and exponential uniqueness | `LogUniqueness`, `CauchyExponential`, `AxiomsToExp`, `WeakDependence`, `RobustSurvival`, `SignedWeakDependence` | Log-ratio uniqueness, independence-to-exponential derivation, weak/signed dependence bounds |
+| Structural balance and repair | `StructuralPersistenceBalancePrinciple`, `RepairMaintenanceBalance`, `RepairMaintenanceTemplate`, `MinimumRepairRate`, `ResourceBudget`, `TotalProduction`, `ResourceBoundedDynamics` | Repair lower bounds, maintenance balance, resource-to-drift bridges, finite resource-bounded collapse |
+| Coarse representation stability | `AdmissibleMapInvariants`, `SaturationDefect`, `CoarseGraining`, `ScaleInvariance`, `CoarseTotalProduction`, `CoarseStochasticTotalProduction` | Coarse representation compatibility and preservation of total-production style statements |
 | Martingale/concentration layer | `ConcentrationInterface`, `AzumaHoeffding`, `BoundedAzumaConstruction`, `ConditionalMartingale`, `MartingaleDrift` | Abstract concentration interfaces and Azuma-style collapse wrappers |
 | Stopping-time collapse layer | `StoppingTimeCollapseEvent`, `StoppingTimeHighProbabilityCollapse`, `StoppingTimeSharpDecomposition`, `StoppingTimeCliffWarning` | Hitting-time, stopped-collapse, and sharp finite-horizon decompositions |
 | Finite-state Markov microfoundations | `FiniteStateMarkovRepairChain`, `FiniteStateMarkovStationaryProduction`, `FiniteStateMarkovStationaryLongTimeConcentration`, `ThreeStateStateDependentExample` | Finite path measures, stationary mean production, long-time prefix concentration, concrete examples |
 | SAT actual clause-exposure chain | `SATClauseExposureProcess`, `SATStateDependentClauseExposure`, `SATStateDependentCountMGFProduct`, `SATStateDependentCountChernoffKLAlgebra` | Actual path measure, non-flat outcome-dependent emission, derived MGF product, Chernoff/KL collapse |
-| Bernoulli CSP universality template | `BernoulliCSPTemplate`, `BernoulliCSPPathMeasure`, `BernoulliCSPPathChernoff`, `BernoulliCSPPathCollapse`, `BernoulliCSPUniversality`, `KSATChernoffCollapse`, `NAESATChernoffCollapse`, `XORSATChernoffCollapse`, `QColoringChernoffCollapse`, `ForbiddenPatternCSPChernoffCollapse`, `MultiForbiddenPatternCSP`, `HypergraphColoringChernoffCollapse`, `CardinalitySATChernoffCollapse`, `ThresholdCardinalitySATChernoffCollapse`, `ExactlyOneSATChernoffCollapse` | Reusable Bernoulli bad-event CSP template, k-SAT / NAE-SAT instances, fixed-assignment XOR-SAT, q-coloring, generic forbidden-pattern exposure, multi-forbidden-pattern witnesses, hypergraph-coloring, cardinality-SAT, threshold-cardinality-SAT, and exactly-one-SAT specializations, and a common universality interface |
-| Route A non-CSP skeletons | 10 modules grouped as exponential survival, linear overload, cumulative-capacity thresholds, and critical-parameter thresholds | Finite-prefix non-CSP Route A examples; detailed module list is kept in `PAPER_MAPPING.md` |
+| Bernoulli CSP universality template | `BernoulliCSPTemplate`, `BernoulliCSPPathMeasure`, `BernoulliCSPPathChernoff`, `BernoulliCSPPathCollapse`, `BernoulliCSPUniversality` | Reusable Bernoulli bad-event CSP template with finite collapse, stopped-collapse, and hitting-time wrappers |
+| CSP specializations | `KSATChernoffCollapse`, `NAESATChernoffCollapse`, `XORSATChernoffCollapse`, `QColoringChernoffCollapse`, `ForbiddenPatternCSPChernoffCollapse`, `MultiForbiddenPatternCSP`, `HypergraphColoringChernoffCollapse`, `CardinalitySATChernoffCollapse`, `ThresholdCardinalitySATChernoffCollapse`, `ExactlyOneSATChernoffCollapse` | k-SAT, NAE-SAT, fixed-assignment XOR-SAT, q-coloring, forbidden-pattern, multi-forbidden, hypergraph-coloring, cardinality-SAT, threshold-cardinality-SAT, and exactly-one-SAT instantiations |
+| Route A non-CSP skeletons | `SerialReliability`, `ConstantFractionDecay`, `BranchingProcessExtinction`, `QueueStability`, `BinarySymmetricChannel`, `FatigueDamage`, `ConsensusFaultThreshold`, `MemoryThrashing`, `BucklingThreshold`, `PercolationThreshold` | Finite-prefix examples of exponential survival, overload/capacity thresholds, and critical-parameter thresholds outside CSPs |
 | SAT second-moment and information theory | `SATFirstMoment`, `SATSecondMoment`, `SecondMomentBound`, `PairCorrelation`, `AsymptoticExponent`, `KLDivergence`, `CorrelatedSecondMoment` | First/second moment SAT facts, overlap decomposition, KL identities, correlated sandwich bounds |
-| Multi-attractor / phase-transition layer | `MultiAttractor`, `TransitionTheorem`, `FreeEnergy` | Basin survival, transition points, free-energy formulation |
+| Multi-attractor and phase-transition layer | `MultiAttractor`, `TransitionTheorem`, `FreeEnergy` | Basin survival, transition points, free-energy formulation |
 
 ---
 
-## SAT Chain v1.0
+## SAT / CSP Chain
 
-The SAT/k-SAT branch is now treated as a frozen finite-horizon core:
+The SAT/k-SAT branch is treated as a frozen finite-horizon core:
 
 ```text
 random SAT/k-SAT problem data
@@ -46,111 +116,138 @@ random SAT/k-SAT problem data
   -> collapse / stopped-collapse / hitting-time bounds
 ```
 
-The detailed claim-to-theorem index is consolidated in
-[`PAPER_MAPPING.md`](PAPER_MAPPING.md).
+The Bernoulli-CSP layer then factors the common bad-event exposure algebra.  A
+domain supplies a bad-event probability and witnesses that it lies in `(0,1)`;
+the shared path measure, Chernoff/KL profile, collapse, stopped-collapse, and
+hitting-time wrappers are reused.
 
 Current scope boundaries:
 
 - finite horizon, not infinite horizon;
 - iid Bernoulli bad-event exposure, not adaptive clause selection;
-- fixed-assignment exposure semantics, not XOR-SAT rank dynamics;
+- fixed-assignment or fixed-coloring exposure semantics, not full search
+  dynamics;
 - high-probability finite-prefix bounds, not almost-sure ergodic theorems.
 
-These are deliberate boundaries for v1.0, not hidden assumptions in the stated
-finite-horizon theorem stack.
+These are deliberate v1.x boundaries, not hidden assumptions.
 
 ---
 
-## Key Results
+## Key Theorem Themes
 
-### Log-ratio uniqueness
+### 1. Exponential survival is forced by log-ratio additivity
 
-Any ratio-space loss `f : (0,1] -> R>=0` satisfying the paper's additive and
-continuity axioms is uniquely of the form `f(r) = -k * log r` for some `k >= 0`.
-This is the formal A2 characterization layer.
+The log-uniqueness and Cauchy-exponential layers show that ratio-space loss with
+the paper's additivity and continuity assumptions has the `-log` form, and that
+accumulated independent loss has the exponential kernel.
 
-### Signed exponential kernel
+Representative modules:
 
-The general state-dynamics layer separates contraction and repair and proves
-the signed exponential kernel for cumulative net action.
+```text
+Survival/LogUniqueness.lean
+Survival/CauchyExponential.lean
+Survival/AxiomsToExp.lean
+Survival/TelescopingExp.lean
+```
 
-### Resource budget to drift
+### 2. Repair and maintenance are explicit state dynamics
 
-The resource-budget stack bridges contraction lower bounds to expected
-total-production drift. This turns externally supplied positive drift into a
-derived theorem once a domain-specific contraction lower bound is supplied.
+The structural-balance layer separates contraction, repair, maintenance, and
+remaining margin.  It proves pathwise exponential-kernel wrappers and local
+balance statements under explicit finite-prefix hypotheses.
 
-### SAT/k-SAT Chernoff-KL collapse
+Representative modules:
 
-For random 3-SAT and random k-SAT finite clause exposure, the development
-derives actual path measures, non-flat emission, MGF products, KL/Chernoff
-failure profiles, and operational collapse/hitting-time bounds.
+```text
+Survival/StructuralPersistenceBalancePrinciple.lean
+Survival/RepairMaintenanceBalance.lean
+Survival/LyapunovBalanceEmbedding.lean
+Survival/ResourceBudgetToSigmaDrift.lean
+```
 
-### XOR-SAT horizontal expansion
+### 3. Collapse is finite, measurable, and stopped
 
-The first horizontal expansion instantiates the same Bernoulli bad-event
-template for fixed-assignment `k`-XOR-SAT exposure, where each random XOR
-equation is bad with probability `1 / 2`.  This validates template reuse without
-claiming full rank/nullity dynamics.
+The concentration and stopping-time files package finite-horizon drift,
+Azuma-style concentration, stopped collapse, and hitting-time statements.  They
+are written as reusable interfaces rather than one-off proofs.
 
-### q-Coloring horizontal expansion
+Representative modules:
 
-The second horizontal expansion instantiates the same template for fixed-coloring
-edge exposure in `q`-coloring.  Each exposed edge is bad with probability
-`1 / q`, giving drift `log (q / (q - 1))` for `q > 1`.  This validates reuse on a
-multi-valued CSP without claiming full random graph or coloring-algorithm
-dynamics.
+```text
+Survival/ConcentrationInterface.lean
+Survival/AzumaHoeffding.lean
+Survival/StoppingTimeHighProbabilityCollapse.lean
+Survival/StoppingTimeSharpDecomposition.lean
+```
 
-### NAE-SAT horizontal expansion
+### 4. SAT and CSP examples instantiate the same finite template
 
-The next Boolean-CSP expansion instantiates the template for fixed-assignment
-`k`-NAE-SAT exposure.  A random signed NAE clause is bad with probability
-`(1 / 2)^(k - 1)` for `k >= 2`, giving the `k=3` drift `log (4 / 3)`.
+The random SAT path is not treated as a flat independent product by assumption.
+The path-measure files build the finite exposure semantics, derive the MGF
+product, and then expose the Chernoff/KL collapse profile.
 
-### Generic forbidden-pattern CSP expansion
+Representative modules:
 
-The finite-alphabet forbidden-pattern layer abstracts any iid local-constraint
-exposure with bad probability `forbidden / alphabet^arity`.  Its drift is
-`log (alphabet^arity / (alphabet^arity - forbidden))`, under the interior
-condition `0 < forbidden < alphabet^arity`.
+```text
+Survival/SATStateDependentClauseExposure.lean
+Survival/SATStateDependentCountMGFProduct.lean
+Survival/SATStateDependentCountChernoffKLAlgebra.lean
+Survival/BernoulliCSPUniversality.lean
+```
 
-`MultiForbiddenPatternCSP` adds the reusable witness bridge: a domain supplies
-`alphabet`, `arity`, `forbiddenCount`, and the proof
-`0 < forbiddenCount < alphabet^arity`; the existing path measure,
-Chernoff/KL profile, collapse, stopped-collapse, and hitting-time wrappers are
-then generated from that witness.
+### 5. The information-theory bridge is formal, but bounded
 
-`ExactlyOneSATChernoffCollapse` demonstrates the witness bridge on a new CSP:
-for a fixed assignment and random signed `k`-clause, exactly-one-SAT forbids
-`2^k - k` local truth patterns, giving bad probability `(2^k - k) / 2^k` and
-drift `log (2^k / k)`.
+`KLDivergence` proves the cleanest information-theoretic statement: in the
+independent-constraint case, cumulative loss equals the KL divergence between
+the satisfying-assignment distribution and the ambient uniform distribution.
+For general correlated constraints, the development records the Jensen
+inequality direction and links the gap to second-moment structure.
 
-`CardinalitySATChernoffCollapse` lifts that example to the exactly-`r`-of-`k`
-family: the allowed local patterns are `choose k r`, the bad probability is
-`(2^k - choose k r) / 2^k`, and the drift is `log (2^k / choose k r)`.
-The universality wrapper records exactly-one-SAT as the `r = 1` specialization.
+This is the intended public claim shape: strong enough to justify the
+information-theoretic reading, bounded enough to avoid claiming a universal
+capacity theorem.
 
-`ThresholdCardinalitySATChernoffCollapse` further adds at-most-`r` and
-at-least-`r` cardinality constraints.  The allowed local patterns are partial
-binomial sums, and the drift is `log (2^k / allowed)`.  The same witness bridge
-then generates the path measure, Chernoff/KL profile, and operational wrappers.
+---
 
-### Hypergraph-coloring specialization
+## What This Does Not Claim
 
-The hypergraph-coloring layer specializes forbidden-pattern exposure to fixed
-`q`-coloring of `k`-uniform hyperedges.  The bad event is a monochromatic
-hyperedge, so there are `q` forbidden local patterns among `q^k` patterns and
-the drift is `log (q^k / (q^k - q))` for `q > 1` and `k > 1`.
+The Lean development is intentionally conservative.  It does not claim:
 
-Together these instances are frozen as **Bernoulli CSP universality v1.2**:
-finite-horizon, iid bad-event exposure with fixed assignment/coloring semantics,
-Chernoff-KL failure profiles, and operational collapse / hitting-time wrappers.
+- a full Shannon coding theorem;
+- a full random-k-SAT threshold theorem;
+- full XOR-SAT rank dynamics for every specialization;
+- adaptive search-process dynamics;
+- an infinite-horizon ergodic theorem;
+- a universal law for every physical, biological, social, or computational
+  system without domain-specific witnesses.
+
+Instead, it provides a reusable finite theorem stack: once a domain supplies the
+required path measure, bad-event probability, drift, repair, or concentration
+witnesses, the structural-persistence wrappers apply.
+
+---
+
+## How To Read This Directory
+
+For a fast tour:
+
+1. Start with [`Survival.lean`](Survival.lean), the complete import spine.
+2. Read [`PAPER_MAPPING.md`](PAPER_MAPPING.md) for paper claim -> theorem file
+   mapping.
+3. Read [`INFORMATION_THEORY_CONNECTION.md`](INFORMATION_THEORY_CONNECTION.md)
+   for the mathematical motivation of the KL/channel/capacity-style bridge.
+4. Inspect `Survival/KLDivergence.lean` and `Survival/BernoulliCSPTemplate.lean`
+   to see the information-theoretic core in Lean.
+5. Inspect `Survival/StructuralPersistenceBalancePrinciple.lean` for the
+   reader-facing structural balance wrappers.
 
 ---
 
 ## Building
 
 ```bash
+cd lean
+
 # Get Mathlib cache
 lake exe cache get
 
@@ -161,10 +258,12 @@ lake build Survival
 Useful focused targets:
 
 ```bash
+lake build Survival.KLDivergence
+lake build Survival.BernoulliCSPTemplate
 lake build Survival.SATStateDependentCountChernoffKLAlgebra
 lake build Survival.BernoulliCSPPathCollapse
+lake build Survival.BernoulliCSPUniversality
 lake build Survival.KSATChernoffCollapse
-lake build Survival.KSATToSATChernoffBridge
 lake build Survival.XORSATChernoffCollapse
 lake build Survival.QColoringChernoffCollapse
 lake build Survival.NAESATChernoffCollapse
@@ -174,7 +273,8 @@ lake build Survival.HypergraphColoringChernoffCollapse
 lake build Survival.CardinalitySATChernoffCollapse
 lake build Survival.ThresholdCardinalitySATChernoffCollapse
 lake build Survival.ExactlyOneSATChernoffCollapse
-lake build Survival.BernoulliCSPUniversality
+lake build Survival.BinarySymmetricChannel
+lake build Survival.LinearCodeBECCapacityStyleBoundary
 ```
 
 ---
@@ -186,7 +286,7 @@ lake build Survival.BernoulliCSPUniversality
   author = {Akihito Sunagawa},
   title = {Survival Model: Formal Verification in Lean 4},
   year = {2026},
-  url = {https://codeberg.org/delta-survival/papers}
+  url = {https://github.com/karesansui-u/delta-survival-papers/tree/main/lean}
 }
 ```
 

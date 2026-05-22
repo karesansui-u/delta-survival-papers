@@ -1,7 +1,7 @@
 # Lean 形式検証 ↔ 論文対応棚卸し
 
-棚卸し日: 2026-04-27
-対象: `lean/Survival/` 配下 151 ファイル
+棚卸し日: 2026-05-22
+対象: `lean/Survival/` 配下 165 ファイル
 対応文書: `delta-survival-paper/v2/` 配下の主理論 spine、Route C companions、補論群
 
 ## 現在の結論
@@ -9,10 +9,11 @@
 このファイルを、Lean 形式化と論文本文を結ぶ唯一の reader-facing theorem map とする。
 旧 SAT/CSP 専用 map は現行ツリーから外し、git history / OSF snapshot 側の archive として扱う。
 
-現時点の Lean 側は **151 Survival modules / sorry = 0 / axiom = 0** で閉じている。条件つき導出補論 §5 が
+現時点の Lean 側は **165 Survival modules** で閉じており、imported `Survival` target には
+project-level の `sorry` / `admit` / declared `axiom` を置いていない。条件つき導出補論 §5 が
 明示している 5 ファイルを超えて、停止時刻崩壊、martingale concentration、粗視化、有限状態 Markov
-microfoundation、SAT/k-SAT Chernoff-KL chain、Bernoulli-CSP 水平展開、Route A 非CSP skeletons まで
-含む。
+microfoundation、SAT/k-SAT Chernoff-KL chain、Bernoulli-CSP 水平展開、Route A 非CSP skeletons、
+KL divergence / channel skeleton / BEC-style finite boundary まで含む。
 
 ## 証拠の階層
 
