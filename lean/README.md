@@ -19,6 +19,13 @@ Current machine-checked status:
 - SAT/k-SAT finite-horizon chain: frozen as **SAT chain v1.0**
 - Bernoulli bad-event CSP layer: frozen as **Bernoulli CSP universality v1.2**
 
+The top-level Lean entry file is [`Survival.lean`](Survival.lean).  It is the
+complete import spine for the current formal development: building this target
+checks the core survival equations, log-ratio and exponential uniqueness
+claims, repair/resource accounting, finite collapse and concentration wrappers,
+SAT/CSP examples, second-moment and KL/Chernoff bridges, weak-dependence
+extensions, finite channel skeletons, and multi-attractor/free-energy modules.
+
 Reader-facing theorem map: [`PAPER_MAPPING.md`](PAPER_MAPPING.md).  The
 information-theory companion note is
 [`INFORMATION_THEORY_CONNECTION.md`](INFORMATION_THEORY_CONNECTION.md).

@@ -92,7 +92,8 @@ for the first law-side empirical anchors.
 
 Lean formalization is in [`lean/`](lean/). Current status is `165 Survival
 modules`, with no project-level `sorry`, `admit`, or declared `axiom` in the
-imported `Survival` target. The theorem-to-paper map is
+imported `Survival` target. The top-level import spine is
+[`lean/Survival.lean`](lean/Survival.lean). The theorem-to-paper map is
 [`lean/PAPER_MAPPING.md`](lean/PAPER_MAPPING.md), and the strengthened Lean
 landing page is [`lean/README.md`](lean/README.md).
 

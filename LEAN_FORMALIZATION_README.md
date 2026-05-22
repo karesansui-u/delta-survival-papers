@@ -35,6 +35,7 @@ achievability/converse envelopes.
 
 ## Main entry points
 
+- top-level import spine: [`lean/Survival.lean`](lean/Survival.lean)
 - overview of the formalization: [`lean/README.md`](lean/README.md)
 - paper-to-Lean theorem map: [`lean/PAPER_MAPPING.md`](lean/PAPER_MAPPING.md)
 - information-theory bridge note:

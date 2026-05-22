@@ -725,7 +725,7 @@ Route C companion II §7.4 に「§7.4.1 最小マルコフ修復チェーンモ
 
 ## 4. 気になる点
 
-1. **ビルド整合性**: 136 ファイルは `Survival.lean` の top-level import を通じて一貫して検証する設計である。今後は `PAPER_MAPPING.md` の freeze snapshot ごとに `lake build Survival` の通過状況を併記する。
+1. **ビルド整合性**: 165 Survival modules は `Survival.lean` の top-level import を通じて一貫して検証する設計である。今後は `PAPER_MAPPING.md` の freeze snapshot ごとに `lake build Survival` の通過状況を併記する。
 2. **重複可能性**: `Coarse*` と `Stochastic*` の組合せで似た主張が複数箇所にある可能性。一本化できるものはリファクタ候補。
 3. **ArrowOfTime 系の位置づけ**: 補論 SAT §4 らしい H 定理的主張だが、論文本文に対応章が明示されていない。SAT への熱力学的意味付けを追加するか、独立補論として切り出すか、の判断が必要。
 4. **論文側の空白**: 上記 3.1–3.6 の未反映分を 条件つき導出補論 と補論 SAT / 設計原理 に反映しないままだと、Lean 資産が **論文強度に寄与しない状態**が続く。特に 3.2（条件つき導出補論 §4 格上げ）と 3.3（Route C companion II §7 マルコフモデル）は、査読者が Route A/B 強度を評価する際に効く。
@@ -739,7 +739,7 @@ Route C companion II §7.4 に「§7.4.1 最小マルコフ修復チェーンモ
 1. **条件つき導出補論 §5 の形式検証対象リストを 5 → ~20 ファイルへ拡張**する最小差分 patch を書く（§3.1）。論文強度が既存資産だけで一段上がる。
 2. **条件つき導出補論 §4 に真の martingale concentration サブセクションを追加**（§3.2）。`AzumaHoeffding.lean` を引用。
 3. **Route C companion II §7.4 に最小マルコフ修復チェーン**を入れる（§3.3）。Route C companion II の主張が形式モデル上の定理で裏付けられる。
-4. `lake build Survival` の通過状況と、136 ファイルの依存グラフを図示。棚卸しの完成度を検証。
+4. `lake build Survival` の通過状況と、165 Survival modules の依存グラフを図示。棚卸しの完成度を検証。
 5. 補論 SAT の `AsymptoticExponent` / `CorrelatedSecondMoment` / `SensitivityAnalysis` の論文未掲載洞察を、補論 SAT §6 限界節または新規節として追加（§3.4）。
 
 以上。
