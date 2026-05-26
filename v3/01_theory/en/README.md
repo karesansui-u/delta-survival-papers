@@ -26,4 +26,8 @@ The diagrams used by the core paper are:
 - `../figures/figure1_observability_layers_en.svg`
 - `../figures/figure2_kernel_balance_en.svg`
 
+The LLM epistemic-control bridge overview is:
+
+- `../figures/figure3_epistemic_control_stack_en.svg`
+
 The English files are not a separate theory. They are the public English rendering of the same core spine.

@@ -102,6 +102,8 @@ The LLM-facing abstract bridge is documented in
 It connects contradiction / repair / memory-filter / dependency-rewrite
 control layers to the finite net-action kernel under explicit assumptions; it
 does not claim to prove LLM semantics or performance.
+The overview diagram for this three-layer structure is
+[`v3/01_theory/figures/figure3_epistemic_control_stack_en.svg`](v3/01_theory/figures/figure3_epistemic_control_stack_en.svg).
 
 The current evidence map is [`analysis/current_evidence_map.md`](analysis/current_evidence_map.md).
 

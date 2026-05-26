@@ -34,6 +34,8 @@ The bridge therefore sits between:
   dependency-aware refresh, memory qualification, and software
   contract-coherence diagnostics.
 
+![Figure. Three-layer stack connecting the Lean core, the epistemic-control bridge, and bounded implementation candidates.](../../01_theory/figures/figure3_epistemic_control_stack_en.svg)
+
 
 2. Lean Objects
 ---------------
