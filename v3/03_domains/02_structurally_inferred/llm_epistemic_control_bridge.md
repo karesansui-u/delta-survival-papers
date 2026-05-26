@@ -46,6 +46,8 @@ The bridge therefore sits between:
 
 ![Figure. Layered stack connecting the Lean core, the epistemic-control bridge, the evidence-packet bridge, and bounded implementation candidates.](../../01_theory/figures/figure3_epistemic_control_stack_en.svg)
 
+![Figure. Result-certificate chain from an external runner artifact to the Lean benchmark protocol and coherent-mass comparison theorem.](../../01_theory/figures/figure4_epistemic_result_certificate_chain_en.svg)
+
 
 2. Lean Objects
 ---------------
@@ -187,6 +189,15 @@ readout alignment
 
 It does not parse JSON or certify the external runner. It states which
 certificate witnesses are sufficient to reuse the benchmark-protocol theorem.
+
+The layer boundary is:
+
+| Layer | It proves or checks | It does not prove |
+|---|---|---|
+| Lean theorem layer | supplied witnesses imply the benchmark protocol and coherent-mass comparison | LLM performance or natural-language semantics |
+| Runner layer | JSON shape, task-surface identity, metric aggregation, and dominance flags | semantic correctness of model outputs |
+| Frozen benchmark manifest | predeclared task surface, readout, horizon, and decision rule | universal performance or transfer to another domain |
+| Field / operational evidence | practical usefulness under package-scoped evidence rules | theorem-side evidence or repository semantics |
 
 `SoftwareEvidenceNetActionBridge.lean` connects the software evidence-packet
 surface to that benchmark protocol layer:

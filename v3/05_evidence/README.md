@@ -57,6 +57,12 @@ Evidence is separated from theory claims.
   certificate bridge describing which result-artifact witnesses are sufficient
   to invoke the benchmark protocol theorem. It does not parse or validate the
   JSON files by itself.
+- Reproducible toy protocol bundle candidate:
+  `/private/tmp/llm_epistemic_control_frozen_toy_v0_bundle.zip`
+  with SHA256
+  `8072412b978046a2103499951cb9999f2d187d177e921fc25d786cc7b312ff6f`.
+  Bundle contents and regeneration command are listed in
+  `../../analysis/epistemic_control_frozen_toy_v0/repro_bundle_manifest.md`.
 
 Current strongest outside-rerun anchors:
 

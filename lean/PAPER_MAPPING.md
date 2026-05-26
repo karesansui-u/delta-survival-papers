@@ -74,6 +74,7 @@ EpistemicControlBridge
 | Public manifest | `v3/05_evidence/llm_epistemic_control_benchmark_manifest.md` | future experiment が満たすべき frozen task / metric / decision-rule obligations を文章で固定する |
 | Frozen toy packet | `v3/05_evidence/llm_epistemic_control_frozen_toy_v0/` | toy task surface と readout fields を固定する。結果や support claim ではない |
 | Toy scorer | `analysis/epistemic_control_frozen_toy_v0/run_eval.py` | frozen toy packet の task surface / readout / dominance / toy net-action summary を機械的に検査する |
+| Reader-facing figure | `v3/01_theory/figures/figure4_epistemic_result_certificate_chain_en.svg` | runner artifact から result certificate / benchmark protocol / comparison theorem への導線を図示する |
 
 ## Target Theorem 4 / Law-of-Tendency Mapping
 

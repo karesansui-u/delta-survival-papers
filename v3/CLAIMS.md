@@ -168,6 +168,15 @@ metric fields, aggregate dominance rule, and toy readout alignment, and emits a
 JSON / Markdown smoke summary. It is a reproducibility aid for the protocol
 shape, not validation evidence for a real model or workflow.
 
+The result-certificate boundary is:
+
+| Layer | It proves or checks | It does not prove |
+|---|---|---|
+| Lean theorem layer | If the explicit witnesses are supplied, the benchmark protocol, no-worse-net-action premise, and coherent-mass comparison follow | real LLM performance, natural-language semantics, benchmark validity, or product reliability |
+| Runner layer | JSON shape, frozen task-surface identity, metric aggregation, dominance flags, and toy readout summaries | semantic correctness of model outputs or correctness of the benchmark design |
+| Frozen benchmark manifest | predeclared task surface, readout fields, horizon, baseline / controlled comparison rule, and decision rule | universal performance, general memory safety, or transfer to another domain |
+| Field / operational evidence | practical usefulness under its own package-scoped evidence rules | theorem-side evidence, raw detector precision by itself, or proof of repository semantics |
+
 The software-contract toy in
 `lean/Survival/SoftwareContractToyRepository.lean` is a formal instantiation of
 that interface. It proves the toy repository-contract kernel, toy admission

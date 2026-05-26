@@ -153,6 +153,8 @@ The reader-facing core-paper section is
 [`v3/01_theory/en/02_core_en.md`](v3/01_theory/en/02_core_en.md), Section 10.1.
 The overview diagram for this layered structure is
 [`v3/01_theory/figures/figure3_epistemic_control_stack_en.svg`](v3/01_theory/figures/figure3_epistemic_control_stack_en.svg).
+The result-certificate chain diagram is
+[`v3/01_theory/figures/figure4_epistemic_result_certificate_chain_en.svg`](v3/01_theory/figures/figure4_epistemic_result_certificate_chain_en.svg).
 The toy software-contract instantiation is
 [`lean/Survival/SoftwareContractToyRepository.lean`](lean/Survival/SoftwareContractToyRepository.lean).
 The toy evidence-packet instantiation connecting that surface to the packet
@@ -186,6 +188,19 @@ python3 analysis/epistemic_control_frozen_toy_v0/run_eval.py \
 
 This checks protocol shape and toy metric dominance; it does not validate a
 real model or workflow.
+
+### Reproducible Toy Protocol Bundle
+
+Local bundle candidate for OSF fixation:
+
+- bundle: `llm_epistemic_control_frozen_toy_v0_bundle.zip`
+- local path: `/private/tmp/llm_epistemic_control_frozen_toy_v0_bundle.zip`
+- SHA256: `8072412b978046a2103499951cb9999f2d187d177e921fc25d786cc7b312ff6f`
+
+The bundle contains the frozen task surface, benchmark manifest, deterministic
+runner, result schema, smoke result summary, and
+`EpistemicBenchmarkResultCertificate.lean`. The recipe is documented in
+[`analysis/epistemic_control_frozen_toy_v0/repro_bundle_manifest.md`](analysis/epistemic_control_frozen_toy_v0/repro_bundle_manifest.md).
 
 The current evidence map is [`analysis/current_evidence_map.md`](analysis/current_evidence_map.md).
 

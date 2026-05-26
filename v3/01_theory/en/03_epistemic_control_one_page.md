@@ -19,6 +19,8 @@ Layered Stack
 
 ![Figure. Layered stack connecting the Lean core, the epistemic-control bridge, the evidence-packet bridge, and bounded implementation candidates.](../figures/figure3_epistemic_control_stack_en.svg)
 
+![Figure. Result-certificate chain from an external runner artifact to the Lean benchmark protocol and coherent-mass comparison theorem.](../figures/figure4_epistemic_result_certificate_chain_en.svg)
+
 The intended reading is:
 
 1. Lean core: finite feasible regions, mass readouts, contraction / repair, and
@@ -35,6 +37,10 @@ The intended reading is:
 5. Implementation candidates: reasoning-control, continual-update,
    memory-control, and software contract-coherence workflows evaluated through
    their own evidence packages.
+6. Result-certificate chain: external runners may emit certificate-like result
+   artifacts; Lean does not parse those artifacts, but it formalizes which
+   witnesses are sufficient to induce a valid benchmark protocol and invoke
+   the coherent-mass comparison theorem.
 
 
 What Lean Proves
