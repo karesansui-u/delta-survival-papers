@@ -6,14 +6,15 @@ across the structural persistence papers and supplements.
 ## Current status
 
 - Lean 4 modules are included in [`lean/`](lean/)
-- current imported development size: `173 Survival modules`
+- current imported development size: `174 Survival modules`
 - current verification status: no project-level `sorry`, `admit`, or declared
   `axiom` in the imported `Survival` target
 - the formalization covers the core structural-persistence framework,
   finite-horizon SAT/CSP chains, repair/resource accounting, concentration
   wrappers, epistemic-control and evidence-packet bridges, toy LLM memory /
   control and software-evidence instantiations, finite dependency-closure
-  budget bounds, a stack-level epistemic-control entry point, and
+  budget bounds, LLM memory / reasoning strengthening toys, a stack-level
+  epistemic-control entry point, and
   information-theoretic bridges
 - the finite-horizon SAT/k-SAT chain is frozen as **SAT chain v1.0**
 - the Bernoulli bad-event CSP layer is frozen as **Bernoulli CSP universality

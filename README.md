@@ -91,7 +91,7 @@ structural layer.
 This is not a proof of a universal law. It is package-scoped replication support
 for the first law-side empirical anchors.
 
-Lean formalization is in [`lean/`](lean/). Current status is `173 Survival
+Lean formalization is in [`lean/`](lean/). Current status is `174 Survival
 modules`, with no project-level `sorry`, `admit`, or declared `axiom` in the
 imported `Survival` target. The top-level import spine is
 [`lean/Survival.lean`](lean/Survival.lean). The theorem-to-paper map is
@@ -120,6 +120,10 @@ The dependency closure budget toy is
 [`lean/Survival/DependencyClosureBudgetToy.lean`](lean/Survival/DependencyClosureBudgetToy.lean);
 it turns dependency-localization inclusions into finite invalidation, closure,
 surface, and repair-touched cardinality bounds.
+The LLM memory / reasoning strengthening toy is
+[`lean/Survival/LLMMemoryReasoningStrengtheningToy.lean`](lean/Survival/LLMMemoryReasoningStrengtheningToy.lean);
+it adds lifecycle memory guards, provenance trust ordering, minimal witness
+guards, and composed repair-kernel wrappers.
 The stack-level Lean entry point is
 [`lean/Survival/EpistemicControlStack.lean`](lean/Survival/EpistemicControlStack.lean);
 it collects the main bridge, evidence, LLM, memory, and software toy theorems

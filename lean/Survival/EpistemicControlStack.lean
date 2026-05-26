@@ -1,6 +1,7 @@
 import Survival.LLMMemoryUseConditionToy
 import Survival.SoftwareEvidencePacketToy
 import Survival.DependencyClosureBudgetToy
+import Survival.LLMMemoryReasoningStrengtheningToy
 
 /-!
 # Epistemic Control Stack
@@ -9,8 +10,8 @@ This file is a single Lean entry point for the checked epistemic-control stack.
 
 It does not add stronger semantic claims.  It collects the main bridge,
 evidence-packet, LLM-toy, memory-use-condition, software-toy,
-software-evidence, and dependency-budget instantiation theorems under short
-stack-level names.
+software-evidence, dependency-budget, and memory / reasoning strengthening
+theorems under short stack-level names.
 -/
 
 namespace Survival.EpistemicControlStack
@@ -23,6 +24,7 @@ open Survival.LLMMemoryUseConditionToy
 open Survival.SoftwareContractToyRepository
 open Survival.SoftwareEvidencePacketToy
 open Survival.DependencyClosureBudgetToy
+open Survival.LLMMemoryReasoningStrengtheningToy
 
 noncomputable section
 
@@ -141,6 +143,38 @@ theorem stack_llm_use_condition_memory_no_more_loss
       lossFrom llmMassModel before
         (useConditionMemoryAdmission.acceptAllAfter raw before) :=
   useConditionMemory_no_more_loss raw before
+
+/-! ## LLM memory / reasoning strengthening entry points -/
+
+theorem stack_llm_revoked_lifecycle_memory_rejected :
+    ¬ EligibleLifecycleMemory revokedScopedMemoryRecord :=
+  revokedScopedMemoryRecord_not_eligible
+
+theorem stack_llm_expired_lifecycle_memory_rejected :
+    ¬ EligibleLifecycleMemory expiredScopedMemoryRecord :=
+  expiredScopedMemoryRecord_not_eligible
+
+theorem stack_llm_lifecycle_memory_no_more_loss
+    (raw : RawLifecycleMemory) (before : Set LLMEpistemicState) :
+    lossFrom llmMassModel before
+        (lifecycleMemoryAdmission.eligibleAfter raw before) ≤
+      lossFrom llmMassModel before
+        (lifecycleMemoryAdmission.acceptAllAfter raw before) :=
+  lifecycleMemory_no_more_loss raw before
+
+theorem stack_llm_retrieval_packet_cannot_overwrite_userCorrection_packet :
+    ¬ PacketMayOverwrite retrievalMemoryPacket userCorrectionMemoryPacket :=
+  retrieval_packet_cannot_overwrite_userCorrection_packet
+
+theorem stack_llm_reasoning_witness_minimal :
+    MinimalContradictionWitness reasoningContradictionWitness :=
+  reasoningContradictionWitness_minimal
+
+theorem stack_llm_composed_repair_kernel (n : ℕ) :
+    coherentMass llmComposedRepairSpec n =
+      coherentMass llmComposedRepairSpec 0 *
+        Real.exp (-(cumulativeEpistemicNetAction llmComposedRepairSpec n)) :=
+  llm_composed_repair_kernel n
 
 /-! ## Software toy entry points -/
 
