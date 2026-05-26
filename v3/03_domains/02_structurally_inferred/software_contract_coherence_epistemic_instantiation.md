@@ -252,7 +252,40 @@ evidence conditions. It is still finite and schematic; it does not verify real
 program semantics or operational judgment.
 
 
-9. Lean Dependency-Budget Reading
+9. Lean Software Evidence Net-Action Bridge
+-------------------------------------------
+
+The software evidence net-action bridge is:
+
+- `../../../lean/Survival/SoftwareEvidenceNetActionBridge.lean`
+
+It connects a software evidence packet to the benchmark-comparison layer.  A
+`SoftwareEvidenceBenchmarkProtocol` bundles:
+
+- a finite benchmark protocol;
+- an evidence packet over the toy contract surface;
+- a dependency packet;
+- a repair packet.
+
+The corresponding validity predicate requires eligible evidence, shared-key
+witness soundness, repair coverage for the dependency closure, and a valid
+benchmark protocol. Under those obligations, the bridge invokes the same
+no-worse net-action and coherent-mass comparison theorems used by the abstract
+epistemic-control stack:
+
+| Lean theorem | Software evidence reading |
+|---|---|
+| `softwareEvidenceContradictionWitness` | a valid software evidence protocol carries a reusable contradiction witness |
+| `software_evidence_repair_touches_invalidations` | dependency-closure repair coverage covers localized invalidations |
+| `software_evidence_implies_net_action_no_worse` | eligible evidence plus a valid protocol invokes `NetActionNoWorse` |
+| `software_evidence_implies_controlled_mass_ge_baseline` | the same package invokes the coherent-mass baseline comparison |
+
+This is the first checked bridge from software evidence packages to the
+comparison theorem. It does not prove real repository semantics, operational
+workflow correctness, or maintainer judgment.
+
+
+10. Lean Dependency-Budget Reading
 ---------------------------------
 
 The finite dependency-budget layer is:
@@ -275,7 +308,7 @@ gives a touched-surface budget. It still does not prove that a real dependency
 graph is complete or that a real workflow has found all downstream effects.
 
 
-10. Non-Claims
+11. Non-Claims
 -------------
 
 This instantiation note does not claim:

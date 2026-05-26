@@ -42,6 +42,13 @@ Evidence is separated from theory claims.
   cross-session smoke on the same synthetic conversation-log-derived cases.
   Each case uses an isolated temporary Hermes home so the user's normal Hermes
   memory is not modified.
+- `llm_epistemic_control_benchmark_manifest.md`: public protocol manifest for
+  future epistemic-control experiments. It fixes task surface, baseline,
+  controlled system, horizon, loss / repair metrics, readout alignment, and
+  decision rule before outcome-bearing execution.
+- `llm_epistemic_control_frozen_toy_v0/`: small frozen toy packet for the
+  epistemic-control benchmark protocol. It is a protocol-shape artifact, not
+  support evidence for a real model or workflow.
 
 Current strongest outside-rerun anchors:
 

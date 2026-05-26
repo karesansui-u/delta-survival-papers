@@ -35,6 +35,9 @@ The bridge therefore sits between:
 - the finite toy strengthening layer: dependency-closure cardinality budgets,
   lifecycle memory guards, provenance trust ordering, minimal contradiction
   witnesses, and composed repair wrappers;
+- the software evidence net-action bridge: eligible evidence, shared-key
+  witness soundness, dependency repair coverage, and valid protocol witnesses
+  sufficient to invoke the comparison theorem;
 - the LLM inference-layer profiles: reasoning degradation, continual-learning
   structural forgetting, and long-term memory control;
 - the implementation / experiment layer: contradiction metabolism,
@@ -112,6 +115,8 @@ The main checked statements are:
 | `toyEvidenceAdmission_no_more_loss` | the software toy admission gate instantiates the evidence-packet admission comparison |
 | `toyRepair_touches_invalidations` | the software toy repair packet covers localized toy invalidations |
 | `software_invalidated_ncard_le_repair_touched_ncard` | localized toy software invalidations are bounded by the touched repair surface budget |
+| `software_evidence_implies_net_action_no_worse` | eligible toy software evidence plus dependency repair coverage and a valid benchmark protocol invokes the no-worse net-action premise |
+| `software_evidence_implies_controlled_mass_ge_baseline` | the same software evidence package invokes the coherent-mass baseline comparison |
 
 The composition theorem is the non-decorative part of the bridge:
 
@@ -163,6 +168,21 @@ readout alignment
 
 This prevents the bridge from silently absorbing after-the-fact metric choices.
 It still does not validate a real benchmark, dataset split, or decision rule.
+
+`SoftwareEvidenceNetActionBridge.lean` connects the software evidence-packet
+surface to that benchmark protocol layer:
+
+```text
+eligible evidence
+shared-key witness soundness
+dependency-closure repair coverage
+valid benchmark protocol
+  -> coherentMass baseline n <= coherentMass controlled n
+```
+
+It does not prove real repository semantics or operational workflow
+correctness. It states which evidence-package obligations are sufficient to
+reuse the finite comparison theorem.
 
 
 4. LLM-Control Reading
@@ -223,6 +243,9 @@ This bridge supports a formal-interface claim:
 > A valid benchmark protocol records the frozen task-surface, readout,
 > same-horizon, same-initial-mass, metric-dominance, and readout-alignment
 > obligations required to use the evaluation contract.
+> A software evidence package can reuse the same comparison theorem when
+> eligible evidence, shared-key witness soundness, dependency repair coverage,
+> and a valid benchmark protocol are supplied.
 
 This is a theorem-side bridge, not empirical support.  Experimental support
 for any concrete implementation still belongs to the relevant inference-layer
@@ -253,9 +276,10 @@ Safe wording:
 > evidence-packet schema for provenance, eligibility, witness, dependency, and
 > repair guardrails, and a finite LLM-side toy instantiation for reasoning,
 > memory, continual update, dependency budgets, lifecycle guards, provenance
-> trust, minimal witnesses, and composed repair.  The LLM experiments and
-> implementations are candidate instantiations of that interface, not proofs of
-> LLM semantics.
+> trust, minimal witnesses, composed repair, and software evidence packages
+> that can invoke the finite comparison theorem under a valid benchmark
+> protocol.  The LLM experiments and implementations are candidate
+> instantiations of that interface, not proofs of LLM semantics.
 
 
 7. Related Profiles
@@ -278,3 +302,6 @@ Safe wording:
 - `../../../lean/Survival/EpistemicControlStack.lean`
 - `../../../lean/Survival/SoftwareContractToyRepository.lean`
 - `../../../lean/Survival/SoftwareEvidencePacketToy.lean`
+- `../../../lean/Survival/SoftwareEvidenceNetActionBridge.lean`
+- `../../05_evidence/llm_epistemic_control_benchmark_manifest.md`
+- `../../05_evidence/llm_epistemic_control_frozen_toy_v0/freeze_manifest_v0.md`

@@ -197,9 +197,9 @@ EpistemicControlStack.lean
 
 It collects the abstract bridge, baseline comparison, evaluation contract,
 benchmark protocol, evidence-packet bridge, LLM toy, memory use-condition toy,
-dependency-budget toy, memory / reasoning strengthening toy, software toy, and
-software evidence-packet theorem aliases under `stack_...` names for easier
-review.
+dependency-budget toy, memory / reasoning strengthening toy, software toy,
+software evidence-packet, and software evidence net-action theorem aliases
+under `stack_...` names for easier review.
 
 The first toy software-side instantiation is:
 
@@ -247,6 +247,25 @@ SoftwareEvidencePacketToy.lean
 It connects the toy repository surface to the packet bridge through checked
 validated / unsupported candidate gates, a two-surface witness, shared contract
 key, dependency packet, repair packet, and admission-filter theorem.
+
+The software evidence net-action bridge is:
+
+```text
+SoftwareEvidenceNetActionBridge.lean
+```
+
+It packages eligible evidence, shared-key witness soundness, dependency repair
+coverage, and a valid benchmark protocol as sufficient obligations for the
+comparison layer:
+
+```text
+software_evidence_implies_net_action_no_worse
+software_evidence_implies_controlled_mass_ge_baseline
+```
+
+This is a finite assumption-to-guarantee bridge from evidence packages to the
+comparison theorem. It does not prove real program semantics, repository
+workflow correctness, or operational judgment.
 
 
 What Lean Does Not Prove
@@ -315,3 +334,5 @@ Where To Read Next
   `../../../lean/Survival/SoftwareContractToyRepository.lean`
 - Toy software evidence-packet instantiation:
   `../../../lean/Survival/SoftwareEvidencePacketToy.lean`
+- Software evidence net-action bridge:
+  `../../../lean/Survival/SoftwareEvidenceNetActionBridge.lean`

@@ -146,6 +146,13 @@ metric dominance, and readout alignment. A valid protocol invokes the
 evaluation contract and the coherent-mass comparison theorem. This does not
 validate a real benchmark, dataset split, or decision rule by itself.
 
+`v3/05_evidence/llm_epistemic_control_benchmark_manifest.md` is the public
+manifest template for connecting future experiments to this protocol layer. It
+freezes the task surface, baseline, controlled system, finite horizon, per-step
+loss / repair metrics, dominance rule, readout-alignment statement, and
+decision rule before outcome-bearing execution. It is a protocol artifact, not
+theorem-side evidence by itself.
+
 The software-contract toy in
 `lean/Survival/SoftwareContractToyRepository.lean` is a formal instantiation of
 that interface. It proves the toy repository-contract kernel, toy admission
@@ -199,8 +206,9 @@ reliability or arbitrary memory safety.
 collects the main abstract bridge, baseline comparison, evaluation contract,
 benchmark protocol, evidence-packet, LLM toy, memory use-condition,
 dependency-budget, memory / reasoning strengthening, software toy, and software
-evidence-packet theorems under stack-prefixed names. It is a reader-facing
-integration file, not an additional semantic claim.
+evidence-packet / software evidence net-action bridge theorems under
+stack-prefixed names. It is a reader-facing integration file, not an additional
+semantic claim.
 
 `lean/Survival/SoftwareEvidencePacketToy.lean` connects the toy
 software-contract surface to this packet bridge. It proves that the toy raw
@@ -208,6 +216,14 @@ candidate gate, two-surface witness, shared contract key, dependency packet,
 repair packet, and admission filter instantiate the evidence-packet guardrails.
 This remains a finite toy instantiation, not a correctness proof for a real
 repository workflow.
+
+`lean/Survival/SoftwareEvidenceNetActionBridge.lean` connects the toy software
+evidence surface to the benchmark-comparison layer. It packages eligible
+evidence, shared-key witness soundness, dependency-closure repair coverage,
+and a valid benchmark protocol as sufficient obligations for invoking
+`NetActionNoWorse` and the coherent-mass baseline comparison theorem. This is
+still a finite assumption-to-guarantee bridge; it does not prove real program
+semantics, repository workflow correctness, or maintainer judgment.
 
 This bridge supports the following claim:
 
@@ -222,6 +238,9 @@ This bridge supports the following claim:
 > A valid benchmark protocol fixes the task surface, readout, horizon, initial
 > mass, metric-dominance, and readout-alignment obligations needed to use that
 > evaluation contract.
+> A software evidence package can invoke the same finite comparison theorem
+> when eligible evidence, shared-key witness soundness, dependency-repair
+> coverage, and a valid benchmark protocol are supplied.
 
 It does not support these claims:
 

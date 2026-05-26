@@ -3,6 +3,7 @@ import Survival.EpistemicControlEvaluationContract
 import Survival.EpistemicBenchmarkProtocol
 import Survival.LLMMemoryUseConditionToy
 import Survival.SoftwareEvidencePacketToy
+import Survival.SoftwareEvidenceNetActionBridge
 import Survival.DependencyClosureBudgetToy
 import Survival.LLMMemoryReasoningStrengtheningToy
 
@@ -29,6 +30,7 @@ open Survival.LLMEpistemicControlToy
 open Survival.LLMMemoryUseConditionToy
 open Survival.SoftwareContractToyRepository
 open Survival.SoftwareEvidencePacketToy
+open Survival.SoftwareEvidenceNetActionBridge
 open Survival.DependencyClosureBudgetToy
 open Survival.LLMMemoryReasoningStrengtheningToy
 
@@ -116,6 +118,22 @@ theorem stack_repair_touches_invalidations
     (hrepair : TouchesAll repair (dependencyClosureSurfaces p)) :
     TouchesAll repair (invalidatedSurfaces p) :=
   repair_touches_invalidations p repair hrepair
+
+theorem stack_software_evidence_implies_net_action_no_worse
+    {X RepairAction : Type*}
+    (P : SoftwareEvidenceBenchmarkProtocol X RepairAction)
+    (hvalid : ValidSoftwareEvidenceBenchmarkProtocol P) :
+    NetActionNoWorse P.protocol.controlled P.protocol.baseline
+      P.protocol.horizon :=
+  software_evidence_implies_net_action_no_worse P hvalid
+
+theorem stack_software_evidence_implies_controlled_mass_ge_baseline
+    {X RepairAction : Type*}
+    (P : SoftwareEvidenceBenchmarkProtocol X RepairAction)
+    (hvalid : ValidSoftwareEvidenceBenchmarkProtocol P) :
+    coherentMass P.protocol.baseline P.protocol.horizon ≤
+      coherentMass P.protocol.controlled P.protocol.horizon :=
+  software_evidence_implies_controlled_mass_ge_baseline P hvalid
 
 /-! ## LLM toy entry points -/
 

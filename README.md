@@ -91,8 +91,8 @@ structural layer.
 This is not a proof of a universal law. It is package-scoped replication support
 for the first law-side empirical anchors.
 
-Lean formalization is in [`lean/`](lean/). Current status is `177` direct
-top-level `Survival.*` imports in `lean/Survival.lean`, matching `177`
+Lean formalization is in [`lean/`](lean/). Current status is `178` direct
+top-level `Survival.*` imports in `lean/Survival.lean`, matching `178`
 `lean/Survival/*.lean` module files, with no project-level `sorry`, `admit`,
 or declared `axiom` in the imported `Survival` target. The top-level import spine is
 [`lean/Survival.lean`](lean/Survival.lean). The theorem-to-paper map is
@@ -154,6 +154,22 @@ The toy software-contract instantiation is
 The toy evidence-packet instantiation connecting that surface to the packet
 bridge is
 [`lean/Survival/SoftwareEvidencePacketToy.lean`](lean/Survival/SoftwareEvidencePacketToy.lean).
+The software evidence net-action bridge is
+[`lean/Survival/SoftwareEvidenceNetActionBridge.lean`](lean/Survival/SoftwareEvidenceNetActionBridge.lean);
+it packages eligible evidence, dependency closure, repair coverage, and a valid
+benchmark protocol as sufficient obligations for invoking the same finite
+comparison theorem.
+
+### Validating A New Epistemic-Control Experiment
+
+To connect a new experiment to the Lean comparison theorem, first freeze a
+manifest such as
+[`v3/05_evidence/llm_epistemic_control_benchmark_manifest.md`](v3/05_evidence/llm_epistemic_control_benchmark_manifest.md).
+The manifest must fix the task surface, baseline, controlled system, horizon,
+per-step loss / repair metrics, dominance rule, readout alignment, and
+decision rule before outcome-bearing execution. A run becomes theorem-adjacent
+only by supplying the corresponding protocol witnesses; it is not theorem-side
+evidence by default.
 
 The current evidence map is [`analysis/current_evidence_map.md`](analysis/current_evidence_map.md).
 

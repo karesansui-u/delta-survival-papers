@@ -76,6 +76,10 @@ Implementation name: contract-coherence workflow
   `../../../lean/Survival/EvidencePacketBridge.lean`.
 - Lean toy evidence-packet instantiation:
   `../../../lean/Survival/SoftwareEvidencePacketToy.lean`.
+- Lean software evidence net-action bridge:
+  `../../../lean/Survival/SoftwareEvidenceNetActionBridge.lean`.
+- Epistemic-control benchmark manifest:
+  `../../05_evidence/llm_epistemic_control_benchmark_manifest.md`.
 
 
 5. Claims
@@ -88,6 +92,11 @@ This domain supports:
 - an initial internal calibration claim that the contract-coherence workflow can
   add validated distributed-contract roots over same-scope generic review on
   selected frozen OSS items.
+
+The Lean software evidence net-action bridge is formal infrastructure, not
+support evidence. It states that eligible evidence, shared-key witness
+soundness, dependency repair coverage, and a valid benchmark protocol are
+sufficient obligations for invoking the finite comparison theorem.
 
 This domain does not support:
 
