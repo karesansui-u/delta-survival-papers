@@ -156,6 +156,12 @@ scoped correction record can pass it and inherits the admission no-more-loss
 comparison. This remains a finite toy schema, not a proof of arbitrary
 long-term memory safety.
 
+`lean/Survival/EpistemicControlStack.lean` is the stack-level entry point. It
+collects the main abstract bridge, evidence-packet, LLM toy, memory
+use-condition, software toy, and software evidence-packet theorems under
+stack-prefixed names. It is a reader-facing integration file, not an additional
+semantic claim.
+
 `lean/Survival/SoftwareEvidencePacketToy.lean` connects the toy
 software-contract surface to this packet bridge. It proves that the toy raw
 candidate gate, two-surface witness, shared contract key, dependency packet,

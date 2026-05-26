@@ -93,6 +93,16 @@ useConditionMemory_no_more_loss
 This is still a finite use-condition schema, not a proof of arbitrary
 long-term memory safety.
 
+The stack-level Lean entry point is:
+
+```text
+EpistemicControlStack.lean
+```
+
+It collects the abstract bridge, evidence-packet bridge, LLM toy, memory
+use-condition toy, software toy, and software evidence-packet theorem aliases
+under `stack_...` names for easier review.
+
 The first toy software-side instantiation is:
 
 ```text
@@ -190,6 +200,8 @@ Where To Read Next
   `../../../lean/Survival/LLMEpistemicControlToy.lean`
 - Toy LLM memory use-condition instantiation:
   `../../../lean/Survival/LLMMemoryUseConditionToy.lean`
+- Stack-level Lean entry point:
+  `../../../lean/Survival/EpistemicControlStack.lean`
 - Toy software-contract instantiation:
   `../../../lean/Survival/SoftwareContractToyRepository.lean`
 - Toy software evidence-packet instantiation:

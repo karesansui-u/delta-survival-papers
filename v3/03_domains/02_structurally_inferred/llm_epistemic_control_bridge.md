@@ -197,5 +197,6 @@ Safe wording:
 - `../../../lean/Survival/EvidencePacketBridge.lean`
 - `../../../lean/Survival/LLMEpistemicControlToy.lean`
 - `../../../lean/Survival/LLMMemoryUseConditionToy.lean`
+- `../../../lean/Survival/EpistemicControlStack.lean`
 - `../../../lean/Survival/SoftwareContractToyRepository.lean`
 - `../../../lean/Survival/SoftwareEvidencePacketToy.lean`
