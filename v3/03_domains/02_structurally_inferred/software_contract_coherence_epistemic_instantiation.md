@@ -147,7 +147,15 @@ ToyRepoState
 The checked toy uses a finite repository-contract state space, a positive toy
 mass readout, a contradiction update, a repair update, a claim-admission
 filter, and a dependency closure.  It then provides a concrete
-`EpistemicControlSpec` and specializes the bridge kernel and guard lemmas.
+`EpistemicControlSpec` and specializes the bridge kernel and guard lemmas:
+
+| Lean theorem | Toy reading |
+|---|---|
+| `toyRepository_composition_kernel` | the finite repository-contract toy inherits the bridge net-action kernel |
+| `toyRepository_coherentMass_zero` | the initial regularized toy mass is 5 |
+| `toyRepository_coherentMass_one` | after one scoped contradiction / repair step, the regularized toy mass is 3 |
+| `toyClaimAdmission_no_more_loss` | the toy admission filter incurs no more loss than accept-all under the bridge soundness premise |
+| `toyDependencyRewrite_localizes` | toy semantic invalidation is inside the dependency downstream closure |
 
 This remains finite and assumption-explicit.  It does not try to formalize
 arbitrary program semantics, whole-repository correctness, or maintainer

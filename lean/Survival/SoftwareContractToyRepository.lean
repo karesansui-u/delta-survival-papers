@@ -67,35 +67,56 @@ inductive ToyRepoState where
 
 /-! ## A small positive mass readout -/
 
-/-- Count the toy states in a region. -/
-def stateCount (A : Set ToyRepoState) : ℝ :=
+/-- One-state indicator used by the explicit toy count. -/
+def stateIndicator (A : Set ToyRepoState) (x : ToyRepoState) : ℝ :=
   by
     classical
-    exact ∑ x : ToyRepoState, if x ∈ A then (1 : ℝ) else 0
+    exact if x ∈ A then 1 else 0
+
+/-- Count the toy states in a region.  We keep this count explicit so the toy
+mass values can be shown without importing a heavier finite-cardinality API. -/
+def stateCount (A : Set ToyRepoState) : ℝ :=
+  stateIndicator A ToyRepoState.baselineCoherent +
+    stateIndicator A ToyRepoState.docImplementationMismatch +
+    stateIndicator A ToyRepoState.callerApiMismatch +
+    stateIndicator A ToyRepoState.synchronizedPatch
 
 /-- A regularized count keeps every finite toy region positive for log-ratio
 accounting.  This is a toy readout, not an empirical natural mass claim. -/
 def regularizedStateMass (A : Set ToyRepoState) : ℝ :=
   1 + stateCount A
 
-theorem stateCount_nonneg (A : Set ToyRepoState) :
-    0 ≤ stateCount A := by
+theorem stateIndicator_nonneg (A : Set ToyRepoState) (x : ToyRepoState) :
+    0 ≤ stateIndicator A x := by
   classical
-  unfold stateCount
-  refine Finset.sum_nonneg ?_
-  intro x hx
+  unfold stateIndicator
   by_cases hmem : x ∈ A <;> simp [hmem]
 
-theorem stateCount_mono {A B : Set ToyRepoState} (hAB : A ⊆ B) :
-    stateCount A ≤ stateCount B := by
+theorem stateIndicator_mono {A B : Set ToyRepoState} (hAB : A ⊆ B)
+    (x : ToyRepoState) :
+    stateIndicator A x ≤ stateIndicator B x := by
   classical
-  unfold stateCount
-  refine Finset.sum_le_sum ?_
-  intro x hx
+  unfold stateIndicator
   by_cases hA : x ∈ A
   · have hB : x ∈ B := hAB hA
     simp [hA, hB]
   · by_cases hB : x ∈ B <;> simp [hA, hB]
+
+theorem stateCount_nonneg (A : Set ToyRepoState) :
+    0 ≤ stateCount A := by
+  unfold stateCount
+  linarith [stateIndicator_nonneg A ToyRepoState.baselineCoherent,
+    stateIndicator_nonneg A ToyRepoState.docImplementationMismatch,
+    stateIndicator_nonneg A ToyRepoState.callerApiMismatch,
+    stateIndicator_nonneg A ToyRepoState.synchronizedPatch]
+
+theorem stateCount_mono {A B : Set ToyRepoState} (hAB : A ⊆ B) :
+    stateCount A ≤ stateCount B := by
+  unfold stateCount
+  linarith [stateIndicator_mono hAB ToyRepoState.baselineCoherent,
+    stateIndicator_mono hAB ToyRepoState.docImplementationMismatch,
+    stateIndicator_mono hAB ToyRepoState.callerApiMismatch,
+    stateIndicator_mono hAB ToyRepoState.synchronizedPatch]
 
 theorem regularizedStateMass_pos (A : Set ToyRepoState) :
     0 < regularizedStateMass A := by
@@ -178,6 +199,44 @@ theorem toyRepository_composition_kernel (n : ℕ) :
         Real.exp (-(cumulativeEpistemicNetAction toyRepositorySpec n)) := by
   exact epistemic_control_composition_kernel toyRepositorySpec n
     (toyRepository_positiveTrajectory n)
+
+/-! ## Concrete toy mass values -/
+
+theorem toyRepository_stateCount_initial :
+    stateCount initialRepositoryRegion = 4 := by
+  simp [stateCount, stateIndicator, initialRepositoryRegion]
+  norm_num
+
+theorem toyRepository_stateCount_coherentContractRegion :
+    stateCount coherentContractRegion = 2 := by
+  simp [stateCount, stateIndicator, coherentContractRegion]
+  norm_num
+
+theorem toyRepository_coherentMass_zero :
+    coherentMass toyRepositorySpec 0 = 5 := by
+  change regularizedStateMass initialRepositoryRegion = 5
+  rw [regularizedStateMass, toyRepository_stateCount_initial]
+  norm_num
+
+theorem toyRepository_feasibleRegion_one :
+    feasibleEpistemicRegion toyRepositorySpec 1 = coherentContractRegion := by
+  ext x
+  constructor
+  · intro hx
+    rcases hx with hx | hx
+    · exact hx.2
+    · exact Or.inr hx
+  · intro hx
+    exact Or.inl ⟨trivial, hx⟩
+
+theorem toyRepository_coherentMass_one :
+    coherentMass toyRepositorySpec 1 = 3 := by
+  change toyMassModel.mass (feasible (toProblemSpec toyRepositorySpec) 1) = 3
+  rw [show feasible (toProblemSpec toyRepositorySpec) 1 =
+      coherentContractRegion from toyRepository_feasibleRegion_one]
+  change regularizedStateMass coherentContractRegion = 3
+  rw [regularizedStateMass, toyRepository_stateCount_coherentContractRegion]
+  norm_num
 
 /-! ## Toy memory / claim-admission filter -/
 

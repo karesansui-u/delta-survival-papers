@@ -289,6 +289,27 @@ The core Lean-covered parts are, roughly:
 3. the fact that registered limited classes such as Bernoulli-CSP, Foster-Lyapunov / queueing, and Repair-Maintenance satisfy a common unifying interface.
 4. small specification-fixed operational anchors: the finite-PMF first-moment collapse bound \(\Pr[Z>0]\le\mathbb E[Z]\), the second-moment survival bound \(\Pr[Z>0]\ge\mathbb E[Z]^2/\mathbb E[Z^2]\), the BEC erasure-rank accounting identity \(L_E=a(E)\log 2\), the finite converse that \(|E|>r\) precludes unique recovery, the random parity-check row-slack envelope, the BEC erasure-count concentration bridge, and a finite capacity-style bound bundle. These are not sharp CSP threshold theorems or the BEC capacity theorem.
 
+10.1 Epistemic-control bridge for LLM-style systems
+
+The Lean development also contains a deliberately narrow bridge for LLM-style epistemic control layers. This bridge does not formalize natural-language semantics, model weights, attention dynamics, or model performance. It formalizes an abstract interface: a finite epistemic state space, a coherent region, a mass readout, a contradiction update, and a repair update satisfying explicit contraction and expansion laws.
+
+Under those assumptions, the theorem `epistemic_control_composition_kernel` shows that the abstract control layer inherits the existing finite net-action kernel:
+\[
+\mathrm{coherentMass}(n)
+=
+\mathrm{coherentMass}(0)
+\exp(-\mathrm{cumulativeEpistemicNetAction}(n)).
+\]
+Thus the checked claim is conditional and structural: if the control layer supplies the interface, then its coherent mass follows the same \(d_t-r_t\) accounting. It is not a proof that an LLM reasons correctly, stores memories safely, or implements belief revision.
+
+The first software-side toy instantiation is `SoftwareContractToyRepository.lean`. It defines a finite repository-contract surface and proves `toyRepository_composition_kernel`, which specializes the bridge kernel to that toy surface. It also proves `toyClaimAdmission_no_more_loss`, a filtered-admission guard lemma under the bridge's soundness premise, and `toyDependencyRewrite_localizes`, a dependency-closure localization lemma under the bridge's sound-closure premise. The toy additionally records concrete masses: the initial toy coherent mass is 5, and after one scoped contradiction / repair step the mass is 3. These numbers are toy accounting values, not empirical software metrics.
+
+![Figure 3. The Lean core, epistemic-control bridge, and bounded implementation candidates are separated by an explicit claim boundary.](../figures/figure3_epistemic_control_stack_en.svg)
+
+The safe reading is therefore:
+
+> Lean proves that a finite epistemic-control interface satisfying the stated contraction, repair, positivity, filter-soundness, and dependency-closure assumptions inherits the structural-persistence net-action kernel. It does not prove LLM semantics, LLM performance, detector correctness, or unconditional memory safety.
+
 Lean does not by itself prove that every domain has a natural feasible region \(V\), ruler \(m\), or observation unit. It also does not prove that estimation-layer (`inference`) indicators approximate the true \(L\) or \(B\), which real resource should be read as \(M\), that an empirical package obtains outside-rerun support, or that a single universal law holds for all systems.
 
 Thus Lean supports the law-side skeleton. Empirical support and estimation-layer validity are still judged by frozen validation, holdout tests, outside reruns, and the support / no-support / silence discipline.
