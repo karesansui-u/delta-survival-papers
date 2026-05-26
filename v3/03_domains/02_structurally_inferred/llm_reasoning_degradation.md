@@ -26,6 +26,9 @@ Lean との接続は、背景理論だけでなく、別紙
 contraction、scope や外部代謝を repair として表せる有限の
 epistemic-control interface が与えられた場合に、既存の net-action
 kernel へ接続できることを示す。
+さらに `../../../lean/Survival/LLMEpistemicControlToy.lean` では、有限 toy
+surface として、推論時の contradiction / repair と validated witness がこの
+interface に乗ることを確認している。これは実 LLM の意味論や性能の証明ではない。
 
 2. 観測量の定義
 

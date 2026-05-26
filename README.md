@@ -91,7 +91,7 @@ structural layer.
 This is not a proof of a universal law. It is package-scoped replication support
 for the first law-side empirical anchors.
 
-Lean formalization is in [`lean/`](lean/). Current status is `169 Survival
+Lean formalization is in [`lean/`](lean/). Current status is `170 Survival
 modules`, with no project-level `sorry`, `admit`, or declared `axiom` in the
 imported `Survival` target. The top-level import spine is
 [`lean/Survival.lean`](lean/Survival.lean). The theorem-to-paper map is
@@ -108,6 +108,10 @@ The evidence-packet bridge is
 it records the provenance, eligibility, witness, dependency-closure, and repair
 guardrails expected at the implementation boundary without proving any concrete
 workflow correct.
+The finite LLM-side toy instantiation is
+[`lean/Survival/LLMEpistemicControlToy.lean`](lean/Survival/LLMEpistemicControlToy.lean);
+it connects reasoning, memory eligibility, and continual-update dependency
+repair to the same bridge interfaces without proving real model semantics.
 The public one-page summary is
 [`v3/01_theory/en/03_epistemic_control_one_page.md`](v3/01_theory/en/03_epistemic_control_one_page.md).
 The reader-facing core-paper section is

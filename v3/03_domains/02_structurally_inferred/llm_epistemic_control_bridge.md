@@ -85,6 +85,11 @@ The main checked statements are:
 | `evidence_filter_no_more_loss` | an evidence eligibility gate inherits the bridge-level admission loss comparison |
 | `evidence_invalidations_localized` | evidence dependency packets localize semantic invalidations through a sound closure |
 | `repair_touches_invalidations` | a repair covering the dependency closure also covers semantic invalidations |
+| `llmReasoningToy_composition_kernel` | a finite LLM reasoning toy inherits the net-action kernel |
+| `staleMemory_not_eligible` | a stale unscoped memory packet is rejected by the eligibility gate |
+| `eligibleMemory_no_more_loss` | a toy LLM memory admission gate inherits the no-more-loss comparison |
+| `premiseUpdate_invalidations_localized` | a toy premise update localizes downstream invalidations |
+| `repairTouches_downstreamInvalidations` | a toy refresh repair covers the premise-update invalidations |
 | `toyEvidenceAdmission_no_more_loss` | the software toy admission gate instantiates the evidence-packet admission comparison |
 | `toyRepair_touches_invalidations` | the software toy repair packet covers localized toy invalidations |
 
@@ -125,6 +130,11 @@ under the chosen soundness premise.  This is where an implementation must
 justify that bad memory was blocked without discarding required coherent
 states.
 
+`LLMEpistemicControlToy.lean` adds a finite toy surface for these three
+readings.  It checks a reasoning contradiction / repair kernel, a
+provenance-and-eligibility memory gate, and a premise-update dependency repair
+packet.  It is a toy bridge instantiation, not a proof of real model semantics.
+
 
 5. Claims
 ---------
@@ -163,8 +173,9 @@ Safe wording:
 > epistemic control layer satisfying contraction / repair interface conditions
 > inherits the existing finite net-action kernel, plus a checked
 > evidence-packet schema for provenance, eligibility, witness, dependency, and
-> repair guardrails.  The LLM experiments and implementations are candidate
-> instantiations of that interface, not proofs of LLM semantics.
+> repair guardrails, and a finite LLM-side toy instantiation for reasoning,
+> memory, and continual update.  The LLM experiments and implementations are
+> candidate instantiations of that interface, not proofs of LLM semantics.
 
 
 7. Related Profiles
@@ -177,5 +188,6 @@ Safe wording:
 - `software_contract_coherence_epistemic_instantiation.md`
 - `../../../lean/Survival/EpistemicControlBridge.lean`
 - `../../../lean/Survival/EvidencePacketBridge.lean`
+- `../../../lean/Survival/LLMEpistemicControlToy.lean`
 - `../../../lean/Survival/SoftwareContractToyRepository.lean`
 - `../../../lean/Survival/SoftwareEvidencePacketToy.lean`

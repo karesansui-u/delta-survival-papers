@@ -138,6 +138,15 @@ closure localization, repair coverage, and the inherited no-more-loss admission
 comparison. It is still not a proof that a real workflow or repository semantics
 is correct.
 
+`lean/Survival/LLMEpistemicControlToy.lean` is the finite LLM-side toy
+instantiation. It connects reasoning degradation, long-term memory eligibility,
+and continual-update dependency repair to the abstract bridge and
+evidence-packet bridge. It proves the toy reasoning net-action kernel,
+validated contradiction witness, stale-memory rejection, eligible-memory
+admission comparison, premise-update invalidation localization, and downstream
+repair coverage. It is not a proof of real LLM semantics, model performance, or
+unconditional memory safety.
+
 `lean/Survival/SoftwareEvidencePacketToy.lean` connects the toy
 software-contract surface to this packet bridge. It proves that the toy raw
 candidate gate, two-surface witness, shared contract key, dependency packet,

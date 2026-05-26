@@ -203,6 +203,9 @@ filtered policy が accept-all policy より大きな log-ratio loss を負わ�
 という条件つき補題である。これは MemoryGit や任意の記憶実装が安全である
 ことの証明ではなく、memory-control layer を net-action kernel へ接続する
 ための抽象 interface である。
+`../../../lean/Survival/LLMEpistemicControlToy.lean` では、stale memory の
+eligibility rejection と eligible memory admission の no-more-loss 比較を、
+有限 toy surface としてこの抽象 interface に接続している。
 
 
 10. 現在の検証境界

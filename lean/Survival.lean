@@ -50,6 +50,7 @@ import Survival.TelescopingExp
 import Survival.GeneralStateDynamics
 import Survival.EpistemicControlBridge
 import Survival.EvidencePacketBridge
+import Survival.LLMEpistemicControlToy
 import Survival.SoftwareContractToyRepository
 import Survival.SoftwareEvidencePacketToy
 import Survival.StructuralPersistenceBalancePrinciple

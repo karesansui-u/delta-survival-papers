@@ -52,6 +52,27 @@ coherentMass n =
   coherentMass 0 * exp (-(cumulativeEpistemicNetAction n))
 ```
 
+The finite LLM-side toy instantiation is:
+
+```text
+LLMEpistemicControlToy.lean
+```
+
+It proves checked toy links for all three LLM-facing control surfaces:
+
+```text
+llmReasoningToy_composition_kernel
+llmReasoningContradictionWitness_has_two_surfaces
+staleMemory_not_eligible
+eligibleMemory_eligible
+eligibleMemory_no_more_loss
+premiseUpdate_invalidations_localized
+repairTouches_downstreamInvalidations
+```
+
+These are finite toy statements about bridge interfaces, not claims about real
+LLM semantics or model performance.
+
 The first toy software-side instantiation is:
 
 ```text
@@ -145,6 +166,8 @@ Where To Read Next
   `../../03_domains/02_structurally_inferred/llm_epistemic_control_bridge.md`
 - Evidence-packet bridge:
   `../../../lean/Survival/EvidencePacketBridge.lean`
+- Toy LLM epistemic-control instantiation:
+  `../../../lean/Survival/LLMEpistemicControlToy.lean`
 - Toy software-contract instantiation:
   `../../../lean/Survival/SoftwareContractToyRepository.lean`
 - Toy software evidence-packet instantiation:
