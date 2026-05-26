@@ -91,9 +91,10 @@ structural layer.
 This is not a proof of a universal law. It is package-scoped replication support
 for the first law-side empirical anchors.
 
-Lean formalization is in [`lean/`](lean/). Current status is `174 Survival
-modules`, with no project-level `sorry`, `admit`, or declared `axiom` in the
-imported `Survival` target. The top-level import spine is
+Lean formalization is in [`lean/`](lean/). Current status is `175` direct
+top-level `Survival.*` imports in `lean/Survival.lean`, matching `175`
+`lean/Survival/*.lean` module files, with no project-level `sorry`, `admit`,
+or declared `axiom` in the imported `Survival` target. The top-level import spine is
 [`lean/Survival.lean`](lean/Survival.lean). The theorem-to-paper map is
 [`lean/PAPER_MAPPING.md`](lean/PAPER_MAPPING.md), and the strengthened Lean
 landing page is [`lean/README.md`](lean/README.md).
@@ -103,6 +104,11 @@ The LLM-facing abstract bridge is documented in
 It connects contradiction / repair / memory-filter / dependency-rewrite
 control layers to the finite net-action kernel under explicit assumptions; it
 does not claim to prove LLM semantics or performance.
+The baseline comparison layer is
+[`lean/Survival/EpistemicControlComparison.lean`](lean/Survival/EpistemicControlComparison.lean);
+it proves that, at a fixed finite horizon, a controlled epistemic layer with
+the same initial coherent mass and no larger cumulative net action preserves
+at least the baseline coherent mass.
 The evidence-packet bridge is
 [`lean/Survival/EvidencePacketBridge.lean`](lean/Survival/EvidencePacketBridge.lean);
 it records the provenance, eligibility, witness, dependency-closure, and repair

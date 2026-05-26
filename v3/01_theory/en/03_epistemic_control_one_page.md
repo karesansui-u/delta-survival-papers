@@ -29,7 +29,10 @@ The intended reading is:
 3. Evidence-packet bridge: provenance, eligibility, contradiction-witness,
    dependency-closure, and repair-coverage guardrails for artifacts that may
    feed the abstract bridge.
-4. Implementation candidates: reasoning-control, continual-update,
+4. Finite strengthening toys: dependency-closure cardinality budgets,
+   lifecycle memory guards, provenance trust ordering, minimal contradiction
+   witnesses, and composed repair wrappers.
+5. Implementation candidates: reasoning-control, continual-update,
    memory-control, and software contract-coherence workflows evaluated through
    their own evidence packages.
 
@@ -93,14 +96,70 @@ useConditionMemory_no_more_loss
 This is still a finite use-condition schema, not a proof of arbitrary
 long-term memory safety.
 
+The dependency-closure budget toy is:
+
+```text
+DependencyClosureBudgetToy.lean
+```
+
+It gives finite cardinality readings of the dependency guard:
+
+```text
+llm_invalidated_ncard_le_repair_touched_ncard
+software_invalidated_ncard_le_repair_touched_ncard
+```
+
+These statements say that, once a sound dependency closure and covering repair
+packet are supplied, localized invalidations are bounded by the touched repair
+surface budget. They do not prove real semantic dependency discovery.
+
+The LLM memory / reasoning strengthening toy is:
+
+```text
+LLMMemoryReasoningStrengtheningToy.lean
+```
+
+It adds checked toy guardrails:
+
+```text
+revokedScopedMemoryRecord_not_eligible
+expiredScopedMemoryRecord_not_eligible
+lifecycleMemory_no_more_loss
+retrieval_packet_cannot_overwrite_userCorrection_packet
+reasoningContradictionWitness_minimal
+llm_composed_repair_kernel
+```
+
+These sharpen memory and reasoning control at the interface level. They are not
+proofs of product-level agent reliability or arbitrary memory safety.
+
+The finite baseline-comparison layer is:
+
+```text
+EpistemicControlComparison.lean
+```
+
+It proves that if a controlled epistemic layer starts with the same coherent
+mass as a baseline layer and has no larger cumulative net action at a fixed
+finite horizon, then the controlled layer preserves at least the baseline
+coherent mass:
+
+```text
+controlled_coherentMass_ge_baseline
+```
+
+This is a theorem about the abstract accounting interface, not a claim that a
+real model or deployed workflow satisfies the comparison premise.
+
 The stack-level Lean entry point is:
 
 ```text
 EpistemicControlStack.lean
 ```
 
-It collects the abstract bridge, evidence-packet bridge, LLM toy, memory
-use-condition toy, software toy, and software evidence-packet theorem aliases
+It collects the abstract bridge, baseline comparison, evidence-packet bridge,
+LLM toy, memory use-condition toy, dependency-budget toy, memory / reasoning
+strengthening toy, software toy, and software evidence-packet theorem aliases
 under `stack_...` names for easier review.
 
 The first toy software-side instantiation is:
@@ -160,6 +219,7 @@ Lean does not prove:
 - LLM reasoning accuracy or model performance;
 - full belief revision;
 - unconditional long-term memory safety;
+- continual-learning safety or product-level agent reliability;
 - the correctness of a concrete detector or workflow;
 - that a toy mass readout is a natural empirical mass model;
 - that implementation results are theorem-side evidence.
@@ -194,12 +254,18 @@ Where To Read Next
 - Claim boundary: `../../CLAIMS.md`, Section 3
 - Bridge note:
   `../../03_domains/02_structurally_inferred/llm_epistemic_control_bridge.md`
+- Baseline-comparison bridge:
+  `../../../lean/Survival/EpistemicControlComparison.lean`
 - Evidence-packet bridge:
   `../../../lean/Survival/EvidencePacketBridge.lean`
 - Toy LLM epistemic-control instantiation:
   `../../../lean/Survival/LLMEpistemicControlToy.lean`
 - Toy LLM memory use-condition instantiation:
   `../../../lean/Survival/LLMMemoryUseConditionToy.lean`
+- Toy dependency-closure budget instantiation:
+  `../../../lean/Survival/DependencyClosureBudgetToy.lean`
+- Toy LLM memory / reasoning strengthening instantiation:
+  `../../../lean/Survival/LLMMemoryReasoningStrengtheningToy.lean`
 - Stack-level Lean entry point:
   `../../../lean/Survival/EpistemicControlStack.lean`
 - Toy software-contract instantiation:

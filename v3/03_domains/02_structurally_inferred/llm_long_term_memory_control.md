@@ -210,6 +210,12 @@ eligibility rejection と eligible memory admission の no-more-loss 比較を�
 をさらに permission, deletion state, scope, stability, action eligibility
 に分解し、それぞれの失敗が use-condition eligibility を遮断することを
 有限 toy theorem として確認している。
+`../../../lean/Survival/LLMMemoryReasoningStrengtheningToy.lean` では、さらに
+revocation と freshness を含む lifecycle guard、provenance trust ordering、
+および lifecycle memory admission の no-more-loss 比較を有限 toy theorem
+として追加している。これは任意の実装済み長期記憶が安全であることではなく、
+記憶を current premise として使う前に必要な use-condition / lifecycle 条件を
+明示する bridge-level guardrail である。
 
 
 10. 現在の検証境界

@@ -1,3 +1,4 @@
+import Survival.EpistemicControlComparison
 import Survival.LLMMemoryUseConditionToy
 import Survival.SoftwareEvidencePacketToy
 import Survival.DependencyClosureBudgetToy
@@ -17,6 +18,7 @@ theorems under short stack-level names.
 namespace Survival.EpistemicControlStack
 
 open Survival.EpistemicControlBridge
+open Survival.EpistemicControlComparison
 open Survival.EvidencePacketBridge
 open Survival.GeneralStateDynamics
 open Survival.LLMEpistemicControlToy
@@ -36,6 +38,18 @@ theorem stack_epistemic_kernel
     coherentMass S n =
       coherentMass S 0 * Real.exp (-(cumulativeEpistemicNetAction S n)) :=
   epistemic_control_composition_kernel S n hpos
+
+theorem stack_controlled_coherentMass_ge_baseline
+    {X : Type*}
+    (controlled baseline : EpistemicControlSpec X) (n : ℕ)
+    (hcontrolled :
+      PositiveTrajectory (toProblemSpec controlled) n)
+    (hbaseline :
+      PositiveTrajectory (toProblemSpec baseline) n)
+    (hcmp : BaselineComparison controlled baseline n) :
+    coherentMass baseline n ≤ coherentMass controlled n :=
+  controlled_coherentMass_ge_baseline
+    controlled baseline n hcontrolled hbaseline hcmp
 
 theorem stack_evidence_filter_no_more_loss
     {Raw State : Type*} (M : MassModel State)

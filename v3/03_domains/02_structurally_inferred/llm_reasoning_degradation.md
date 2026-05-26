@@ -29,6 +29,16 @@ kernel へ接続できることを示す。
 さらに `../../../lean/Survival/LLMEpistemicControlToy.lean` では、有限 toy
 surface として、推論時の contradiction / repair と validated witness がこの
 interface に乗ることを確認している。これは実 LLM の意味論や性能の証明ではない。
+`../../../lean/Survival/LLMMemoryReasoningStrengtheningToy.lean` では、
+contradiction witness を二つの surface に限定する minimal witness guard と、
+追加 repair pass を合成しても net-action kernel を継承する composed repair
+wrapper を確認している。これも実モデルの正答性ではなく、抽象 interface 上の
+有限 guardrail である。
+`../../../lean/Survival/EpistemicControlComparison.lean` は、同じ初期 coherent
+mass から出発し、controlled 側の cumulative net action が baseline 以下である
+という明示仮定のもとで、controlled coherent mass が baseline 以上になることを
+証明している。これは比較評価の読み筋を与えるが、実モデルがその仮定を満たすこと
+までは Lean では証明しない。
 
 2. 観測量の定義
 

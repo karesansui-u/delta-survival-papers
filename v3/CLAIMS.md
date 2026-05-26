@@ -123,6 +123,13 @@ control layer inherits the existing net-action kernel once it supplies:
 5. finite-prefix positivity;
 6. explicit soundness assumptions for memory filtering and dependency closure.
 
+`lean/Survival/EpistemicControlComparison.lean` strengthens this bridge with a
+baseline comparison contract. If a controlled finite epistemic layer has the
+same initial coherent mass as a baseline layer and no larger cumulative net
+action at a fixed horizon, then the controlled layer has at least the baseline
+coherent mass at that horizon. This is still a conditional theorem over the
+abstract interface, not a performance claim about any real model.
+
 The software-contract toy in
 `lean/Survival/SoftwareContractToyRepository.lean` is a formal instantiation of
 that interface. It proves the toy repository-contract kernel, toy admission
@@ -156,11 +163,28 @@ scoped correction record can pass it and inherits the admission no-more-loss
 comparison. This remains a finite toy schema, not a proof of arbitrary
 long-term memory safety.
 
+`lean/Survival/DependencyClosureBudgetToy.lean` adds a quantitative finite
+reading of the dependency-localization guard: once a sound dependency packet
+localizes invalidations inside a checked closure, the number of invalidated
+surfaces is bounded by the closure budget, the whole finite control surface,
+and a repair packet's touched-surface budget when the repair covers the
+closure. This is still a finite toy budget statement, not a proof of real
+semantic dependency discovery.
+
+`lean/Survival/LLMMemoryReasoningStrengtheningToy.lean` adds four finite toy
+guardrails on top of the LLM memory and reasoning surface: lifecycle memory
+guards for revoked and expired records, a provenance trust order for overwrite
+decisions, a minimal two-surface contradiction-witness predicate, and a
+composed-repair wrapper that still inherits the net-action kernel. These
+guardrails sharpen the formal interface but do not prove product-level agent
+reliability or arbitrary memory safety.
+
 `lean/Survival/EpistemicControlStack.lean` is the stack-level entry point. It
-collects the main abstract bridge, evidence-packet, LLM toy, memory
-use-condition, software toy, and software evidence-packet theorems under
-stack-prefixed names. It is a reader-facing integration file, not an additional
-semantic claim.
+collects the main abstract bridge, baseline comparison, evidence-packet, LLM
+toy, memory use-condition, dependency-budget, memory / reasoning
+strengthening, software toy, and software evidence-packet theorems under
+stack-prefixed names. It is a reader-facing integration file, not an
+additional semantic claim.
 
 `lean/Survival/SoftwareEvidencePacketToy.lean` connects the toy
 software-contract surface to this packet bridge. It proves that the toy raw
@@ -173,13 +197,16 @@ This bridge supports the following claim:
 
 > A finite epistemic-control layer satisfying the stated contraction, repair,
 > positivity, filter-soundness, dependency-closure, and packet-eligibility
-> assumptions inherits the structural-persistence net-action kernel.
+> assumptions inherits the structural-persistence net-action kernel; if it
+> also has no larger cumulative net action than a same-initial-mass baseline,
+> then it preserves at least the baseline coherent mass at that finite horizon.
 
 It does not support these claims:
 
 - Lean proves LLM natural-language semantics;
 - Lean proves model performance or reasoning accuracy;
 - Lean proves full belief revision or unconditional memory safety;
+- Lean proves continual-learning safety or product-level agent reliability;
 - Lean proves the correctness of a concrete software detector;
 - the toy repository mass values are empirical software metrics;
 - implementation or field results become theorem-side evidence.

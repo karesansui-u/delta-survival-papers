@@ -32,7 +32,14 @@ In the current v2 core, the log-ratio form itself is no longer treated as a mere
 
 ## Formal Layer and Limited-Class Unification
 
-The Lean 4 side currently contains 151 `Survival` modules with `sorry = 0` and `axiom = 0`. The formal layer includes the minimal exponential kernel, finite-horizon SAT / Bernoulli-CSP skeletons, admissible-map and saturation-defect wrappers, Foster-Lyapunov / queueing templates, Repair-Maintenance templates, and the Phase 7 cross-class interface.
+The Lean 4 side currently contains 175 direct top-level `Survival.*` imports in
+`lean/Survival.lean`, matching 175 `lean/Survival/*.lean` module files, with
+`sorry = 0` and `axiom = 0` in the imported target. The formal layer includes
+the minimal exponential kernel, finite-horizon SAT / Bernoulli-CSP skeletons,
+admissible-map and saturation-defect wrappers, Foster-Lyapunov / queueing
+templates, Repair-Maintenance templates, the Phase 7 cross-class interface,
+and the LLM-style epistemic-control bridge with finite memory, reasoning,
+dependency-budget, and software-contract toy instantiations.
 
 The strongest cross-class statement is intentionally phrased as limited-class unification rather than as a universal law over all domains. In Phase 7 v2, Bernoulli-CSP, Foster-Lyapunov / queueing, and Repair-Maintenance are registered as limited classes that instantiate a common structural-persistence interface:
 

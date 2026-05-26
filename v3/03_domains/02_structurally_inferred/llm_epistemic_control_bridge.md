@@ -32,6 +32,9 @@ The bridge therefore sits between:
 - the epistemic-control bridge and evidence-packet bridge: abstract
   contradiction / repair operators plus provenance, eligibility, witness,
   dependency-closure, and repair guardrails;
+- the finite toy strengthening layer: dependency-closure cardinality budgets,
+  lifecycle memory guards, provenance trust ordering, minimal contradiction
+  witnesses, and composed repair wrappers;
 - the LLM inference-layer profiles: reasoning degradation, continual-learning
   structural forgetting, and long-term memory control;
 - the implementation / experiment layer: contradiction metabolism,
@@ -80,6 +83,7 @@ The main checked statements are:
 | `repair_update_mass_ge_contradiction` | repair update has at least the post-contradiction mass |
 | `epistemicNetAction_eq_contradictionLoss_sub_repairGain` | epistemic net action is `d_t - r_t` |
 | `epistemic_control_composition_kernel` | coherent epistemic mass follows the existing signed exponential net-action kernel |
+| `controlled_coherentMass_ge_baseline` | a same-initial-mass controlled layer with no larger cumulative net action preserves at least the baseline coherent mass |
 | `eligibility_filter_no_more_loss_under_soundness` | a sound memory filter incurs no more log-ratio loss than an accept-all policy under the stated region-containment premise |
 | `dependency_rewrite_localizes_under_sound_closure` | a sound rewritten dependency closure localizes semantic invalidation inside graph downstream closure |
 | `evidence_filter_no_more_loss` | an evidence eligibility gate inherits the bridge-level admission loss comparison |
@@ -94,8 +98,16 @@ The main checked statements are:
 | `useConditionMemory_no_more_loss` | the explicit use-condition memory gate inherits the no-more-loss comparison |
 | `premiseUpdate_invalidations_localized` | a toy premise update localizes downstream invalidations |
 | `repairTouches_downstreamInvalidations` | a toy refresh repair covers the premise-update invalidations |
+| `llm_invalidated_ncard_le_repair_touched_ncard` | localized toy LLM invalidations are bounded by the touched repair surface budget |
+| `revokedScopedMemoryRecord_not_eligible` | a revoked lifecycle memory record is rejected |
+| `expiredScopedMemoryRecord_not_eligible` | an expired lifecycle memory record is rejected |
+| `lifecycleMemory_no_more_loss` | lifecycle memory admission inherits the no-more-loss comparison |
+| `retrieval_packet_cannot_overwrite_userCorrection_packet` | lower-trust retrieval provenance cannot overwrite a user-correction packet in the toy trust order |
+| `reasoningContradictionWitness_minimal` | the toy reasoning contradiction witness is exactly a two-surface witness |
+| `llm_composed_repair_kernel` | composed toy repair still inherits the finite net-action kernel |
 | `toyEvidenceAdmission_no_more_loss` | the software toy admission gate instantiates the evidence-packet admission comparison |
 | `toyRepair_touches_invalidations` | the software toy repair packet covers localized toy invalidations |
+| `software_invalidated_ncard_le_repair_touched_ncard` | localized toy software invalidations are bounded by the touched repair surface budget |
 
 The composition theorem is the non-decorative part of the bridge:
 
@@ -106,6 +118,17 @@ coherentMass S n =
 
 under the same finite positivity assumptions used by
 `GeneralStateDynamics.PositiveTrajectory`.
+
+`EpistemicControlComparison.lean` adds the finite baseline-comparison reading:
+
+```text
+NetActionNoWorse controlled baseline n
+  -> coherentMass baseline n <= coherentMass controlled n
+```
+
+provided the two layers start with the same coherent mass and both satisfy the
+finite positivity assumptions.  This is a control-accounting comparison, not a
+claim that any real model has lower net action.
 
 
 4. LLM-Control Reading
@@ -141,6 +164,12 @@ packet.  It is a toy bridge instantiation, not a proof of real model semantics.
 `LLMMemoryUseConditionToy.lean` refines the memory gate by making permission,
 deletion state, scope, stability, and action eligibility explicit before a
 memory item may be used as a current premise.
+`DependencyClosureBudgetToy.lean` turns dependency-localization inclusions into
+finite invalidation, closure, surface, and repair-touched cardinality bounds.
+`LLMMemoryReasoningStrengtheningToy.lean` adds lifecycle memory guards,
+provenance trust ordering, minimal contradiction witnesses, and composed repair
+wrappers.  These are finite guardrail statements, not general LLM safety
+theorems.
 
 
 5. Claims
@@ -152,6 +181,9 @@ This bridge supports a formal-interface claim:
 > structural-persistence contraction / repair kernel once they are represented
 > by a finite coherent-region interface satisfying explicit contraction,
 > repair, positivity, filter-soundness, and dependency-closure assumptions.
+> Under the additional same-initial-mass and no-worse-net-action assumptions,
+> the comparison layer also gives a finite coherent-mass lower bound relative
+> to a baseline.
 
 This is a theorem-side bridge, not empirical support.  Experimental support
 for any concrete implementation still belongs to the relevant inference-layer
@@ -181,8 +213,10 @@ Safe wording:
 > inherits the existing finite net-action kernel, plus a checked
 > evidence-packet schema for provenance, eligibility, witness, dependency, and
 > repair guardrails, and a finite LLM-side toy instantiation for reasoning,
-> memory, and continual update.  The LLM experiments and implementations are
-> candidate instantiations of that interface, not proofs of LLM semantics.
+> memory, continual update, dependency budgets, lifecycle guards, provenance
+> trust, minimal witnesses, and composed repair.  The LLM experiments and
+> implementations are candidate instantiations of that interface, not proofs of
+> LLM semantics.
 
 
 7. Related Profiles
@@ -194,9 +228,12 @@ Safe wording:
 - `software_contract_coherence.md`
 - `software_contract_coherence_epistemic_instantiation.md`
 - `../../../lean/Survival/EpistemicControlBridge.lean`
+- `../../../lean/Survival/EpistemicControlComparison.lean`
 - `../../../lean/Survival/EvidencePacketBridge.lean`
 - `../../../lean/Survival/LLMEpistemicControlToy.lean`
 - `../../../lean/Survival/LLMMemoryUseConditionToy.lean`
+- `../../../lean/Survival/DependencyClosureBudgetToy.lean`
+- `../../../lean/Survival/LLMMemoryReasoningStrengtheningToy.lean`
 - `../../../lean/Survival/EpistemicControlStack.lean`
 - `../../../lean/Survival/SoftwareContractToyRepository.lean`
 - `../../../lean/Survival/SoftwareEvidencePacketToy.lean`

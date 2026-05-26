@@ -227,7 +227,30 @@ evidence conditions. It is still finite and schematic; it does not verify real
 program semantics or operational judgment.
 
 
-9. Non-Claims
+9. Lean Dependency-Budget Reading
+---------------------------------
+
+The finite dependency-budget layer is:
+
+- `../../../lean/Survival/DependencyClosureBudgetToy.lean`
+
+For the software toy surface, it turns dependency-localization inclusions into
+finite cardinality bounds:
+
+| Lean theorem | Toy software reading |
+|---|---|
+| `software_invalidated_ncard_le_closure_ncard` | localized invalidations are no larger than the checked dependency closure |
+| `software_closure_ncard_le_surface_card` | the checked dependency closure is bounded by the finite contract surface |
+| `software_invalidated_ncard_le_surface_card` | localized invalidations are bounded by the finite contract surface |
+| `software_invalidated_ncard_le_repair_touched_ncard` | a repair covering the closure bounds invalidations by the repair's touched-surface budget |
+
+This is a useful bridge for engineering language: a sound dependency closure
+does not merely localize invalidations qualitatively; in the finite toy it also
+gives a touched-surface budget. It still does not prove that a real dependency
+graph is complete or that a real workflow has found all downstream effects.
+
+
+10. Non-Claims
 -------------
 
 This instantiation note does not claim:
