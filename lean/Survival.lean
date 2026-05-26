@@ -50,6 +50,7 @@ import Survival.TelescopingExp
 import Survival.GeneralStateDynamics
 import Survival.EpistemicControlBridge
 import Survival.EpistemicControlComparison
+import Survival.EpistemicControlEvaluationContract
 import Survival.EvidencePacketBridge
 import Survival.LLMEpistemicControlToy
 import Survival.LLMMemoryUseConditionToy

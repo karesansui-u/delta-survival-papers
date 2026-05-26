@@ -66,6 +66,24 @@ track would require explicit repair windows and recurrence / future-cost
 endpoints.  That is intentionally outside the current field-demonstration
 claim.
 
+2.1 Evaluation Contract Reading
+-------------------------------
+
+`../../../lean/Survival/EpistemicControlEvaluationContract.lean` gives the
+finite bridge from measured loss / repair readouts to the baseline-comparison
+premise.  In a software contract-coherence workflow, this means that a future
+evaluation can connect to `NetActionNoWorse` only after it fixes:
+
+- a per-step contradiction-loss readout for baseline and controlled workflows;
+- a per-step repair-gain readout for baseline and controlled workflows;
+- a proof obligation that the cumulative metric sums match the bridge-level
+  cumulative net actions;
+- the same initial coherent region / mass condition.
+
+The Lean theorem then says that metric dominance can witness the comparison
+premise. It does not say that the current field-demonstration metrics already
+measure \(d_t\), \(r_t\), or \(B_t\) for a real repository.
+
 
 3. Contract Surfaces
 --------------------

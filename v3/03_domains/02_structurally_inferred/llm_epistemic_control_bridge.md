@@ -84,6 +84,8 @@ The main checked statements are:
 | `epistemicNetAction_eq_contradictionLoss_sub_repairGain` | epistemic net action is `d_t - r_t` |
 | `epistemic_control_composition_kernel` | coherent epistemic mass follows the existing signed exponential net-action kernel |
 | `controlled_coherentMass_ge_baseline` | a same-initial-mass controlled layer with no larger cumulative net action preserves at least the baseline coherent mass |
+| `metric_net_action_no_worse` | per-step loss / repair metric dominance witnesses the no-worse cumulative net-action premise when metric sums match the bridge readout |
+| `metrics_controlled_coherentMass_ge_baseline` | evaluation metrics, readout alignment, positivity, and same initial mass invoke the coherent-mass baseline comparison |
 | `eligibility_filter_no_more_loss_under_soundness` | a sound memory filter incurs no more log-ratio loss than an accept-all policy under the stated region-containment premise |
 | `dependency_rewrite_localizes_under_sound_closure` | a sound rewritten dependency closure localizes semantic invalidation inside graph downstream closure |
 | `evidence_filter_no_more_loss` | an evidence eligibility gate inherits the bridge-level admission loss comparison |
@@ -129,6 +131,20 @@ NetActionNoWorse controlled baseline n
 provided the two layers start with the same coherent mass and both satisfy the
 finite positivity assumptions.  This is a control-accounting comparison, not a
 claim that any real model has lower net action.
+
+`EpistemicControlEvaluationContract.lean` then gives an evaluation-facing
+witness contract:
+
+```text
+controlledLoss_t <= baselineLoss_t
+baselineRepair_t <= controlledRepair_t
+metric sums match cumulative net actions
+  -> NetActionNoWorse controlled baseline n
+```
+
+This says which loss / repair readouts can witness the comparison premise.  It
+does not prove that a benchmark, implementation, or model output supplies a
+valid readout.
 
 
 4. LLM-Control Reading
@@ -184,6 +200,8 @@ This bridge supports a formal-interface claim:
 > Under the additional same-initial-mass and no-worse-net-action assumptions,
 > the comparison layer also gives a finite coherent-mass lower bound relative
 > to a baseline.
+> Under explicit metric-readout alignment, per-step loss / repair dominance can
+> witness that no-worse-net-action assumption.
 
 This is a theorem-side bridge, not empirical support.  Experimental support
 for any concrete implementation still belongs to the relevant inference-layer
@@ -229,6 +247,7 @@ Safe wording:
 - `software_contract_coherence_epistemic_instantiation.md`
 - `../../../lean/Survival/EpistemicControlBridge.lean`
 - `../../../lean/Survival/EpistemicControlComparison.lean`
+- `../../../lean/Survival/EpistemicControlEvaluationContract.lean`
 - `../../../lean/Survival/EvidencePacketBridge.lean`
 - `../../../lean/Survival/LLMEpistemicControlToy.lean`
 - `../../../lean/Survival/LLMMemoryUseConditionToy.lean`

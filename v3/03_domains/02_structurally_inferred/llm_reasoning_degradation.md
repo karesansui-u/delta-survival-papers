@@ -39,6 +39,10 @@ mass から出発し、controlled 側の cumulative net action が baseline 以�
 という明示仮定のもとで、controlled coherent mass が baseline 以上になることを
 証明している。これは比較評価の読み筋を与えるが、実モデルがその仮定を満たすこと
 までは Lean では証明しない。
+`../../../lean/Survival/EpistemicControlEvaluationContract.lean` は、その
+cumulative net action 仮定を、per-step contradiction loss と repair gain の
+metric dominance から witness できることを示す。ここでも Lean が証明するのは
+metric から仮定への会計接続であり、観測 metric 自体の妥当性ではない。
 
 2. 観測量の定義
 

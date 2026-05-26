@@ -130,6 +130,15 @@ action at a fixed horizon, then the controlled layer has at least the baseline
 coherent mass at that horizon. This is still a conditional theorem over the
 abstract interface, not a performance claim about any real model.
 
+`lean/Survival/EpistemicControlEvaluationContract.lean` connects this
+comparison premise to evaluation-facing readouts. If per-step controlled
+contradiction loss is no larger than baseline loss, per-step controlled repair
+gain is no smaller than baseline repair gain, and the cumulative metric sums
+match the bridge-level cumulative net actions, then the metrics witness
+`NetActionNoWorse` and the coherent-mass comparison theorem applies. This does
+not prove that any benchmark or implementation measures those quantities
+correctly.
+
 The software-contract toy in
 `lean/Survival/SoftwareContractToyRepository.lean` is a formal instantiation of
 that interface. It proves the toy repository-contract kernel, toy admission
@@ -180,10 +189,10 @@ guardrails sharpen the formal interface but do not prove product-level agent
 reliability or arbitrary memory safety.
 
 `lean/Survival/EpistemicControlStack.lean` is the stack-level entry point. It
-collects the main abstract bridge, baseline comparison, evidence-packet, LLM
-toy, memory use-condition, dependency-budget, memory / reasoning
-strengthening, software toy, and software evidence-packet theorems under
-stack-prefixed names. It is a reader-facing integration file, not an
+collects the main abstract bridge, baseline comparison, evaluation contract,
+evidence-packet, LLM toy, memory use-condition, dependency-budget, memory /
+reasoning strengthening, software toy, and software evidence-packet theorems
+under stack-prefixed names. It is a reader-facing integration file, not an
 additional semantic claim.
 
 `lean/Survival/SoftwareEvidencePacketToy.lean` connects the toy
@@ -200,6 +209,9 @@ This bridge supports the following claim:
 > assumptions inherits the structural-persistence net-action kernel; if it
 > also has no larger cumulative net action than a same-initial-mass baseline,
 > then it preserves at least the baseline coherent mass at that finite horizon.
+> Per-step loss and repair metrics can witness that no-worse-net-action
+> premise when their cumulative readouts are explicitly aligned with the
+> bridge-level net actions.
 
 It does not support these claims:
 

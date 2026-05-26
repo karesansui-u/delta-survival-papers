@@ -151,16 +151,36 @@ controlled_coherentMass_ge_baseline
 This is a theorem about the abstract accounting interface, not a claim that a
 real model or deployed workflow satisfies the comparison premise.
 
+The evaluation-facing metric contract is:
+
+```text
+EpistemicControlEvaluationContract.lean
+```
+
+It proves that per-step metric dominance can witness the comparison premise:
+
+```text
+metric_net_action_no_worse
+metrics_controlled_coherentMass_ge_baseline
+```
+
+If controlled loss is no larger than baseline loss, controlled repair is no
+smaller than baseline repair, and the cumulative metric sums match the
+bridge-level cumulative net actions, then the metrics supply the
+`NetActionNoWorse` assumption used by the comparison theorem. This is a
+readout contract, not a proof that any benchmark measures those quantities
+correctly.
+
 The stack-level Lean entry point is:
 
 ```text
 EpistemicControlStack.lean
 ```
 
-It collects the abstract bridge, baseline comparison, evidence-packet bridge,
-LLM toy, memory use-condition toy, dependency-budget toy, memory / reasoning
-strengthening toy, software toy, and software evidence-packet theorem aliases
-under `stack_...` names for easier review.
+It collects the abstract bridge, baseline comparison, evaluation contract,
+evidence-packet bridge, LLM toy, memory use-condition toy, dependency-budget
+toy, memory / reasoning strengthening toy, software toy, and software
+evidence-packet theorem aliases under `stack_...` names for easier review.
 
 The first toy software-side instantiation is:
 
@@ -256,6 +276,8 @@ Where To Read Next
   `../../03_domains/02_structurally_inferred/llm_epistemic_control_bridge.md`
 - Baseline-comparison bridge:
   `../../../lean/Survival/EpistemicControlComparison.lean`
+- Evaluation-facing metric contract:
+  `../../../lean/Survival/EpistemicControlEvaluationContract.lean`
 - Evidence-packet bridge:
   `../../../lean/Survival/EvidencePacketBridge.lean`
 - Toy LLM epistemic-control instantiation:

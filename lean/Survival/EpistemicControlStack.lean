@@ -1,4 +1,5 @@
 import Survival.EpistemicControlComparison
+import Survival.EpistemicControlEvaluationContract
 import Survival.LLMMemoryUseConditionToy
 import Survival.SoftwareEvidencePacketToy
 import Survival.DependencyClosureBudgetToy
@@ -19,6 +20,7 @@ namespace Survival.EpistemicControlStack
 
 open Survival.EpistemicControlBridge
 open Survival.EpistemicControlComparison
+open Survival.EpistemicControlEvaluationContract
 open Survival.EvidencePacketBridge
 open Survival.GeneralStateDynamics
 open Survival.LLMEpistemicControlToy
@@ -50,6 +52,30 @@ theorem stack_controlled_coherentMass_ge_baseline
     coherentMass baseline n ≤ coherentMass controlled n :=
   controlled_coherentMass_ge_baseline
     controlled baseline n hcontrolled hbaseline hcmp
+
+theorem stack_metric_net_action_no_worse
+    {X : Type*}
+    (M : EpistemicEvaluationMetrics)
+    (controlled baseline : EpistemicControlSpec X) (n : ℕ)
+    (hdom : EvaluationMetricDominance M n)
+    (hreadout : MetricsReadoutMatchesNetAction M controlled baseline n) :
+    NetActionNoWorse controlled baseline n :=
+  metric_net_action_no_worse M controlled baseline n hdom hreadout
+
+theorem stack_metrics_controlled_coherentMass_ge_baseline
+    {X : Type*}
+    (M : EpistemicEvaluationMetrics)
+    (controlled baseline : EpistemicControlSpec X) (n : ℕ)
+    (hcontrolled :
+      PositiveTrajectory (toProblemSpec controlled) n)
+    (hbaseline :
+      PositiveTrajectory (toProblemSpec baseline) n)
+    (hsame : SameInitialMass controlled baseline)
+    (hdom : EvaluationMetricDominance M n)
+    (hreadout : MetricsReadoutMatchesNetAction M controlled baseline n) :
+    coherentMass baseline n ≤ coherentMass controlled n :=
+  metrics_controlled_coherentMass_ge_baseline
+    M controlled baseline n hcontrolled hbaseline hsame hdom hreadout
 
 theorem stack_evidence_filter_no_more_loss
     {Raw State : Type*} (M : MassModel State)
