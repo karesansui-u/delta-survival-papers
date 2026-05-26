@@ -139,6 +139,13 @@ match the bridge-level cumulative net actions, then the metrics witness
 not prove that any benchmark or implementation measures those quantities
 correctly.
 
+`lean/Survival/EpistemicBenchmarkProtocol.lean` fixes the protocol obligations
+needed before those evaluation metrics can be used: frozen task surface, frozen
+readout, same finite horizon, same initial coherent mass, finite positivity,
+metric dominance, and readout alignment. A valid protocol invokes the
+evaluation contract and the coherent-mass comparison theorem. This does not
+validate a real benchmark, dataset split, or decision rule by itself.
+
 The software-contract toy in
 `lean/Survival/SoftwareContractToyRepository.lean` is a formal instantiation of
 that interface. It proves the toy repository-contract kernel, toy admission
@@ -190,10 +197,10 @@ reliability or arbitrary memory safety.
 
 `lean/Survival/EpistemicControlStack.lean` is the stack-level entry point. It
 collects the main abstract bridge, baseline comparison, evaluation contract,
-evidence-packet, LLM toy, memory use-condition, dependency-budget, memory /
-reasoning strengthening, software toy, and software evidence-packet theorems
-under stack-prefixed names. It is a reader-facing integration file, not an
-additional semantic claim.
+benchmark protocol, evidence-packet, LLM toy, memory use-condition,
+dependency-budget, memory / reasoning strengthening, software toy, and software
+evidence-packet theorems under stack-prefixed names. It is a reader-facing
+integration file, not an additional semantic claim.
 
 `lean/Survival/SoftwareEvidencePacketToy.lean` connects the toy
 software-contract surface to this packet bridge. It proves that the toy raw
@@ -212,6 +219,9 @@ This bridge supports the following claim:
 > Per-step loss and repair metrics can witness that no-worse-net-action
 > premise when their cumulative readouts are explicitly aligned with the
 > bridge-level net actions.
+> A valid benchmark protocol fixes the task surface, readout, horizon, initial
+> mass, metric-dominance, and readout-alignment obligations needed to use that
+> evaluation contract.
 
 It does not support these claims:
 

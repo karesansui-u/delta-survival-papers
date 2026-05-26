@@ -84,6 +84,13 @@ The Lean theorem then says that metric dominance can witness the comparison
 premise. It does not say that the current field-demonstration metrics already
 measure \(d_t\), \(r_t\), or \(B_t\) for a real repository.
 
+`../../../lean/Survival/EpistemicBenchmarkProtocol.lean` adds the benchmark
+protocol layer above this metric contract. For a future software
+contract-coherence benchmark, it would require a frozen task surface, frozen
+readout, same horizon, same initial coherent mass, metric dominance, and
+readout alignment before the coherent-mass comparison can be invoked. This is
+a protocol contract, not a validation of any current benchmark.
+
 
 3. Contract Surfaces
 --------------------

@@ -1,7 +1,7 @@
 # Lean 形式検証 ↔ 論文対応棚卸し
 
 棚卸し日: 2026-05-27
-対象: `lean/Survival/` 配下 176 ファイル
+対象: `lean/Survival/` 配下 177 ファイル
 対応文書: `delta-survival-paper/v2/` 配下の主理論 spine、Route C companions、補論群
 
 ## 現在の結論
@@ -9,13 +9,14 @@
 このファイルを、Lean 形式化と論文本文を結ぶ唯一の reader-facing theorem map とする。
 旧 SAT/CSP 専用 map は現行ツリーから外し、git history / OSF snapshot 側の archive として扱う。
 
-現時点の Lean 側は **176 Survival modules** で閉じており、imported `Survival` target には
+現時点の Lean 側は **177 Survival modules** で閉じており、imported `Survival` target には
 project-level の `sorry` / `admit` / declared `axiom` を置いていない。条件つき導出補論 §5 が
 明示している 5 ファイルを超えて、停止時刻崩壊、martingale concentration、粗視化、有限状態 Markov
 microfoundation、SAT/k-SAT Chernoff-KL chain、Bernoulli-CSP 水平展開、Route A 非CSP skeletons、
 KL divergence / channel skeleton / BEC-style finite boundary、LLM-style epistemic control bridge、
 epistemic-control baseline comparison、
 evaluation-facing metric contract、
+benchmark protocol contract、
 evidence-packet bridge、toy LLM control instantiation、toy LLM memory use-condition
 instantiation、toy software-contract instantiation、toy software evidence-packet instantiation、
 dependency-closure budget toy、LLM memory / reasoning strengthening toy、
@@ -617,6 +618,7 @@ drift は `log(2^k / allowed)` になる。部分二項和が \(0\) と \(2^k\) 
 | [`EpistemicControlBridge.lean`](Survival/EpistemicControlBridge.lean) | `epistemic_control_composition_kernel`: epistemic control spec を `ProblemSpec` に落とす bridge | LLM-style control layer の意味論ではなく、有限 coherent-region interface が net-action kernel を継承することを形式化 |
 | [`EpistemicControlComparison.lean`](Survival/EpistemicControlComparison.lean) | `controlled_coherentMass_ge_baseline`: same-initial-mass かつ no-worse cumulative net action なら controlled coherent mass が baseline 以上 | bridge 上の有限 baseline comparison。実モデル性能ではなく、抽象 accounting interface の条件付き比較保証 |
 | [`EpistemicControlEvaluationContract.lean`](Survival/EpistemicControlEvaluationContract.lean) | `metric_net_action_no_worse`, `metrics_controlled_coherentMass_ge_baseline`: per-step loss / repair metrics から `NetActionNoWorse` と coherent-mass 比較へ接続 | 実験 metric が theorem 仮定を witness するための有限 evaluation contract。metric 自体の妥当性や実モデル性能は証明しない |
+| [`EpistemicBenchmarkProtocol.lean`](Survival/EpistemicBenchmarkProtocol.lean) | `benchmark_protocol_implies_net_action_no_worse`, `benchmark_protocol_implies_controlled_mass_ge_baseline`: valid benchmark protocol から evaluation contract と coherent-mass 比較を起動 | frozen task surface / readout / same-horizon / same-initial-mass / metric dominance / readout alignment の protocol 仮定を型として固定。実 benchmark 妥当性は証明しない |
 | [`EvidencePacketBridge.lean`](Survival/EvidencePacketBridge.lean) | `evidence_filter_no_more_loss`, `evidence_invalidations_localized`, `repair_touches_invalidations`, eligibility / witness guard lemmas | implementation artifact schema。provenance, eligibility, contradiction witness, dependency closure, repair coverage を bridge 仮定へ近づけるが、実 workflow の正しさは主張しない |
 | [`LLMEpistemicControlToy.lean`](Survival/LLMEpistemicControlToy.lean) | `llmReasoningToy_composition_kernel`, `llmReasoningContradictionWitness_has_two_surfaces`, `staleMemory_not_eligible`, `eligibleMemory_eligible`, `eligibleMemory_no_more_loss`, `premiseUpdate_invalidations_localized`, `repairTouches_downstreamInvalidations` | LLM 推論・長期記憶・継続更新を finite toy surface として bridge に接続。実 LLM 意味論・性能・記憶安全性の証明ではない |
 | [`LLMMemoryUseConditionToy.lean`](Survival/LLMMemoryUseConditionToy.lean) | `memory_without_permission_not_eligible`, `deleted_memory_not_eligible`, `out_of_scope_memory_not_eligible`, `unstable_memory_not_eligible`, `action_blocked_memory_not_eligible`, `scopedCorrectionRecord_eligible`, `useConditionMemory_no_more_loss` | LLM 長期記憶の use condition を permission / deletion / scope / stability / action eligibility に分解する有限 toy。任意記憶実装の安全性証明ではない |
@@ -624,7 +626,7 @@ drift は `log(2^k / allowed)` になる。部分二項和が \(0\) と \(2^k\) 
 | [`SoftwareEvidencePacketToy.lean`](Survival/SoftwareEvidencePacketToy.lean) | `toyValidatedCandidate_eligible`, `toyUnsupportedCandidate_not_eligible`, `toyWitness_has_two_surfaces`, `toyEvidence_invalidations_localized`, `toyRepair_touches_invalidations`, `toyEvidenceAdmission_no_more_loss` | software toy surface が evidence-packet bridge の provenance / eligibility / witness / dependency / repair / admission guardrails を満たす具体例 |
 | [`DependencyClosureBudgetToy.lean`](Survival/DependencyClosureBudgetToy.lean) | `invalidated_ncard_le_closure_ncard`, `invalidated_ncard_le_repair_touched_ncard`, `llm_invalidated_ncard_le_surface_card`, `software_invalidated_ncard_le_surface_card` | sound dependency closure を有限 cardinality budget として読む toy bridge。LLM / software toy surface の invalidation 数を closure、surface 全体、repair touched set で上界づける |
 | [`LLMMemoryReasoningStrengtheningToy.lean`](Survival/LLMMemoryReasoningStrengtheningToy.lean) | `revokedScopedMemoryRecord_not_eligible`, `expiredScopedMemoryRecord_not_eligible`, `lifecycleMemory_no_more_loss`, `retrieval_packet_cannot_overwrite_userCorrection_packet`, `reasoningContradictionWitness_minimal`, `llm_composed_repair_kernel` | LLM memory / reasoning toy の追加 guardrails。revocation / freshness, provenance trust order, minimal contradiction witness, and composed repair を finite bridge に接続。実 LLM 安全性や性能の証明ではない |
-| [`EpistemicControlStack.lean`](Survival/EpistemicControlStack.lean) | `stack_epistemic_kernel`, `stack_controlled_coherentMass_ge_baseline`, `stack_metric_net_action_no_worse`, `stack_metrics_controlled_coherentMass_ge_baseline`, `stack_evidence_filter_no_more_loss`, `stack_llm_reasoning_kernel`, `stack_llm_use_condition_memory_no_more_loss`, `stack_software_repository_kernel`, `stack_software_repair_touches_invalidations`, `stack_llm_invalidated_ncard_le_repair_touched_ncard`, `stack_software_invalidated_ncard_le_repair_touched_ncard`, `stack_llm_lifecycle_memory_no_more_loss`, `stack_llm_composed_repair_kernel` | bridge / comparison / evaluation contract / evidence / LLM toy / memory use-condition / software toy / dependency-budget toy / memory-reasoning strengthening toy の主要定理を一箇所に集約する reader-facing entry point。新しい意味論主張ではない |
+| [`EpistemicControlStack.lean`](Survival/EpistemicControlStack.lean) | `stack_epistemic_kernel`, `stack_controlled_coherentMass_ge_baseline`, `stack_metric_net_action_no_worse`, `stack_metrics_controlled_coherentMass_ge_baseline`, `stack_benchmark_protocol_implies_net_action_no_worse`, `stack_benchmark_protocol_implies_controlled_mass_ge_baseline`, `stack_evidence_filter_no_more_loss`, `stack_llm_reasoning_kernel`, `stack_llm_use_condition_memory_no_more_loss`, `stack_software_repository_kernel`, `stack_software_repair_touches_invalidations`, `stack_llm_invalidated_ncard_le_repair_touched_ncard`, `stack_software_invalidated_ncard_le_repair_touched_ncard`, `stack_llm_lifecycle_memory_no_more_loss`, `stack_llm_composed_repair_kernel` | bridge / comparison / evaluation contract / benchmark protocol / evidence / LLM toy / memory use-condition / software toy / dependency-budget toy / memory-reasoning strengthening toy の主要定理を一箇所に集約する reader-facing entry point。新しい意味論主張ではない |
 
 ### G2. M 側の維持能力成分分解（1）— **M 補論の表現文法**
 
@@ -743,7 +745,7 @@ Route C companion II §7.4 に「§7.4.1 最小マルコフ修復チェーンモ
 
 ## 4. 気になる点
 
-1. **ビルド整合性**: 176 Survival modules は `Survival.lean` の top-level import を通じて一貫して検証する設計である。今後は `PAPER_MAPPING.md` の freeze snapshot ごとに `lake build Survival` の通過状況を併記する。
+1. **ビルド整合性**: 177 Survival modules は `Survival.lean` の top-level import を通じて一貫して検証する設計である。今後は `PAPER_MAPPING.md` の freeze snapshot ごとに `lake build Survival` の通過状況を併記する。
 2. **重複可能性**: `Coarse*` と `Stochastic*` の組合せで似た主張が複数箇所にある可能性。一本化できるものはリファクタ候補。
 3. **ArrowOfTime 系の位置づけ**: 補論 SAT §4 らしい H 定理的主張だが、論文本文に対応章が明示されていない。SAT への熱力学的意味付けを追加するか、独立補論として切り出すか、の判断が必要。
 4. **論文側の空白**: 上記 3.1–3.6 の未反映分を 条件つき導出補論 と補論 SAT / 設計原理 に反映しないままだと、Lean 資産が **論文強度に寄与しない状態**が続く。特に 3.2（条件つき導出補論 §4 格上げ）と 3.3（Route C companion II §7 マルコフモデル）は、査読者が Route A/B 強度を評価する際に効く。
@@ -757,7 +759,7 @@ Route C companion II §7.4 に「§7.4.1 最小マルコフ修復チェーンモ
 1. **条件つき導出補論 §5 の形式検証対象リストを 5 → ~20 ファイルへ拡張**する最小差分 patch を書く（§3.1）。論文強度が既存資産だけで一段上がる。
 2. **条件つき導出補論 §4 に真の martingale concentration サブセクションを追加**（§3.2）。`AzumaHoeffding.lean` を引用。
 3. **Route C companion II §7.4 に最小マルコフ修復チェーン**を入れる（§3.3）。Route C companion II の主張が形式モデル上の定理で裏付けられる。
-4. `lake build Survival` の通過状況と、176 Survival modules の依存グラフを図示。棚卸しの完成度を検証。
+4. `lake build Survival` の通過状況と、177 Survival modules の依存グラフを図示。棚卸しの完成度を検証。
 5. 補論 SAT の `AsymptoticExponent` / `CorrelatedSecondMoment` / `SensitivityAnalysis` の論文未掲載洞察を、補論 SAT §6 限界節または新規節として追加（§3.4）。
 
 以上。

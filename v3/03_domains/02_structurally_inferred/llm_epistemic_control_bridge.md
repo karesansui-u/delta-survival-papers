@@ -86,6 +86,8 @@ The main checked statements are:
 | `controlled_coherentMass_ge_baseline` | a same-initial-mass controlled layer with no larger cumulative net action preserves at least the baseline coherent mass |
 | `metric_net_action_no_worse` | per-step loss / repair metric dominance witnesses the no-worse cumulative net-action premise when metric sums match the bridge readout |
 | `metrics_controlled_coherentMass_ge_baseline` | evaluation metrics, readout alignment, positivity, and same initial mass invoke the coherent-mass baseline comparison |
+| `benchmark_protocol_implies_net_action_no_worse` | a valid benchmark protocol invokes the metric witness for no-worse net action |
+| `benchmark_protocol_implies_controlled_mass_ge_baseline` | a valid benchmark protocol invokes the end-to-end coherent-mass baseline comparison |
 | `eligibility_filter_no_more_loss_under_soundness` | a sound memory filter incurs no more log-ratio loss than an accept-all policy under the stated region-containment premise |
 | `dependency_rewrite_localizes_under_sound_closure` | a sound rewritten dependency closure localizes semantic invalidation inside graph downstream closure |
 | `evidence_filter_no_more_loss` | an evidence eligibility gate inherits the bridge-level admission loss comparison |
@@ -146,6 +148,22 @@ This says which loss / repair readouts can witness the comparison premise.  It
 does not prove that a benchmark, implementation, or model output supplies a
 valid readout.
 
+`EpistemicBenchmarkProtocol.lean` fixes the protocol obligations needed before
+such metrics can be used:
+
+```text
+frozen task surface
+frozen readout
+same finite horizon
+same initial coherent mass
+metric dominance
+readout alignment
+  -> coherentMass baseline n <= coherentMass controlled n
+```
+
+This prevents the bridge from silently absorbing after-the-fact metric choices.
+It still does not validate a real benchmark, dataset split, or decision rule.
+
 
 4. LLM-Control Reading
 ----------------------
@@ -202,6 +220,9 @@ This bridge supports a formal-interface claim:
 > to a baseline.
 > Under explicit metric-readout alignment, per-step loss / repair dominance can
 > witness that no-worse-net-action assumption.
+> A valid benchmark protocol records the frozen task-surface, readout,
+> same-horizon, same-initial-mass, metric-dominance, and readout-alignment
+> obligations required to use the evaluation contract.
 
 This is a theorem-side bridge, not empirical support.  Experimental support
 for any concrete implementation still belongs to the relevant inference-layer
@@ -248,6 +269,7 @@ Safe wording:
 - `../../../lean/Survival/EpistemicControlBridge.lean`
 - `../../../lean/Survival/EpistemicControlComparison.lean`
 - `../../../lean/Survival/EpistemicControlEvaluationContract.lean`
+- `../../../lean/Survival/EpistemicBenchmarkProtocol.lean`
 - `../../../lean/Survival/EvidencePacketBridge.lean`
 - `../../../lean/Survival/LLMEpistemicControlToy.lean`
 - `../../../lean/Survival/LLMMemoryUseConditionToy.lean`

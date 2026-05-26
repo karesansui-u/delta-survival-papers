@@ -91,8 +91,8 @@ structural layer.
 This is not a proof of a universal law. It is package-scoped replication support
 for the first law-side empirical anchors.
 
-Lean formalization is in [`lean/`](lean/). Current status is `176` direct
-top-level `Survival.*` imports in `lean/Survival.lean`, matching `176`
+Lean formalization is in [`lean/`](lean/). Current status is `177` direct
+top-level `Survival.*` imports in `lean/Survival.lean`, matching `177`
 `lean/Survival/*.lean` module files, with no project-level `sorry`, `admit`,
 or declared `axiom` in the imported `Survival` target. The top-level import spine is
 [`lean/Survival.lean`](lean/Survival.lean). The theorem-to-paper map is
@@ -113,6 +113,11 @@ The evaluation contract layer is
 [`lean/Survival/EpistemicControlEvaluationContract.lean`](lean/Survival/EpistemicControlEvaluationContract.lean);
 it shows how per-step contradiction-loss and repair-gain metrics can witness
 the no-worse cumulative net-action assumption used by that comparison theorem.
+The benchmark protocol layer is
+[`lean/Survival/EpistemicBenchmarkProtocol.lean`](lean/Survival/EpistemicBenchmarkProtocol.lean);
+it fixes the task-surface, readout, same-horizon, same-initial-mass,
+metric-dominance, and readout-alignment obligations needed before a benchmark
+can invoke the evaluation contract.
 The evidence-packet bridge is
 [`lean/Survival/EvidencePacketBridge.lean`](lean/Survival/EvidencePacketBridge.lean);
 it records the provenance, eligibility, witness, dependency-closure, and repair

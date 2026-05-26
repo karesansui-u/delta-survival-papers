@@ -171,6 +171,24 @@ bridge-level cumulative net actions, then the metrics supply the
 readout contract, not a proof that any benchmark measures those quantities
 correctly.
 
+The benchmark protocol layer is:
+
+```text
+EpistemicBenchmarkProtocol.lean
+```
+
+It fixes the protocol obligations needed to invoke the evaluation contract:
+
+```text
+benchmark_protocol_implies_net_action_no_worse
+benchmark_protocol_implies_controlled_mass_ge_baseline
+```
+
+A valid protocol supplies frozen task-surface and readout obligations, same
+finite horizon, same initial coherent mass, finite positivity, metric
+dominance, and readout alignment. It does not validate a real dataset split,
+benchmark, or decision rule.
+
 The stack-level Lean entry point is:
 
 ```text
@@ -178,9 +196,10 @@ EpistemicControlStack.lean
 ```
 
 It collects the abstract bridge, baseline comparison, evaluation contract,
-evidence-packet bridge, LLM toy, memory use-condition toy, dependency-budget
-toy, memory / reasoning strengthening toy, software toy, and software
-evidence-packet theorem aliases under `stack_...` names for easier review.
+benchmark protocol, evidence-packet bridge, LLM toy, memory use-condition toy,
+dependency-budget toy, memory / reasoning strengthening toy, software toy, and
+software evidence-packet theorem aliases under `stack_...` names for easier
+review.
 
 The first toy software-side instantiation is:
 
@@ -278,6 +297,8 @@ Where To Read Next
   `../../../lean/Survival/EpistemicControlComparison.lean`
 - Evaluation-facing metric contract:
   `../../../lean/Survival/EpistemicControlEvaluationContract.lean`
+- Benchmark protocol contract:
+  `../../../lean/Survival/EpistemicBenchmarkProtocol.lean`
 - Evidence-packet bridge:
   `../../../lean/Survival/EvidencePacketBridge.lean`
 - Toy LLM epistemic-control instantiation:

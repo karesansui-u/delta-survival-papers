@@ -1,5 +1,6 @@
 import Survival.EpistemicControlComparison
 import Survival.EpistemicControlEvaluationContract
+import Survival.EpistemicBenchmarkProtocol
 import Survival.LLMMemoryUseConditionToy
 import Survival.SoftwareEvidencePacketToy
 import Survival.DependencyClosureBudgetToy
@@ -21,6 +22,7 @@ namespace Survival.EpistemicControlStack
 open Survival.EpistemicControlBridge
 open Survival.EpistemicControlComparison
 open Survival.EpistemicControlEvaluationContract
+open Survival.EpistemicBenchmarkProtocol
 open Survival.EvidencePacketBridge
 open Survival.GeneralStateDynamics
 open Survival.LLMEpistemicControlToy
@@ -76,6 +78,21 @@ theorem stack_metrics_controlled_coherentMass_ge_baseline
     coherentMass baseline n ≤ coherentMass controlled n :=
   metrics_controlled_coherentMass_ge_baseline
     M controlled baseline n hcontrolled hbaseline hsame hdom hreadout
+
+theorem stack_benchmark_protocol_implies_net_action_no_worse
+    {X : Type*}
+    (P : BenchmarkProtocol X)
+    (hvalid : ValidEpistemicBenchmarkProtocol P) :
+    NetActionNoWorse P.controlled P.baseline P.horizon :=
+  benchmark_protocol_implies_net_action_no_worse P hvalid
+
+theorem stack_benchmark_protocol_implies_controlled_mass_ge_baseline
+    {X : Type*}
+    (P : BenchmarkProtocol X)
+    (hvalid : ValidEpistemicBenchmarkProtocol P) :
+    coherentMass P.baseline P.horizon ≤
+      coherentMass P.controlled P.horizon :=
+  benchmark_protocol_implies_controlled_mass_ge_baseline P hvalid
 
 theorem stack_evidence_filter_no_more_loss
     {Raw State : Type*} (M : MassModel State)

@@ -43,6 +43,10 @@ mass から出発し、controlled 側の cumulative net action が baseline 以�
 cumulative net action 仮定を、per-step contradiction loss と repair gain の
 metric dominance から witness できることを示す。ここでも Lean が証明するのは
 metric から仮定への会計接続であり、観測 metric 自体の妥当性ではない。
+`../../../lean/Survival/EpistemicBenchmarkProtocol.lean` は、さらに
+task surface、readout、horizon、初期条件、metric dominance、readout alignment
+を protocol obligation として固定する。これは後出し metric を防ぐための型であり、
+実 benchmark や split の妥当性そのものを証明するものではない。
 
 2. 観測量の定義
 
