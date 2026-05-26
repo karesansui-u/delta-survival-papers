@@ -1,7 +1,7 @@
 # Lean 形式検証 ↔ 論文対応棚卸し
 
 棚卸し日: 2026-05-22
-対象: `lean/Survival/` 配下 165 ファイル
+対象: `lean/Survival/` 配下 166 ファイル
 対応文書: `delta-survival-paper/v2/` 配下の主理論 spine、Route C companions、補論群
 
 ## 現在の結論
@@ -9,11 +9,11 @@
 このファイルを、Lean 形式化と論文本文を結ぶ唯一の reader-facing theorem map とする。
 旧 SAT/CSP 専用 map は現行ツリーから外し、git history / OSF snapshot 側の archive として扱う。
 
-現時点の Lean 側は **165 Survival modules** で閉じており、imported `Survival` target には
+現時点の Lean 側は **166 Survival modules** で閉じており、imported `Survival` target には
 project-level の `sorry` / `admit` / declared `axiom` を置いていない。条件つき導出補論 §5 が
 明示している 5 ファイルを超えて、停止時刻崩壊、martingale concentration、粗視化、有限状態 Markov
 microfoundation、SAT/k-SAT Chernoff-KL chain、Bernoulli-CSP 水平展開、Route A 非CSP skeletons、
-KL divergence / channel skeleton / BEC-style finite boundary まで含む。
+KL divergence / channel skeleton / BEC-style finite boundary、LLM-style epistemic control bridge まで含む。
 
 ## 証拠の階層
 
@@ -25,6 +25,7 @@ KL divergence / channel skeleton / BEC-style finite boundary まで含む。
 |---|---|---|
 | SAT chain v1.0 | 数学的 anchor | random 3-SAT の自然測度、actual path measure、MGF product、Chernoff/KL collapse が有限地平線で閉じている |
 | LLM 810 試行 | 経験的 anchor | 文脈長・制約数だけの基準モデルを越え、構造矛盾がより強い崩壊要因になることを示す |
+| Epistemic control bridge | 抽象 bridge | LLM の意味論や性能は証明せず、矛盾更新・修復更新・記憶資格・依存再編を既存の finite net-action kernel へ接続する条件つき interface を示す |
 | Bernoulli CSP universality v1.2 | template validation | fixed assignment/coloring の iid bad-event exposure に限った水平展開。solver dynamics や依存構造は含めない |
 | Numerical sanity checks | tests-as-documentation | 抽象 wrapper が小さな具体例で期待される定数を返すことを reader-facing に確認する。経験的 support ではない |
 | Route A 非CSP skeletons | sanity / coverage benchmark | 古典例を最小語彙で歪めず表せるかの検査。信頼性・材料・待ち行列等の新規本命定理ではない |
@@ -725,7 +726,7 @@ Route C companion II §7.4 に「§7.4.1 最小マルコフ修復チェーンモ
 
 ## 4. 気になる点
 
-1. **ビルド整合性**: 165 Survival modules は `Survival.lean` の top-level import を通じて一貫して検証する設計である。今後は `PAPER_MAPPING.md` の freeze snapshot ごとに `lake build Survival` の通過状況を併記する。
+1. **ビルド整合性**: 166 Survival modules は `Survival.lean` の top-level import を通じて一貫して検証する設計である。今後は `PAPER_MAPPING.md` の freeze snapshot ごとに `lake build Survival` の通過状況を併記する。
 2. **重複可能性**: `Coarse*` と `Stochastic*` の組合せで似た主張が複数箇所にある可能性。一本化できるものはリファクタ候補。
 3. **ArrowOfTime 系の位置づけ**: 補論 SAT §4 らしい H 定理的主張だが、論文本文に対応章が明示されていない。SAT への熱力学的意味付けを追加するか、独立補論として切り出すか、の判断が必要。
 4. **論文側の空白**: 上記 3.1–3.6 の未反映分を 条件つき導出補論 と補論 SAT / 設計原理 に反映しないままだと、Lean 資産が **論文強度に寄与しない状態**が続く。特に 3.2（条件つき導出補論 §4 格上げ）と 3.3（Route C companion II §7 マルコフモデル）は、査読者が Route A/B 強度を評価する際に効く。
@@ -739,7 +740,7 @@ Route C companion II §7.4 に「§7.4.1 最小マルコフ修復チェーンモ
 1. **条件つき導出補論 §5 の形式検証対象リストを 5 → ~20 ファイルへ拡張**する最小差分 patch を書く（§3.1）。論文強度が既存資産だけで一段上がる。
 2. **条件つき導出補論 §4 に真の martingale concentration サブセクションを追加**（§3.2）。`AzumaHoeffding.lean` を引用。
 3. **Route C companion II §7.4 に最小マルコフ修復チェーン**を入れる（§3.3）。Route C companion II の主張が形式モデル上の定理で裏付けられる。
-4. `lake build Survival` の通過状況と、165 Survival modules の依存グラフを図示。棚卸しの完成度を検証。
+4. `lake build Survival` の通過状況と、166 Survival modules の依存グラフを図示。棚卸しの完成度を検証。
 5. 補論 SAT の `AsymptoticExponent` / `CorrelatedSecondMoment` / `SensitivityAnalysis` の論文未掲載洞察を、補論 SAT §6 限界節または新規節として追加（§3.4）。
 
 以上。

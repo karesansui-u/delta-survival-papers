@@ -78,9 +78,10 @@ linear-code erasure-rank unique recovery, finite row-budget converse, random
 parity-check row-slack envelope, BEC erasure-count concentration bridge,
 finite BEC capacity-style bound bundle, finite \(s\)-\(t\) cutset reliability
 embedding, spanning-tree persistence accounting, stationary-current and
-trajectory-ratio guardrails, and Foster-Lyapunov sign bridges. These anchors
-strengthen the vocabulary and the boundary discipline. They do not replace
-frozen prediction packages.
+trajectory-ratio guardrails, Foster-Lyapunov sign bridges, and the LLM
+epistemic-control bridge that maps contradiction / repair control interfaces
+to the finite net-action kernel. These anchors strengthen the vocabulary and
+the boundary discipline. They do not replace frozen prediction packages.
 
 For finite BEC rank accounting, the compatible ambiguity grows as
 \(2^{a(E)}\). The structural-loss coordinate is not defined on that growing
@@ -226,6 +227,9 @@ The v3 program does not claim:
   re-proved;
 - DeltaLint merged PRs alone prove raw detector precision, long-term software
   collapse prediction, or M-side profile support.
+- the LLM epistemic-control bridge proves LLM semantics, model performance,
+  belief revision, memory safety, or the correctness of a concrete memory /
+  continual-learning implementation.
 - MemoryGit or any LLM long-term memory-control note proves full belief
   revision, arbitrary natural-conversation safety, AGI, recursive
   self-improvement, or a literal implementation of human memory.

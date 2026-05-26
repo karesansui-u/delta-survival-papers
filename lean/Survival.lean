@@ -48,6 +48,7 @@ import Survival.LogUniqueness
 -- A1–A2-only telescoping identity: m_n = m_0 * exp(-Σ l_i)
 import Survival.TelescopingExp
 import Survival.GeneralStateDynamics
+import Survival.EpistemicControlBridge
 import Survival.StructuralPersistenceBalancePrinciple
 import Survival.AdmissibleMapInvariants
 import Survival.SaturationDefect

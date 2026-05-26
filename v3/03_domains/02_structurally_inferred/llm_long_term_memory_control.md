@@ -195,6 +195,15 @@ MemoryGit が主に扱うのは第一の層である。第二の層に対して�
 
 これは estimation-layer profile である。正確な feasible path set を数えているとは主張しない。主張できるのは、規律ある memory-control layer が、unsafe use を減らしつつ utility を universal refusal へ潰していないかを、固定した内部検査で調べられる、という限定された方向である。
 
+Lean 側の抽象接続は `llm_epistemic_control_bridge.md` に分ける。そこでは、
+memory qualification を raw input の truth 判定としてではなく、accept-all
+policy と filtered policy の post-admission coherent region の比較として読む。
+証明されるのは、filter soundness に相当する region-containment 仮定のもとで、
+filtered policy が accept-all policy より大きな log-ratio loss を負わない、
+という条件つき補題である。これは MemoryGit や任意の記憶実装が安全である
+ことの証明ではなく、memory-control layer を net-action kernel へ接続する
+ための抽象 interface である。
+
 
 10. 現在の検証境界
 -------------------
