@@ -19,7 +19,8 @@ from typing import Any
 
 
 PROTOCOL_ID = "llm_epistemic_control_frozen_toy_v0"
-RUNNER_VERSION = "0.1.0"
+DEFAULT_RESULT_ID = "llm_epistemic_control_frozen_toy_v0_result_001"
+RUNNER_VERSION = "0.2.0"
 EXPECTED_CASE_IDS = [
     "toy_contradiction_001",
     "toy_memory_001",
@@ -177,7 +178,7 @@ def validate_rows(rows: list[dict[str, Any]]) -> tuple[list[dict[str, Any]], lis
     return cases, errors
 
 
-def summarize(tasks_path: Path) -> dict[str, Any]:
+def summarize(tasks_path: Path, result_id: str) -> dict[str, Any]:
     rows = load_jsonl(tasks_path)
     cases, errors = validate_rows(rows)
     case_ids = [case["case_id"] for case in cases]
@@ -215,7 +216,9 @@ def summarize(tasks_path: Path) -> dict[str, Any]:
     )
 
     return {
+        "artifact_type": "deterministic_toy_protocol_result",
         "protocol_id": PROTOCOL_ID,
+        "result_id": result_id,
         "runner_version": RUNNER_VERSION,
         "tasks_path": str(tasks_path),
         "tasks_sha256": sha256_file(tasks_path),
@@ -265,7 +268,9 @@ def write_markdown(summary: dict[str, Any], path: Path) -> None:
         "",
         "Status: deterministic toy-protocol score; not validation evidence",
         "",
+        f"artifact_type: `{summary['artifact_type']}`",
         f"protocol_id: `{summary['protocol_id']}`",
+        f"result_id: `{summary['result_id']}`",
         f"runner_version: `{summary['runner_version']}`",
         f"tasks_sha256: `{summary['tasks_sha256']}`",
         "",
@@ -308,6 +313,11 @@ def main() -> int:
         help="Path to the frozen tasks.jsonl file.",
     )
     parser.add_argument(
+        "--result-id",
+        default=DEFAULT_RESULT_ID,
+        help="Stable identifier for the emitted result artifact.",
+    )
+    parser.add_argument(
         "--out",
         type=Path,
         help="Optional JSON output path. Defaults to stdout.",
@@ -319,7 +329,7 @@ def main() -> int:
     )
     args = parser.parse_args()
 
-    summary = summarize(args.tasks)
+    summary = summarize(args.tasks, args.result_id)
     rendered = json.dumps(summary, indent=2, sort_keys=True)
 
     if args.out:

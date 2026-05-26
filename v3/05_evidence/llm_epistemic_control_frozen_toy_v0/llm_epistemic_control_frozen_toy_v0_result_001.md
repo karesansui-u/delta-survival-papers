@@ -5,7 +5,7 @@ Status: deterministic toy-protocol score; not validation evidence
 
 artifact_type: `deterministic_toy_protocol_result`
 protocol_id: `llm_epistemic_control_frozen_toy_v0`
-result_id: `llm_epistemic_control_frozen_toy_v0_smoke`
+result_id: `llm_epistemic_control_frozen_toy_v0_result_001`
 runner_version: `0.2.0`
 tasks_sha256: `9b206393333f2fba8e3aa1490c4623d3e347467919cf8adcf6dd96208925cbff`
 

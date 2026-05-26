@@ -49,6 +49,9 @@ Evidence is separated from theory claims.
 - `llm_epistemic_control_frozen_toy_v0/`: small frozen toy packet for the
   epistemic-control benchmark protocol. It is a protocol-shape artifact, not
   support evidence for a real model or workflow.
+- `llm_epistemic_control_frozen_toy_v0/llm_epistemic_control_frozen_toy_v0_result_001.json`:
+  first named deterministic toy result artifact. It exercises the certificate
+  loop for the toy packet only; it is not validation evidence.
 - `../../analysis/epistemic_control_frozen_toy_v0/run_eval.py`: deterministic
   stdlib-only scorer for the frozen toy packet. It checks the task surface,
   readout fields, dominance rule, and toy net-action summary without calling a
@@ -60,7 +63,7 @@ Evidence is separated from theory claims.
 - Reproducible toy protocol bundle candidate:
   `/private/tmp/llm_epistemic_control_frozen_toy_v0_bundle.zip`
   with SHA256
-  `8072412b978046a2103499951cb9999f2d187d177e921fc25d786cc7b312ff6f`.
+  `2ebaf5dbf6a72e96a309d9a5c9e0ea2ed4c85270dfde9b1a3fd5f9397ac11d7c`.
   Bundle contents and regeneration command are listed in
   `../../analysis/epistemic_control_frozen_toy_v0/repro_bundle_manifest.md`.
 

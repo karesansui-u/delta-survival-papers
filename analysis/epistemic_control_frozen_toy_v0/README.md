@@ -28,9 +28,20 @@ From the repository root:
 
 ```bash
 python3 analysis/epistemic_control_frozen_toy_v0/run_eval.py \
+  --result-id llm_epistemic_control_frozen_toy_v0_smoke \
   --tasks v3/05_evidence/llm_epistemic_control_frozen_toy_v0/tasks.jsonl \
   --out v3/05_evidence/llm_epistemic_control_frozen_toy_v0/smoke_result_summary.json \
   --summary-md v3/05_evidence/llm_epistemic_control_frozen_toy_v0/smoke_result_summary.md
+```
+
+The first named result artifact for this toy packet is generated with:
+
+```bash
+python3 analysis/epistemic_control_frozen_toy_v0/run_eval.py \
+  --result-id llm_epistemic_control_frozen_toy_v0_result_001 \
+  --tasks v3/05_evidence/llm_epistemic_control_frozen_toy_v0/tasks.jsonl \
+  --out v3/05_evidence/llm_epistemic_control_frozen_toy_v0/llm_epistemic_control_frozen_toy_v0_result_001.json \
+  --summary-md v3/05_evidence/llm_epistemic_control_frozen_toy_v0/llm_epistemic_control_frozen_toy_v0_result_001.md
 ```
 
 

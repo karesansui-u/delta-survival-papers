@@ -190,6 +190,12 @@ readout alignment
 It does not parse JSON or certify the external runner. It states which
 certificate witnesses are sufficient to reuse the benchmark-protocol theorem.
 
+The first named toy result artifact,
+`../../05_evidence/llm_epistemic_control_frozen_toy_v0/llm_epistemic_control_frozen_toy_v0_result_001.json`,
+exercises this certificate loop on the deterministic frozen toy packet. It is
+still protocol-shape evidence only, not validation evidence for a real model or
+workflow.
+
 The layer boundary is:
 
 | Layer | It proves or checks | It does not prove |
@@ -197,6 +203,7 @@ The layer boundary is:
 | Lean theorem layer | supplied witnesses imply the benchmark protocol and coherent-mass comparison | LLM performance or natural-language semantics |
 | Runner layer | JSON shape, task-surface identity, metric aggregation, and dominance flags | semantic correctness of model outputs |
 | Frozen benchmark manifest | predeclared task surface, readout, horizon, and decision rule | universal performance or transfer to another domain |
+| Named toy result artifact | deterministic toy result for the frozen packet | real-model validation or operational support |
 | Field / operational evidence | practical usefulness under package-scoped evidence rules | theorem-side evidence or repository semantics |
 
 `SoftwareEvidenceNetActionBridge.lean` connects the software evidence-packet
@@ -338,4 +345,5 @@ Safe wording:
 - `../../../lean/Survival/SoftwareEvidenceNetActionBridge.lean`
 - `../../05_evidence/llm_epistemic_control_benchmark_manifest.md`
 - `../../05_evidence/llm_epistemic_control_frozen_toy_v0/freeze_manifest_v0.md`
+- `../../05_evidence/llm_epistemic_control_frozen_toy_v0/llm_epistemic_control_frozen_toy_v0_result_001.json`
 - `../../../analysis/epistemic_control_frozen_toy_v0/run_eval.py`

@@ -168,6 +168,11 @@ metric fields, aggregate dominance rule, and toy readout alignment, and emits a
 JSON / Markdown smoke summary. It is a reproducibility aid for the protocol
 shape, not validation evidence for a real model or workflow.
 
+`v3/05_evidence/llm_epistemic_control_frozen_toy_v0/llm_epistemic_control_frozen_toy_v0_result_001.json`
+is the first named deterministic toy result artifact emitted by that scorer.
+It exercises the result-certificate loop for the frozen toy packet only. It is
+not empirical support for a real LLM, benchmark, memory system, or workflow.
+
 The result-certificate boundary is:
 
 | Layer | It proves or checks | It does not prove |

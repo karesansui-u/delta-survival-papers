@@ -302,6 +302,8 @@ Under those assumptions, the theorem `epistemic_control_composition_kernel` show
 \]
 Thus the checked claim is conditional and structural: if the control layer supplies the interface, then its coherent mass follows the same \(d_t-r_t\) accounting. It is not a proof that an LLM reasons correctly, stores memories safely, or implements belief revision.
 
+The bridge is extended by a finite baseline-comparison, evaluation-contract, benchmark-protocol, result-certificate, and software-evidence chain. The first named toy result artifact, `v3/05_evidence/llm_epistemic_control_frozen_toy_v0/llm_epistemic_control_frozen_toy_v0_result_001.json`, exercises that certificate loop on a deterministic toy packet. It is a protocol-shape artifact, not validation evidence for a real model or workflow.
+
 The first software-side toy instantiation is `SoftwareContractToyRepository.lean`. It defines a finite repository-contract surface and proves `toyRepository_composition_kernel`, which specializes the bridge kernel to that toy surface. It also proves `toyClaimAdmission_no_more_loss`, a filtered-admission guard lemma under the bridge's soundness premise, and `toyDependencyRewrite_localizes`, a dependency-closure localization lemma under the bridge's sound-closure premise. The toy additionally records concrete masses: the initial toy coherent mass is 5, after one scoped contradiction / repair step the mass is 3, and after a second step it remains 3. These numbers are toy accounting values, not empirical software metrics.
 
 ![Figure 3. The Lean core, epistemic-control bridge, and bounded implementation candidates are separated by an explicit claim boundary.](../figures/figure3_epistemic_control_stack_en.svg)

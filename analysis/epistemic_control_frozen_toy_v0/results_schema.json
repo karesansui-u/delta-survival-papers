@@ -4,7 +4,9 @@
   "title": "LLM Epistemic-Control Frozen Toy v0 Result",
   "type": "object",
   "required": [
+    "artifact_type",
     "protocol_id",
+    "result_id",
     "runner_version",
     "tasks_path",
     "tasks_sha256",
@@ -20,8 +22,15 @@
   ],
   "additionalProperties": false,
   "properties": {
+    "artifact_type": {
+      "const": "deterministic_toy_protocol_result"
+    },
     "protocol_id": {
       "const": "llm_epistemic_control_frozen_toy_v0"
+    },
+    "result_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_.-]+$"
     },
     "runner_version": {
       "type": "string"

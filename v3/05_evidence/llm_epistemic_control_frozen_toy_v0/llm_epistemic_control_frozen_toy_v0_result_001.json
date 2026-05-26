@@ -66,7 +66,7 @@
     2
   ],
   "protocol_id": "llm_epistemic_control_frozen_toy_v0",
-  "result_id": "llm_epistemic_control_frozen_toy_v0_smoke",
+  "result_id": "llm_epistemic_control_frozen_toy_v0_result_001",
   "runner_version": "0.2.0",
   "task_count": 3,
   "tasks_path": "v3/05_evidence/llm_epistemic_control_frozen_toy_v0/tasks.jsonl",

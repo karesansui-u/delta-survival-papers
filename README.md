@@ -181,6 +181,7 @@ The first toy protocol packet has a deterministic scorer:
 
 ```bash
 python3 analysis/epistemic_control_frozen_toy_v0/run_eval.py \
+  --result-id llm_epistemic_control_frozen_toy_v0_smoke \
   --tasks v3/05_evidence/llm_epistemic_control_frozen_toy_v0/tasks.jsonl \
   --out v3/05_evidence/llm_epistemic_control_frozen_toy_v0/smoke_result_summary.json \
   --summary-md v3/05_evidence/llm_epistemic_control_frozen_toy_v0/smoke_result_summary.md
@@ -189,16 +190,24 @@ python3 analysis/epistemic_control_frozen_toy_v0/run_eval.py \
 This checks protocol shape and toy metric dominance; it does not validate a
 real model or workflow.
 
+The first named toy result artifact is:
+
+- [`v3/05_evidence/llm_epistemic_control_frozen_toy_v0/llm_epistemic_control_frozen_toy_v0_result_001.json`](v3/05_evidence/llm_epistemic_control_frozen_toy_v0/llm_epistemic_control_frozen_toy_v0_result_001.json)
+- [`v3/05_evidence/llm_epistemic_control_frozen_toy_v0/llm_epistemic_control_frozen_toy_v0_result_001.md`](v3/05_evidence/llm_epistemic_control_frozen_toy_v0/llm_epistemic_control_frozen_toy_v0_result_001.md)
+
+It exercises the deterministic toy certificate loop once; it is still not
+validation evidence for a real model or workflow.
+
 ### Reproducible Toy Protocol Bundle
 
 Local bundle candidate for OSF fixation:
 
 - bundle: `llm_epistemic_control_frozen_toy_v0_bundle.zip`
 - local path: `/private/tmp/llm_epistemic_control_frozen_toy_v0_bundle.zip`
-- SHA256: `8072412b978046a2103499951cb9999f2d187d177e921fc25d786cc7b312ff6f`
+- SHA256: `2ebaf5dbf6a72e96a309d9a5c9e0ea2ed4c85270dfde9b1a3fd5f9397ac11d7c`
 
 The bundle contains the frozen task surface, benchmark manifest, deterministic
-runner, result schema, smoke result summary, and
+runner, result schema, smoke result summary, named toy result artifact, and
 `EpistemicBenchmarkResultCertificate.lean`. The recipe is documented in
 [`analysis/epistemic_control_frozen_toy_v0/repro_bundle_manifest.md`](analysis/epistemic_control_frozen_toy_v0/repro_bundle_manifest.md).
 

@@ -84,6 +84,8 @@ Implementation name: contract-coherence workflow
   `../../../lean/Survival/EpistemicBenchmarkResultCertificate.lean`.
 - Deterministic frozen toy scorer:
   `../../../analysis/epistemic_control_frozen_toy_v0/run_eval.py`.
+- First named deterministic toy result artifact:
+  `../../05_evidence/llm_epistemic_control_frozen_toy_v0/llm_epistemic_control_frozen_toy_v0_result_001.json`.
 
 
 5. Claims
