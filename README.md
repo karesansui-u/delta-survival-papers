@@ -91,8 +91,8 @@ structural layer.
 This is not a proof of a universal law. It is package-scoped replication support
 for the first law-side empirical anchors.
 
-Lean formalization is in [`lean/`](lean/). Current status is `178` direct
-top-level `Survival.*` imports in `lean/Survival.lean`, matching `178`
+Lean formalization is in [`lean/`](lean/). Current status is `179` direct
+top-level `Survival.*` imports in `lean/Survival.lean`, matching `179`
 `lean/Survival/*.lean` module files, with no project-level `sorry`, `admit`,
 or declared `axiom` in the imported `Survival` target. The top-level import spine is
 [`lean/Survival.lean`](lean/Survival.lean). The theorem-to-paper map is
@@ -118,6 +118,10 @@ The benchmark protocol layer is
 it fixes the task-surface, readout, same-horizon, same-initial-mass,
 metric-dominance, and readout-alignment obligations needed before a benchmark
 can invoke the evaluation contract.
+The result-certificate layer is
+[`lean/Survival/EpistemicBenchmarkResultCertificate.lean`](lean/Survival/EpistemicBenchmarkResultCertificate.lean);
+it states which external result-certificate witnesses are sufficient to induce
+a valid benchmark protocol and invoke the same finite comparison theorem.
 The evidence-packet bridge is
 [`lean/Survival/EvidencePacketBridge.lean`](lean/Survival/EvidencePacketBridge.lean);
 it records the provenance, eligibility, witness, dependency-closure, and repair

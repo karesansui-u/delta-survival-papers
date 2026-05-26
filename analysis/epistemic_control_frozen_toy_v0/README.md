@@ -12,6 +12,14 @@ It reads the frozen `tasks.jsonl` file, checks the v0 task surface and readout
 fields, computes aggregate loss / repair dominance, and emits a JSON result
 matching `results_schema.json`.
 
+The corresponding theorem-side certificate bridge is:
+
+- `../../lean/Survival/EpistemicBenchmarkResultCertificate.lean`
+
+That Lean file does not parse this JSON. It states which result-artifact
+witnesses would be sufficient to induce a valid benchmark protocol and invoke
+the finite comparison theorem.
+
 
 Run
 ---

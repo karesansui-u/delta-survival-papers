@@ -32,8 +32,8 @@ In the current v2 core, the log-ratio form itself is no longer treated as a mere
 
 ## Formal Layer and Limited-Class Unification
 
-The Lean 4 side currently contains 178 direct top-level `Survival.*` imports in
-`lean/Survival.lean`, matching 178 `lean/Survival/*.lean` module files, with
+The Lean 4 side currently contains 179 direct top-level `Survival.*` imports in
+`lean/Survival.lean`, matching 179 `lean/Survival/*.lean` module files, with
 `sorry = 0` and `axiom = 0` in the imported target. The formal layer includes
 the minimal exponential kernel, finite-horizon SAT / Bernoulli-CSP skeletons,
 admissible-map and saturation-defect wrappers, Foster-Lyapunov / queueing

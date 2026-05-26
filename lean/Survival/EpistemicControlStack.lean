@@ -1,6 +1,7 @@
 import Survival.EpistemicControlComparison
 import Survival.EpistemicControlEvaluationContract
 import Survival.EpistemicBenchmarkProtocol
+import Survival.EpistemicBenchmarkResultCertificate
 import Survival.LLMMemoryUseConditionToy
 import Survival.SoftwareEvidencePacketToy
 import Survival.SoftwareEvidenceNetActionBridge
@@ -24,6 +25,7 @@ open Survival.EpistemicControlBridge
 open Survival.EpistemicControlComparison
 open Survival.EpistemicControlEvaluationContract
 open Survival.EpistemicBenchmarkProtocol
+open Survival.EpistemicBenchmarkResultCertificate
 open Survival.EvidencePacketBridge
 open Survival.GeneralStateDynamics
 open Survival.LLMEpistemicControlToy
@@ -95,6 +97,29 @@ theorem stack_benchmark_protocol_implies_controlled_mass_ge_baseline
     coherentMass P.baseline P.horizon ≤
       coherentMass P.controlled P.horizon :=
   benchmark_protocol_implies_controlled_mass_ge_baseline P hvalid
+
+theorem stack_result_certificate_implies_benchmark_valid
+    {X : Type*}
+    (C : BenchmarkResultCertificate X)
+    (hvalid : ValidBenchmarkResultCertificate C) :
+    ValidEpistemicBenchmarkProtocol C.protocol :=
+  result_certificate_implies_benchmark_valid C hvalid
+
+theorem stack_result_certificate_implies_net_action_no_worse
+    {X : Type*}
+    (C : BenchmarkResultCertificate X)
+    (hvalid : ValidBenchmarkResultCertificate C) :
+    NetActionNoWorse C.protocol.controlled C.protocol.baseline
+      C.protocol.horizon :=
+  result_certificate_implies_net_action_no_worse C hvalid
+
+theorem stack_result_certificate_implies_controlled_mass_ge_baseline
+    {X : Type*}
+    (C : BenchmarkResultCertificate X)
+    (hvalid : ValidBenchmarkResultCertificate C) :
+    coherentMass C.protocol.baseline C.protocol.horizon ≤
+      coherentMass C.protocol.controlled C.protocol.horizon :=
+  result_certificate_implies_controlled_mass_ge_baseline C hvalid
 
 theorem stack_evidence_filter_no_more_loss
     {Raw State : Type*} (M : MassModel State)

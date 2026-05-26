@@ -16,6 +16,7 @@ analysis/epistemic_control_frozen_toy_v0/README.md
 analysis/epistemic_control_frozen_toy_v0/run_eval.py
 analysis/epistemic_control_frozen_toy_v0/results_schema.json
 analysis/epistemic_control_frozen_toy_v0/repro_bundle_manifest.md
+lean/Survival/EpistemicBenchmarkResultCertificate.lean
 v3/05_evidence/llm_epistemic_control_benchmark_manifest.md
 v3/05_evidence/llm_epistemic_control_frozen_toy_v0/README.md
 v3/05_evidence/llm_epistemic_control_frozen_toy_v0/freeze_manifest_v0.md
@@ -29,6 +30,7 @@ Local bundle command from repository root:
 ```bash
 zip -qr /private/tmp/llm_epistemic_control_frozen_toy_v0_bundle.zip \
   analysis/epistemic_control_frozen_toy_v0 \
+  lean/Survival/EpistemicBenchmarkResultCertificate.lean \
   v3/05_evidence/llm_epistemic_control_benchmark_manifest.md \
   v3/05_evidence/llm_epistemic_control_frozen_toy_v0
 ```

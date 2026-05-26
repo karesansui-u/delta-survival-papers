@@ -146,6 +146,15 @@ metric dominance, and readout alignment. A valid protocol invokes the
 evaluation contract and the coherent-mass comparison theorem. This does not
 validate a real benchmark, dataset split, or decision rule by itself.
 
+`lean/Survival/EpistemicBenchmarkResultCertificate.lean` adds a theorem-side
+result-certificate layer above the benchmark protocol. It states that if an
+external result artifact supplies protocol-shape, frozen-surface,
+frozen-readout, same-horizon, same-initial-mass, positivity, metric-dominance,
+and readout-alignment witnesses, then it induces a valid benchmark protocol
+and invokes the same no-worse-net-action and coherent-mass comparison
+theorems. It does not parse JSON, validate a benchmark, or prove model
+performance.
+
 `v3/05_evidence/llm_epistemic_control_benchmark_manifest.md` is the public
 manifest template for connecting future experiments to this protocol layer. It
 freezes the task surface, baseline, controlled system, finite horizon, per-step
@@ -210,7 +219,7 @@ reliability or arbitrary memory safety.
 
 `lean/Survival/EpistemicControlStack.lean` is the stack-level entry point. It
 collects the main abstract bridge, baseline comparison, evaluation contract,
-benchmark protocol, evidence-packet, LLM toy, memory use-condition,
+benchmark protocol, result-certificate bridge, evidence-packet, LLM toy, memory use-condition,
 dependency-budget, memory / reasoning strengthening, software toy, and software
 evidence-packet / software evidence net-action bridge theorems under
 stack-prefixed names. It is a reader-facing integration file, not an additional
@@ -244,6 +253,8 @@ This bridge supports the following claim:
 > A valid benchmark protocol fixes the task surface, readout, horizon, initial
 > mass, metric-dominance, and readout-alignment obligations needed to use that
 > evaluation contract.
+> A valid result certificate can induce the same benchmark-protocol witness
+> when its protocol-shape and metric/readout witnesses are supplied.
 > A software evidence package can invoke the same finite comparison theorem
 > when eligible evidence, shared-key witness soundness, dependency-repair
 > coverage, and a valid benchmark protocol are supplied.

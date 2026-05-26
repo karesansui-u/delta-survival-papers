@@ -80,6 +80,8 @@ Implementation name: contract-coherence workflow
   `../../../lean/Survival/SoftwareEvidenceNetActionBridge.lean`.
 - Epistemic-control benchmark manifest:
   `../../05_evidence/llm_epistemic_control_benchmark_manifest.md`.
+- Lean result-certificate bridge:
+  `../../../lean/Survival/EpistemicBenchmarkResultCertificate.lean`.
 - Deterministic frozen toy scorer:
   `../../../analysis/epistemic_control_frozen_toy_v0/run_eval.py`.
 

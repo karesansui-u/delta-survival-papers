@@ -91,6 +91,9 @@ The main checked statements are:
 | `metrics_controlled_coherentMass_ge_baseline` | evaluation metrics, readout alignment, positivity, and same initial mass invoke the coherent-mass baseline comparison |
 | `benchmark_protocol_implies_net_action_no_worse` | a valid benchmark protocol invokes the metric witness for no-worse net action |
 | `benchmark_protocol_implies_controlled_mass_ge_baseline` | a valid benchmark protocol invokes the end-to-end coherent-mass baseline comparison |
+| `result_certificate_implies_benchmark_valid` | a valid result certificate induces a valid benchmark protocol |
+| `result_certificate_implies_net_action_no_worse` | a valid result certificate invokes the no-worse net-action premise |
+| `result_certificate_implies_controlled_mass_ge_baseline` | a valid result certificate invokes the coherent-mass baseline comparison |
 | `eligibility_filter_no_more_loss_under_soundness` | a sound memory filter incurs no more log-ratio loss than an accept-all policy under the stated region-containment premise |
 | `dependency_rewrite_localizes_under_sound_closure` | a sound rewritten dependency closure localizes semantic invalidation inside graph downstream closure |
 | `evidence_filter_no_more_loss` | an evidence eligibility gate inherits the bridge-level admission loss comparison |
@@ -169,6 +172,22 @@ readout alignment
 This prevents the bridge from silently absorbing after-the-fact metric choices.
 It still does not validate a real benchmark, dataset split, or decision rule.
 
+`EpistemicBenchmarkResultCertificate.lean` adds a theorem-side certificate
+layer for external result artifacts:
+
+```text
+protocol-shape witness
+frozen task surface and readout
+same finite horizon and same initial mass
+positive trajectories
+metric dominance
+readout alignment
+  -> coherentMass baseline n <= coherentMass controlled n
+```
+
+It does not parse JSON or certify the external runner. It states which
+certificate witnesses are sufficient to reuse the benchmark-protocol theorem.
+
 `SoftwareEvidenceNetActionBridge.lean` connects the software evidence-packet
 surface to that benchmark protocol layer:
 
@@ -243,6 +262,8 @@ This bridge supports a formal-interface claim:
 > A valid benchmark protocol records the frozen task-surface, readout,
 > same-horizon, same-initial-mass, metric-dominance, and readout-alignment
 > obligations required to use the evaluation contract.
+> A valid result certificate records the theorem-side witnesses needed for an
+> external result artifact to induce that valid benchmark protocol.
 > A software evidence package can reuse the same comparison theorem when
 > eligible evidence, shared-key witness soundness, dependency repair coverage,
 > and a valid benchmark protocol are supplied.
@@ -294,6 +315,7 @@ Safe wording:
 - `../../../lean/Survival/EpistemicControlComparison.lean`
 - `../../../lean/Survival/EpistemicControlEvaluationContract.lean`
 - `../../../lean/Survival/EpistemicBenchmarkProtocol.lean`
+- `../../../lean/Survival/EpistemicBenchmarkResultCertificate.lean`
 - `../../../lean/Survival/EvidencePacketBridge.lean`
 - `../../../lean/Survival/LLMEpistemicControlToy.lean`
 - `../../../lean/Survival/LLMMemoryUseConditionToy.lean`

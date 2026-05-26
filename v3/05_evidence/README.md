@@ -53,6 +53,10 @@ Evidence is separated from theory claims.
   stdlib-only scorer for the frozen toy packet. It checks the task surface,
   readout fields, dominance rule, and toy net-action summary without calling a
   model.
+- `../../lean/Survival/EpistemicBenchmarkResultCertificate.lean`: theorem-side
+  certificate bridge describing which result-artifact witnesses are sufficient
+  to invoke the benchmark protocol theorem. It does not parse or validate the
+  JSON files by itself.
 
 Current strongest outside-rerun anchors:
 

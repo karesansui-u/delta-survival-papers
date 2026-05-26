@@ -65,8 +65,8 @@ See:
 
 Lean formalization is in [`lean/`](lean/):
 
-- `178` direct top-level `Survival.*` imports in `lean/Survival.lean`,
-  matching `178` `lean/Survival/*.lean` module files
+- `179` direct top-level `Survival.*` imports in `lean/Survival.lean`,
+  matching `179` `lean/Survival/*.lean` module files
 - no project-level `sorry`, `admit`, or declared `axiom` in the imported
   `Survival` target
 

@@ -6,8 +6,8 @@ across the structural persistence papers and supplements.
 ## Current status
 
 - Lean 4 modules are included in [`lean/`](lean/)
-- current imported development size: `178` direct top-level `Survival.*`
-  imports in `lean/Survival.lean`, matching `178` `lean/Survival/*.lean`
+- current imported development size: `179` direct top-level `Survival.*`
+  imports in `lean/Survival.lean`, matching `179` `lean/Survival/*.lean`
   module files
 - current verification status: no project-level `sorry`, `admit`, or declared
   `axiom` in the imported `Survival` target

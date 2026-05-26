@@ -189,6 +189,26 @@ finite horizon, same initial coherent mass, finite positivity, metric
 dominance, and readout alignment. It does not validate a real dataset split,
 benchmark, or decision rule.
 
+The result-certificate layer is:
+
+```text
+EpistemicBenchmarkResultCertificate.lean
+```
+
+It records the theorem-side shape of a result certificate:
+
+```text
+result_certificate_implies_benchmark_valid
+result_certificate_implies_net_action_no_worse
+result_certificate_implies_controlled_mass_ge_baseline
+```
+
+If an external result artifact supplies protocol-shape, frozen-surface,
+frozen-readout, same-horizon, same-initial-mass, positivity, metric-dominance,
+and readout-alignment witnesses, the certificate induces a valid benchmark
+protocol and invokes the coherent-mass comparison theorem. This does not parse
+JSON, validate a real benchmark, or prove model performance.
+
 The stack-level Lean entry point is:
 
 ```text
@@ -196,7 +216,7 @@ EpistemicControlStack.lean
 ```
 
 It collects the abstract bridge, baseline comparison, evaluation contract,
-benchmark protocol, evidence-packet bridge, LLM toy, memory use-condition toy,
+benchmark protocol, result-certificate bridge, evidence-packet bridge, LLM toy, memory use-condition toy,
 dependency-budget toy, memory / reasoning strengthening toy, software toy,
 software evidence-packet, and software evidence net-action theorem aliases
 under `stack_...` names for easier review.
@@ -318,6 +338,8 @@ Where To Read Next
   `../../../lean/Survival/EpistemicControlEvaluationContract.lean`
 - Benchmark protocol contract:
   `../../../lean/Survival/EpistemicBenchmarkProtocol.lean`
+- Result-certificate bridge:
+  `../../../lean/Survival/EpistemicBenchmarkResultCertificate.lean`
 - Evidence-packet bridge:
   `../../../lean/Survival/EvidencePacketBridge.lean`
 - Toy LLM epistemic-control instantiation:
