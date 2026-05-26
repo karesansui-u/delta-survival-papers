@@ -1,17 +1,23 @@
 English Core Reading Path
 =========================
 
-These three files are the English public reading path for the core theory.
+These files are the English public reading path for the core theory and the
+epistemic-control bridge.
 
 1. `02_core_en.md`
    - Reader-facing synthesis of Paper 1 and Paper 2.
    - Includes the observability-layer figure and the minimal-to-balance kernel figure.
 
-2. `10_paper1_minimal_form_en.md`
+2. `03_epistemic_control_one_page.md`
+   - One-page bridge summary:
+     Lean core, epistemic-control interface, toy software-contract
+     instantiation, and claim boundaries.
+
+3. `10_paper1_minimal_form_en.md`
    - Strict English spine for the minimal form:
      feasible-region shrinkage, log-ratio uniqueness, telescoping product, and \(S=Me^{-L}\).
 
-3. `11_paper2_balance_principle_en.md`
+4. `11_paper2_balance_principle_en.md`
    - Strict English spine for the balance principle:
      two-step updates, net consumption, and \(S=Me^{-B}\).
 

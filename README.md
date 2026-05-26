@@ -24,6 +24,7 @@ Read in this order:
 English entry path:
 
 - [`v3/01_theory/en/02_core_en.md`](v3/01_theory/en/02_core_en.md)
+- [`v3/01_theory/en/03_epistemic_control_one_page.md`](v3/01_theory/en/03_epistemic_control_one_page.md)
 - [`v3/01_theory/en/10_paper1_minimal_form_en.md`](v3/01_theory/en/10_paper1_minimal_form_en.md)
 - [`v3/01_theory/en/11_paper2_balance_principle_en.md`](v3/01_theory/en/11_paper2_balance_principle_en.md)
 
@@ -102,6 +103,8 @@ The LLM-facing abstract bridge is documented in
 It connects contradiction / repair / memory-filter / dependency-rewrite
 control layers to the finite net-action kernel under explicit assumptions; it
 does not claim to prove LLM semantics or performance.
+The public one-page summary is
+[`v3/01_theory/en/03_epistemic_control_one_page.md`](v3/01_theory/en/03_epistemic_control_one_page.md).
 The reader-facing core-paper section is
 [`v3/01_theory/en/02_core_en.md`](v3/01_theory/en/02_core_en.md), Section 10.1.
 The overview diagram for this three-layer structure is
