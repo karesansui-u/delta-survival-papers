@@ -1,6 +1,6 @@
 # OSF / Zenodo Upload Plan
 
-最終更新: 2026-04-28
+最終更新: 2026-05-27
 
 このメモは、`delta-survival-paper` の公開物を OSF / Zenodo に反映するときの最小セットを固定するためのものです。2026-04-28 の更新では、Paper 1 / Paper 2 を主理論 spine として整えたうえで、v2 本体、補論、LLM companion、Lean 対応表、公開導線を `v2_spine_2026-04-28` として OSF に反映しています。2026-04-19 版以前の bundle は履歴 snapshot として扱います。
 
@@ -8,7 +8,7 @@
 
 - GitHub: 反映済み
 - Codeberg: 反映済み
-- OSF: 2026-04-21 SAT chain v1.0 / Bernoulli CSP universality v1.1 update bundle 反映済み。2026-04-28 Mixed-CSP true outside-group rerun final bundle、および v2 spine bundle 反映済み
+- OSF: 2026-04-21 SAT chain v1.0 / Bernoulli CSP universality v1.1 update bundle 反映済み。2026-04-28 Mixed-CSP true outside-group rerun final bundle、および v2 spine bundle 反映済み。2026-05-27 Lean epistemic-control bridge / baseline-comparison focused bundle 反映済み
 - Zenodo: 未反映
 
 ローカルでは、reader-facing theorem map を `lean/PAPER_MAPPING.md` に統合済み。Bernoulli CSP
@@ -53,6 +53,14 @@ SAT/CSP 系の個別 OSF 公開リンクは v1.1 archive snapshot を指す。v2
 - manifest sha256: `6fb5e48086efbe2d698996f02e0431f2b972480a2494b9207a22ddcf378e1c9a`
 - OSF file versions: zip v5, manifest v5
 - scope: current v2 main theory spine, balance-principle supplements, conditional derivation supplement, LLM companions, Lean mapping, public overview, data index, patent notice, citation metadata, and license note. The manifest and public guides use the reader-facing order: construction map, integrated overview, Paper 1, Paper 2, operational discipline, specification-fixed finite-CSP layer, structural-inference LLM layer, resource term \(M\), existing-theory bridges, and Lean / technical details. The v5 refresh sharpens the reader-facing observability terminology to specification-fixed structural layer, conditional structural-embedding layer, and structural-inference layer.
+
+2026-05-27 Lean epistemic-control bridge bundle 反映:
+
+- OSF file: https://files.us.osf.io/v1/resources/mdh7b/providers/osfstorage/6a161bc474938d61d7cc7274
+- archive: `lean_epistemic_control_bridge_2026-05-27_8a79fda.zip`
+- source commit: `8a79fda07f12e8eebf24205e4a9a236bd42ec2fd`
+- sha256: `83af14e2ec5ee0e3e8bdbbb123b18d049c760af97683d02985a78f1b9326f6f0`
+- scope: focused Lean / documentation snapshot for the finite epistemic-control bridge stack, baseline-comparison layer, evidence-packet bridge, finite LLM-style toy layers, finite software-contract toy layers, and reader-facing claim boundaries. This is not a full `v3/` directory upload.
 
 ## Canonical Metadata Packet
 
