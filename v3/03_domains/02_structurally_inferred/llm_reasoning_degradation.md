@@ -47,6 +47,11 @@ metric から仮定への会計接続であり、観測 metric 自体の妥当�
 task surface、readout、horizon、初期条件、metric dominance、readout alignment
 を protocol obligation として固定する。これは後出し metric を防ぐための型であり、
 実 benchmark や split の妥当性そのものを証明するものではない。
+`../../05_evidence/llm_epistemic_control_real_eval_candidate_mapping.md` は、
+既存 implementation-side logs を future frozen protocol の候補 witness へ
+対応づける計画メモである。これは既存ログを support に昇格するものではなく、
+次にどの premise-update / memory-qualification / benchmark-audit surface を
+freeze すべきかを整理するための文書である。
 
 2. 観測量の定義
 

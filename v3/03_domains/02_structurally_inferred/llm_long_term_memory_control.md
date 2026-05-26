@@ -290,5 +290,9 @@ revocation と freshness を含む lifecycle guard、provenance trust ordering�
 - `05_evidence/llm_input_qualification_minimal_result_summary.md`
 - `05_evidence/llm_input_qualification_paraphrase_stress_cases.jsonl`
 - `05_evidence/llm_input_qualification_paraphrase_stress_result_summary.md`
+- `05_evidence/llm_epistemic_control_real_eval_candidate_mapping.md`
 
 この補助資料は、Hermes、Mem0、ローカル記憶、セッション検索、ベクトル検索などを置き換えるものではない。既存の記憶プロバイダへ送る前に入力資格状態を付け、検索後に状態付き選択読出しを行い、回答・行動・共有・学習更新の直前に使用権限を確認するための、最小の公開設計である。
+real-eval candidate mapping は、既存 implementation-side logs を future
+frozen protocol の設計材料として読むためのメモであり、既存ログを support evidence
+に昇格するものではない。

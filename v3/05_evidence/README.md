@@ -46,6 +46,9 @@ Evidence is separated from theory claims.
   future epistemic-control experiments. It fixes task surface, baseline,
   controlled system, horizon, loss / repair metrics, readout alignment, and
   decision rule before outcome-bearing execution.
+- `llm_epistemic_control_real_eval_candidate_mapping.md`: maps existing
+  implementation-side logs and design artifacts to candidate future witnesses
+  for the Lean epistemic benchmark protocol. It is not support evidence.
 - `llm_epistemic_control_frozen_toy_v0/`: small frozen toy packet for the
   epistemic-control benchmark protocol. It is a protocol-shape artifact, not
   support evidence for a real model or workflow.

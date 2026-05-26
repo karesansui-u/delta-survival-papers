@@ -27,10 +27,11 @@ epistemic-control stack entry point まで含む。
 Lean 外の protocol artifact として、
 `v3/05_evidence/llm_epistemic_control_benchmark_manifest.md` と
 `v3/05_evidence/llm_epistemic_control_frozen_toy_v0/`、および
-`analysis/epistemic_control_frozen_toy_v0/run_eval.py` も追加済みである。
+`analysis/epistemic_control_frozen_toy_v0/run_eval.py`、
+`v3/05_evidence/llm_epistemic_control_real_eval_candidate_mapping.md` も追加済みである。
 これらは theorem ではなく、Lean 側の protocol / evaluation contract を将来の実験が
 witness するための reader-facing 固定面、deterministic toy scorer、および初回 toy result
-artifact である。
+artifact、real-eval candidate mapping である。
 
 ## 証拠の階層
 
@@ -73,6 +74,7 @@ EpistemicControlBridge
 | Result certificate bridge | `Survival/EpistemicBenchmarkResultCertificate.lean` | external result artifact が供給すべき certificate witness から valid benchmark protocol と comparison theorem を起動する |
 | Software evidence bridge | `Survival/SoftwareEvidenceNetActionBridge.lean` | eligible evidence, shared-key witness soundness, dependency repair coverage, valid protocol から comparison theorem を起動する |
 | Public manifest | `v3/05_evidence/llm_epistemic_control_benchmark_manifest.md` | future experiment が満たすべき frozen task / metric / decision-rule obligations を文章で固定する |
+| Real-eval candidate mapping | `v3/05_evidence/llm_epistemic_control_real_eval_candidate_mapping.md` | 既存 implementation-side logs を premise update / memory qualification / benchmark audit / software evidence packaging の future witness 候補へ対応づける。support evidence ではない |
 | Frozen toy packet | `v3/05_evidence/llm_epistemic_control_frozen_toy_v0/` | toy task surface と readout fields を固定する。結果や support claim ではない |
 | Toy scorer | `analysis/epistemic_control_frozen_toy_v0/run_eval.py` | frozen toy packet の task surface / readout / dominance / toy net-action summary を機械的に検査する |
 | Named toy result artifact | `v3/05_evidence/llm_epistemic_control_frozen_toy_v0/llm_epistemic_control_frozen_toy_v0_result_001.json` | deterministic scorer が出す初回 result artifact。certificate loop を toy packet 上で一周させるが、実 LLM / workflow の validation evidence ではない |

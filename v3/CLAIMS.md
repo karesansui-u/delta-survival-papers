@@ -173,6 +173,12 @@ is the first named deterministic toy result artifact emitted by that scorer.
 It exercises the result-certificate loop for the frozen toy packet only. It is
 not empirical support for a real LLM, benchmark, memory system, or workflow.
 
+`v3/05_evidence/llm_epistemic_control_real_eval_candidate_mapping.md` maps
+existing implementation-side logs to candidate future witnesses for premise
+update, memory qualification, benchmark-audit discipline, and software evidence
+packaging. It is planning material for future frozen protocols, not support
+evidence and not a retrospective upgrade of existing logs.
+
 The result-certificate boundary is:
 
 | Layer | It proves or checks | It does not prove |

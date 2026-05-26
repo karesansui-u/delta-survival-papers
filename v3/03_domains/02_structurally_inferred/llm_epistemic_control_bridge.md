@@ -196,6 +196,12 @@ exercises this certificate loop on the deterministic frozen toy packet. It is
 still protocol-shape evidence only, not validation evidence for a real model or
 workflow.
 
+The real-eval candidate mapping note,
+`../../05_evidence/llm_epistemic_control_real_eval_candidate_mapping.md`, maps
+existing implementation-side logs to candidate future witnesses for premise
+update, memory qualification, benchmark-audit discipline, and software evidence
+packaging. It does not retrospectively convert existing logs into support.
+
 The layer boundary is:
 
 | Layer | It proves or checks | It does not prove |
@@ -204,6 +210,7 @@ The layer boundary is:
 | Runner layer | JSON shape, task-surface identity, metric aggregation, and dominance flags | semantic correctness of model outputs |
 | Frozen benchmark manifest | predeclared task surface, readout, horizon, and decision rule | universal performance or transfer to another domain |
 | Named toy result artifact | deterministic toy result for the frozen packet | real-model validation or operational support |
+| Real-eval candidate mapping | possible future witness sources and remaining freeze obligations | support evidence or retrospective validation |
 | Field / operational evidence | practical usefulness under package-scoped evidence rules | theorem-side evidence or repository semantics |
 
 `SoftwareEvidenceNetActionBridge.lean` connects the software evidence-packet
@@ -344,6 +351,7 @@ Safe wording:
 - `../../../lean/Survival/SoftwareEvidencePacketToy.lean`
 - `../../../lean/Survival/SoftwareEvidenceNetActionBridge.lean`
 - `../../05_evidence/llm_epistemic_control_benchmark_manifest.md`
+- `../../05_evidence/llm_epistemic_control_real_eval_candidate_mapping.md`
 - `../../05_evidence/llm_epistemic_control_frozen_toy_v0/freeze_manifest_v0.md`
 - `../../05_evidence/llm_epistemic_control_frozen_toy_v0/llm_epistemic_control_frozen_toy_v0_result_001.json`
 - `../../../analysis/epistemic_control_frozen_toy_v0/run_eval.py`

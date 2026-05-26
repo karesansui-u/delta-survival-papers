@@ -198,6 +198,12 @@ The first named toy result artifact is:
 It exercises the deterministic toy certificate loop once; it is still not
 validation evidence for a real model or workflow.
 
+The next real-eval planning layer is
+[`v3/05_evidence/llm_epistemic_control_real_eval_candidate_mapping.md`](v3/05_evidence/llm_epistemic_control_real_eval_candidate_mapping.md).
+It maps existing implementation-side logs to candidate future protocol
+witnesses for premise update, memory qualification, benchmark-audit, and
+software evidence packaging. It is planning material, not support evidence.
+
 ### Reproducible Toy Protocol Bundle
 
 Local bundle candidate for OSF fixation:
