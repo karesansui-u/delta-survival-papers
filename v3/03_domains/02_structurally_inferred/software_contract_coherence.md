@@ -72,6 +72,8 @@ Implementation name: contract-coherence workflow
   `../../../analysis/software_contract_coherence_diagnostics_note.md`.
 - epistemic-control instantiation note:
   `software_contract_coherence_epistemic_instantiation.md`.
+- Lean evidence-packet bridge:
+  `../../../lean/Survival/EvidencePacketBridge.lean`.
 
 
 5. Claims

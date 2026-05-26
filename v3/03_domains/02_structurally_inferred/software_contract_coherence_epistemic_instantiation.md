@@ -1,7 +1,8 @@
 Software Contract-Coherence as an Epistemic-Control Instantiation
 =================================================================
 
-Status: lightweight instantiation note for `llm_epistemic_control_bridge.md`.
+Status: lightweight instantiation note for `llm_epistemic_control_bridge.md`
+and `EvidencePacketBridge.lean`.
 
 This note does not add a new support claim.  It records how the software
 contract-coherence diagnostics track can be read as the first concrete
@@ -21,6 +22,17 @@ mass readout
 contradiction update
 repair update
 filter / dependency guard lemmas
+```
+
+`EvidencePacketBridge.lean` adds the implementation-boundary schema that sits
+between this abstract interface and concrete artifacts:
+
+```text
+provenance
+eligibility status
+multi-surface contradiction witness
+dependency closure
+repair coverage
 ```
 
 Software contract-coherence diagnostics fits this interface because a
@@ -83,6 +95,11 @@ It rejects style-only comments, isolated local bugs, pure performance opinions,
 and generic best-practice advice before they are treated as structural
 contradictions.
 
+The same discipline is now reflected in the evidence-packet bridge: unsupported
+or style-only packets are ineligible, missing provenance blocks eligibility, and
+eligible contradiction witnesses must carry at least two distinct surfaces under
+a shared contract key.
+
 
 4. Bridge Theorem Reading
 -------------------------
@@ -127,7 +144,27 @@ It helps state what kind of object contract-coherence workflows are trying to
 control: a repository's distributed contract epistemic state.
 
 
-6. Lean Toy Instantiation
+6. Lean Evidence-Packet Bridge
+------------------------------
+
+The implementation-boundary Lean bridge is:
+
+- `../../../lean/Survival/EvidencePacketBridge.lean`
+
+It does not prove the current workflow correct.  It proves a thin packet schema
+that is closer to implementation artifacts than the abstract epistemic-control
+interface:
+
+| Lean theorem | Software-contract reading |
+|---|---|
+| `unsupported_not_eligible`, `styleOnly_not_eligible`, `missing_provenance_not_eligible` | unsupported, style-only, or provenance-free artifacts do not pass the packet gate |
+| `witness_has_two_surfaces`, `witness_surface_key_eq` | contradiction witnesses expose multiple surfaces and a shared contract key |
+| `evidence_invalidations_localized` | semantic invalidation is localized by a sound dependency closure |
+| `repair_touches_invalidations` | a repair covering the dependency closure covers all localized invalidations |
+| `evidence_filter_no_more_loss` | the packet eligibility gate inherits the bridge-level no-more-loss admission comparison |
+
+
+7. Lean Toy Instantiation
 -------------------------
 
 The first Lean-side toy instantiation is:
@@ -164,7 +201,7 @@ judgment.  Its role is to close the first formal loop from abstract bridge to
 toy repository surface.
 
 
-7. Non-Claims
+8. Non-Claims
 -------------
 
 This instantiation note does not claim:

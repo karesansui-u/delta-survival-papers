@@ -13,7 +13,7 @@ finite envelopes under stated assumptions.
 
 Current machine-checked status:
 
-- **167 imported `Survival/*` modules**
+- **168 imported `Survival/*` modules**
 - Top-level build target: `Survival`
 - No project-level `sorry`, `admit`, or declared `axiom` in the imported target
 - SAT/k-SAT finite-horizon chain: frozen as **SAT chain v1.0**
@@ -149,7 +149,7 @@ Survival/LinearCodeBECCapacityStyleBoundary.lean
 | Minimal structural persistence core | `Basic`, `Penalty`, `FullFormula`, `TelescopingExp`, `GeneralStateDynamics` | Survival equations, telescoping exponential identities, signed exponential kernels |
 | Log-ratio and exponential uniqueness | `LogUniqueness`, `CauchyExponential`, `AxiomsToExp`, `WeakDependence`, `RobustSurvival`, `SignedWeakDependence` | Log-ratio uniqueness, independence-to-exponential derivation, weak/signed dependence bounds |
 | Structural balance and repair | `StructuralPersistenceBalancePrinciple`, `RepairMaintenanceBalance`, `RepairMaintenanceTemplate`, `MinimumRepairRate`, `ResourceBudget`, `TotalProduction`, `ResourceBoundedDynamics` | Repair lower bounds, maintenance balance, resource-to-drift bridges, finite resource-bounded collapse |
-| Epistemic / LLM control bridge | `EpistemicControlBridge`, `SoftwareContractToyRepository` | Abstract contradiction / repair control interface, coherent-mass net-action kernel wrapper, conditional memory-filter and dependency-rewrite guard lemmas, plus a finite toy repository-contract instantiation with concrete toy mass values |
+| Epistemic / LLM control bridge | `EpistemicControlBridge`, `EvidencePacketBridge`, `SoftwareContractToyRepository` | Abstract contradiction / repair control interface, coherent-mass net-action kernel wrapper, conditional memory-filter and dependency-rewrite guard lemmas, structured evidence-packet provenance / eligibility / witness / repair guardrails, plus a finite toy repository-contract instantiation with concrete toy mass values |
 | Coarse representation stability | `AdmissibleMapInvariants`, `SaturationDefect`, `CoarseGraining`, `ScaleInvariance`, `CoarseTotalProduction`, `CoarseStochasticTotalProduction` | Coarse representation compatibility and preservation of total-production style statements |
 | Martingale/concentration layer | `ConcentrationInterface`, `AzumaHoeffding`, `BoundedAzumaConstruction`, `ConditionalMartingale`, `MartingaleDrift` | Abstract concentration interfaces and Azuma-style collapse wrappers |
 | Stopping-time collapse layer | `StoppingTimeCollapseEvent`, `StoppingTimeHighProbabilityCollapse`, `StoppingTimeSharpDecomposition`, `StoppingTimeCliffWarning` | Hitting-time, stopped-collapse, and sharp finite-horizon decompositions |

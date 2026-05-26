@@ -14,7 +14,8 @@ status: formal_bridge
 -------
 
 This note records the reader-facing meaning of
-`lean/Survival/EpistemicControlBridge.lean`.
+`lean/Survival/EpistemicControlBridge.lean` and the implementation-boundary
+schema in `lean/Survival/EvidencePacketBridge.lean`.
 
 The bridge does not formalize natural-language semantics, model weights,
 attention dynamics, or LLM performance.  It formalizes a narrower interface:
@@ -28,13 +29,16 @@ The bridge therefore sits between:
 
 - the Lean core: finite regions, log-ratio accounting, contraction / repair,
   and signed exponential kernels;
+- the epistemic-control bridge and evidence-packet bridge: abstract
+  contradiction / repair operators plus provenance, eligibility, witness,
+  dependency-closure, and repair guardrails;
 - the LLM inference-layer profiles: reasoning degradation, continual-learning
   structural forgetting, and long-term memory control;
 - the implementation / experiment layer: contradiction metabolism,
   dependency-aware refresh, memory qualification, and software
   contract-coherence diagnostics.
 
-![Figure. Three-layer stack connecting the Lean core, the epistemic-control bridge, and bounded implementation candidates.](../../01_theory/figures/figure3_epistemic_control_stack_en.svg)
+![Figure. Layered stack connecting the Lean core, the epistemic-control bridge, the evidence-packet bridge, and bounded implementation candidates.](../../01_theory/figures/figure3_epistemic_control_stack_en.svg)
 
 
 2. Lean Objects
@@ -78,6 +82,9 @@ The main checked statements are:
 | `epistemic_control_composition_kernel` | coherent epistemic mass follows the existing signed exponential net-action kernel |
 | `eligibility_filter_no_more_loss_under_soundness` | a sound memory filter incurs no more log-ratio loss than an accept-all policy under the stated region-containment premise |
 | `dependency_rewrite_localizes_under_sound_closure` | a sound rewritten dependency closure localizes semantic invalidation inside graph downstream closure |
+| `evidence_filter_no_more_loss` | an evidence eligibility gate inherits the bridge-level admission loss comparison |
+| `evidence_invalidations_localized` | evidence dependency packets localize semantic invalidations through a sound closure |
+| `repair_touches_invalidations` | a repair covering the dependency closure also covers semantic invalidations |
 
 The composition theorem is the non-decorative part of the bridge:
 
@@ -152,9 +159,10 @@ Safe wording:
 
 > The Lean layer now includes a checked abstract bridge showing that an
 > epistemic control layer satisfying contraction / repair interface conditions
-> inherits the existing finite net-action kernel.  The LLM experiments and
-> implementations are candidate instantiations of that interface, not proofs of
-> LLM semantics.
+> inherits the existing finite net-action kernel, plus a checked
+> evidence-packet schema for provenance, eligibility, witness, dependency, and
+> repair guardrails.  The LLM experiments and implementations are candidate
+> instantiations of that interface, not proofs of LLM semantics.
 
 
 7. Related Profiles
@@ -166,4 +174,5 @@ Safe wording:
 - `software_contract_coherence.md`
 - `software_contract_coherence_epistemic_instantiation.md`
 - `../../../lean/Survival/EpistemicControlBridge.lean`
+- `../../../lean/Survival/EvidencePacketBridge.lean`
 - `../../../lean/Survival/SoftwareContractToyRepository.lean`

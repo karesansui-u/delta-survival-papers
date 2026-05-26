@@ -14,10 +14,10 @@ semantics, model performance, belief revision, memory safety, or detector
 correctness.
 
 
-Three-Layer Stack
------------------
+Layered Stack
+-------------
 
-![Figure. Three-layer stack connecting the Lean core, the epistemic-control bridge, and bounded implementation candidates.](../figures/figure3_epistemic_control_stack_en.svg)
+![Figure. Layered stack connecting the Lean core, the epistemic-control bridge, the evidence-packet bridge, and bounded implementation candidates.](../figures/figure3_epistemic_control_stack_en.svg)
 
 The intended reading is:
 
@@ -26,7 +26,10 @@ The intended reading is:
 2. Epistemic-control bridge: an abstract interface that maps contradiction
    updates, repair updates, memory filters, and dependency rewrites into that
    kernel under explicit assumptions.
-3. Implementation candidates: reasoning-control, continual-update,
+3. Evidence-packet bridge: provenance, eligibility, contradiction-witness,
+   dependency-closure, and repair-coverage guardrails for artifacts that may
+   feed the abstract bridge.
+4. Implementation candidates: reasoning-control, continual-update,
    memory-control, and software contract-coherence workflows evaluated through
    their own evidence packages.
 
@@ -70,6 +73,22 @@ The toy regularized mass values are 5 initially, 3 after one scoped
 contradiction / repair step, and 3 after a second step. These are finite toy
 accounting values, not empirical software metrics.
 
+The implementation-boundary evidence schema is:
+
+```text
+EvidencePacketBridge.lean
+```
+
+It proves provenance and eligibility guard lemmas, multi-surface witness
+conditions, dependency-localization and repair-coverage statements, and the
+inherited admission-filter loss comparison:
+
+```text
+evidence_filter_no_more_loss
+evidence_invalidations_localized
+repair_touches_invalidations
+```
+
 
 What Lean Does Not Prove
 ------------------------
@@ -98,6 +117,7 @@ connection thinner and sharper:
 ```text
 finite coherent-region interface
   -> contradiction / repair / eligibility / dependency operators
+  -> provenance / witness / dependency / repair evidence packets
   -> existing net-action kernel
 ```
 
@@ -113,5 +133,7 @@ Where To Read Next
 - Claim boundary: `../../CLAIMS.md`, Section 3
 - Bridge note:
   `../../03_domains/02_structurally_inferred/llm_epistemic_control_bridge.md`
+- Evidence-packet bridge:
+  `../../../lean/Survival/EvidencePacketBridge.lean`
 - Toy software-contract instantiation:
   `../../../lean/Survival/SoftwareContractToyRepository.lean`

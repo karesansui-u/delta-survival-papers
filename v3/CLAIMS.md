@@ -130,11 +130,19 @@ filter guard, toy dependency-localization guard, and concrete regularized toy
 mass values. This is a formal loop from bridge to finite toy surface. It is not
 evidence that any real detector is correct.
 
+`lean/Survival/EvidencePacketBridge.lean` sits between the abstract bridge and
+implementation artifacts. It checks the packet-level guardrails expected before
+an artifact is allowed to feed the bridge: provenance presence, eligibility
+status, multi-surface contradiction witnesses with a shared key, dependency
+closure localization, repair coverage, and the inherited no-more-loss admission
+comparison. It is still not a proof that a real workflow or repository semantics
+is correct.
+
 This bridge supports the following claim:
 
 > A finite epistemic-control layer satisfying the stated contraction, repair,
-> positivity, filter-soundness, and dependency-closure assumptions inherits the
-> structural-persistence net-action kernel.
+> positivity, filter-soundness, dependency-closure, and packet-eligibility
+> assumptions inherits the structural-persistence net-action kernel.
 
 It does not support these claims:
 

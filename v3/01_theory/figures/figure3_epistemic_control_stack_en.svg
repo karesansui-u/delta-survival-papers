@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1100" height="720" viewBox="0 0 1100 720" role="img" aria-labelledby="title desc">
   <title id="title">Structural Persistence to LLM Epistemic Control</title>
-  <desc id="desc">A three-layer diagram connecting the Lean structural persistence core, the epistemic control bridge, and implementation or evidence candidates while separating formal claims from non-claims.</desc>
+  <desc id="desc">A layered diagram connecting the Lean structural persistence core, the epistemic control bridge, the evidence-packet bridge, and implementation candidates while separating formal claims from non-claims.</desc>
   <defs>
     <linearGradient id="bg3" x1="0" x2="1" y1="0" y2="1">
       <stop offset="0%" stop-color="#f9f7f1"/>
@@ -37,53 +37,69 @@
   <rect width="1100" height="720" fill="url(#bg3)"/>
 
   <text x="550" y="48" text-anchor="middle" class="title">Structural Persistence to LLM Epistemic Control</text>
-  <text x="550" y="76" text-anchor="middle" class="subtitle">A formal core, a checked abstract bridge, and bounded implementation candidates.</text>
+  <text x="550" y="76" text-anchor="middle" class="subtitle">A formal core, checked bridges, and bounded implementation candidates.</text>
 
-  <rect x="62" y="108" width="685" height="138" class="panel core"/>
+  <rect x="62" y="108" width="685" height="118" class="panel core"/>
   <text x="92" y="144" class="layerTitle">1. Lean core: structural persistence accounting</text>
   <text x="92" y="176" class="small">Finite feasible regions, fixed mass readout, log-ratio depletion, contraction and repair.</text>
-  <text x="92" y="210" class="math">S_n = M_n exp(-B_n)</text>
-  <text x="375" y="210" class="tiny">where B_n = sum(d_t - r_t)</text>
-  <rect x="535" y="147" width="174" height="58" class="chip"/>
-  <text x="622" y="171" text-anchor="middle" class="tiny">existing theorem</text>
-  <text x="622" y="193" text-anchor="middle" class="micro">net-action kernel</text>
+  <text x="92" y="204" class="math">S_n = M_n exp(-B_n)</text>
+  <text x="375" y="204" class="tiny">where B_n = sum(d_t - r_t)</text>
+  <rect x="535" y="142" width="174" height="54" class="chip"/>
+  <text x="622" y="165" text-anchor="middle" class="tiny">existing theorem</text>
+  <text x="622" y="186" text-anchor="middle" class="micro">net-action kernel</text>
 
-  <path d="M404 247 C404 264 404 271 404 288" class="arrow"/>
+  <path d="M404 227 C404 238 404 244 404 252" class="arrow"/>
 
-  <rect x="62" y="290" width="685" height="174" class="panel bridge"/>
-  <text x="92" y="326" class="layerTitle">2. Epistemic control bridge: abstract LLM-side interface</text>
-  <text x="92" y="358" class="small">Represent a control layer as coherent regions plus operators satisfying explicit laws.</text>
+  <rect x="62" y="254" width="685" height="150" class="panel bridge"/>
+  <text x="92" y="290" class="layerTitle">2. Epistemic control bridge: abstract LLM-side interface</text>
+  <text x="92" y="320" class="small">Represent a control layer as coherent regions plus operators satisfying explicit laws.</text>
 
-  <rect x="96" y="386" width="171" height="48" class="chipBlue"/>
-  <text x="181" y="406" text-anchor="middle" class="tiny">contradictionUpdate</text>
-  <text x="181" y="426" text-anchor="middle" class="micro">contraction</text>
+  <rect x="96" y="342" width="171" height="44" class="chipBlue"/>
+  <text x="181" y="361" text-anchor="middle" class="tiny">contradictionUpdate</text>
+  <text x="181" y="380" text-anchor="middle" class="micro">contraction</text>
 
-  <rect x="281" y="386" width="140" height="48" class="chipBlue"/>
-  <text x="351" y="406" text-anchor="middle" class="tiny">repairUpdate</text>
-  <text x="351" y="426" text-anchor="middle" class="micro">expansion</text>
+  <rect x="281" y="342" width="140" height="44" class="chipBlue"/>
+  <text x="351" y="361" text-anchor="middle" class="tiny">repairUpdate</text>
+  <text x="351" y="380" text-anchor="middle" class="micro">expansion</text>
 
-  <rect x="435" y="386" width="121" height="48" class="chipBlue"/>
-  <text x="496" y="406" text-anchor="middle" class="tiny">memory filter</text>
-  <text x="496" y="426" text-anchor="middle" class="micro">soundness guard</text>
+  <rect x="435" y="342" width="121" height="44" class="chipBlue"/>
+  <text x="496" y="361" text-anchor="middle" class="tiny">memory filter</text>
+  <text x="496" y="380" text-anchor="middle" class="micro">soundness guard</text>
 
-  <rect x="570" y="386" width="139" height="48" class="chipBlue"/>
-  <text x="640" y="406" text-anchor="middle" class="tiny">dependency rewrite</text>
-  <text x="640" y="426" text-anchor="middle" class="micro">closure guard</text>
+  <rect x="570" y="342" width="139" height="44" class="chipBlue"/>
+  <text x="640" y="361" text-anchor="middle" class="tiny">dependency rewrite</text>
+  <text x="640" y="380" text-anchor="middle" class="micro">closure guard</text>
 
-  <text x="92" y="454" class="tiny">Lean wrapper: EpistemicControlSpec -&gt; GeneralStateDynamics.ProblemSpec</text>
+  <text x="92" y="394" class="tiny">Lean wrapper: EpistemicControlSpec -&gt; GeneralStateDynamics.ProblemSpec</text>
 
-  <path d="M404 465 C404 482 404 489 404 506" class="arrow"/>
+  <path d="M404 405 C404 416 404 422 404 430" class="arrow"/>
 
-  <rect x="62" y="508" width="685" height="120" class="panel impl"/>
-  <text x="92" y="544" class="layerTitle">3. Implementations and evidence candidates</text>
-  <rect x="96" y="570" width="128" height="38" class="chipGold"/>
-  <text x="160" y="594" text-anchor="middle" class="tiny">reasoning</text>
-  <rect x="239" y="570" width="142" height="38" class="chipGold"/>
-  <text x="310" y="594" text-anchor="middle" class="tiny">continual update</text>
-  <rect x="396" y="570" width="119" height="38" class="chipGold"/>
-  <text x="456" y="594" text-anchor="middle" class="tiny">memory</text>
-  <rect x="530" y="570" width="179" height="38" class="chipGold"/>
-  <text x="620" y="594" text-anchor="middle" class="tiny">contract diagnostics</text>
+  <rect x="62" y="432" width="685" height="100" class="panel bridge"/>
+  <text x="92" y="464" class="layerTitle">3. Evidence-packet bridge: implementation boundary schema</text>
+  <text x="92" y="492" class="small">Artifacts expose provenance, eligibility, witness, dependency, and repair guardrails.</text>
+  <rect x="96" y="506" width="116" height="20" class="chipBlue"/>
+  <text x="154" y="521" text-anchor="middle" class="micro">provenance</text>
+  <rect x="225" y="506" width="110" height="20" class="chipBlue"/>
+  <text x="280" y="521" text-anchor="middle" class="micro">eligibility</text>
+  <rect x="348" y="506" width="104" height="20" class="chipBlue"/>
+  <text x="400" y="521" text-anchor="middle" class="micro">witness</text>
+  <rect x="465" y="506" width="115" height="20" class="chipBlue"/>
+  <text x="522" y="521" text-anchor="middle" class="micro">closure</text>
+  <rect x="593" y="506" width="116" height="20" class="chipBlue"/>
+  <text x="651" y="521" text-anchor="middle" class="micro">repair cover</text>
+
+  <path d="M404 533 C404 542 404 548 404 556" class="arrow"/>
+
+  <rect x="62" y="558" width="685" height="70" class="panel impl"/>
+  <text x="92" y="588" class="layerTitle">4. Implementations and bounded evidence candidates</text>
+  <rect x="96" y="603" width="128" height="20" class="chipGold"/>
+  <text x="160" y="618" text-anchor="middle" class="micro">reasoning</text>
+  <rect x="239" y="603" width="142" height="20" class="chipGold"/>
+  <text x="310" y="618" text-anchor="middle" class="micro">continual update</text>
+  <rect x="396" y="603" width="119" height="20" class="chipGold"/>
+  <text x="456" y="618" text-anchor="middle" class="micro">memory</text>
+  <rect x="530" y="603" width="179" height="20" class="chipGold"/>
+  <text x="620" y="618" text-anchor="middle" class="micro">contract diagnostics</text>
 
   <rect x="786" y="108" width="252" height="520" class="boundary"/>
   <text x="912" y="144" text-anchor="middle" class="layerTitle">Claim Boundary</text>

@@ -91,7 +91,7 @@ structural layer.
 This is not a proof of a universal law. It is package-scoped replication support
 for the first law-side empirical anchors.
 
-Lean formalization is in [`lean/`](lean/). Current status is `167 Survival
+Lean formalization is in [`lean/`](lean/). Current status is `168 Survival
 modules`, with no project-level `sorry`, `admit`, or declared `axiom` in the
 imported `Survival` target. The top-level import spine is
 [`lean/Survival.lean`](lean/Survival.lean). The theorem-to-paper map is
@@ -103,11 +103,16 @@ The LLM-facing abstract bridge is documented in
 It connects contradiction / repair / memory-filter / dependency-rewrite
 control layers to the finite net-action kernel under explicit assumptions; it
 does not claim to prove LLM semantics or performance.
+The evidence-packet bridge is
+[`lean/Survival/EvidencePacketBridge.lean`](lean/Survival/EvidencePacketBridge.lean);
+it records the provenance, eligibility, witness, dependency-closure, and repair
+guardrails expected at the implementation boundary without proving any concrete
+workflow correct.
 The public one-page summary is
 [`v3/01_theory/en/03_epistemic_control_one_page.md`](v3/01_theory/en/03_epistemic_control_one_page.md).
 The reader-facing core-paper section is
 [`v3/01_theory/en/02_core_en.md`](v3/01_theory/en/02_core_en.md), Section 10.1.
-The overview diagram for this three-layer structure is
+The overview diagram for this layered structure is
 [`v3/01_theory/figures/figure3_epistemic_control_stack_en.svg`](v3/01_theory/figures/figure3_epistemic_control_stack_en.svg).
 The toy software-contract instantiation is
 [`lean/Survival/SoftwareContractToyRepository.lean`](lean/Survival/SoftwareContractToyRepository.lean).

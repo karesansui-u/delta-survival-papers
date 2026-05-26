@@ -49,6 +49,7 @@ import Survival.LogUniqueness
 import Survival.TelescopingExp
 import Survival.GeneralStateDynamics
 import Survival.EpistemicControlBridge
+import Survival.EvidencePacketBridge
 import Survival.SoftwareContractToyRepository
 import Survival.StructuralPersistenceBalancePrinciple
 import Survival.AdmissibleMapInvariants
