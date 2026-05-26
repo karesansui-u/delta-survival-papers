@@ -88,6 +88,10 @@ The main checked statements are:
 | `llmReasoningToy_composition_kernel` | a finite LLM reasoning toy inherits the net-action kernel |
 | `staleMemory_not_eligible` | a stale unscoped memory packet is rejected by the eligibility gate |
 | `eligibleMemory_no_more_loss` | a toy LLM memory admission gate inherits the no-more-loss comparison |
+| `memory_without_permission_not_eligible` | a toy memory without permission is rejected by the use-condition gate |
+| `deleted_memory_not_eligible` | a deleted toy memory is rejected by the use-condition gate |
+| `out_of_scope_memory_not_eligible` | an out-of-scope toy memory is rejected by the use-condition gate |
+| `useConditionMemory_no_more_loss` | the explicit use-condition memory gate inherits the no-more-loss comparison |
 | `premiseUpdate_invalidations_localized` | a toy premise update localizes downstream invalidations |
 | `repairTouches_downstreamInvalidations` | a toy refresh repair covers the premise-update invalidations |
 | `toyEvidenceAdmission_no_more_loss` | the software toy admission gate instantiates the evidence-packet admission comparison |
@@ -134,6 +138,9 @@ states.
 readings.  It checks a reasoning contradiction / repair kernel, a
 provenance-and-eligibility memory gate, and a premise-update dependency repair
 packet.  It is a toy bridge instantiation, not a proof of real model semantics.
+`LLMMemoryUseConditionToy.lean` refines the memory gate by making permission,
+deletion state, scope, stability, and action eligibility explicit before a
+memory item may be used as a current premise.
 
 
 5. Claims
@@ -189,5 +196,6 @@ Safe wording:
 - `../../../lean/Survival/EpistemicControlBridge.lean`
 - `../../../lean/Survival/EvidencePacketBridge.lean`
 - `../../../lean/Survival/LLMEpistemicControlToy.lean`
+- `../../../lean/Survival/LLMMemoryUseConditionToy.lean`
 - `../../../lean/Survival/SoftwareContractToyRepository.lean`
 - `../../../lean/Survival/SoftwareEvidencePacketToy.lean`

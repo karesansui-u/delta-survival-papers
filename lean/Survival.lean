@@ -51,6 +51,7 @@ import Survival.GeneralStateDynamics
 import Survival.EpistemicControlBridge
 import Survival.EvidencePacketBridge
 import Survival.LLMEpistemicControlToy
+import Survival.LLMMemoryUseConditionToy
 import Survival.SoftwareContractToyRepository
 import Survival.SoftwareEvidencePacketToy
 import Survival.StructuralPersistenceBalancePrinciple

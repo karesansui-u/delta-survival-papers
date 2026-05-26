@@ -206,6 +206,10 @@ filtered policy が accept-all policy より大きな log-ratio loss を負わ�
 `../../../lean/Survival/LLMEpistemicControlToy.lean` では、stale memory の
 eligibility rejection と eligible memory admission の no-more-loss 比較を、
 有限 toy surface としてこの抽象 interface に接続している。
+`../../../lean/Survival/LLMMemoryUseConditionToy.lean` では、この memory gate
+をさらに permission, deletion state, scope, stability, action eligibility
+に分解し、それぞれの失敗が use-condition eligibility を遮断することを
+有限 toy theorem として確認している。
 
 
 10. 現在の検証境界

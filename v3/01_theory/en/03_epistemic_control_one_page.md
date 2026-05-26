@@ -73,6 +73,26 @@ repairTouches_downstreamInvalidations
 These are finite toy statements about bridge interfaces, not claims about real
 LLM semantics or model performance.
 
+The LLM memory use-condition toy is:
+
+```text
+LLMMemoryUseConditionToy.lean
+```
+
+It makes memory-use eligibility explicit:
+
+```text
+memory_without_permission_not_eligible
+deleted_memory_not_eligible
+out_of_scope_memory_not_eligible
+unstable_memory_not_eligible
+action_blocked_memory_not_eligible
+useConditionMemory_no_more_loss
+```
+
+This is still a finite use-condition schema, not a proof of arbitrary
+long-term memory safety.
+
 The first toy software-side instantiation is:
 
 ```text
@@ -168,6 +188,8 @@ Where To Read Next
   `../../../lean/Survival/EvidencePacketBridge.lean`
 - Toy LLM epistemic-control instantiation:
   `../../../lean/Survival/LLMEpistemicControlToy.lean`
+- Toy LLM memory use-condition instantiation:
+  `../../../lean/Survival/LLMMemoryUseConditionToy.lean`
 - Toy software-contract instantiation:
   `../../../lean/Survival/SoftwareContractToyRepository.lean`
 - Toy software evidence-packet instantiation:

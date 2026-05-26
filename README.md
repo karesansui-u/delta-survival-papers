@@ -91,7 +91,7 @@ structural layer.
 This is not a proof of a universal law. It is package-scoped replication support
 for the first law-side empirical anchors.
 
-Lean formalization is in [`lean/`](lean/). Current status is `170 Survival
+Lean formalization is in [`lean/`](lean/). Current status is `171 Survival
 modules`, with no project-level `sorry`, `admit`, or declared `axiom` in the
 imported `Survival` target. The top-level import spine is
 [`lean/Survival.lean`](lean/Survival.lean). The theorem-to-paper map is
@@ -112,6 +112,10 @@ The finite LLM-side toy instantiation is
 [`lean/Survival/LLMEpistemicControlToy.lean`](lean/Survival/LLMEpistemicControlToy.lean);
 it connects reasoning, memory eligibility, and continual-update dependency
 repair to the same bridge interfaces without proving real model semantics.
+The LLM memory use-condition toy is
+[`lean/Survival/LLMMemoryUseConditionToy.lean`](lean/Survival/LLMMemoryUseConditionToy.lean);
+it makes permission, scope, deletion state, stability, and action eligibility
+explicit before a memory item may be used as a current premise.
 The public one-page summary is
 [`v3/01_theory/en/03_epistemic_control_one_page.md`](v3/01_theory/en/03_epistemic_control_one_page.md).
 The reader-facing core-paper section is

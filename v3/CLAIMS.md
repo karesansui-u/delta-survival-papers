@@ -147,6 +147,15 @@ admission comparison, premise-update invalidation localization, and downstream
 repair coverage. It is not a proof of real LLM semantics, model performance, or
 unconditional memory safety.
 
+`lean/Survival/LLMMemoryUseConditionToy.lean` refines the memory side of the
+LLM toy by splitting use eligibility into explicit permission, deletion state,
+scope, stability, and action-eligibility guards. It proves that memories
+without permission, deleted memories, out-of-scope memories, unstable memories,
+and action-blocked memories cannot pass the toy use-condition gate, while a
+scoped correction record can pass it and inherits the admission no-more-loss
+comparison. This remains a finite toy schema, not a proof of arbitrary
+long-term memory safety.
+
 `lean/Survival/SoftwareEvidencePacketToy.lean` connects the toy
 software-contract surface to this packet bridge. It proves that the toy raw
 candidate gate, two-surface witness, shared contract key, dependency packet,
