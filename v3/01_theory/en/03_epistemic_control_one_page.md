@@ -336,3 +336,5 @@ Where To Read Next
   `../../../lean/Survival/SoftwareEvidencePacketToy.lean`
 - Software evidence net-action bridge:
   `../../../lean/Survival/SoftwareEvidenceNetActionBridge.lean`
+- Frozen toy protocol runner:
+  `../../../analysis/epistemic_control_frozen_toy_v0/run_eval.py`

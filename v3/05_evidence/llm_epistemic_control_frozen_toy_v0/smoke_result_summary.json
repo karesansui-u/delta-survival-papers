@@ -1,0 +1,80 @@
+{
+  "case_ids": [
+    "toy_contradiction_001",
+    "toy_memory_001",
+    "toy_dependency_001"
+  ],
+  "case_summaries": [
+    {
+      "baseline_loss": 2.0,
+      "baseline_repair": 0.0,
+      "case_id": "toy_contradiction_001",
+      "controlled_loss": 1.0,
+      "controlled_repair": 1.0,
+      "family": "contradiction_injection",
+      "horizon": 2,
+      "per_step_loss_dominance": true,
+      "per_step_repair_dominance": true
+    },
+    {
+      "baseline_loss": 2.0,
+      "baseline_repair": 0.0,
+      "case_id": "toy_memory_001",
+      "controlled_loss": 1.0,
+      "controlled_repair": 1.0,
+      "family": "memory_eligibility",
+      "horizon": 2,
+      "per_step_loss_dominance": true,
+      "per_step_repair_dominance": true
+    },
+    {
+      "baseline_loss": 2.0,
+      "baseline_repair": 0.0,
+      "case_id": "toy_dependency_001",
+      "controlled_loss": 1.0,
+      "controlled_repair": 1.0,
+      "family": "dependency_rewrite",
+      "horizon": 2,
+      "per_step_loss_dominance": true,
+      "per_step_repair_dominance": true
+    }
+  ],
+  "checks": {
+    "aggregate_loss_dominance": true,
+    "aggregate_repair_dominance": true,
+    "frozen_readout": true,
+    "frozen_task_surface": true,
+    "metric_dominance": true,
+    "no_worse_net_action": true,
+    "per_step_loss_dominance": true,
+    "per_step_repair_dominance": true,
+    "positive_trajectories": "assumed_by_lean_protocol",
+    "protocol_shape_valid": true,
+    "readout_alignment": true,
+    "same_horizon": true,
+    "same_initial_mass": "assumed_by_freeze_manifest"
+  },
+  "claim_boundary": "This is a deterministic toy-protocol scoring summary. It does not prove real LLM semantics, model performance, memory safety, or workflow correctness.",
+  "errors": [],
+  "families": [
+    "contradiction_injection",
+    "dependency_rewrite",
+    "memory_eligibility"
+  ],
+  "horizons": [
+    2
+  ],
+  "protocol_id": "llm_epistemic_control_frozen_toy_v0",
+  "runner_version": "0.1.0",
+  "task_count": 3,
+  "tasks_path": "v3/05_evidence/llm_epistemic_control_frozen_toy_v0/tasks.jsonl",
+  "tasks_sha256": "9b206393333f2fba8e3aa1490c4623d3e347467919cf8adcf6dd96208925cbff",
+  "totals": {
+    "baseline_loss_sum": 6.0,
+    "baseline_net_action": 6.0,
+    "baseline_repair_sum": 0.0,
+    "controlled_loss_sum": 3.0,
+    "controlled_net_action": 0.0,
+    "controlled_repair_sum": 3.0
+  }
+}

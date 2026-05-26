@@ -171,6 +171,18 @@ decision rule before outcome-bearing execution. A run becomes theorem-adjacent
 only by supplying the corresponding protocol witnesses; it is not theorem-side
 evidence by default.
 
+The first toy protocol packet has a deterministic scorer:
+
+```bash
+python3 analysis/epistemic_control_frozen_toy_v0/run_eval.py \
+  --tasks v3/05_evidence/llm_epistemic_control_frozen_toy_v0/tasks.jsonl \
+  --out v3/05_evidence/llm_epistemic_control_frozen_toy_v0/smoke_result_summary.json \
+  --summary-md v3/05_evidence/llm_epistemic_control_frozen_toy_v0/smoke_result_summary.md
+```
+
+This checks protocol shape and toy metric dominance; it does not validate a
+real model or workflow.
+
 The current evidence map is [`analysis/current_evidence_map.md`](analysis/current_evidence_map.md).
 
 ## Repository Layout

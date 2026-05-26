@@ -49,6 +49,10 @@ Evidence is separated from theory claims.
 - `llm_epistemic_control_frozen_toy_v0/`: small frozen toy packet for the
   epistemic-control benchmark protocol. It is a protocol-shape artifact, not
   support evidence for a real model or workflow.
+- `../../analysis/epistemic_control_frozen_toy_v0/run_eval.py`: deterministic
+  stdlib-only scorer for the frozen toy packet. It checks the task surface,
+  readout fields, dominance rule, and toy net-action summary without calling a
+  model.
 
 Current strongest outside-rerun anchors:
 

@@ -25,9 +25,10 @@ epistemic-control stack entry point まで含む。
 
 Lean 外の protocol artifact として、
 `v3/05_evidence/llm_epistemic_control_benchmark_manifest.md` と
-`v3/05_evidence/llm_epistemic_control_frozen_toy_v0/` も追加済みである。
+`v3/05_evidence/llm_epistemic_control_frozen_toy_v0/`、および
+`analysis/epistemic_control_frozen_toy_v0/run_eval.py` も追加済みである。
 これらは theorem ではなく、Lean 側の protocol / evaluation contract を将来の実験が
-witness するための reader-facing 固定面である。
+witness するための reader-facing 固定面と deterministic toy scorer である。
 
 ## 証拠の階層
 
@@ -69,6 +70,7 @@ EpistemicControlBridge
 | Software evidence bridge | `Survival/SoftwareEvidenceNetActionBridge.lean` | eligible evidence, shared-key witness soundness, dependency repair coverage, valid protocol から comparison theorem を起動する |
 | Public manifest | `v3/05_evidence/llm_epistemic_control_benchmark_manifest.md` | future experiment が満たすべき frozen task / metric / decision-rule obligations を文章で固定する |
 | Frozen toy packet | `v3/05_evidence/llm_epistemic_control_frozen_toy_v0/` | toy task surface と readout fields を固定する。結果や support claim ではない |
+| Toy scorer | `analysis/epistemic_control_frozen_toy_v0/run_eval.py` | frozen toy packet の task surface / readout / dominance / toy net-action summary を機械的に検査する |
 
 ## Target Theorem 4 / Law-of-Tendency Mapping
 
@@ -667,6 +669,8 @@ drift は `log(2^k / allowed)` になる。部分二項和が \(0\) と \(2^k\) 
 |---------|------|----------------|
 | [`llm_epistemic_control_benchmark_manifest.md`](../v3/05_evidence/llm_epistemic_control_benchmark_manifest.md) | future LLM-style epistemic-control experiment が `EpistemicBenchmarkProtocol` の witness として何を固定すべきかを列挙する manifest | 結果報告ではない。実 benchmark 妥当性、実 LLM 性能、実 workflow correctness は証明しない |
 | [`llm_epistemic_control_frozen_toy_v0/`](../v3/05_evidence/llm_epistemic_control_frozen_toy_v0/) | contradiction injection / memory eligibility / dependency rewrite の小さな frozen task surface と metric fields | toy protocol packet であり、support evidence ではない。outcome-bearing execution は別途 ledger 化する |
+| [`run_eval.py`](../analysis/epistemic_control_frozen_toy_v0/run_eval.py) | frozen toy packet の protocol shape と metric dominance を deterministic に採点する stdlib-only runner | 実モデルを呼ばない。出力は protocol-shape smoke summary であり、実 LLM 性能や workflow correctness の support ではない |
+| [`results_schema.json`](../analysis/epistemic_control_frozen_toy_v0/results_schema.json) | scorer output の JSON schema | schema は result format を固定するだけで、metric 妥当性は証明しない |
 
 ### G2. M 側の維持能力成分分解（1）— **M 補論の表現文法**
 

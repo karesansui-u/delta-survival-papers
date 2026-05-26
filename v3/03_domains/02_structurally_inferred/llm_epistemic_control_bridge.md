@@ -305,3 +305,4 @@ Safe wording:
 - `../../../lean/Survival/SoftwareEvidenceNetActionBridge.lean`
 - `../../05_evidence/llm_epistemic_control_benchmark_manifest.md`
 - `../../05_evidence/llm_epistemic_control_frozen_toy_v0/freeze_manifest_v0.md`
+- `../../../analysis/epistemic_control_frozen_toy_v0/run_eval.py`

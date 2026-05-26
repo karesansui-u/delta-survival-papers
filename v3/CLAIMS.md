@@ -153,6 +153,12 @@ loss / repair metrics, dominance rule, readout-alignment statement, and
 decision rule before outcome-bearing execution. It is a protocol artifact, not
 theorem-side evidence by itself.
 
+`analysis/epistemic_control_frozen_toy_v0/run_eval.py` is a deterministic
+scorer for the first frozen toy packet. It checks the v0 task surface, frozen
+metric fields, aggregate dominance rule, and toy readout alignment, and emits a
+JSON / Markdown smoke summary. It is a reproducibility aid for the protocol
+shape, not validation evidence for a real model or workflow.
+
 The software-contract toy in
 `lean/Survival/SoftwareContractToyRepository.lean` is a formal instantiation of
 that interface. It proves the toy repository-contract kernel, toy admission

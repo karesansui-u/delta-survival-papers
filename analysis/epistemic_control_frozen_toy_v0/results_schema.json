@@ -1,0 +1,209 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/structural-persistence/llm_epistemic_control_frozen_toy_v0_result.schema.json",
+  "title": "LLM Epistemic-Control Frozen Toy v0 Result",
+  "type": "object",
+  "required": [
+    "protocol_id",
+    "runner_version",
+    "tasks_path",
+    "tasks_sha256",
+    "task_count",
+    "case_ids",
+    "families",
+    "horizons",
+    "checks",
+    "totals",
+    "case_summaries",
+    "errors",
+    "claim_boundary"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "protocol_id": {
+      "const": "llm_epistemic_control_frozen_toy_v0"
+    },
+    "runner_version": {
+      "type": "string"
+    },
+    "tasks_path": {
+      "type": "string"
+    },
+    "tasks_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "task_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "case_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "families": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "horizons": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "minimum": 1
+      }
+    },
+    "checks": {
+      "type": "object",
+      "required": [
+        "frozen_task_surface",
+        "frozen_readout",
+        "same_horizon",
+        "same_initial_mass",
+        "positive_trajectories",
+        "aggregate_loss_dominance",
+        "aggregate_repair_dominance",
+        "per_step_loss_dominance",
+        "per_step_repair_dominance",
+        "metric_dominance",
+        "readout_alignment",
+        "no_worse_net_action",
+        "protocol_shape_valid"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "frozen_task_surface": {
+          "type": "boolean"
+        },
+        "frozen_readout": {
+          "type": "boolean"
+        },
+        "same_horizon": {
+          "type": "boolean"
+        },
+        "same_initial_mass": {
+          "type": "string"
+        },
+        "positive_trajectories": {
+          "type": "string"
+        },
+        "aggregate_loss_dominance": {
+          "type": "boolean"
+        },
+        "aggregate_repair_dominance": {
+          "type": "boolean"
+        },
+        "per_step_loss_dominance": {
+          "type": "boolean"
+        },
+        "per_step_repair_dominance": {
+          "type": "boolean"
+        },
+        "metric_dominance": {
+          "type": "boolean"
+        },
+        "readout_alignment": {
+          "type": "boolean"
+        },
+        "no_worse_net_action": {
+          "type": "boolean"
+        },
+        "protocol_shape_valid": {
+          "type": "boolean"
+        }
+      }
+    },
+    "totals": {
+      "type": "object",
+      "required": [
+        "baseline_loss_sum",
+        "controlled_loss_sum",
+        "baseline_repair_sum",
+        "controlled_repair_sum",
+        "baseline_net_action",
+        "controlled_net_action"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "baseline_loss_sum": {
+          "type": "number"
+        },
+        "controlled_loss_sum": {
+          "type": "number"
+        },
+        "baseline_repair_sum": {
+          "type": "number"
+        },
+        "controlled_repair_sum": {
+          "type": "number"
+        },
+        "baseline_net_action": {
+          "type": "number"
+        },
+        "controlled_net_action": {
+          "type": "number"
+        }
+      }
+    },
+    "case_summaries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "case_id",
+          "family",
+          "horizon",
+          "baseline_loss",
+          "controlled_loss",
+          "baseline_repair",
+          "controlled_repair",
+          "per_step_loss_dominance",
+          "per_step_repair_dominance"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "case_id": {
+            "type": "string"
+          },
+          "family": {
+            "type": "string"
+          },
+          "horizon": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "baseline_loss": {
+            "type": "number"
+          },
+          "controlled_loss": {
+            "type": "number"
+          },
+          "baseline_repair": {
+            "type": "number"
+          },
+          "controlled_repair": {
+            "type": "number"
+          },
+          "per_step_loss_dominance": {
+            "type": "boolean"
+          },
+          "per_step_repair_dominance": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "claim_boundary": {
+      "type": "string"
+    }
+  }
+}
