@@ -23,6 +23,12 @@ software evidence net-action bridge、
 dependency-closure budget toy、LLM memory / reasoning strengthening toy、
 epistemic-control stack entry point まで含む。
 
+Lean 外の protocol artifact として、
+`v3/05_evidence/llm_epistemic_control_benchmark_manifest.md` と
+`v3/05_evidence/llm_epistemic_control_frozen_toy_v0/` も追加済みである。
+これらは theorem ではなく、Lean 側の protocol / evaluation contract を将来の実験が
+witness するための reader-facing 固定面である。
+
 ## 証拠の階層
 
 この mapping は「Lean で何が閉じているか」と「論文で何を前面に出すべきか」を分ける。
@@ -33,11 +39,36 @@ epistemic-control stack entry point まで含む。
 |---|---|---|
 | SAT chain v1.0 | 数学的 anchor | random 3-SAT の自然測度、actual path measure、MGF product、Chernoff/KL collapse が有限地平線で閉じている |
 | LLM 810 試行 | 経験的 anchor | 文脈長・制約数だけの基準モデルを越え、構造矛盾がより強い崩壊要因になることを示す |
-| Epistemic control bridge | 抽象 bridge | LLM の意味論や性能は証明せず、矛盾更新・修復更新・記憶資格・依存再編を既存の finite net-action kernel へ接続する条件つき interface を示す |
+| Epistemic control bridge | 抽象 bridge / protocol chain | LLM の意味論や性能は証明せず、矛盾更新・修復更新・記憶資格・依存再編を既存の finite net-action kernel へ接続し、baseline comparison、metric contract、benchmark protocol、software evidence bridge までを有限・仮定明示の chain として示す |
 | Bernoulli CSP universality v1.2 | template validation | fixed assignment/coloring の iid bad-event exposure に限った水平展開。solver dynamics や依存構造は含めない |
 | Numerical sanity checks | tests-as-documentation | 抽象 wrapper が小さな具体例で期待される定数を返すことを reader-facing に確認する。経験的 support ではない |
 | Route A 非CSP skeletons | sanity / coverage benchmark | 古典例を最小語彙で歪めず表せるかの検査。信頼性・材料・待ち行列等の新規本命定理ではない |
 | Level B / proxy domains | future work | LLM 以外の高次元・非自然測度ドメインは calibration と実証を要する |
+
+### Epistemic-Control Pipeline Snapshot
+
+LLM-style epistemic control の現在の verified / protocol-facing pipeline は次の通り。
+これは実 LLM 性能や実 repository semantics の証明ではなく、明示された witness が与えられたときに
+既存の finite accounting theorem をどこまで呼べるかを示す assumption-to-guarantee chain である。
+
+```text
+EpistemicControlBridge
+  -> EpistemicControlComparison
+  -> EpistemicControlEvaluationContract
+  -> EpistemicBenchmarkProtocol
+  -> SoftwareEvidenceNetActionBridge
+  -> frozen benchmark manifest / toy protocol packet
+```
+
+| Stage | File / artifact | Main role |
+|---|---|---|
+| Abstract control interface | `Survival/EpistemicControlBridge.lean` | coherent region, mass readout, contradiction contraction, repair expansion を `ProblemSpec` に落とす |
+| Baseline comparison | `Survival/EpistemicControlComparison.lean` | same initial mass + no-worse cumulative net action から coherent-mass lower-bound comparison を出す |
+| Evaluation-facing metrics | `Survival/EpistemicControlEvaluationContract.lean` | per-step loss / repair dominance と readout alignment から `NetActionNoWorse` を witness する |
+| Frozen protocol contract | `Survival/EpistemicBenchmarkProtocol.lean` | task surface, readout, horizon, initial mass, positivity, metric dominance, readout alignment を protocol obligation として束ねる |
+| Software evidence bridge | `Survival/SoftwareEvidenceNetActionBridge.lean` | eligible evidence, shared-key witness soundness, dependency repair coverage, valid protocol から comparison theorem を起動する |
+| Public manifest | `v3/05_evidence/llm_epistemic_control_benchmark_manifest.md` | future experiment が満たすべき frozen task / metric / decision-rule obligations を文章で固定する |
+| Frozen toy packet | `v3/05_evidence/llm_epistemic_control_frozen_toy_v0/` | toy task surface と readout fields を固定する。結果や support claim ではない |
 
 ## Target Theorem 4 / Law-of-Tendency Mapping
 
@@ -625,10 +656,17 @@ drift は `log(2^k / allowed)` になる。部分二項和が \(0\) と \(2^k\) 
 | [`LLMMemoryUseConditionToy.lean`](Survival/LLMMemoryUseConditionToy.lean) | `memory_without_permission_not_eligible`, `deleted_memory_not_eligible`, `out_of_scope_memory_not_eligible`, `unstable_memory_not_eligible`, `action_blocked_memory_not_eligible`, `scopedCorrectionRecord_eligible`, `useConditionMemory_no_more_loss` | LLM 長期記憶の use condition を permission / deletion / scope / stability / action eligibility に分解する有限 toy。任意記憶実装の安全性証明ではない |
 | [`SoftwareContractToyRepository.lean`](Survival/SoftwareContractToyRepository.lean) | `toyRepository_composition_kernel`, `toyRepository_coherentMass_zero`, `toyRepository_coherentMass_one`, `toyRepository_coherentMass_two`, `toyClaimAdmission_no_more_loss`, `toyDependencyRewrite_localizes` | software contract surface の最小 toy instantiation。実検出器の正しさではなく、repository contract state が bridge interface に乗ることを示す |
 | [`SoftwareEvidencePacketToy.lean`](Survival/SoftwareEvidencePacketToy.lean) | `toyValidatedCandidate_eligible`, `toyUnsupportedCandidate_not_eligible`, `toyWitness_has_two_surfaces`, `toyEvidence_invalidations_localized`, `toyRepair_touches_invalidations`, `toyEvidenceAdmission_no_more_loss` | software toy surface が evidence-packet bridge の provenance / eligibility / witness / dependency / repair / admission guardrails を満たす具体例 |
-| [`SoftwareEvidenceNetActionBridge.lean`](Survival/SoftwareEvidenceNetActionBridge.lean) | `software_evidence_implies_net_action_no_worse`, `software_evidence_implies_controlled_mass_ge_baseline`: eligible evidence / dependency repair coverage / valid benchmark protocol から comparison を起動 | software evidence packet を evaluation / benchmark protocol 層に接続する有限 bridge。実 repository semantics、workflow correctness、maintainer judgment は証明しない |
+| [`SoftwareEvidenceNetActionBridge.lean`](Survival/SoftwareEvidenceNetActionBridge.lean) | `software_evidence_implies_net_action_no_worse`, `software_evidence_implies_controlled_mass_ge_baseline`: eligible evidence / shared-key witness soundness / dependency repair coverage / valid benchmark protocol から comparison を起動 | software evidence packet を evaluation / benchmark protocol 層に接続する有限 bridge。実 repository semantics、workflow correctness、maintainer judgment は証明しない |
 | [`DependencyClosureBudgetToy.lean`](Survival/DependencyClosureBudgetToy.lean) | `invalidated_ncard_le_closure_ncard`, `invalidated_ncard_le_repair_touched_ncard`, `llm_invalidated_ncard_le_surface_card`, `software_invalidated_ncard_le_surface_card` | sound dependency closure を有限 cardinality budget として読む toy bridge。LLM / software toy surface の invalidation 数を closure、surface 全体、repair touched set で上界づける |
 | [`LLMMemoryReasoningStrengtheningToy.lean`](Survival/LLMMemoryReasoningStrengtheningToy.lean) | `revokedScopedMemoryRecord_not_eligible`, `expiredScopedMemoryRecord_not_eligible`, `lifecycleMemory_no_more_loss`, `retrieval_packet_cannot_overwrite_userCorrection_packet`, `reasoningContradictionWitness_minimal`, `llm_composed_repair_kernel` | LLM memory / reasoning toy の追加 guardrails。revocation / freshness, provenance trust order, minimal contradiction witness, and composed repair を finite bridge に接続。実 LLM 安全性や性能の証明ではない |
 | [`EpistemicControlStack.lean`](Survival/EpistemicControlStack.lean) | `stack_epistemic_kernel`, `stack_controlled_coherentMass_ge_baseline`, `stack_metric_net_action_no_worse`, `stack_metrics_controlled_coherentMass_ge_baseline`, `stack_benchmark_protocol_implies_net_action_no_worse`, `stack_benchmark_protocol_implies_controlled_mass_ge_baseline`, `stack_software_evidence_implies_net_action_no_worse`, `stack_software_evidence_implies_controlled_mass_ge_baseline`, `stack_evidence_filter_no_more_loss`, `stack_llm_reasoning_kernel`, `stack_llm_use_condition_memory_no_more_loss`, `stack_software_repository_kernel`, `stack_software_repair_touches_invalidations`, `stack_llm_invalidated_ncard_le_repair_touched_ncard`, `stack_software_invalidated_ncard_le_repair_touched_ncard`, `stack_llm_lifecycle_memory_no_more_loss`, `stack_llm_composed_repair_kernel` | bridge / comparison / evaluation contract / benchmark protocol / evidence / LLM toy / memory use-condition / software toy / software evidence net-action bridge / dependency-budget toy / memory-reasoning strengthening toy の主要定理を一箇所に集約する reader-facing entry point。新しい意味論主張ではない |
+
+### G1.1 Epistemic-Control Protocol Artifacts（non-Lean）
+
+| Artifact | Role | Claim boundary |
+|---------|------|----------------|
+| [`llm_epistemic_control_benchmark_manifest.md`](../v3/05_evidence/llm_epistemic_control_benchmark_manifest.md) | future LLM-style epistemic-control experiment が `EpistemicBenchmarkProtocol` の witness として何を固定すべきかを列挙する manifest | 結果報告ではない。実 benchmark 妥当性、実 LLM 性能、実 workflow correctness は証明しない |
+| [`llm_epistemic_control_frozen_toy_v0/`](../v3/05_evidence/llm_epistemic_control_frozen_toy_v0/) | contradiction injection / memory eligibility / dependency rewrite の小さな frozen task surface と metric fields | toy protocol packet であり、support evidence ではない。outcome-bearing execution は別途 ledger 化する |
 
 ### G2. M 側の維持能力成分分解（1）— **M 補論の表現文法**
 
