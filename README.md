@@ -102,6 +102,8 @@ The LLM-facing abstract bridge is documented in
 It connects contradiction / repair / memory-filter / dependency-rewrite
 control layers to the finite net-action kernel under explicit assumptions; it
 does not claim to prove LLM semantics or performance.
+The reader-facing core-paper section is
+[`v3/01_theory/en/02_core_en.md`](v3/01_theory/en/02_core_en.md), Section 10.1.
 The overview diagram for this three-layer structure is
 [`v3/01_theory/figures/figure3_epistemic_control_stack_en.svg`](v3/01_theory/figures/figure3_epistemic_control_stack_en.svg).
 The toy software-contract instantiation is

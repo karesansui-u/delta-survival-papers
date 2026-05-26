@@ -238,6 +238,37 @@ theorem toyRepository_coherentMass_one :
   rw [regularizedStateMass, toyRepository_stateCount_coherentContractRegion]
   norm_num
 
+theorem contractStep_preserves_coherentContractRegion (t : ℕ) :
+    contractRepairUpdate t (contractContradictionUpdate t coherentContractRegion) =
+      coherentContractRegion := by
+  ext x
+  constructor
+  · intro hx
+    rcases hx with hx | hx
+    · exact hx.2
+    · exact Or.inr hx
+  · intro hx
+    rcases hx with hbase | hsync
+    · exact Or.inl ⟨Or.inl hbase, Or.inl hbase⟩
+    · exact Or.inr hsync
+
+theorem toyRepository_feasibleRegion_two :
+    feasibleEpistemicRegion toyRepositorySpec 2 = coherentContractRegion := by
+  change contractRepairUpdate 1
+      (contractContradictionUpdate 1 (feasibleEpistemicRegion toyRepositorySpec 1)) =
+    coherentContractRegion
+  rw [toyRepository_feasibleRegion_one]
+  exact contractStep_preserves_coherentContractRegion 1
+
+theorem toyRepository_coherentMass_two :
+    coherentMass toyRepositorySpec 2 = 3 := by
+  change toyMassModel.mass (feasible (toProblemSpec toyRepositorySpec) 2) = 3
+  rw [show feasible (toProblemSpec toyRepositorySpec) 2 =
+      coherentContractRegion from toyRepository_feasibleRegion_two]
+  change regularizedStateMass coherentContractRegion = 3
+  rw [regularizedStateMass, toyRepository_stateCount_coherentContractRegion]
+  norm_num
+
 /-! ## Toy memory / claim-admission filter -/
 
 /-- Two raw claim candidates for the toy repository gate. -/

@@ -609,7 +609,7 @@ drift は `log(2^k / allowed)` になる。部分二項和が \(0\) と \(2^k\) 
 | [`RepairMaintenanceTemplate.lean`](Survival/RepairMaintenanceTemplate.lean) | repair-maintenance Phase 6.2 v0 wrappers | 第三限定 class template。finite-prefix damage/repair, Σ/resource-cost, resource-bounded certificate, conditional coarse transfer |
 | [`GeneralStateDynamics.lean`](Survival/GeneralStateDynamics.lean) | `feasibleMass_eq_initial_mul_exp_neg_cumulativeNetAction`: 符号付き指数カーネル | **Paper 1 の暗黙核定理を形式化** |
 | [`EpistemicControlBridge.lean`](Survival/EpistemicControlBridge.lean) | `epistemic_control_composition_kernel`: epistemic control spec を `ProblemSpec` に落とす bridge | LLM-style control layer の意味論ではなく、有限 coherent-region interface が net-action kernel を継承することを形式化 |
-| [`SoftwareContractToyRepository.lean`](Survival/SoftwareContractToyRepository.lean) | `toyRepository_composition_kernel`, `toyRepository_coherentMass_zero`, `toyRepository_coherentMass_one`, `toyClaimAdmission_no_more_loss`, `toyDependencyRewrite_localizes` | software contract surface の最小 toy instantiation。実検出器の正しさではなく、repository contract state が bridge interface に乗ることを示す |
+| [`SoftwareContractToyRepository.lean`](Survival/SoftwareContractToyRepository.lean) | `toyRepository_composition_kernel`, `toyRepository_coherentMass_zero`, `toyRepository_coherentMass_one`, `toyRepository_coherentMass_two`, `toyClaimAdmission_no_more_loss`, `toyDependencyRewrite_localizes` | software contract surface の最小 toy instantiation。実検出器の正しさではなく、repository contract state が bridge interface に乗ることを示す |
 
 ### G2. M 側の維持能力成分分解（1）— **M 補論の表現文法**
 

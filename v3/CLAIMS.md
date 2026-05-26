@@ -107,7 +107,46 @@ a path-ratio identity does not prove a physical fluctuation theorem, and a
 Foster-Lyapunov sign bridge does not prove positive recurrence.
 
 
-3. Empirical Support Claim
+3. Epistemic-Control Bridge Boundary
+------------------------------------
+
+The epistemic-control bridge is a theorem-side interface claim, not an
+empirical support claim.
+
+`lean/Survival/EpistemicControlBridge.lean` shows that a finite epistemic
+control layer inherits the existing net-action kernel once it supplies:
+
+1. a finite coherent-region interface;
+2. a mass readout;
+3. contradiction updates that contract the region;
+4. repair updates that expand from the post-contradiction region;
+5. finite-prefix positivity;
+6. explicit soundness assumptions for memory filtering and dependency closure.
+
+The software-contract toy in
+`lean/Survival/SoftwareContractToyRepository.lean` is a formal instantiation of
+that interface. It proves the toy repository-contract kernel, toy admission
+filter guard, toy dependency-localization guard, and concrete regularized toy
+mass values. This is a formal loop from bridge to finite toy surface. It is not
+evidence that any real detector is correct.
+
+This bridge supports the following claim:
+
+> A finite epistemic-control layer satisfying the stated contraction, repair,
+> positivity, filter-soundness, and dependency-closure assumptions inherits the
+> structural-persistence net-action kernel.
+
+It does not support these claims:
+
+- Lean proves LLM natural-language semantics;
+- Lean proves model performance or reasoning accuracy;
+- Lean proves full belief revision or unconditional memory safety;
+- Lean proves the correctness of a concrete software detector;
+- the toy repository mass values are empirical software metrics;
+- implementation or field results become theorem-side evidence.
+
+
+4. Empirical Support Claim
 --------------------------
 
 The usual empirical value claim is not that an SP-only model replaces a strong
@@ -154,7 +193,7 @@ claims, not arbitrary-network, arbitrary-code, Shannon-limit, real-world causal,
 \(M\)-side, or universal-law evidence.
 
 
-4. Transfer Claim
+5. Transfer Claim
 -----------------
 
 Cross-domain transfer is a hypothesis generator.
@@ -165,7 +204,7 @@ Support in the target package requires the target mapping, indicator, baseline,
 metric, split, and decision rule to be frozen before validation.
 
 
-5. Software Contract-Coherence Boundary
+6. Software Contract-Coherence Boundary
 ---------------------------------------
 
 Software contract-coherence diagnostics is an estimation-layer (`inference`)
@@ -187,7 +226,7 @@ benchmark endpoint. They may be cited as operational field evidence only when
 the selection and human-workflow caveats are stated.
 
 
-6. Resource / M Boundary
+7. Resource / M Boundary
 ------------------------
 
 For resource-side work, \(M\) should be read as the effective maintenance
@@ -208,7 +247,7 @@ Claims about component decompositions or which intervention should be chosen
 first are outside the default \(M\)-side evidence vocabulary.
 
 
-7. Non-Claims
+8. Non-Claims
 -------------
 
 The v3 program does not claim:
@@ -238,7 +277,7 @@ The v3 program does not claim:
   learning.
 
 
-8. Support Vocabulary
+9. Support Vocabulary
 ---------------------
 
 Use these labels consistently:

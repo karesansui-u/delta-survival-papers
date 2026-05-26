@@ -154,6 +154,7 @@ filter, and a dependency closure.  It then provides a concrete
 | `toyRepository_composition_kernel` | the finite repository-contract toy inherits the bridge net-action kernel |
 | `toyRepository_coherentMass_zero` | the initial regularized toy mass is 5 |
 | `toyRepository_coherentMass_one` | after one scoped contradiction / repair step, the regularized toy mass is 3 |
+| `toyRepository_coherentMass_two` | after a second step, the regularized toy mass remains 3 |
 | `toyClaimAdmission_no_more_loss` | the toy admission filter incurs no more loss than accept-all under the bridge soundness premise |
 | `toyDependencyRewrite_localizes` | toy semantic invalidation is inside the dependency downstream closure |
 
