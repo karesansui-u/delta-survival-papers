@@ -54,6 +54,7 @@ import Survival.LLMEpistemicControlToy
 import Survival.LLMMemoryUseConditionToy
 import Survival.SoftwareContractToyRepository
 import Survival.SoftwareEvidencePacketToy
+import Survival.DependencyClosureBudgetToy
 import Survival.EpistemicControlStack
 import Survival.StructuralPersistenceBalancePrinciple
 import Survival.AdmissibleMapInvariants

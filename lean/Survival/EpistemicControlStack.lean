@@ -1,5 +1,6 @@
 import Survival.LLMMemoryUseConditionToy
 import Survival.SoftwareEvidencePacketToy
+import Survival.DependencyClosureBudgetToy
 
 /-!
 # Epistemic Control Stack
@@ -7,8 +8,9 @@ import Survival.SoftwareEvidencePacketToy
 This file is a single Lean entry point for the checked epistemic-control stack.
 
 It does not add stronger semantic claims.  It collects the main bridge,
-evidence-packet, LLM-toy, memory-use-condition, software-toy, and
-software-evidence instantiation theorems under short stack-level names.
+evidence-packet, LLM-toy, memory-use-condition, software-toy,
+software-evidence, and dependency-budget instantiation theorems under short
+stack-level names.
 -/
 
 namespace Survival.EpistemicControlStack
@@ -20,6 +22,7 @@ open Survival.LLMEpistemicControlToy
 open Survival.LLMMemoryUseConditionToy
 open Survival.SoftwareContractToyRepository
 open Survival.SoftwareEvidencePacketToy
+open Survival.DependencyClosureBudgetToy
 
 noncomputable section
 
@@ -90,6 +93,11 @@ theorem stack_llm_repair_touches_downstream_invalidations :
       (invalidatedSurfaces premiseUpdateDependencyPacket) :=
   repairTouches_downstreamInvalidations
 
+theorem stack_llm_invalidated_ncard_le_repair_touched_ncard :
+    (invalidatedSurfaces premiseUpdateDependencyPacket).ncard ≤
+      premiseRepairPacket.touched.ncard :=
+  llm_invalidated_ncard_le_repair_touched_ncard
+
 /-! ## LLM memory use-condition entry points -/
 
 theorem stack_llm_memory_without_permission_rejected
@@ -159,6 +167,11 @@ theorem stack_software_repair_touches_invalidations :
     TouchesAll toyRepairPacket
       (invalidatedSurfaces toyEvidenceDependencyPacket) :=
   toyRepair_touches_invalidations
+
+theorem stack_software_invalidated_ncard_le_repair_touched_ncard :
+    (invalidatedSurfaces toyEvidenceDependencyPacket).ncard ≤
+      toyRepairPacket.touched.ncard :=
+  software_invalidated_ncard_le_repair_touched_ncard
 
 end
 
