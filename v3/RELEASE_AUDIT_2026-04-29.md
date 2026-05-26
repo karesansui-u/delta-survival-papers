@@ -34,7 +34,7 @@ Checked scope:
 | Local Markdown links surfaced by `rg` | pass |
 | Figure link in overview | target exists |
 | Legacy software domain id | clean |
-| Stale DeltaLint product-as-theory wording | clean: DeltaLint remains only as implementation / workflow name |
+| Stale contract-workflow product-as-theory wording | clean: the workflow remains only an implementation layer |
 | Legacy product benchmark-as-theory wording | clean |
 | Legacy route / layer wording in software evidence | clean |
 | Evidence-ledger separation | pass |
@@ -61,7 +61,7 @@ All checked rows matched their file header width.
 -----------------------
 
 - The theory-level software domain is now `software_contract_coherence`.
-- DeltaLint is treated as the current implementation / workflow name, not the
+- the contract-coherence workflow is treated as the current implementation layer, not the
   theory-level object.
 - Public OSS merged PRs are recorded as field demonstration /
   maintainer-acceptance evidence.

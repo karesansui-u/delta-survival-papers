@@ -29,9 +29,9 @@ API contracts, documentation promises, default-value conventions, guard
 conditions, serialization formats, config-runtime assumptions, lifecycle
 promises, tests, and caller expectations.
 
-DeltaLint is one implementation workflow that searches for distributed
-contract contradictions in that epistemic surface.  This note maps the
-workflow to the bridge; it does not prove DeltaLint correctness.
+One implementation workflow searches for distributed-contract contradictions
+in that epistemic surface.  This note maps the workflow to the bridge; it does
+not prove detector correctness.
 
 
 2. Instantiation Map
@@ -104,10 +104,10 @@ For software, the safe reading is conditional:
 - a dependency map that soundly over-approximates producer / consumer influence
   can be read through the dependency-rewrite localization lemma.
 
-The theorem does not say that the present DeltaLint workflow has proven a
-natural mass model, measured coherent mass, or estimated long-term software
-collapse.  It says that once those finite interface conditions are supplied,
-the existing structural-persistence accounting kernel applies.
+The theorem does not say that the present contract-coherence workflow has
+proven a natural mass model, measured coherent mass, or estimated long-term
+software collapse.  It says that once those finite interface conditions are
+supplied, the existing structural-persistence accounting kernel applies.
 
 
 5. Evidence Boundary
@@ -123,30 +123,36 @@ contract-coherence profile:
 - no M-side validation.
 
 The bridge instantiation adds explanatory structure, not new validation.
-It helps state what kind of object DeltaLint-like workflows are trying to
+It helps state what kind of object contract-coherence workflows are trying to
 control: a repository's distributed contract epistemic state.
 
 
-6. Future Formalization
------------------------
+6. Lean Toy Instantiation
+-------------------------
 
-A later Lean instantiation could introduce thin software-specific types:
+The first Lean-side toy instantiation is:
+
+- `../../../lean/Survival/SoftwareContractToyRepository.lean`
+
+It introduces thin software-specific types:
 
 ```text
 ContractSurface
 ContractClaim
-ContractRelation
 SoftwareProvenance
-ContractCoherenceState
+ContractRecord
+ToyRepoState
 ```
 
-and then provide a concrete `EpistemicControlSpec ContractCoherenceState`.
+The checked toy uses a finite repository-contract state space, a positive toy
+mass readout, a contradiction update, a repair update, a claim-admission
+filter, and a dependency closure.  It then provides a concrete
+`EpistemicControlSpec` and specializes the bridge kernel and guard lemmas.
 
-That later step should remain finite and assumption-explicit.  It should not
-try to formalize arbitrary program semantics, whole-repository correctness, or
-maintainer judgment.  The natural first target is a small finite toy repository
-surface where contract claims, provenance, contradiction admission, and repair
-actions are all explicitly enumerated.
+This remains finite and assumption-explicit.  It does not try to formalize
+arbitrary program semantics, whole-repository correctness, or maintainer
+judgment.  Its role is to close the first formal loop from abstract bridge to
+toy repository surface.
 
 
 7. Non-Claims
@@ -154,7 +160,7 @@ actions are all explicitly enumerated.
 
 This instantiation note does not claim:
 
-- DeltaLint is proved correct by Lean;
+- the detector is proved correct by Lean;
 - merged PR counts are raw detector precision;
 - software contract contradictions prove long-term software collapse;
 - all software bugs are structural contradictions;

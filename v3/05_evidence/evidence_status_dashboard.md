@@ -122,7 +122,7 @@ primary support.
 | Backblaze drive reliability | Q3 2025 v2 loss-only | observational_support | fresh untouched archive; calibration-aware loss-only readout passed frozen same-domain rule | same-domain observational support; not recovery evidence and not a replacement for Q4 v1 no-support |
 | LLM reasoning | companion package | observational_anchor | inference-layer reasoning degradation | not theorem-side evidence |
 | continual learning | companion package | observational_anchor | dependency-aware repair indicators improve selected readouts | not a general continual-learning law |
-| software contract coherence | DeltaLint field demonstration | field_demonstration | public OSS PR / issue workflow with maintainer outcomes | not raw precision / recall, not direct software-collapse prediction |
+| software contract coherence | contract-coherence field demonstration | field_demonstration | public OSS PR / issue workflow with maintainer outcomes | not raw precision / recall, not direct software-collapse prediction |
 | LLM input qualification / MemoryGit-style control | private fixture / implementation checks | engineering_application | route-state, permission, snapshot, and selected-readout controls | architecture evidence, not theory validation |
 | Hermes-style memory qualification | private integration / design path | engineering_application | input qualification and promotion-gate memory control | product design evidence, not frozen theory support |
 

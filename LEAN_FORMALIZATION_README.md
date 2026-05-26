@@ -6,7 +6,7 @@ across the structural persistence papers and supplements.
 ## Current status
 
 - Lean 4 modules are included in [`lean/`](lean/)
-- current imported development size: `166 Survival modules`
+- current imported development size: `167 Survival modules`
 - current verification status: no project-level `sorry`, `admit`, or declared
   `axiom` in the imported `Survival` target
 - the formalization covers the core structural-persistence framework,

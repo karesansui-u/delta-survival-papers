@@ -77,7 +77,7 @@ Failed attempts and no-support records are intentionally preserved. They are
 part of the research program and should not be removed from public bundles.
 
 Software contract-coherence diagnostics is recorded as an inference-layer
-software track. DeltaLint is the current implementation / workflow name, not the
+software track. The contract-coherence workflow is the current implementation layer, not the
 theory-level object.
 
 

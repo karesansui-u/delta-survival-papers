@@ -113,7 +113,7 @@
 | 未来シナリオ維持検査 | `20_public_first_draft.md` §9、`22_public_second_draft.md` §3 | 仕様固定では有限シナリオ会計、推定レイヤーでは観測・推定版として扱う |
 | 凍結検証 | `04_operations/54_failure_ledger.md`、`05_evidence/` | 支持、非支持、無効実行、沈黙の判定規律を中心に置く |
 | LLM / 継続学習 | 対応する個別論文・分析ノート | 推定レイヤーの観測的アンカーとして扱う |
-| ソフトウェア診断 | DeltaLint / 契約診断 関連文書 | 現場受理実例と有界ベンチマークを分ける |
+| ソフトウェア診断 | 契約整合性診断 関連文書 | 現場受理実例と有界ベンチマークを分ける |
 | 事業・企業・組織候補 | `22_public_second_draft.md` §8 | 価値循環の自己更新システムとしての作業仮説を、支持済み指標ではなく探索候補として扱う |
 | 失敗台帳 | `05_evidence/no_support.tsv`、`05_evidence/cross_domain_failure_lessons.md` | 失敗を救済せず、設計教訓として使う |
 | 証拠状態の確認 | `05_evidence/evidence_status_dashboard.md` | 第二稿に載せる支持、非支持、沈黙の現在状態を確認する |

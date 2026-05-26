@@ -78,7 +78,7 @@ Structurally inferred anchors:
 - LLM reasoning and continual learning remain observational / indicator-based
   anchors.
 - Software contract-coherence diagnostics evidence is split into two ledgers
-  using DeltaLint as the current implementation:
+  using the contract-coherence workflow as the current implementation:
   - field demonstration / maintainer-acceptance evidence;
   - bounded benchmark calibration.
 

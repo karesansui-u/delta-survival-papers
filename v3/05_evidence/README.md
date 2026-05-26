@@ -30,9 +30,8 @@ Evidence is separated from theory claims.
   A06-stop stopping-set package.
 - Software contract-coherence diagnostics evidence is tracked as two layers:
   public OSS field demonstration / maintainer-acceptance evidence, and bounded
-  internal benchmark calibration. DeltaLint is the current implementation name.
-  The former is operational evidence, not raw precision / recall; the latter is
-  the controlled support surface.
+  internal benchmark calibration. The former is operational evidence, not raw
+  precision / recall; the latter is the controlled support surface.
 - `conversation_log_derived_memory_qualification_protocol_ja.md`: public-safe
   synthetic protocol for transcript / meeting / radio-like memory qualification
   failures. It intentionally avoids redistributing raw conversation logs.

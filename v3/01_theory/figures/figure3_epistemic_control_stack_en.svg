@@ -83,7 +83,7 @@
   <rect x="396" y="570" width="119" height="38" class="chipGold"/>
   <text x="456" y="594" text-anchor="middle" class="tiny">memory</text>
   <rect x="530" y="570" width="179" height="38" class="chipGold"/>
-  <text x="620" y="594" text-anchor="middle" class="tiny">DeltaLint / contracts</text>
+  <text x="620" y="594" text-anchor="middle" class="tiny">contract diagnostics</text>
 
   <rect x="786" y="108" width="252" height="520" class="boundary"/>
   <text x="912" y="144" text-anchor="middle" class="layerTitle">Claim Boundary</text>
@@ -100,7 +100,7 @@
   <text x="812" y="374" class="tiny">No proof of model performance.</text>
   <text x="812" y="396" class="tiny">No unconditional memory safety.</text>
   <text x="812" y="418" class="tiny">No automatic support transfer.</text>
-  <text x="812" y="440" class="tiny">No proof of DeltaLint correctness.</text>
+  <text x="812" y="440" class="tiny">No proof of detector correctness.</text>
 
   <path d="M812 468 L1012 468" stroke="#d6b7a9" stroke-width="1.4"/>
 

@@ -655,18 +655,18 @@ Comparable $\hat L$, comparable raw $R$, and comparable scalar $M_{\mathrm{total
 
 5.3 Software contract-coherence diagnostics との分離
 
-Software contract-coherence diagnostics は、software domain における強い候補である。ただし、本補論の検査標的である $M$ の維持能力成分の分解を直接検査するものではない。DeltaLint はこの診断 track の現在の実装名である。
+Software contract-coherence diagnostics は、software domain における強い候補である。ただし、本補論の検査標的である $M$ の維持能力成分の分解を直接検査するものではない。この診断 track の実装ワークフローは理論上の対象そのものではない。
 
 この track が主に観測するのは、静的コード内の未整理な前提不整合、scope mismatch、guard 欠落、順序依存、設定干渉である。これは $M$ 側というより、局所的な $\hat L$ または $\Delta L$ risk の観測に近い。したがって、software contract-coherence diagnostics は本補論の主 validation には含めない。
 
 より正確には、contract-coherence benchmark が検査しうるのは、ソフトウェア崩壊そのものではなく、分散契約矛盾という早期シグナルである。ここでの software structure は、API / caller、config / runtime、documentation / implementation、default producer / consumer、lifecycle producer / consumer など、複数 surface にまたがって一貫性を保つ contract set として定義される。したがって contract-coherence benchmark は、長期保守不能化や構造死を直接測るものではなく、generic review に対して structural-lens prompt が unique valid structural root cause を増やすかを検査する operational benchmark である。
 
-本補論では、software contract-coherence diagnostics とその現在の実装名である DeltaLint を次のように位置づける。
+本補論では、software contract-coherence diagnostics とその実装ワークフローを次のように位置づける。
 
 - Software contract-coherence diagnostics は本補論の $M$-framework の実証柱ではない。
 - この track は LLM companion I の unscoped contradiction / attribution repair に近い L-side static-code extension として、別 note で扱う。
-- DeltaLint の既存実績は、本補論においては動機づけ以上には使わない。
-- DeltaLint が $M_{\mathrm{recovery}}$ に関与するのは、triage、patch、CI gate、rollback、migration などの repair workflow に接続された場合に限られる。
+- 既存の実装実績は、本補論においては動機づけ以上には使わない。
+- 実装ワークフローが $M_{\mathrm{recovery}}$ に関与するのは、triage、patch、CI gate、rollback、migration などの repair workflow に接続された場合に限られる。
 
 この分離により、本補論は $M$ 側の薄い主張を保ち、software contract-coherence diagnostics は静的コードにおける L-side predictor として、独立の baseline-controlled validation を持てる。
 
@@ -677,7 +677,7 @@ Software contract-coherence diagnostics は、software domain における強い
 1. Software / SaaS が仕様固定レイヤーであるとは主張しない。
 2. $\hat L$ が真の $L$ と同一であるとは主張しない。
 3. $M_i$ が単一の universal metric で測れるとは主張しない。
-4. DeltaLint 実装による既存実績だけで本補論が実証されたとは主張しない。Software contract-coherence diagnostics は本補論の主 validation から切り離し、LLM companion I / L-side の static-code extension として別 note で扱う。
+4. 既存の実装実績だけで本補論が実証されたとは主張しない。Software contract-coherence diagnostics は本補論の主 validation から切り離し、LLM companion I / L-side の static-code extension として別 note で扱う。
 5. 外部供給 channel が常に望ましいとは主張しない。外部支援は短期維持を助けるが、自律的能力を代替しない場合がある。
 6. $M_{\mathrm{reconfiguration}}$ によって $F$ 自体を変更してよいとは主張しない。
 
@@ -1043,7 +1043,7 @@ $M_{\mathrm{buffer}}^{\mathrm{int}}$, $M_{\mathrm{recovery}}^{\mathrm{int}}$, $M
 
 7.10 Software contract-coherence diagnostics は並行 track である
 
-Software contract-coherence diagnostics は、本補論の main validation ではない。この track が観測しているのは、主に静的コード中の未整理な前提不整合、scope mismatch、guard 欠落、順序依存、設定干渉である。これは $M$ の維持能力成分の構成ではなく、L-side / LLM companion I static-code extension に近い。DeltaLint はその実装名である。
+Software contract-coherence diagnostics は、本補論の main validation ではない。この track が観測しているのは、主に静的コード中の未整理な前提不整合、scope mismatch、guard 欠落、順序依存、設定干渉である。これは $M$ の維持能力成分の構成ではなく、L-side / LLM companion I static-code extension に近い。
 
 したがって、この track は別 note で扱う。その中心予測は、本補論の M 成分診断 validation ではなく、次である。
 

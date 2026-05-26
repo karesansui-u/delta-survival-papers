@@ -169,9 +169,9 @@ metric, split, and decision rule to be frozen before validation.
 ---------------------------------------
 
 Software contract-coherence diagnostics is an estimation-layer (`inference`)
-operational track for distributed-contract contradictions. DeltaLint is the current
-implementation and workflow name, not the theory-level object. This track is
-not direct evidence of software collapse.
+operational track for distributed-contract contradictions. The current
+implementation workflow is not the theory-level object. This track is not
+direct evidence of software collapse.
 
 Use two evidence forms:
 
@@ -225,7 +225,7 @@ The v3 program does not claim:
 - cross-domain transfer imports support;
 - existing-theory connection means the whole existing theory has been
   re-proved;
-- DeltaLint merged PRs alone prove raw detector precision, long-term software
+- merged PRs alone prove raw detector precision, long-term software
   collapse prediction, or M-side profile support.
 - the LLM epistemic-control bridge proves LLM semantics, model performance,
   belief revision, memory safety, or the correctness of a concrete memory /

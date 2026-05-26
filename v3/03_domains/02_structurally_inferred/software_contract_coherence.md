@@ -9,7 +9,7 @@ classification: inference
 
 status: field_demonstration + internal_calibration
 
-Implementation name: DeltaLint
+Implementation name: contract-coherence workflow
 
 
 1. Maintenance Target
@@ -57,7 +57,7 @@ Implementation name: DeltaLint
   model, budget, and validation depth.
 - domain baseline + SP: structural-lens / contract-coherence workflow output
   compared against the same-scope generic review by incremental validated root
-  causes. DeltaLint is the current implementation used for the recorded runs.
+  causes. The recorded runs use the current contract-coherence workflow.
 - wide baseline, if any: static analyzers, type checks, tests, linters, or
   security scanners when available and recorded as separate comparison surfaces.
 
@@ -81,9 +81,9 @@ This domain supports:
 
 - an operational claim that the structural-contradiction coordinate can produce
   useful distributed-contract mismatch candidates in public OSS workflows;
-- an initial internal calibration claim that the DeltaLint implementation of
-  the contract-coherence workflow can add validated distributed-contract roots
-  over same-scope generic review on selected frozen OSS items.
+- an initial internal calibration claim that the contract-coherence workflow can
+  add validated distributed-contract roots over same-scope generic review on
+  selected frozen OSS items.
 
 This domain does not support:
 

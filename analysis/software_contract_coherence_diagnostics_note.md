@@ -1,9 +1,9 @@
 # Software Contract-Coherence Diagnostics Note
 
 Status: positioning, field-demonstration, and internal-calibration note for the
-software contract-coherence diagnostics track. DeltaLint is the current
-implementation / workflow used in the field demonstration and bounded internal
-benchmark. This includes maintainer-acceptance field evidence and a bounded
+software contract-coherence diagnostics track. The current implementation
+workflow is used in the field demonstration and bounded internal benchmark.
+This includes maintainer-acceptance field evidence and a bounded
 internal benchmark, but it is not a raw precision / recall estimate, not outside
 replication of the benchmark, and not a collapse-prediction claim.
 
@@ -12,8 +12,8 @@ Date: 2026-04-29
 ## 1. Role
 
 Software contract-coherence diagnostics is a software operational benchmark
-candidate for structural persistence theory. DeltaLint is one implementation of
-this diagnostic workflow, not the theory-level object.
+candidate for structural persistence theory. The diagnostic workflow is an
+implementation layer, not the theory-level object.
 
 It should not be described as direct evidence of software collapse, structural
 death, or long-horizon maintainability failure. Its narrower role is:
@@ -121,7 +121,7 @@ Product-additive `valid_structural` roots under the same-scope/additive rule.
 
 It would not yet support:
 
-- DeltaLint predicts long-term software collapse;
+- the workflow predicts long-term software collapse;
 - structural contradiction count is a complete maintainability measure;
 - software validates the full structural persistence balance law;
 - product / skills workflow value independent of the no-prior lens.
@@ -143,8 +143,8 @@ contract-coherence detection benchmark.
 
 ## 8. Field Demonstration Layer
 
-Before the bounded benchmark track, the DeltaLint implementation was used as an
-operational workflow in public OSS. In mid-March 2026, over roughly two weeks,
+Before the bounded benchmark track, the contract-coherence implementation was
+used as an operational workflow in public OSS. In mid-March 2026, over roughly two weeks,
 the workflow produced 39 submitted PRs and 26 reported issues. Sixteen PRs
 across twelve public repositories were merged, including projects under
 Microsoft, Facebook, Bytedance, Sentry, coder, and tRPC. Fourteen of the current

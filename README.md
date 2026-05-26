@@ -90,7 +90,7 @@ structural layer.
 This is not a proof of a universal law. It is package-scoped replication support
 for the first law-side empirical anchors.
 
-Lean formalization is in [`lean/`](lean/). Current status is `166 Survival
+Lean formalization is in [`lean/`](lean/). Current status is `167 Survival
 modules`, with no project-level `sorry`, `admit`, or declared `axiom` in the
 imported `Survival` target. The top-level import spine is
 [`lean/Survival.lean`](lean/Survival.lean). The theorem-to-paper map is
@@ -104,6 +104,8 @@ control layers to the finite net-action kernel under explicit assumptions; it
 does not claim to prove LLM semantics or performance.
 The overview diagram for this three-layer structure is
 [`v3/01_theory/figures/figure3_epistemic_control_stack_en.svg`](v3/01_theory/figures/figure3_epistemic_control_stack_en.svg).
+The toy software-contract instantiation is
+[`lean/Survival/SoftwareContractToyRepository.lean`](lean/Survival/SoftwareContractToyRepository.lean).
 
 The current evidence map is [`analysis/current_evidence_map.md`](analysis/current_evidence_map.md).
 

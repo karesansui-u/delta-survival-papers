@@ -166,3 +166,4 @@ Safe wording:
 - `software_contract_coherence.md`
 - `software_contract_coherence_epistemic_instantiation.md`
 - `../../../lean/Survival/EpistemicControlBridge.lean`
+- `../../../lean/Survival/SoftwareContractToyRepository.lean`
