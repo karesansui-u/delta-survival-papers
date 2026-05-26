@@ -201,7 +201,33 @@ judgment.  Its role is to close the first formal loop from abstract bridge to
 toy repository surface.
 
 
-8. Non-Claims
+8. Lean Toy Evidence-Packet Instantiation
+-----------------------------------------
+
+The next Lean-side toy instantiation is:
+
+- `../../../lean/Survival/SoftwareEvidencePacketToy.lean`
+
+It connects the toy repository surface to `EvidencePacketBridge.lean`.
+The checked toy packet layer proves that the finite software toy can emit
+packets satisfying the packet bridge guardrails:
+
+| Lean theorem | Toy evidence reading |
+|---|---|
+| `toyValidatedCandidate_eligible` | a validated raw contract mismatch maps to eligible evidence |
+| `toyUnsupportedCandidate_not_eligible` | an unsupported style-only candidate is rejected by the packet gate |
+| `toyWitness_has_two_surfaces` | the toy contradiction witness has two distinct surfaces |
+| `toyWitness_surface_key_eq` | every witness surface shares the selected toy contract key |
+| `toyEvidence_invalidations_localized` | toy semantic invalidations are localized by the toy dependency packet |
+| `toyRepair_touches_invalidations` | the toy repair packet covers the localized invalidations |
+| `toyEvidenceAdmission_no_more_loss` | the toy evidence-admission gate inherits the no-more-loss comparison |
+
+This is the first checked bridge from a software toy surface to packet-level
+evidence conditions. It is still finite and schematic; it does not verify real
+program semantics or operational judgment.
+
+
+9. Non-Claims
 -------------
 
 This instantiation note does not claim:

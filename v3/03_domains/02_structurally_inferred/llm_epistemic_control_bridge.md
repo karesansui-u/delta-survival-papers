@@ -85,6 +85,8 @@ The main checked statements are:
 | `evidence_filter_no_more_loss` | an evidence eligibility gate inherits the bridge-level admission loss comparison |
 | `evidence_invalidations_localized` | evidence dependency packets localize semantic invalidations through a sound closure |
 | `repair_touches_invalidations` | a repair covering the dependency closure also covers semantic invalidations |
+| `toyEvidenceAdmission_no_more_loss` | the software toy admission gate instantiates the evidence-packet admission comparison |
+| `toyRepair_touches_invalidations` | the software toy repair packet covers localized toy invalidations |
 
 The composition theorem is the non-decorative part of the bridge:
 
@@ -176,3 +178,4 @@ Safe wording:
 - `../../../lean/Survival/EpistemicControlBridge.lean`
 - `../../../lean/Survival/EvidencePacketBridge.lean`
 - `../../../lean/Survival/SoftwareContractToyRepository.lean`
+- `../../../lean/Survival/SoftwareEvidencePacketToy.lean`

@@ -138,6 +138,13 @@ closure localization, repair coverage, and the inherited no-more-loss admission
 comparison. It is still not a proof that a real workflow or repository semantics
 is correct.
 
+`lean/Survival/SoftwareEvidencePacketToy.lean` connects the toy
+software-contract surface to this packet bridge. It proves that the toy raw
+candidate gate, two-surface witness, shared contract key, dependency packet,
+repair packet, and admission filter instantiate the evidence-packet guardrails.
+This remains a finite toy instantiation, not a correctness proof for a real
+repository workflow.
+
 This bridge supports the following claim:
 
 > A finite epistemic-control layer satisfying the stated contraction, repair,

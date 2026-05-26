@@ -65,7 +65,7 @@ See:
 
 Lean formalization is in [`lean/`](lean/):
 
-- `168 Survival modules`
+- `169 Survival modules`
 - no project-level `sorry`, `admit`, or declared `axiom` in the imported
   `Survival` target
 

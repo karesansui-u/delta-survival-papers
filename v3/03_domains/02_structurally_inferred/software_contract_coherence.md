@@ -74,6 +74,8 @@ Implementation name: contract-coherence workflow
   `software_contract_coherence_epistemic_instantiation.md`.
 - Lean evidence-packet bridge:
   `../../../lean/Survival/EvidencePacketBridge.lean`.
+- Lean toy evidence-packet instantiation:
+  `../../../lean/Survival/SoftwareEvidencePacketToy.lean`.
 
 
 5. Claims

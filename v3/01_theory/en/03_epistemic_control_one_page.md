@@ -89,6 +89,16 @@ evidence_invalidations_localized
 repair_touches_invalidations
 ```
 
+The first toy software evidence-packet instantiation is:
+
+```text
+SoftwareEvidencePacketToy.lean
+```
+
+It connects the toy repository surface to the packet bridge through checked
+validated / unsupported candidate gates, a two-surface witness, shared contract
+key, dependency packet, repair packet, and admission-filter theorem.
+
 
 What Lean Does Not Prove
 ------------------------
@@ -137,3 +147,5 @@ Where To Read Next
   `../../../lean/Survival/EvidencePacketBridge.lean`
 - Toy software-contract instantiation:
   `../../../lean/Survival/SoftwareContractToyRepository.lean`
+- Toy software evidence-packet instantiation:
+  `../../../lean/Survival/SoftwareEvidencePacketToy.lean`
