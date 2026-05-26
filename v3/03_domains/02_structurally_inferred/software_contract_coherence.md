@@ -70,6 +70,8 @@ Implementation name: DeltaLint
 - bounded benchmark record: `../../05_evidence/bounded_benchmarks.tsv`.
 - detailed analysis note:
   `../../../analysis/software_contract_coherence_diagnostics_note.md`.
+- epistemic-control instantiation note:
+  `software_contract_coherence_epistemic_instantiation.md`.
 
 
 5. Claims

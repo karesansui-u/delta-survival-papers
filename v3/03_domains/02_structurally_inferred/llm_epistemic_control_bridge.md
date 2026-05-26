@@ -162,4 +162,5 @@ Safe wording:
 - `continual_learning_forgetting.md`
 - `llm_long_term_memory_control.md`
 - `software_contract_coherence.md`
+- `software_contract_coherence_epistemic_instantiation.md`
 - `../../../lean/Survival/EpistemicControlBridge.lean`
