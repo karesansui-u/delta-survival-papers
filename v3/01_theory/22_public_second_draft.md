@@ -42,6 +42,8 @@ PublicSecond_構造持続会計理論_推定レイヤーと検証規律
 
 > 直接 \(V,m\) を数えられない系で、構造持続会計理論の座標をどのように観測・推定し、どのような条件で支持、非支持、沈黙として扱うべきか。
 
+本稿の中心導線を示す図として、Lean 接続と empirical witness の全体像を `figures/figure5_iqc_assumption_to_guarantee_chain_en.svg` に集約している。  
+（本文では `Information Qualification Control` の構成要素を中心に、仮定、証明、証拠バンドルの接続可能性を示す）
 
 2. 推定レイヤー
 
