@@ -40,10 +40,10 @@ artifact、real-eval candidate mapping、premise-update frozen surface、その 
 scorer / schema、successor slot-state readout / scorer package である。
 別系統の implementation-side empirical benchmark summary として
 `v3/05_evidence/iqc_failure_suite_final_result_ja.md` も追加した。これは Lean theorem
-ではなく、入力資格制御 failure suite の最新 M1--M4 結果と claim boundary を固定する
-package-scoped evidence note である。実装側 artifact は `karesansui-u/delta-zero`
-PR #2 / commit `8d0b3b2` で公開済みであり、最終統合検証は 220 passed, 2 warnings
-と記録されている。
+ではなく、Information Qualification Control (IQC; 情報資格制御) failure suite の
+最新 M1--M4 結果と claim boundary を固定する package-scoped evidence note である。
+実装側 artifact は `karesansui-u/delta-zero` PR #2 / commit `8d0b3b2` で公開済みであり、
+最終統合検証は 220 passed, 2 warnings と記録されている。
 
 ## 証拠の階層
 
@@ -57,7 +57,7 @@ v1 premise-update package は successor readout / scorer package であり、sup
 |---|---|---|
 | SAT chain v1.0 | 数学的 anchor | random 3-SAT の自然測度、actual path measure、MGF product、Chernoff/KL collapse が有限地平線で閉じている |
 | LLM 810 試行 | 過去の経験的 anchor | 文脈長・制約数だけの基準モデルを越え、構造矛盾がより強い崩壊要因になることを示す候補 evidence。現在の v1 premise-update package の support ではない |
-| IQC failure suite | implementation-side empirical benchmark summary | speechAct / permission / versionState qualification failures に対する package-scoped benchmark evidence。実装側は `delta-zero` PR #2 / commit `8d0b3b2` で公開済み。Lean theorem-side evidence ではなく、source attribution では neutral |
+| Information Qualification Control (IQC) failure suite | implementation-side empirical benchmark summary | speechAct / permission / versionState qualification failures に対する package-scoped benchmark evidence。実装側は `delta-zero` PR #2 / commit `8d0b3b2` で公開済み。Lean theorem-side evidence ではなく、source attribution では neutral |
 | Epistemic control bridge | 抽象 bridge / protocol chain | LLM の意味論や性能は証明せず、矛盾更新・修復更新・記憶資格・依存再編を既存の finite net-action kernel へ接続し、baseline comparison、metric contract、benchmark protocol、software evidence bridge までを有限・仮定明示の chain として示す |
 | Bernoulli CSP universality v1.2 | template validation | fixed assignment/coloring の iid bad-event exposure に限った水平展開。solver dynamics や依存構造は含めない |
 | Numerical sanity checks | tests-as-documentation | 抽象 wrapper が小さな具体例で期待される定数を返すことを reader-facing に確認する。経験的 support ではない |
@@ -704,7 +704,7 @@ drift は `log(2^k / allowed)` になる。部分二項和が \(0\) と \(2^k\) 
 | [`llm_epistemic_premise_update_v0/`](../v3/05_evidence/llm_epistemic_premise_update_v0/) | first premise-update frozen real-eval candidate surface and completed `silence` result | v0 result is not support and is not retrospectively rescued by v1 |
 | [`llm_epistemic_premise_update_v1/`](../v3/05_evidence/llm_epistemic_premise_update_v1/) | successor slot-state readout / scorer package after v0 silence | planning / audit package only until a future outcome-bearing result has `decision = support_clean`, `protocol_shape_valid = true`, and `promotable = true` |
 | [`epistemic_control_premise_update_v1/run_eval.py`](../analysis/epistemic_control_premise_update_v1/run_eval.py) | deterministic v1 slot-state scorer with explicit status, ambiguity, mixed, and promotion fields | does not call a model, validate natural-language semantics, or prove performance |
-| [`iqc_failure_suite_final_result_ja.md`](../v3/05_evidence/iqc_failure_suite_final_result_ja.md) | input-qualification failure suite summary: IQC single-best on speechAct / permission, co-best on versionState, neutral on source attribution under the corrected injection path; implementation artifact published in `delta-zero` PR #2 / commit `8d0b3b2` | implementation-side empirical benchmark summary only; not a Lean result, not a general memory-safety proof |
+| [`iqc_failure_suite_final_result_ja.md`](../v3/05_evidence/iqc_failure_suite_final_result_ja.md) | Information Qualification Control (IQC) failure suite summary: IQC control layer single-best on speechAct / permission, co-best on versionState, neutral on source attribution under the corrected injection path; implementation artifact published in `delta-zero` PR #2 / commit `8d0b3b2` | implementation-side empirical benchmark summary only; not a Lean result, not a general memory-safety proof |
 
 ### G2. M 側の維持能力成分分解（1）— **M 補論の表現文法**
 

@@ -50,10 +50,11 @@ Evidence is separated from theory claims.
   implementation-side logs and design artifacts to candidate future witnesses
   for the Lean epistemic benchmark protocol. It is not support evidence.
 - `iqc_failure_suite_final_result_ja.md`: implementation-side benchmark
-  summary for input qualification control. It records the latest M1--M4
-  failure-suite table after runner correction: IQC is single-best on
-  speechAct and permission cases, co-best on versionState, and neutral on
-  source attribution. The implementation package is published in
+  summary for Information Qualification Control (IQC). It records the latest
+  M1--M4 failure-suite table after runner correction: Information Qualification
+  Control is single-best on speechAct and permission cases, co-best on
+  versionState, and neutral on source attribution. The implementation package
+  is published in
   `karesansui-u/delta-zero` PR #2 at commit `8d0b3b2`, with 220 passed and
   2 warnings reported there. It is empirical benchmark evidence, not Lean
   theorem-side evidence.

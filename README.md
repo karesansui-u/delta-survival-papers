@@ -204,12 +204,13 @@ It maps existing implementation-side logs to candidate future protocol
 witnesses for premise update, memory qualification, benchmark-audit, and
 software evidence packaging. It is planning material, not support evidence.
 
-The current input-qualification benchmark summary is
+The current Information Qualification Control (IQC) benchmark summary is
 [`v3/05_evidence/iqc_failure_suite_final_result_ja.md`](v3/05_evidence/iqc_failure_suite_final_result_ja.md).
 It records the latest implementation-side M1--M4 failure-suite table after the
-benchmark injection path was aligned with the no-store policy: IQC is
-single-best on speechAct and permission failures, co-best on versionState, and
-neutral on source attribution. The implementation package is published in
+benchmark injection path was aligned with the no-store policy: Information
+Qualification Control is single-best on speechAct and permission failures,
+co-best on versionState, and neutral on source attribution. The implementation
+package is published in
 `karesansui-u/delta-zero` PR #2 at commit `8d0b3b2`, with 220 passed and
 2 warnings reported there. This is empirical benchmark evidence, not Lean
 theorem-side evidence.

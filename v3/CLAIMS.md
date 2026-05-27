@@ -180,12 +180,14 @@ packaging. It is planning material for future frozen protocols, not support
 evidence and not a retrospective upgrade of existing logs.
 
 `v3/05_evidence/iqc_failure_suite_final_result_ja.md` records an
-implementation-side input-qualification benchmark summary, not a Lean theorem.
+implementation-side Information Qualification Control (IQC) benchmark summary,
+not a Lean theorem.
 Under the corrected benchmark injection path and bare environment / hybrid
-judge, the reported suite has IQC single-best on speechAct and permission
-failures, co-best on versionState, and neutral on source attribution. It may be
-used as package-scoped empirical benchmark evidence for the memory-control
-design boundary. The implementation package is published in `karesansui-u/delta-zero`
+judge, the reported suite has Information Qualification Control single-best on
+speechAct and permission failures, co-best on versionState, and neutral on
+source attribution. It may be used as package-scoped empirical benchmark
+evidence for the memory-control design boundary. The implementation package is
+published in `karesansui-u/delta-zero`
 PR #2 at commit `8d0b3b2`, with 220 passed and 2 warnings reported there.
 This does not prove LLM semantics, memory safety, product reliability, or
 general continual-learning correctness.

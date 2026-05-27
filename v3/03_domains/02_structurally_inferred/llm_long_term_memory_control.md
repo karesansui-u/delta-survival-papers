@@ -236,12 +236,14 @@ revocation と freshness を含む lifecycle guard、provenance trust ordering�
 
 現時点の内部テレメトリは、特定の実装条件では入力資格づけ、no-store / action 境界、状態と安定度の分離、選択読出しを含む構成が有望であることを示している。
 
-2026-05-27 時点で、入力資格制御の failure suite 最新サマリを
+2026-05-27 時点で、Information Qualification Control (IQC; 情報資格制御) の
+failure suite 最新サマリを
 `05_evidence/iqc_failure_suite_final_result_ja.md` に分けて記録した。このサマリでは、
-benchmark injection 経路を本番の no-store policy と揃えた後、IQC は speechAct と
-permission で単独最高、versionState で naive_rag と同率最高、source attribution
-で neutral と整理している。これは implementation-side empirical benchmark summary
-であり、実装側では `karesansui-u/delta-zero` PR #2 / commit `8d0b3b2` として公開済みである。
+benchmark injection 経路を本番の no-store policy と揃えた後、Information Qualification
+Control は speechAct と permission で単独最高、versionState で naive_rag と同率最高、
+source attribution で neutral と整理している。これは implementation-side empirical
+benchmark summary であり、実装側では `karesansui-u/delta-zero` PR #2 / commit
+`8d0b3b2` として公開済みである。
 ただし、Lean theorem-side evidence や一般的な memory safety 証明ではない。
 
 一方で、まだ設計上の弱点として残っている領域もある。
