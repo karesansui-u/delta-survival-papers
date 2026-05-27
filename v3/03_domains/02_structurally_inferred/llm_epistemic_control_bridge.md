@@ -17,6 +17,9 @@ This note records the reader-facing meaning of
 `lean/Survival/EpistemicControlBridge.lean` and the implementation-boundary
 schema in `lean/Survival/EvidencePacketBridge.lean`.
 
+For a compact external-facing summary, see
+[`04_information_qualification_control_note`](../../01_theory/en/04_information_qualification_control_note.md).
+
 The bridge does not formalize natural-language semantics, model weights,
 attention dynamics, or LLM performance.  It formalizes a narrower interface:
 if an LLM control layer can be represented as a finite epistemic state space

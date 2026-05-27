@@ -13,11 +13,15 @@ epistemic-control bridge.
      Lean core, epistemic-control interface, toy software-contract
      instantiation, and claim boundaries.
 
-3. `10_paper1_minimal_form_en.md`
+3. `04_information_qualification_control_note.md`
+   - Compact external note for Information Qualification Control (IQC):
+     qualification attributes, control pipeline, and Lean-to-evidence chain.
+
+4. `10_paper1_minimal_form_en.md`
    - Strict English spine for the minimal form:
      feasible-region shrinkage, log-ratio uniqueness, telescoping product, and \(S=Me^{-L}\).
 
-4. `11_paper2_balance_principle_en.md`
+5. `11_paper2_balance_principle_en.md`
    - Strict English spine for the balance principle:
      two-step updates, net consumption, and \(S=Me^{-B}\).
 
@@ -35,5 +39,9 @@ The diagrams used by the core paper are:
 The LLM epistemic-control bridge overview is:
 
 - `../figures/figure3_epistemic_control_stack_en.svg`
+
+The IQC assumption-to-guarantee summary is:
+
+- `../figures/figure5_iqc_assumption_to_guarantee_chain_en.svg`
 
 The English files are not a separate theory. They are the public English rendering of the same core spine.

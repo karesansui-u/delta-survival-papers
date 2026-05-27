@@ -25,6 +25,7 @@ English entry path:
 
 - [`v3/01_theory/en/02_core_en.md`](v3/01_theory/en/02_core_en.md)
 - [`v3/01_theory/en/03_epistemic_control_one_page.md`](v3/01_theory/en/03_epistemic_control_one_page.md)
+- [`v3/01_theory/en/04_information_qualification_control_note.md`](v3/01_theory/en/04_information_qualification_control_note.md)
 - [`v3/01_theory/en/10_paper1_minimal_form_en.md`](v3/01_theory/en/10_paper1_minimal_form_en.md)
 - [`v3/01_theory/en/11_paper2_balance_principle_en.md`](v3/01_theory/en/11_paper2_balance_principle_en.md)
 

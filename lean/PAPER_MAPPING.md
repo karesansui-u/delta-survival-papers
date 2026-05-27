@@ -100,6 +100,7 @@ EpistemicControlBridge
 | Toy scorer | `analysis/epistemic_control_frozen_toy_v0/run_eval.py` | frozen toy packet の task surface / readout / dominance / toy net-action summary を機械的に検査する |
 | Named toy result artifact | `v3/05_evidence/llm_epistemic_control_frozen_toy_v0/llm_epistemic_control_frozen_toy_v0_result_001.json` | deterministic scorer が出す初回 result artifact。certificate loop を toy packet 上で一周させるが、実 LLM / workflow の validation evidence ではない |
 | Reader-facing figure | `v3/01_theory/figures/figure4_epistemic_result_certificate_chain_en.svg` | runner artifact から result certificate / benchmark protocol / comparison theorem への導線を図示する |
+| Reader-facing figure | `v3/01_theory/figures/figure5_iqc_assumption_to_guarantee_chain_en.svg` | raw 情報 → 資格化制御 → runner / evidence witness → Lean 比較定理の一枚 chain を図示する |
 
 ## Target Theorem 4 / Law-of-Tendency Mapping
 

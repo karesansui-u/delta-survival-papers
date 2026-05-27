@@ -338,6 +338,8 @@ Where To Read Next
 - Claim boundary: `../../CLAIMS.md`, Section 3
 - Bridge note:
   `../../03_domains/02_structurally_inferred/llm_epistemic_control_bridge.md`
+- Information Qualification Control note:
+  `04_information_qualification_control_note.md`
 - Baseline-comparison bridge:
   `../../../lean/Survival/EpistemicControlComparison.lean`
 - Evaluation-facing metric contract:
