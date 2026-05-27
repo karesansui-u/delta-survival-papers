@@ -122,8 +122,8 @@ current premise and must refresh, block, or mark unknown the downstream
 dependency surface before answering.
 
 The concrete implementation of these conditions is not fixed in this manifest.
-A future runner must record how the baseline and controlled outputs were
-obtained.
+A future result artifact must record how the baseline and controlled outputs
+were obtained.
 
 
 6. Horizon

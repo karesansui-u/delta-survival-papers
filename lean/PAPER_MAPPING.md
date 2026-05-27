@@ -29,10 +29,12 @@ Lean 外の protocol artifact として、
 `v3/05_evidence/llm_epistemic_control_frozen_toy_v0/`、および
 `analysis/epistemic_control_frozen_toy_v0/run_eval.py`、
 `v3/05_evidence/llm_epistemic_control_real_eval_candidate_mapping.md`、
-`v3/05_evidence/llm_epistemic_premise_update_v0/` も追加済みである。
+`v3/05_evidence/llm_epistemic_premise_update_v0/`、
+`analysis/epistemic_control_premise_update_v0/run_eval.py` も追加済みである。
 これらは theorem ではなく、Lean 側の protocol / evaluation contract を将来の実験が
 witness するための reader-facing 固定面、deterministic toy scorer、および初回 toy result
-artifact、real-eval candidate mapping、premise-update frozen surface である。
+artifact、real-eval candidate mapping、premise-update frozen surface、その marker-based
+scorer / schema である。
 
 ## 証拠の階層
 
@@ -77,6 +79,7 @@ EpistemicControlBridge
 | Public manifest | `v3/05_evidence/llm_epistemic_control_benchmark_manifest.md` | future experiment が満たすべき frozen task / metric / decision-rule obligations を文章で固定する |
 | Real-eval candidate mapping | `v3/05_evidence/llm_epistemic_control_real_eval_candidate_mapping.md` | 既存 implementation-side logs を premise update / memory qualification / benchmark audit / software evidence packaging の future witness 候補へ対応づける。support evidence ではない |
 | Premise-update frozen surface | `v3/05_evidence/llm_epistemic_premise_update_v0/` | 12 件の premise update / dependency staleness cases と stale / updated marker readout を outcome-bearing execution 前に固定する。model outputs や support decision は含まない |
+| Premise-update scorer / schema | `analysis/epistemic_control_premise_update_v0/run_eval.py` / `analysis/epistemic_control_premise_update_v0/results_schema.json` | 外部から供給された baseline / controlled outputs を frozen marker readout で採点し、result-certificate-shaped JSON を出す。model call や model validation はしない |
 | Frozen toy packet | `v3/05_evidence/llm_epistemic_control_frozen_toy_v0/` | toy task surface と readout fields を固定する。結果や support claim ではない |
 | Toy scorer | `analysis/epistemic_control_frozen_toy_v0/run_eval.py` | frozen toy packet の task surface / readout / dominance / toy net-action summary を機械的に検査する |
 | Named toy result artifact | `v3/05_evidence/llm_epistemic_control_frozen_toy_v0/llm_epistemic_control_frozen_toy_v0_result_001.json` | deterministic scorer が出す初回 result artifact。certificate loop を toy packet 上で一周させるが、実 LLM / workflow の validation evidence ではない |

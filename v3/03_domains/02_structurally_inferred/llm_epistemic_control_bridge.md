@@ -207,6 +207,10 @@ The first frozen real-eval candidate surface,
 dependency-staleness tasks and their stale / updated marker readout before
 outcome-bearing execution. It contains no model outputs and no support
 decision.
+The companion scorer / schema,
+`../../../analysis/epistemic_control_premise_update_v0/`, can turn externally
+supplied baseline / controlled outputs into a result-certificate-shaped
+summary, but it does not call a model or validate model performance.
 
 The layer boundary is:
 
@@ -360,6 +364,8 @@ Safe wording:
 - `../../05_evidence/llm_epistemic_control_benchmark_manifest.md`
 - `../../05_evidence/llm_epistemic_control_real_eval_candidate_mapping.md`
 - `../../05_evidence/llm_epistemic_premise_update_v0/freeze_manifest_v0.md`
+- `../../../analysis/epistemic_control_premise_update_v0/run_eval.py`
+- `../../../analysis/epistemic_control_premise_update_v0/results_schema.json`
 - `../../05_evidence/llm_epistemic_control_frozen_toy_v0/freeze_manifest_v0.md`
 - `../../05_evidence/llm_epistemic_control_frozen_toy_v0/llm_epistemic_control_frozen_toy_v0_result_001.json`
 - `../../../analysis/epistemic_control_frozen_toy_v0/run_eval.py`

@@ -185,6 +185,12 @@ premise-update / dependency-staleness cases and their stale / updated marker
 readout before outcome-bearing execution. It has no model outputs and no
 support decision.
 
+`analysis/epistemic_control_premise_update_v0/` contains the corresponding
+marker-based scorer and result schema. The scorer consumes externally supplied
+baseline / controlled outputs and emits a result-certificate-shaped summary; it
+does not call a model, validate benchmark semantics, or create support without
+an outcome-bearing result artifact.
+
 The result-certificate boundary is:
 
 | Layer | It proves or checks | It does not prove |

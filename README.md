@@ -208,6 +208,10 @@ The first frozen real-eval candidate surface is
 [`v3/05_evidence/llm_epistemic_premise_update_v0/`](v3/05_evidence/llm_epistemic_premise_update_v0/).
 It fixes 12 premise-update / dependency-staleness tasks and a predeclared
 loss / repair readout, but contains no model outputs or support decision.
+The corresponding scorer / result schema live at
+[`analysis/epistemic_control_premise_update_v0/`](analysis/epistemic_control_premise_update_v0/);
+they score externally supplied baseline / controlled outputs and do not call a
+model.
 
 ### Reproducible Toy Protocol Bundle
 

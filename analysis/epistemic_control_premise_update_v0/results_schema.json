@@ -1,0 +1,310 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/structural-persistence/llm_epistemic_premise_update_v0_result.schema.json",
+  "title": "LLM Epistemic Premise Update v0 Result",
+  "type": "object",
+  "required": [
+    "artifact_type",
+    "protocol_id",
+    "result_id",
+    "runner_version",
+    "tasks_path",
+    "outputs_path",
+    "tasks_sha256",
+    "expected_tasks_sha256",
+    "task_count",
+    "case_ids",
+    "horizons",
+    "readout_alignment",
+    "checks",
+    "totals",
+    "decision",
+    "silence_cases",
+    "case_summaries",
+    "errors",
+    "claim_boundary"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "artifact_type": {
+      "const": "premise_update_protocol_result"
+    },
+    "protocol_id": {
+      "const": "llm_epistemic_premise_update_v0"
+    },
+    "result_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_.-]+$"
+    },
+    "runner_version": {
+      "type": "string"
+    },
+    "tasks_path": {
+      "type": "string"
+    },
+    "outputs_path": {
+      "type": "string"
+    },
+    "tasks_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "expected_tasks_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "task_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "case_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "horizons": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "minimum": 1
+      }
+    },
+    "readout_alignment": {
+      "const": "premise_update_stale_loss_repair_v0"
+    },
+    "checks": {
+      "type": "object",
+      "required": [
+        "frozen_task_surface",
+        "task_surface_digest_matches",
+        "frozen_readout",
+        "same_horizon",
+        "outputs_complete",
+        "raw_outputs_retained",
+        "aggregate_loss_dominance",
+        "aggregate_repair_dominance",
+        "metric_dominance",
+        "readout_alignment",
+        "no_worse_net_action",
+        "silence",
+        "invalid_run",
+        "protocol_shape_valid"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "frozen_task_surface": {
+          "type": "boolean"
+        },
+        "task_surface_digest_matches": {
+          "type": "boolean"
+        },
+        "frozen_readout": {
+          "type": "boolean"
+        },
+        "same_horizon": {
+          "type": "boolean"
+        },
+        "outputs_complete": {
+          "type": "boolean"
+        },
+        "raw_outputs_retained": {
+          "type": "boolean"
+        },
+        "aggregate_loss_dominance": {
+          "type": "boolean"
+        },
+        "aggregate_repair_dominance": {
+          "type": "boolean"
+        },
+        "metric_dominance": {
+          "type": "boolean"
+        },
+        "readout_alignment": {
+          "type": "boolean"
+        },
+        "no_worse_net_action": {
+          "type": "boolean"
+        },
+        "silence": {
+          "type": "boolean"
+        },
+        "invalid_run": {
+          "type": "boolean"
+        },
+        "protocol_shape_valid": {
+          "type": "boolean"
+        }
+      }
+    },
+    "totals": {
+      "type": "object",
+      "required": [
+        "baseline_loss_sum",
+        "controlled_loss_sum",
+        "baseline_repair_sum",
+        "controlled_repair_sum",
+        "baseline_net_action",
+        "controlled_net_action"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "baseline_loss_sum": {
+          "type": "number"
+        },
+        "controlled_loss_sum": {
+          "type": "number"
+        },
+        "baseline_repair_sum": {
+          "type": "number"
+        },
+        "controlled_repair_sum": {
+          "type": "number"
+        },
+        "baseline_net_action": {
+          "type": "number"
+        },
+        "controlled_net_action": {
+          "type": "number"
+        }
+      }
+    },
+    "decision": {
+      "enum": [
+        "support",
+        "no_support",
+        "invalid_run",
+        "silence"
+      ]
+    },
+    "silence_cases": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "case_summaries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "case_id",
+          "failure_family",
+          "horizon",
+          "baseline_condition",
+          "controlled_condition",
+          "readout_alignment",
+          "baseline_output",
+          "controlled_output",
+          "baseline_loss",
+          "controlled_loss",
+          "baseline_repair",
+          "controlled_repair",
+          "baseline_marker_hits",
+          "controlled_marker_hits",
+          "baseline_mapped_to_frozen_fields",
+          "controlled_mapped_to_frozen_fields",
+          "dependency_surface"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "case_id": {
+            "type": "string"
+          },
+          "failure_family": {
+            "type": "string"
+          },
+          "horizon": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "baseline_condition": {
+            "const": "ordinary_readout_without_dependency_refresh"
+          },
+          "controlled_condition": {
+            "const": "dependency_aware_premise_refresh"
+          },
+          "readout_alignment": {
+            "const": "premise_update_stale_loss_repair_v0"
+          },
+          "baseline_output": {
+            "type": "string"
+          },
+          "controlled_output": {
+            "type": "string"
+          },
+          "baseline_loss": {
+            "type": "number"
+          },
+          "controlled_loss": {
+            "type": "number"
+          },
+          "baseline_repair": {
+            "type": "number"
+          },
+          "controlled_repair": {
+            "type": "number"
+          },
+          "baseline_marker_hits": {
+            "$ref": "#/$defs/marker_hits"
+          },
+          "controlled_marker_hits": {
+            "$ref": "#/$defs/marker_hits"
+          },
+          "baseline_mapped_to_frozen_fields": {
+            "type": "boolean"
+          },
+          "controlled_mapped_to_frozen_fields": {
+            "type": "boolean"
+          },
+          "dependency_surface": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "claim_boundary": {
+      "type": "string"
+    }
+  },
+  "$defs": {
+    "marker_hits": {
+      "type": "object",
+      "required": [
+        "stale",
+        "updated",
+        "safe_unknown"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "stale": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "updated": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "safe_unknown": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

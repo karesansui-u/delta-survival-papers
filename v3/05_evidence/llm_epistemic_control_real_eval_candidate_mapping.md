@@ -299,7 +299,9 @@ Current status:
 ```text
 The frozen task surface now exists at
 v3/05_evidence/llm_epistemic_premise_update_v0/.
-The runner and result schema are still future work.
+The marker-based scorer and result schema now exist at
+analysis/epistemic_control_premise_update_v0/.
+No outcome-bearing result artifact has been emitted yet.
 ```
 
 Required frozen fields:

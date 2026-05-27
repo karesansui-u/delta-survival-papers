@@ -372,3 +372,5 @@ Where To Read Next
   `../../05_evidence/llm_epistemic_control_real_eval_candidate_mapping.md`
 - First frozen premise-update surface:
   `../../05_evidence/llm_epistemic_premise_update_v0/freeze_manifest_v0.md`
+- Premise-update scorer / schema:
+  `../../../analysis/epistemic_control_premise_update_v0/run_eval.py`

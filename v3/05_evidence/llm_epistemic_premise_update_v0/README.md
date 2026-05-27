@@ -19,13 +19,14 @@ Current task digest:
 f339792d53c90f2d3fa93a76046c13cadaeb5cacfe5e4618934c5f3ece95b204
 ```
 
-Next implementation step:
+Scorer / schema:
 
 ```text
 analysis/epistemic_control_premise_update_v0/run_eval.py
+analysis/epistemic_control_premise_update_v0/results_schema.json
 ```
 
-The future runner should read `tasks.jsonl`, verify the digest, score baseline
-and controlled outputs with the frozen stale / updated / safe-unknown markers,
-and emit a result certificate compatible with the epistemic benchmark protocol
-chain.
+The runner reads `tasks.jsonl`, verifies the digest, scores externally supplied
+baseline and controlled outputs with the frozen stale / updated / safe-unknown
+markers, and emits a result certificate compatible with the epistemic benchmark
+protocol chain. No outcome-bearing result artifact is included in this folder.

@@ -51,7 +51,8 @@ Evidence is separated from theory claims.
   for the Lean epistemic benchmark protocol. It is not support evidence.
 - `llm_epistemic_premise_update_v0/`: first frozen real-eval candidate task
   surface for premise-update / dependency-staleness control. It contains no
-  model outputs and no support decision.
+  model outputs and no support decision. Its scorer / schema are in
+  `../../analysis/epistemic_control_premise_update_v0/`.
 - `llm_epistemic_control_frozen_toy_v0/`: small frozen toy packet for the
   epistemic-control benchmark protocol. It is a protocol-shape artifact, not
   support evidence for a real model or workflow.
