@@ -1,0 +1,320 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/structural-persistence/llm_epistemic_premise_update_v1_result.schema.json",
+  "title": "LLM Epistemic Premise Update v1 Result",
+  "type": "object",
+  "required": [
+    "artifact_type",
+    "protocol_id",
+    "result_id",
+    "runner_version",
+    "tasks_path",
+    "outputs_path",
+    "tasks_sha256",
+    "outputs_sha256",
+    "expected_tasks_sha256",
+    "task_count",
+    "case_ids",
+    "horizons",
+    "horizon_mode",
+    "readout_alignment",
+    "checks",
+    "totals",
+    "decision",
+    "silence_cases",
+    "ambiguous_cases",
+    "mixed_cases",
+    "non_ok_status_cases",
+    "determinate_cases",
+    "case_summaries",
+    "errors",
+    "claim_boundary"
+  ],
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "checks": {
+            "properties": {
+              "promotable": {"const": true}
+            },
+            "required": ["promotable"]
+          }
+        },
+        "required": ["checks"]
+      },
+      "then": {
+        "properties": {
+          "decision": {"const": "support_clean"},
+          "checks": {
+            "properties": {
+              "protocol_shape_valid": {"const": true},
+              "silence": {"const": false},
+              "ambiguous": {"const": false},
+              "mixed": {"const": false},
+              "invalid_run": {"const": false}
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "decision": {"const": "support_clean"}
+        },
+        "required": ["decision"]
+      },
+      "then": {
+        "properties": {
+          "checks": {
+            "properties": {
+              "promotable": {"const": true},
+              "protocol_shape_valid": {"const": true},
+              "silence": {"const": false},
+              "ambiguous": {"const": false},
+              "mixed": {"const": false},
+              "invalid_run": {"const": false}
+            }
+          }
+        }
+      }
+    }
+  ],
+  "properties": {
+    "artifact_type": {
+      "const": "premise_update_protocol_result"
+    },
+    "protocol_id": {
+      "const": "llm_epistemic_premise_update_v1"
+    },
+    "result_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_.-]+$"
+    },
+    "runner_version": {
+      "type": "string"
+    },
+    "tasks_path": {
+      "type": "string"
+    },
+    "outputs_path": {
+      "type": "string"
+    },
+    "tasks_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "outputs_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "expected_tasks_sha256": {
+      "type": "string"
+    },
+    "task_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "case_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "horizons": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "minimum": 1
+      }
+    },
+    "horizon_mode": {
+      "const": "batch_as_single_step_horizon_1"
+    },
+    "readout_alignment": {
+      "const": "premise_update_slot_state_v1"
+    },
+    "checks": {
+      "type": "object",
+      "required": [
+        "frozen_task_surface",
+        "task_surface_digest_matches",
+        "frozen_readout",
+        "same_horizon",
+        "outputs_complete",
+        "raw_outputs_retained",
+        "aggregate_loss_dominance",
+        "aggregate_repair_dominance",
+        "metric_dominance",
+        "determinate_metric_dominance",
+        "readout_alignment",
+        "no_worse_net_action",
+        "determinate_no_worse_net_action",
+        "has_determinate_cases",
+        "silence",
+        "ambiguous",
+        "mixed",
+        "invalid_run",
+        "protocol_shape_valid",
+        "promotable"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "frozen_task_surface": {"type": "boolean"},
+        "task_surface_digest_matches": {"type": "boolean"},
+        "frozen_readout": {"type": "boolean"},
+        "same_horizon": {"type": "boolean"},
+        "outputs_complete": {"type": "boolean"},
+        "raw_outputs_retained": {"type": "boolean"},
+        "aggregate_loss_dominance": {"type": "boolean"},
+        "aggregate_repair_dominance": {"type": "boolean"},
+        "metric_dominance": {"type": "boolean"},
+        "determinate_metric_dominance": {"type": "boolean"},
+        "readout_alignment": {"type": "boolean"},
+        "no_worse_net_action": {"type": "boolean"},
+        "determinate_no_worse_net_action": {"type": "boolean"},
+        "has_determinate_cases": {"type": "boolean"},
+        "silence": {"type": "boolean"},
+        "ambiguous": {"type": "boolean"},
+        "mixed": {"type": "boolean"},
+        "invalid_run": {"type": "boolean"},
+        "protocol_shape_valid": {"type": "boolean"},
+        "promotable": {"type": "boolean"}
+      }
+    },
+    "totals": {
+      "type": "object",
+      "required": [
+        "baseline_loss_sum",
+        "controlled_loss_sum",
+        "baseline_repair_sum",
+        "controlled_repair_sum",
+        "baseline_net_action",
+        "controlled_net_action",
+        "determinate_case_count",
+        "determinate_baseline_loss_sum",
+        "determinate_controlled_loss_sum",
+        "determinate_baseline_repair_sum",
+        "determinate_controlled_repair_sum",
+        "determinate_baseline_net_action",
+        "determinate_controlled_net_action",
+        "baseline_stale_current_sum",
+        "controlled_stale_current_sum",
+        "baseline_updated_or_safe_sum",
+        "controlled_updated_or_safe_sum",
+        "baseline_mixed_sum",
+        "controlled_mixed_sum",
+        "baseline_ambiguous_sum",
+        "controlled_ambiguous_sum"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "baseline_loss_sum": {"type": "number"},
+        "controlled_loss_sum": {"type": "number"},
+        "baseline_repair_sum": {"type": "number"},
+        "controlled_repair_sum": {"type": "number"},
+        "baseline_net_action": {"type": "number"},
+        "controlled_net_action": {"type": "number"},
+        "determinate_case_count": {"type": "number"},
+        "determinate_baseline_loss_sum": {"type": "number"},
+        "determinate_controlled_loss_sum": {"type": "number"},
+        "determinate_baseline_repair_sum": {"type": "number"},
+        "determinate_controlled_repair_sum": {"type": "number"},
+        "determinate_baseline_net_action": {"type": "number"},
+        "determinate_controlled_net_action": {"type": "number"},
+        "baseline_stale_current_sum": {"type": "number"},
+        "controlled_stale_current_sum": {"type": "number"},
+        "baseline_updated_or_safe_sum": {"type": "number"},
+        "controlled_updated_or_safe_sum": {"type": "number"},
+        "baseline_mixed_sum": {"type": "number"},
+        "controlled_mixed_sum": {"type": "number"},
+        "baseline_ambiguous_sum": {"type": "number"},
+        "controlled_ambiguous_sum": {"type": "number"}
+      }
+    },
+    "decision": {
+      "enum": [
+        "support_clean",
+        "support_with_ambiguity",
+        "no_support",
+        "mixed_inconclusive",
+        "ambiguous_inconclusive",
+        "silence",
+        "invalid_run"
+      ]
+    },
+    "silence_cases": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "ambiguous_cases": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "mixed_cases": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "non_ok_status_cases": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "determinate_cases": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "case_summaries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "case_id",
+          "failure_family",
+          "horizon",
+          "horizon_mode",
+          "baseline_condition",
+          "controlled_condition",
+          "readout_alignment",
+          "setup",
+          "update",
+          "probe",
+          "answer_target",
+          "baseline_status",
+          "controlled_status",
+          "baseline_output",
+          "controlled_output",
+          "baseline_readout",
+          "controlled_readout",
+          "baseline_loss",
+          "controlled_loss",
+          "baseline_repair",
+          "controlled_repair",
+          "determinate_for_primary_dominance",
+          "dependency_surface"
+        ],
+        "additionalProperties": true
+      }
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "claim_boundary": {
+      "type": "string"
+    }
+  }
+}

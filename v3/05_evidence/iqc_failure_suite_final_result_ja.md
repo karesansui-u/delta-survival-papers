@@ -1,0 +1,108 @@
+# IQC Failure Suite 最新結果サマリ
+
+Status: published implementation-side benchmark summary
+Date recorded: 2026-05-27
+Evaluator: bare environment / hybrid judge
+Claim boundary: empirical benchmark summary, not Lean theorem-side evidence
+
+Implementation source:
+
+- Repository: `karesansui-u/delta-zero`
+- PR: <https://github.com/karesansui-u/delta-zero/pull/2>
+- Merged commit: `8d0b3b2909280db8c45b08df3818612729440323`
+- Commit title: `feat(iqc): publish failure suite and L5 readout controls`
+- Final integration validation reported by the implementation package:
+  220 passed, 2 warnings
+
+このメモは、入力資格制御（IQC）の failure-suite benchmark の最新整理を
+公開 evidence 層に固定するための読者向けサマリである。raw output、runner
+log、実装差分、個別 transcript は implementation-side artifact として扱い、
+この公開 v3 bundle では数値、読み方、境界、既知の残課題だけを記録する。
+
+ここでの hybrid judge は keyword-first + LLM fallback の採点器を指す。
+したがって、これは「LLM judge だけ」の結果ではない。
+
+## Runner Correction
+
+旧 runner では、benchmark setup を通常対話に近い経路で投入していたため、
+setup 投入だけで応答生成、timeout、memory pollution、代謝タイミングが混ざりうる
+状態だった。最新 runner では setup / update を `/session/inject` 経路に揃え、
+setup / update を「記憶注入のみ」として扱う。
+
+さらに M3 の no-store 系では、benchmark 用の injection 経路が本番の
+no-store policy と一致していない問題が見つかった。通常対話では
+non-persistent 入力を L1 / L2 に保存しない一方、旧 benchmark injection 経路では
+WorkingMemory に先に入っていたため、L3 に昇格していなくても probe 時に
+直近会話として参照されうる。この経路を修正し、non-persistent injected user turn
+を L1 / L2 に残さないようにした後の結果をここに記録する。
+
+Implementation-side regression state:
+
+- benchmark packet assembly note: focused regression subset recorded
+  115 passed, 2 warnings before public merge
+- final published integration validation: 220 passed, 2 warnings
+- M3 focused rerun artifact: `results_iqc_m3_compare.json`
+- M3 no-store leak after correction: 0 / 20
+
+これらの implementation-side artifacts は、この v3 public tree の theorem-side
+artifact ではない。
+
+## Latest Results
+
+| Qualification type | Failure mode | raw | context_only | naive_rag | IQC |
+|---|---:|---:|---:|---:|---:|
+| source | M1 引用誤昇格 | 96% | 96% | 100% | 96% |
+| speechAct | M2 弱い相槌 | 95% | 90% | 85% | 100% |
+| permission | M3 保存禁止違反 | 80% | 80% | 85% | 100% |
+| versionState | M4 依存更新失敗 | 52% | 88% | 96% | 96% |
+
+## Reading
+
+M2 speechAct tracking:
+
+IQC は単独最高である。naive_rag より +15 pt、context_only より +10 pt。
+弱い相槌や曖昧な同意を確定事実へ誤昇格させる失敗が、この suite では 0 件だった。
+
+M3 permission tracking:
+
+IQC は L1 injection policy correction 後に単独最高である。raw / context_only
+より +20 pt、naive_rag より +15 pt。no-store / non-persistent 入力を
+通常の memory path と同じ保存ポリシーで扱った後、no-store leak は 0 / 20 になった。
+
+M4 versionState tracking:
+
+IQC は naive_rag と同率最高である。raw より +44 pt。これは、依存更新問題が
+記憶アーキテクチャだけでも大きく改善しうること、そして IQC がその水準に到達することを
+示す。残った `m4_22` は旧値誤用ではなく、「保存済み記憶にはない / 確認が必要」
+という abstention / retrieval miss である。したがって、versionState が旧値利用を
+防げなかった失敗ではなく、更新値 recall の取りこぼしとして読む。
+
+M1 source tracking:
+
+IQC は raw / context_only と同等であり、naive_rag には 4 pt 届かない。
+この suite では source attribution はベース LLM / retrieval でも比較的扱いやすい。
+したがって、M1 は IQC の追加優位を示す主結果ではなく neutral result として読む。
+
+## Main Empirical Claim
+
+この suite が支える安全な主張は次である。
+
+> IQC は、単なる retrieval ではなく、speechAct / permission / versionState の
+> qualification を明示的に管理することで、長期記憶由来の誤昇格、保存禁止違反、
+> 前提更新ミスを低減する候補である。この failure suite では M2 / M3 で全比較対象を
+> 上回り、M4 では naive_rag と同等最高性能を示した。一方、source attribution 型の
+> M1 では追加優位は限定的だった。
+
+## Boundaries
+
+このメモは次を主張しない。
+
+- Lean が実 LLM の意味論、性能、memory safety を証明したこと。
+- IQC が任意自然会話、実 product traffic、任意 memory backend で安全であること。
+- source / speechAct / permission / versionState 以外の memory qualification
+  failure を解いたこと。
+- M3 の修正前結果を support として読むこと。
+- implementation-side runner が自然言語意味論を完全に検証していること。
+
+外部説明では、この結果は theorem-side result ではなく、
+package-scoped empirical benchmark summary として引用する。

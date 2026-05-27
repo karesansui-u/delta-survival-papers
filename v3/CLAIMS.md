@@ -179,6 +179,17 @@ update, memory qualification, benchmark-audit discipline, and software evidence
 packaging. It is planning material for future frozen protocols, not support
 evidence and not a retrospective upgrade of existing logs.
 
+`v3/05_evidence/iqc_failure_suite_final_result_ja.md` records an
+implementation-side input-qualification benchmark summary, not a Lean theorem.
+Under the corrected benchmark injection path and bare environment / hybrid
+judge, the reported suite has IQC single-best on speechAct and permission
+failures, co-best on versionState, and neutral on source attribution. It may be
+used as package-scoped empirical benchmark evidence for the memory-control
+design boundary. The implementation package is published in `karesansui-u/delta-zero`
+PR #2 at commit `8d0b3b2`, with 220 passed and 2 warnings reported there.
+This does not prove LLM semantics, memory safety, product reliability, or
+general continual-learning correctness.
+
 `v3/05_evidence/llm_epistemic_premise_update_v0/` is the first frozen
 real-eval candidate task surface following that mapping. It fixes 12
 premise-update / dependency-staleness cases and their stale / updated marker
@@ -205,6 +216,17 @@ artifact; it is operational audit material only.
 records the first completed output-bearing run. Its protocol-local decision is
 `silence`, so it does not instantiate a valid benchmark result certificate and
 does not provide support evidence.
+
+`v3/05_evidence/llm_epistemic_premise_update_v1/` is a successor frozen
+readout package, not a correction or retrospective rescoring of v0. Its task
+digest, readout label, scorer / schema, preflight suite, output-collection
+protocol, run manifest, output template, and result-certificate mapping are
+recorded under v1 paths. A v1 support label is valid only for that finite
+package when `decision = support_clean`, `silence = false`, `invalid_run =
+false`, `mixed = false`, `ambiguous = false`, `promotable = true`, and
+`protocol_shape_valid = true`. It remains marker / label-readout-local
+evidence, not proof of LLM semantics, memory safety, continual-learning safety,
+or product reliability.
 
 The result-certificate boundary is:
 

@@ -234,7 +234,15 @@ revocation と freshness を含む lifecycle guard、provenance trust ordering�
 - no-store と一回限り action の境界を分けること。
 - 長期記憶の選択読出しを継続学習の更新・保持実験へ接続すること。
 
-現時点の内部テレメトリは、特定の実装条件では入力資格づけ、no-store / action 境界、状態と安定度の分離、選択読出しを含む構成が有望であることを示している。ただし、条件名、数値、修理規則、候補構成の詳細は内部検証台帳に留める。この公開ノートでは、内部条件を公開証拠として主張しない。
+現時点の内部テレメトリは、特定の実装条件では入力資格づけ、no-store / action 境界、状態と安定度の分離、選択読出しを含む構成が有望であることを示している。
+
+2026-05-27 時点で、入力資格制御の failure suite 最新サマリを
+`05_evidence/iqc_failure_suite_final_result_ja.md` に分けて記録した。このサマリでは、
+benchmark injection 経路を本番の no-store policy と揃えた後、IQC は speechAct と
+permission で単独最高、versionState で naive_rag と同率最高、source attribution
+で neutral と整理している。これは implementation-side empirical benchmark summary
+であり、実装側では `karesansui-u/delta-zero` PR #2 / commit `8d0b3b2` として公開済みである。
+ただし、Lean theorem-side evidence や一般的な memory safety 証明ではない。
 
 一方で、まだ設計上の弱点として残っている領域もある。
 
@@ -290,6 +298,7 @@ revocation と freshness を含む lifecycle guard、provenance trust ordering�
 - `05_evidence/llm_input_qualification_minimal_result_summary.md`
 - `05_evidence/llm_input_qualification_paraphrase_stress_cases.jsonl`
 - `05_evidence/llm_input_qualification_paraphrase_stress_result_summary.md`
+- `05_evidence/iqc_failure_suite_final_result_ja.md`
 - `05_evidence/llm_epistemic_control_real_eval_candidate_mapping.md`
 
 この補助資料は、Hermes、Mem0、ローカル記憶、セッション検索、ベクトル検索などを置き換えるものではない。既存の記憶プロバイダへ送る前に入力資格状態を付け、検索後に状態付き選択読出しを行い、回答・行動・共有・学習更新の直前に使用権限を確認するための、最小の公開設計である。

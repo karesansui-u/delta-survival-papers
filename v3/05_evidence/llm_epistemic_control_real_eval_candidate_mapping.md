@@ -279,23 +279,31 @@ Candidate future use:
 8. Recommended Next Frozen Protocol
 -----------------------------------
 
-The recommended first real-eval candidate is:
+The first frozen real-eval candidate was:
 
 ```text
 llm_epistemic_premise_update_v0
 ```
 
-Minimum files:
+It produced protocol-local `silence`, so the current recommended successor
+protocol is:
 
 ```text
-v3/05_evidence/llm_epistemic_premise_update_v0/freeze_manifest_v0.md
-v3/05_evidence/llm_epistemic_premise_update_v0/tasks.jsonl
-v3/05_evidence/llm_epistemic_premise_update_v0/output_collection_protocol_v0.md
-v3/05_evidence/llm_epistemic_premise_update_v0/run_manifest_result_001.md
-analysis/epistemic_control_premise_update_v0/make_output_template.py
-analysis/epistemic_control_premise_update_v0/collect_with_ollama.py
-analysis/epistemic_control_premise_update_v0/run_eval.py
-analysis/epistemic_control_premise_update_v0/results_schema.json
+llm_epistemic_premise_update_v1
+```
+
+Minimum v1 files:
+
+```text
+v3/05_evidence/llm_epistemic_premise_update_v1/freeze_manifest_v1.md
+v3/05_evidence/llm_epistemic_premise_update_v1/tasks.jsonl
+v3/05_evidence/llm_epistemic_premise_update_v1/output_collection_protocol_v1.md
+v3/05_evidence/llm_epistemic_premise_update_v1/run_manifest_result_001.md
+v3/05_evidence/llm_epistemic_premise_update_v1/design_review_v1.md
+analysis/epistemic_control_premise_update_v1/make_output_template.py
+analysis/epistemic_control_premise_update_v1/run_preflight.py
+analysis/epistemic_control_premise_update_v1/run_eval.py
+analysis/epistemic_control_premise_update_v1/results_schema.json
 ```
 
 Current status:
@@ -309,6 +317,10 @@ The output collection protocol and template generator also exist.
 The result_001 run manifest also exists.
 The first outcome-bearing result artifact has been emitted with protocol-local
 decision `silence`; it is not support evidence.
+A successor v1 readout package now exists at
+v3/05_evidence/llm_epistemic_premise_update_v1/. It keeps v0 unchanged and
+freezes a slot-state scorer, preflight suite, explicit output statuses, and
+mixed / ambiguity outcomes before any v1 output-bearing run.
 ```
 
 Required frozen fields:

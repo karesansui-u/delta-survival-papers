@@ -204,6 +204,16 @@ It maps existing implementation-side logs to candidate future protocol
 witnesses for premise update, memory qualification, benchmark-audit, and
 software evidence packaging. It is planning material, not support evidence.
 
+The current input-qualification benchmark summary is
+[`v3/05_evidence/iqc_failure_suite_final_result_ja.md`](v3/05_evidence/iqc_failure_suite_final_result_ja.md).
+It records the latest implementation-side M1--M4 failure-suite table after the
+benchmark injection path was aligned with the no-store policy: IQC is
+single-best on speechAct and permission failures, co-best on versionState, and
+neutral on source attribution. The implementation package is published in
+`karesansui-u/delta-zero` PR #2 at commit `8d0b3b2`, with 220 passed and
+2 warnings reported there. This is empirical benchmark evidence, not Lean
+theorem-side evidence.
+
 The first frozen real-eval candidate surface is
 [`v3/05_evidence/llm_epistemic_premise_update_v0/`](v3/05_evidence/llm_epistemic_premise_update_v0/).
 It fixes 12 premise-update / dependency-staleness tasks and a predeclared
@@ -219,6 +229,16 @@ The first run condition is fixed in
 The first completed output-bearing run is
 [`v3/05_evidence/llm_epistemic_premise_update_v0/llm_epistemic_premise_update_v0_result_001.md`](v3/05_evidence/llm_epistemic_premise_update_v0/llm_epistemic_premise_update_v0_result_001.md);
 its protocol-local decision is `silence`, not support.
+
+The successor v1 planning layer is
+[`v3/05_evidence/llm_epistemic_premise_update_v1/`](v3/05_evidence/llm_epistemic_premise_update_v1/).
+It leaves v0 unchanged and freezes a slot-state readout package with scorer
+preflight coverage, explicit output statuses, and first-class mixed /
+ambiguous outcomes. Its scorer lives at
+[`analysis/epistemic_control_premise_update_v1/`](analysis/epistemic_control_premise_update_v1/).
+V1 is not support evidence before a future outcome-bearing result has
+`decision = support_clean`, `protocol_shape_valid = true`, and
+`promotable = true`.
 
 ### Reproducible Toy Protocol Bundle
 

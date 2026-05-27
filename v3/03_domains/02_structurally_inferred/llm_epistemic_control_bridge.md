@@ -223,6 +223,19 @@ The completed result artifact,
 has protocol-local decision `silence`, so it does not instantiate a valid
 benchmark result certificate or support the coherent-mass comparison theorem.
 
+A v1 premise-update redesign is recorded as a new external witness / readout
+surface:
+`../../05_evidence/llm_epistemic_premise_update_v1/`. It may narrow the v0
+marker-silence failure by freezing a more explicit slot-state readout before
+outcome-bearing execution, but it must not retroactively change v0. The Lean
+certificate fields are unchanged: v1 still has to supply frozen-surface,
+frozen-readout, same-horizon, same-initial-mass, positivity, metric-dominance,
+and readout-alignment witnesses before the coherent-mass comparison theorem is
+invoked. A future v1 package is promotable only when its result has
+`decision = support_clean`, `protocol_shape_valid = true`, and
+`promotable = true`; `support_with_ambiguity`, `mixed_inconclusive`,
+`silence`, and `invalid_run` are audit outcomes, not theorem-side support.
+
 The layer boundary is:
 
 | Layer | It proves or checks | It does not prove |
@@ -233,6 +246,7 @@ The layer boundary is:
 | Named toy result artifact | deterministic toy result for the frozen packet | real-model validation or operational support |
 | Real-eval candidate mapping | possible future witness sources and remaining freeze obligations | support evidence or retrospective validation |
 | Premise-update frozen surface | predeclared setup / update / probe task surface and marker readout | model-output support before execution |
+| Premise-update v1 successor package | predeclared slot-state readout, preflight suite, explicit statuses, and mixed / ambiguity outcomes | v0 rescue, theorem upgrade, or support before a clean v1 result |
 | Field / operational evidence | practical usefulness under package-scoped evidence rules | theorem-side evidence or repository semantics |
 
 `SoftwareEvidenceNetActionBridge.lean` connects the software evidence-packet
@@ -383,6 +397,14 @@ Safe wording:
 - `../../../analysis/epistemic_control_premise_update_v0/collect_with_ollama.py`
 - `../../../analysis/epistemic_control_premise_update_v0/run_eval.py`
 - `../../../analysis/epistemic_control_premise_update_v0/results_schema.json`
+- `../../05_evidence/llm_epistemic_premise_update_v1/freeze_manifest_v1.md`
+- `../../05_evidence/llm_epistemic_premise_update_v1/design_review_v1.md`
+- `../../05_evidence/llm_epistemic_premise_update_v1/output_collection_protocol_v1.md`
+- `../../05_evidence/llm_epistemic_premise_update_v1/run_manifest_result_001.md`
+- `../../05_evidence/llm_epistemic_premise_update_v1/result_001_certificate_mapping.md`
+- `../../../analysis/epistemic_control_premise_update_v1/run_eval.py`
+- `../../../analysis/epistemic_control_premise_update_v1/run_preflight.py`
+- `../../../analysis/epistemic_control_premise_update_v1/results_schema.json`
 - `../../05_evidence/llm_epistemic_control_frozen_toy_v0/freeze_manifest_v0.md`
 - `../../05_evidence/llm_epistemic_control_frozen_toy_v0/llm_epistemic_control_frozen_toy_v0_result_001.json`
 - `../../../analysis/epistemic_control_frozen_toy_v0/run_eval.py`

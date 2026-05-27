@@ -31,22 +31,33 @@ Lean 外の protocol artifact として、
 `v3/05_evidence/llm_epistemic_control_real_eval_candidate_mapping.md`、
 `v3/05_evidence/llm_epistemic_premise_update_v0/`、
 `analysis/epistemic_control_premise_update_v0/run_eval.py`、
-`analysis/epistemic_control_premise_update_v0/make_output_template.py` も追加済みである。
+`analysis/epistemic_control_premise_update_v0/make_output_template.py`、
+`v3/05_evidence/llm_epistemic_premise_update_v1/`、
+`analysis/epistemic_control_premise_update_v1/run_eval.py` も追加済みである。
 これらは theorem ではなく、Lean 側の protocol / evaluation contract を将来の実験が
 witness するための reader-facing 固定面、deterministic toy scorer、および初回 toy result
 artifact、real-eval candidate mapping、premise-update frozen surface、その marker-based
-scorer / schema である。
+scorer / schema、successor slot-state readout / scorer package である。
+別系統の implementation-side empirical benchmark summary として
+`v3/05_evidence/iqc_failure_suite_final_result_ja.md` も追加した。これは Lean theorem
+ではなく、入力資格制御 failure suite の最新 M1--M4 結果と claim boundary を固定する
+package-scoped evidence note である。実装側 artifact は `karesansui-u/delta-zero`
+PR #2 / commit `8d0b3b2` で公開済みであり、最終統合検証は 220 passed, 2 warnings
+と記録されている。
 
 ## 証拠の階層
 
 この mapping は「Lean で何が閉じているか」と「論文で何を前面に出すべきか」を分ける。
-現時点の強い主証拠は SAT と LLM に集中しており、非CSP例は新規予測ではなく sanity / coverage benchmark
-として読む。
+現時点の強い主証拠は SAT chain と finite Lean theorem stack に集中している。LLM 側は
+過去の実験的 anchor と、現在の epistemic-control protocol / certificate chain を分けて読む。
+v1 premise-update package は successor readout / scorer package であり、support evidence
+ではない。非CSP例は新規予測ではなく sanity / coverage benchmark として読む。
 
 | 層 | 位置づけ | 読み方 |
 |---|---|---|
 | SAT chain v1.0 | 数学的 anchor | random 3-SAT の自然測度、actual path measure、MGF product、Chernoff/KL collapse が有限地平線で閉じている |
-| LLM 810 試行 | 経験的 anchor | 文脈長・制約数だけの基準モデルを越え、構造矛盾がより強い崩壊要因になることを示す |
+| LLM 810 試行 | 過去の経験的 anchor | 文脈長・制約数だけの基準モデルを越え、構造矛盾がより強い崩壊要因になることを示す候補 evidence。現在の v1 premise-update package の support ではない |
+| IQC failure suite | implementation-side empirical benchmark summary | speechAct / permission / versionState qualification failures に対する package-scoped benchmark evidence。実装側は `delta-zero` PR #2 / commit `8d0b3b2` で公開済み。Lean theorem-side evidence ではなく、source attribution では neutral |
 | Epistemic control bridge | 抽象 bridge / protocol chain | LLM の意味論や性能は証明せず、矛盾更新・修復更新・記憶資格・依存再編を既存の finite net-action kernel へ接続し、baseline comparison、metric contract、benchmark protocol、software evidence bridge までを有限・仮定明示の chain として示す |
 | Bernoulli CSP universality v1.2 | template validation | fixed assignment/coloring の iid bad-event exposure に限った水平展開。solver dynamics や依存構造は含めない |
 | Numerical sanity checks | tests-as-documentation | 抽象 wrapper が小さな具体例で期待される定数を返すことを reader-facing に確認する。経験的 support ではない |
@@ -84,6 +95,7 @@ EpistemicControlBridge
 | Premise-update run manifest | `v3/05_evidence/llm_epistemic_premise_update_v0/run_manifest_result_001.md` | result_001 の model / prompt / runtime / artifact paths を output collection 前に固定する |
 | Premise-update scorer / schema | `analysis/epistemic_control_premise_update_v0/run_eval.py` / `analysis/epistemic_control_premise_update_v0/results_schema.json` | 外部から供給された baseline / controlled outputs を frozen marker readout で採点し、result-certificate-shaped JSON を出す。model call や model validation はしない |
 | Premise-update result 001 | `v3/05_evidence/llm_epistemic_premise_update_v0/llm_epistemic_premise_update_v0_result_001.md` / `v3/05_evidence/llm_epistemic_premise_update_v0/result_001_certificate_mapping.md` | 初回 output-bearing run。decision は `silence` であり、valid benchmark result certificate ではない |
+| Premise-update v1 redesign | `v3/05_evidence/llm_epistemic_premise_update_v1/` / `analysis/epistemic_control_premise_update_v1/` | v0 silence を受けた successor frozen readout / scorer package。slot-state readout、preflight、explicit status、mixed / ambiguity handling を固定する外部 witness 層であり、新しい Lean theorem ではない |
 | Frozen toy packet | `v3/05_evidence/llm_epistemic_control_frozen_toy_v0/` | toy task surface と readout fields を固定する。結果や support claim ではない |
 | Toy scorer | `analysis/epistemic_control_frozen_toy_v0/run_eval.py` | frozen toy packet の task surface / readout / dominance / toy net-action summary を機械的に検査する |
 | Named toy result artifact | `v3/05_evidence/llm_epistemic_control_frozen_toy_v0/llm_epistemic_control_frozen_toy_v0_result_001.json` | deterministic scorer が出す初回 result artifact。certificate loop を toy packet 上で一周させるが、実 LLM / workflow の validation evidence ではない |
@@ -689,6 +701,10 @@ drift は `log(2^k / allowed)` になる。部分二項和が \(0\) と \(2^k\) 
 | [`llm_epistemic_control_frozen_toy_v0/`](../v3/05_evidence/llm_epistemic_control_frozen_toy_v0/) | contradiction injection / memory eligibility / dependency rewrite の小さな frozen task surface と metric fields | toy protocol packet であり、support evidence ではない。outcome-bearing execution は別途 ledger 化する |
 | [`run_eval.py`](../analysis/epistemic_control_frozen_toy_v0/run_eval.py) | frozen toy packet の protocol shape と metric dominance を deterministic に採点する stdlib-only runner | 実モデルを呼ばない。出力は protocol-shape smoke summary であり、実 LLM 性能や workflow correctness の support ではない |
 | [`results_schema.json`](../analysis/epistemic_control_frozen_toy_v0/results_schema.json) | scorer output の JSON schema | schema は result format を固定するだけで、metric 妥当性は証明しない |
+| [`llm_epistemic_premise_update_v0/`](../v3/05_evidence/llm_epistemic_premise_update_v0/) | first premise-update frozen real-eval candidate surface and completed `silence` result | v0 result is not support and is not retrospectively rescued by v1 |
+| [`llm_epistemic_premise_update_v1/`](../v3/05_evidence/llm_epistemic_premise_update_v1/) | successor slot-state readout / scorer package after v0 silence | planning / audit package only until a future outcome-bearing result has `decision = support_clean`, `protocol_shape_valid = true`, and `promotable = true` |
+| [`epistemic_control_premise_update_v1/run_eval.py`](../analysis/epistemic_control_premise_update_v1/run_eval.py) | deterministic v1 slot-state scorer with explicit status, ambiguity, mixed, and promotion fields | does not call a model, validate natural-language semantics, or prove performance |
+| [`iqc_failure_suite_final_result_ja.md`](../v3/05_evidence/iqc_failure_suite_final_result_ja.md) | input-qualification failure suite summary: IQC single-best on speechAct / permission, co-best on versionState, neutral on source attribution under the corrected injection path; implementation artifact published in `delta-zero` PR #2 / commit `8d0b3b2` | implementation-side empirical benchmark summary only; not a Lean result, not a general memory-safety proof |
 
 ### G2. M 側の維持能力成分分解（1）— **M 補論の表現文法**
 
