@@ -294,6 +294,14 @@ analysis/epistemic_control_premise_update_v0/run_eval.py
 analysis/epistemic_control_premise_update_v0/results_schema.json
 ```
 
+Current status:
+
+```text
+The frozen task surface now exists at
+v3/05_evidence/llm_epistemic_premise_update_v0/.
+The runner and result schema are still future work.
+```
+
 Required frozen fields:
 
 - `case_id`

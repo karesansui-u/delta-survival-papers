@@ -202,6 +202,12 @@ existing implementation-side logs to candidate future witnesses for premise
 update, memory qualification, benchmark-audit discipline, and software evidence
 packaging. It does not retrospectively convert existing logs into support.
 
+The first frozen real-eval candidate surface,
+`../../05_evidence/llm_epistemic_premise_update_v0/`, fixes 12 premise-update /
+dependency-staleness tasks and their stale / updated marker readout before
+outcome-bearing execution. It contains no model outputs and no support
+decision.
+
 The layer boundary is:
 
 | Layer | It proves or checks | It does not prove |
@@ -211,6 +217,7 @@ The layer boundary is:
 | Frozen benchmark manifest | predeclared task surface, readout, horizon, and decision rule | universal performance or transfer to another domain |
 | Named toy result artifact | deterministic toy result for the frozen packet | real-model validation or operational support |
 | Real-eval candidate mapping | possible future witness sources and remaining freeze obligations | support evidence or retrospective validation |
+| Premise-update frozen surface | predeclared setup / update / probe task surface and marker readout | model-output support before execution |
 | Field / operational evidence | practical usefulness under package-scoped evidence rules | theorem-side evidence or repository semantics |
 
 `SoftwareEvidenceNetActionBridge.lean` connects the software evidence-packet
@@ -352,6 +359,7 @@ Safe wording:
 - `../../../lean/Survival/SoftwareEvidenceNetActionBridge.lean`
 - `../../05_evidence/llm_epistemic_control_benchmark_manifest.md`
 - `../../05_evidence/llm_epistemic_control_real_eval_candidate_mapping.md`
+- `../../05_evidence/llm_epistemic_premise_update_v0/freeze_manifest_v0.md`
 - `../../05_evidence/llm_epistemic_control_frozen_toy_v0/freeze_manifest_v0.md`
 - `../../05_evidence/llm_epistemic_control_frozen_toy_v0/llm_epistemic_control_frozen_toy_v0_result_001.json`
 - `../../../analysis/epistemic_control_frozen_toy_v0/run_eval.py`

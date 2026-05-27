@@ -204,6 +204,11 @@ It maps existing implementation-side logs to candidate future protocol
 witnesses for premise update, memory qualification, benchmark-audit, and
 software evidence packaging. It is planning material, not support evidence.
 
+The first frozen real-eval candidate surface is
+[`v3/05_evidence/llm_epistemic_premise_update_v0/`](v3/05_evidence/llm_epistemic_premise_update_v0/).
+It fixes 12 premise-update / dependency-staleness tasks and a predeclared
+loss / repair readout, but contains no model outputs or support decision.
+
 ### Reproducible Toy Protocol Bundle
 
 Local bundle candidate for OSF fixation:

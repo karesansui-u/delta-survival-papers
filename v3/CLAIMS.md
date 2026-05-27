@@ -179,6 +179,12 @@ update, memory qualification, benchmark-audit discipline, and software evidence
 packaging. It is planning material for future frozen protocols, not support
 evidence and not a retrospective upgrade of existing logs.
 
+`v3/05_evidence/llm_epistemic_premise_update_v0/` is the first frozen
+real-eval candidate task surface following that mapping. It fixes 12
+premise-update / dependency-staleness cases and their stale / updated marker
+readout before outcome-bearing execution. It has no model outputs and no
+support decision.
+
 The result-certificate boundary is:
 
 | Layer | It proves or checks | It does not prove |

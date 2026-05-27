@@ -370,3 +370,5 @@ Where To Read Next
   `../../05_evidence/llm_epistemic_control_frozen_toy_v0/llm_epistemic_control_frozen_toy_v0_result_001.json`
 - Real-eval candidate mapping:
   `../../05_evidence/llm_epistemic_control_real_eval_candidate_mapping.md`
+- First frozen premise-update surface:
+  `../../05_evidence/llm_epistemic_premise_update_v0/freeze_manifest_v0.md`

@@ -209,6 +209,10 @@ validity witness として要求するが、実験デザインがそれらを満
 この継続更新の読みを future frozen protocol へ落とすための candidate mapping
 を記録する。とくに premise update / dependency staleness を第一候補に置くが、
 これは既存ログを support evidence に変えるものではない。
+`../../05_evidence/llm_epistemic_premise_update_v0/` は、この第一候補の
+frozen task surface である。12 件の setup / update / probe ケースと
+stale / updated marker readout を固定するが、model outputs や support decision
+はまだ含まない。
 
 ここでも基準モデルとの比較を明示できる。継続学習における基準モデルを「過去の知識を信頼度に基づいて再提示する」方式（E-lite）とする。E-lite は再提示の量と信頼度減衰を制御するが、前提と帰結の依存構造には立ち入らない。これに対し F-v2c は、ある前提が更新されたとき、その下流の依存属性だけを選択的に再提示する。すなわち、再提示の対象選択を依存構造に基づいて行う。結果として、依存整合性は E-lite の 0.189 から F-v2c の 0.333 へ改善する（Qwen 1.5B、各条件 seed 3 の平均）。他モデルでは、Llama 70B、Qwen 7B/27B/72B で F-v2c が E-lite を上回り、DeepSeek 32B では同値（ともに 0.333）であった。Gemma 31B では逆転が生じている（E-lite 0.400、F-v2c 0.200）が、この逆転は seed 依存であり（seed 001-002 では F-v2c ≥ E-lite）、F-v2c の descendant_update_weight による勾配の不安定化が特定の初期パラメータで生じたものと考えられる。同じ Gemma 31B において F-multi は正常に機能している（seed 001-002 で 0.533）ことから、アルゴリズムの本質的な限界ではなく、学習設定との相互作用として扱うのが妥当である。この改善の主な要因は、再提示の対象を依存構造に基づいて選択するようにしたことにある。ただし、F-v2c は量（再提示件数の絞り込み）や除外ポリシーも同時に変更しているため、依存構造の寄与を完全に分離するにはさらなるアブレーションが必要である。以上を踏まえると、本結果は、継続学習ドメインにおいても、依存構造を区別する枠組みが信頼度ベースの基準モデルに対して追加の説明力を持ちうることを示唆する。
 

@@ -52,6 +52,9 @@ task surface、readout、horizon、初期条件、metric dominance、readout ali
 対応づける計画メモである。これは既存ログを support に昇格するものではなく、
 次にどの premise-update / memory-qualification / benchmark-audit surface を
 freeze すべきかを整理するための文書である。
+`../../05_evidence/llm_epistemic_premise_update_v0/` は、その最初の
+premise-update frozen surface であり、12 件の dependency-staleness tasks を
+outcome-bearing execution 前に固定する。結果や support claim はまだ含まない。
 
 2. 観測量の定義
 
