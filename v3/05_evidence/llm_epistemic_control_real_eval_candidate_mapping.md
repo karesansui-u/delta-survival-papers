@@ -307,7 +307,8 @@ The marker-based scorer and result schema now exist at
 analysis/epistemic_control_premise_update_v0/.
 The output collection protocol and template generator also exist.
 The result_001 run manifest also exists.
-No outcome-bearing result artifact has been emitted yet.
+The first outcome-bearing result artifact has been emitted with protocol-local
+decision `silence`; it is not support evidence.
 ```
 
 Required frozen fields:

@@ -1,0 +1,252 @@
+{
+  "artifact_type": "premise_update_output_collection_metadata",
+  "baseline_prompt_version": "ordinary_readout_without_dependency_refresh_v0",
+  "case_count": 12,
+  "claim_boundary": "This metadata records a local output collection run. It does not score the outputs or prove model performance.",
+  "collected_at_utc": "2026-05-27T01:24:33.793332+00:00",
+  "collector_version": "0.1.0",
+  "controlled_prompt_version": "dependency_aware_premise_refresh_v0",
+  "diagnostics": [
+    {
+      "baseline_diagnostics": {
+        "done": true,
+        "elapsed_seconds": 1.072,
+        "eval_count": 4,
+        "load_duration": 289609916,
+        "prompt_eval_count": 126,
+        "total_duration": 1057900208
+      },
+      "case_id": "pu_001_office_relocation_station",
+      "controlled_diagnostics": {
+        "done": true,
+        "elapsed_seconds": 1.879,
+        "eval_count": 15,
+        "load_duration": 628820916,
+        "prompt_eval_count": 163,
+        "total_duration": 1877271375
+      }
+    },
+    {
+      "baseline_diagnostics": {
+        "done": true,
+        "elapsed_seconds": 4.002,
+        "eval_count": 32,
+        "load_duration": 361720875,
+        "prompt_eval_count": 127,
+        "total_duration": 4000802250
+      },
+      "case_id": "pu_002_address_change_local_services",
+      "controlled_diagnostics": {
+        "done": true,
+        "elapsed_seconds": 9.5,
+        "eval_count": 64,
+        "load_duration": 356388500,
+        "prompt_eval_count": 163,
+        "total_duration": 9497891125
+      }
+    },
+    {
+      "baseline_diagnostics": {
+        "done": true,
+        "elapsed_seconds": 2.72,
+        "eval_count": 13,
+        "load_duration": 390108958,
+        "prompt_eval_count": 127,
+        "total_duration": 2718901875
+      },
+      "case_id": "pu_003_job_change_commute",
+      "controlled_diagnostics": {
+        "done": true,
+        "elapsed_seconds": 2.95,
+        "eval_count": 34,
+        "load_duration": 577322250,
+        "prompt_eval_count": 165,
+        "total_duration": 2947990041
+      }
+    },
+    {
+      "baseline_diagnostics": {
+        "done": true,
+        "elapsed_seconds": 3.821,
+        "eval_count": 26,
+        "load_duration": 608765208,
+        "prompt_eval_count": 106,
+        "total_duration": 3818580333
+      },
+      "case_id": "pu_004_diet_change_lunch",
+      "controlled_diagnostics": {
+        "done": true,
+        "elapsed_seconds": 11.107,
+        "eval_count": 64,
+        "load_duration": 361906250,
+        "prompt_eval_count": 143,
+        "total_duration": 11104434791
+      }
+    },
+    {
+      "baseline_diagnostics": {
+        "done": true,
+        "elapsed_seconds": 0.804,
+        "eval_count": 5,
+        "load_duration": 356514042,
+        "prompt_eval_count": 101,
+        "total_duration": 801392459
+      },
+      "case_id": "pu_005_allergy_update_menu",
+      "controlled_diagnostics": {
+        "done": true,
+        "elapsed_seconds": 6.091,
+        "eval_count": 64,
+        "load_duration": 336599250,
+        "prompt_eval_count": 140,
+        "total_duration": 6086131833
+      }
+    },
+    {
+      "baseline_diagnostics": {
+        "done": true,
+        "elapsed_seconds": 1.329,
+        "eval_count": 4,
+        "load_duration": 361759500,
+        "prompt_eval_count": 120,
+        "total_duration": 1322961291
+      },
+      "case_id": "pu_006_hobby_switch_sports_gear",
+      "controlled_diagnostics": {
+        "done": true,
+        "elapsed_seconds": 6.514,
+        "eval_count": 64,
+        "load_duration": 721020459,
+        "prompt_eval_count": 156,
+        "total_duration": 6511441959
+      }
+    },
+    {
+      "baseline_diagnostics": {
+        "done": true,
+        "elapsed_seconds": 2.991,
+        "eval_count": 25,
+        "load_duration": 834029208,
+        "prompt_eval_count": 106,
+        "total_duration": 2989421125
+      },
+      "case_id": "pu_007_household_change_housing",
+      "controlled_diagnostics": {
+        "done": true,
+        "elapsed_seconds": 9.661,
+        "eval_count": 64,
+        "load_duration": 462602792,
+        "prompt_eval_count": 143,
+        "total_duration": 9659140708
+      }
+    },
+    {
+      "baseline_diagnostics": {
+        "done": true,
+        "elapsed_seconds": 4.029,
+        "eval_count": 20,
+        "load_duration": 305863125,
+        "prompt_eval_count": 107,
+        "total_duration": 4026359250
+      },
+      "case_id": "pu_008_sleep_schedule_health",
+      "controlled_diagnostics": {
+        "done": true,
+        "elapsed_seconds": 12.586,
+        "eval_count": 64,
+        "load_duration": 581071667,
+        "prompt_eval_count": 143,
+        "total_duration": 12583824375
+      }
+    },
+    {
+      "baseline_diagnostics": {
+        "done": true,
+        "elapsed_seconds": 1.666,
+        "eval_count": 11,
+        "load_duration": 356188708,
+        "prompt_eval_count": 118,
+        "total_duration": 1664721041
+      },
+      "case_id": "pu_009_favorite_food_current_value",
+      "controlled_diagnostics": {
+        "done": true,
+        "elapsed_seconds": 1.647,
+        "eval_count": 11,
+        "load_duration": 658186084,
+        "prompt_eval_count": 154,
+        "total_duration": 1644978250
+      }
+    },
+    {
+      "baseline_diagnostics": {
+        "done": true,
+        "elapsed_seconds": 3.573,
+        "eval_count": 30,
+        "load_duration": 293682125,
+        "prompt_eval_count": 115,
+        "total_duration": 3570902417
+      },
+      "case_id": "pu_010_work_mode_commute_prep",
+      "controlled_diagnostics": {
+        "done": true,
+        "elapsed_seconds": 6.152,
+        "eval_count": 64,
+        "load_duration": 383406583,
+        "prompt_eval_count": 151,
+        "total_duration": 6150037500
+      }
+    },
+    {
+      "baseline_diagnostics": {
+        "done": true,
+        "elapsed_seconds": 1.46,
+        "eval_count": 8,
+        "load_duration": 389535792,
+        "prompt_eval_count": 109,
+        "total_duration": 1458468959
+      },
+      "case_id": "pu_011_language_goal_switch",
+      "controlled_diagnostics": {
+        "done": true,
+        "elapsed_seconds": 6.255,
+        "eval_count": 64,
+        "load_duration": 387841250,
+        "prompt_eval_count": 145,
+        "total_duration": 6253313083
+      }
+    },
+    {
+      "baseline_diagnostics": {
+        "done": true,
+        "elapsed_seconds": 1.848,
+        "eval_count": 12,
+        "load_duration": 333544958,
+        "prompt_eval_count": 101,
+        "total_duration": 1846401333
+      },
+      "case_id": "pu_012_deadline_extension",
+      "controlled_diagnostics": {
+        "done": true,
+        "elapsed_seconds": 1.251,
+        "eval_count": 11,
+        "load_duration": 383610166,
+        "prompt_eval_count": 133,
+        "total_duration": 1240378333
+      }
+    }
+  ],
+  "model": "gemma4:e4b",
+  "ollama_url": "http://127.0.0.1:11434/api/generate",
+  "options": {
+    "num_predict": 64,
+    "seed": 20260527,
+    "temperature": 0,
+    "top_p": 1
+  },
+  "output_path": "v3/05_evidence/llm_epistemic_premise_update_v0/premise_update_outputs_result_001.jsonl",
+  "output_sha256": "a9ca07d8f9c07055cd7576619dfd53ff9a3c9349b9b9733c20844f653985f51c",
+  "run_id": "llm_epistemic_premise_update_v0_result_001",
+  "task_path": "/Users/sunagawa/Project/delta-survival-paper/v3/05_evidence/llm_epistemic_premise_update_v0/tasks.jsonl",
+  "task_sha256": "f339792d53c90f2d3fa93a76046c13cadaeb5cacfe5e4618934c5f3ece95b204"
+}

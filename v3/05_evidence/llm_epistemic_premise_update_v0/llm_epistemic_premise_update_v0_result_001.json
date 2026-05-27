@@ -1,0 +1,522 @@
+{
+  "artifact_type": "premise_update_protocol_result",
+  "case_ids": [
+    "pu_001_office_relocation_station",
+    "pu_002_address_change_local_services",
+    "pu_003_job_change_commute",
+    "pu_004_diet_change_lunch",
+    "pu_005_allergy_update_menu",
+    "pu_006_hobby_switch_sports_gear",
+    "pu_007_household_change_housing",
+    "pu_008_sleep_schedule_health",
+    "pu_009_favorite_food_current_value",
+    "pu_010_work_mode_commute_prep",
+    "pu_011_language_goal_switch",
+    "pu_012_deadline_extension"
+  ],
+  "case_summaries": [
+    {
+      "baseline_condition": "ordinary_readout_without_dependency_refresh",
+      "baseline_loss": 1,
+      "baseline_mapped_to_frozen_fields": true,
+      "baseline_marker_hits": {
+        "safe_unknown": [],
+        "stale": [
+          "Tokyo Station"
+        ],
+        "updated": []
+      },
+      "baseline_output": "Tokyo Station.",
+      "baseline_repair": 0,
+      "case_id": "pu_001_office_relocation_station",
+      "controlled_condition": "dependency_aware_premise_refresh",
+      "controlled_loss": 0,
+      "controlled_mapped_to_frozen_fields": true,
+      "controlled_marker_hits": {
+        "safe_unknown": [
+          "must be recomputed"
+        ],
+        "stale": [],
+        "updated": []
+      },
+      "controlled_output": "The company's nearest station must be recomputed or is unknown.",
+      "controlled_repair": 1,
+      "dependency_surface": [
+        "headquarters_location",
+        "nearest_station",
+        "commute_line"
+      ],
+      "failure_family": "dependency_staleness",
+      "horizon": 1,
+      "readout_alignment": "premise_update_stale_loss_repair_v0"
+    },
+    {
+      "baseline_condition": "ordinary_readout_without_dependency_refresh",
+      "baseline_loss": 0,
+      "baseline_mapped_to_frozen_fields": true,
+      "baseline_marker_hits": {
+        "safe_unknown": [],
+        "stale": [
+          "OX",
+          "Setagaya General Hospital",
+          "Setagaya"
+        ],
+        "updated": [
+          "Yokohama",
+          "Kohoku"
+        ]
+      },
+      "baseline_output": "The user's home address is in Kohoku Ward, Yokohama. The nearby grocery store is OX. The nearest hospital is Setagaya General Hospital.",
+      "baseline_repair": 1,
+      "case_id": "pu_002_address_change_local_services",
+      "controlled_condition": "dependency_aware_premise_refresh",
+      "controlled_loss": 0,
+      "controlled_mapped_to_frozen_fields": true,
+      "controlled_marker_hits": {
+        "safe_unknown": [],
+        "stale": [
+          "Setagaya",
+          "Tokyo"
+        ],
+        "updated": [
+          "Yokohama",
+          "Kohoku"
+        ]
+      },
+      "controlled_output": "**Invalidation/Refresh:**\n\n*   **home\\_address:** Must be refreshed. (Old: Setagaya, Tokyo $\\rightarrow$ New: Kohoku Ward, Yokohama)\n*   **nearby\\_grocery:** Must be recomputed. (Dependent on `home_address`)\n*   **nearest\\_",
+      "controlled_repair": 1,
+      "dependency_surface": [
+        "home_address",
+        "nearby_grocery",
+        "nearest_hospital"
+      ],
+      "failure_family": "dependency_staleness",
+      "horizon": 1,
+      "readout_alignment": "premise_update_stale_loss_repair_v0"
+    },
+    {
+      "baseline_condition": "ordinary_readout_without_dependency_refresh",
+      "baseline_loss": 0,
+      "baseline_mapped_to_frozen_fields": true,
+      "baseline_marker_hits": {
+        "safe_unknown": [],
+        "stale": [
+          "30 minutes"
+        ],
+        "updated": [
+          "Shinjuku"
+        ]
+      },
+      "baseline_output": "The commute to Shinjuku takes 30 minutes.",
+      "baseline_repair": 1,
+      "case_id": "pu_003_job_change_commute",
+      "controlled_condition": "dependency_aware_premise_refresh",
+      "controlled_loss": 0,
+      "controlled_mapped_to_frozen_fields": true,
+      "controlled_marker_hits": {
+        "safe_unknown": [
+          "unknown"
+        ],
+        "stale": [
+          "30 minutes"
+        ],
+        "updated": []
+      },
+      "controlled_output": "The user's current commute is unknown. The previous commute time (30 minutes) was tied to the old employer and office location, which have been updated.",
+      "controlled_repair": 1,
+      "dependency_surface": [
+        "employer",
+        "office_location",
+        "commute_time",
+        "lunch_area"
+      ],
+      "failure_family": "dependency_staleness",
+      "horizon": 1,
+      "readout_alignment": "premise_update_stale_loss_repair_v0"
+    },
+    {
+      "baseline_condition": "ordinary_readout_without_dependency_refresh",
+      "baseline_loss": 0,
+      "baseline_mapped_to_frozen_fields": true,
+      "baseline_marker_hits": {
+        "safe_unknown": [],
+        "stale": [
+          "does not eat meat"
+        ],
+        "updated": [
+          "meat",
+          "yakiniku"
+        ]
+      },
+      "baseline_output": "The user is vegetarian and does not eat meat. The user changed policy and recently started eating yakiniku and other meat dishes.",
+      "baseline_repair": 1,
+      "case_id": "pu_004_diet_change_lunch",
+      "controlled_condition": "dependency_aware_premise_refresh",
+      "controlled_loss": 0,
+      "controlled_mapped_to_frozen_fields": true,
+      "controlled_marker_hits": {
+        "safe_unknown": [],
+        "stale": [
+          "does not eat meat"
+        ],
+        "updated": [
+          "meat",
+          "yakiniku"
+        ]
+      },
+      "controlled_output": "**Invalidation/Refresh:**\n\n*   **diet\\_policy:** Updated from \"vegetarian and does not eat meat\" to reflect the inclusion of meat (yakiniku).\n*   **allowed\\_foods:** Must be recomputed. The previous restriction against meat is lifted.\n*   **lunch\\_recommendation",
+      "controlled_repair": 1,
+      "dependency_surface": [
+        "diet_policy",
+        "allowed_foods",
+        "lunch_recommendation"
+      ],
+      "failure_family": "dependency_staleness",
+      "horizon": 1,
+      "readout_alignment": "premise_update_stale_loss_repair_v0"
+    },
+    {
+      "baseline_condition": "ordinary_readout_without_dependency_refresh",
+      "baseline_loss": 0,
+      "baseline_mapped_to_frozen_fields": false,
+      "baseline_marker_hits": {
+        "safe_unknown": [],
+        "stale": [],
+        "updated": []
+      },
+      "baseline_output": "Shrimp dishes.",
+      "baseline_repair": 0,
+      "case_id": "pu_005_allergy_update_menu",
+      "controlled_condition": "dependency_aware_premise_refresh",
+      "controlled_loss": 0,
+      "controlled_mapped_to_frozen_fields": true,
+      "controlled_marker_hits": {
+        "safe_unknown": [],
+        "stale": [
+          "no allergies"
+        ],
+        "updated": [
+          "shrimp allergy",
+          "allergy"
+        ]
+      },
+      "controlled_output": "**Invalidation/Refresh:**\n\n*   **allergy\\_status:** Changes from \"No allergies\" to \"Shrimp allergy\".\n*   **liked\\_food:** Remains \"Shrimp dishes\" (This preference might need re-evaluation given the allergy, but the direct dependency update is on the allergy status).",
+      "controlled_repair": 1,
+      "dependency_surface": [
+        "allergy_status",
+        "liked_food",
+        "safe_lunch_options"
+      ],
+      "failure_family": "dependency_staleness",
+      "horizon": 1,
+      "readout_alignment": "premise_update_stale_loss_repair_v0"
+    },
+    {
+      "baseline_condition": "ordinary_readout_without_dependency_refresh",
+      "baseline_loss": 0,
+      "baseline_mapped_to_frozen_fields": true,
+      "baseline_marker_hits": {
+        "safe_unknown": [],
+        "stale": [],
+        "updated": [
+          "soccer"
+        ]
+      },
+      "baseline_output": "Soccer gear.",
+      "baseline_repair": 1,
+      "case_id": "pu_006_hobby_switch_sports_gear",
+      "controlled_condition": "dependency_aware_premise_refresh",
+      "controlled_loss": 0,
+      "controlled_mapped_to_frozen_fields": true,
+      "controlled_marker_hits": {
+        "safe_unknown": [],
+        "stale": [
+          "golf course"
+        ],
+        "updated": [
+          "soccer"
+        ]
+      },
+      "controlled_output": "**Dependency Refresh:**\n\n*   **current\\_hobby:** Updated from 'golf' to 'soccer'.\n*   **weekend\\_activity:** Updated from 'golf course' to 'soccer field' (inferred from new hobby).\n*   **equipment\\_need:** Invalidated/Recomputed. The previous dependency",
+      "controlled_repair": 1,
+      "dependency_surface": [
+        "current_hobby",
+        "weekend_activity",
+        "equipment_need"
+      ],
+      "failure_family": "dependency_staleness",
+      "horizon": 1,
+      "readout_alignment": "premise_update_stale_loss_repair_v0"
+    },
+    {
+      "baseline_condition": "ordinary_readout_without_dependency_refresh",
+      "baseline_loss": 0,
+      "baseline_mapped_to_frozen_fields": true,
+      "baseline_marker_hits": {
+        "safe_unknown": [],
+        "stale": [],
+        "updated": [
+          "three people",
+          "child"
+        ]
+      },
+      "baseline_output": "The user now has a child and the household has three people, so a one-bedroom apartment is no longer appropriate.",
+      "baseline_repair": 1,
+      "case_id": "pu_007_household_change_housing",
+      "controlled_condition": "dependency_aware_premise_refresh",
+      "controlled_loss": 0,
+      "controlled_mapped_to_frozen_fields": true,
+      "controlled_marker_hits": {
+        "safe_unknown": [],
+        "stale": [],
+        "updated": [
+          "child"
+        ]
+      },
+      "controlled_output": "**Invalidation/Refresh:**\n\n*   **household\\_size:** Changes from 1 to 3.\n*   **housing\\_size:** Must be recomputed based on the new household size and the need for a child.\n*   **layout\\_recommendation:** Must be recomputed based on the new",
+      "controlled_repair": 1,
+      "dependency_surface": [
+        "household_size",
+        "housing_size",
+        "layout_recommendation"
+      ],
+      "failure_family": "dependency_staleness",
+      "horizon": 1,
+      "readout_alignment": "premise_update_stale_loss_repair_v0"
+    },
+    {
+      "baseline_condition": "ordinary_readout_without_dependency_refresh",
+      "baseline_loss": 1,
+      "baseline_mapped_to_frozen_fields": true,
+      "baseline_marker_hits": {
+        "safe_unknown": [],
+        "stale": [
+          "seven hours",
+          "healthy routine"
+        ],
+        "updated": []
+      },
+      "baseline_output": "The user should aim to increase their sleep duration back to seven hours to maintain a healthy routine.",
+      "baseline_repair": 0,
+      "case_id": "pu_008_sleep_schedule_health",
+      "controlled_condition": "dependency_aware_premise_refresh",
+      "controlled_loss": 0,
+      "controlled_mapped_to_frozen_fields": true,
+      "controlled_marker_hits": {
+        "safe_unknown": [],
+        "stale": [
+          "seven hours"
+        ],
+        "updated": [
+          "five hours"
+        ]
+      },
+      "controlled_output": "**Invalidation/Refresh:**\n\n*   **sleep\\_duration:** Updated from \"seven hours every night\" to \"five hours recently\".\n*   **health\\_status:** Must be recomputed based on the reduced sleep duration.\n*   **health\\_advice:** Must be recomputed based on the reduced sleep",
+      "controlled_repair": 1,
+      "dependency_surface": [
+        "sleep_duration",
+        "health_status",
+        "health_advice"
+      ],
+      "failure_family": "dependency_staleness",
+      "horizon": 1,
+      "readout_alignment": "premise_update_stale_loss_repair_v0"
+    },
+    {
+      "baseline_condition": "ordinary_readout_without_dependency_refresh",
+      "baseline_loss": 0,
+      "baseline_mapped_to_frozen_fields": true,
+      "baseline_marker_hits": {
+        "safe_unknown": [],
+        "stale": [],
+        "updated": [
+          "ramen",
+          "current favorite"
+        ]
+      },
+      "baseline_output": "The user's current favorite food is ramen.",
+      "baseline_repair": 1,
+      "case_id": "pu_009_favorite_food_current_value",
+      "controlled_condition": "dependency_aware_premise_refresh",
+      "controlled_loss": 0,
+      "controlled_mapped_to_frozen_fields": true,
+      "controlled_marker_hits": {
+        "safe_unknown": [],
+        "stale": [],
+        "updated": [
+          "ramen",
+          "current favorite"
+        ]
+      },
+      "controlled_output": "The user's current favorite food is ramen.",
+      "controlled_repair": 1,
+      "dependency_surface": [
+        "favorite_food",
+        "food_frequency",
+        "current_preference"
+      ],
+      "failure_family": "dependency_staleness",
+      "horizon": 1,
+      "readout_alignment": "premise_update_stale_loss_repair_v0"
+    },
+    {
+      "baseline_condition": "ordinary_readout_without_dependency_refresh",
+      "baseline_loss": 0,
+      "baseline_mapped_to_frozen_fields": true,
+      "baseline_marker_hits": {
+        "safe_unknown": [],
+        "stale": [
+          "fully remote"
+        ],
+        "updated": [
+          "three days per week",
+          "office",
+          "hybrid"
+        ]
+      },
+      "baseline_output": "The user should prepare for a hybrid schedule, as they will be in the office three days per week, though they still work fully remote otherwise.",
+      "baseline_repair": 1,
+      "case_id": "pu_010_work_mode_commute_prep",
+      "controlled_condition": "dependency_aware_premise_refresh",
+      "controlled_loss": 0,
+      "controlled_mapped_to_frozen_fields": true,
+      "controlled_marker_hits": {
+        "safe_unknown": [],
+        "stale": [
+          "fully remote"
+        ],
+        "updated": [
+          "office",
+          "commute",
+          "hybrid"
+        ]
+      },
+      "controlled_output": "**work_mode:** Hybrid (Updated from Fully Remote)\n**commute_need:** Moderate (Updated from Zero)\n**office_preparation:** Needs to prepare for an in-office environment (e.g., packing a lunch, considering office attire, etc.).\n\n**Answer:**\nThe user should prepare",
+      "controlled_repair": 1,
+      "dependency_surface": [
+        "work_mode",
+        "commute_need",
+        "office_preparation"
+      ],
+      "failure_family": "dependency_staleness",
+      "horizon": 1,
+      "readout_alignment": "premise_update_stale_loss_repair_v0"
+    },
+    {
+      "baseline_condition": "ordinary_readout_without_dependency_refresh",
+      "baseline_loss": 0,
+      "baseline_mapped_to_frozen_fields": true,
+      "baseline_marker_hits": {
+        "safe_unknown": [],
+        "stale": [],
+        "updated": [
+          "Spanish"
+        ]
+      },
+      "baseline_output": "The user is studying Spanish now.",
+      "baseline_repair": 1,
+      "case_id": "pu_011_language_goal_switch",
+      "controlled_condition": "dependency_aware_premise_refresh",
+      "controlled_loss": 0,
+      "controlled_mapped_to_frozen_fields": true,
+      "controlled_marker_hits": {
+        "safe_unknown": [],
+        "stale": [],
+        "updated": [
+          "Spanish",
+          "switched",
+          "stopped studying English"
+        ]
+      },
+      "controlled_output": "The `study_resources` field must be recomputed.\n\n**Reasoning:**\nThe stored setup indicated the user was studying English. The appended update explicitly states the user switched to Spanish and stopped studying English. Therefore, the previous value for `study_resources` is invalid.\n\n**Answer:**\nSince the",
+      "controlled_repair": 1,
+      "dependency_surface": [
+        "language_goal",
+        "study_resources",
+        "exam_target"
+      ],
+      "failure_family": "dependency_staleness",
+      "horizon": 1,
+      "readout_alignment": "premise_update_stale_loss_repair_v0"
+    },
+    {
+      "baseline_condition": "ordinary_readout_without_dependency_refresh",
+      "baseline_loss": 0,
+      "baseline_mapped_to_frozen_fields": true,
+      "baseline_marker_hits": {
+        "safe_unknown": [],
+        "stale": [],
+        "updated": [
+          "April 15",
+          "extended"
+        ]
+      },
+      "baseline_output": "The project deadline was extended to April 15.",
+      "baseline_repair": 1,
+      "case_id": "pu_012_deadline_extension",
+      "controlled_condition": "dependency_aware_premise_refresh",
+      "controlled_loss": 0,
+      "controlled_mapped_to_frozen_fields": true,
+      "controlled_marker_hits": {
+        "safe_unknown": [],
+        "stale": [],
+        "updated": [
+          "April 15"
+        ]
+      },
+      "controlled_output": "The current project deadline is April 15.",
+      "controlled_repair": 1,
+      "dependency_surface": [
+        "deadline",
+        "schedule",
+        "planning_date"
+      ],
+      "failure_family": "dependency_staleness",
+      "horizon": 1,
+      "readout_alignment": "premise_update_stale_loss_repair_v0"
+    }
+  ],
+  "checks": {
+    "aggregate_loss_dominance": true,
+    "aggregate_repair_dominance": true,
+    "frozen_readout": true,
+    "frozen_task_surface": true,
+    "invalid_run": false,
+    "metric_dominance": true,
+    "no_worse_net_action": true,
+    "outputs_complete": true,
+    "protocol_shape_valid": false,
+    "raw_outputs_retained": true,
+    "readout_alignment": true,
+    "same_horizon": true,
+    "silence": true,
+    "task_surface_digest_matches": true
+  },
+  "claim_boundary": "This result is a marker-based score over externally supplied baseline / controlled outputs for a frozen premise-update task surface. It does not prove real LLM semantics, model performance, memory safety, continual-learning safety, or workflow correctness.",
+  "decision": "silence",
+  "errors": [],
+  "expected_tasks_sha256": "f339792d53c90f2d3fa93a76046c13cadaeb5cacfe5e4618934c5f3ece95b204",
+  "horizons": [
+    1
+  ],
+  "outputs_path": "v3/05_evidence/llm_epistemic_premise_update_v0/premise_update_outputs_result_001.jsonl",
+  "outputs_sha256": "a9ca07d8f9c07055cd7576619dfd53ff9a3c9349b9b9733c20844f653985f51c",
+  "protocol_id": "llm_epistemic_premise_update_v0",
+  "readout_alignment": "premise_update_stale_loss_repair_v0",
+  "result_id": "llm_epistemic_premise_update_v0_result_001",
+  "runner_version": "0.1.0",
+  "silence_cases": [
+    "pu_005_allergy_update_menu"
+  ],
+  "task_count": 12,
+  "tasks_path": "/Users/sunagawa/Project/delta-survival-paper/v3/05_evidence/llm_epistemic_premise_update_v0/tasks.jsonl",
+  "tasks_sha256": "f339792d53c90f2d3fa93a76046c13cadaeb5cacfe5e4618934c5f3ece95b204",
+  "totals": {
+    "baseline_loss_sum": 2,
+    "baseline_net_action": -7,
+    "baseline_repair_sum": 9,
+    "controlled_loss_sum": 0,
+    "controlled_net_action": -12,
+    "controlled_repair_sum": 12
+  }
+}

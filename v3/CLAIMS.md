@@ -201,6 +201,10 @@ output-bearing run before those outputs are promoted.
 `v3/05_evidence/llm_epistemic_premise_update_v0/collection_attempt_result_001_timeout_qwen35_9b.md`
 records an aborted timeout attempt that produced no raw-output or result
 artifact; it is operational audit material only.
+`v3/05_evidence/llm_epistemic_premise_update_v0/llm_epistemic_premise_update_v0_result_001.md`
+records the first completed output-bearing run. Its protocol-local decision is
+`silence`, so it does not instantiate a valid benchmark result certificate and
+does not provide support evidence.
 
 The result-certificate boundary is:
 

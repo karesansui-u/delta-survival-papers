@@ -56,6 +56,9 @@ Evidence is separated from theory claims.
   collection rule is `llm_epistemic_premise_update_v0/output_collection_protocol_v0.md`.
   The first run condition is fixed in
   `llm_epistemic_premise_update_v0/run_manifest_result_001.md`.
+  `llm_epistemic_premise_update_v0/llm_epistemic_premise_update_v0_result_001.md`
+  records the first completed output-bearing run; its protocol-local decision
+  is `silence`.
 - `llm_epistemic_control_frozen_toy_v0/`: small frozen toy packet for the
   epistemic-control benchmark protocol. It is a protocol-shape artifact, not
   support evidence for a real model or workflow.

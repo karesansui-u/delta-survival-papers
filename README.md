@@ -216,6 +216,9 @@ The output collection rule is fixed in
 [`v3/05_evidence/llm_epistemic_premise_update_v0/output_collection_protocol_v0.md`](v3/05_evidence/llm_epistemic_premise_update_v0/output_collection_protocol_v0.md).
 The first run condition is fixed in
 [`v3/05_evidence/llm_epistemic_premise_update_v0/run_manifest_result_001.md`](v3/05_evidence/llm_epistemic_premise_update_v0/run_manifest_result_001.md).
+The first completed output-bearing run is
+[`v3/05_evidence/llm_epistemic_premise_update_v0/llm_epistemic_premise_update_v0_result_001.md`](v3/05_evidence/llm_epistemic_premise_update_v0/llm_epistemic_premise_update_v0_result_001.md);
+its protocol-local decision is `silence`, not support.
 
 ### Reproducible Toy Protocol Bundle
 

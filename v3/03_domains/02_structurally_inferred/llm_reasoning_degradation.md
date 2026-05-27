@@ -61,6 +61,9 @@ outputs を採点する。model call や model validation は行わない。
 `../../05_evidence/llm_epistemic_premise_update_v0/output_collection_protocol_v0.md`
 は、その raw output collection procedure を固定する文書であり、model output
 や validation evidence ではない。
+初回 output-bearing run は
+`../../05_evidence/llm_epistemic_premise_update_v0/llm_epistemic_premise_update_v0_result_001.md`
+に記録されているが、decision は `silence` であり、support evidence ではない。
 
 2. 観測量の定義
 

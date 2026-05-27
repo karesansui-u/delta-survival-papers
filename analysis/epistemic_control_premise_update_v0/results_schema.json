@@ -11,6 +11,7 @@
     "tasks_path",
     "outputs_path",
     "tasks_sha256",
+    "outputs_sha256",
     "expected_tasks_sha256",
     "task_count",
     "case_ids",
@@ -46,6 +47,10 @@
       "type": "string"
     },
     "tasks_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "outputs_sha256": {
       "type": "string",
       "pattern": "^[0-9a-f]{64}$"
     },

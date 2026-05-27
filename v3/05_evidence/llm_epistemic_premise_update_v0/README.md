@@ -15,6 +15,14 @@ Files:
   template for `result_001`.
 - `collection_attempt_result_001_timeout_qwen35_9b.md`: audit note for an
   aborted qwen3.5:9b collection attempt that emitted no result artifact.
+- `premise_update_outputs_result_001.jsonl`: raw baseline / controlled outputs
+  for the first completed run.
+- `premise_update_output_collection_result_001.json`: collection metadata for
+  the first completed run.
+- `llm_epistemic_premise_update_v0_result_001.json`: scored result artifact.
+- `llm_epistemic_premise_update_v0_result_001.md`: reader-facing scored result
+  summary.
+- `result_001_certificate_mapping.md`: theorem-side certificate mapping note.
 
 This packet freezes the first real-eval candidate task surface for the
 epistemic-control benchmark protocol. It contains no model outputs and no
@@ -40,3 +48,13 @@ The runner reads `tasks.jsonl`, verifies the digest, scores externally supplied
 baseline and controlled outputs with the frozen stale / updated / safe-unknown
 markers, and emits a result certificate compatible with the epistemic benchmark
 protocol chain. No outcome-bearing result artifact is included in this folder.
+
+Result 001 status:
+
+```text
+decision = silence
+protocol_shape_valid = false
+```
+
+The raw outputs are retained. The result is not support evidence because one
+case did not map to the frozen marker readout.

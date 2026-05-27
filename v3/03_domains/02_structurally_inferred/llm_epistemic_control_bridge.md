@@ -218,6 +218,10 @@ The first run manifest,
 `../../05_evidence/llm_epistemic_premise_update_v0/run_manifest_result_001.md`,
 fixes the model, prompts, runtime options, and planned output artifacts for
 the first output-bearing run.
+The completed result artifact,
+`../../05_evidence/llm_epistemic_premise_update_v0/llm_epistemic_premise_update_v0_result_001.md`,
+has protocol-local decision `silence`, so it does not instantiate a valid
+benchmark result certificate or support the coherent-mass comparison theorem.
 
 The layer boundary is:
 
@@ -373,6 +377,8 @@ Safe wording:
 - `../../05_evidence/llm_epistemic_premise_update_v0/freeze_manifest_v0.md`
 - `../../05_evidence/llm_epistemic_premise_update_v0/output_collection_protocol_v0.md`
 - `../../05_evidence/llm_epistemic_premise_update_v0/run_manifest_result_001.md`
+- `../../05_evidence/llm_epistemic_premise_update_v0/llm_epistemic_premise_update_v0_result_001.md`
+- `../../05_evidence/llm_epistemic_premise_update_v0/result_001_certificate_mapping.md`
 - `../../../analysis/epistemic_control_premise_update_v0/make_output_template.py`
 - `../../../analysis/epistemic_control_premise_update_v0/collect_with_ollama.py`
 - `../../../analysis/epistemic_control_premise_update_v0/run_eval.py`
