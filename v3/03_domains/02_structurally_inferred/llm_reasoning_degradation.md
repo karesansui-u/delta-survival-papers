@@ -58,6 +58,9 @@ outcome-bearing execution 前に固定する。結果や support claim はまだ
 `../../../analysis/epistemic_control_premise_update_v0/` は、この surface に対する
 marker-based scorer / schema であり、外部から供給された baseline / controlled
 outputs を採点する。model call や model validation は行わない。
+`../../05_evidence/llm_epistemic_premise_update_v0/output_collection_protocol_v0.md`
+は、その raw output collection procedure を固定する文書であり、model output
+や validation evidence ではない。
 
 2. 観測量の定義
 

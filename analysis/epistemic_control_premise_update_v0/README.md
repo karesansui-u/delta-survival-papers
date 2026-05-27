@@ -5,6 +5,7 @@ Status: scorer / schema for a frozen task surface; not validation evidence
 
 Files:
 
+- `make_output_template.py`: emits a JSONL template for raw output collection.
 - `run_eval.py`: model-free scorer for externally supplied baseline and
   controlled outputs.
 - `results_schema.json`: JSON schema for the emitted result artifact.
@@ -27,6 +28,13 @@ It requires a separate outputs JSONL file. Each row must contain:
   "baseline_output": "... raw baseline answer ...",
   "controlled_output": "... raw controlled answer ..."
 }
+```
+
+Create a collection template from the frozen task surface:
+
+```bash
+python3 analysis/epistemic_control_premise_update_v0/make_output_template.py \
+  --out /tmp/premise_update_outputs_template.jsonl
 ```
 
 Run from the repository root:

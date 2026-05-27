@@ -212,6 +212,8 @@ The corresponding scorer / result schema live at
 [`analysis/epistemic_control_premise_update_v0/`](analysis/epistemic_control_premise_update_v0/);
 they score externally supplied baseline / controlled outputs and do not call a
 model.
+The output collection rule is fixed in
+[`v3/05_evidence/llm_epistemic_premise_update_v0/output_collection_protocol_v0.md`](v3/05_evidence/llm_epistemic_premise_update_v0/output_collection_protocol_v0.md).
 
 ### Reproducible Toy Protocol Bundle
 

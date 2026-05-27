@@ -211,6 +211,9 @@ The companion scorer / schema,
 `../../../analysis/epistemic_control_premise_update_v0/`, can turn externally
 supplied baseline / controlled outputs into a result-certificate-shaped
 summary, but it does not call a model or validate model performance.
+The output collection rule,
+`../../05_evidence/llm_epistemic_premise_update_v0/output_collection_protocol_v0.md`,
+fixes the raw-output JSONL procedure before any result artifact is promoted.
 
 The layer boundary is:
 
@@ -364,6 +367,8 @@ Safe wording:
 - `../../05_evidence/llm_epistemic_control_benchmark_manifest.md`
 - `../../05_evidence/llm_epistemic_control_real_eval_candidate_mapping.md`
 - `../../05_evidence/llm_epistemic_premise_update_v0/freeze_manifest_v0.md`
+- `../../05_evidence/llm_epistemic_premise_update_v0/output_collection_protocol_v0.md`
+- `../../../analysis/epistemic_control_premise_update_v0/make_output_template.py`
 - `../../../analysis/epistemic_control_premise_update_v0/run_eval.py`
 - `../../../analysis/epistemic_control_premise_update_v0/results_schema.json`
 - `../../05_evidence/llm_epistemic_control_frozen_toy_v0/freeze_manifest_v0.md`

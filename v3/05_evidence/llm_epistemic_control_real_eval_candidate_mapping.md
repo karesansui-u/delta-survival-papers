@@ -290,6 +290,8 @@ Minimum files:
 ```text
 v3/05_evidence/llm_epistemic_premise_update_v0/freeze_manifest_v0.md
 v3/05_evidence/llm_epistemic_premise_update_v0/tasks.jsonl
+v3/05_evidence/llm_epistemic_premise_update_v0/output_collection_protocol_v0.md
+analysis/epistemic_control_premise_update_v0/make_output_template.py
 analysis/epistemic_control_premise_update_v0/run_eval.py
 analysis/epistemic_control_premise_update_v0/results_schema.json
 ```
@@ -301,6 +303,7 @@ The frozen task surface now exists at
 v3/05_evidence/llm_epistemic_premise_update_v0/.
 The marker-based scorer and result schema now exist at
 analysis/epistemic_control_premise_update_v0/.
+The output collection protocol and template generator also exist.
 No outcome-bearing result artifact has been emitted yet.
 ```
 

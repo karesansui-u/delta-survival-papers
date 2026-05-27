@@ -7,6 +7,8 @@ Files:
 
 - `freeze_manifest_v0.md`: frozen protocol surface and decision rule.
 - `tasks.jsonl`: 12 public-safe synthetic premise-update cases.
+- `output_collection_protocol_v0.md`: output collection rule for future
+  baseline / controlled outputs.
 
 This packet freezes the first real-eval candidate task surface for the
 epistemic-control benchmark protocol. It contains no model outputs and no
@@ -22,6 +24,7 @@ f339792d53c90f2d3fa93a76046c13cadaeb5cacfe5e4618934c5f3ece95b204
 Scorer / schema:
 
 ```text
+analysis/epistemic_control_premise_update_v0/make_output_template.py
 analysis/epistemic_control_premise_update_v0/run_eval.py
 analysis/epistemic_control_premise_update_v0/results_schema.json
 ```

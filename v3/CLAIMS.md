@@ -191,6 +191,10 @@ baseline / controlled outputs and emits a result-certificate-shaped summary; it
 does not call a model, validate benchmark semantics, or create support without
 an outcome-bearing result artifact.
 
+`v3/05_evidence/llm_epistemic_premise_update_v0/output_collection_protocol_v0.md`
+fixes the raw output collection procedure for future premise-update runs. It is
+not model output and not validation evidence.
+
 The result-certificate boundary is:
 
 | Layer | It proves or checks | It does not prove |
