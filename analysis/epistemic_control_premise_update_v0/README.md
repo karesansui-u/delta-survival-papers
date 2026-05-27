@@ -6,6 +6,8 @@ Status: scorer / schema for a frozen task surface; not validation evidence
 Files:
 
 - `make_output_template.py`: emits a JSONL template for raw output collection.
+- `collect_with_ollama.py`: optional local Ollama collector for the fixed
+  result-001 run condition.
 - `run_eval.py`: model-free scorer for externally supplied baseline and
   controlled outputs.
 - `results_schema.json`: JSON schema for the emitted result artifact.
@@ -44,6 +46,12 @@ python3 analysis/epistemic_control_premise_update_v0/run_eval.py \
   --outputs path/to/premise_update_outputs.jsonl \
   --out path/to/result.json \
   --summary-md path/to/result.md
+```
+
+The fixed result-001 run manifest lives at:
+
+```text
+v3/05_evidence/llm_epistemic_premise_update_v0/run_manifest_result_001.md
 ```
 
 The scorer:

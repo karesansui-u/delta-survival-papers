@@ -214,6 +214,10 @@ summary, but it does not call a model or validate model performance.
 The output collection rule,
 `../../05_evidence/llm_epistemic_premise_update_v0/output_collection_protocol_v0.md`,
 fixes the raw-output JSONL procedure before any result artifact is promoted.
+The first run manifest,
+`../../05_evidence/llm_epistemic_premise_update_v0/run_manifest_result_001.md`,
+fixes the model, prompts, runtime options, and planned output artifacts for
+the first output-bearing run.
 
 The layer boundary is:
 
@@ -368,7 +372,9 @@ Safe wording:
 - `../../05_evidence/llm_epistemic_control_real_eval_candidate_mapping.md`
 - `../../05_evidence/llm_epistemic_premise_update_v0/freeze_manifest_v0.md`
 - `../../05_evidence/llm_epistemic_premise_update_v0/output_collection_protocol_v0.md`
+- `../../05_evidence/llm_epistemic_premise_update_v0/run_manifest_result_001.md`
 - `../../../analysis/epistemic_control_premise_update_v0/make_output_template.py`
+- `../../../analysis/epistemic_control_premise_update_v0/collect_with_ollama.py`
 - `../../../analysis/epistemic_control_premise_update_v0/run_eval.py`
 - `../../../analysis/epistemic_control_premise_update_v0/results_schema.json`
 - `../../05_evidence/llm_epistemic_control_frozen_toy_v0/freeze_manifest_v0.md`

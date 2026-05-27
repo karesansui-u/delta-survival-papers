@@ -291,7 +291,9 @@ Minimum files:
 v3/05_evidence/llm_epistemic_premise_update_v0/freeze_manifest_v0.md
 v3/05_evidence/llm_epistemic_premise_update_v0/tasks.jsonl
 v3/05_evidence/llm_epistemic_premise_update_v0/output_collection_protocol_v0.md
+v3/05_evidence/llm_epistemic_premise_update_v0/run_manifest_result_001.md
 analysis/epistemic_control_premise_update_v0/make_output_template.py
+analysis/epistemic_control_premise_update_v0/collect_with_ollama.py
 analysis/epistemic_control_premise_update_v0/run_eval.py
 analysis/epistemic_control_premise_update_v0/results_schema.json
 ```
@@ -304,6 +306,7 @@ v3/05_evidence/llm_epistemic_premise_update_v0/.
 The marker-based scorer and result schema now exist at
 analysis/epistemic_control_premise_update_v0/.
 The output collection protocol and template generator also exist.
+The result_001 run manifest also exists.
 No outcome-bearing result artifact has been emitted yet.
 ```
 

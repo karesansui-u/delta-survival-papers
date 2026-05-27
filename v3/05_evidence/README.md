@@ -54,6 +54,8 @@ Evidence is separated from theory claims.
   model outputs and no support decision. Its scorer / schema are in
   `../../analysis/epistemic_control_premise_update_v0/`, and its output
   collection rule is `llm_epistemic_premise_update_v0/output_collection_protocol_v0.md`.
+  The first run condition is fixed in
+  `llm_epistemic_premise_update_v0/run_manifest_result_001.md`.
 - `llm_epistemic_control_frozen_toy_v0/`: small frozen toy packet for the
   epistemic-control benchmark protocol. It is a protocol-shape artifact, not
   support evidence for a real model or workflow.

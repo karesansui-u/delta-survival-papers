@@ -195,6 +195,10 @@ an outcome-bearing result artifact.
 fixes the raw output collection procedure for future premise-update runs. It is
 not model output and not validation evidence.
 
+`v3/05_evidence/llm_epistemic_premise_update_v0/run_manifest_result_001.md`
+fixes the model, prompt, runtime, and planned artifact paths for the first
+output-bearing run before those outputs are promoted.
+
 The result-certificate boundary is:
 
 | Layer | It proves or checks | It does not prove |

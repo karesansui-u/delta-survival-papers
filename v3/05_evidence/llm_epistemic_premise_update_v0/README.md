@@ -9,6 +9,10 @@ Files:
 - `tasks.jsonl`: 12 public-safe synthetic premise-update cases.
 - `output_collection_protocol_v0.md`: output collection rule for future
   baseline / controlled outputs.
+- `run_manifest_result_001.md`: fixed model / prompt / runtime condition for
+  the first output-bearing run.
+- `premise_update_outputs_template_result_001.jsonl`: generated raw-output
+  template for `result_001`.
 
 This packet freezes the first real-eval candidate task surface for the
 epistemic-control benchmark protocol. It contains no model outputs and no
@@ -25,6 +29,7 @@ Scorer / schema:
 
 ```text
 analysis/epistemic_control_premise_update_v0/make_output_template.py
+analysis/epistemic_control_premise_update_v0/collect_with_ollama.py
 analysis/epistemic_control_premise_update_v0/run_eval.py
 analysis/epistemic_control_premise_update_v0/results_schema.json
 ```

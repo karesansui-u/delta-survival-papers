@@ -214,6 +214,8 @@ they score externally supplied baseline / controlled outputs and do not call a
 model.
 The output collection rule is fixed in
 [`v3/05_evidence/llm_epistemic_premise_update_v0/output_collection_protocol_v0.md`](v3/05_evidence/llm_epistemic_premise_update_v0/output_collection_protocol_v0.md).
+The first run condition is fixed in
+[`v3/05_evidence/llm_epistemic_premise_update_v0/run_manifest_result_001.md`](v3/05_evidence/llm_epistemic_premise_update_v0/run_manifest_result_001.md).
 
 ### Reproducible Toy Protocol Bundle
 
