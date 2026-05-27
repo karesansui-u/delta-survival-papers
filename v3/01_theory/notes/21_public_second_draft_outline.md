@@ -14,6 +14,7 @@ superseded_by: ../22_public_second_draft.md
 公開第二稿では、その前提を受けて、仕様から \(V,m\) を直接数えられない現実系を扱う。ここでは \(L\) や \(B\) は直接観測される量ではない。矛盾密度、依存関係の破断、契約整合性、性能劣化、故障率、保持率などの観測・推定指標を、構造座標の候補読出しとして凍結し、未使用データで検証する。
 
 この稿の中心は、推定指標を理論座標そのものと混同しないことである。推定レイヤーで得られる支持は、仕様固定レイヤーの定理や厳密会計とは異なる強度を持つ。
+LLM の具体例として、Information Qualification Control（IQC）を `../04_information_qualification_control_note.md` と `../05_evidence/iqc_failure_suite_final_result_ja.md` に固定する。
 
 
 2. なぜ推定レイヤーが必要か
@@ -122,7 +123,7 @@ superseded_by: ../22_public_second_draft.md
 本稿では、以下のような推定レイヤー候補を扱う。
 
 1. 大規模言語モデル (LLM) 推論劣化
-   長文脈、矛盾注入、参照衝突、未整理更新により、整合的な完答経路が縮退するかを観測する。
+   長文脈、矛盾注入、参照衝突、未整理更新により、整合的な完答経路が縮退するかを観測する。具体例は `04_information_qualification_control_note.md` 参照。
 
 2. 継続学習と構造的忘却
    単なる旧タスク精度ではなく、依存知識の再編と保持の失敗を観測する。
@@ -163,6 +164,7 @@ superseded_by: ../22_public_second_draft.md
 | 章 | 主な素材 | 使い方 |
 |---|---|---|
 | 推定レイヤーの必要性 | `01_theory/02_accounting_framework.md`, `01_theory/20_public_first_draft.md` | 第一稿の構造座標と資源側量を前提にする |
+| IQC concrete candidate | `01_theory/04_information_qualification_control_note.md`, `05_evidence/iqc_failure_suite_final_result_ja.md` | LLM 候補として、qualification 制御と失敗モード結果を接続 |
 | 凍結検証 | `04_operations/54_failure_ledger.md`, `05_evidence/` | 支持・非支持・沈黙の判定規律を説明する |
 | 失敗台帳 | `05_evidence/no_support.tsv`, `05_evidence/cross_domain_failure_lessons.md` | 失敗から得た設計教訓を整理する |
 | 証拠状態 | `05_evidence/evidence_status_dashboard.md` | 現在の支持、非支持、無効実行、観測的アンカーを確認する |
