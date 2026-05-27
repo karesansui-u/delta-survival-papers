@@ -198,6 +198,9 @@ not model output and not validation evidence.
 `v3/05_evidence/llm_epistemic_premise_update_v0/run_manifest_result_001.md`
 fixes the model, prompt, runtime, and planned artifact paths for the first
 output-bearing run before those outputs are promoted.
+`v3/05_evidence/llm_epistemic_premise_update_v0/collection_attempt_result_001_timeout_qwen35_9b.md`
+records an aborted timeout attempt that produced no raw-output or result
+artifact; it is operational audit material only.
 
 The result-certificate boundary is:
 

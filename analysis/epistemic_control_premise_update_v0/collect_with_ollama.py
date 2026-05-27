@@ -21,7 +21,7 @@ from pathlib import Path
 from typing import Any
 
 
-MODEL = "qwen3.5:9b"
+MODEL = "gemma4:e4b"
 RUN_ID = "llm_epistemic_premise_update_v0_result_001"
 COLLECTOR_VERSION = "0.1.0"
 BASELINE_PROMPT_VERSION = "ordinary_readout_without_dependency_refresh_v0"
@@ -31,7 +31,7 @@ OPTIONS = {
     "temperature": 0,
     "top_p": 1,
     "seed": 20260527,
-    "num_predict": 96,
+    "num_predict": 64,
 }
 
 

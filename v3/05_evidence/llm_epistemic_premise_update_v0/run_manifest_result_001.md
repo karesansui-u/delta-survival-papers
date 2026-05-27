@@ -63,7 +63,7 @@ local Ollama HTTP API
 Model:
 
 ```text
-qwen3.5:9b
+gemma4:e4b
 ```
 
 Generation options:
@@ -73,7 +73,7 @@ Generation options:
   "temperature": 0,
   "top_p": 1,
   "seed": 20260527,
-  "num_predict": 96
+  "num_predict": 64
 }
 ```
 
@@ -92,7 +92,7 @@ Collector version:
 Pre-run repository commit:
 
 ```text
-a8bce81
+the git commit containing this manifest update
 ```
 
 
@@ -117,6 +117,11 @@ appended update without adding a dependency-refresh or downstream-rewrite step.
 The controlled prompt asks the model to treat the appended update as current and
 to invalidate, refresh, or mark unknown the downstream dependency surface before
 answering.
+
+An earlier qwen3.5:9b collection attempt timed out during the first controlled
+generation before any raw output artifact was emitted. It is recorded in
+`collection_attempt_result_001_timeout_qwen35_9b.md` and is not promoted as a
+result.
 
 
 4. Planned Output Artifacts

@@ -13,6 +13,8 @@ Files:
   the first output-bearing run.
 - `premise_update_outputs_template_result_001.jsonl`: generated raw-output
   template for `result_001`.
+- `collection_attempt_result_001_timeout_qwen35_9b.md`: audit note for an
+  aborted qwen3.5:9b collection attempt that emitted no result artifact.
 
 This packet freezes the first real-eval candidate task surface for the
 epistemic-control benchmark protocol. It contains no model outputs and no
