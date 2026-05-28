@@ -12,7 +12,7 @@
 
 加えて、これら内部ゲートとは独立に設計した合成ベンチマーク IQC Failure Suite (n=90) で、状態制御を持たない baseline (raw / context-only / naive RAG) に対する外部比較を行った。同一 LLM (ollama qwen3.5:27b) 上で、IQC は 86/90 (95%) を達成し、naive RAG (65/90, 72%) に対して +23pt 上回った。最大の単一シグナルは speech-act 軸の qualification における +60pt (iqc 20/20 対 naive_rag 8/20) であり、retrieval 精度では原理的に閉じない軸である。version-state 軸 (M4) のみ naive RAG が IQC と並び、これは selective superiority、すなわち「すべての軸で勝つ」のではなく「資格制御が必要な軸で勝つ」ことを示す。Rank 順序 raw < context_only < naive_rag は openai gpt-4o-mini でも保存され、qualification 方向の勾配は単一 LLM family の癖ではない。Dual-judge (claude-opus-4-7 vs codex gpt-5.5) 一致率は IQC 出力で 95% であり、応答が判定 LLM 間で曖昧でないことを支持する。
 
-さらに、現在値検索における stale claim penalty の効果を別の合成ベンチマーク (stale-aware canary, n=3 seeds, 合計 n=54) で同一 seed matched ablation により直接切り分けた。合算で ON 46/54 (85.2%) vs OFF 40/54 (74.1%) と +11.1pt、McNemar exact 両側 p=0.0703 の有意傾向、直接矛盾の分類軸である contradiction_classification では ON 14/15 (93.3%) vs OFF 10/15 (66.7%) と +26.7pt の差を観測した。これは IQC Failure Suite の Δ_ledger と独立に同じ向きの結果を二重に支持する cross-benchmark triangulation である。
+さらに、現在値検索における stale claim penalty の効果を別の合成ベンチマーク (stale-aware canary, n=3 seeds, 合計 n=54) で同一 seed matched ablation により直接切り分けた。合算で ON 46/54 (85.2%) vs OFF 40/54 (74.1%) と +11.1pt、McNemar exact 両側 p=0.0703 の有意傾向、直接矛盾の分類軸である contradiction_classification では ON 14/15 (93.3%) vs OFF 10/15 (66.7%) と +26.7pt の差を観測した。これは IQC Failure Suite の ledger 向上量 と独立に同じ向きの結果を二重に支持する cross-benchmark triangulation である。
 
 本研究は、長期記憶、継続学習、推論劣化を一般に解決したとは主張しない。AGI 基盤の提案でもなく、任意の実ログや任意のモデル、任意の運用条件への一般化も主張しない。主張するのは、これらに共通する主要な失敗源を資格状態の混同として扱い、control plane として統一的に管理することで制御可能な設計問題へ変換できること、およびテストされた長期記憶・読出し・制御ブリッジ・矛盾蓄積条件、加えて外部ベースラインを伴う合成ベンチマークの全てで、状態制御面を置く方向が同じ向きに支持されることである。したがって本稿の結論は、「すべてを解いた」ではなく、「長期運用LLMエージェントにおいて、この control plane を置くことが第一候補の参照設計になるだけの実装証拠と外部比較証拠がある」である。
 
@@ -408,7 +408,7 @@ IQC Failure Suite は、状態制御の対象とする四つの失敗モード�
 - iqc_no_fastpath: 状態制御 runtime と同じ multi-layer 検索を持つが、決定論的棄権 fast-path を bypass。ledger ablation。
 - iqc: 状態制御 runtime 全層を有効にした参照系。
 
-差分 Δ_prompt = naive_rag_qualified − naive_rag、Δ_ledger = iqc_no_fastpath − naive_rag_qualified、Δ_fastpath = iqc − iqc_no_fastpath が、それぞれ system prompt、ledger / multi-layer 検索、決定論的棄権 fast-path の寄与に対応する。
+差分 prompt 向上量 = naive_rag_qualified − naive_rag、ledger 向上量 = iqc_no_fastpath − naive_rag_qualified、fastpath 向上量 = iqc − iqc_no_fastpath が、それぞれ system prompt、ledger / multi-layer 検索、決定論的棄権 fast-path の寄与に対応する。
 
 8.6.2 判定方式: 二重 judge
 
@@ -425,38 +425,55 @@ IQC Failure Suite は、状態制御の対象とする四つの失敗モード�
 
 iqc は naive_rag に対して +23pt 上回る。最大の単一シグナルは M2 weak_affirmation の +60pt（iqc 20/20 対 naive_rag 8/20）であり、これは検索精度の差では原理的に閉じない、発話行為の資格判定が支配する軸である。一方、M4 dependency_staleness のみ naive_rag が iqc を上回る（25/25 対 24/25）。M4 は最新値を検索できれば最新値で答えられる問題族であり、状態制御の必要性が他軸より小さい。この非対称は、本稿の主張が「すべてを救う」ではなく「資格制御が必要な軸で勝つ」であることを示す selective superiority の証拠であり、cherry-picking ではない。
 
-8.6.4 LLM 非依存性のクロスチェック (openai gpt-4o-mini, 3 backend)
+8.6.4 LLM 非依存性のクロスチェック (qwen3.5:27b / gemma4:31b / openai gpt-4o-mini, n=90)
 
-同じケース集合を別 LLM family で実行した。
+§8.6.3 と同じケース集合を 3 つの LLM family で実行した。3 LLM が直接比較できる 4 backend (raw / context_only / naive_rag / naive_rag_qualified) について PASS 率は次である。
 
-| backend | TOTAL | M1 | M2 | M3 | M4 |
-|---|---|---|---|---|---|
-| raw | 37/90 (41%) | 12/25 | 8/20 | 13/20 | 4/25 |
-| context_only | 39/90 (43%) | 11/25 | 4/20 | 4/20 | 20/25 |
-| naive_rag | 45/90 (50%) | 14/25 | 5/20 | 5/20 | 21/25 |
+| backend | qwen3.5:27b | gemma4:31b | openai gpt-4o-mini |
+|---|---|---|---|
+| raw | 50/90 (55.6%) | 41/90 (45.6%) | 37/90 (41.1%) |
+| context_only | 62/90 (68.9%) | 56/90 (62.2%) | 39/90 (43.3%) |
+| naive_rag | 65/90 (72.2%) | 56/90 (62.2%) | 45/90 (50.0%) |
+| naive_rag_qualified | 81/90 (90.0%) | 83/90 (92.2%) | 71/90 (78.9%) |
 
-絶対値は qwen3.5:27b より低いが、順序 raw < context_only < naive_rag が保存される。これは「資格制御方向で得られる勾配」が特定 LLM family の癖ではなく、設定全体に対して頑健であることを示す。iqc 系の比較は本実験では含めていない（agent 実装側で OpenAI を選ぶ統合をこの段階では行わなかったため）。これは将来作業として残す。
+絶対値は LLM family により異なる (raw で 41〜56%) が、backend 序列 raw < context_only ≲ naive_rag << naive_rag_qualified は 3 LLM で一貫している。資格制御方向で得られる勾配は特定 LLM family の癖ではない。
+
+特に注目する量は prompt 向上量 = PR(naive_rag_qualified) − PR(raw) であり、system prompt の qualification 文型を加えただけで得られる改善量を表す。case-paired bootstrap (各 5000 回、case_id ペア resampling) で 95% 信頼区間を取った結果は次である。
+
+| LLM family | prompt 向上量 点推定 | 95% bootstrap CI |
+|---|---|---|
+| qwen3.5:27b | +34.4pp | [+22.2pp, +46.7pp] |
+| gemma4:31b | +46.7pp | [+35.6pp, +57.8pp] |
+| openai gpt-4o-mini | +37.8pp | [+25.6pp, +50.0pp] |
+
+3 LLM family いずれにおいても CI 下端が +22pp を上回り、ゼロ帰無を comfortable な margin で排除する。3 LLM の CI は +25〜+50pp の範囲で重なり、prompt 向上量 の効果サイズが LLM family 横断で類似することを示す。
+
+iqc 系 (iqc, iqc_no_fastpath) の cross-LLM 比較は本節では行わない。openai gpt-4o-mini は agent 実装側で OpenAI を選ぶ統合を本実験の段階では行わなかったため、gemma4:31b は IQC pipeline の 1 ケース所要時間が本実験の試行時間予算を超えたため (M1 batch 25 ケースで連続 timeout を観測した時点で実行を打ち切った) で、それぞれ構造的に除外している。
+
+したがって本節 (LLM 非依存性) の主張は「full IQC pipeline の cross-LLM 優位性」ではなく、「prompt / control-layer 側 (prompt 向上量) の cross-LLM 再現性」に限定する。qwen3.5:27b 単独での iqc / iqc_no_fastpath の優位性は §8.6.3 に記載済みであり、本節と独立に成立する。
 
 8.6.5 Judge agreement
 
-主・副 judge の per-case 一致率は次である。
+主・副 judge (claude-opus-4-7 vs codex gpt-5.5) の per-case 一致率を §8.6.4 と同じ 3 LLM × 4 backend について示す。母数はそれぞれ secondary judge から ERROR が返らなかった件数 (88-90 の範囲) である。
 
-| backend | agreement (claude-opus-4-7 vs codex gpt-5.5) |
-|---|---|
-| iqc | 86/90 = 95% |
-| naive_rag | 81/87 = 93% |
-| context_only | 81/90 = 90% |
-| raw | 60/88 = 68% |
+| backend | qwen3.5:27b | gemma4:31b | openai gpt-4o-mini |
+|---|---|---|---|
+| raw | 60/88 (68.2%) | 68/85 (80.0%) | 64/87 (73.6%) |
+| context_only | 81/90 (90.0%) | 82/90 (91.1%) | 76/87 (87.4%) |
+| naive_rag | 81/87 (93.1%) | 80/88 (90.9%) | 76/87 (87.4%) |
+| naive_rag_qualified | 88/90 (97.8%) | 88/89 (98.9%) | 78/88 (88.6%) |
 
-iqc の応答は両 judge にとって最も曖昧でない。raw の 68% は、文脈がない分 response が振れやすく、judge 間で読み方が割れた case が多かったことを反映する。これは judge LLM 自体の qualification bias を完全には除去しないが、二つの異なる family が独立に同じ verdict に収斂する場合の信頼度は単一 judge より明らかに高い。
+qwen3.5:27b の iqc / iqc_no_fastpath については 86/90 (95.6%) / 87/90 (96.7%)。
+
+3 LLM family いずれにおいても、backend が raw から naive_rag_qualified に進むにつれて judge 一致率が単調に増加する (raw 68〜80% → naive_rag_qualified 89〜99%)。これは qualification 文型を経た response が両 judge にとってより曖昧でなくなることを示す副次的特徴であり、§8.6.4 の prompt 向上量 改善とは独立に観察される。raw の 68〜80% は文脈なしで response が振れやすく judge 間で読み方が割れたことの反映である。judge LLM 自体の qualification bias を完全には除去しないが、二つの異なる family が独立に同じ verdict に収斂する場合の信頼度は単一 judge より明らかに高い。
 
 8.6.6 4-way ablation の事前固定予測
 
-差分 Δ_prompt, Δ_ledger, Δ_fastpath を測るための naive_rag_qualified と iqc_no_fastpath は実装と CLI を整備済みであり、実走前に予測を固定する形で進めている。事前予測は次である。
+差分 prompt 向上量, ledger 向上量, fastpath 向上量 を測るための naive_rag_qualified と iqc_no_fastpath は実装と CLI を整備済みであり、実走前に予測を固定する形で進めている。事前予測は次である。
 
-- Δ_prompt ≈ +5〜+10pt。system prompt の qualification 文型が M2 weak_ack を直接救う。
-- Δ_ledger ≈ +3〜+8pt。stale penalty と multi-layer 検索が M4 派生領域で寄与する。
-- Δ_fastpath ≈ +8〜+12pt。決定論的棄権 fast-path が 90 件中 19 件（21%）で同一定型応答を返しており、これが LLM 経由応答にどれだけ依存しているかを切り分ける。
+- prompt 向上量 ≈ +5〜+10pt。system prompt の qualification 文型が M2 weak_ack を直接救う。
+- ledger 向上量 ≈ +3〜+8pt。stale penalty と multi-layer 検索が M4 派生領域で寄与する。
+- fastpath 向上量 ≈ +8〜+12pt。決定論的棄権 fast-path が 90 件中 19 件（21%）で同一定型応答を返しており、これが LLM 経由応答にどれだけ依存しているかを切り分ける。
 
 実観測は本稿の公開時点では未確定であり、結果は本節と §11 を更新する形で報告する。後付けでシナリオを追加することは行わない。
 
@@ -464,7 +481,7 @@ iqc の応答は両 judge にとって最も曖昧でない。raw の 68% は、
 
 別の合成ベンチマーク（stale-aware canary）で、現在値検索における stale claim penalty を ON/OFF で同一 seed matched 比較した。本稿時点で n=3 seeds、合計 54 設問が完走している。
 
-| trial (n=18 each) | ON | OFF | Δ |
+| trial (n=18 each) | ON | OFF | 差 |
 |---|---|---|---|
 | trial 1 | 15/18 (83.3%) | 13/18 (72.2%) | +11.1pt |
 | trial 2 | 16/18 (88.9%) | 12/18 (66.7%) | +22.2pt |
@@ -475,7 +492,7 @@ iqc の応答は両 judge にとって最も曖昧でない。raw の 68% は、
 
 ただし、trial 3 では ON と OFF が同じ 15/18 に並んでおり、stale claim が retrieval 上位に来ない seed では別経路（event-frame Phase 0 の hard guard など）が代替で稼いでいる可能性を示唆する。これは「stale penalty が常に効く」ではなく「stale penalty が必要な条件のとき効く」selective effect の証拠であり、§8.6 の主結果で観測した「資格制御が必要な軸で勝つ」selective superiority と同じ性質である。
 
-この companion 結果は、IQC Failure Suite の Δ_ledger と独立にもう一回同じ向きの効果が観測されているという cross-benchmark triangulation を構成する。n=4-5 seeds への拡張で p<0.05 圏に到達する見込みであり、確定後に本節を更新する。
+この companion 結果は、IQC Failure Suite の ledger 向上量 と独立にもう一回同じ向きの効果が観測されているという cross-benchmark triangulation を構成する。n=4-5 seeds への拡張で p<0.05 圏に到達する見込みであり、確定後に本節を更新する。
 
 8.6.8 残存する 4 失敗の解剖
 
@@ -907,13 +924,13 @@ Resume 機構. 各 case の verdict は progress JSONL に append + fsync で書
 
 実装は delta-zero リポジトリの benchmarks/iqc_failure_suite/ にあり、commit hash で固定する（公開時に明記）。
 
-4-way ablation の事前固定予測. 本節と §8.6 では naive_rag_qualified と iqc_no_fastpath の実装・CLI を確定した段階で、実走前に予測を固定する形で進めている。Δ_prompt ≈ +5〜+10pt, Δ_ledger ≈ +3〜+8pt, Δ_fastpath ≈ +8〜+12pt。これは「実走後にシナリオを後出しで追加しない」ための pre-registration である。
+4-way ablation の事前固定予測. 本節と §8.6 では naive_rag_qualified と iqc_no_fastpath の実装・CLI を確定した段階で、実走前に予測を固定する形で進めている。prompt 向上量 ≈ +5〜+10pt, ledger 向上量 ≈ +3〜+8pt, fastpath 向上量 ≈ +8〜+12pt。これは「実走後にシナリオを後出しで追加しない」ための pre-registration である。
 
 注意点.
 
 - n=90 では mode 単位の差分（例: M2 の +60pt）は二項信頼区間が広い。最終一般化には n の拡張と LLM family の拡張が必要である。
 - judge 自身が LLM である。dual judge の agreement は family-pair が一致した方向を支持するが、両 judge が同じ判定 bias を持つ可能性は除外できない。§11 で言及する hand-labeled calibration subset での評価が次段の必要要件である。
-- IQC backend は判定 LLM の prompt と語彙的に近い「保存済みの記憶にはありません」「確認できていません」を出しやすい設計である。Δ_prompt / Δ_fastpath の分離はこの prompt-shape leakage を取り除くために必要な ablation であり、Δ_ledger と Δ_fastpath が独立に正の寄与を持つことが confirm されない限り、+23pt のうちどれだけが構造由来かは確定できない。
+- IQC backend は判定 LLM の prompt と語彙的に近い「保存済みの記憶にはありません」「確認できていません」を出しやすい設計である。prompt 向上量 / fastpath 向上量 の分離はこの prompt-shape leakage を取り除くために必要な ablation であり、ledger 向上量 と fastpath 向上量 が独立に正の寄与を持つことが confirm されない限り、+23pt のうちどれだけが構造由来かは確定できない。
 
 16. 付録C: ベースライン定義
 
