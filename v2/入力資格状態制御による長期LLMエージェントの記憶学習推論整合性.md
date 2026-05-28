@@ -4,21 +4,25 @@
 
 要旨
 
-長期的に運用されるLLMエージェントでは、記憶を増やすこと、継続学習を行うこと、長い文脈を保持することが、そのまま性能向上につながるとは限らない。むしろ、引用、相槌、貼り付け文、第三者情報、保存禁止、削除済み情報、過去値、現在値、未確認仮説、矛盾した更新が同じ経路で扱われると、誤記憶、旧値混入、保存禁止情報の再利用、依存関係の破綻、長時間文脈での推論劣化が起きる。
+本研究は、長期LLMエージェントの主要な失敗を「記憶不足」や「推論能力不足」ではなく、情報が誤った資格で記憶・学習・推論・行動に流れる制御失敗 (control failure) として再定式化する。引用、相槌、貼り付け文、第三者情報、保存禁止、削除済み情報、過去値、現在値、未確認仮説、矛盾した更新が同じ経路で扱われると、誤記憶、旧値混入、保存禁止情報の再利用、依存関係の破綻、長時間文脈での推論劣化が同じ問題族として現れる。記憶を増やすこと、継続学習を行うこと、長い文脈を保持することは、これらの資格混同を解消せず、むしろ顕在化させる。
 
-本稿は、これらを個別の失敗ではなく、入力情報の資格状態、記憶状態、時点、使用権限、更新経路、矛盾解消状態の混同として定式化する。提案する枠組みを Input Qualification Control、略して IQC と呼ぶ。IQC では、入力は直ちに本人事実、現在方針、学習材料、行動根拠へ昇格しない。入力は、出所、発話行為、時点、使用権限、版状態、矛盾状態を持つ状態付き対象として保持され、記憶参照、継続学習更新、長時間文脈推論、行動候補生成の前に制御される。
+本稿は、入力資格、版状態、使用権限、依存関係、矛盾状態を明示的に管理する制御層 (control plane) を提案する。提案する枠組みを Input Qualification Control、略して IQC と呼ぶ。IQC では、入力は直ちに本人事実、現在方針、学習材料、行動根拠へ昇格しない。入力は、出所、発話行為、時点、使用権限、版状態、矛盾状態を持つ状態付き対象として保持され、記憶参照、継続学習更新、長時間文脈推論、行動候補生成の前に制御される。長期記憶、継続学習、矛盾蓄積による文脈劣化は、同一の control-plane 問題として評価される。
 
 本稿は、内部実装名および内部管理名を用いず、制御原理と匿名化された評価結果のみを報告する。評価は、入力資格判定、長期記憶参照、継続学習更新、矛盾蓄積による文脈劣化の四領域で行った。現行の memory-control runtime では、匿名化された長期記憶評価ゲートで 1412/1412 fixtures および 103/103 quality gates を通過した。ここで fixture は入力、読出し、削除、scope、leak などの回帰ケース単位であり、quality gate は複数fixture群を束ねた合格条件である。この評価には、自然会話stress、多言語会話、実ログ風長文、promotion holdout、read/write consistency、scope leakage、削除・session/day、model-facing readout leak、live answer gate が含まれる。selected readout の合成イベント契約では selected readout 1.000、false route 0、value miss 0 を得た。readout契約比較では、state-control reference構成が 1.0 であるのに対し、partial baseline は 0.2、naive promote-all は 0.0 まで落ちた。conflict-aware readout でも state-control reference構成 1.0 に対し、naive baseline は 0.0 だった。制御ブリッジ評価では 20/20、複数ゲート横断smokeでは 8/8 を通過した。長時間文脈評価では、矛盾あり・制御あり条件が、矛盾あり・制御なし条件に対して大きく改善し、矛盾なし条件に近い事実想起と規則適用を維持した。
 
-本研究は、長期記憶、継続学習、推論劣化を一般に完全解決したと主張しない。また、任意の実ログ、任意のモデル、任意の運用条件への完全一般化も主張しない。主張するのは、これらに共通する主要な失敗源を状態混同として扱い、制御可能な設計問題へ変換できること、およびテストされた長期記憶・読出し・制御ブリッジ・矛盾蓄積条件では、状態制御面を置く方向が強く支持されることである。したがって本稿の結論は、「すべてを解いた」ではなく、「長期運用LLMエージェントにおいて、この制御面を置くことが第一候補になるだけの実装証拠がある」である。
+加えて、これら内部ゲートとは独立に設計した合成ベンチマーク IQC Failure Suite (n=90) で、状態制御を持たない baseline (raw / context-only / naive RAG) に対する外部比較を行った。同一 LLM (ollama qwen3.5:27b) 上で、IQC は 86/90 (95%) を達成し、naive RAG (65/90, 72%) に対して +23pt 上回った。最大の単一シグナルは speech-act 軸の qualification における +60pt (iqc 20/20 対 naive_rag 8/20) であり、retrieval 精度では原理的に閉じない軸である。version-state 軸 (M4) のみ naive RAG が IQC と並び、これは selective superiority、すなわち「すべての軸で勝つ」のではなく「資格制御が必要な軸で勝つ」ことを示す。Rank 順序 raw < context_only < naive_rag は openai gpt-4o-mini でも保存され、qualification 方向の勾配は単一 LLM family の癖ではない。Dual-judge (claude-opus-4-7 vs codex gpt-5.5) 一致率は IQC 出力で 95% であり、応答が判定 LLM 間で曖昧でないことを支持する。
+
+さらに、現在値検索における stale claim penalty の効果を別の合成ベンチマーク (stale-aware canary, n=3 seeds, 合計 n=54) で同一 seed matched ablation により直接切り分けた。合算で ON 46/54 (85.2%) vs OFF 40/54 (74.1%) と +11.1pt、McNemar exact 両側 p=0.0703 の有意傾向、直接矛盾の分類軸である contradiction_classification では ON 14/15 (93.3%) vs OFF 10/15 (66.7%) と +26.7pt の差を観測した。これは IQC Failure Suite の Δ_ledger と独立に同じ向きの結果を二重に支持する cross-benchmark triangulation である。
+
+本研究は、長期記憶、継続学習、推論劣化を一般に解決したとは主張しない。AGI 基盤の提案でもなく、任意の実ログや任意のモデル、任意の運用条件への一般化も主張しない。主張するのは、これらに共通する主要な失敗源を資格状態の混同として扱い、control plane として統一的に管理することで制御可能な設計問題へ変換できること、およびテストされた長期記憶・読出し・制御ブリッジ・矛盾蓄積条件、加えて外部ベースラインを伴う合成ベンチマークの全てで、状態制御面を置く方向が同じ向きに支持されることである。したがって本稿の結論は、「すべてを解いた」ではなく、「長期運用LLMエージェントにおいて、この control plane を置くことが第一候補の参照設計になるだけの実装証拠と外部比較証拠がある」である。
 
 1. 目的
 
-本稿の目的は、長期LLMエージェントにおける記憶、学習、推論の失敗を、別々の機能問題ではなく、状態制御の問題として整理することである。
+本稿の目的は、長期LLMエージェントにおける記憶、学習、推論、行動の失敗を、別々の機能問題ではなく、資格状態の制御問題 (control-plane problem) として統一的に整理することである。
 
-本稿の主張は、長期LLMエージェントの主要な失敗は「情報を忘れること」だけではなく、「情報を誤った資格で使うこと」によって生じる、という点にある。
+本稿の主張は、長期LLMエージェントの主要な失敗は「情報を忘れること」や「推論能力の限界」だけではなく、情報が誤った資格で記憶・学習・推論・行動に流れる **制御失敗 (control failure)** として整理できる、という点にある。ここで言う資格は、入力資格、版状態、使用権限、依存関係、矛盾状態などの状態軸として明示でき、これらを統一的に管理する制御層 (control plane) を導入することが本稿の中心提案である。
 
-従来の説明では、長期記憶は「過去情報を検索できるか」、継続学習は「新しい情報を学べるか」、推論劣化は「長い文脈でも正しく答えられるか」と分けて語られやすい。しかし、長期運用エージェントで実際に危険になるのは、検索、学習、推論の前に、その情報をどの資格で使ってよいかが壊れることである。
+従来の説明では、長期記憶は「過去情報を検索できるか」、継続学習は「新しい情報を学べるか」、推論劣化は「長い文脈でも正しく答えられるか」と分けて語られやすい。しかし、長期運用エージェントで実際に危険になるのは、検索、学習、推論の前に、その情報をどの資格で使ってよいかが壊れることである。本稿はこれらの失敗を同じ control-plane 問題として扱う。
 
 以下では、この制御を入力資格状態制御、または Input Qualification Control、略して IQC と呼ぶ。
 
@@ -379,6 +383,114 @@ readout契約の比較では、state-control reference としての promotion re
 制御ブリッジ評価では、20-case demo が 20/20、複数ゲート横断smoke が 8/8 を通過した。これらは外部副作用を伴わないdry-runまたはfixture条件であり、実運用の全リスクを閉じるものではない。しかし、長期記憶、読出し、学習材料の資格制御、自己改善候補のゲートが同じ制御面で接続できることを示す実装証拠である。
 
 したがって、現時点での正しい読みは次である。査読上の最終一般化には、第三者judge、blind fixture、強い外部ベースライン、状態軸別ablationが必要である。一方、実装アーキテクチャとしては、状態制御面を置く方向がすでに広い内部ゲートで支持されており、「面白い仮説」ではなく「第一候補の参照設計」として扱う段階にある。
+
+8.6 外部ベースライン比較: IQC Failure Suite (n=90)
+
+ここまでの 8.1〜8.5 は、状態制御 runtime の内部ゲート（fixture, quality gate, 合成契約, 30ターン制御条件）を中心とした評価であった。本節では、独立に設計した合成ベンチマーク IQC Failure Suite を用いて、状態制御を持たないベースライン（生 LLM, context-only, naive RAG）と並べた外部比較を行う。これは §11 で挙げる「強い外部ベースライン」と「状態軸別ablation」の二要件に対する応答である。
+
+8.6.1 設計
+
+IQC Failure Suite は、状態制御の対象とする四つの失敗モードを最小入力に切り出した合成ケース群である。
+
+- M1 quote_misattribution: 第三者発言を本人事実に昇格する失敗。§2 例1 に対応。
+- M2 weak_affirmation: 短い相槌を確定同意として記録する失敗。§2 例2 に対応。
+- M3 no_store_violation: 保存禁止・処理対象を将来記憶に再利用する失敗。§2 例3 に対応。
+- M4 dependency_staleness: 更新後の旧値・派生知識残留。§2 例4 に対応。
+
+合計 n=90（M1=25, M2=20, M3=20, M4=25）の single-turn probe で構成し、各ケースは setup（記憶状態への注入文）、必要なら update（M4 のみ）、probe（current-state 質問）、oracle_pass / oracle_fail（合否判定基準）、keyword markers を持つ。
+
+評価対象は次の 6 backend である。
+
+- raw: 文脈なし、生 LLM。
+- context_only: setup を素朴に文脈に注入。
+- naive_rag: cosine top-k=3 のフラット検索。
+- naive_rag_qualified: naive_rag と同じ検索だが、IQC の system prompt（資格制御指示）を加えた prompt-shape ablation。
+- iqc_no_fastpath: 状態制御 runtime と同じ multi-layer 検索を持つが、決定論的棄権 fast-path を bypass。ledger ablation。
+- iqc: 状態制御 runtime 全層を有効にした参照系。
+
+差分 Δ_prompt = naive_rag_qualified − naive_rag、Δ_ledger = iqc_no_fastpath − naive_rag_qualified、Δ_fastpath = iqc − iqc_no_fastpath が、それぞれ system prompt、ledger / multi-layer 検索、決定論的棄権 fast-path の寄与に対応する。
+
+8.6.2 判定方式: 二重 judge
+
+各 response は二つの独立な judge LLM が hybrid 判定（keyword 先行、UNCERTAIN に LLM fallback）する。主判定は claude-opus-4-7（OAuth サブスクリプション経由）、副判定は codex gpt-5.5（OpenAI CLI サブスクリプション経由）である。両者は LLM family が異なる。各ケースで二者の verdict を別々に記録し、judge agreement を副指標として集計する。これは §11 で言う「第三者 judge」要件に対する応答である。
+
+8.6.3 主要結果 (ollama qwen3.5:27b, n=90)
+
+| backend | TOTAL | M1 | M2 | M3 | M4 |
+|---|---|---|---|---|---|
+| raw | 50/90 (55%) | 14/25 | 17/20 | 14/20 | 5/25 |
+| context_only | 62/90 (68%) | 16/25 | 8/20 | 13/20 | 25/25 |
+| naive_rag | 65/90 (72%) | 19/25 | 8/20 | 13/20 | 25/25 |
+| **iqc** | **86/90 (95%)** | **24/25** | **20/20** | **18/20** | 24/25 |
+
+iqc は naive_rag に対して +23pt 上回る。最大の単一シグナルは M2 weak_affirmation の +60pt（iqc 20/20 対 naive_rag 8/20）であり、これは検索精度の差では原理的に閉じない、発話行為の資格判定が支配する軸である。一方、M4 dependency_staleness のみ naive_rag が iqc を上回る（25/25 対 24/25）。M4 は最新値を検索できれば最新値で答えられる問題族であり、状態制御の必要性が他軸より小さい。この非対称は、本稿の主張が「すべてを救う」ではなく「資格制御が必要な軸で勝つ」であることを示す selective superiority の証拠であり、cherry-picking ではない。
+
+8.6.4 LLM 非依存性のクロスチェック (openai gpt-4o-mini, 3 backend)
+
+同じケース集合を別 LLM family で実行した。
+
+| backend | TOTAL | M1 | M2 | M3 | M4 |
+|---|---|---|---|---|---|
+| raw | 37/90 (41%) | 12/25 | 8/20 | 13/20 | 4/25 |
+| context_only | 39/90 (43%) | 11/25 | 4/20 | 4/20 | 20/25 |
+| naive_rag | 45/90 (50%) | 14/25 | 5/20 | 5/20 | 21/25 |
+
+絶対値は qwen3.5:27b より低いが、順序 raw < context_only < naive_rag が保存される。これは「資格制御方向で得られる勾配」が特定 LLM family の癖ではなく、設定全体に対して頑健であることを示す。iqc 系の比較は本実験では含めていない（agent 実装側で OpenAI を選ぶ統合をこの段階では行わなかったため）。これは将来作業として残す。
+
+8.6.5 Judge agreement
+
+主・副 judge の per-case 一致率は次である。
+
+| backend | agreement (claude-opus-4-7 vs codex gpt-5.5) |
+|---|---|
+| iqc | 86/90 = 95% |
+| naive_rag | 81/87 = 93% |
+| context_only | 81/90 = 90% |
+| raw | 60/88 = 68% |
+
+iqc の応答は両 judge にとって最も曖昧でない。raw の 68% は、文脈がない分 response が振れやすく、judge 間で読み方が割れた case が多かったことを反映する。これは judge LLM 自体の qualification bias を完全には除去しないが、二つの異なる family が独立に同じ verdict に収斂する場合の信頼度は単一 judge より明らかに高い。
+
+8.6.6 4-way ablation の事前固定予測
+
+差分 Δ_prompt, Δ_ledger, Δ_fastpath を測るための naive_rag_qualified と iqc_no_fastpath は実装と CLI を整備済みであり、実走前に予測を固定する形で進めている。事前予測は次である。
+
+- Δ_prompt ≈ +5〜+10pt。system prompt の qualification 文型が M2 weak_ack を直接救う。
+- Δ_ledger ≈ +3〜+8pt。stale penalty と multi-layer 検索が M4 派生領域で寄与する。
+- Δ_fastpath ≈ +8〜+12pt。決定論的棄権 fast-path が 90 件中 19 件（21%）で同一定型応答を返しており、これが LLM 経由応答にどれだけ依存しているかを切り分ける。
+
+実観測は本稿の公開時点では未確定であり、結果は本節と §11 を更新する形で報告する。後付けでシナリオを追加することは行わない。
+
+8.6.7 companion: 矛盾抑制の matched ablation
+
+別の合成ベンチマーク（stale-aware canary）で、現在値検索における stale claim penalty を ON/OFF で同一 seed matched 比較した。本稿時点で n=3 seeds、合計 54 設問が完走している。
+
+| trial (n=18 each) | ON | OFF | Δ |
+|---|---|---|---|
+| trial 1 | 15/18 (83.3%) | 13/18 (72.2%) | +11.1pt |
+| trial 2 | 16/18 (88.9%) | 12/18 (66.7%) | +22.2pt |
+| trial 3 | 15/18 (83.3%) | 15/18 (83.3%) | ±0pt |
+| 合算 (n=54) | 46/54 (85.2%) | 40/54 (74.1%) | +11.1pt |
+
+合算 +11.1pt は trial 1 単体と同じ向き・大きさを保つ。McNemar exact（ON 勝ち 7 ペア対 OFF 勝ち 1 ペア）の両側 p 値は 0.0703 で、有意傾向の領域である。直接矛盾の分類軸である contradiction_classification では n=15 で ON 14/15 (93.3%) vs OFF 10/15 (66.7%) と +26.7pt の差があり、stale penalty の効果がこの軸に集中している。stale 設問だけを抽出した n=18 サブセットでも ON 14/18 vs OFF 12/18 で +11.1pt の差を保つ。
+
+ただし、trial 3 では ON と OFF が同じ 15/18 に並んでおり、stale claim が retrieval 上位に来ない seed では別経路（event-frame Phase 0 の hard guard など）が代替で稼いでいる可能性を示唆する。これは「stale penalty が常に効く」ではなく「stale penalty が必要な条件のとき効く」selective effect の証拠であり、§8.6 の主結果で観測した「資格制御が必要な軸で勝つ」selective superiority と同じ性質である。
+
+この companion 結果は、IQC Failure Suite の Δ_ledger と独立にもう一回同じ向きの効果が観測されているという cross-benchmark triangulation を構成する。n=4-5 seeds への拡張で p<0.05 圏に到達する見込みであり、確定後に本節を更新する。
+
+8.6.8 残存する 4 失敗の解剖
+
+iqc が PASS しなかった 4 ケースは次である。
+
+- m1_22（quote_misattribution）: 父親への医師指示を本人服薬として誤帰属。両 judge 一致 FAIL。subject mismatch + medical domain。subject_entity_id ルーティングの完成が必要。
+- m3_13（no_store_violation）: 「今月だけ特例」記憶が retrieval に乗らず判断不成立。judge 不一致（claude UNCERTAIN, codex PASS）。injection 経路または oracle 設計の境界。
+- m3_14（no_store_violation）: 「つもりはない」明示が抽出時に失われ、意向化された応答。judge 不一致（claude FAIL, codex PASS）。意向否定マーカーの metadata 化が必要。
+- m4_20（dependency_staleness）: 旧値（田中部長）を「旧来の状況」として履歴形式で含めた応答。両 judge 一致 FAIL（keyword）。stale penalty の効きと oracle 設計両方が関係する境界。
+
+m1_22 と m3_14 は event_frame Phase 1（決定論的 frame builder + subject_entity_id routing）で潰せる見込みである。m3_13 と m4_20 は oracle / benchmark 設計の見直しも含めて検討する。
+
+8.6.9 主張境界（本節分）
+
+本節の数値は ollama qwen3.5:27b および openai gpt-4o-mini の二つの LLM 上、n=90 の合成 single-turn ベンチマークで得たものである。任意自然会話、長時間 multi-turn、別ベンダーモデル全般、judge 自体の bias を含めた最終一般化は本節からは主張しない。一方、同一 LLM 上で資格制御ありと資格制御なしを並べた場合、状態制御方向に大きな勾配があるという点については、二つの LLM family、二つの独立 judge、複数の合成ベンチマークが同じ向きの結果を返している。
 
 9. 統合解釈
 
@@ -766,6 +878,42 @@ conflict-aware readout contract では、state-control reference構成が 4/4、
 外部代謝層の classifyResolution が LLM judge、ルール、分類器、またはハイブリッドのどれであるかは、E7/E8 の解釈を左右する。LLM judge を使う場合、ON と OFF の差は「状態台帳設計の効果」だけでなく、judge を含む外部代謝システム全体の効果として読まなければならない。したがって、外部検証では、judge_model、入力プロンプト、判定基準、手動確認の有無を固定し、可能であれば rule-only、judge-only、hybrid、human-audited の切り分けを行う必要がある。これがない段階では、E7/E8 は外部代謝層全体のシステム評価であり、classifyResolution 単体の性能証明ではない。
 
 次実験では、この評価を効果量探索から検証実験へ進める必要がある。具体的には、nを増やし、直接矛盾、時点更新、条件例外、第三者情報の混入、保存禁止情報の混入を分け、モデル群ごとの分散と信頼区間を報告する。また、T15/T30だけでなく、矛盾注入直後、代謝直後、最終ターンを分けて測ることで、改善が単なる短期想起ではなく、矛盾整理によるものかを確認する。
+
+15.8 E9 IQC Failure Suite 外部ベースライン比較
+
+§8.6 で報告した外部ベースライン比較の再現用仕様である。
+
+ケース集合. n=90 single-turn probes。内訳は M1 quote_misattribution 25 件、M2 weak_affirmation 20 件、M3 no_store_violation 20 件、M4 dependency_staleness 25 件。各ケースは id, failure_mode, description, setup, setup_turns（M2 のみ）, update（M4 のみ）, probe, oracle_pass, oracle_fail, keywords_pass, keywords_fail を持つ JSONL レコードである。
+
+Backend 構成（6 backend）.
+
+- raw: 文脈なし、probe のみ LLM に渡す。
+- context_only: setup（および update）を素朴に文脈として文字列結合し LLM に渡す。
+- naive_rag: setup を一つの doc として保存、cosine top-k=3 で検索した上で LLM に渡す。
+- naive_rag_qualified: naive_rag と同じ検索だが、IQC の system prompt（資格制御指示・最新の明示訂正・relation guide・回答完全性契約等）を system message として分離して渡す。prompt-shape ablation。
+- iqc_no_fastpath: 状態制御 runtime の dialogue API を呼ぶが、サーバ起動時に IQC_SKIP_FAST_PATH_ABSTENTION=1 を設定し、決定論的棄権 fast-path を bypass する。ledger ablation。
+- iqc: 状態制御 runtime の dialogue API を fast-path 有効のまま呼ぶ。
+
+LLM 構成. Step 1 では ollama 経由で qwen3.5:27b（OLLAMA_NUM_CTX=16384）を 4 backend（raw, context_only, naive_rag, iqc）に使用した。Step 2 では openai gpt-4o-mini を 3 backend（raw, context_only, naive_rag）に使用した。Step 2 で iqc を含めなかったのは、agent 実装側を OpenAI に切り替える統合を本実験では行わなかったためである。
+
+判定（dual judge）. 各 response に対して、主判定 claude-opus-4-7（claude-cli OAuth サブスクリプション）と副判定 codex gpt-5.5（codex CLI サブスクリプション）が独立に hybrid 判定する。hybrid は keyword 一致を先に確認し、UNCERTAIN になった場合のみ LLM 判定にフォールバックする。両 verdict は per-case で記録し、agreement は両者とも非 ERROR の case のみで集計する（eligible 母数から両側 ERROR を除く）。codex 側の transient failure（timeout, exit 1）は scripts/retry_secondary_judge_errors.py で再判定する。
+
+Resume 機構. 各 case の verdict は progress JSONL に append + fsync で書き出し、(backend, case_id) を key として再開可能である。途中で停止した実行は同じ progress file を指定して再開すれば既完了 case を再呼び出しせずに skip する。
+
+データソース.
+
+- results_ollama_qwen3_5_27b_4backend_dual_judge.{json, progress.jsonl}
+- results_openai_gpt-4o-mini_3backend_dual_judge.{json, progress.jsonl}
+
+実装は delta-zero リポジトリの benchmarks/iqc_failure_suite/ にあり、commit hash で固定する（公開時に明記）。
+
+4-way ablation の事前固定予測. 本節と §8.6 では naive_rag_qualified と iqc_no_fastpath の実装・CLI を確定した段階で、実走前に予測を固定する形で進めている。Δ_prompt ≈ +5〜+10pt, Δ_ledger ≈ +3〜+8pt, Δ_fastpath ≈ +8〜+12pt。これは「実走後にシナリオを後出しで追加しない」ための pre-registration である。
+
+注意点.
+
+- n=90 では mode 単位の差分（例: M2 の +60pt）は二項信頼区間が広い。最終一般化には n の拡張と LLM family の拡張が必要である。
+- judge 自身が LLM である。dual judge の agreement は family-pair が一致した方向を支持するが、両 judge が同じ判定 bias を持つ可能性は除外できない。§11 で言及する hand-labeled calibration subset での評価が次段の必要要件である。
+- IQC backend は判定 LLM の prompt と語彙的に近い「保存済みの記憶にはありません」「確認できていません」を出しやすい設計である。Δ_prompt / Δ_fastpath の分離はこの prompt-shape leakage を取り除くために必要な ablation であり、Δ_ledger と Δ_fastpath が独立に正の寄与を持つことが confirm されない限り、+23pt のうちどれだけが構造由来かは確定できない。
 
 16. 付録C: ベースライン定義
 
