@@ -118,6 +118,47 @@ Information Qualification Control (IQC) は raw / context_only と同等であ�
 この suite では source attribution はベース LLM / retrieval でも比較的扱いやすい。
 したがって、M1 は Information Qualification Control の追加優位を示す主結果ではなく neutral result として読む。
 
+## Post-release Operational Refinement (claude-cli IQC backend, single-judge)
+
+上の qwen3.5:27b 主結果以後、IQC backend を claude-cli 上で再評価し、
+§Failure Cases で残った 4 ケースを対象に対話処理側の資格判定経路を
+段階的に追加した。判定経路の主な追加は次である。
+
+- 主題乖離判定: 検索された証拠の上位行で主題乖離を判定する経路と、
+  関係終了を全行走査で検出する経路の分離。
+- 意向否定判定: 上位行の話法が hypothetical (「つもりはない」「考えただけ」)
+  の場合に意向否定の抽象化応答を選択する経路。
+- 非永続化指示の継承: 「リセットしていい」「参照しないでください」を
+  対話区切りで揮発する台帳に保持し、後続問いの語との重なりで
+  対応する抽象化応答を選択する経路。
+- 報告話法判定の補正: classify_speech_act が question を
+  reported_instruction より先に返す境界を、報告標識の独立判定で補正。
+- 関係終了事実の retrieval 注入: 抽出器側で「Xとの取引は終了」型を
+  決定論的に検出して休眠台帳に保存し、関係系の問いに対しては
+  当該事実を source 検索で常時 retrieval に注入する。
+
+claude-cli を対話 LLM とした再評価結果は次である。
+
+| Mode | 改修前 | 改修後 |
+|---|---:|---:|
+| M1 | 24/25 | 24/25 |
+| M3 | 18/20 | **20/20** |
+| M4 | 24/25 | 23/25 |
+
+M2 はこのサブセクションでは再評価していない。M3 の +2 は m3_19
+(リセット許可指示) と m3_14 (意向否定) の改修によるもので、claude-cli
+上で両 case とも PASS に転じた。M4 は m4_20 が部分改修であり、終了
+事実が retrieval に届く経路は閉じたが、応答テキスト中の旧担当者名の
+残留により単語一致判定で FAIL が残る場合がある。
+
+本サブセクションの数値は claude-cli 単一 LLM、単一 judge
+(claude-opus-4-7, hybrid 判定) であり、§Cross-LLM Reproducibility の
+qwen / gemma / openai 結果を更新するものではない。本サブセクションが
+補強するのは「対話処理側の資格判定はケース単位の失敗分析から
+operational refinement の対象として扱える」という限定的な主張である。
+判定経路ごとの発火件数および発火比率は、runtime metrics の集計台帳
+(GET /metrics/dashboard) に追記される構成とした。
+
 ## Main Empirical Claim
 
 この suite が支える安全な主張は次である。
