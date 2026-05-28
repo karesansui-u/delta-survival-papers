@@ -60,6 +60,33 @@ assumptions + frozen protocol + witnesses
 ```
 
 
+Content-blind pre-stage (sentinel contract)
+-------------------------------------------
+
+A second module, `EpistemicSentinelContract`, formalises a content-blind
+pre-stage that decides hard-reject, escalate, defer, or accept on the
+basis of the input tuple alone, before the heavier qualification path
+runs. It adds:
+
+- `SentinelDecision` and `SentinelStepReadout` — per-step decision and
+  readout types.
+- `SentinelPolicyContract` — design-time claims (content-blind hot path,
+  sound hard-reject, sound escalate) carried as explicit `Prop`s that
+  external evidence (spec, tests, benchmark results) must justify.
+- `SentinelEvaluationMetrics` and `SentinelOperationalDominance` —
+  finite-horizon dominance assumptions on judge-call rate, escalation
+  recall, and false-abstention rate.
+- A bridge theorem,
+  `sentinel_metrics_controlled_coherentMass_ge_baseline`, that lifts the
+  sentinel-side dominance assumptions into the existing
+  `coherentMass_controlled >= coherentMass_baseline` inequality.
+
+As before, Lean does not certify that any concrete implementation is
+content-blind, calibrated, or empirically optimal; those obligations
+remain on the external-evidence side, with the `SentinelPolicyContract`
+fixing only the theorem-side shape.
+
+
 Implementation-facing reading
 ----------------------------
 
@@ -104,6 +131,7 @@ Where to go next
 - Lean bridge and contracts: `v3/03_domains/02_structurally_inferred/llm_epistemic_control_bridge.md`
 - Claim boundary: `v3/CLAIMS.md`
 - Result-certificate layer: `lean/Survival/EpistemicBenchmarkResultCertificate.lean`
+- Sentinel contract layer: `lean/Survival/EpistemicSentinelContract.lean`
 - Diagram: `../figures/figure5_iqc_assumption_to_guarantee_chain_en.svg`
 - Evidence summary: `v3/05_evidence/iqc_failure_suite_final_result_ja.md`
 

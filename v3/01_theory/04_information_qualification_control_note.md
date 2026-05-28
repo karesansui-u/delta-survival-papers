@@ -55,6 +55,29 @@ Lean 連結の主張（3段）
 を示します。これが本研究の中心主張です。
 
 
+中身非依存の前段（sentinel 契約）
+---------------------------------
+
+IQC 本体に入る前に、入力タプルだけを見て「即時拒否」「上位への昇格」「保留」「受理」を
+判定する前段層を置く設計がある。これを抽象的に取り扱うのが
+`EpistemicSentinelContract` モジュールで、以下を Lean 側に追加する。
+
+- `SentinelDecision` と `SentinelStepReadout`：1 ステップ分の判定面と読み出し。
+- `SentinelPolicyContract`：「hot path で意味解釈を行わない」「hard reject が健全」
+  「escalate path が健全」という設計時前提を、外部証拠（仕様・テスト・ベンチマーク）
+  によって満たすべき命題として明示する。
+- `SentinelEvaluationMetrics` / `SentinelOperationalDominance`：judge 呼出回数・
+  escalation recall・false abstention の 3 指標について、controlled が baseline を
+  下回らないという有限地平の dominance 仮定を持ち込む。
+- 橋渡し定理 `sentinel_metrics_controlled_coherentMass_ge_baseline` が、
+  sentinel 側の dominance 仮定を既存の `coherentMass_controlled >= coherentMass_baseline`
+  に接続する。
+
+ここでも Lean は「具体的な実装が中身非依存である」ことや「経験的に最適である」
+ことは証明しない。これらは外部証拠の側で示すべき項目として `SentinelPolicyContract`
+の中に Prop として明記され、定理側の形だけを固定する。
+
+
 実装側の読み替え
 ----------------
 
@@ -97,5 +120,6 @@ Lean の theorem side ではないため、以下は別です。
 - `v3/03_domains/02_structurally_inferred/llm_epistemic_control_bridge.md`
 - `v3/CLAIMS.md`
 - `lean/Survival/EpistemicBenchmarkResultCertificate.lean`
+- `lean/Survival/EpistemicSentinelContract.lean`
 - `v3/05_evidence/iqc_failure_suite_final_result_ja.md`
 
