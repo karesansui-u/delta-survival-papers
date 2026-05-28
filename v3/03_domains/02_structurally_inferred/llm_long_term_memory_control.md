@@ -246,6 +246,15 @@ benchmark summary であり、実装側では `karesansui-u/delta-zero` PR #2 / 
 `8d0b3b2` として公開済みである。
 ただし、Lean theorem-side evidence や一般的な memory safety 証明ではない。
 
+2026-05-28 に同じ failure suite を別 LLM family (ollama gemma4:31b, openai gpt-4o-mini)
+で再実行し、4 つの共通 backend (raw / context_only / naive_rag / naive_rag_qualified)
+における prompt 向上量 (= PR(naive_rag_qualified) − PR(raw)) が 3 LLM family いずれも
++34〜+47pp の範囲で、95% bootstrap CI 下端が +22pp を上回ることを確認した。これは
+prompt / control-layer 側の cross-LLM 再現性を示す追加証拠であり、特定 LLM family の
+癖に依存していないことを支持する。full IQC pipeline (iqc, iqc_no_fastpath) の
+cross-LLM 比較は、agent 統合または実行時間予算の問題で 2 LLM について構造的に除外
+されており、本節の cross-LLM 主張は prompt / control-layer 側に限定する。
+
 一方で、まだ設計上の弱点として残っている領域もある。
 
 - no-store と action utility の大規模化。より長い実ログ、複数話題、第三者情報、secret、外部送信、未来タスクが混ざる場合に過剰 block と unsafe allow の双方を抑える必要がある。
