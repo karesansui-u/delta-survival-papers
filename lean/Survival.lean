@@ -467,3 +467,60 @@ import Survival.AgingBridge
 
 -- Complete scope closure (理論の完全な閉包)
 import Survival.CompleteScopeClosure
+
+-- Deep coverage: quantum mechanics (量子力学の深掘り)
+import Survival.BornRuleBridge
+import Survival.QuantumChannelBridge
+import Survival.NoCloneBridge
+
+-- Deep coverage: evolutionary biology (進化生物学の深掘り)
+import Survival.PriceEquationBridge
+import Survival.HamiltonRuleBridge
+import Survival.GeneticLoadBridge
+
+-- Deep coverage: control theory (制御理論の深掘り)
+import Survival.KalmanBridge
+import Survival.LQRBridge
+
+-- Deep coverage: economics (経済学の深掘り)
+import Survival.WalrasEquilibriumBridge
+import Survival.WelfareTheoremBridge
+
+-- Deep coverage: statistical mechanics (統計力学の深掘り)
+import Survival.PartitionFunctionBridge
+import Survival.LandauPhaseBridge
+import Survival.CriticalExponentBridge
+
+-- Exhaustive coverage: probability & statistics (確率・統計の網羅)
+import Survival.LawOfLargeNumbersBridge
+import Survival.ChebyshevBridge
+import Survival.MarkovInequalityBridge
+import Survival.MLEBridge
+import Survival.JensenBridge
+
+-- Exhaustive coverage: physics (物理学の網羅)
+import Survival.EquipartitionBridge
+import Survival.StefanBoltzmannBridge
+import Survival.CarnotBridge
+
+-- Exhaustive coverage: information theory (情報理論の網羅)
+import Survival.DataProcessingBridge
+import Survival.FanoBridge
+
+-- Exhaustive coverage: computation (計算理論の網羅)
+import Survival.RiceTheoremBridge
+import Survival.ComputationalComplexityBridge
+
+-- Exhaustive coverage: economics (経済学の網羅)
+import Survival.ModiglianiMillerBridge
+import Survival.ComparativeAdvantageBridge
+
+-- Exhaustive coverage: biology (生物学の網羅)
+import Survival.NeutralEvolutionBridge
+import Survival.RedQueenBridge
+import Survival.GeneticLoadBridge
+import Survival.HamiltonRuleBridge
+import Survival.PriceEquationBridge
+
+-- Exhaustive coverage: mathematics (数学の網羅)
+import Survival.ContractionBridge
