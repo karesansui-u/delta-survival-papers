@@ -53,6 +53,7 @@ import Survival.EpistemicControlComparison
 import Survival.EpistemicControlEvaluationContract
 import Survival.EpistemicBenchmarkProtocol
 import Survival.EpistemicBenchmarkResultCertificate
+import Survival.EpistemicSentinelContract
 import Survival.EvidencePacketBridge
 import Survival.LLMEpistemicControlToy
 import Survival.LLMMemoryUseConditionToy

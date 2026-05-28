@@ -2,6 +2,7 @@ import Survival.EpistemicControlComparison
 import Survival.EpistemicControlEvaluationContract
 import Survival.EpistemicBenchmarkProtocol
 import Survival.EpistemicBenchmarkResultCertificate
+import Survival.EpistemicSentinelContract
 import Survival.LLMMemoryUseConditionToy
 import Survival.SoftwareEvidencePacketToy
 import Survival.SoftwareEvidenceNetActionBridge
@@ -26,6 +27,7 @@ open Survival.EpistemicControlComparison
 open Survival.EpistemicControlEvaluationContract
 open Survival.EpistemicBenchmarkProtocol
 open Survival.EpistemicBenchmarkResultCertificate
+open Survival.EpistemicSentinelContract
 open Survival.EvidencePacketBridge
 open Survival.GeneralStateDynamics
 open Survival.LLMEpistemicControlToy
@@ -120,6 +122,14 @@ theorem stack_result_certificate_implies_controlled_mass_ge_baseline
     coherentMass C.protocol.baseline C.protocol.horizon ≤
       coherentMass C.protocol.controlled C.protocol.horizon :=
   result_certificate_implies_controlled_mass_ge_baseline C hvalid
+
+theorem stack_sentinel_protocol_implies_controlled_mass_ge_baseline
+    {X : Type*}
+    (P : SentinelBenchmarkProtocol X)
+    (hvalid : ValidSentinelBenchmarkProtocol P) :
+    coherentMass P.protocol.baseline P.protocol.horizon ≤
+      coherentMass P.protocol.controlled P.protocol.horizon :=
+  sentinel_protocol_implies_controlled_mass_ge_baseline P hvalid
 
 theorem stack_evidence_filter_no_more_loss
     {Raw State : Type*} (M : MassModel State)
