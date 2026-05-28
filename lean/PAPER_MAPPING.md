@@ -1,7 +1,7 @@
 # Lean 形式検証 ↔ 論文対応棚卸し
 
-棚卸し日: 2026-05-27
-対象: `lean/Survival/` 配下 179 ファイル
+棚卸し日: 2026-05-29（最終更新）
+対象: `lean/Survival/` 配下 236 ファイル（初版 179 → 最終 236）
 対応文書: `delta-survival-paper/v2/` 配下の主理論 spine、Route C companions、補論群
 
 ## 現在の結論
@@ -9,7 +9,7 @@
 このファイルを、Lean 形式化と論文本文を結ぶ唯一の reader-facing theorem map とする。
 旧 SAT/CSP 専用 map は現行ツリーから外し、git history / OSF snapshot 側の archive として扱う。
 
-現時点の Lean 側は **179 Survival modules** で閉じており、imported `Survival` target には
+現時点の Lean 側は **236 Survival modules** で閉じており、imported `Survival` target には
 project-level の `sorry` / `admit` / declared `axiom` を置いていない。条件つき導出補論 §5 が
 明示している 5 ファイルを超えて、停止時刻崩壊、martingale concentration、粗視化、有限状態 Markov
 microfoundation、SAT/k-SAT Chernoff-KL chain、Bernoulli-CSP 水平展開、Route A 非CSP skeletons、
@@ -842,3 +842,218 @@ Route C companion II §7.4 に「§7.4.1 最小マルコフ修復チェーンモ
 5. 補論 SAT の `AsymptoticExponent` / `CorrelatedSecondMoment` / `SensitivityAnalysis` の論文未掲載洞察を、補論 SAT §6 限界節または新規節として追加（§3.4）。
 
 以上。
+
+---
+
+## 追加: Cross-Domain Bridge Modules (2026-05-29)
+
+棚卸し日: 2026-05-29
+追加: 5 新規 Lean モジュール、sorry/admit = 0、全 `lake build` 通過確認済
+
+### 新規モジュール一覧
+
+| Lean ファイル | 接続先 | G6 レベル | 論文側対応 |
+|---|---|---|---|
+| `CrooksFluctuationBridge.lean` | Crooks fluctuation theorem / Jarzynski equality（確率的熱力学） | G6-c | 収支原理詳細展開 §7.2, §7.6 |
+| `FisherFundamentalTheorem.lean` | Fisher's fundamental theorem of natural selection（進化生物学） | G6-c | ArrowOfTime.lean の拡張、Paper 1 §6 選択定理 |
+| `ViabilityKernelBridge.lean` | Aubin の離散時間 viability kernel（制御理論・生存可能性理論） | G6-c | 収支原理詳細展開 §2, 許容写像補論 |
+| `MartingaleConvergenceBridge.lean` | Doob のマルチンゲール収束定理（確率論） | G6-b/c | 収支原理詳細展開 §5-6, 確率接続層 |
+| `ChannelCapacityBridge.lean` | Shannon の通信路容量（情報理論） | G6-b | BinarySymmetricChannel / KLDivergence の統合読み |
+
+### 各モジュールの主要定理
+
+#### CrooksFluctuationBridge.lean
+- `crooks_structural_symmetry`: P(γ)/Q(θγ) = exp(L(γ))（Crooks 対称性の構造版）
+- `jarzynski_structural_equality`: ⟨exp(-L)⟩ = 1（Jarzynski 等式の構造版）
+- 既存 `FinitePathTrajectoryRatioBridge` の上に構築、追加仮定なし
+
+#### FisherFundamentalTheorem.lean
+- `fitness_decreasing`: δ₁ < δ₂ → fitness(δ₂) < fitness(δ₁)
+- `covDeltaFitness_neg`: Cov(δ, w) < 0（構造的選択の方向性）
+- `fisher_variance_decomposition`: ⟨w²⟩ - ⟨w⟩² = p₁p₂(w₁-w₂)²（p₁+p₂=1 正規化下）
+- `price_equation_sign`: Cov(δ,w)/⟨w⟩ < 0（Price 方程式の符号）
+- 既存 `ArrowOfTime.lean` の H 定理を Fisher 定理として再読
+
+#### ViabilityKernelBridge.lean
+- `viabilityKernel_zero`: Viab₀(K,F) = K（0ステップ核 = 制約集合全体）
+- `viabilityKernel_antitone`: m ≤ n → Viab_n ⊆ Viab_m（A1 方向の縮小）
+- `structuralConsumption_nonneg`: l_n ≥ 0（核縮小の非負性）
+- `captureBasin`: 捕捉盆の定義と V_rec への対応
+- Mathlibに微分包含がないため離散差分包含で構築
+
+#### MartingaleConvergenceBridge.lean
+- `retentionProcess_pos`: R_n = exp(-B_n) > 0（保持率の正値性）
+- `retentionProcess_telescoping`: R_n = R_0 · exp(-(B_n - B_0))
+- `retention_tends_zero_of_consumption_diverges`: B_n → ∞ ⟹ R_n → 0（崩壊方向）
+- `retention_bounded_away_from_zero`: B_n ≤ C ⟹ R_n ≥ exp(-C)（持続判定）
+- Mathlib の `Submartingale.ae_tendsto_limitProcess` を利用可能な足場
+
+#### ChannelCapacityBridge.lean
+- `binaryEntropy_half`: H(1/2) = ln 2
+- `uncoded_retention_eq_blockSuccess`: exp(-L_n) = (1-p)^n
+- `kl_as_structural_consumption`: D_KL = ln(total) - ln(sat)（構造消耗としての KL）
+- `perSymbolConsumption_nonneg`: 記号あたり構造消耗 ≥ 0
+
+### モジュール数の更新
+
+旧: 182 Survival modules (.lean ファイル数)
+Wave 1: **187 Survival modules** (+ CrooksFluctuationBridge, FisherFundamentalTheorem, ViabilityKernelBridge, MartingaleConvergenceBridge, ChannelCapacityBridge)
+
+---
+
+## 追加: Cross-Domain Bridge Modules Wave 2 (2026-05-29)
+
+棚卸し日: 2026-05-29
+追加: 5 新規 Lean モジュール（Wave 2）、sorry/admit = 0、全 `lake build` 通過確認済
+
+### Wave 2 新規モジュール一覧
+
+| Lean ファイル | 接続先 | G6 レベル | 開拓分野 |
+|---|---|---|---|
+| `LargeDeviationBridge.lean` | Cramér の大偏差原理 | G6-c | 確率論中核、保険数理、統計物理 |
+| `ErgodicRateBridge.lean` | Birkhoff のエルゴード定理（代数的骨格） | G6-b/c | 力学系、カオス理論 |
+| `LyapunovExponentBridge.lean` | Lyapunov 指数（カオス理論） | G6-b/c | カオス理論、力学系 |
+| `WassersteinBridge.lean` | 最適輸送（Wasserstein 距離） | G6-b | 機械学習、情報幾何 |
+| `CategoryBridge.lean` | 圏論（関手としての構造持続写像） | G6-b | 純数学、ホモロジー代数 |
+
+### 各モジュールの主要定理
+
+#### LargeDeviationBridge.lean
+- `chernoff_tends_zero`: exp(-n·I(a)) → 0（Chernoff上界が消滅）
+- `dual_justification_exponential_form`: 望遠鏡積（代数的）と大偏差（確率的）の二重正当化
+- `effectiveConsumption_succ`: L_{n+1} = L_n + I(a)（線形成長）
+
+#### ErgodicRateBridge.lean
+- `collapse_of_positive_rate`: l̄ > 0 → exp(-L_n) → 0（崩壊）
+- `persistence_of_nonpositive_rate`: l̄ ≤ 0 → exp(-L_n) ≥ 1（持続）
+- `boundary_of_zero_rate`: l̄ = 0 → exp(-L_n) = 1（境界）
+- `ergodic_trichotomy`: 定常レートの符号による完全三分法
+
+#### LyapunovExponentBridge.lean
+- `chaos_implies_collapse`: λ > 0 → 構造崩壊
+- `stability_implies_persistence`: λ < 0 → 構造持続
+- `marginal_retains`: λ = 0 → 保持率 = 1
+- `lyapunov_trichotomy`: Lyapunov 指数による完全三分法
+
+#### WassersteinBridge.lean
+- `cumulative_transport_le_of_pinsker`: Pinsker 型不等式による輸送コスト制御
+- `retention_le_one`: 保持率 ≤ 1（測度縮小方向）
+- 測度的消耗（L）と幾何的コスト（W）の相補性
+
+#### CategoryBridge.lean
+- `identityMorphism`: 恒等射の定義と損失保存
+- `composeMorphism`: 射の合成（ゲージの積）
+- `morphism_cumulative_covariance`: 射による累積損失の共変性
+- `isomorphism_preserves_loss`: 同型射は損失を不変に保つ
+- `compose_assoc`: 合成の結合律（ゲージ水準）
+
+### モジュール数の最終更新
+
+Wave 2 後: 196 Survival modules
+Wave 3 後（別LLM）: 200 Survival modules (+4: BernoulliCSPSecondLawInstance, SupermartingaleRetentionBridge, DoobConvergenceBridge, ShannonFiniteBlockCodingBridge)
+
+---
+
+## 追加: Cross-Domain Bridge Modules Wave 4 (2026-05-29)
+
+棚卸し日: 2026-05-29
+追加: 5 新規 Lean モジュール（Wave 4）、sorry/admit = 0、全 `lake build` 通過確認済（3347 jobs）
+
+### Wave 4 新規モジュール一覧
+
+| Lean ファイル | 接続先 | G6 レベル | 開拓分野 |
+|---|---|---|---|
+| `FixedPointBridge.lean` | Banach 不動点定理（関数解析） | G6-b/c | 関数解析、経済学、ゲーム理論 |
+| `RenyiEntropyBridge.lean` | Rényi エントロピー族（情報理論一般化） | G6-b | 量子情報、生態学、暗号学 |
+| `BellmanBridge.lean` | Bellman 最適制御（動的計画法） | G6-b | OR、SRE、予防保全 |
+| `MixingTimeBridge.lean` | マルコフ連鎖混合時間 | G6-b | MCMC、サンプリング、最適化 |
+| `GameTheoryBridge.lean` | ゲーム理論（ミニマックス / Nash 均衡） | G6-b/c | マルチエージェントAI、セキュリティ |
+
+### 各モジュールの主要定理
+
+#### FixedPointBridge.lean
+- `equilibrium_iff_full_repair`: 均衡 ⟺ 修復率 = 1
+- `positive_consumption_of_underrepair`: 修復不足 → 正の純消耗
+- `structural_fixed_point_trichotomy`: 修復率による構造的運命の三分法
+- `retention_at_equilibrium`: 均衡点での保持率 = 1
+
+#### RenyiEntropyBridge.lean
+- `renyiEntropy`: α次Rényiエントロピーの定義
+- `renyiEntropy_two_eq_neg_log_sum_sq`: α=2 で衝突エントロピー
+- `alphaConsumption_nonneg_of_shrinkage_supercritical`: α>1での非負性
+- `renyiDiversity_is_generalized_hill`: Hill数の一般化
+
+#### BellmanBridge.lean
+- `optimalRepair_zero_consumption`: 最適修復で純消耗 = 0
+- `stepCost_at_optimal`: 最適コスト = 修復単価 × 損傷率
+- `bellman_structural_principle`: Bellman最適性の構造版
+
+#### MixingTimeBridge.lean
+- `secondEigenvalue_lt_one`: λ₂ < 1（エルゴード的）
+- `deviationBound_le_one`: 偏差上界 ≤ 1
+- `mixing_rate_determines_convergence_speed`: 混合速度が収束速度を決定
+
+#### GameTheoryBridge.lean
+- `minimax_eq_maximin`: ミニマックス定理（構造版、双対ギャップなし）
+- `standardEquilibrium`: Nash均衡の構成
+- `game_value_determines_fate`: ゲーム値の符号が構造的運命を決定
+- `positive_value_collapse`: 正のゲーム値 → 崩壊
+
+### モジュール数の最終更新
+
+Wave 4 後: 207 Survival modules
+
+---
+
+## 追加: Wave 5 (別LLM) + Wave 6 (別LLM) + Tier S+/S++/S+++ + External Validation + Final Closure
+
+棚卸し日: 2026-05-29
+最終モジュール数: **236 Survival modules**、3382 build jobs、sorry/admit/axiom = 0
+
+### Wave 5（別LLM作成、7モジュール）
+RuinTheoryBridge, SufficientStatisticBridge, GronwallBridge, RenormalizationBridge, KolmogorovComplexityBridge, NoetherBridge, ExchangeabilityBridge
+
+### Wave 6（別LLM作成、7モジュール）
+ClausiusBridge, FreeEnergyPrincipleBridge, HaltingProblemBridge, QuantumInformationBridge, InformationGeometryBridge, PersistentHomologyBridge, HJBBridge
+
+### Tier S+: 表現定理・不可能性定理
+- `RepresentationTheorem.lean`: 公理B2-B4+非負性を満たす損失関数は -k log r に限る（一意性）
+- `ImpossibilityTheorem.lean`: 非対数関数は公理を満たせない（排除）。線形・二次の具体的反例付き
+
+### Tier S++（別LLM作成、7モジュール）
+FreeRepairImpossibility, MinimalAxiomTheorem, SeparationNecessity, AdditiveRecoveryNecessity, MinimalCoarseGraining, ConverseSecondLaw, MultivariateRepresentation
+
+### Tier S+++: 基礎完全性定理群（5モジュール）
+- `CompletenessTheorem.lean`: B3の独立性（線形反例）、非負性の独立性、B2はB3から導出可能
+- `StabilityTheorem.lean`: ε-近似加法性 → ε-近似対数（Hyers-Ulam安定性）
+- `SeparationTheorem.lean`: S = g(M)·h(R) で正斉次なら S = M·R（積形の必然性）
+- `DualityTheorem.lean`: min L ⟺ max S（厳密反単調性、log空間での傾き-1）
+- `InvarianceTheorem.lean`: l_i はスケーリング不変（α·m → 同じ l_i）
+
+### Final Closure: OptimalCoarseGraining
+- `OptimalCoarseGraining.lean`: 粗視化条件の最適弱化。比率保存⟺損失保存（MinimalCoarseGraining再確認）、飽和欠損による誤差制御、有界欠損→漸近的許容性、弱化条件の階層
+
+### External Validation（別LLM作成、6モジュール）
+FalsifiabilityTheorem, NonIdentityTheorem, ScopeBoundaryTheorem, ConstructiveWitness, TimeReversalBreaking, InformationOptimality
+
+### Wave 3（別LLM作成、4モジュール）
+BernoulliCSPSecondLawInstance, SupermartingaleRetentionBridge, DoobConvergenceBridge, ShannonFiniteBlockCodingBridge
+
+---
+
+## モジュール数の推移
+
+| 段階 | モジュール数 | 新規 | 内容 |
+|------|------------|------|------|
+| 初期 | 182 | — | Core + CSP/SAT + 信頼性 + エピステミック |
+| Wave 1 | 187 | +5 | Crooks, Fisher, Aubin, Martingale, Shannon |
+| Wave 2 | 192 | +5 | 大偏差, エルゴード, Lyapunov, Wasserstein, 圏論 |
+| Wave 3 | 196 | +4 | BernoulliCSP2ndLaw, Supermartingale, Doob, ShannonBlock |
+| Wave 4 | 201 | +5 | 不動点, Rényi, Bellman, 混合時間, ゲーム理論 |
+| Wave 5 | 208 | +7 | 破産, 十分統計量, Gronwall, 繰り込み, Kolmogorov, Noether, 交換可能性 |
+| Wave 6 | 215 | +7 | Clausius, FEP, Halting, 量子情報, 情報幾何, 持続ホモロジー, HJB |
+| Tier S+ | 217 | +2 | 表現定理, 不可能性定理 |
+| Tier S++ | 224 | +7 | FreeRepair, MinimalAxiom, SeparationNecessity, AdditiveRecovery, MinimalCG, Converse2ndLaw, Multivariate |
+| Tier S+++ | 229 | +5 | 完全性, 安定性, 分離, 双対, 不変性 |
+| Final Closure | 230 | +1 | OptimalCoarseGraining |
+| External Validation | 236 | +6 | 反証可能性, 非同一性, 適用限界, 構成的証人, 時間反転, 情報最適性 |

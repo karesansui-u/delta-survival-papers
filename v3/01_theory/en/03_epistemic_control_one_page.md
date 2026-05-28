@@ -315,7 +315,7 @@ by the relevant frozen baseline, metric, validation rule, and evidence ledger.
 Why This Matters
 ----------------
 
-Before the bridge, the connection from structural-persistence accounting to
+Before the bridge, the connection from structural-persistence theory to
 LLM-style control could look like prose mapping. The bridge makes the
 connection thinner and sharper:
 

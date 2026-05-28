@@ -5,7 +5,7 @@ import Survival.GeneralStateDynamics
 # Epistemic Control Bridge
 
 This file is a thin bridge from LLM-style epistemic control language to the
-existing structural-persistence accounting kernel.
+existing structural persistence theory kernel.
 
 It does not formalize natural-language meaning, model weights, or LLM
 performance.  Instead, an epistemic control layer supplies:

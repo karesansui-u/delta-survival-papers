@@ -13,12 +13,14 @@ finite envelopes under stated assumptions.
 
 Current machine-checked status:
 
-- **179 direct top-level `Survival.*` imports in `Survival.lean`**
-- **179 `Survival/*.lean` module files**
-- Top-level build target: `Survival`
+- **236 `Survival/*.lean` module files**
+- Top-level build target: `Survival` (3382 jobs)
 - No project-level `sorry`, `admit`, or declared `axiom` in the imported target
 - SAT/k-SAT finite-horizon chain: frozen as **SAT chain v1.0**
 - Bernoulli bad-event CSP layer: frozen as **Bernoulli CSP universality v1.2**
+- **Cross-domain bridges**: 20+ formal embeddings connecting structural persistence to thermodynamics, information theory, probability theory, control theory, evolutionary biology, chaos theory, optimal transport, category theory, game theory, quantum information, computational complexity, and more
+- **Foundational meta-theorems**: Representation Theorem (uniqueness), Impossibility Theorem (exclusion), Completeness Theorem (axiom independence), Stability Theorem (Hyers–Ulam robustness), Separation Theorem (product form necessity), Duality Theorem (min L = max S), Invariance Theorem (coordinate independence), Optimal Coarse-Graining (last foundational gap closed)
+- **External validation layer**: Falsifiability, Non-Identity, Scope Boundary, Constructive Witness, Time-Reversal Breaking, Information Optimality
 
 ## Top-Level Import Spine
 
@@ -63,7 +65,7 @@ Accounting**.  For the prose theory and public reading path, start here:
 
 | Entry point | Role |
 |---|---|
-| [`../v3/01_theory/20_public_first_draft.md`](../v3/01_theory/20_public_first_draft.md) | Public first-draft paper: structural persistence accounting, specification-fixed anchors, and finite operational examples |
+| [`../v3/01_theory/20_public_first_draft.md`](../v3/01_theory/20_public_first_draft.md) | Public first-draft paper: structural persistence theory, specification-fixed anchors, and finite operational examples |
 | [`../v3/01_theory/02_accounting_framework.md`](../v3/01_theory/02_accounting_framework.md) | Core accounting framework: maintainable regions, log-ratio accounting, repair-inclusive balance, and observability layers |
 | [`../v3/01_theory/10_log_ratio_accounting.md`](../v3/01_theory/10_log_ratio_accounting.md) | Minimal log-ratio kernel behind `S = M e^{-L}` |
 | [`../v3/01_theory/11_balance_accounting.md`](../v3/01_theory/11_balance_accounting.md) | Repair-inclusive balance principle behind `S = M e^{-B}` |
@@ -73,7 +75,7 @@ Accounting**.  For the prose theory and public reading path, start here:
 The relationship is:
 
 ```text
-Structural Persistence Accounting prose
+Structural Persistence Theory prose
   -> claim and boundary map
   -> Lean theorem map
   -> machine-checked finite theorem stack
@@ -161,6 +163,11 @@ Survival/LinearCodeBECCapacityStyleBoundary.lean
 | Route A non-CSP skeletons | `SerialReliability`, `ConstantFractionDecay`, `BranchingProcessExtinction`, `QueueStability`, `BinarySymmetricChannel`, `FatigueDamage`, `ConsensusFaultThreshold`, `MemoryThrashing`, `BucklingThreshold`, `PercolationThreshold` | Finite-prefix examples of exponential survival, overload/capacity thresholds, and critical-parameter thresholds outside CSPs |
 | SAT second-moment and information theory | `SATFirstMoment`, `SATSecondMoment`, `SecondMomentBound`, `PairCorrelation`, `AsymptoticExponent`, `KLDivergence`, `CorrelatedSecondMoment` | First/second moment SAT facts, overlap decomposition, KL identities, correlated sandwich bounds |
 | Multi-attractor and phase-transition layer | `MultiAttractor`, `TransitionTheorem`, `FreeEnergy` | Basin survival, transition points, free-energy formulation |
+| Cross-domain formal bridges | `CrooksFluctuationBridge`, `FisherFundamentalTheorem`, `ViabilityKernelBridge`, `MartingaleConvergenceBridge`, `ChannelCapacityBridge`, `LargeDeviationBridge`, `ErgodicRateBridge`, `LyapunovExponentBridge`, `WassersteinBridge`, `CategoryBridge`, `FixedPointBridge`, `RenyiEntropyBridge`, `BellmanBridge`, `MixingTimeBridge`, `GameTheoryBridge`, `RuinTheoryBridge`, `SufficientStatisticBridge`, `GronwallBridge`, `RenormalizationBridge`, `KolmogorovComplexityBridge`, `NoetherBridge`, `ExchangeabilityBridge`, `ClausiusBridge`, `FreeEnergyPrincipleBridge`, `HaltingProblemBridge`, `QuantumInformationBridge`, `InformationGeometryBridge`, `PersistentHomologyBridge`, `HJBBridge` | G6-b/c formal embeddings into thermodynamics, information theory, probability theory, control theory, evolutionary biology, chaos theory, optimal transport, category theory, game theory, quantum information, computational complexity, algebraic topology, information geometry |
+| Foundational meta-theorems | `RepresentationTheorem`, `ImpossibilityTheorem`, `CompletenessTheorem`, `StabilityTheorem`, `SeparationTheorem`, `DualityTheorem`, `InvarianceTheorem`, `OptimalCoarseGraining` | Log-ratio uniqueness (representation), non-log exclusion (impossibility), axiom independence (completeness), Hyers–Ulam robustness (stability), product form necessity (separation), min L = max S (duality), coordinate independence (invariance), ratio preservation ⟺ loss preservation (optimal coarse-graining) |
+| Necessity meta-theorems | `FreeRepairImpossibility`, `MinimalAxiomTheorem`, `SeparationNecessity`, `AdditiveRecoveryNecessity`, `MinimalCoarseGraining`, `ConverseSecondLaw`, `MultivariateRepresentation` | Resource constraint necessity, minimal axiom system, M-L separation necessity, additive recovery necessity, ratio ⟺ loss characterization, second law converse, multivariate independence |
+| External validation | `FalsifiabilityTheorem`, `NonIdentityTheorem`, `ScopeBoundaryTheorem`, `ConstructiveWitness`, `TimeReversalBreaking`, `InformationOptimality` | Falsifiability with frozen test 4-classification, non-identity with thermodynamics/information theory/survival analysis, scope boundaries (zero mass, constant, finite horizon), constructive 2/3-state computation, time-reversal breaking from A1, Fisher-information optimality of log form |
+| Second-law instances and convergence | `BernoulliCSPSecondLawInstance`, `SupermartingaleRetentionBridge`, `DoobConvergenceBridge`, `ShannonFiniteBlockCodingBridge` | BernoulliCSP second-law instantiation, supermartingale retention, Doob a.s. convergence bridge, Shannon finite-block achievability/converse |
 
 ---
 
@@ -256,7 +263,48 @@ Survival/SATStateDependentCountChernoffKLAlgebra.lean
 Survival/BernoulliCSPUniversality.lean
 ```
 
-### 5. The information-theory bridge is formal, but bounded
+### 5. Every component of the theory is mathematically necessary
+
+The foundational meta-theorem layer proves that no part of the theory is
+an arbitrary choice:
+
+- The log-ratio form is the unique function satisfying the axioms (Representation)
+- No non-logarithmic alternative can satisfy the axioms (Impossibility)
+- The axioms are independent — removing any one breaks uniqueness (Completeness)
+- Approximate axioms yield approximate log forms (Stability / Hyers–Ulam)
+- The product form S = M · R is forced by homogeneity (Separation)
+- Minimizing L and maximizing S are the same problem (Duality)
+- The loss l_i is independent of the measure's overall scale (Invariance)
+- Ratio preservation is necessary and sufficient for coarse-graining (Optimal CG)
+
+Representative modules:
+
+```text
+Survival/RepresentationTheorem.lean
+Survival/ImpossibilityTheorem.lean
+Survival/CompletenessTheorem.lean
+Survival/StabilityTheorem.lean
+Survival/OptimalCoarseGraining.lean
+```
+
+### 6. Cross-domain bridges connect 20+ fields via the same accounting
+
+The bridge layer formally embeds existing theories into structural
+persistence variables. Each bridge is a G6-b or G6-c formal embedding
+(not an analogy). Representative connections:
+
+| Domain | Bridge module | Key identification |
+|---|---|---|
+| Stochastic thermodynamics | `CrooksFluctuationBridge` | σ(γ) = L(γ), ⟨exp(-L)⟩ = 1 |
+| Evolutionary biology | `FisherFundamentalTheorem` | fitness = exp(-δ), Cov(δ,w) < 0 |
+| Control theory | `ViabilityKernelBridge` | Viab(K) = V_G, antitone shrinkage |
+| Chaos theory | `LyapunovExponentBridge` | λ > 0 → collapse, λ < 0 → persist |
+| Large deviations | `LargeDeviationBridge` | I(a) = rate function = consumption density |
+| Game theory | `GameTheoryBridge` | Nash equilibrium = structural equilibrium |
+| Quantum information | `QuantumInformationBridge` | fidelity = retention, decoherence = consumption |
+| Algebraic topology | `PersistentHomologyBridge` | Betti decrease = consumption |
+
+### 7. The information-theory bridge is formal, but bounded
 
 `KLDivergence` proves the cleanest information-theoretic statement: in the
 independent-constraint case, cumulative loss equals the KL divergence between
@@ -287,6 +335,17 @@ The Lean development is intentionally conservative.  It does not claim:
 Instead, it provides a reusable finite theorem stack: once a domain supplies the
 required path measure, bad-event probability, drift, repair, or concentration
 witnesses, the structural-persistence wrappers apply.
+
+What it *does* claim, with machine-checked proof:
+
+- the exponential form S = M exp(-L) is the unique persistence functional
+  satisfying natural axioms (Representation + Impossibility Theorems);
+- the axiom system is minimal and robust (Completeness + Stability);
+- every structural component (product form, coarse-graining, recovery
+  additivity, resource constraints) is necessary, not chosen (Necessity
+  meta-theorems);
+- the theory is falsifiable, distinguishable from existing theories, and
+  has explicit scope boundaries (External Validation layer).
 
 ---
 

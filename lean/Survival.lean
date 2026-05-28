@@ -88,6 +88,8 @@ import Survival.RepairMaintenanceTemplate
 import Survival.CrossClassUnificationV0
 import Survival.CrossClassUnificationV1
 import Survival.CrossClassUnificationV2
+import Survival.CrossClassUnificationV3
+import Survival.StructuralSecondLaw
 import Survival.MaintenanceComponentDecomposition
 import Survival.BinarySymmetricChannel
 import Survival.FatigueDamage
@@ -237,3 +239,231 @@ import Survival.MultiAttractor
 import Survival.TransitionTheorem
 import Survival.FreeEnergy
 import Survival.ScaleInvariance
+
+-- Cross-domain bridges (Wave 1)
+import Survival.ViabilityKernelBridge
+import Survival.CrooksFluctuationBridge
+import Survival.FisherFundamentalTheorem
+import Survival.ChannelCapacityBridge
+import Survival.MartingaleConvergenceBridge
+
+-- Cross-domain bridges (Wave 2)
+import Survival.LargeDeviationBridge
+import Survival.ErgodicRateBridge
+import Survival.LyapunovExponentBridge
+import Survival.WassersteinBridge
+import Survival.CategoryBridge
+
+-- Structural second law instances and convergence (Wave 3)
+import Survival.BernoulliCSPSecondLawInstance
+import Survival.SupermartingaleRetentionBridge
+import Survival.DoobConvergenceBridge
+import Survival.ShannonFiniteBlockCodingBridge
+
+-- Cross-domain bridges (Wave 4)
+import Survival.FixedPointBridge
+import Survival.RenyiEntropyBridge
+import Survival.BellmanBridge
+import Survival.MixingTimeBridge
+import Survival.GameTheoryBridge
+
+-- Cross-domain bridges (Wave 5)
+import Survival.RuinTheoryBridge
+import Survival.SufficientStatisticBridge
+import Survival.GronwallBridge
+import Survival.RenormalizationBridge
+import Survival.KolmogorovComplexityBridge
+import Survival.NoetherBridge
+import Survival.ExchangeabilityBridge
+
+-- Cross-domain bridges (Wave 6 — Tier S)
+import Survival.ClausiusBridge
+import Survival.FreeEnergyPrincipleBridge
+import Survival.HaltingProblemBridge
+import Survival.QuantumInformationBridge
+import Survival.InformationGeometryBridge
+import Survival.PersistentHomologyBridge
+import Survival.HJBBridge
+
+-- Tier S+ : Foundational meta-theorems (格上げ定理)
+import Survival.RepresentationTheorem
+import Survival.ImpossibilityTheorem
+
+-- Tier S++ : Necessity and minimality meta-theorems
+import Survival.FreeRepairImpossibility
+import Survival.MinimalAxiomTheorem
+import Survival.SeparationNecessity
+import Survival.AdditiveRecoveryNecessity
+import Survival.MinimalCoarseGraining
+import Survival.ConverseSecondLaw
+import Survival.MultivariateRepresentation
+
+-- Tier S+++ : Foundational completeness (格上げ定理群)
+import Survival.CompletenessTheorem
+import Survival.StabilityTheorem
+import Survival.SeparationTheorem
+import Survival.DualityTheorem
+import Survival.InvarianceTheorem
+
+-- Final closure: optimal coarse-graining (最後の基礎的ギャップを閉じる)
+import Survival.OptimalCoarseGraining
+
+-- External validation layer (科学的正当性の外向き証明)
+import Survival.FalsifiabilityTheorem
+import Survival.NonIdentityTheorem
+import Survival.ScopeBoundaryTheorem
+import Survival.ConstructiveWitness
+import Survival.TimeReversalBreaking
+import Survival.InformationOptimality
+
+-- Derived classical theorems (古典定理の導出)
+import Survival.JaynesMaxEntTheorem
+import Survival.LandauerPrincipleBridge
+import Survival.RaoBlackwellTheorem
+import Survival.ShannonCodingTheorem
+import Survival.CrooksCompleteTheorem
+import Survival.BirkhoffErgodicBridge
+
+-- Fundamental physics connections (基礎物理学への接続)
+import Survival.FalseVacuumBridge
+import Survival.SymmetryBreakingBridge
+import Survival.BlackHoleEntropyBridge
+import Survival.HeatDeathBridge
+
+-- Classical theorems absorbed as corollaries (古典定理の吸収)
+import Survival.BoltzmannEntropyBridge
+import Survival.StirlingBridge
+import Survival.KLCompleteBridge
+import Survival.SanovBridge
+import Survival.RenyiEntropyUniqueness
+import Survival.BlackwellBridge
+import Survival.KellyBridge
+import Survival.BregmanBridge
+import Survival.ArrowPrattBridge
+import Survival.ZipfBridge
+import Survival.RadioactiveDecayBridge
+import Survival.MalthusianBridge
+import Survival.ArrheniusBridge
+import Survival.QuantumTunnelingBridge
+import Survival.BlackScholesBridge
+import Survival.SoftmaxBridge
+
+-- Extended physics connections (物理学の広域接続)
+import Survival.IsingTransitionBridge
+import Survival.SuperconductivityBridge
+import Survival.LaserThresholdBridge
+import Survival.PlasmaConfinementBridge
+import Survival.NuclearStabilityBridge
+import Survival.InflationBridge
+import Survival.DarkEnergyBridge
+import Survival.RubberElasticityBridge
+import Survival.GlassTransitionBridge
+import Survival.TurbulenceBridge
+
+-- Biology connections (生物学への接続)
+import Survival.MichaelisMentenBridge
+import Survival.LotkaVolterraBridge
+import Survival.SIRModelBridge
+import Survival.PharmacokineticsBridge
+import Survival.HardyWeinbergBridge
+import Survival.WrightFisherBridge
+
+-- Engineering & CS connections (工学・計算機科学への接続)
+import Survival.PageRankBridge
+import Survival.HuffmanBridge
+import Survival.RSABridge
+import Survival.PIDControlBridge
+import Survival.MooresLawBridge
+
+-- Economics & social science connections (経済学・社会科学への接続)
+import Survival.NashEquilibriumBridge
+import Survival.ArrowImpossibilityBridge
+import Survival.DiminishingMarginalUtilityBridge
+import Survival.MCMCBridge
+
+-- Mathematical foundations (数学基盤への接続)
+import Survival.CLTBridge
+import Survival.FourierBridge
+import Survival.PicardLindelofBridge
+
+-- Deep extensions (深層への拡張)
+import Survival.CentralLimitBridge
+import Survival.PontryaginBridge
+import Survival.EulerLagrangeBridge
+import Survival.BayesianBridge
+import Survival.GodelBridge
+import Survival.DNAReplicationBridge
+import Survival.GeneralizationBridge
+import Survival.LanguageEntropyBridge
+import Survival.EcosystemResilienceBridge
+import Survival.CausalInferenceBridge
+import Survival.IntegratedInformationBridge
+
+-- Cosmological connections (宇宙論への接続)
+import Survival.NucleosynthesisBridge
+import Survival.CMBBridge
+import Survival.StellarEvolutionBridge
+import Survival.LargeScaleStructureBridge
+import Survival.HolographicBridge
+import Survival.FermiParadoxBridge
+import Survival.AnthropicBridge
+import Survival.CosmicFateBridge
+import Survival.BoltzmannBrainBridge
+import Survival.EntropicGravityBridge
+
+-- Fundamental scientific principles (科学の根本原理への接続)
+import Survival.UncertaintyPrincipleBridge
+import Survival.FirstLawBridge
+import Survival.ThirdLawBridge
+import Survival.ZerothLawBridge
+import Survival.PauliBridge
+import Survival.ComplementarityBridge
+import Survival.ErgodicHypothesisBridge
+import Survival.CPTBridge
+import Survival.BellInequalityBridge
+import Survival.FluctuationDissipationBridge
+
+-- Chemistry (化学への接続)
+import Survival.LeChatelierBridge
+import Survival.ChemicalPotentialBridge
+import Survival.TransitionStateBridge
+
+-- Earth science (地球科学への接続)
+import Survival.TectonicsBridge
+import Survival.ClimateRadiativeBridge
+
+-- Neuroscience (神経科学への接続)
+import Survival.HebbianBridge
+import Survival.HodgkinHuxleyBridge
+
+-- Linguistics (言語学への接続)
+import Survival.UniversalGrammarBridge
+
+-- Psychology & cognitive science (心理学・認知科学への接続)
+import Survival.ForgettingCurveBridge
+import Survival.WeberFechnerBridge
+
+-- Materials science (材料科学への接続)
+import Survival.CreepBridge
+import Survival.CorrosionBridge
+
+-- Information security (情報セキュリティへの接続)
+import Survival.ShannonSecrecyBridge
+
+-- Sociology (社会学への接続)
+import Survival.DunbarBridge
+import Survival.OrganizationalDecayBridge
+
+-- Network science (ネットワーク科学への接続)
+import Survival.ScaleFreeBridge
+import Survival.NetworkPercolationBridge
+
+-- Mathematics (数学への接続)
+import Survival.ItoBridge
+import Survival.SpectralTheoryBridge
+
+-- Biology extended (生物学の拡張)
+import Survival.AgingBridge
+
+-- Complete scope closure (理論の完全な閉包)
+import Survival.CompleteScopeClosure

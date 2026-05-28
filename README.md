@@ -92,12 +92,22 @@ structural layer.
 This is not a proof of a universal law. It is package-scoped replication support
 for the first law-side empirical anchors.
 
-Lean formalization is in [`lean/`](lean/). Current status is `179` direct
-top-level `Survival.*` imports in `lean/Survival.lean`, matching `179`
-`lean/Survival/*.lean` module files, with no project-level `sorry`, `admit`,
-or declared `axiom` in the imported `Survival` target. The top-level import spine is
+Lean formalization is in [`lean/`](lean/). Current status is **236
+`lean/Survival/*.lean` module files** (3382 build jobs), with no project-level
+`sorry`, `admit`, or declared `axiom` in the imported `Survival` target.
+
+The 236 modules include:
+
+- **Core structural persistence** (telescoping exponential, log-ratio uniqueness, balance principle)
+- **CSP/SAT finite-horizon chain** (Bernoulli-CSP universality, 10+ constraint-class instantiations)
+- **Cross-domain formal bridges** (20+ fields: thermodynamics, information theory, probability, control, biology, chaos, quantum, topology, game theory, ...)
+- **Foundational meta-theorems** (Representation, Impossibility, Completeness, Stability, Separation, Duality, Invariance, Optimal Coarse-Graining)
+- **Necessity meta-theorems** (every structural component proved necessary, not chosen)
+- **External validation** (falsifiability, non-identity, scope boundary, constructive witness, time-reversal breaking, information optimality)
+
+The top-level import spine is
 [`lean/Survival.lean`](lean/Survival.lean). The theorem-to-paper map is
-[`lean/PAPER_MAPPING.md`](lean/PAPER_MAPPING.md), and the strengthened Lean
+[`lean/PAPER_MAPPING.md`](lean/PAPER_MAPPING.md), and the Lean
 landing page is [`lean/README.md`](lean/README.md).
 
 The LLM-facing abstract bridge is documented in

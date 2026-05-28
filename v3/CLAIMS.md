@@ -77,7 +77,7 @@ second-moment survival under a controlled second-moment ratio, finite BEC
 linear-code erasure-rank unique recovery, finite row-budget converse, random
 parity-check row-slack envelope, BEC erasure-count concentration bridge,
 finite BEC capacity-style bound bundle, finite \(s\)-\(t\) cutset reliability
-embedding, spanning-tree persistence accounting, stationary-current and
+embedding, spanning-tree persistence theory, stationary-current and
 trajectory-ratio guardrails, Foster-Lyapunov sign bridges, and the LLM
 epistemic-control bridge that maps contradiction / repair control interfaces
 to the finite net-action kernel. These anchors strengthen the vocabulary and

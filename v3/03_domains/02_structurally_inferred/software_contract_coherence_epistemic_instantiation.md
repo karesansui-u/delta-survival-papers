@@ -149,7 +149,7 @@ For software, the safe reading is conditional:
 The theorem does not say that the present contract-coherence workflow has
 proven a natural mass model, measured coherent mass, or estimated long-term
 software collapse.  It says that once those finite interface conditions are
-supplied, the existing structural-persistence accounting kernel applies.
+supplied, the existing structural-persistence theory kernel applies.
 
 
 5. Evidence Boundary
