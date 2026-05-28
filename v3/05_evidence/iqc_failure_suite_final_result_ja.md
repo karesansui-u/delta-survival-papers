@@ -61,6 +61,36 @@ artifact ではない。
 | permission | M3 保存禁止違反 | 80% | 80% | 85% | 100% |
 | versionState | M4 依存更新失敗 | 52% | 88% | 96% | 96% |
 
+## Cross-LLM Reproducibility (3 LLM family, n=90)
+
+上の qwen3.5:27b 主結果に加えて、同じ failure suite を別 LLM family
+(gemma4:31b, openai gpt-4o-mini) で再実行した。3 LLM が直接比較できる 4 backend
+(raw / context_only / naive_rag / naive_rag_qualified) について全体 PASS 率は
+次である。
+
+| backend | qwen3.5:27b | gemma4:31b | openai gpt-4o-mini |
+|---|---:|---:|---:|
+| raw | 55.6% | 45.6% | 41.1% |
+| context_only | 68.9% | 62.2% | 43.3% |
+| naive_rag | 72.2% | 62.2% | 50.0% |
+| naive_rag_qualified | 90.0% | 92.2% | 78.9% |
+
+prompt 向上量 (PR(naive_rag_qualified) − PR(raw)) を case-paired bootstrap
+(5000 iter, 95% CI) で取った結果は次である。
+
+| LLM family | prompt 向上量 | 95% CI |
+|---|---:|---|
+| qwen3.5:27b | +34.4pp | [+22.2pp, +46.7pp] |
+| gemma4:31b | +46.7pp | [+35.6pp, +57.8pp] |
+| openai gpt-4o-mini | +37.8pp | [+25.6pp, +50.0pp] |
+
+3 LLM family いずれにおいても CI 下端が +22pp を上回り、prompt / control-layer
+側の効果が LLM family 非依存に再現することを示す。iqc / iqc_no_fastpath の
+比較は本節では行わない (openai は agent 統合未実施、gemma は IQC pipeline の
+1 ケース所要時間が試行時間予算を超過したため構造的に除外)。したがって本節の
+主張は「prompt / control-layer 側の cross-LLM 再現性」に限定し、full IQC
+pipeline の cross-LLM 優位性ではない。
+
 ## Reading
 
 M2 speechAct tracking:
