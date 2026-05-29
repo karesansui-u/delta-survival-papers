@@ -94,24 +94,31 @@ for the first law-side empirical anchors.
 
 Lean formalization is maintained in a dedicated repository:
 **[persistence-lean](https://github.com/karesansui-u/persistence-lean)** —
-382 `Persistence/*.lean` modules, 3,500+ build jobs, sorry/admit/axiom = 0.
+406 `Persistence/*.lean` modules, sorry/admit/axiom = 0.
 
 The historical copy in this repo has been moved to [`lean_archive/`](lean_archive/)
 (namespace `Survival`). It is no longer maintained. Use persistence-lean for
 the canonical, up-to-date formalization (namespace `Persistence`).
 
-The 372 modules include:
+The 406 modules fall into three tiers of mathematical depth
+(see [persistence-lean README](https://github.com/karesansui-u/persistence-lean#honest-assessment)
+for the full honest assessment):
 
-- **Core structural persistence** (telescoping exponential, log-ratio uniqueness, balance principle)
-- **Representation + Impossibility theorems** (loss = −k log r is unique)
-- **Structural second law** (three-layer: deterministic, stochastic, coarse-graining)
-- **CSP/SAT finite-horizon chain** (Bernoulli-CSP universality, 10+ constraint-class instantiations)
-- **Cross-domain conditional bridges** (60+ fields: thermodynamics, information theory, probability, control, biology, quantum, cosmology, economics, ...)
-- **Foundational meta-theorems** (Completeness, Stability, Separation, Duality, Invariance, Optimal Coarse-Graining)
-- **Necessity meta-theorems** (every structural component proved necessary, not chosen)
-- **External validation** (falsifiability, non-identity, scope boundary, constructive witness, time-reversal breaking, information optimality)
-- **Classical theorem bridges** (Shannon, Jaynes, Landauer, Rao-Blackwell, Crooks-Jarzynski, Birkhoff, Gronwall, ...)
-- **Hardened core-connected bridges** (Shannon uniqueness as corollary, Boltzmann uniqueness with isothermal/adiabatic differentiation, Fisher information via Cramér-Rao, Clausius from second law, Landauer from representation theorem, Arrow impossibility via aggregation)
+- **Tier A — Core-routed bridges (~20)**: invoke the telescoping kernel to
+  derive domain-specific conclusions that do not follow from single-step
+  properties (e.g. `ForgettingCurveBridge`, `DunbarBridge`, `RSABridge`)
+- **Tier B — Structural core + necessity (~40)**: representation/impossibility
+  theorems, structural second law (converse, minimal axioms, free repair
+  impossibility, complete scope closure), resource dynamics, identity /
+  asymptotic identity / phase transition, interaction defect,
+  Mathlib-backed connections (Category instance, Galois connection,
+  KL embedding, Cesaro ergodic extension)
+- **Tier C — Vocabulary mappings (~160)**: map domain terminology into the
+  SP coordinate system. These are **naming conventions, not theorems**.
+  They carry no independent mathematical weight.
+
+The remaining ~190 modules are internal infrastructure (definitions,
+API lemmas, SAT/CSP chain, stochastic layer, epistemic-control protocol).
 
 The theorem-to-paper map is
 [`PAPER_MAPPING.md`](https://github.com/karesansui-u/persistence-lean/blob/main/PAPER_MAPPING.md).
@@ -122,46 +129,46 @@ It connects contradiction / repair / memory-filter / dependency-rewrite
 control layers to the finite net-action kernel under explicit assumptions; it
 does not claim to prove LLM semantics or performance.
 The baseline comparison layer is
-[`lean/Survival/EpistemicControlComparison.lean`](lean/Survival/EpistemicControlComparison.lean);
+[`https://github.com/karesansui-u/persistence-lean/blob/main/Persistence/EpistemicControlComparison.lean`](https://github.com/karesansui-u/persistence-lean/blob/main/Persistence/EpistemicControlComparison.lean);
 it proves that, at a fixed finite horizon, a controlled epistemic layer with
 the same initial coherent mass and no larger cumulative net action preserves
 at least the baseline coherent mass.
 The evaluation contract layer is
-[`lean/Survival/EpistemicControlEvaluationContract.lean`](lean/Survival/EpistemicControlEvaluationContract.lean);
+[`https://github.com/karesansui-u/persistence-lean/blob/main/Persistence/EpistemicControlEvaluationContract.lean`](https://github.com/karesansui-u/persistence-lean/blob/main/Persistence/EpistemicControlEvaluationContract.lean);
 it shows how per-step contradiction-loss and repair-gain metrics can witness
 the no-worse cumulative net-action assumption used by that comparison theorem.
 The benchmark protocol layer is
-[`lean/Survival/EpistemicBenchmarkProtocol.lean`](lean/Survival/EpistemicBenchmarkProtocol.lean);
+[`https://github.com/karesansui-u/persistence-lean/blob/main/Persistence/EpistemicBenchmarkProtocol.lean`](https://github.com/karesansui-u/persistence-lean/blob/main/Persistence/EpistemicBenchmarkProtocol.lean);
 it fixes the task-surface, readout, same-horizon, same-initial-mass,
 metric-dominance, and readout-alignment obligations needed before a benchmark
 can invoke the evaluation contract.
 The result-certificate layer is
-[`lean/Survival/EpistemicBenchmarkResultCertificate.lean`](lean/Survival/EpistemicBenchmarkResultCertificate.lean);
+[`https://github.com/karesansui-u/persistence-lean/blob/main/Persistence/EpistemicBenchmarkResultCertificate.lean`](https://github.com/karesansui-u/persistence-lean/blob/main/Persistence/EpistemicBenchmarkResultCertificate.lean);
 it states which external result-certificate witnesses are sufficient to induce
 a valid benchmark protocol and invoke the same finite comparison theorem.
 The evidence-packet bridge is
-[`lean/Survival/EvidencePacketBridge.lean`](lean/Survival/EvidencePacketBridge.lean);
+[`https://github.com/karesansui-u/persistence-lean/blob/main/Persistence/EvidencePacketBridge.lean`](https://github.com/karesansui-u/persistence-lean/blob/main/Persistence/EvidencePacketBridge.lean);
 it records the provenance, eligibility, witness, dependency-closure, and repair
 guardrails expected at the implementation boundary without proving any concrete
 workflow correct.
 The finite LLM-side toy instantiation is
-[`lean/Survival/LLMEpistemicControlToy.lean`](lean/Survival/LLMEpistemicControlToy.lean);
+[`https://github.com/karesansui-u/persistence-lean/blob/main/Persistence/LLMEpistemicControlToy.lean`](https://github.com/karesansui-u/persistence-lean/blob/main/Persistence/LLMEpistemicControlToy.lean);
 it connects reasoning, memory eligibility, and continual-update dependency
 repair to the same bridge interfaces without proving real model semantics.
 The LLM memory use-condition toy is
-[`lean/Survival/LLMMemoryUseConditionToy.lean`](lean/Survival/LLMMemoryUseConditionToy.lean);
+[`https://github.com/karesansui-u/persistence-lean/blob/main/Persistence/LLMMemoryUseConditionToy.lean`](https://github.com/karesansui-u/persistence-lean/blob/main/Persistence/LLMMemoryUseConditionToy.lean);
 it makes permission, scope, deletion state, stability, and action eligibility
 explicit before a memory item may be used as a current premise.
 The dependency closure budget toy is
-[`lean/Survival/DependencyClosureBudgetToy.lean`](lean/Survival/DependencyClosureBudgetToy.lean);
+[`https://github.com/karesansui-u/persistence-lean/blob/main/Persistence/DependencyClosureBudgetToy.lean`](https://github.com/karesansui-u/persistence-lean/blob/main/Persistence/DependencyClosureBudgetToy.lean);
 it turns dependency-localization inclusions into finite invalidation, closure,
 surface, and repair-touched cardinality bounds.
 The LLM memory / reasoning strengthening toy is
-[`lean/Survival/LLMMemoryReasoningStrengtheningToy.lean`](lean/Survival/LLMMemoryReasoningStrengtheningToy.lean);
+[`https://github.com/karesansui-u/persistence-lean/blob/main/Persistence/LLMMemoryReasoningStrengtheningToy.lean`](https://github.com/karesansui-u/persistence-lean/blob/main/Persistence/LLMMemoryReasoningStrengtheningToy.lean);
 it adds lifecycle memory guards, provenance trust ordering, minimal witness
 guards, and composed repair-kernel wrappers.
 The stack-level Lean entry point is
-[`lean/Survival/EpistemicControlStack.lean`](lean/Survival/EpistemicControlStack.lean);
+[`https://github.com/karesansui-u/persistence-lean/blob/main/Persistence/EpistemicControlStack.lean`](https://github.com/karesansui-u/persistence-lean/blob/main/Persistence/EpistemicControlStack.lean);
 it collects the main bridge, evidence, LLM, memory, and software toy theorems
 under stack-level names.
 The public one-page summary is
@@ -173,12 +180,12 @@ The overview diagram for this layered structure is
 The result-certificate chain diagram is
 [`v3/01_theory/figures/figure4_epistemic_result_certificate_chain_en.svg`](v3/01_theory/figures/figure4_epistemic_result_certificate_chain_en.svg).
 The toy software-contract instantiation is
-[`lean/Survival/SoftwareContractToyRepository.lean`](lean/Survival/SoftwareContractToyRepository.lean).
+[`https://github.com/karesansui-u/persistence-lean/blob/main/Persistence/SoftwareContractToyRepository.lean`](https://github.com/karesansui-u/persistence-lean/blob/main/Persistence/SoftwareContractToyRepository.lean).
 The toy evidence-packet instantiation connecting that surface to the packet
 bridge is
-[`lean/Survival/SoftwareEvidencePacketToy.lean`](lean/Survival/SoftwareEvidencePacketToy.lean).
+[`https://github.com/karesansui-u/persistence-lean/blob/main/Persistence/SoftwareEvidencePacketToy.lean`](https://github.com/karesansui-u/persistence-lean/blob/main/Persistence/SoftwareEvidencePacketToy.lean).
 The software evidence net-action bridge is
-[`lean/Survival/SoftwareEvidenceNetActionBridge.lean`](lean/Survival/SoftwareEvidenceNetActionBridge.lean);
+[`https://github.com/karesansui-u/persistence-lean/blob/main/Persistence/SoftwareEvidenceNetActionBridge.lean`](https://github.com/karesansui-u/persistence-lean/blob/main/Persistence/SoftwareEvidenceNetActionBridge.lean);
 it packages eligible evidence, dependency closure, repair coverage, and a valid
 benchmark protocol as sufficient obligations for invoking the same finite
 comparison theorem.

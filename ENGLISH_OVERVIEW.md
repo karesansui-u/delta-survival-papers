@@ -2,7 +2,7 @@
 
 This note is a short English entry point to the `delta-survival-paper` repository.
 It explains the main claim, the supporting evidence, and the architectural implications without requiring the Japanese preprints first.
-For the shortest PDF entry point, see [`v2/pdf用/ENGLISH_ABSTRACT.pdf`](v2/pdf%E7%94%A8/ENGLISH_ABSTRACT.pdf).
+For the shortest PDF entry point, see [`v3/07_exports/pdf/02_core_en.pdf`](v3/07_exports/pdf/02_core_en.pdf).
 
 ## Core Claim
 
@@ -32,16 +32,28 @@ In the current v2 core, the log-ratio form itself is no longer treated as a mere
 
 ## Formal Layer and Limited-Class Unification
 
-The Lean 4 side currently contains 179 direct top-level `Survival.*` imports in
-`lean/Survival.lean`, matching 179 `lean/Survival/*.lean` module files, with
-`sorry = 0` and `axiom = 0` in the imported target. The formal layer includes
-the minimal exponential kernel, finite-horizon SAT / Bernoulli-CSP skeletons,
-admissible-map and saturation-defect wrappers, Foster-Lyapunov / queueing
-templates, Repair-Maintenance templates, the Phase 7 cross-class interface,
-and the LLM-style epistemic-control bridge with finite memory, reasoning,
-dependency-budget, and software-contract toy instantiations.
+Lean formalization is maintained in a dedicated repository:
+**[persistence-lean](https://github.com/karesansui-u/persistence-lean)** —
+406 `Persistence/*.lean` modules, sorry/admit/axiom = 0.
 
-The strongest cross-class statement is intentionally phrased as limited-class unification rather than as a universal law over all domains. In Phase 7 v2, Bernoulli-CSP, Foster-Lyapunov / queueing, and Repair-Maintenance are registered as limited classes that instantiate a common structural-persistence interface:
+The historical copy in this repo (`lean_archive/`, namespace `Survival`)
+is no longer maintained.
+
+Of the 406 modules, ~20 are core-routed bridges that mechanically invoke
+the kernel, ~40 are structural core and necessity theorems, and ~160 are
+vocabulary mappings (naming conventions, not theorems). See the
+[persistence-lean README](https://github.com/karesansui-u/persistence-lean#honest-assessment)
+for the full tier classification.
+
+The formal layer includes the minimal exponential kernel, representation
+and impossibility theorems, resource dynamics, structural second law
+(three-layer: deterministic, stochastic, coarse-graining), SAT/CSP
+finite-horizon chain, Mathlib-backed connections (Category instance,
+Galois connection, KL embedding, Cesaro ergodic extension), identity
+and asymptotic identity theory, phase transition sharpness, interaction
+defect, and the epistemic-control bridge with toy instantiations.
+
+The strongest cross-class statement is intentionally phrased as limited-class unification rather than as a universal law over all domains. Bernoulli-CSP, Foster-Lyapunov / queueing, and Repair-Maintenance are registered as limited classes that instantiate a common structural-persistence interface:
 
 - an ordered Sigma carrier
 - a nonnegative tendency driver
@@ -84,36 +96,33 @@ The intended target is not just a stronger stateless chatbot, but a system that 
 
 ## What This Repository Contains
 
-- a Japanese structure map: [`v2/補論_構造持続理論の構成地図.md`](v2/補論_構造持続理論の構成地図.md)
-- an integrated Japanese overview: [`v2/0_構造持続理論の統合版.md`](v2/0_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E7%90%86%E8%AB%96%E3%81%AE%E7%B5%B1%E5%90%88%E7%89%88.md)
-- Japanese main theory spine (`v2/1`, `v2/2`) and technical supplements
-- an operational discipline note: [`v2/補論_構造持続理論の運用規律.md`](v2/補論_構造持続理論の運用規律.md)
-- a specification-fixed finite-CSP layer anchor: [`v2/補論_有限CSPにおける構造持続の予測力.md`](v2/%E8%A3%9C%E8%AB%96_%E6%9C%89%E9%99%90CSP%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%AE%E4%BA%88%E6%B8%AC%E5%8A%9B.md)
-- structural-inference LLM companion anchors (`v2/Companion_RouteC_推論時の構造劣化.md`, `v2/Companion_RouteC_継続学習時の構造的忘却.md`)
-- PDFs in [`v2/pdf用/`](v2/pdf%E7%94%A8/)
-- Lean 4 formalization in [`lean/`](lean/)
-- raw data and summaries in [`DATA.md`](DATA.md)
+- Theory map: [`v3/01_theory/00_map.md`](v3/01_theory/00_map.md)
+- Integrated overview: [`v3/01_theory/01_overview.md`](v3/01_theory/01_overview.md)
+- Core paper (accounting framework): [`v3/01_theory/02_accounting_framework.md`](v3/01_theory/02_accounting_framework.md)
+- Claim boundaries: [`v3/CLAIMS.md`](v3/CLAIMS.md)
+- Domain registry: [`v3/03_domains/registry.tsv`](v3/03_domains/registry.tsv)
+- Evidence ledger: [`v3/05_evidence/README.md`](v3/05_evidence/README.md)
+- English core paper: [`v3/01_theory/en/02_core_en.md`](v3/01_theory/en/02_core_en.md)
+- PDFs: [`v3/07_exports/pdf/`](v3/07_exports/pdf/)
+- Lean formalization: [persistence-lean](https://github.com/karesansui-u/persistence-lean)
+- Older `v1/` and `v2/` materials remain as archive
 
 ## Suggested Reading Path
 
 For external readers, the cleanest route is:
 
-1. Structure map: [`v2/補論_構造持続理論の構成地図.md`](v2/補論_構造持続理論の構成地図.md)
-2. Integrated overview: [`v2/0_構造持続理論の統合版.md`](v2/0_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E7%90%86%E8%AB%96%E3%81%AE%E7%B5%B1%E5%90%88%E7%89%88.md)
-3. Minimal form: [`v2/1_構造持続の最小形式.md`](v2/1_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%AE%E6%9C%80%E5%B0%8F%E5%BD%A2%E5%BC%8F.md)
-4. Balance principle: [`v2/2_構造持続の収支原理.md`](v2/2_構造持続の収支原理.md)
-5. Operational discipline: [`v2/補論_構造持続理論の運用規律.md`](v2/補論_構造持続理論の運用規律.md)
-6. Specification-fixed structural layer / finite CSP: [`v2/補論_有限CSPにおける構造持続の予測力.md`](v2/%E8%A3%9C%E8%AB%96_%E6%9C%89%E9%99%90CSP%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%AE%E4%BA%88%E6%B8%AC%E5%8A%9B.md)
-7. Structural-inference layer / LLM anchors: [`v2/Companion_RouteC_推論時の構造劣化.md`](v2/Companion_RouteC_推論時の構造劣化.md), [`v2/Companion_RouteC_継続学習時の構造的忘却.md`](v2/Companion_RouteC_継続学習時の構造的忘却.md)
-8. Resource term \(M\): [`v2/補論_構造持続における資源項Mの操作的定式化.md`](v2/補論_構造持続における資源項Mの操作的定式化.md)
-9. Bridges to existing theory: [`v2/補論_構造持続の収支原理とFoster-Lyapunovドリフトの形式的埋め込み.md`](v2/補論_構造持続の収支原理とFoster-Lyapunovドリフトの形式的埋め込み.md), [`v2/補論_非CSP古典例における構造持続の収支原理の最小アンカー.md`](v2/補論_非CSP古典例における構造持続の収支原理の最小アンカー.md)
-10. Lean and technical details: [`lean/PAPER_MAPPING.md`](lean/PAPER_MAPPING.md), [`v2/補論_構造持続の条件つき導出.md`](v2/補論_構造持続の条件つき導出.md), [`v2/補論_構造持続の収支原理の詳細展開.md`](v2/補論_構造持続の収支原理の詳細展開.md)
+1. [`v3/01_theory/00_map.md`](v3/01_theory/00_map.md) — construction map
+2. [`v3/01_theory/01_overview.md`](v3/01_theory/01_overview.md) — integrated overview
+3. [`v3/01_theory/02_accounting_framework.md`](v3/01_theory/02_accounting_framework.md) — core paper
+4. [`v3/CLAIMS.md`](v3/CLAIMS.md) — claim boundaries
+5. [`v3/03_domains/registry.tsv`](v3/03_domains/registry.tsv) — domain registry
+6. [`v3/05_evidence/README.md`](v3/05_evidence/README.md) — evidence ledger
 
-If you want the logical dependency order:
+English entry:
 
-1. [`v2/1_構造持続の最小形式.md`](v2/1_%E6%A7%8B%E9%80%A0%E6%8C%81%E7%B6%9A%E3%81%AE%E6%9C%80%E5%B0%8F%E5%BD%A2%E5%BC%8F.md)
-2. [`v2/2_構造持続の収支原理.md`](v2/2_構造持続の収支原理.md)
-3. [`v2/補論_構造持続の条件つき導出.md`](v2/補論_構造持続の条件つき導出.md)
+1. [`v3/01_theory/en/02_core_en.md`](v3/01_theory/en/02_core_en.md)
+2. [`v3/01_theory/en/10_paper1_minimal_form_en.md`](v3/01_theory/en/10_paper1_minimal_form_en.md)
+3. [`v3/01_theory/en/11_paper2_balance_principle_en.md`](v3/01_theory/en/11_paper2_balance_principle_en.md)
 
 ## Scope and Caution
 

@@ -63,15 +63,21 @@ See:
 
 ## Formalization
 
-Lean formalization is in [`lean/`](lean/):
+Lean formalization is maintained in a dedicated repository:
+**[persistence-lean](https://github.com/karesansui-u/persistence-lean)** —
+406 `Persistence/*.lean` modules, sorry/admit/axiom = 0.
 
-- `179` direct top-level `Survival.*` imports in `lean/Survival.lean`,
-  matching `179` `lean/Survival/*.lean` module files
-- no project-level `sorry`, `admit`, or declared `axiom` in the imported
-  `Survival` target
+The historical copy in this repo (`lean_archive/`, namespace `Survival`)
+is no longer maintained.
 
-The reader-facing theorem map is [`lean/PAPER_MAPPING.md`](lean/PAPER_MAPPING.md),
-and the Lean landing page is [`lean/README.md`](lean/README.md).
+Of the 406 modules, ~20 are core-routed bridges that mechanically invoke
+the kernel, ~40 are structural core and necessity theorems, and ~160 are
+vocabulary mappings (naming conventions, not theorems). See the
+[persistence-lean README](https://github.com/karesansui-u/persistence-lean#honest-assessment)
+for the full tier classification.
+
+The reader-facing theorem map is
+[`PAPER_MAPPING.md`](https://github.com/karesansui-u/persistence-lean/blob/main/PAPER_MAPPING.md).
 
 ## OSF
 
