@@ -20,7 +20,7 @@ Representation Theorem, Second Law, and Formal Verification}
 \begin{abstract}
 We present Structural Persistence Theory (SPT), a framework for measuring how viable structure is irreversibly lost. The theory rests on two conditions: (1)~the viable set has positive measure, and (2)~repair is never free. A representation theorem, derived from the Cauchy functional equation under normalization, additivity, continuity, and nonnegativity, forces the stage-loss function to be $f(r)=-k\log r$. An impossibility theorem excludes all non-logarithmic alternatives. The persistence kernel $m(V_n)=m(V_0)\,e^{-L_n}$ follows as a telescoping identity. With repair, the net loss $b_t=d_t-r_t$ replaces stage loss, giving $m(V_n)=m(V_0)\,e^{-B_n}$. The structural second law---that cumulative total production $\Sigma_n$ is monotone nondecreasing---is proved as a necessary and sufficient characterization.
 
-The formalization comprises 372 Lean~4 modules with zero \texttt{sorry}/\texttt{admit}/\texttt{axiom}. Conditional bridges to classical results---Shannon's uniqueness theorem, Jaynes' maximum entropy principle, Landauer's principle, the Crooks fluctuation theorem, and others---are constructed as accounting readouts under domain-specific witnesses. The theory's scope is characterized from both sides: every system satisfying the two conditions admits exactly one loss-measurement form, and every system violating either condition has a formally identified failure mode.
+The formalization comprises 382 Lean~4 modules with zero \texttt{sorry}/\texttt{admit}/\texttt{axiom}. Conditional bridges to classical results---Shannon's uniqueness theorem, Jaynes' maximum entropy principle, Landauer's principle, the Crooks fluctuation theorem, and others---are constructed as accounting readouts under domain-specific witnesses. The theory's scope is characterized from both sides: every system satisfying the two conditions admits exactly one loss-measurement form, and every system violating either condition has a formally identified failure mode.
 \end{abstract}
 
 \section{Introduction}
@@ -36,7 +36,7 @@ In each case, what is lost is not the substrate but the set of states that can s
 \begin{enumerate}
 \item \textbf{Representation theorem}: Under normalization, additivity, continuity, and nonnegativity, the stage-loss function must be $f(r)=-k\log r$. No other form is consistent (\S\ref{sec:rep}).
 \item \textbf{Structural second law}: Cumulative total production $\Sigma_n$ is monotone nondecreasing, proved as necessary and sufficient under two conditions: positive measure and non-free repair (\S\ref{sec:secondlaw}).
-\item \textbf{Formal verification}: 372 Lean~4 modules, zero \texttt{sorry}/\texttt{admit}/\texttt{axiom}, with conditional bridges to 60+ fields (\S\ref{sec:lean}).
+\item \textbf{Formal verification}: 382 Lean~4 modules, zero \texttt{sorry}/\texttt{admit}/\texttt{axiom}, with conditional bridges to 60+ fields (\S\ref{sec:lean}).
 \end{enumerate}
 
 \subsection{What this paper does not claim}
@@ -177,6 +177,30 @@ The two conditions are minimal and jointly sufficient.
 Lean: \texttt{MinimalAxiomTheorem}.
 \end{theorem}
 
+\subsection{Resource dynamics (M-side)}
+
+The resource level~$M$ evolves dynamically:
+\[
+M_{n+1} = M_n + \mathrm{income}_n - \mathrm{cost}_n.
+\]
+
+\begin{theorem}[Resource depletion]
+If cumulative cost exceeds $M_0$ plus cumulative income, $M_n < 0$.
+Lean: \texttt{ResourceDynamics.resource\_depleted\_when\_cost\_exceeds}.
+\end{theorem}
+
+\begin{theorem}[M-side second law]
+Without external income, $M$ is nonincreasing.
+Lean: \texttt{ResourceDynamics.closed\_system\_M\_nonincreasing}.
+\end{theorem}
+
+\begin{theorem}[Dual collapse]
+$S_n = M_n \cdot (m_n/m_0)$ collapses when \emph{either} $M_n \leq 0$ (resource exhaustion) \emph{or} $m_n = 0$ (structural death). These are independent failure modes.
+Lean: \texttt{ResourceDynamics.M\_collapse\_kills\_persistence}.
+\end{theorem}
+
+This completes the $S = Me^{-L}$ picture: both factors are now dynamically tracked.
+
 \section{Complete Scope Closure}
 
 \begin{center}
@@ -197,7 +221,7 @@ No fifth category exists (\texttt{CompleteScopeClosure.classification\_exhaustiv
 \section{Lean~4 Formalization}
 \label{sec:lean}
 
-The formalization comprises 372 modules (3,500+ build jobs) with \texttt{sorry}~$=0$, \texttt{admit}~$=0$, \texttt{axiom}~$=0$. Lean~4 v4.26.0 + Mathlib v4.26.0.
+The formalization comprises 382 modules (3,500+ build jobs) with \texttt{sorry}~$=0$, \texttt{admit}~$=0$, \texttt{axiom}~$=0$. Lean~4 v4.26.0 + Mathlib v4.26.0.
 
 Repository: \url{https://github.com/karesansui-u/persistence-lean}
 
@@ -229,7 +253,7 @@ SPT provides accounting, not dynamics. The choice of $G$ requires domain knowled
 
 \section{Conclusion}
 
-Structural Persistence Theory provides a formally verified framework for measuring irreversible structural loss. Two conditions---positive measure and non-free repair---are necessary and sufficient. The representation theorem forces the unique form $f(r)=-k\log r$. The complete scope closure characterizes applicability from both sides. The Lean~4 formalization with 372 modules and zero \texttt{sorry}/\texttt{admit} provides machine-checked confidence.
+Structural Persistence Theory provides a formally verified framework for measuring irreversible structural loss. Two conditions---positive measure and non-free repair---are necessary and sufficient. The representation theorem forces the unique form $f(r)=-k\log r$. The complete scope closure characterizes applicability from both sides. The Lean~4 formalization with 382 modules and zero \texttt{sorry}/\texttt{admit} provides machine-checked confidence.
 
 \begin{thebibliography}{13}
 \bibitem{aubin1991} Aubin, J.-P. (1991). \emph{Viability Theory}. Birkh\"auser.

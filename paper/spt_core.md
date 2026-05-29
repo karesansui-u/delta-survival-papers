@@ -6,7 +6,7 @@
 
 We present Structural Persistence Theory (SPT), a framework for measuring how viable structure is irreversibly lost. The theory rests on two conditions: (1) the viable set has positive measure, and (2) repair is never free. A representation theorem, derived from the Cauchy functional equation under normalization, additivity, continuity, and nonnegativity, forces the stage-loss function to be f(r) = −k log r. An impossibility theorem excludes all non-logarithmic alternatives. The persistence kernel m(V_n) = m(V_0) exp(−L_n) follows as a telescoping identity. With repair, the net loss b_t = d_t − r_t replaces stage loss, giving m(V_n) = m(V_0) exp(−B_n). The structural second law — that cumulative total production Σ_n is monotone nondecreasing — is proved as a necessary and sufficient characterization.
 
-The formalization comprises 372 Lean 4 modules with zero sorry/admit/axiom. Conditional bridges to classical results — Shannon's uniqueness theorem, Jaynes' maximum entropy principle, Landauer's principle, the Crooks fluctuation theorem, and others — are constructed as accounting readouts under domain-specific witnesses. The theory's scope is characterized from both sides: every system satisfying the two conditions admits exactly one loss-measurement form, and every system violating either condition has a formally identified failure mode.
+The formalization comprises 380 Lean 4 modules with zero sorry/admit/axiom. Conditional bridges to classical results — Shannon's uniqueness theorem, Jaynes' maximum entropy principle, Landauer's principle, the Crooks fluctuation theorem, and others — are constructed as accounting readouts under domain-specific witnesses. The theory's scope is characterized from both sides: every system satisfying the two conditions admits exactly one loss-measurement form, and every system violating either condition has a formally identified failure mode.
 
 ---
 
@@ -24,7 +24,7 @@ In each case, what is lost is not the substrate but the set of states that can s
 
 2. **Structural second law**: Cumulative total production Σ_n is monotone nondecreasing, proved as necessary and sufficient under two conditions: positive measure and non-free repair (§4).
 
-3. **Formal verification**: 372 Lean 4 modules, zero sorry/admit/axiom, with conditional bridges to 60+ fields (§6).
+3. **Formal verification**: 380 Lean 4 modules, zero sorry/admit/axiom, with conditional bridges to 60+ fields (§6).
 
 ### 1.3 What this paper does not claim
 
@@ -76,7 +76,7 @@ Cumulative stage loss: L_n = Σ_{t<n} d_t
 
 Cumulative net loss: B_n = Σ_{t<n} b_t
 
-Effective resource: M_n (resource-side scalar, defined separately)
+Effective resource: M_n, evolving as M_{n+1} = M_n + income_n − cost_n
 
 ### 2.5 Total production
 
@@ -157,6 +157,20 @@ Lean: `ConverseSecondLaw.second_law_iff_nonneg_steps`.
 
 **Theorem 6 (Minimal Axioms).** The two conditions are minimal and jointly sufficient. Lean: `MinimalAxiomTheorem.minimal_axioms_give_monotone_sigma`.
 
+## 4b. Resource Dynamics (M-side)
+
+The resource level M was previously treated as a static parameter. It is now dynamically tracked:
+
+    M_{n+1} = M_n + income_n − cost_n
+
+**Theorem 7 (Resource depletion).** If cumulative cost exceeds initial M plus cumulative income, M becomes negative. Lean: `ResourceDynamics.resource_depleted_when_cost_exceeds`.
+
+**Theorem 8 (M-side second law).** Without external income, M is nonincreasing. Lean: `ResourceDynamics.closed_system_M_nonincreasing`.
+
+**Theorem 9 (Dual collapse).** S = M · (m_n/m_0) collapses when EITHER M ≤ 0 (resource exhaustion) OR m_n = 0 (structural death). These are independent failure modes. Lean: `ResourceDynamics.M_collapse_kills_persistence`, `ResourceDynamics.persistence_requires_M_positive`.
+
+This completes the S = M exp(−L) picture: both factors are now dynamically tracked, and the theory formally distinguishes L-side collapse (structural consumption exceeds repair) from M-side collapse (resources exhausted).
+
 ## 5. Complete Scope Closure
 
 ### 5.1 Applicable systems
@@ -178,7 +192,7 @@ No fifth category exists. Lean: `CompleteScopeClosure.classification_exhaustive`
 
 ### 6.1 Scale
 
-- 372 modules, 3,500+ build jobs
+- 380 modules, 3,500+ build jobs
 - sorry = 0, admit = 0, axiom = 0
 - Lean 4 v4.26.0 + Mathlib v4.26.0
 - Repository: https://github.com/karesansui-u/persistence-lean
@@ -239,7 +253,7 @@ Structural Persistence Theory provides a formally verified framework for measuri
 
 The breadth of conditional bridges — to thermodynamics, information theory, quantum mechanics, biology, economics, and beyond — follows from mathematical structure: the Cauchy functional equation admits only one continuous solution, and many domains satisfy the two conditions under appropriate witnesses. This breadth is not a claim of universality by fiat, but a consequence of the axioms being weak enough to apply broadly while still forcing a unique functional form.
 
-The Lean 4 formalization with 372 modules and zero sorry/admit provides machine-checked confidence in the mathematical core. The domain bridges provide conditional correspondences, each requiring explicit witnesses, and each open to independent verification.
+The Lean 4 formalization with 380 modules and zero sorry/admit provides machine-checked confidence in the mathematical core. The domain bridges provide conditional correspondences, each requiring explicit witnesses, and each open to independent verification.
 
 ---
 
@@ -265,7 +279,7 @@ Paper repository: https://github.com/karesansui-u/delta-survival-papers
 
 Build: `lake build Persistence` (Lean 4 v4.26.0 + Mathlib v4.26.0)
 
-372 modules. 3,500+ build jobs. sorry = 0. admit = 0. axiom = 0.
+380 modules. 3,500+ build jobs. sorry = 0. admit = 0. axiom = 0.
 
 10. Boltzmann, L. (1877). Über die Beziehung zwischen dem zweiten Hauptsatze der mechanischen Wärmetheorie und der Wahrscheinlichkeitsrechnung. *Wiener Berichte*, 76, 373–435.
 11. Doob, J.L. (1953). *Stochastic Processes*. Wiley.
