@@ -6,7 +6,7 @@
 
 We present Structural Persistence Theory (SPT), a framework for measuring how viable structure is irreversibly lost. The theory rests on two conditions: (1) the viable set has positive measure, and (2) repair is never free. A representation theorem, derived from the Cauchy functional equation under normalization, additivity, continuity, and nonnegativity, forces the stage-loss function to be f(r) = −k log r. An impossibility theorem excludes all non-logarithmic alternatives. The persistence kernel m(V_n) = m(V_0) exp(−L_n) follows as a telescoping identity. With repair, the net loss b_t = d_t − r_t replaces stage loss, giving m(V_n) = m(V_0) exp(−B_n). The structural second law — that cumulative total production Σ_n is monotone nondecreasing — is proved as a necessary and sufficient characterization.
 
-The formalization comprises 380 Lean 4 modules with zero sorry/admit/axiom. Conditional bridges to classical results — Shannon's uniqueness theorem, Jaynes' maximum entropy principle, Landauer's principle, the Crooks fluctuation theorem, and others — are constructed as accounting readouts under domain-specific witnesses. The theory's scope is characterized from both sides: every system satisfying the two conditions admits exactly one loss-measurement form, and every system violating either condition has a formally identified failure mode.
+The formalization comprises 391 Lean 4 modules with zero sorry/admit/axiom. Conditional bridges to classical results — Shannon's uniqueness theorem, Jaynes' maximum entropy principle, Landauer's principle, the Crooks fluctuation theorem, and others — are constructed as accounting readouts under domain-specific witnesses. The theory's scope is characterized from both sides: every system satisfying the two conditions admits exactly one loss-measurement form, and every system violating either condition has a formally identified failure mode.
 
 ---
 
@@ -24,13 +24,21 @@ In each case, what is lost is not the substrate but the set of states that can s
 
 2. **Structural second law**: Cumulative total production Σ_n is monotone nondecreasing, proved as necessary and sufficient under two conditions: positive measure and non-free repair (§4).
 
-3. **Formal verification**: 380 Lean 4 modules, zero sorry/admit/axiom, with conditional bridges to 60+ fields (§6).
+3. **Formal verification**: 391 Lean 4 modules, zero sorry/admit/axiom, with conditional bridges to 60+ fields (§6).
 
 ### 1.3 What this paper does not claim
 
 - SPT does not claim that all systems decay exponentially. The exponential form is a representation theorem for the viable-set measure, not an empirical law about any specific system.
 - SPT does not replace domain-specific dynamics. It provides the accounting coordinates; the dynamics are supplied by each domain.
 - The conditional bridges are not unconditional proofs of classical theorems. Each bridge requires domain-specific witnesses (choice of viable set V, measure m, and positivity verification).
+
+### 1.4 What is not mathematically new
+
+- The **representation theorem** is a standard consequence of the Cauchy functional equation (19th century). The application to viable-set ratios is the contribution, not the equation itself.
+- The **persistence kernel** m(V_n) = m(V_0) exp(−L_n) is a **telescoping identity** — a definitional rewriting, not an empirical discovery.
+- The **structural second law** (Σ monotone) is trivially true given the assumption of nonneg step production. The non-trivial content is in the **necessity theorems**: FreeRepairImpossibility shows that relaxing gain ≤ cost breaks monotonicity; ConverseSecondLaw shows the characterization is biconditional.
+- In **loss-only mode** (no repair), SPT's cumulative net action coincides exactly with the **cumulative hazard** of survival analysis (Λ(t) = −log S(t)). The structural difference lies in the repair term: SPT's signed net action b_t = d_t − r_t can be negative (net recovery), which cumulative hazard cannot. This is proved in NonIdentityTheorem.
+- Of the ~391 Lean modules, approximately 20 are **Tier A** (core-routed, with non-trivial conclusions). Approximately 160 are **Tier C** (vocabulary mappings, not theorems). The mathematical weight is concentrated in Tier A and the core.
 
 ## 2. Setup
 
@@ -105,6 +113,8 @@ A **stage-loss functional** f : (0,1] → ℝ satisfying:
 
 *Proof sketch.* B3 is the Cauchy functional equation f(xy) = f(x) + f(y). Under B4 (continuity), the unique solution is f(r) = c · log r. B2 is automatic. Nonnegativity on (0,1] forces c ≤ 0, giving f(r) = −k log r with k ≥ 0. Lean: `RepresentationTheorem.loss_must_be_log`. □
 
+*Note.* This is a classical result (Cauchy 1821, applied to entropy by Shannon 1948). The mathematical content is the application to viable-set ratios, not the equation itself.
+
 **Corollary (Persistence kernel).** For any positive mass sequence:
 
     m(V_n) = m(V_0) · exp(−L_n)
@@ -138,6 +148,8 @@ SPT does not claim to be Shannon's theorem. It shares a common mathematical ance
 cumulative total production Σ_n is monotone nondecreasing.
 
 Lean: `StructuralSecondLaw.deterministic_second_law`.
+
+*Note.* This inequality is trivially true given the assumption: nonneg terms sum to a monotone sequence. The non-trivial content is in Theorems 4-6 below, which show the characterization is biconditional and the resource constraint is necessary.
 
 **Theorem 4 (Converse).** Σ_n monotone ⟺ stepTotalProduction ≥ 0 at every step.
 
@@ -192,7 +204,7 @@ No fifth category exists. Lean: `CompleteScopeClosure.classification_exhaustive`
 
 ### 6.1 Scale
 
-- 380 modules, 3,500+ build jobs
+- 391 modules, 3,500+ build jobs
 - sorry = 0, admit = 0, axiom = 0
 - Lean 4 v4.26.0 + Mathlib v4.26.0
 - Repository: https://github.com/karesansui-u/persistence-lean
@@ -213,11 +225,15 @@ The formalization is organized in layers:
 | Tier S++ | Completeness | Stability, Duality, Invariance, CompleteScopeClosure |
 | Tier S+++ | Validation | Falsifiability, NonIdentity, Constructive, TimeReversal |
 
-### 6.3 Conditional bridges
+### 6.3 Conditional bridges (honest tier classification)
 
-Each bridge formalizes the algebraic readout of the SPT kernel in a specific domain. These are not unconditional proofs of classical theorems but conditional accounting correspondences under domain-specific witnesses.
+The ~391 modules include cross-domain bridges at three tiers:
 
-60+ fields are connected, including: thermodynamics (zeroth through third law readouts), quantum mechanics (uncertainty, Pauli, Bell, CPT, Born rule), statistical mechanics (Boltzmann, Crooks, Jarzynski, partition function, Landau phases), information theory (Shannon, KL, Rényi, Huffman, data processing, Fano), probability (martingale, large deviations, ergodic, CLT, exchangeability), biology (Fisher, Price, Lotka-Volterra, SIR, DNA, aging), economics (Black-Scholes, Nash, Arrow, welfare theorems), engineering (Bellman, Kalman, PID, PageRank, RSA), and cosmology (nucleosynthesis through heat death).
+- **Tier A (~20 bridges)**: Invoke the SPT core (TelescopingExp, StructuralSecondLaw, or ImpossibilityTheorem) to derive domain conclusions that don't follow from single-step properties. Examples: GronwallBridge (discrete Gronwall inequality), CrooksCompleteTheorem (Jarzynski→Jensen chain), OptimalReviewSchedule (minimax via pigeonhole).
+- **Tier B (~3 bridges)**: Algebraic correspondences with real content but no mechanical core invocation. Examples: ClausiusBridge, BoltzmannEntropyBridge, RuinTheoryBridge.
+- **Tier C (~160 bridges)**: Vocabulary mappings that read domain quantities through SPT terminology. These are **not** theorems. Some contain lightweight algebra; others are naming conventions.
+
+The mathematical weight is in Tier A and the core. Tier C exists for completeness but carries no proof weight.
 
 ## 7. Three Observability Layers
 
@@ -237,7 +253,7 @@ SPT relates to but is structurally distinct from:
 
 - **Thermodynamics**: SPT allows B_n < 0 (net repair exceeds loss); Clausius entropy is nondecreasing in isolated systems. SPT models open systems with repair. (`NonIdentityTheorem`)
 - **Information theory**: SPT measures viable-set shrinkage, not message uncertainty. Same functional form, different domain. (`NonIdentityTheorem`)
-- **Survival analysis**: SPT tracks set-valued dynamics with repair; S = M exp(−L) can exceed 1. (`NonIdentityTheorem`)
+- **Survival analysis**: In loss-only mode (no repair, M = 1), SPT's cumulative net action **coincides exactly** with the cumulative hazard Λ(t) = −log S(t). The structural difference is the repair term: SPT's signed net action b_t = d_t − r_t can be negative (net recovery), breaking the monotonicity that cumulative hazard enforces by definition. The resource axis M provides a second independent coordinate. (`NonIdentityTheorem.loss_only_coincides_with_hazard`)
 - **Viability theory (Aubin 1991)**: SPT adds an accounting layer to viability theory — measuring how much the viable kernel has shrunk, not just whether viable trajectories exist. (`ViabilityKernelBridge`)
 
 ## 9. Limitations
@@ -253,7 +269,7 @@ Structural Persistence Theory provides a formally verified framework for measuri
 
 The breadth of conditional bridges — to thermodynamics, information theory, quantum mechanics, biology, economics, and beyond — follows from mathematical structure: the Cauchy functional equation admits only one continuous solution, and many domains satisfy the two conditions under appropriate witnesses. This breadth is not a claim of universality by fiat, but a consequence of the axioms being weak enough to apply broadly while still forcing a unique functional form.
 
-The Lean 4 formalization with 380 modules and zero sorry/admit provides machine-checked confidence in the mathematical core. The domain bridges provide conditional correspondences, each requiring explicit witnesses, and each open to independent verification.
+The Lean 4 formalization with 391 modules and zero sorry/admit provides machine-checked confidence in the mathematical core. The domain bridges provide conditional correspondences, each requiring explicit witnesses, and each open to independent verification.
 
 ---
 
@@ -279,7 +295,7 @@ Paper repository: https://github.com/karesansui-u/delta-survival-papers
 
 Build: `lake build Persistence` (Lean 4 v4.26.0 + Mathlib v4.26.0)
 
-380 modules. 3,500+ build jobs. sorry = 0. admit = 0. axiom = 0.
+391 modules. 3,500+ build jobs. sorry = 0. admit = 0. axiom = 0.
 
 10. Boltzmann, L. (1877). Über die Beziehung zwischen dem zweiten Hauptsatze der mechanischen Wärmetheorie und der Wahrscheinlichkeitsrechnung. *Wiener Berichte*, 76, 373–435.
 11. Doob, J.L. (1953). *Stochastic Processes*. Wiley.
