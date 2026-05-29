@@ -96,8 +96,9 @@ Lean formalization is maintained in a dedicated repository:
 **[persistence-lean](https://github.com/karesansui-u/persistence-lean)** —
 372 `Persistence/*.lean` modules, 3,500+ build jobs, sorry/admit/axiom = 0.
 
-A historical copy remains in [`lean/`](lean/) (namespace `Survival`).
-The canonical, up-to-date formalization is persistence-lean (namespace `Persistence`).
+The historical copy in this repo has been moved to [`lean_archive/`](lean_archive/)
+(namespace `Survival`). It is no longer maintained. Use persistence-lean for
+the canonical, up-to-date formalization (namespace `Persistence`).
 
 The 372 modules include:
 
@@ -110,6 +111,7 @@ The 372 modules include:
 - **Necessity meta-theorems** (every structural component proved necessary, not chosen)
 - **External validation** (falsifiability, non-identity, scope boundary, constructive witness, time-reversal breaking, information optimality)
 - **Classical theorem bridges** (Shannon, Jaynes, Landauer, Rao-Blackwell, Crooks-Jarzynski, Birkhoff, Gronwall, ...)
+- **Hardened core-connected bridges** (Shannon uniqueness as corollary, Boltzmann uniqueness with isothermal/adiabatic differentiation, Fisher information via Cramér-Rao, Clausius from second law, Landauer from representation theorem, Arrow impossibility via aggregation)
 
 The theorem-to-paper map is
 [`PAPER_MAPPING.md`](https://github.com/karesansui-u/persistence-lean/blob/main/PAPER_MAPPING.md).

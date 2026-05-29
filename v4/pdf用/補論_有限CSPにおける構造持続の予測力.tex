@@ -1,0 +1,583 @@
+\documentclass[12pt,a4paper]{article}
+\input{survival_whitepaper_preamble.tex}
+
+\begin{document}
+
+\PaperTitleBlock
+  {有限CSPにおける構造持続の予測力}
+  {— Mixed-SAT/NAE-SAT と Exp43c q-coloring による仕様固定構造層の経験的検証 —}
+  {2026年5月29日}
+
+\begin{abstract}
+本補論は、構造持続理論の仕様固定構造層に属する有限制約充足問題において、累積段階損失 \(L\) が単なる制約数より強い予測情報を持つかを検証する。
+
+単一の制約族、たとえば 3-SAT だけ、または NAE-SAT だけを見るなら、各制約の drift は定数である。したがって
+
+\[
+L = m \cdot d
+\]
+
+となり、\(L\) は raw constraint count \(m\) の定数倍にすぎない。この設定では、\(L\) が raw count より良いかを問うことは原理的に縮退している。
+
+そこで本補論では、同じインスタンス内に 3-SAT 制約と 3-NAE-SAT 制約を混ぜる Mixed-CSP を用いる。3-SAT の drift は
+
+\[
+d_{\mathrm{SAT}}=\log(8/7)\approx 0.1335
+\]
+
+であり、3-NAE-SAT の drift は
+
+\[
+d_{\mathrm{NAE}}=\log(4/3)\approx 0.2877
+\]
+
+である。raw count は両者を同じ 1 制約として数えるが、\(L\) は制約の質を drift-weighted に数える。この差により、構造持続理論の経験的主張を非縮退に検査できる。
+
+2026-04-22 に事前登録済み primary run を実行した。全 12,000 インスタンスが正常に完走し、timeout は 0、malformed encoding は 0 であった。leave-one-mixture-out の予測比較では、primary predictor である \(L+n\) モデルが raw count + \(n\) baseline を大きく上回った。
+
+{\def\LTcaptype{table} % do not increment counter
+\begin{longtable}[]{@{}lrrr@{}}
+\toprule\noalign{}
+model & log loss & Brier & accuracy@0.5 \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{L\_plus\_n} & 0.0970 & 0.0299 & 0.9631 \\
+\texttt{cnf\_count\_plus\_n} & 0.1010 & 0.0304 & 0.9631 \\
+\texttt{first\_moment} & 0.1489 & 0.0482 & 0.9457 \\
+\texttt{raw\_density} & 0.7447 & 0.2524 & 0.6279 \\
+\texttt{raw\_plus\_n} & 0.7525 & 0.2539 & 0.6159 \\
+\texttt{raw\_count} & 0.7708 & 0.2798 & 0.5139 \\
+\end{longtable}
+}
+
+事前登録された四つの判定基準はいずれも通過した。
+
+\begin{itemize}
+\tightlist
+\item
+  primary support: \texttt{L\_plus\_n} log loss 0.0970 \textless{} \texttt{raw\_plus\_n} 0.7525
+\item
+  strong support: \texttt{raw\_plus\_n} に対する相対改善 87.1\%（閾値 10\%）
+\item
+  theory-pure support: \texttt{first\_moment} 0.1489 \textless{} \texttt{raw\_plus\_n} 0.7525
+\item
+  encoding guardrail: \texttt{L\_plus\_n} 0.0970 \textless= \texttt{cnf\_count\_plus\_n} 0.1010
+\end{itemize}
+
+この結果は、\(L\) が単なる制約数ではなく、制約が解空間を削る質的差を予測情報として運ぶことを示す。これは Bernoulli-CSP universality class に対する経験的支持であり、SAT 単独の結果を finite CSP class 内へ拡張する最初の非縮退な prospective test である。
+
+2026-04-23 には、Exp43c q-coloring primary validation も freeze 済み threshold-local protocol のもとで実行された。4,000 インスタンスが正常に完走し、timeout と malformed encoding は 0 であった。leave-one-q-out の予測比較では、theory-specified predictor \texttt{fm\_plus\_n} が best primary raw baseline を上回った。
+
+{\def\LTcaptype{table} % do not increment counter
+\begin{longtable}[]{@{}lr@{}}
+\toprule\noalign{}
+model & mean held-out log loss \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{fm\_plus\_n} & 0.440189 \\
+\texttt{first\_moment} & 0.446814 \\
+\texttt{raw\_density} & 0.780910 \\
+\texttt{density\_plus\_n\_q} & 2.804019 \\
+\texttt{cnf\_count\_plus\_n\_q} & 7.700105 \\
+\texttt{raw\_plus\_n\_q} & 8.567224 \\
+\end{longtable}
+}
+
+Exp43c の結果は、SAT / NAE-SAT mixed CSP だけでなく、SAT 構文の外側に見える graph-coloring family でも、first-moment / drift coordinate が raw / density / encoding-size baselines より out-of-sample に強いことを示す。ただし、これは absolute q-coloring threshold の予測ではなく、frozen threshold-local window 内での feasibility prediction である。
+
+外部再実行については、Mixed-CSP の requested outside-group rerun set が 3 名の外部実行者により 3/3 clean success として完了した。さらに Exp43c q-coloring でも、3 名の外部実行者が同じ frozen package を再実行し、それぞれ 4,000 行、checked core mismatches 0、TIMEOUT 0、MALFORMED 0、および同じ qualitative support decision を返した。したがって仕様固定構造層では、Mixed-CSP と Exp43c q-coloring という二つの frozen package について、著者環境外での 3/3 再実行成功が得られている。ただし、これは仕様固定有限系の empirical package の外部再現性を強めるものであり、非CSP branch や理論全体の普遍法則化を単独で閉じるものではない。
+\end{abstract}
+
+\section{目的}\label{ux76eeux7684}
+
+構造持続理論の最小形式では、状態集合の縮小は対数段階損失として蓄積される。制約充足問題では、状態集合は候補割当ての集合であり、各制約はその集合を一定割合だけ削る。
+
+ランダム 3-SAT では、一様な割当てが単一節を破る確率は \(1/8\) であり、単一節を満たす確率は \(7/8\) である。したがって各節による drift は
+
+\[
+d_{\mathrm{SAT}}=-\log(7/8)=\log(8/7).
+\]
+
+同様に、3-NAE-SAT では全て真または全て偽の 2 通りが禁止されるため、単一 NAE 制約を満たす確率は \(6/8=3/4\) であり、
+
+\[
+d_{\mathrm{NAE}}=-\log(3/4)=\log(4/3).
+\]
+
+このとき混合インスタンスの累積段階損失量は
+
+\[
+\begin{aligned}
+L \\
+&= \\
+m_{\mathrm{SAT}}\log(8/7) \\
++ \\
+m_{\mathrm{NAE}}\log(4/3).
+\end{aligned}
+\]
+
+第一モーメント法は、候補割当て数の期待値を
+
+\[
+\begin{aligned}
+E[\#\mathrm{SAT}] \\
+&= \\
+2^n e^{-L} \\
+&= \\
+\exp(n\log 2-L)
+\end{aligned}
+\]
+
+と与える。したがって
+
+\[
+F = n\log 2 - L
+\]
+
+は、充足割当て数の第一モーメント対数である。
+
+本補論の問いは、第一モーメントそのものを証明することではない。それは制約族の仕様から従う。問いは、その \(L\) または \(n\log 2-L\) が、raw count や raw density よりも、有限インスタンスの feasibility を out-of-sample に予測するかである。
+
+\section{単一 family での縮退}\label{ux5358ux4e00-family-ux3067ux306eux7e2eux9000}
+
+NAE-SAT 単独で
+
+\[
+L=m\log(4/3)
+\]
+
+を用いて feasibility を予測しても、これは raw count \(m\) と完全に同値である。3-SAT 単独でも同じである。
+
+したがって、単一 family 内で
+
+\begin{verbatim}
+$L normalization > raw count$
+\end{verbatim}
+
+を主張することはできない。回帰モデルでは係数が定数倍に変わるだけで、予測性能は同一になる。
+
+非自明な検査には、少なくとも二つの条件が必要である。
+
+第一に、制約ごとの drift が異なること。第二に、評価 endpoint が raw count だけでは区別できない差を含むこと。
+
+Mixed-SAT/NAE-SAT はこの条件を満たす。たとえば \(n=120\)、density \(d=2.5\) では raw count は全 mixture で \(m=300\) に固定される。しかし SAT/NAE の比率を変えると \(L\) は変わる。
+
+{\def\LTcaptype{table} % do not increment counter
+\begin{longtable}[]{@{}lrlr@{}}
+\toprule\noalign{}
+mixture & raw count & qualitative drift & observed SAT rate \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+pure SAT & 300 & low & 1.000 \\
+25\% NAE & 300 & low-medium & 1.000 \\
+50\% NAE & 300 & medium & 1.000 \\
+75\% NAE & 300 & high & 0.145 \\
+pure NAE & 300 & highest & 0.000 \\
+\end{longtable}
+}
+
+raw count はこれらを全て同一視する。\(L\) は NAE 制約を SAT 制約より重く数えるため、この差を区別できる。
+
+\section{実験設計}\label{ux5b9fux9a13ux8a2dux8a08}
+
+\subsection{インスタンス}\label{ux30a4ux30f3ux30b9ux30bfux30f3ux30b9}
+
+primary grid は以下で構成される。
+
+\begin{itemize}
+\tightlist
+\item
+  \(n\in\{80,120,160\}\)
+\item
+  density \(d=m/n\in\{2.0,2.5,3.0,3.5\}\)
+\item
+  mixture:
+\end{itemize}
+
+\begin{verbatim}
+- pure SAT
+- 75% SAT / 25% NAE
+- 50% SAT / 50% NAE
+- 25% SAT / 75% NAE
+- pure NAE
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  各 cell 200 インスタンス
+\end{itemize}
+
+合計は
+
+\[
+3\times 4\times 5\times 200=12000
+\]
+
+である。
+
+exact-one-3-SAT は、drift が大きく CNF encoding size との交絡も強いため、初回 primary には含めない。これは保守的な判断である。SAT/NAE の二型混合だけでも \(L\neq \mathrm{constant}\times m\) は成立し、raw count との非縮退比較が可能である。
+
+\subsection{endpoint}\label{endpoint}
+
+primary endpoint は feasibility である。すなわち、インスタンスが SAT か UNSAT かを予測する。
+
+これは重要である。以前の計算コスト補論では、条件つき発見確率 \(P(\mathrm{found}\mid\mathrm{SAT})\) と solver cost を扱った。しかし仕様固定構造層の第一モーメント構造が直接支配するのは、まず解空間の体積と feasibility であって、特定ソルバーの探索コストではない。
+
+したがって本補論では、solver conflict count ではなく SAT rate を primary に置く。solver cost は別の問いであり、存在論的 \(L\) と発見論的 \(c\) を混同しない。
+
+\subsection{予測モデル}\label{ux4e88ux6e2cux30e2ux30c7ux30eb}
+
+事前登録では、leave-one-mixture-out cross-validation により、以下のモデルを比較した。
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{raw\_count}: raw semantic constraint count
+\item
+  \texttt{raw\_density}: \(m/n\)
+\item
+  \texttt{raw\_plus\_n}: raw count + \(n\)
+\item
+  \texttt{L\_only}: drift-weighted \(L\)
+\item
+  \texttt{L\_plus\_n}: \(L+n\)
+\item
+  \texttt{first\_moment}: \(n\log2-L\)
+\item
+  \texttt{cnf\_count\_plus\_n}: CNF clause count + \(n\)
+\end{itemize}
+
+primary comparison は \texttt{L\_plus\_n\ \textless{}\ raw\_plus\_n} である。\texttt{first\_moment\ \textless{}\ raw\_plus\_n} は theory-pure support とした。\texttt{cnf\_count\_plus\_n} は encoding guardrail であり、\(L\) の勝利が単に CNF 展開サイズの勝利でないかを検査する。
+
+\section{実行整合性}\label{ux5b9fux884cux6574ux5408ux6027}
+
+\subsection{aborted attempt と verifier fix}\label{aborted-attempt-ux3068-verifier-fix}
+
+最初の primary attempt は 563 行で停止した。2 行が \texttt{malformed\_encoding} と判定されたためである。これは CNF encoding の論理バグではなく、verifier 側の false positive であった。
+
+原因は、PySAT / MiniSat が unconstrained variable を返却 model から省略することがある一方で、初期 verifier が全変数 \(1,\dots,n\) の assignment を要求していたことである。SAT/NAE 制約の意味論評価に必要なのは、実際に制約に現れる変数だけである。
+
+修正後 verifier は、semantic constraints に現れる変数集合だけを要求する。修正後、以下の検査を通した。
+
+\begin{itemize}
+\tightlist
+\item
+  archived malformed rows 2 件の regression replay
+\item
+  default agreement test 1000 instances
+\item
+  stress agreement test \(n=80,d=2.0\), 500 instances
+\item
+  stress agreement test \(n=160,d=2.0\), 500 instances
+\end{itemize}
+
+いずれも agreement failure は 0 であった。aborted attempt は OSF bundle と git history に forensic archive として残し、official primary analysis からは除外している。
+
+\subsection{official primary}\label{official-primary}
+
+修正後、official primary を別ファイルでゼロから実行した。
+
+\begin{verbatim}
+official primary rows: 12000/12000
+status: $succeeded = 12000$
+timeouts: 0
+malformed encodings: 0
+SAT feasible rows: 6753
+UNSAT rows: 5247
+\end{verbatim}
+
+このため、primary analysis は aborted attempt に依存しない。
+
+\section{結果}\label{ux7d50ux679c}
+
+\subsection{primary model comparison}\label{primary-model-comparison}
+
+leave-one-mixture-out の結果は以下である。
+
+{\def\LTcaptype{table} % do not increment counter
+\begin{longtable}[]{@{}lrrr@{}}
+\toprule\noalign{}
+model & log loss & Brier & accuracy@0.5 \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{L\_plus\_n} & 0.0970 & 0.0299 & 0.9631 \\
+\texttt{cnf\_count\_plus\_n} & 0.1010 & 0.0304 & 0.9631 \\
+\texttt{first\_moment} & 0.1489 & 0.0482 & 0.9457 \\
+\texttt{L\_only} & 0.4731 & 0.1601 & 0.7626 \\
+\texttt{raw\_density} & 0.7447 & 0.2524 & 0.6279 \\
+\texttt{raw\_plus\_n} & 0.7525 & 0.2539 & 0.6159 \\
+\texttt{raw\_count} & 0.7708 & 0.2798 & 0.5139 \\
+\end{longtable}
+}
+
+primary predictor \texttt{L\_plus\_n} は \texttt{raw\_plus\_n} を大きく上回った。
+
+\[
+0.0970 < 0.7525.
+\]
+
+相対改善は
+
+\[
+1-\frac{0.0970}{0.7525}\approx 0.871
+\]
+
+であり、事前登録の strong support 閾値 10\% を大幅に超える。
+
+\subsection{first moment}\label{first-moment}
+
+理論的に最も純粋な predictor は
+
+\[
+n\log2-L
+\]
+
+である。これは係数を固定した第一モーメント対数であり、追加の自由係数を持たない。
+
+この \texttt{first\_moment} も \texttt{raw\_plus\_n} を明確に上回った。
+
+\[
+0.1489 < 0.7525.
+\]
+
+ただし \texttt{L\_plus\_n} には負ける。これは有限サイズ補正を示唆する。\texttt{first\_moment} は \(n\) と \(L\) の係数を \((\log2,-1)\) に固定するが、\texttt{L\_plus\_n} は有限 \(n\) の偏りを logistic regression の係数で吸収できる。
+
+したがって、\texttt{first\_moment} と \texttt{L\_plus\_n} の差
+
+\[
+0.1489-0.0970=0.0519
+\]
+
+は、第一モーメント理論からの finite-size deviation を測る経験的余白として読める。
+
+\subsection{encoding guardrail}\label{encoding-guardrail}
+
+\texttt{L\_plus\_n} は \texttt{cnf\_count\_plus\_n} にもわずかに勝った。
+
+\[
+0.0970 \le 0.1010.
+\]
+
+この margin は小さい。しかし SAT/NAE の二型混合では、それは予想される。CNF encoding では SAT 制約は 1 clause、NAE 制約は 2 clauses で表せる。一方、drift ratio は
+
+\[
+\frac{\log(4/3)}{\log(8/7)}\approx 2.15
+\]
+
+であり、CNF clause count の比 2.00 と近い。したがって SAT/NAE-only grid では、\(L\) と CNF clause count はほぼ比例する。
+
+この条件で \texttt{L\_plus\_n} が \texttt{cnf\_count\_plus\_n} に勝つことは、方向としては理論と整合するが、margin が狭くなるのは構造的に自然である。
+
+将来、exact-one 制約を stress extension として含めると、この guardrail はより強く分離される。exact-one-3-SAT の drift は
+
+\[
+\log(8/3)\approx 0.981
+\]
+
+であり、SAT に対して約 7.3 倍である。一方、pairwise CNF encoding の clause count は SAT に対して 4 倍である。ここでは \(L\) と CNF size の比例性がより大きく破れる。
+
+ただし、exact-one は feasibility の飽和と encoding size 交絡が強いため、初回 primary から外した。この判断は、最初の仕様固定構造層における empirical test を清潔に保つための保守的設計である。
+
+\section{理論的位置づけ}\label{ux7406ux8ad6ux7684ux4f4dux7f6eux3065ux3051}
+
+\subsection{SAT 単独から Bernoulli-CSP class へ}\label{sat-ux5358ux72ecux304bux3089-bernoulli-csp-class-ux3078}
+
+ランダム 3-SAT は、構造持続理論にとって最も硬い仕様固定構造層 anchor の一つである。状態集合は \(\{0,1\}^n\)、測度は counting measure、各制約の縮小率は仕様から直接計算できる。
+
+しかし 3-SAT 単独では、\(L=m\log(8/7)\) であり、raw count と縮退する。したがって、3-SAT で \(L\) が有効であることは重要だが、「制約の質を drift-weighted に数えることが raw count より強い」という主張はまだ検査されていない。
+
+Mixed-SAT/NAE-SAT はこの間隙を埋める。raw count を固定したまま、constraint type の drift を変えることで、\(L\) の非自明な予測力を検査する。
+
+今回の Mixed-CSP 結果は、Bernoulli-CSP universality class に対して、Lean での formal layer に対応する empirical counterpart を与える。具体的には \texttt{Survival.BernoulliCSPUniversality}、\texttt{Survival.NAESATChernoffCollapse}、および関連する exposure / Chernoff wrapper 群に対応する経験的検査である。すなわち、固定割当てに対する Bernoulli bad-event exposure として表現できる異なる CSP 制約族が、同じ \(L\)-based coordinate で feasibility を整理される。
+
+Exp43c q-coloring は、この方向を graph-coloring family へ広げる。Lean 側の q-coloring formalization は fixed-coloring edge exposure を扱う。一方、Exp43c の empirical endpoint は full graph q-colorability である。したがって Exp43c は q-coloring threshold theorem ではない。より正確には、fixed-coloring exposure から得られる first-moment / drift coordinate
+
+\[
+n\log q - L
+\]
+
+が、threshold-local な q-colorability feasibility を raw edge count、density、CNF encoding-size baseline よりよく予測した、という経験的検査である。
+
+\subsection{何を主張し、何を主張しないか}\label{ux4f55ux3092ux4e3bux5f35ux3057ux4f55ux3092ux4e3bux5f35ux3057ux306aux3044ux304b}
+
+本補論が主張するのは次である。
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  SAT/NAE mixed finite CSP では、\(L+n\) が raw count + \(n\) より feasibility を強く予測した。
+\item
+  \(n\log2-L\) という theory-pure predictor も raw baseline を上回った。
+\item
+  CNF encoding size baseline との比較でも、\(L+n\) は少なくとも同等以上であった。
+\item
+  Exp43c q-coloring では、\(n\log q-L\) に対応する \texttt{fm\_plus\_n} が raw / density / CNF-size baselines を leave-one-q-out で上回った。
+\item
+  したがって、\(L\) または first-moment coordinate は単なる制約数ではなく、制約の質的 drift を含む予測座標として機能する。
+\end{enumerate}
+
+本補論が主張しないのは次である。
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  すべての CSP で同じ定数係数が成立する、とは主張しない。
+\item
+  drift から solver cost の感度指数 \(c\) を一点予測できる、とは主張しない。
+\item
+  XOR-SAT のように多項式構造が支配する family を primary empirical cost test に使える、とは主張しない。
+\item
+  Bootstrap percolation や branching process がこの意味で仕様固定構造層 anchor である、とは主張しない。
+\item
+  独立再現なしに universal law が確立した、とは主張しない。
+\end{enumerate}
+
+ここで得られたのは、Bernoulli-CSP class 内での empirical universality support である。より強い universal law of tendency には、formal theorem 4 の昇格と独立再現が必要である。
+
+\subsection{LLM 実験との対応}\label{llm-ux5b9fux9a13ux3068ux306eux5bfeux5fdc}
+
+LLM 側の Exp.40/41/42 は、scope-as-repair が quality-blind baseline より予測力を持つことを示した。Mixed-CSP は、それとは全く異なる hard combinatorial domain で、drift-weighted \(L\) が raw baseline より予測力を持つことを示す。
+
+両者の機構は同じではない。LLM の attribution-as-repair と SAT/NAE の bad-event exposure は別の現象である。
+
+共通しているのは、単純な「量」ではなく、構造の質を区別する座標が out-of-sample の予測力を持つ点である。LLM では scope / attribution の質が効き、Mixed-CSP では constraint drift の質が効く。
+
+この意味で、Mixed-CSP は「例を一つ足した」のではなく、方法論を横断した検査である。すなわち、quality-blind / raw-count baseline に対して、structure-aware coordinate が prospective に勝つかを問う同じ型の検査である。
+
+\section{限界}\label{ux9650ux754c}
+
+第一に、Mixed-CSP 結果は SAT/NAE の二型混合に限定される。Exp43c は q-coloring への拡張を与えたが、これは単独で universal law を確立するものではない。Cardinality-SAT への拡張は自然な次段階だが、本補論の validated claim ではない。Exp44 は calibration no-go として閉じ、Exp44b は threshold-local な draft / dry-run 候補として開いた段階に留まる。したがって、Cardinality-SAT は現時点でも validation evidence ではない。
+
+第二に、encoding guardrail の margin は小さい。これは SAT/NAE では CNF clause ratio と drift ratio が近いためである。この点は exact-one stress extension でより強く検査できる。
+
+第三に、対象は feasibility であり、solver cost ではない。solver cost については、既存の計算コスト補論が存在と発見を分けて扱っている。本補論の結果を、任意ソルバーの runtime 予測へ直接外挿してはならない。
+
+第四に、有限サイズ効果が残る。\texttt{first\_moment} が raw baseline を大きく上回る一方で \texttt{L\_plus\_n} に負けることは、理論的第一モーメントだけでは finite \(n\) の補正を完全には吸収できないことを示す。
+
+第五に、公式 primary の前に verifier false positive による aborted attempt が存在する。ただしこれは archive され、原因は unconstrained variable の model omission と特定され、修正後の regression / agreement test を通過した。official primary は修正後に別ファイルでゼロから実行され、aborted attempt は分析から除外されている。
+
+\section{再現性}\label{ux518dux73feux6027}
+
+関連ファイルは以下にある。
+
+{\def\LTcaptype{table} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+file
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+role
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{analysis/route\_a\_mixed\_csp/mixed\_csp\_preregistration.md} & 事前登録 \\
+\texttt{analysis/route\_a\_mixed\_csp/run\_mixed\_csp.py} & 実行 runner \\
+\texttt{analysis/route\_a\_mixed\_csp/analyze\_mixed\_csp.py} & primary analysis \\
+\texttt{analysis/route\_a\_mixed\_csp/debug\_mixed\_csp\_encoding.py} & verifier regression / agreement diagnostics \\
+\texttt{analysis/route\_a\_mixed\_csp/mixed\_csp\_primary\_official\_2026-04-22.jsonl} & official primary raw records \\
+\texttt{analysis/route\_a\_mixed\_csp/mixed\_csp\_results.json} & machine-readable results \\
+\texttt{analysis/route\_a\_mixed\_csp/mixed\_csp\_results\_summary.md} & human-readable results \\
+\end{longtable}
+}
+
+Exp43c q-coloring の関連ファイルは以下にある。
+
+{\def\LTcaptype{table} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+file
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+role
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{analysis/exp43\_qcoloring/exp43c\_threshold\_local\_preregistration\_draft.md} & fresh threshold-local preregistration \\
+\texttt{analysis/exp43\_qcoloring/exp43c\_calibration\_closeout.md} & calibration closeout \\
+\texttt{analysis/exp43\_qcoloring/exp43c\_freeze\_package.md} & frozen primary package \\
+\texttt{analysis/exp43\_qcoloring/exp43c\_primary\_report.md} & primary validation report \\
+\texttt{analysis/exp43\_qcoloring/config/exp43c\_primary\_config.json} & primary grid \\
+\texttt{analysis/exp43\_qcoloring/src/evaluate\_primary.py} & frozen evaluation script \\
+\texttt{analysis/exp43\_qcoloring/exp43c\_true\_outside\_rerun\_01\_philia\_channel.md} & first returned true outside-group rerun \\
+\texttt{analysis/exp43\_qcoloring/exp43c\_true\_outside\_rerun\_02\_katsumasa1234.md} & second returned true outside-group rerun \\
+\texttt{analysis/exp43\_qcoloring/exp43c\_true\_outside\_rerun\_03\_SCRAPRO.md} & third returned true outside-group rerun \\
+\texttt{analysis/exp43\_qcoloring/exp43c\_true\_outside\_final\_report.md} & final outside-group rerun report \\
+\end{longtable}
+}
+
+G7 outside-group replication layer:
+
+{\def\LTcaptype{table} % do not increment counter
+\begin{longtable}[]{@{}lrl@{}}
+\toprule\noalign{}
+package & returned outside runs & status \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Mixed-CSP & \texttt{3} & \texttt{3/3} clean success \\
+Exp43c q-coloring & \texttt{3} & \texttt{3/3} returned clean success \\
+\end{longtable}
+}
+
+この G7 layer は、各 package の frozen 手順が著者環境外でも実行可能であり、qualitative support decision が修復されることを示す。Mixed-CSP と Exp43c q-coloring は、ともに現時点で 3 件の returned clean success を持つ。
+
+OSF addendum:
+
+\begin{itemize}
+\tightlist
+\item
+  zip: \url{https://osf.io/download/69e826573b65e7b53bfd8b7e/}
+\item
+  manifest: \url{https://osf.io/download/69e8265a30357781bafd90d6/}
+\end{itemize}
+
+公式 primary の commit は
+
+\begin{verbatim}
+1dadb73dd435347977c47be066002460f136ea00
+\end{verbatim}
+
+であり、結果導線の commit は
+
+\begin{verbatim}
+a5fc8e2
+\end{verbatim}
+
+である。
+
+\section{結論}\label{ux7d50ux8ad6}
+
+Mixed-CSP primary は、構造持続理論の仕様固定構造層における empirical test として、事前登録された四つの判定基準を全て通過した。
+
+3-SAT と 3-NAE-SAT は raw count では同じ 1 制約として見えるが、解空間を削る drift は異なる。\(L\) はこの差を加法的に累積し、finite CSP の feasibility を out-of-sample に予測した。
+
+これは、構造持続理論における \(L\) が単なる量ではなく、制約の質を含む座標として機能することの経験的証拠である。SAT 単独の仕様固定構造層 anchor は、Mixed-SAT/NAE-SAT により Bernoulli-CSP class へ一段拡張された。
+
+さらに Exp43c q-coloring により、SAT 構文の外側に見える graph-coloring family でも、first-moment / drift coordinate が raw / density / encoding-size baseline を上回ることが示された。これは仕様固定構造層の幅を一段広げる primary evidence である。
+
+外部再実行の層では、Mixed-CSP が 3 名の外部実行者で 3/3 clean success を返し、Exp43c q-coloring も 3 名の外部実行者で 3/3 clean success を返した。したがって、仕様固定構造層では二つの frozen package について著者環境外での再実行成功が得られている。
+
+ただし、本補論は universal law の最終宣言ではない。正確な位置づけは、SAT、LLM contradiction repair、Mixed-CSP feasibility、Exp43c q-coloring feasibility で、structure-aware coordinate が quality-blind / raw baseline を上回った、という Level 2 universality candidate への強い支持である。
+
+残る課題は、formal theorem 4 による tendency law への昇格、Cardinality-SAT などへのさらなる幅拡張、追加の独立再現、そして非CSP / observational branch への外部検証である。
+\end{document}

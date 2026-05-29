@@ -1,0 +1,826 @@
+\documentclass[12pt,a4paper]{article}
+\input{survival_whitepaper_preamble.tex}
+
+\begin{document}
+
+\PaperTitleBlock
+  {構造持続写像の標準手順}
+  {— ドメイン横断適用のための手順 —}
+  {2026年5月29日}
+
+\begin{abstract}
+本補論は、構造持続の最小形式
+
+\[
+S = Me^{-L}
+\]
+
+を個別ドメインへ写像するための標準手順を与える。目的は、任意の対象について、それが構造維持系として扱えるか、崩壊を生存可能性の喪失として定義できるか、そしてそのドメインについて、定理、境界、または実証のいずれの強さで構造持続の数学に載せられるかを、同じ手順で判定できるようにすることである。
+
+本手順は、対象構造、維持条件、有効選択肢空間、制約集合、累積段階損失 L、余力 μ、初期有効選択肢多様性 N\_eff\^{}(0) を順に定義し、仕様固定構造層、条件付き構造埋め込み層、構造推定層のいずれかへ位置づける。さらに、反証条件の事前固定、基準モデルとの比較、予測頑健性テスト、介入設計までを一つの流れとして与える。これにより、ドメインごとに異なる語で語られてきた崩壊や劣化を、共通の骨格のもとで比較・検証するための標準手順を与える。
+
+本補論で最も重要な運用規律は、「探索的に写像を作ってはならない」という禁止ではなく、「写像発見と検証を混同しない」という分離である。現実ドメインでは、維持対象、測度、段階損失指標、修復指標を探索的に発見する段階がありうる。この段階の産物は candidate signal または candidate mapping であり、support ではない。support と呼べるのは、写像、指標、split、metric、baseline を凍結した後に、holdout / future / fresh archive / outside rerun で予測力の増分を示した場合に限る。探索で外れた候補、凍結後に外れた写像、baseline と重複していた追加軸も、失敗として捨てず、次の写像発見に使える台帳として記録する。
+\end{abstract}
+
+\section{目的}\label{ux76eeux7684}
+
+本補論は、任意のドメインについて、
+
+\begin{itemize}
+\tightlist
+\item
+  その対象が「構造維持系」として扱えるか
+\item
+  崩壊を「生存可能性の喪失」として定義できるか
+\item
+  構造持続の数学に定理的、境界的、または実証的に載せられるか
+\end{itemize}
+
+を判定し、実験・定式化・介入設計まで一貫して行うための標準手順を定めるものである。
+
+本手順が扱うのは、存在一般ではなく、ある対象構造がその関係・機能・同一性を保ったまま持続できるかどうかである。
+
+この手順の基本発想は、構造持続の最小形式で与えられた
+
+\[
+S = Me^{-L}
+\]
+
+を、SAT や LLM 以外のドメインにも写像できるかを系統的に判定することにある。
+
+運用上は、M をさらに分解した形
+
+\[
+S = N_{eff}^{(0)} \times (\mu/\mu_{c}) \times e^{-L}
+\]
+
+を用いる。ここで \(M = N_{eff}^{(0)}\) × (μ/μ\_c) である。\(\mu_{c}\) は、そのドメインで持続が急速に失われ始める臨界余力を表す。この分解は最小形式の拡張ではなく、M の内部構造を操作可能にするための実用的な展開である。ここで N\_eff\^{}(0) が表すのは、制約適用後の現在の選択肢数ではなく、縮小が始まる前にその系が持っていた初期的または外生的な有効選択肢多様性である。現在の有効選択肢の縮小は e\^{}\{-L\} 側に含まれる。したがって、μ と N\_eff\^{}(0) の分離が困難なドメインでは、M を一体のまま扱ってよい。
+
+\subsection{探索的写像と予測力の増分検証}\label{ux63a2ux7d22ux7684ux5199ux50cfux3068ux4e88ux6e2cux529bux306eux5897ux5206ux691cux8a3c}
+
+本手順は二段階で運用する。
+
+第一段階は、探索的写像フェーズである。ここでは、既存データ、専門知識、予備実験、失敗例を用いて、そのドメインで何が維持対象であり、どの測度 m、どの段階損失指標 L または L̂、どの修復指標 \(r_{t}\) が自然かを探してよい。この段階での候補生成や再定義は、科学的発見の一部である。ただし、この段階で同じデータにうまく適合したことは、support ではない。探索中の改善は candidate signal または exploratory gain と呼び、事前登録検証に進める価値があると判断したものだけを validation candidate として記録する。
+
+第二段階は、事前登録検証フェーズである。探索で得た写像を、対象構造、測度、観測単位、指標、split、metric、baseline、失敗条件まで含めて固定する。その後、holdout / future / fresh archive / outside rerun で予測力を検査する。ここで初めて、そのドメインにおける構造持続写像の経験的価値を判定する。
+
+外向けの価値としては、第二段階の中心は「事前登録検証」そのものではなく、予測力の増分検証である。事前登録検証は、探索で見つけた構造写像が本当に追加予測力を持つかを正当に判定するための手続きである。典型的には、domain baseline と domain baseline + SP を比較し、構造持続指標を足すことで out-of-sample 予測力が改善するかを見る。
+
+したがって、本手順における失敗とは、「探索中の候補が外れたこと」だけではない。探索中に外れたものは failed candidate、凍結後に外れたものは no-support、データ構造上そもそも測れないものは silence、追加軸が baseline の再命名や近似重複に留まったものは weak-axis mapping failure として区別する。この区別により、失敗は理論を曖昧に守るためではなく、次にどの写像を上げ、どの写像を上げないかを決める設計資産になる。
+
+\subsection{三つの価値}\label{ux4e09ux3064ux306eux4fa1ux5024}
+
+本手順の価値は、次の三本柱として整理できる。
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  統一座標: 段階損失、修復、余力、代替経路を同じ語彙で見る。
+\end{enumerate}
+
+\section{予測力の増分検証:}\label{ux4e88ux6e2cux529bux306eux5897ux5206ux691cux8a3c}
+
+探索で見つけた構造写像を凍結し、SP-only が simple baseline を上回るか、より強くは domain baseline + SP が domain baseline を上回るかを見る。
+
+\section{ドメイン横断の設計転用:}\label{ux30c9ux30e1ux30a4ux30f3ux6a2aux65adux306eux8a2dux8a08ux8ee2ux7528}
+
+あるドメインで効いた維持設計を、別ドメインの candidate mapping / candidate intervention に変換する。
+
+このうち事前登録検証は、第二の柱を支える方法論上の規律である。
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  基本思想
+\end{enumerate}
+
+2.1 中核仮説
+
+任意の構造維持系は、次のように捉えられる。
+
+\begin{itemize}
+\tightlist
+\item
+  系には維持すべき機能がある
+\item
+  その機能を維持するための有効な行動・状態・経路の集合がある
+\item
+  制約や矛盾の蓄積は、その集合を削る
+\item
+  修復余地や選択肢が閾値以下になると崩壊する
+\end{itemize}
+
+2.2 崩壊の一般定義
+
+崩壊とは、単なる停止ではなく、
+
+「定義された維持機能を支える有効選択肢空間が、閾値以下に縮退すること」
+
+である。
+
+2.3 L の一般定義
+
+L とは、単なる矛盾数ではなく、
+
+「生存可能な有効選択肢を削る累積段階損失」
+
+である。最小形式の累積段階損失量 L と同一の量であり、情報量として見れば段階損失情報量にあたる。
+
+2.4 μ の一般定義
+
+μ とは、
+
+「修復、再編、判断、行動、推論、適応に使える有効余力」
+
+である。
+
+2.5 N\_eff\^{}(0) の一般定義
+
+N\_eff\^{}(0) とは、
+
+「縮小が始まる前に、その系が持っていた独立な有効選択肢の初期的または外生的な多様性」
+
+である。
+
+μ と N\_eff\^{}(0) は最小形式の M（有効資源）を構成する二つの側面であり、μ は余力の絶対量、N\_eff\^{}(0) は初期または外生的な選択肢多様性に対応する。現在の有効選択肢の減少そのものは e\^{}\{-L\} に含まれる。両者を分離できるドメインでは分けて扱い、分離困難なドメインでは M を一体のまま扱う。
+
+ただし、学習・進化・組織再編のように、選択肢多様性そのものが時間とともに再生・拡張される系もある。この場合、その再生が修復・再編能力と切り分けにくければ μ 側に含めてよく、独立に追跡できるときに限って将来的には時間依存の N\_eff(t) として拡張しうる。本手順では、まず基準形として N\_eff\^{}(0) を用いる。
+
+2.6 量の切り分け
+
+本補論では、量の種類を次のように区別する。
+
+\begin{itemize}
+\item
+  \(R_{k}\): 有効選択肢空間の総残存比。正確に測れる場合には \$R\_\{k\} = \(m(\)A\_\{k\}\() / m(A_{k}^0)\) = e\^{}\{-L\_\{k\}\}\$ と書かれる。
+\item
+  \(M_{k}\): 有効資源。余力や初期的・外生的な多様性を含む、構造持続を支える側の項である。
+\item
+  \(S_{k}\): 構造持続量。 \$S\_\{k\} = \(M_{k}\) R\_\{k\}\$ で与えられる。
+\item
+  \(P_{k}\): 条件付き構造埋め込み層で用いる、確率的または弱依存の記述のもとでの実現残存可能性。役割としては仕様固定構造層の \(R_{k}\) に対応するが、参照モデルに対する境界として表すときにこの記号を用いる。
+\end{itemize}
+
+したがって、L は「どれだけ削られたか」、R は「どれだけ残っているか」、M は「その縮小が始まる前からどれだけの余力と多様性を持っていたか」、S は「その両者を合わせた構造持続量」を表す。
+
+2.7 写像状態
+
+各ドメイン写像は、次の状態を区別して記録する。
+
+{\def\LTcaptype{table} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.6000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+状態
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+意味
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+support と呼ぶか
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+candidate signal & 探索中に見つかった、構造持続座標らしい相関、改善、単調性、可視化上の手がかり。 & 呼ばない \\
+candidate mapping & 探索的に作られた維持対象・測度・指標候補。同じデータ上の説明を含む。 & 呼ばない \\
+validation candidate & candidate signal / candidate mapping のうち、次の事前登録検証に進める価値があると判断されたもの。 & 呼ばない \\
+frozen mapping & 対象構造、指標、split、metric、baseline、失敗条件を検証前に固定したもの。 & まだ呼ばない \\
+weak support & frozen mapping の SP-only 指標が、simple baseline を out-of-sample に上回る。 & 限定的に呼ぶ \\
+incremental support & 既存の強い domain baseline に構造持続指標を加えた baseline + SP が、baseline 単独を out-of-sample に上回る。 & 強く呼ぶ \\
+strong support & incremental support が複数 split、複数 archive、複数 model family、または outside rerun で再現する。 & 強く呼ぶ \\
+failed candidate & 探索段階で予測、単調性、解釈、または測定可能性が弱く、事前登録検証へ上げない候補。 & 呼ばない \\
+no-support & frozen mapping が事前の primary 判定を通らない。 & 呼ばない \\
+weak-axis mapping failure & baseline + SP を名乗ったが、SP 追加軸が baseline 特徴の再命名、近似重複、または同じ情報源の粗い再表現に留まった場合。 & 呼ばない \\
+silence & 自然な写像が固定できない、または合理的な写像が繰り返し no-support となる。 & そのドメインでは主張しない \\
+\end{longtable}
+}
+
+ここで SP は structural persistence coordinate、すなわち構造持続理論から導かれる段階損失・修復・余力の指標群を指す。構造持続理論の経験的価値は、SP-only が常に最強モデルになることではない。より重要なのは、既存専門モデルに対して SP が追加的・横断的な予測座標を与えるかである。
+
+2.8 失敗台帳
+
+各ドメインで外れた候補は、単に削除しない。失敗は次の探索を狭めるための情報であり、同じ失敗を別の名前で繰り返さないための制約である。したがって、探索段階、事前登録検証段階、外部再実行段階のいずれで外れたかを分けて記録する。
+
+失敗台帳には、少なくとも次を記録する。
+
+{\def\LTcaptype{table} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+項目
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+内容
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+attempt id & ドメイン、データ、版、実行日を含む一意な名前 \\
+対象構造 & 何を維持対象として定義したか \\
+構造粒度 & どの階層・単位で (V,m,L,r\_t,M) を定義したか \\
+状態 & failed candidate / validation candidate / frozen / support / no-support / weak-axis / silence \\
+baseline & simple baseline と domain baseline \\
+SP 追加軸 & baseline に足した構造持続座標 \\
+outcome & support 判定、主要 metric、方向性 \\
+failure mode & indicator miss / weak-axis / leakage risk / small sample / no natural (r\_t) / no fresh surface など \\
+再利用可能な教訓 & 次の写像で禁止または要求すべき条件 \\
+次の扱い & rescue 禁止、fresh archive へ移す、探索候補へ戻す、silence に置く等 \\
+\end{longtable}
+}
+
+この台帳は、no-support を理論の外に捨てるためではなく、理論の適用条件を明確化するために使う。たとえば、凍結後に外れた写像は no-support として残し、同じ archive 上で別の観測・推定指標を探して support に昇格させない。一方、その失敗から得た構造定義や観測・推定指標は、新しい validation candidate として別データ、future surface、または未接触 split で検証してよい。
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  適用対象
+\end{enumerate}
+
+\subsection{適用可能な系}\label{ux9069ux7528ux53efux80fdux306aux7cfb}
+
+\begin{itemize}
+\tightlist
+\item
+  維持すべき機能が定義可能
+\item
+  崩壊が観測可能または操作的に定義可能
+\item
+  行動、状態、推論、意思決定などの有効選択肢を定義可能
+\item
+  制約や矛盾の蓄積が、その有効選択肢を減らすと考えられる
+\end{itemize}
+
+\subsection{典型例}\label{ux5178ux578bux4f8b}
+
+\begin{itemize}
+\tightlist
+\item
+  LLM
+\item
+  継続学習システム
+\item
+  自律エージェント
+\item
+  企業・組織
+\item
+  生態系
+\item
+  医療運用系
+\item
+  サプライチェーン
+\item
+  個体認知・意思決定系
+\end{itemize}
+
+\subsection{適用が難しい対象}\label{ux9069ux7528ux304cux96e3ux3057ux3044ux5bfeux8c61}
+
+逆に、次のような対象は本手順にそのまま載せにくい。
+
+\begin{itemize}
+\tightlist
+\item
+  維持すべき機能そのものが定義できない対象
+\item
+  崩壊条件を観測的または操作的に書けない対象
+\item
+  有効選択肢空間を置く意味がほとんどない対象
+\item
+  制約蓄積よりも、生成・揺らぎ・再編が支配的で、削減方向を安定に定義しにくい対象
+\item
+  対象構造を後から都合よくずらせてしまう対象
+\end{itemize}
+
+例として、理想的な i.i.d. ランダム列、暗号学的乱数源の出力列そのもの、あるいは評価基準を与えない自由生成の列は、本手順にそのまま載せにくい。これらは、維持すべき機能、崩壊条件、有効選択肢空間のいずれも安定に定義しにくく、制約蓄積による持続失敗として記述するより、独立試行や生成過程として扱う方が自然だからである。
+
+とくに注意すべきなのは、操作的に定義できない隠れ本質を事後的に持ち込むことである。この種の仮定は、対象構造をいくらでも後付けで再定義できてしまうため、反証可能性を失わせる。本手順が扱うのは、そのような形而上学的な本質ではなく、少なくとも維持条件・崩壊条件・有効選択肢のいずれかを操作的に固定できる構造である。
+
+ただし、現時点で直接観測できない内部機構があること自体は、直ちに本手順の対象外を意味しない。重要なのは、その内部機構を仮定しなくても、維持条件、崩壊条件、または設計変更後に観測すべき readout のいずれかが操作的に記述できるかどうかである。したがって、「まだ完全には見えていないが、観測・推定指標と設計仮説を通じて検証可能な構造」は条件付き構造埋め込み層または構造推定層の候補になりうるが、「見えない本質」そのものを対象構造に据えることは許されない。
+
+\section{ドメイン特性の分類}\label{ux30c9ux30e1ux30a4ux30f3ux7279ux6027ux306eux5206ux985e}
+
+対象ドメインを、有効選択肢空間の明示性と制約削減の測定可能性に基づいて分類する。この分類は手順 8 のルート判定の入力となる。
+
+定理化寄りのドメイン: - 維持条件が外部的に明示定義できる - 有効選択肢空間が比較的明示的 - 制約による削減率が直接または近似的に計算できる - → 仕様固定構造層または条件付き構造埋め込み層に進みやすい
+
+例: SAT、明示制約型 LLM タスク、一部の形式推論環境
+
+観測・推定指標実証寄りのドメイン: - 維持条件は操作的に定義可能 - 有効選択肢空間は暗黙的または高次元 - 制約削減は直接測定困難で、観測・推定指標が必要 - → 条件付き構造埋め込み層または構造推定層に進みやすい
+
+例: 企業、生態系、一般的な LLM 会話、継続学習システム、組織運営
+
+\section{写像手順}\label{ux5199ux50cfux624bux9806}
+
+手順 0: 対象ドメインと対象構造の固定
+
+対象を一つに絞り、対象構造を明記する。対象構造とは、「そのドメインにおいて何の構造持続を問題にするか」を指す。ここでいう構造は、一般的な形そのものではなく、その系で維持を問題にする関係・機能・同一性を指す。ドメインと対象構造は異なる。たとえばドメインが「LLM 対話系」でも、対象構造は「論理一貫性を保った推論構造」かもしれないし、「事実再現の整合構造」かもしれない。企業なら「継続的意思決定構造」、生態系なら「生態機能を支える相互作用構造」のように具体化される。同一ドメインに対して異なる対象構造を設定すれば、適用結果は変わりうる。
+
+探索的写像フェーズでは、観測指標や推定指標を見ながら、どの対象構造が自然かを発見してよい。ただし、その結果は candidate mapping であり、support ではない。事前登録検証フェーズに入る前に、対象構造、対象スコープ、観測期間または観測単位を固定する。凍結後に、うまく当てはまる対象構造が見つかるまで定義をずらし続けることは許されない。
+
+ここで同時に固定すべきなのが、構造粒度である。構造粒度とは、維持対象をどの細かさ・どの階層で定義するかを指す。多くの系では、構造は入れ子状・多階層的であり、下位構造の損失、上位構造の制約、階層間の依存、修復量の伝播が相互作用する。したがって、全体の生存可能性は最小構成要素の状態だけでは決まらない。自然な \(V\) や \(m\) は単一の階層だけで固定されるとは限らず、維持条件に応じた構造粒度の設定と、多階層的な構造写像が必要になる。
+
+このとき固定されるべきなのは、このドメインで何を維持できればその構造が持続しているとみなすか、という操作的な対象構造である。対象構造は完全に可視化されている必要はないが、少なくとも崩壊条件、維持指標、または設計変更後の観測 readout と結びつく形で固定されていなければならない。
+
+出力: - ドメイン名 - 対象構造 - 構造粒度 - 対象スコープ - 観測期間または観測単位
+
+手順 1: 維持条件の定義
+
+対象ドメインで維持すべき機能を一つ定義する。
+
+要件: - 一つでよい。最初から総合知能や総合健全性を定義しなくてよい - 操作的に観測可能であることが望ましい
+
+例: - LLM: 論理一貫性維持 - 企業: 継続的意思決定能力維持 - 生態系: 生態機能維持 - 継続学習: 旧知識を壊さず新知識を統合する能力維持
+
+出力: 維持条件 \(G_{k}\)
+
+手順 2: 崩壊の定義
+
+崩壊を、その維持条件 \(G_{k}\) が失われる条件として定義する。
+
+推奨定義: 「維持条件を満たすための有効選択肢が閾値以下になること」
+
+出力: 崩壊条件 \(C_{k}\)
+
+手順 2.5: 反証条件の事前設定
+
+\textbf{事前登録検証フェーズに入る前に}、以下を先に固定する。
+
+\begin{itemize}
+\tightlist
+\item
+  何が観測されたら「この理論はこのドメインに当てはまらない」と判断するか
+\item
+  何が観測されたら「選んだ観測・推定指標が不適切」と判断するか
+\end{itemize}
+
+この区別が重要である。理論の棄却と観測・推定指標の棄却は別の判定であり、観測・推定指標が外れたことは直ちに理論の棄却を意味しない。ただし、すべての合理的な観測・推定指標が外れた場合は、理論の適用可能性を再検討する。
+
+探索的写像フェーズでは、反証条件の候補を複数立ててもよい。しかし、support 判定に用いる反証条件を結果の後に書くことは許されない。
+
+加えて、観測・推定指標探索の上限を事前に固定する。「N 個の合理的な観測・推定指標を試して全て外れたら、このドメインへの理論の適用可能性を再検討する」という事前コミットメントがなければ、「この観測・推定指標は合理的とは言えなかった」という判定を繰り返すことで理論を永遠に守り続けることができてしまう。
+
+出力: - 反証条件（理論レベル + 観測・推定指標レベル） - 観測・推定指標探索予算（試行する観測・推定指標の上限数または探索期限）
+
+手順 3: 有効選択肢空間の定義
+
+維持条件 \(G_{k}\) を支える有効選択肢空間 \(A_{k}\) を定義する。
+
+候補: - 有効な軌跡 - 実行可能な行動分岐 - 整合的な推論経路 - 修復可能な状態遷移 - 方針整合的な意思決定経路
+
+要件: - 明示的でも暗黙的でもよい - 必ずしも全列挙可能でなくてよい - ただし何を''有効''と呼ぶかは定義する
+
+出力: 有効選択肢空間 \(A_{k}\)
+
+手順 4: 制約の定義
+
+有効選択肢を削る制約 \(C_{i}\) を定義する。
+
+候補: - 矛盾 - 上書き - 依存衝突 - 資源律速 - 制度的不整合 - 指示衝突 - 時間的不整合 - 範囲づけなし更新
+
+重要: 制約は「悪い現象」ではなく、有効選択肢を削る作用として定義する。
+
+出力: 制約集合 \{C\_i\}
+
+手順 4.5: 基準モデルの設定
+
+本手順の指数型または構造持続座標が何に対して優位かを明確にするため、各ドメインで比較対象を層別して設定する。
+
+最低限の比較: - simple baseline: raw count、文脈長、単純密度、単純閾値など、そのドメインで最も素朴な代替予測。 - SP-only: 構造持続指標だけを用いる予測。
+
+より強い比較: - domain baseline: 既存専門モデル、既存理論に基づく強い指標、または標準的 ML baseline。 - baseline + SP: domain baseline に構造持続指標を追加した予測。
+
+例: - LLM: 「矛盾の数が閾値を超えたら崩壊」（線形カウントモデル） - 企業: 「赤字が N 期連続したら崩壊」（単純閾値モデル）
+
+本手順が simple baseline に勝てない場合、その写像は弱い。指数型の加法的累積構造が、単純なカウントや線形モデルに対して予測精度で優位であることを示せなければ、理論の実質的な貢献は「当たり前の観察に複雑な言語を与えただけ」になりうる。
+
+ただし、構造持続理論は各ドメインの最強単独予測モデルであることを目標にしない。既存専門モデルが段階損失以外の強い因子を含む場合、domain baseline が SP-only より強いことは自然にありうる。より重要な判定は、baseline + SP が domain baseline を out-of-sample に改善するかである。これが成立するなら、構造持続指標は既存予測枠組みに対する追加的・横断的な予測座標として機能している。
+
+基準モデルに対する優位性は、少なくとも次のいずれか一つで示されなければならない。 - held-out データでの予測優位 - 制約の質に関する順序予測の的中 - 設計変更後に観測すべき readout の事前固定と、その凍結後検証
+
+出力: simple baseline、domain baseline、SP-only model、baseline + SP model、追加予測
+
+手順 5: 削減率または観測・推定指標の定義
+
+各 \(C_{i}\) が \(A_{k}\) をどれだけ削るかを定義する。
+
+指数形式そのものは定義から従う。経験的に検証されるのは、どの制約型がより強く有効選択肢を削るか、その順序予測が保たれるか、そして高次元ドメインで観測される観測・推定指標が真の累積段階損失の十分よい推定量となるかである。
+
+理想形: \[
+\begin{aligned}
+r_{i} &= |A_{k}^{(i)}| / |A_{k}^{(i-1)}| \\
+L_{k} &= \sum[-\ln(r_{i})] \\
+R_{k} &= e^{-L_{k}}
+\end{aligned}
+\]
+
+ここでの \(L_{k}\) は、真の累積段階損失である。
+
+推定指標形（直接 \(r_{i}\) が測れない場合）:
+
+直接 \(r_{i}\) が測れない場合は、真の \(L_{k}\) そのものではなく、推定累積段階損失 L̂\_k を置く。L̂\_k に求めるのは真の \(L_{k}\) との完全一致ではなく、少なくとも次のいずれかを再現することである。
+
+\begin{itemize}
+\tightlist
+\item
+  維持指標に対する単調関係
+\item
+  閾値予測
+\item
+  基準モデルに対する追加予測力
+\end{itemize}
+
+観測・推定指標の例: - 矛盾密度 - 未解決衝突数 - 方針衝突数 - 検索不一致率 - 意思決定膠着率 - 経路無効化率
+
+出力: 真の \(L_{k}\) または推定累積段階損失 L̂\_k
+
+手順 6: μ 候補の定義
+
+系が修復・再編・行動・推論に使える余力 μ を定義する。
+
+必要に応じて、臨界余力 \(\mu_{c}\) も定義する。\(\mu_{c}\) は、そのドメインで維持条件が急速に失われ始める余力の基準値である。
+
+候補: - 計算余力 - 注意余力 - キャッシュ余力 - 資金余力 - 冗長性 - バッファ - 修復帯域
+
+出力: 余力変数 μ\_k（必要に応じて \(\mu_{c}\),k）
+
+手順 7: N\_eff\^{}(0) 候補の定義
+
+系が、縮小が始まる前に利用可能だった独立な選択肢の多様性を定義する。
+
+候補: - 代替政策の初期数 - 推論経路の初期多様性 - 冗長モジュールの初期数 - サプライ代替の初期数 - 記憶表現の初期多様性
+
+ここで定義する N\_eff\^{}(0) は、現在残っている選択肢数ではない。現在の有効選択肢数の減少は L によって表される。μ と N\_eff\^{}(0) の分離が困難な場合は、手順 6-7 を統合し M として一体で扱う。
+
+出力: 初期有効選択肢多様性 N\_eff\^{}(0)\_k（または統合 \(M_{k}\)）
+
+手順 8: 観測可能性の層判定
+
+次の三層のいずれかに分類する。この分類はドメインそのものの価値の分類でも、対象名に固定ラベルを貼る分類でもない。その問題設定について、どの観測形式・どの強さの主張が可能かを示す分類である。仕様固定構造層では等式または有限時間の強い境界、条件付き構造埋め込み層では既存理論からの条件付き埋め込み、構造推定層では観測・推定指標と事前登録検証による追加予測力が主張される。反証条件と基準モデル比較が機能する限り、理論の適用可能性は検証可能なまま保たれる。
+
+仕様固定構造層
+
+条件: - \(A_{k}\) が定義可能 - 各段階の残存比 \(r_{i}\) が定義可能 - 累積段階損失 \(L_{k}\) = Σ{[}-ln(\(r_{i}\)){]} が定義可能 - 共通測度のもとで残存集合の比較ができる
+
+目標: \textbar A\_k（残存）\textbar{} = \textbar A\_k\^{}0\textbar{} e\^{}\{-L\_k\}
+
+条件付き構造埋め込み層
+
+条件: - 仕様固定構造層としての等式は置けない - ただし、参照累積段階損失量 \(L_{ref}\) からの相対誤差が有界
+
+目標: \[
+e^{-L_{ref}(1+\rho)} \le P_{k} \le e^{-L_{ref}(1-\rho)}
+\]
+
+既存理論の弱依存境界を用いる。ρ は段階段階損失間の依存が参照累積段階損失量に及ぼす相対誤差の上界である。ここで \(P_{k}\) は、弱依存や確率モデルのもとで記述された実現残存可能性を表す。
+
+構造推定層
+
+条件: - 普遍法則を直接主張する層ではない - ただし観測・推定指標による予測・設計仮説・再現が可能
+
+目標: - 単調性 - 閾値性 - 設計変更後の観測 readout - 予測力 - \textbf{基準モデルに対する優位性}
+
+出力: 観測可能性の層分類
+
+手順 9: 探索的写像フェーズ / 観測・推定指標探索フェーズ
+
+構造推定層（および条件付き構造埋め込み層で観測・推定指標を併用する場合）で必須。
+
+手順: 1. 候補の観測・推定指標を複数立てる 2. 維持指標との相関を見る 3. 単調性を見る 4. 閾値性を見る 5. 外れた観測・推定指標を捨てる \# \textbf{基準モデルと比較し、観測・推定指標が追加の予測力を持つか検証する}
+
+出力: - 候補観測・推定指標集合 - 棄却観測・推定指標集合 - 生存観測・推定指標集合
+
+複数の観測・推定指標を試行した場合、生存した観測・推定指標は candidate mapping の一部である。同じデータ上での説明力、相関、可視化、post-hoc deep dive は、探索結果として記録してよいが、support とは呼ばない。生存した観測・推定指標の予測力は、凍結後の新規データで再検証する。
+
+手順 10: 事前登録検証フェーズ
+
+生き残った観測・推定指標を凍結し、以下を検証する。
+
+\begin{itemize}
+\tightlist
+\item
+  他データで再現するか
+\item
+  他モデルで再現するか
+\item
+  維持条件の定義を変えても効くか
+\item
+  事前固定した設計変更後 readout と整合するか
+\item
+  未知データで予測できるか
+\item
+  simple baseline を上回るか
+\item
+  domain baseline に SP を足すことで baseline + SP が改善するか
+\end{itemize}
+
+凍結時には、少なくとも次を固定する。
+
+\begin{itemize}
+\tightlist
+\item
+  対象構造
+\item
+  測度または推定測度
+\item
+  L / L̂ / \(r_{t}\) / μ / M の定義
+\item
+  train / validation / test または future split
+\item
+  primary metric
+\item
+  simple baseline
+\item
+  domain baseline
+\item
+  SP-only model
+\item
+  baseline + SP model
+\item
+  support / no-support 判定規則
+\end{itemize}
+
+出力: 検証済み操作的 L̂\_k、または no-support / silence 判定
+
+手順 10.5: 予測頑健性テスト
+
+高次元ドメインでは、有効選択肢空間 \(A_{k}\) それ自体を直接観測できないことが多い。この場合、空間定義の妥当性は、空間そのものの直接比較ではなく、その定義から導かれる予測の頑健性によって評価される。
+
+具体的には、以下の定義パラメータを複数の合理的な選択肢で変えたとき、主要予測が保たれるかを調べる。
+
+\((a)\) 有効選択肢の粒度 例: 推論経路を「前提→規則→結論」の3段階で数えるか、 各推論ステップを独立に数えるか。 \((b)\) 測度の取り方 例: 候補経路を一様に数えるか、確率重みをつけるか。 \((c)\) 制約の分類法 例: 制約を5分類にするか、3分類にするか、2分類にするか。
+
+検証対象となる予測: - 制約の質の順序予測（どの制約型がより強く削るか） - 観測・推定指標と維持指標の単調関係 - 基準モデルに対する追加予測力
+
+判定基準: これらの予測が、(a)(b)(c) の合理的な変更に対して鈍感であれば、骨格は頑健であるとみなす。逆に、粒度や測度や分類の選び方を少し変えるだけで予測が反転するならば、理論の実質は骨格ではなく定義選択に依存しており、そのドメインでの適用は未成熟であると判断する。
+
+この手順は、有効選択肢空間が明示的に定まるドメイン（例: SAT）では不要である。空間の定義がほぼ一意に決まるため、感度分析は自明に通過する。本手順が必要になるのは、有効選択肢空間が理論構成物として置かれ、定義に自由度が残るドメインにおいてである。
+
+出力: 各定義パラメータの変更に対する予測の安定性報告
+
+手順 11: 介入設計
+
+理論を因果的に強くするため、以下の介入を設計する。
+
+L を減らす介入: - 矛盾解消 - 時間的範囲づけ - 記憶標識 - 巻き戻し - 剪定 - 衝突仲裁
+
+μ を増やす介入: - バッファ拡大 - 計算予算追加 - 冗長性確保 - 資源余裕投入
+
+N\_eff\^{}(0) を確保・拡張する介入: - 代替経路確保 - 表現多様性維持 - モジュール化 - 方針分岐保持
+
+検証: 介入後に維持指標が改善するかを見る。
+
+手順 12: ドメイン横断の設計転用
+
+構造持続理論の価値は、各ドメインで崩壊を説明することだけではない。段階損失、修復、余力、代替経路を共通座標に写すことで、あるドメインで有効だった維持設計を、別ドメインの事前登録検証可能な介入候補へ変換できる点にもある。
+
+ただし、ここで転用されるのは support ではない。A ドメインで効いた構造座標や介入は、B ドメインにおける candidate mapping または candidate intervention を生成する。B ドメインでの support は、B 側で写像と介入を凍結し、holdout / future / fresh archive / outside rerun で検証して初めて成立する。
+
+典型的な転用は次の形を取る。
+
+\begin{itemize}
+\tightlist
+\item
+  scope-as-repair: 衝突情報を範囲づけ、どの前提・時点・データ源に属する変更かを明示する。
+\item
+  dependency-aware replay: 上流前提が変わったとき、依存している下流判断や知識を再同期する。
+\item
+  redundancy / modularity: 一つの経路が失われても、別経路や別表現が残るように N\_eff\^{}(0) と margin を確保する。
+\item
+  rollback / external metabolism: 失敗した更新を局所的に戻し、未整理の矛盾を内部状態へ残さない。
+\item
+  observability / logging: 段階損失量と修復量を後から測れるようにし、\(L\), \(r_{t}\), margin の観測・推定指標を残す。
+\item
+  drift monitoring: 未解決負荷や矛盾の drift が正に傾いていないかを監視する。
+\end{itemize}
+
+ソフトウェア工学における冗長性、クリーンアーキテクチャ、interface / contract、CI、rollback、observability は、この発想の実践的プロトタイプとして読める。これらは、段階損失を局所化し、修復経路を残し、変更後も生存可能な経路集合を枯らさないための設計である。ただし、ソフトウェアで有効だったことは、そのまま別ドメインの support にはならない。共通座標に翻訳したうえで、そのドメイン固有の事前登録検証へ進む必要がある。
+
+Software contract-coherence diagnostics は、この手順の software 側の具体候補である。ただし、これはソフトウェア崩壊そのものを直接測るものではなく、分散契約矛盾という早期シグナルの検出 benchmark である。構造は単一ファイルではなく、API / caller、config / runtime、documentation / implementation、default producer / consumer、lifecycle producer / consumer などにまたがる contract set として定義する。support と呼べるのは、同一 model・同一 frozen context・同一 one-pass budget の下で、structural lens が generic review よりも bounded validation 後の unique valid structural root causes を増やした場合に限る。raw finding 数、PR merge 数、または provider 間の単純勝敗は主 endpoint ではない。DeltaLint はこの診断 track の現在の実装名である。
+
+ただし、PR merge 実績を捨てる必要はない。それは field demonstration / maintainer-acceptance evidence として別層に置く。外部 OSS で maintainer review を通ったことは、候補が実運用上の修正価値を持ちうることを示す。しかし merge には candidate selection、patchability、project culture、maintainer availability、PR strategy、人間の再現と説明が混ざるため、no-cut benchmark の primary endpoint にはしない。実証上の昇格は、field demonstration と controlled benchmark を分離して記録する。
+
+この手順から導かれる設計原理は、次の四つに要約できる。
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  loss localization: 変更や障害が削る有効選択肢空間を局所化する。
+\item
+  repair-flow preservation: 修復、再同期、巻き戻し、外部代謝の経路をあらかじめ残す。
+\item
+  margin preservation: まだ安全に戻れる余白を測り、使い切らない。
+\item
+  alternative-path preservation: 初期または外生的な有効選択肢多様性を維持する。
+\end{enumerate}
+
+出力: - 転用元ドメイン - 転用元の loss / repair / margin / alternative-path 座標 - 転用先ドメインでの candidate mapping - candidate intervention - 事前登録検証計画
+
+手順 13: 観測・推定指標エコシステムと昇格規則
+
+構造持続理論の実証側は、一つの観測・推定指標を一度当てて終わるものではない。観測・推定指標は、発見され、凍結され、検証され、失敗も記録され、より強い測定が可能になれば版を分けて置き換えられる。この仕組みを観測・推定指標エコシステムと呼ぶ。
+
+標準的な昇格列は次の通りである。
+
+\begin{verbatim}
+candidate signal
+→ validation candidate
+→ frozen test
+→ internally supported indicator
+→ externally supported indicator
+→ cross-domain transferable principle
+\end{verbatim}
+
+ここで support と呼べるのは frozen test 以後である。探索中に当たった観測・推定指標は、どれほど見込みがあっても candidate signal または validation candidate に留まる。逆に、探索中に外れた指標、凍結後に外れた指標、baseline と重複していた指標も、失敗台帳に記録する。失敗は、同じ指標を別名で繰り返さないための制約である。
+
+初期の仕様固定構造層、構造推定層、非CSP の観測・推定指標は、将来のより詳細な測定に置き換えられうる。たとえば粗い段階損失指標が、後に direct event log、repair / maintenance log、controlled-access data、または外部監査つき評価に置き換わることは望ましい。ただし、その置き換えは旧結果の上書きではない。旧指標は歴史的な support / no-support / weakening outcome として残し、新指標は別版として凍結し、別データ、future surface、fresh archive、または outside rerun で検証する。
+
+非公開データを使う場合も、検証可能性を残す必要がある。生データを公開しない場合は、controlled-access data、sealed holdout、trusted runner、data-owner execution、redacted result card などの形で、少なくとも schema、field names、rough counts、endpoint grammar、baseline、metric、submission count、結果 status を記録する。同じ sealed dataset に何度も当てに行く場合は adaptive overfitting を避けるため、submission budget を設け、再挑戦は原則として exploratory または validation candidate に降格する。
+
+この手順の目的は、観測・推定指標の精度を無限に上げてよいようにすることではなく、精度の向上を版管理し、昇格条件を明示することである。探索は自由でよい。しかし support は、版管理された frozen validation を通ったものだけに限る。
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  出力フォーマット
+\end{enumerate}
+
+本手順を適用した各ドメインは、以下のフォーマットで整理する。
+
+ドメイン構造写像シート:
+
+{\def\LTcaptype{table} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+項目
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+内容
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+ドメイン & 対象ドメイン名 \\
+対象構造 & 何の構造持続を問題にするか \\
+構造粒度 & どの細かさ・どの階層で維持対象を定義するか \\
+写像状態 & candidate / frozen / weak support / incremental support / strong support / no-support / silence \\
+探索データ & candidate mapping を作るために使ったデータまたは知識 \\
+検証データ & support 判定に使う holdout / future / fresh archive / outside rerun \\
+維持条件 & 維持すべき機能 \\
+崩壊条件 & 崩壊の定義 \\
+反証条件 & 理論レベル + 観測・推定指標レベル \\
+観測・推定指標探索予算 & 試行する観測・推定指標の上限数または探索期限 \\
+simple baseline & 最も単純な代替予測モデル \\
+domain baseline & 既存専門モデルまたは強い標準 baseline \\
+SP-only model & 構造持続指標だけを用いる予測 \\
+baseline + SP model & domain baseline に構造持続指標を追加した予測 \\
+追加予測 & simple baseline または domain baseline に対する本手順の追加予測 \\
+有効選択肢空間 & 定義 \\
+制約集合 & 定義 \\
+L / L̂ 定義 & 真の累積段階損失 L または推定累積段階損失 L̂ の定義 \\
+r\_t 定義 & 修復量を扱う場合の定義。扱わない場合は loss-only と明記 \\
+μ 定義 & 余力定義 \\
+N\_eff\^{}(0) 定義 & 初期有効選択肢多様性定義（分離困難なら M として統合） \\
+ルート & 定理 / 境界 / 実証 \\
+観測指標 & 定義 \\
+介入候補 & 定義 \\
+転用元ドメイン & 介入候補を生成した参照ドメイン。ない場合は none \\
+candidate intervention & ドメイン横断転用から生成された検証前の介入候補 \\
+検証計画 & 定義 \\
+support 判定 & primary metric と support / no-support / silence の判定規則 \\
+\end{longtable}
+}
+
+\section{判定基準}\label{ux5224ux5b9aux57faux6e96}
+
+この標準手順がそのドメインで「うまく働く」とみなす条件は次の通り。
+
+最低条件: - 維持条件が操作的に定義できる - 崩壊が観測可能 - 制約候補が定義できる - 探索的写像と事前登録検証を区別して記録している
+
+良条件: - 推定累積段階損失 L̂ が維持指標を単調に予測する - 事前固定した設計変更後 readout が維持指標と整合する - frozen mapping の SP-only model が simple baseline に対して追加の予測力を持つ
+
+強条件: - 有効選択肢空間と削減率が定義できる - 弱依存境界まで行ける - baseline + SP が domain baseline に対して out-of-sample に追加予測力を持つ
+
+最強条件: - 定理形で構造持続の数学に埋め込める - strong support が複数 split / archive / model family / outside rerun で再現する
+
+\section{運用上の原則}\label{ux904bux7528ux4e0aux306eux539fux5247}
+
+原則1: 理論は薄く保つ。厚くするのは各ドメインの観測・推定指標と実験である。
+
+原則2: 100点の L は不要。80点でも今までない指標なら価値がある。ただし、80点の観測・推定指標は、凍結後に simple baseline を上回るか、より強くは domain baseline に追加した baseline + SP が baseline 単独を上回ることを示して初めて経験的価値を持つ。「悪いことが増えると崩壊に近づく」という自明な予測だけでは不十分。
+
+原則3: 最初から総合健全性を定義しない。維持条件は一つずつでよい。
+
+原則4: 外れた観測・推定指標は捨てる。理論を守るために観測・推定指標を無理に残さない。
+
+原則5: 理論の勝ち筋は、``すべてを最初から定理化すること''ではなく、``複数ドメインで同型の崩壊構造を示すこと''にある。
+
+原則6: 探索的な候補生成は探索フェーズでは許されるが、support 判定では許されない。探索的に発見した写像は、凍結され、別データまたは future surface で検証されるまで candidate mapping にとどまる。
+
+原則7: 構造持続理論の経験的価値は、既存専門モデルを常に置き換えることではなく、既存専門モデルに対して追加的な予測座標を与えることにある。したがって、重要な検査はしばしば SP-only vs baseline ではなく、baseline + SP vs baseline である。
+
+原則8: ドメイン横断の転用は、support の輸入ではなく、candidate mapping と candidate intervention の生成である。共通座標は発見を加速するが、検証は必ず転用先ドメインで凍結して行う。
+
+原則9: 設計上の目標は、崩壊しない系を無条件に作ることではなく、崩壊しにくく、改修可能性を失いにくく、局所的に修復できる構造を作ることである。
+
+\section{LLM への適用例}\label{llm-ux3078ux306eux9069ux7528ux4f8b}
+
+{\def\LTcaptype{table} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+項目
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+内容
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+ドメイン & LLM \\
+対象構造 & 論理一貫性を保った推論構造 \\
+構造粒度 & 命題、推論ステップ、対話状態、長期記憶を区別し、検証ごとに対象階層を固定する \\
+写像状態 & 構造推定層の candidate / frozen experiment ごとに判定 \\
+探索データ & 既存の矛盾・文脈長・scope 操作実験 \\
+検証データ & 凍結後の holdout / future model / outside rerun \\
+維持条件 & 論理一貫性維持 \\
+崩壊条件 & 一貫した推論経路が閾値以下になること \\
+反証条件 & (理論) 制約蓄積と無関係に崩壊が生じる / (観測・推定指標) 矛盾密度が Y と無相関 \\
+観測・推定指標探索予算 & 主要観測・推定指標 5個以内。全て外れたら理論の LLM 適用を再検討 \\
+simple baseline & 「矛盾の総数が閾値を超えたら崩壊」（線形カウントモデル） \\
+domain baseline & 文脈長、問題難度、モデル family、既存評価 score を含む予測 \\
+SP-only model & 構造矛盾密度、scope-as-repair、未解決衝突指標のみを使う予測 \\
+baseline + SP model & domain baseline に構造矛盾・recovery indicator を追加する予測 \\
+追加予測 & 制約の質による効き方の差（矛盾検出 \textgreater{} 規則 \textgreater{} 事実）、加法的累積構造、baseline + SP の改善 \\
+有効選択肢空間 & 矛盾のない推論経路の集合 \\
+制約集合 & 構造的矛盾、参照元衝突、指示衝突、記憶上書き \\
+L̂ 観測・推定指標 & 未解決矛盾密度、無効化推論分岐数 \\
+r\_t 定義 & scope-as-repair、外部代謝、依存関係つき replay などの recovery indicator。未凍結の場合は candidate \\
+μ & 推論余力、検索余力 \\
+N\_eff\^{}(0) & 初期の独立な整合推論経路数 \\
+観測可能性の層 & 一般会話では構造推定層。明示制約タスクでは仕様固定構造層または条件付き構造埋め込み層 \\
+観測指標 & Y (論理一貫性維持率), z (矛盾密度), 検索成功率 \\
+介入候補 & 矛盾解消（代謝）、時間的範囲づけ、記憶標識 \\
+転用元ドメイン & ソフトウェアの rollback / observability、組織運用の責任境界、継続学習の dependency-aware refresh \\
+candidate intervention & scope marker、external metabolism、dependency-aware replay を LLM 対話・記憶更新へ移植する \\
+検証計画 & Stage B 実験（モデル横断の順序予測検証） \\
+support 判定 & 凍結後に SP-only が simple baseline を上回るか、baseline + SP が domain baseline を上回るか \\
+\end{longtable}
+}
+
+\section{本手順の目標}\label{ux672cux624bux9806ux306eux76eeux6a19}
+
+本手順の目標は、各ドメインについて
+
+維持条件 → 有効選択肢空間 → 制約削減 → L, μ, N\_eff\^{}(0) → 定理 or 境界 or 実証
+
+へ写像する標準手順を与えることである。
+
+これにより、分野ごとに別々の言葉で語られていた
+
+\begin{itemize}
+\tightlist
+\item
+  崩壊
+\item
+  修復力
+\item
+  劣化
+\item
+  代償不全
+\item
+  文脈腐敗
+\item
+  制度疲労
+\item
+  継続学習の失敗
+\end{itemize}
+
+を、同じ構造で比較・検証・介入できるようにする。
+
+さらに、本手順はドメイン横断の設計転用を可能にする。あるドメインで発見された loss localization、repair-flow preservation、margin preservation、alternative-path preservation の設計は、別ドメインの candidate intervention として翻訳できる。ただし、その翻訳は support ではなく、事前登録検証へ進むための仮説生成である。
+
+\section{結び}\label{ux7d50ux3073}
+
+本補論が与えるのは、構造持続の最小形式を個別ドメインへ写像するための標準手順である。ここで重要なのは、すべてのドメインを最初から同じ強さで定理化することではない。むしろ、どこまでが等式として言え、どこからが境界になり、どこからが実証的主張になるかを明示したうえで、反証条件と基準モデル比較を伴う形で適用可能性を評価することにある。
+
+このとき、理論核と写像発見は分けて扱う。理論核は、事前固定された構造維持問題に対する会計原理である。一方、現実ドメインでは、維持対象、測度、段階損失指標、修復指標を探索的に発見する段階がある。この探索は許されるが、その結果は candidate mapping であって support ではない。support は、写像を凍結した後に、holdout / future / fresh archive / outside rerun で simple baseline または domain baseline に対する追加予測力を示した場合に限られる。
+
+したがって、本手順は完成した一般理論ではなく、複数ドメインで同型の崩壊構造を比較可能にするための作業仮説の枠組みである。その役割は、個別の実験や介入設計を散発的に並べるのではなく、共通の骨格のもとで積み上げられる形へ整えることにある。とくに、共通座標は、あるドメインの成功例を別ドメインの事前登録検証可能な設計仮説へ変換する装置として働く。
+\end{document}
