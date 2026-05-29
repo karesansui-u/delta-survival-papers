@@ -92,23 +92,27 @@ structural layer.
 This is not a proof of a universal law. It is package-scoped replication support
 for the first law-side empirical anchors.
 
-Lean formalization is in [`lean/`](lean/). Current status is **236
-`lean/Survival/*.lean` module files** (3382 build jobs), with no project-level
-`sorry`, `admit`, or declared `axiom` in the imported `Survival` target.
+Lean formalization is maintained in a dedicated repository:
+**[persistence-lean](https://github.com/karesansui-u/persistence-lean)** —
+372 `Persistence/*.lean` modules, 3,500+ build jobs, sorry/admit/axiom = 0.
 
-The 236 modules include:
+A historical copy remains in [`lean/`](lean/) (namespace `Survival`).
+The canonical, up-to-date formalization is persistence-lean (namespace `Persistence`).
+
+The 372 modules include:
 
 - **Core structural persistence** (telescoping exponential, log-ratio uniqueness, balance principle)
+- **Representation + Impossibility theorems** (loss = −k log r is unique)
+- **Structural second law** (three-layer: deterministic, stochastic, coarse-graining)
 - **CSP/SAT finite-horizon chain** (Bernoulli-CSP universality, 10+ constraint-class instantiations)
-- **Cross-domain formal bridges** (20+ fields: thermodynamics, information theory, probability, control, biology, chaos, quantum, topology, game theory, ...)
-- **Foundational meta-theorems** (Representation, Impossibility, Completeness, Stability, Separation, Duality, Invariance, Optimal Coarse-Graining)
+- **Cross-domain conditional bridges** (60+ fields: thermodynamics, information theory, probability, control, biology, quantum, cosmology, economics, ...)
+- **Foundational meta-theorems** (Completeness, Stability, Separation, Duality, Invariance, Optimal Coarse-Graining)
 - **Necessity meta-theorems** (every structural component proved necessary, not chosen)
 - **External validation** (falsifiability, non-identity, scope boundary, constructive witness, time-reversal breaking, information optimality)
+- **Classical theorem bridges** (Shannon, Jaynes, Landauer, Rao-Blackwell, Crooks-Jarzynski, Birkhoff, Gronwall, ...)
 
-The top-level import spine is
-[`lean/Survival.lean`](lean/Survival.lean). The theorem-to-paper map is
-[`lean/PAPER_MAPPING.md`](lean/PAPER_MAPPING.md), and the Lean
-landing page is [`lean/README.md`](lean/README.md).
+The theorem-to-paper map is
+[`PAPER_MAPPING.md`](https://github.com/karesansui-u/persistence-lean/blob/main/PAPER_MAPPING.md).
 
 The LLM-facing abstract bridge is documented in
 [`v3/03_domains/02_structurally_inferred/llm_epistemic_control_bridge.md`](v3/03_domains/02_structurally_inferred/llm_epistemic_control_bridge.md).
