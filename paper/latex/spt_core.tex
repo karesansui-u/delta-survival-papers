@@ -1,0 +1,250 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage[margin=2.5cm]{geometry}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+
+\title{Structural Persistence Theory:\\
+Representation Theorem, Second Law, and Formal Verification}
+\author{Akihito Sunagawa}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We present Structural Persistence Theory (SPT), a framework for measuring how viable structure is irreversibly lost. The theory rests on two conditions: (1)~the viable set has positive measure, and (2)~repair is never free. A representation theorem, derived from the Cauchy functional equation under normalization, additivity, continuity, and nonnegativity, forces the stage-loss function to be $f(r)=-k\log r$. An impossibility theorem excludes all non-logarithmic alternatives. The persistence kernel $m(V_n)=m(V_0)\,e^{-L_n}$ follows as a telescoping identity. With repair, the net loss $b_t=d_t-r_t$ replaces stage loss, giving $m(V_n)=m(V_0)\,e^{-B_n}$. The structural second law---that cumulative total production $\Sigma_n$ is monotone nondecreasing---is proved as a necessary and sufficient characterization.
+
+The formalization comprises 372 Lean~4 modules with zero \texttt{sorry}/\texttt{admit}/\texttt{axiom}. Conditional bridges to classical results---Shannon's uniqueness theorem, Jaynes' maximum entropy principle, Landauer's principle, the Crooks fluctuation theorem, and others---are constructed as accounting readouts under domain-specific witnesses. The theory's scope is characterized from both sides: every system satisfying the two conditions admits exactly one loss-measurement form, and every system violating either condition has a formally identified failure mode.
+\end{abstract}
+
+\section{Introduction}
+
+\subsection{The question}
+
+Structure can be lost even when resources remain. An organization may retain budget and personnel yet lose the ability to make coherent decisions. Software may retain computational resources yet become unmaintainable as dependency conflicts accumulate. A long-context language model may retain parameters yet lose logical consistency as unresolved contradictions build up.
+
+In each case, what is lost is not the substrate but the set of states that can still sustain the structure. SPT formalizes this observation: structural loss is the shrinkage of the viable set, measured by a log-ratio scale that is uniquely forced by natural axioms.
+
+\subsection{Contributions}
+
+\begin{enumerate}
+\item \textbf{Representation theorem}: Under normalization, additivity, continuity, and nonnegativity, the stage-loss function must be $f(r)=-k\log r$. No other form is consistent (\S\ref{sec:rep}).
+\item \textbf{Structural second law}: Cumulative total production $\Sigma_n$ is monotone nondecreasing, proved as necessary and sufficient under two conditions: positive measure and non-free repair (\S\ref{sec:secondlaw}).
+\item \textbf{Formal verification}: 372 Lean~4 modules, zero \texttt{sorry}/\texttt{admit}/\texttt{axiom}, with conditional bridges to 60+ fields (\S\ref{sec:lean}).
+\end{enumerate}
+
+\subsection{What this paper does not claim}
+
+\begin{itemize}
+\item SPT does not claim that all systems decay exponentially. The exponential form is a representation theorem for the viable-set measure, not an empirical law about any specific system.
+\item SPT does not replace domain-specific dynamics. It provides the accounting coordinates; the dynamics are supplied by each domain.
+\item The conditional bridges are not unconditional proofs of classical theorems. Each bridge requires domain-specific witnesses (choice of viable set $V$, measure $m$, and positivity verification).
+\end{itemize}
+
+\section{Setup}
+
+\subsection{Structural maintenance problem}
+
+Fix a system $X$. A \textbf{structural maintenance problem} $\Pi=(X,G)$ consists of:
+\begin{itemize}
+\item A state space $X$
+\item A maintenance condition $G$ that defines which states can sustain the structure
+\item The \textbf{viable set} $V_G=\{x\in X : x\text{ satisfies }G\}$---following Aubin's viability theory~\cite{aubin1991}
+\item A \textbf{measure} $m$ on $X$, fixed before observation
+\end{itemize}
+
+\subsection{Viable-set dynamics}
+
+Constraints accumulate over time:
+\[
+V_0 \supseteq V_1 \supseteq \cdots \supseteq V_n.
+\]
+Each step consists of \textbf{contraction} (constraints shrink $V$) followed by \textbf{repair} (recovery expands $V$):
+\begin{align}
+V_t^- &= K_t(V_t) && \text{[contraction stage]} \\
+V_{t+1} &= R_t(V_t^-) && \text{[repair stage]}
+\end{align}
+
+\subsection{Stage loss and repair}
+
+The \textbf{stage loss} at step $t$:
+\[
+d_t = -\log\frac{m(V_t^-)}{m(V_t)}.
+\]
+The \textbf{repair amount} at step $t$:
+\[
+r_t = \log\frac{m(V_{t+1})}{m(V_t^-)}.
+\]
+The \textbf{net loss}:
+\[
+b_t = d_t - r_t.
+\]
+
+\subsection{Cumulative quantities and total production}
+
+Cumulative stage loss: $L_n=\sum_{t<n}d_t$. Cumulative net loss: $B_n=\sum_{t<n}b_t$. Under a \textbf{repair budget} (repair gain $\leq$ repair cost at each step), total production is:
+\[
+\Sigma_n = B_n + C_n = L_n + \mathrm{slack}_n,
+\]
+where $C_n$ is cumulative repair cost and $\mathrm{slack}_n\geq 0$.
+
+\section{The Representation Theorem}
+\label{sec:rep}
+
+\subsection{Axioms for stage loss}
+
+A \textbf{stage-loss functional} $f:(0,1]\to\mathbb{R}$ satisfying:
+\begin{itemize}
+\item[\textbf{B2}] (Normalization): $f(1)=0$
+\item[\textbf{B3}] (Additivity): $f(r_1 r_2)=f(r_1)+f(r_2)$
+\item[\textbf{B4}] (Continuity): $f$ is continuous
+\item (Nonnegativity): $f(r)\geq 0$ for $r\in(0,1]$
+\end{itemize}
+
+\begin{theorem}[Representation]
+Any stage-loss functional satisfying B2+B3+B4+nonnegativity must have
+\[
+f(r) = -k\log r, \quad k\geq 0.
+\]
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+B3 is the Cauchy functional equation $f(xy)=f(x)+f(y)$. Under B4, the unique continuous solution is $f(r)=c\cdot\log r$. Nonnegativity on $(0,1]$ forces $c\leq 0$, giving $f(r)=-k\log r$ with $k\geq 0$. Lean: \texttt{RepresentationTheorem.loss\_must\_be\_log}.
+\end{proof}
+
+\begin{corollary}[Persistence kernel]
+For any positive mass sequence:
+\[
+m(V_n) = m(V_0)\cdot e^{-L_n}.
+\]
+At $k=1$, this is $S=Me^{-L}$. Lean: \texttt{TelescopingExp.measure\_eq\_initial\_mul\_exp\_neg\_cumulative\_loss}.
+\end{corollary}
+
+\begin{theorem}[Impossibility]
+No non-logarithmic function satisfies B2+B3+B4+nonnegativity. Linear $a(1-r)$, quadratic $a(1-r)^2$, and power $ar^\alpha$ ($\alpha\neq 0$) all violate B3.
+
+Lean: \texttt{ImpossibilityTheorem.impossibility\_of\_non\_log}.
+\end{theorem}
+
+\subsection{Relation to Shannon}
+
+The representation theorem has the same mathematical skeleton as Shannon's uniqueness theorem for entropy~\cite{shannon1948}. Both derive from the Cauchy equation; both force a logarithmic form. The difference is in the domain: Shannon measures message uncertainty; SPT measures viable-set shrinkage. SPT does not claim to be Shannon's theorem (see \texttt{NonIdentityTheorem}).
+
+\section{The Structural Second Law}
+\label{sec:secondlaw}
+
+\begin{theorem}[Structural Second Law]
+Under (1)~positive trajectory ($m(V_t)>0$ for all $t$) and (2)~repair budget ($\mathrm{gain}\leq\mathrm{cost}$ at each step), cumulative total production $\Sigma_n$ is monotone nondecreasing.
+
+Lean: \texttt{StructuralSecondLaw.deterministic\_second\_law}.
+\end{theorem}
+
+\begin{theorem}[Converse]
+$\Sigma_n$ monotone $\iff$ $\mathrm{stepTotalProduction}\geq 0$ at every step.
+
+Lean: \texttt{ConverseSecondLaw.second\_law\_iff\_nonneg\_steps}.
+\end{theorem}
+
+The second law holds at three layers:
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Layer & Statement & Lean module \\
+\midrule
+Deterministic & $\Sigma_n$ pointwise monotone & \texttt{deterministic\_second\_law} \\
+Stochastic & $\mathbb{E}[\Sigma_n]$ monotone & \texttt{stochastic\_second\_law} \\
+Coarse-graining & Monotonicity transfers & \texttt{coarse\_second\_law} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{theorem}[Free Repair Impossibility]
+If $\mathrm{gain}>\mathrm{cost}$ at any step, $\Sigma$ can decrease. The repair budget is necessary.
+
+Lean: \texttt{FreeRepairImpossibility}.
+\end{theorem}
+
+\begin{theorem}[Minimal Axioms]
+The two conditions are minimal and jointly sufficient.
+
+Lean: \texttt{MinimalAxiomTheorem}.
+\end{theorem}
+
+\section{Complete Scope Closure}
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Condition violated & Failure mode & Lean proof \\
+\midrule
+$m=0$ & Log-ratio undefined & \texttt{ScopeBoundaryTheorem} \\
+$m<0$ & Physically meaningless & \texttt{CompleteScopeClosure} \\
+$\mathrm{gain}>\mathrm{cost}$ & Second law violated & \texttt{FreeRepairImpossibility} \\
+Constant mass & $L=0$ (trivial) & \texttt{ScopeBoundaryTheorem} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+No fifth category exists (\texttt{CompleteScopeClosure.classification\_exhaustive}).
+
+\section{Lean~4 Formalization}
+\label{sec:lean}
+
+The formalization comprises 372 modules (3,500+ build jobs) with \texttt{sorry}~$=0$, \texttt{admit}~$=0$, \texttt{axiom}~$=0$. Lean~4 v4.26.0 + Mathlib v4.26.0.
+
+Repository: \url{https://github.com/karesansui-u/persistence-lean}
+
+Conditional bridges connect the SPT kernel to 60+ fields, including thermodynamics (zeroth through third law readouts), quantum mechanics, statistical mechanics, information theory, probability, biology, economics, engineering, neuroscience, and cosmology. Each bridge is conditional on domain-specific witnesses.
+
+\section{Three Observability Layers}
+
+\begin{center}
+\begin{tabular}{lp{4.5cm}p{5cm}}
+\toprule
+Layer & Observability & Role \\
+\midrule
+Specification-fixed & $V$, $m$, boundary fixed by specification & Theorems, finite-time bounds \\
+Conditional embedding & Existing theory mapped to SPT variables & Bridges to Foster-Lyapunov, etc. \\
+Structural estimation & Proxy indicators + pre-registered tests & Prediction, diagnosis \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+These are three observability levels of the same kernel $S=Me^{-L}$.
+
+\section{Related Work}
+
+SPT is structurally distinct from thermodynamics (allows $B_n<0$), information theory (different domain), survival analysis ($S$ can exceed 1), and viability theory (adds accounting layer). See \texttt{NonIdentityTheorem}.
+
+\section{Limitations}
+
+SPT provides accounting, not dynamics. The choice of $G$ requires domain knowledge. Core results are finite-horizon. Bridges are conditional.
+
+\section{Conclusion}
+
+Structural Persistence Theory provides a formally verified framework for measuring irreversible structural loss. Two conditions---positive measure and non-free repair---are necessary and sufficient. The representation theorem forces the unique form $f(r)=-k\log r$. The complete scope closure characterizes applicability from both sides. The Lean~4 formalization with 372 modules and zero \texttt{sorry}/\texttt{admit} provides machine-checked confidence.
+
+\begin{thebibliography}{13}
+\bibitem{aubin1991} Aubin, J.-P. (1991). \emph{Viability Theory}. Birkh\"auser.
+\bibitem{aubin2011} Aubin, J.-P., Bayen, A.M., and Saint-Pierre, P. (2011). \emph{Viability Theory: New Directions}. Springer.
+\bibitem{shannon1948} Shannon, C.E. (1948). A mathematical theory of communication. \emph{Bell System Technical Journal}, 27, 379--423.
+\bibitem{khinchin1957} Khinchin, A.Ya. (1957). \emph{Mathematical Foundations of Information Theory}. Dover.
+\bibitem{crooks1999} Crooks, G.E. (1999). Entropy production fluctuation theorem. \emph{Physical Review E}, 60, 2721.
+\bibitem{jarzynski1997} Jarzynski, C. (1997). Nonequilibrium equality for free energy differences. \emph{Physical Review Letters}, 78, 2690.
+\bibitem{friston2010} Friston, K. (2010). The free-energy principle: a unified brain theory? \emph{Nature Reviews Neuroscience}, 11, 127--138.
+\bibitem{landauer1961} Landauer, R. (1961). Irreversibility and heat generation in the computing process. \emph{IBM Journal of Research and Development}, 5, 183--191.
+\bibitem{fisher1930} Fisher, R.A. (1930). \emph{The Genetical Theory of Natural Selection}. Clarendon Press.
+\bibitem{boltzmann1877} Boltzmann, L. (1877). \"Uber die Beziehung zwischen dem zweiten Hauptsatze der mechanischen W\"armetheorie und der Wahrscheinlichkeitsrechnung. \emph{Wiener Berichte}, 76, 373--435.
+\bibitem{doob1953} Doob, J.L. (1953). \emph{Stochastic Processes}. Wiley.
+\bibitem{hyers1941} Hyers, D.H. (1941). On the stability of the linear functional equation. \emph{Proc.\ Natl.\ Acad.\ Sci.}, 27, 222--224.
+\bibitem{banach1922} Banach, S. (1922). Sur les op\'erations dans les ensembles abstraits. \emph{Fundamenta Mathematicae}, 3, 133--181.
+\end{thebibliography}
+
+\end{document}
