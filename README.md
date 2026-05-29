@@ -111,6 +111,7 @@ for the full honest assessment):
   theorems, structural second law (converse, minimal axioms, free repair
   impossibility, complete scope closure), resource dynamics, identity /
   asymptotic identity / phase transition, interaction defect,
+  forward collapse-time prediction (`n* <= (-log theta) / rate`),
   Mathlib-backed connections (Category instance, Galois connection,
   KL embedding, Cesaro ergodic extension)
 - **Tier C — Vocabulary mappings (~160)**: map domain terminology into the
