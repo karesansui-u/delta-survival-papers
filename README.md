@@ -94,7 +94,7 @@ for the first law-side empirical anchors.
 
 Lean formalization is maintained in a dedicated repository:
 **[persistence-lean](https://github.com/karesansui-u/persistence-lean)** —
-429 `Persistence/*.lean` modules, sorry/admit/axiom = 0.
+431 `Persistence/*.lean` modules, sorry/admit/axiom = 0.
 
 The historical copy in this repo has been moved to [`lean_archive/`](lean_archive/)
 (namespace `Survival`). It is no longer maintained. Use persistence-lean for
