@@ -100,7 +100,7 @@ The historical copy in this repo has been moved to [`lean_archive/`](lean_archiv
 (namespace `Survival`). It is no longer maintained. Use persistence-lean for
 the canonical, up-to-date formalization (namespace `Persistence`).
 
-The 423 modules fall into three tiers of mathematical depth
+The 424 modules fall into three tiers of mathematical depth
 (see [persistence-lean README](https://github.com/karesansui-u/persistence-lean#honest-assessment)
 for the full honest assessment):
 
