@@ -94,13 +94,13 @@ for the first law-side empirical anchors.
 
 Lean formalization is maintained in a dedicated repository:
 **[persistence-lean](https://github.com/karesansui-u/persistence-lean)** —
-413 `Persistence/*.lean` modules, sorry/admit/axiom = 0.
+414 `Persistence/*.lean` modules, sorry/admit/axiom = 0.
 
 The historical copy in this repo has been moved to [`lean_archive/`](lean_archive/)
 (namespace `Survival`). It is no longer maintained. Use persistence-lean for
 the canonical, up-to-date formalization (namespace `Persistence`).
 
-The 413 modules fall into three tiers of mathematical depth
+The 414 modules fall into three tiers of mathematical depth
 (see [persistence-lean README](https://github.com/karesansui-u/persistence-lean#honest-assessment)
 for the full honest assessment):
 
