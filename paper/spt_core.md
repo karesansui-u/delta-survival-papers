@@ -44,7 +44,7 @@ In each case, what is lost is not the substrate but the set of states that can s
 - The **persistence kernel** m(V_n) = m(V_0) exp(−L_n) is a **telescoping identity** — a definitional rewriting, not an empirical discovery.
 - The **structural second law** (Σ monotone) is trivially true given the assumption of nonneg step production. The non-trivial content is in the **necessity theorems**: FreeRepairImpossibility shows that relaxing gain ≤ cost breaks monotonicity; ConverseSecondLaw shows the characterization is biconditional.
 - In **loss-only mode** (no repair), SPT's cumulative net action coincides exactly with the **cumulative hazard** of survival analysis (Λ(t) = −log S(t)). The structural difference lies in the repair term: SPT's signed net action b_t = d_t − r_t can be negative (net recovery), which cumulative hazard cannot. This is proved in NonIdentityTheorem.
-- Of the ~429 modules, approximately 20 are **Tier A** (core-routed, with non-trivial conclusions). Approximately 160 are **Tier C** (vocabulary mappings, not theorems). The mathematical weight is concentrated in Tier A and the core.
+- Of the ~431 modules, approximately 20 are **Tier A** (core-routed, with non-trivial conclusions). Approximately 160 are **Tier C** (vocabulary mappings, not theorems). The mathematical weight is concentrated in Tier A and the core.
 
 ## 2. Setup
 
@@ -250,7 +250,7 @@ No fifth category exists. Lean: `CompleteScopeClosure.classification_exhaustive`
 
 ### 6.1 Scale
 
-- 429 modules, 3,593 build jobs
+- 431 modules, 3,595 build jobs
 - sorry = 0, admit = 0, axiom = 0
 - Lean 4 v4.26.0 + Mathlib v4.26.0
 - Repository: https://github.com/karesansui-u/persistence-lean
@@ -273,7 +273,7 @@ The formalization is organized in layers:
 
 ### 6.3 Conditional bridges (honest tier classification)
 
-The ~429 modules include cross-domain bridges at three tiers:
+The ~431 modules include cross-domain bridges at three tiers:
 
 - **Tier A (~20 bridges)**: Invoke the SPT core (TelescopingExp, StructuralSecondLaw, or ImpossibilityTheorem) to derive domain conclusions that don't follow from single-step properties. Examples: GronwallBridge (discrete Gronwall inequality), CrooksCompleteTheorem (Jarzynski→Jensen chain), OptimalReviewSchedule (minimax via pigeonhole).
 - **Tier B (~3 bridges)**: Algebraic correspondences with real content but no mechanical core invocation. Examples: ClausiusBridge, BoltzmannEntropyBridge, RuinTheoryBridge.
@@ -285,7 +285,7 @@ The mathematical weight is in Tier A and the core. Tier C exists for completenes
 
 The newest Lean layer makes the cross-domain claim more precise. The typeclass `MLDomain` packages the native loss certificate for a domain and gives all instances the same readout theorem, `universal_persistence_law`. A bundled structure, `FiveDomainWitnesses`, records five distinct entry modes: convex/log-Bregman absorption, PAC version-space shrinkage, additive Lyapunov cost, stochastic drift income, and serial-reliability threshold firing. These examples are intentionally heterogeneous: some are new inequalities, some are existing domain theorems routed through the ledger, and the Lyapunov example lives on the additive M-axis rather than being another exponential-shrink copy.
 
-A newer repair-affordability spine makes the interface operational rather than merely semantic. Kalman target covariance recovery is tied to a closed-form covariance trajectory, an observation lower bound, and an observation budget. BSC target reliability is tied to a BSC-native retransmission profile `1 - errorRate^(r+1)`, bounded monotone reliability certificates, redundancy cost, and repair budget. The finite-block layer is two-sided but certificate-mediated: achievability certificates can imply affordable target recovery, while finite obstruction certificates can imply target-recovery infeasibility; optional rate/capacity metadata may be carried, but it does not generate the certificate. The rank-probability substrate now includes generic finite-uniform event ratios, one-step uniform-PMF event masses, rectangular finite-uniform product-event masses including fixed two-state prefix escape, supplied two-step stored-state and product consistency, binary span-counting, finite span-escape fraction lemmas, span-complement PMF event masses, fixed-state one-step and fixed-two-state escape-mass readouts, reusable one-step transition-mass certificates, supplied-step product certificates, coherent supplied prefix-growth process certificates, deterministic event-to-rank-growth, prefix-state, and explicit state-transition lemmas, and a deterministic full-rank escape product with ratio/product bounds and positivity; these are not yet a random-prefix process, sampled-column independence theorem, or random-matrix rank-failure theorem. The causal layer packages adjustment-formula certificates as producer data for causal-effect and information-gain readouts, without deriving do-calculus or identifiability criteria. These are target-relative recovery statements: the domain supplies a native trajectory, certificate, or witness; the M/L ledger decides whether the target-restoring action is affordable.
+A newer repair-affordability spine makes the interface operational rather than merely semantic. Kalman target covariance recovery is tied to a closed-form covariance trajectory, an observation lower bound, and an observation budget. BSC target reliability is tied to a BSC-native retransmission profile `1 - errorRate^(r+1)`, bounded monotone reliability certificates, redundancy cost, and repair budget. The finite-block layer is two-sided but certificate-mediated: achievability certificates can imply affordable target recovery, while finite obstruction certificates can imply target-recovery infeasibility; optional rate/capacity metadata may be carried, but it does not generate the certificate. The rank-probability substrate now includes generic finite-uniform event ratios, one-step uniform-PMF event masses, rectangular finite-uniform and sequential PMF product-event masses including fixed two-state prefix escape, supplied two-step stored-state and product consistency, binary span-counting, finite span-escape fraction lemmas, span-complement PMF event masses, fixed-state one-step and fixed-two-state escape-mass readouts, reusable one-step transition-mass certificates, supplied-step product certificates, coherent supplied prefix-growth process certificates, deterministic event-to-rank-growth, prefix-state, and explicit state-transition lemmas, and a deterministic full-rank escape product with ratio/product bounds and positivity; these are not yet a random-prefix process, sampled-column independence theorem along evolving prefixes, or random-matrix rank-failure theorem. The causal layer packages adjustment-formula certificates as producer data for causal-effect and information-gain readouts, without deriving do-calculus or identifiability criteria. These are target-relative recovery statements: the domain supplies a native trajectory, certificate, or witness; the M/L ledger decides whether the target-restoring action is affordable.
 
 The broader `GrandTheoryReadings` structure records persistence-facing projections of seven large theoretical families:
 
@@ -333,7 +333,7 @@ SPT relates to but is structurally distinct from:
 - **Bridges are conditional**: Each domain bridge requires domain-specific witnesses.
 - **Prediction not yet validated**: The collapse-mode discriminant is a formal prediction of the M/L accounting model. External experiments or observational datasets are still needed to test whether real systems fail through the predicted resource zero-crossing pattern.
 - **Repair-cost model is external**: The irreversibility criterion requires a domain-specific model of repair actions, repair costs, and target structural levels. SPT supplies the feasibility inequality, not the repair technology.
-- **Information-theoretic witnesses/certificates, not Shannon coding theorem**: The BSC and finite-block layers connect retransmission profiles and finite-block achievability/obstruction witnesses and certificates to M/L affordability. Binary span-escape lemmas now reach a one-step finite-uniform PMF event-mass bridge, rectangular finite-uniform product-event rules including fixed two-state prefix escape, supplied two-step stored-state and product consistency, fixed-state one-step and fixed-two-state escape-mass readouts, reusable one-step transition-mass certificates, supplied-step product certificates, coherent supplied prefix-growth process certificates, and deterministic event-to-rank-growth / prefix-state / explicit state-transition lemmas, but they do not yet provide a random-prefix process, sampled-column independence theorem, or random-matrix rank-failure probability theorem. They do not formalize an asymptotic Shannon coding theorem, capacity-achieving construction, or strong converse.
+- **Information-theoretic witnesses/certificates, not Shannon coding theorem**: The BSC and finite-block layers connect retransmission profiles and finite-block achievability/obstruction witnesses and certificates to M/L affordability. Binary span-escape lemmas now reach a one-step finite-uniform PMF event-mass bridge, rectangular finite-uniform and sequential PMF product-event rules including fixed two-state prefix escape, supplied two-step stored-state and product consistency, fixed-state one-step and fixed-two-state escape-mass readouts, reusable one-step transition-mass certificates, supplied-step product certificates, coherent supplied prefix-growth process certificates, and deterministic event-to-rank-growth / prefix-state / explicit state-transition lemmas, but they do not yet provide a random-prefix process, sampled-column independence theorem along evolving prefixes, or random-matrix rank-failure probability theorem. They do not formalize an asymptotic Shannon coding theorem, capacity-achieving construction, or strong converse.
 - **Causal certificates, not do-calculus**: The adjustment layer can consume an adjustment-formula certificate and read it through M/L first loss. It does not derive SCM identifiability, back-door, front-door, or do-calculus rules.
 - **Semantic, not total, unification**: The `MLDomain` and `GrandTheoryReadings` layers unify persistence-facing projections. They do not subsume the full native content of information theory, thermodynamics, statistical mechanics, dynamics, network science, information thermodynamics, or information geometry.
 
@@ -343,7 +343,7 @@ Structural Persistence Theory provides a formally verified two-ledger accounting
 
 The log-ratio representation theorem supplies the structural ledger: under normalization, additivity, continuity, and nonnegativity, viable-set shrinkage has the unique form f(r) = −k log r. The Cauchy argument is classical; the contribution is its integration into a two-ledger persistence accounting framework, its scope closure, and its machine-checked cross-domain interface.
 
-The Lean 4 formalization with 429 modules and zero sorry/admit provides machine-checked confidence in the mathematical core. The M/L ledger layer adds a verified collapse-mode discriminant, target-relative repair-affordability readouts, and a bundled cross-domain interface. The result is best described as a mechanically verified unifying accounting framework, together with a testable but not yet empirically validated prediction about collapse modes.
+The Lean 4 formalization with 431 modules and zero sorry/admit provides machine-checked confidence in the mathematical core. The M/L ledger layer adds a verified collapse-mode discriminant, target-relative repair-affordability readouts, and a bundled cross-domain interface. The result is best described as a mechanically verified unifying accounting framework, together with a testable but not yet empirically validated prediction about collapse modes.
 
 ---
 
@@ -369,7 +369,7 @@ Paper repository: https://github.com/karesansui-u/delta-survival-papers
 
 Build: `lake build Persistence` (Lean 4 v4.26.0 + Mathlib v4.26.0)
 
-429 modules. 3,593 build jobs. sorry = 0. admit = 0. axiom = 0.
+431 modules. 3,595 build jobs. sorry = 0. admit = 0. axiom = 0.
 
 10. Boltzmann, L. (1877). Über die Beziehung zwischen dem zweiten Hauptsatze der mechanischen Wärmetheorie und der Wahrscheinlichkeitsrechnung. *Wiener Berichte*, 76, 373–435.
 11. Doob, J.L. (1953). *Stochastic Processes*. Wiley.
