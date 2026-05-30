@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="620" viewBox="0 0 1040 620">
+<style>
+text{font-family:Arial,Helvetica,sans-serif;fill:#1f2933}
+.title{font-size:24px;font-weight:700}
+.subtitle{font-size:13px;fill:#52606d}
+.axis{stroke:#64748b;stroke-width:1}
+.grid{stroke:#d9e2ec;stroke-width:1}
+.eff{fill:none;stroke:#006d77;stroke-width:3}
+.giant{fill:none;stroke:#7b2cbf;stroke-width:3}
+.repair{fill:none;stroke:#c2410c;stroke-width:3}
+.budget{stroke:#111827;stroke-width:2;stroke-dasharray:7 5}
+.threshold{stroke:#475569;stroke-width:2;stroke-dasharray:4 5}
+.irreversible{stroke:#b91c1c;stroke-width:2;stroke-dasharray:8 4}
+.label{font-size:12px;fill:#52606d}
+.strong{font-size:13px;font-weight:700;fill:#1f2933}
+</style>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="40" y="42" class="title">Network Repair Affordability Demo</text>
+<text x="40" y="64" class="subtitle">Structural degradation can cross a threshold without being irreversible; irreversibility starts when target repair cost exceeds M.</text>
+<line x1="95" y1="105" x2="95" y2="455" class="axis"/>
+<line x1="95" y1="455" x2="945" y2="455" class="axis"/>
+<line x1="95" y1="105.00" x2="945" y2="105.00" class="grid"/>
+<line x1="95" y1="175.00" x2="945" y2="175.00" class="grid"/>
+<line x1="95" y1="245.00" x2="945" y2="245.00" class="grid"/>
+<line x1="95" y1="315.00" x2="945" y2="315.00" class="grid"/>
+<line x1="95" y1="385.00" x2="945" y2="385.00" class="grid"/>
+<line x1="95" y1="455.00" x2="945" y2="455.00" class="grid"/>
+<polyline points="95.00,121.67 115.24,122.93 135.48,124.20 155.71,125.46 175.95,126.73 196.19,128.26 216.43,129.79 236.67,131.31 256.90,132.84 277.14,134.50 297.38,136.15 317.62,137.81 337.86,139.46 358.10,141.17 378.33,142.87 398.57,144.57 418.81,146.28 439.05,147.97 459.29,149.66 479.52,151.35 499.76,153.04 520.00,154.66 540.24,156.28 560.48,157.89 580.71,159.51 600.95,160.96 621.19,162.41 641.43,163.86 661.67,165.31 681.90,166.43 702.14,167.54 722.38,168.66 742.62,169.78 762.86,208.29 783.10,243.48 803.33,274.95 823.57,302.20 843.81,324.58 864.05,341.18 884.29,350.64 904.52,350.64 924.76,350.64 945.00,350.64" class="eff"/>
+<polyline points="95.00,121.67 115.24,121.67 135.48,121.67 155.71,121.67 175.95,121.67 196.19,121.67 216.43,121.67 236.67,121.67 256.90,121.67 277.14,121.67 297.38,121.67 317.62,121.67 337.86,121.67 358.10,121.67 378.33,121.67 398.57,121.67 418.81,121.67 439.05,121.67 459.29,121.67 479.52,121.67 499.76,121.67 520.00,121.67 540.24,121.67 560.48,121.67 580.71,121.67 600.95,121.67 621.19,121.67 641.43,121.67 661.67,121.67 681.90,121.67 702.14,121.67 722.38,121.67 742.62,121.67 762.86,163.33 783.10,205.00 803.33,246.67 823.57,288.33 843.81,330.00 864.05,371.67 884.29,413.33 904.52,413.33 924.76,413.33 945.00,413.33" class="giant"/>
+<polyline points="95.00,105.00 115.24,105.00 135.48,105.00 155.71,105.00 175.95,105.00 196.19,105.00 216.43,105.00 236.67,105.00 256.90,105.00 277.14,105.00 297.38,105.00 317.62,105.00 337.86,105.00 358.10,105.00 378.33,105.00 398.57,105.00 418.81,105.00 439.05,105.00 459.29,105.00 479.52,105.00 499.76,105.00 520.00,105.00 540.24,105.00 560.48,105.00 580.71,105.00 600.95,105.00 621.19,105.00 641.43,105.00 661.67,105.00 681.90,105.00 702.14,105.00 722.38,105.00 742.62,105.00 762.86,105.00 783.10,105.00 803.33,396.67 823.57,338.33 843.81,280.00 864.05,221.67 884.29,163.33 904.52,163.33 924.76,163.33 945.00,163.33" class="repair"/>
+<line x1="95" y1="221.67" x2="945" y2="221.67" class="budget"/>
+<text x="953" y="225.67" class="strong">M=4</text>
+<text x="42" y="110" class="label">1.0</text>
+<text x="51" y="459" class="label">0</text>
+<text x="95" y="479" class="label">damage step 0</text>
+<text x="863" y="479" class="label">damage step 42</text>
+<line x1="742.62" y1="105" x2="742.62" y2="455" class="threshold"/>
+<text x="750.62" y="123" class="label">L threshold crossed</text>
+<line x1="884.29" y1="105" x2="884.29" y2="455" class="irreversible"/>
+<text x="892.29" y="143" class="strong">repair cost &gt; M</text>
+<line x1="45" y1="535" x2="80" y2="535" class="eff"/>
+<text x="90" y="539" class="label">structural efficiency fraction, exp(-L)</text>
+<line x1="345" y1="535" x2="380" y2="535" class="giant"/>
+<text x="390" y="539" class="label">giant component fraction</text>
+<line x1="575" y1="535" x2="610" y2="535" class="repair"/>
+<text x="620" y="539" class="label">min restored edges to target</text>
+<text x="45" y="575" class="subtitle">Target: giant component >= 75% of nodes. Repair action: restore removed edges. Irreversible means no target-restoring repair is affordable under current M.</text>
+</svg>

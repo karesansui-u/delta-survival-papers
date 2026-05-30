@@ -6,14 +6,16 @@
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage{hyperref}
 \usepackage{booktabs}
+\usepackage{graphicx}
 \usepackage[margin=2.5cm]{geometry}
 
 % Theorem environments
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{corollary}[theorem]{Corollary}
 \newtheorem{definition}[theorem]{Definition}
+\newtheorem{prediction}[theorem]{Prediction}
 
-\title{Structural Persistence Theory:\\Representation Theorem, Second Law, and Formal Verification}
+\title{Structural Persistence Theory:\\Two-Ledger Accounting, Collapse Modes, and Formal Verification}
 \author{Akihito Sunagawa}
 \date{}
 
@@ -21,9 +23,11 @@
 \maketitle
 
 \begin{abstract}
-We present Structural Persistence Theory (SPT), a framework for measuring how viable structure is irreversibly lost. The theory rests on two conditions: (1)~the viable set has positive measure, and (2)~repair is never free. A representation theorem, derived from the Cauchy functional equation under normalization, additivity, continuity, and nonnegativity, forces the stage-loss function to be $f(r) = -k \log r$. An impossibility theorem excludes all non-logarithmic alternatives. The persistence kernel $m(V_n) = m(V_0)\exp(-L_n)$ follows as a telescoping identity. With repair, the net loss $b_t = d_t - r_t$ replaces stage loss, giving $m(V_n) = m(V_0)\exp(-B_n)$. The structural second law---that cumulative total production $\Sigma_n$ is monotone nondecreasing---is proved as a necessary and sufficient characterization.
+We present Structural Persistence Theory (SPT), a two-ledger accounting framework for systems that can lose structure and resources in different ways. The multiplicative ledger~$L$ measures structural viable-set shrinkage; the additive ledger~$M$ measures resource income and cost. Their combination $S_n=M_n\exp(-L_n)$ yields a collapse-mode discriminant: finite-horizon existence failure occurs through the additive resource axis, while the multiplicative structural axis remains positive at every finite step. The structural axis is nevertheless not inert: crossing an $L$-threshold can change the repair-cost landscape, and recovery is impossible when every target-restoring repair costs more than the available $M$.
 
-The formalization comprises 380 Lean~4 modules with zero sorry/admit/axiom. Conditional bridges to classical results---Shannon's uniqueness theorem, Jaynes' maximum entropy principle, Landauer's principle, the Crooks fluctuation theorem, and others---are constructed as accounting readouts under domain-specific witnesses. The theory's scope is characterized from both sides: every system satisfying the two conditions admits exactly one loss-measurement form, and every system violating either condition has a formally identified failure mode.
+The mathematical foundation is a representation theorem for the structural ledger. Under normalization, additivity, continuity, and nonnegativity, the stage-loss function is forced to be $f(r)=-k\log r$; no non-logarithmic alternative satisfies the axioms. The persistence kernel $m(V_n)=m(V_0)\exp(-L_n)$ is then a telescoping identity. With repair, the net loss $b_t=d_t-r_t$ replaces stage loss, giving $m(V_n)=m(V_0)\exp(-B_n)$. The structural second law---that cumulative total production $\Sigma_n$ is monotone nondecreasing---is proved as a necessary and sufficient characterization.
+
+The formalization comprises 413 Lean~4 modules with zero sorry/admit/axiom. Conditional bridges to classical results---Shannon's uniqueness theorem, Jaynes' maximum entropy principle, Landauer's principle, the Crooks fluctuation theorem, and others---are constructed as accounting readouts under domain-specific witnesses. The Lean development packages several persistence-facing projections of information theory, thermodynamics, statistical mechanics, dynamics, network science, information thermodynamics, and information geometry through one \texttt{MLDomain} interface and a narrow categorical projection. The latest repair-affordability layer also connects native trajectories or certificates---Kalman covariance, BSC retransmission reliability, finite-block reliability certificates, network repair thresholds, and causal adjustment certificates---to target recovery under a finite resource budget. These results establish a mechanically verified accounting framework and a testable collapse-mode prediction; they do not constitute empirical validation of that prediction.
 \end{abstract}
 
 %----------------------------------------------------------------------
@@ -38,11 +42,13 @@ In each case, what is lost is not the substrate but the set of states that can s
 \subsection{Contributions}
 
 \begin{enumerate}
-\item \textbf{Representation theorem}: Under normalization, additivity, continuity, and nonnegativity, the stage-loss function must be $f(r) = -k\log r$. No other form is consistent (\S\ref{sec:representation}).
+\item \textbf{Two-ledger accounting}: Additive resources~$M$ and multiplicative structural loss~$L$ are tracked as distinct ledgers. In the combined scalar $S_n=M_n\exp(-L_n)$, finite-horizon zero crossing is forced by the $M$-axis, not by the exponential $L$-axis; the $L$-axis instead controls structural thresholds and repair-cost lower bounds (\S\ref{sec:ml-discriminant}).
+
+\item \textbf{Log-ratio foundation}: Under normalization, additivity, continuity, and nonnegativity, the structural stage-loss function must be $f(r) = -k\log r$. No other form is consistent (\S\ref{sec:representation}).
 
 \item \textbf{Structural second law}: Cumulative total production $\Sigma_n$ is monotone nondecreasing, proved as necessary and sufficient under two conditions: positive measure and non-free repair (\S\ref{sec:secondlaw}).
 
-\item \textbf{Formal verification}: 380 Lean~4 modules, zero sorry/admit/axiom, with conditional bridges to 60+ fields (\S\ref{sec:lean}).
+\item \textbf{Formal verification}: 413 Lean~4 modules, zero sorry/admit/axiom, with conditional bridges to 60+ fields, a theorem map separating formal claims from non-claims, and a bundled \texttt{MLDomain} layer for persistence-facing projections of several major theories (\S\ref{sec:lean}).
 \end{enumerate}
 
 \subsection{What this paper does not claim}
@@ -51,6 +57,8 @@ In each case, what is lost is not the substrate but the set of states that can s
 \item SPT does not claim that all systems decay exponentially. The exponential form is a representation theorem for the viable-set measure, not an empirical law about any specific system.
 \item SPT does not replace domain-specific dynamics. It provides the accounting coordinates; the dynamics are supplied by each domain.
 \item The conditional bridges are not unconditional proofs of classical theorems. Each bridge requires domain-specific witnesses (choice of viable set~$V$, measure~$m$, and positivity verification).
+\item The M/L collapse-mode discriminant is a mechanically verified prediction of the accounting model. It is not yet an empirically validated law; the included simulations illustrate the prediction but do not test it against external data.
+\item The grand-theory layer does not claim that information theory, thermodynamics, statistical mechanics, dynamics, network science, information thermodynamics, and information geometry are the same native theorem. It claims that their persistence-facing projections can be read through the same Lean interface when the required witnesses are supplied.
 \end{itemize}
 
 %----------------------------------------------------------------------
@@ -105,6 +113,98 @@ Under a \emph{repair budget} (repair gain~$\leq$ repair cost at each step), tota
 where $C_n$ is cumulative repair cost and $\text{slack}_n = C_n - (\text{cumulative gain}) \geq 0$.
 
 %----------------------------------------------------------------------
+\section{Two Ledgers and the Collapse-Mode Discriminant}\label{sec:ml-discriminant}
+
+The load-bearing distinction in SPT is the separation of two ledgers:
+\[
+M_{n+1}=M_n+\mathrm{income}_n-\mathrm{cost}_n,\qquad
+R_n=\exp(-L_n),\qquad
+S_n=M_n R_n .
+\]
+Here $M_n$ is an additive resource level and $R_n$ is the structural survival fraction induced by cumulative loss. Since $R_n>0$ at every finite horizon, the sign of the combined persistence scalar is determined by~$M_n$.
+\begin{theorem}[Collapse-mode discriminant]
+For $S_n=M_n\exp(-L_n)$ at finite horizon,
+\[
+S_n \leq 0 \quad \Longleftrightarrow \quad M_n \leq 0 .
+\]
+Lean: \texttt{CollapseModeDiscriminant.collapse\_is\_additive\_not\_multiplicative}.
+\end{theorem}
+
+This is the main predictive distinction created by the M/L split. A pure multiplicative structural ledger can decay arbitrarily far but does not hit zero in finite time. Finite-horizon existence collapse, in this model, is an additive resource zero crossing. Lean also proves that the death horizon is independent of the structural decay rate under fixed resource accounting (\texttt{death\_horizon\_independent\_of\_decay}).
+
+\begin{prediction}[Operational collapse-mode prediction]
+If a system admits separately observable proxies for additive resource balance~$M_n$ and multiplicative structural loss~$L_n$, then finite-horizon terminal failure should coincide with an $M$-axis zero crossing, not with the multiplicative $L$-axis reaching zero. Structural degradation may precede failure, but the terminal event is predicted to be a resource crossing.
+\end{prediction}
+
+This prediction is falsifiable in the modest sense relevant here. A single-axis hazard or Kelly-style multiplicative model predicts collapse as loss accumulation on one multiplicative coordinate. The M/L ledger predicts a qualitative separation:
+\[
+\text{gradual structural degradation} \quad + \quad \text{terminal additive resource crossing}.
+\]
+The repository includes a simulation script, \texttt{scripts/simulate\_collapse\_modes.py}, which generates example trajectories and records the predicted event types. The default run produces an $M$-axis collapse, a mixed-mode $M$-axis collapse, and a pure $L$-axis trajectory with no finite zero crossing over the simulated horizon. These are model checks and visualizations, not empirical validation.
+
+The companion network-repair demo, \path{scripts/simulate_network_repair_affordability.py}, illustrates the repair-feasibility refinement rather than an empirical test. It uses a hand-crafted clustered network, measures $L$ by global-efficiency log loss, and estimates repair cost by a greedy restore-removed-edges policy for a giant-component target. As shown in Figure~\ref{fig:network-repair-affordability}, structural-threshold crossing and the first unaffordable repair step are distinct events. A randomized ensemble companion runs the same separated measurements on ER, scale-free, and small-world graphs under random and targeted edge attacks; it is generated by \path{scripts/simulate_network_repair_ensemble.py} and writes detail/summary CSV files plus a figure under \path{data/simulations/} and \path{paper/figures/}. A small exact-search check, \path{scripts/validate_network_repair_greedy.py}, compares the greedy repair estimate against brute-force subset search on small random graphs and writes \path{data/simulations/network_repair_greedy_validation.csv}.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{figures/network_repair_affordability.pdf}
+\caption{Network repair-affordability demo. The structural efficiency fraction $\exp(-L)$ declines as damage accumulates, and the giant component fragments after bridge removals. The target is a giant component containing at least 75\% of nodes; repair cost is the greedy estimate of removed edges that must be restored to meet that target. Threshold crossing occurs before irreversibility: recovery is declared infeasible only when the estimated target-restoring repair cost exceeds the available repair budget $M$.}
+\label{fig:network-repair-affordability}
+\end{figure}
+
+\subsection{Irreversibility as repair infeasibility}
+
+The collapse-mode discriminant locates the zero crossing, but it is not yet a
+complete irreversibility criterion. A structure can be arbitrarily degraded
+without being literally zero, and a resource account can be zero without being
+absorbing in an open system. The sharper notion is repair feasibility:
+irreversibility is not identified with damage, decay, or low function. It is a
+target-relative feasibility claim. Recovery is impossible only when every
+action that restores the target exceeds the available resource budget.
+
+Given a target structural level $T$, a set of repair actions~$a$, a repair
+cost $\mathrm{cost}(a)$, and the restored level $\mathrm{restored}(a)$, recovery
+to~$T$ is feasible from available resource~$M$ when
+\[
+\exists a,\qquad \mathrm{restored}(a)\geq T
+\quad\text{and}\quad
+\mathrm{cost}(a)\leq M .
+\]
+It is infeasible when every action that reaches the target costs more than
+the available resource:
+\[
+\forall a,\quad \mathrm{restored}(a)\geq T
+\Rightarrow M < \mathrm{cost}(a).
+\]
+
+\begin{theorem}[Irreversibility as repair infeasibility]
+If every repair action capable of restoring the target costs more than the
+available resource, then recovery to that target is impossible.
+Lean: \texttt{ReversibilityCriterion.irreversible\_if\_repair\_cost\_exceeds\_resource}.
+\end{theorem}
+
+The converse sanity checks are also formalized in
+\texttt{ReversibilityCriterion}. If an affordable target-restoring repair
+exists, irreversibility cannot be concluded from low structure alone. If
+$M_n=0$ but the next step has surplus income, then the additive resource
+ledger becomes positive again. Conversely, in a closed system, once the
+resource ledger is nonpositive it remains nonpositive. Thus irreversibility is
+not ``small $L$'' or ``zero $M$'' by itself; it is a failed repair-feasibility
+inequality.
+
+This also gives a precise formulation of irreversible threshold phenomena.
+An exponential or multiplicative approach to a critical boundary is not, by
+itself, irreversible. It becomes irreversible when the threshold crossing
+activates a lower bound on target-restoring repair cost and the available
+resource lies below that bound:
+\[
+L_n\geq L_{\mathrm{crit}},\qquad
+L_n\geq L_{\mathrm{crit}}\Rightarrow
+  \mathrm{cost}(a)\geq C_{\mathrm{crit}},\qquad
+M_n<C_{\mathrm{crit}}.
+\]
+Lean: \texttt{irreversible\_of\_threshold\_crossing\_and\_resource\_shortfall}.
+
+%----------------------------------------------------------------------
 \section{The Representation Theorem}\label{sec:representation}
 
 \subsection{Axioms for stage loss}
@@ -127,7 +227,7 @@ f(r) = -k\log r, \quad k \geq 0.
 \end{theorem}
 
 \begin{proof}[Proof sketch]
-B3 is the Cauchy functional equation $f(xy) = f(x) + f(y)$. Under B4 (continuity), the unique solution is $f(r) = c \cdot \log r$. B2 is automatic (derivable from B3 alone). Nonnegativity on $(0,1]$ forces $c \leq 0$, giving $f(r) = -k\log r$ with $k \geq 0$. Lean: \texttt{RepresentationTheorem.loss\_must\_be\_log}.\qed
+B3 is the Cauchy functional equation $f(xy) = f(x) + f(y)$. Under B4 (continuity), the unique solution is $f(r) = c \cdot \log r$. B2 is automatic. Nonnegativity on $(0,1]$ forces $c \leq 0$, giving $f(r) = -k\log r$ with $k \geq 0$. The Lean theorem map records the exact anchor.\qed
 \end{proof}
 
 \begin{corollary}[Persistence kernel]
@@ -135,7 +235,7 @@ For any positive mass sequence:
 \[
 m(V_n) = m(V_0) \cdot \exp(-L_n),
 \]
-where $L_n = \sum l_i$. At $k=1$ (structural nats), $S = M\exp(-L)$. Lean: \texttt{TelescopingExp.measure\_eq\_initial\_mul\_exp\_neg\_cumulative\_loss}.
+where $L_n = \sum l_i$. At $k=1$ (structural nats), $S = M\exp(-L)$. Lean formalizes this as the telescoping kernel.
 \end{corollary}
 
 \subsection{Impossibility}
@@ -153,7 +253,6 @@ Lean: \texttt{ImpossibilityTheorem.impossibility\_of\_non\_log}.
 
 The representation theorem shares the same mathematical skeleton as Shannon's uniqueness theorem for entropy~\cite{shannon1948}. Both derive from the Cauchy functional equation; both force a logarithmic form. The difference is in the domain: Shannon measures message uncertainty; SPT measures viable-set shrinkage. Lean: \texttt{ShannonUniquenessCorollary}. SPT does not claim to be Shannon's theorem; it shares a common mathematical ancestor and records the correspondence (\texttt{NonIdentityTheorem}).
 
-%----------------------------------------------------------------------
 \section{The Structural Second Law}\label{sec:secondlaw}
 
 \subsection{Statement}
@@ -164,7 +263,7 @@ Under:
 \item Positive trajectory: $m(V_t) > 0$ for all~$t$.
 \item Repair budget: gain~$\leq$ cost at each step.
 \end{enumerate}
-Cumulative total production $\Sigma_n$ is monotone nondecreasing. Lean: \texttt{StructuralSecondLaw.deterministic\_second\_law}.
+Cumulative total production $\Sigma_n$ is monotone nondecreasing. This is the deterministic structural second law in Lean.
 \end{theorem}
 
 \begin{theorem}[Converse]\label{thm:converse}
@@ -224,7 +323,7 @@ No fifth category exists. Lean: \texttt{CompleteScopeClosure.classification\_exh
 
 \subsection{Scale}
 
-380 modules, 3{,}500+ build jobs. sorry~$= 0$, admit~$= 0$, axiom~$= 0$. Lean~4 v4.26.0 + Mathlib v4.26.0. Repository: \url{https://github.com/karesansui-u/persistence-lean}.
+413 modules, 3{,}500+ build jobs. sorry~$= 0$, admit~$= 0$, axiom~$= 0$. Lean~4 v4.26.0 + Mathlib v4.26.0. Repository: \url{https://github.com/karesansui-u/persistence-lean}.
 
 \subsection{Architecture}
 
@@ -252,6 +351,33 @@ Each bridge formalizes the algebraic readout of the SPT kernel in a specific dom
 
 60+ fields are connected, including: thermodynamics, quantum mechanics, statistical mechanics, information theory, probability, biology, economics, engineering, and cosmology.
 
+\subsection{M/L interface, grand readings, and categorical projection}
+
+The newest Lean layer makes the cross-domain claim more precise. The typeclass \texttt{MLDomain} packages the native loss certificate for a domain and gives all instances the same readout theorem, \texttt{universal\_persistence\_law}. A bundled structure, \texttt{FiveDomainWitnesses}, records five distinct entry modes: convex/log-Bregman absorption, PAC version-space shrinkage, additive Lyapunov cost, stochastic drift income, and serial-reliability threshold firing. These examples are intentionally heterogeneous: some are new inequalities, some are existing domain theorems routed through the ledger, and the Lyapunov example lives on the additive $M$-axis rather than being another exponential-shrink copy.
+
+A newer repair-affordability spine makes the interface operational rather than merely semantic. Kalman target covariance recovery is tied to a closed-form covariance trajectory, an observation lower bound, and an observation budget. BSC target reliability is tied to a BSC-native retransmission profile $1-\mathrm{errorRate}^{r+1}$, bounded monotone reliability certificates, redundancy cost, and repair budget. The finite-block layer packages bounded success-lower-bound certificates and optional rate/capacity metadata, without claiming an asymptotic Shannon coding theorem or a capacity-achieving construction. The causal layer packages adjustment-formula certificates as producer data for causal-effect and information-gain readouts, without deriving do-calculus or identifiability criteria. These are target-relative recovery statements: the domain supplies a native trajectory, certificate, or witness; the M/L ledger decides whether the target-restoring action is affordable.
+
+The broader \texttt{GrandTheoryReadings} structure then records persistence-facing projections of seven large theoretical families:
+\begin{center}
+\begin{tabular}{p{0.25\linewidth}p{0.30\linewidth}p{0.33\linewidth}}
+\toprule
+Reading & Native meaning & Persistence-facing projection \\
+\midrule
+Information theory & entropy, mutual information, KL & loss / information divergence \\
+Thermodynamics & possible change and cost & resource and dissipation accounting \\
+Statistical mechanics & micro--macro passage & Jensen defect under coarse-graining \\
+Dynamics & stability, attractors, drift & Lyapunov-style budget \\
+Network science & structural interaction & threshold and fragmentation readouts \\
+Information thermodynamics & information--energy coupling & product composition of ledgers \\
+Information geometry & statistical shape & Bregman / categorical invariance \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+This is a semantic bundle, not a triumphal identity claim. The corresponding Lean theorem states that all supplied readings inherit the common persistence profile through the same interface. It does not state that the native domain theorems are identical.
+
+Finally, \texttt{domainStructuralProblem} forgets the additive $M$-axis and projects any \texttt{MLDomain} into the existing Mathlib-backed category \texttt{StructuralMaintenanceProblem}. Gauge-$1$ isomorphisms in that category preserve cumulative native loss. This categorical connection is deliberately narrow: it checks compatibility with a genuine category, but it is not a claim that all native theories have been merged into one giant category.
+
 %----------------------------------------------------------------------
 \section{Three Observability Layers}
 
@@ -274,9 +400,10 @@ These are not three different theories. They are three observability levels of t
 
 SPT relates to but is structurally distinct from:
 \begin{itemize}
-\item \textbf{Thermodynamics}: SPT allows $B_n < 0$ (net repair exceeds loss); Clausius entropy is nondecreasing in isolated systems. SPT models open systems with repair.
-\item \textbf{Information theory}: SPT measures viable-set shrinkage, not message uncertainty. Same functional form, different domain~\cite{shannon1948}.
-\item \textbf{Survival analysis}: SPT tracks set-valued dynamics with repair; $S = M\exp(-L)$ can exceed~1.
+\item \textbf{Thermodynamics}: SPT borrows the accounting style of production, cost, and irreversibility, but it is not a thermodynamic law. It allows open-system repair and resource income, so $B_n$ can be negative even when total production remains budgeted.
+\item \textbf{Information theory}: SPT shares the logarithmic functional form with Shannon-style uniqueness arguments~\cite{shannon1948}, but it measures viable-set shrinkage rather than message uncertainty. The overlap is mathematical, not an identity of domains.
+\item \textbf{Survival analysis and hazard models}: In loss-only mode, SPT coincides with cumulative hazard. The two-ledger extension is different: survival-style models usually place ruin on a single multiplicative axis, whereas SPT predicts finite-horizon existence collapse through the additive resource axis.
+\item \textbf{Kelly and multiplicative growth}: Kelly-style wealth dynamics are multiplicative. SPT can represent multiplicative structural degradation, but its collapse-mode discriminant says terminal existence failure requires an additive resource crossing. This is the key empirical distinction.
 \item \textbf{Viability theory}~\cite{aubin1991}: SPT adds an accounting layer---measuring how much the viable kernel has shrunk, not just whether viable trajectories exist.
 \end{itemize}
 
@@ -288,16 +415,21 @@ SPT relates to but is structurally distinct from:
 \item \textbf{$G$ is external}: The choice of maintenance condition requires domain knowledge.
 \item \textbf{Finite horizon}: Core results are finite-horizon. Asymptotic extensions require additional assumptions.
 \item \textbf{Bridges are conditional}: Each domain bridge requires domain-specific witnesses.
+\item \textbf{Prediction not yet validated}: The collapse-mode discriminant is a formal prediction of the M/L accounting model. External experiments or observational datasets are still needed to test whether real systems fail through the predicted resource zero-crossing pattern.
+\item \textbf{Repair-cost model is external}: The irreversibility criterion requires a domain-specific model of repair actions, repair costs, and target structural levels. SPT supplies the feasibility inequality, not the repair technology.
+\item \textbf{Information-theoretic certificates, not Shannon coding theorem}: The BSC and finite-block layers connect retransmission profiles and finite-block reliability certificates to M/L affordability. They do not formalize an asymptotic Shannon coding theorem, capacity-achieving construction, or strong converse.
+\item \textbf{Causal certificates, not do-calculus}: The adjustment layer can consume an adjustment-formula certificate and read it through M/L first loss. It does not derive SCM identifiability, back-door, front-door, or do-calculus rules.
+\item \textbf{Semantic, not total, unification}: The \texttt{MLDomain} and \texttt{GrandTheoryReadings} layers unify persistence-facing projections. They do not subsume the full native content of information theory, thermodynamics, statistical mechanics, dynamics, network science, information thermodynamics, or information geometry.
 \end{itemize}
 
 %----------------------------------------------------------------------
 \section{Conclusion}
 
-Structural Persistence Theory provides a formally verified framework for measuring irreversible structural loss. Two conditions---positive measure and non-free repair---are necessary and sufficient. The representation theorem forces the unique form $f(r) = -k\log r$. The impossibility theorem excludes alternatives. The complete scope closure characterizes applicability from both sides.
+Structural Persistence Theory provides a formally verified two-ledger accounting framework for persistence, degradation, repair, and collapse. The central object is not merely the exponential kernel, but the separation between additive resources~$M$ and multiplicative structural loss~$L$. That separation yields a finite-horizon collapse-mode discriminant: structural degradation can be gradual while terminal existence failure is triggered by an additive resource zero crossing. Irreversibility is then sharpened from ``near zero'' language to a repair-feasibility criterion: recovery is impossible when every target-restoring repair costs more than the resources available.
 
-The breadth of conditional bridges follows from mathematical structure: the Cauchy functional equation admits only one continuous solution, and many domains satisfy the two conditions under appropriate witnesses. This breadth is not a claim of universality by fiat, but a consequence of the axioms being weak enough to apply broadly while still forcing a unique functional form.
+The log-ratio representation theorem supplies the structural ledger: under normalization, additivity, continuity, and nonnegativity, viable-set shrinkage has the unique form $f(r)=-k\log r$. The Cauchy argument is classical; the contribution is its integration into a two-ledger persistence accounting framework, its scope closure, and its machine-checked cross-domain interface.
 
-The Lean~4 formalization with 380 modules and zero sorry/admit provides machine-checked confidence in the mathematical core. The domain bridges provide conditional correspondences, each requiring explicit witnesses, and each open to independent verification.
+The Lean~4 formalization with 413 modules and zero sorry/admit provides machine-checked confidence in the mathematical core. The M/L ledger layer adds a verified collapse-mode discriminant, target-relative repair-affordability readouts, and a bundled cross-domain interface. The result is best described as a mechanically verified unifying accounting framework, together with a testable but not yet empirically validated prediction about collapse modes.
 
 %----------------------------------------------------------------------
 \begin{thebibliography}{13}
@@ -325,6 +457,6 @@ Paper repository: \url{https://github.com/karesansui-u/delta-survival-papers}
 
 Build: \texttt{lake build Persistence} (Lean~4 v4.26.0 + Mathlib v4.26.0)
 
-380 modules. 3{,}500+ build jobs. sorry~$= 0$. admit~$= 0$. axiom~$= 0$.
+413 modules. 3{,}500+ build jobs. sorry~$= 0$. admit~$= 0$. axiom~$= 0$.
 
 \end{document}
