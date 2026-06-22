@@ -1,0 +1,440 @@
+\documentclass[12pt,a4paper]{article}
+\input{survival_whitepaper_preamble.tex}
+
+\usepackage{microtype}
+\makeatletter
+\g@addto@macro\UrlBreaks{\do\.\do\_\do\-}
+\makeatother
+\setmonofont{Hiragino Sans}
+
+\begin{document}
+
+\PaperTitleBlock
+  {制約は個数ではなく削減量で数える}
+  {— Mixed-SAT/NAE-SAT による構造消耗量 L の非縮退検証 —}
+  {2026年6月7日}
+
+\begin{abstract}
+本稿の目的は、構造持続理論における構造消耗量 $L$ が、単なる制約数やデータ量の言い換えではなく、維持可能な状態空間をどれだけ削ったかを表す有効な予測座標であることを、有限制約充足問題において検証することである。
+
+ここでいう $L$ は、一般理論における \texttt{L\_profile} 全体ではない。本稿の $L$ は、維持可能状態空間の測度損失を読む
+
+\begin{quote}
+\small
+L\_mass
+\end{quote}
+
+である。したがって本稿は、形状、連結性、到達可能性、制御可能性、境界余裕を含む構造損失全体を単一スカラーで代表できるとは主張しない。主張はより狭い。有限 CSP では、候補割当て集合の測度損失としての \texttt{L\_mass} が raw count へ縮退せず、held-out mixture に対して予測力を持つ、という主張である。
+
+一般の \texttt{L\_profile} を単一 scalar に落とす場合は、別途 composition rule certificate が必要である。Lean 側では、component readout、weighted sum、bottleneck、kill-switch、lexicographic priority、thresholded sum といった rule taxonomy を certificate 付きで扱うが、本補論の Mixed-CSP 実験はそれらの rule が各ドメインで妥当であることを検証するものではない。ここで検証するのは \texttt{L\_mass} の非縮退性に限られる。
+
+単一の制約族、たとえば 3-SAT だけを見ると、各制約の削減率は一定であるため、$L$ は制約数 \texttt{m} の定数倍に縮退する。この設定では、$L$ が raw count より良いかを検査することはできない。そこで本稿では、同じインスタンス内に 3-SAT 制約と 3-NAE-SAT 制約を混合する Mixed-CSP を用いる。3-SAT と 3-NAE-SAT はどちらも raw count では 1 制約だが、候補割当て集合を削る割合が異なる。したがって、raw count を固定したまま、構造消耗量 $L$ だけを変化させることができる。
+
+事前登録済みの 12,000 インスタンス実験では、leave-one-mixture-out 予測において、\texttt{L\_plus\_n} モデルが type-blind な raw count baseline を大きく上回った。\texttt{L\_plus\_n} の log loss は 0.0970、\texttt{raw\_plus\_n} は 0.7525 であり、相対改善は約 87.1\% であった。また、自由係数を持たない theory-pure predictor \texttt{n\ log\ 2\ -\ L} も log loss 0.1489 で raw baseline を明確に上回った。さらに Mixed-CSP package は 3 名の外部実行者による 3/3 clean rerun を得ている。
+
+この結果が堅いのは、$L$ が outcome を見てから選ばれた便利な特徴量ではなく、制約仕様から事前に決まる削減量だからである。本稿の primary support は、「type-blind な raw count では失われる制約種別の差を、仕様固定された $L$ が運び、held-out mixture に対して予測力を持つ」という主張に対する支持である。
+
+ただし、これは「理論固定の $L$ があらゆる type-aware count baseline を上回る」ことの検証ではない。$L$ は第一モーメント法 \texttt{E{[}\#SAT{]}=2\^{}n\ exp(-L)} に由来する標準的な理論座標であり、次に必要な guardrail は \texttt{(m\_SAT,\ m\_NAE,\ n)} に自由係数を与えた type-aware baseline との leave-one-mixture-out 比較である。
+
+本稿が主張するのは、$L$ 側の正当性である。すなわち、構造劣化または構造消耗は、単なる制約数ではなく、維持可能な状態空間の削減量として会計できる、という主張である。本稿は $M$ 側、すなわち有効修復資源や回復資源会計の独立した予測力までは主張しない。
+
+全体理論では、$L$ は \(S=M\exp(-L)\) の構造減衰因子を担う。一方で、時間つきの有効資源台帳を使う場合、\(M\) は raw stock ではなく、active / valid / compatible / certified な claim の射影合計 \(M_{\mathrm{proj}}(t;F,K,h)\) として読む。この補論はその \(M_{\mathrm{proj}}\) の実証を扱わない。ここで検査するのは、\(M\) 側を固定または外に置いたときに、\texttt{L\_mass} が維持可能状態空間の削減量として予測座標になるかである。
+
+また、M 側を log-additive ledger に入れる場合も、裸の \texttt{log\ M} を使うのではなく、\(M_{\mathrm{available}}/M_{\mathrm{required}}\) のような無次元比を使う。したがって、本補論の \texttt{L\_mass=-log(m\_\{t+1\}/m\_t)} と、M側の required-normalized support log-shortfall は、同じ log 形式を共有しうるが、異なる会計成分である。正の支え領域では、required-normalized な S-potential deficit が \texttt{L\_mass} と M側 log-shortfall の和として分解されるが、これは形式的な accounting identity であって、本補論の支持は L側の支持であり、M側の empirical support ではない。
+
+このとき、標準測度候補は裸の \(M\) ではなく、required-normalized persistence deficit である。すなわち、正の支え領域で \(D_{\mathrm{nat}}=-\log(S/M_{\mathrm{required}})\) と置くと、\(D_{\mathrm{nat}}=L+\log(M_{\mathrm{required}}/M_{\mathrm{available}})\) と読める。bits 単位で読む場合はこれを \(\log 2\) で割るだけである。ここでも \(M_{\mathrm{available}}\) は claim-relative な有効支え量であり、\(M_{\mathrm{required}}\) の certificate と実ドメイン妥当性は M側の問題として残る。
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+\end{abstract}
+
+\section{問い}\label{ux554fux3044}
+
+構造持続理論は、ある対象が維持されるか、崩れるか、回復できるかを、構造劣化、資源、回復境界、主張可能範囲に分けて読む枠組みである。その中で $L$ は、維持可能な状態集合がどれだけ削られたかを表す構造消耗量である。
+
+しかし、ここには自然な疑いがある。
+
+\begin{quote}
+$L$ は単に制約や負荷を数え直しただけではないのか。
+\end{quote}
+
+この疑いに答えるには、制約数そのものでは区別できないが、制約の質によって状態空間の削減量が変わる設定が必要である。
+
+制約充足問題は、この問いに対して最も清潔な試験場を与える。状態空間は有限集合として明示できる。各制約が候補割当て集合を削る割合も仕様から計算できる。したがって、$L$ を観測者依存の比喩ではなく、有限集合上の対数削減量として定義できる。
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{L の定義}\label{l-ux306eux5b9aux7fa9}
+
+\texttt{n} 変数の Boolean assignment 空間を考える。初期状態空間の大きさは
+
+\begin{quote}
+\small
+2\textasciicircum{}n
+\end{quote}
+
+である。
+
+3-SAT の 1 節は、8 通りの真理値割当てのうち 1 通りだけを禁止する。したがって、単一の 3-SAT 制約を満たす割合は
+
+\begin{quote}
+\small
+7/8
+\end{quote}
+
+であり、1 制約あたりの構造消耗量は
+
+\[
+d_{SAT} = -\log(7/8) = \log(8/7)
+\]
+
+である。
+
+一方、3-NAE-SAT は、3 変数がすべて真、またはすべて偽である 2 通りを禁止する。したがって満たす割合は
+
+\begin{quote}
+\small
+6/8 = 3/4
+\end{quote}
+
+であり、1 制約あたりの構造消耗量は
+
+\[
+d_{NAE} = -\log(3/4) = \log(4/3)
+\]
+
+である。
+
+混合インスタンスにおいて、3-SAT 制約数を \texttt{m\_SAT}、3-NAE-SAT 制約数を \texttt{m\_NAE} とすると、累積構造消耗量は
+
+\[
+L = m_{SAT} \log(8/7) + m_{NAE} \log(4/3)
+\]
+
+である。
+
+第一モーメント法は、充足割当て数の期待値を
+
+\begin{quote}
+\small
+E[\#SAT] = 2\textasciicircum{}n exp(-L)
+\end{quote}
+
+と与える。したがって
+
+\[
+F = n \log 2 - L
+\]
+
+は、候補状態空間がどれだけ残るかを表す自然な理論座標である。
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{なぜ単一 SAT では足りないか}\label{ux306aux305cux5358ux4e00-sat-ux3067ux306fux8db3ux308aux306aux3044ux304b}
+
+3-SAT だけを見た場合、
+
+\[
+L = m \log(8/7)
+\]
+
+である。つまり $L$ は制約数 \texttt{m} の定数倍にすぎない。3-NAE-SAT だけでも同じで、
+
+\[
+L = m \log(4/3)
+\]
+
+となる。
+
+このような単一 family では、$L$ が raw count より強いかを問うことは原理的に縮退している。回帰モデルに入れても、係数が定数倍変わるだけで、情報としては同じである。
+
+したがって、$L$ の正当性を検査するには、少なくとも二つの条件が必要である。
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  制約ごとの削減率が異なること。
+\item
+  raw count では同一視される差を endpoint が反映すること。
+\end{enumerate}
+
+Mixed-SAT/NAE-SAT はこの条件を満たす。
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Mixed-CSP の設計}\label{mixed-csp-ux306eux8a2dux8a08}
+
+Mixed-CSP では、同じインスタンス内に 3-SAT 制約と 3-NAE-SAT 制約を混ぜる。
+
+raw count では、3-SAT も 3-NAE-SAT も同じ 1 制約である。しかし、状態空間を削る強さは異なる。
+
+\begin{quote}
+{\small\ttfamily\noindent
+3-SAT~~~~~:~log(8/7)~~約~0.1335 \\3-NAE-SAT~:~log(4/3)~~約~0.2877
+}
+\end{quote}
+
+つまり 3-NAE-SAT は、3-SAT よりも約 2.15 倍強く候補割当て空間を削る。
+
+このため、たとえば raw count を固定しても、SAT/NAE の混合比を変えるだけで $L$ は変わる。これは $L$ が制約数ではなく、制約の質を反映しているかを検査するための非縮退な設定である。
+
+直感的には、これは次の問いである。
+
+\begin{quote}
+同じ 300 個の制約でも、軽い制約 300 個と、重い制約を多く含む 300 個は同じなのか。
+\end{quote}
+
+raw count は同じと見る。$L$ は違うと見る。
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{実験}\label{ux5b9fux9a13}
+
+事前登録済み primary grid は次の通りである。
+
+\begin{quote}
+{\small\ttfamily\noindent
+n~∈~\{80,~120,~160\} \\density~d~=~m/n~∈~\{2.0,~2.5,~3.0,~3.5\} \\mixture~∈~\{ \\~~pure~SAT, \\~~75\%~SAT~/~25\%~NAE, \\~~50\%~SAT~/~50\%~NAE, \\~~25\%~SAT~/~75\%~NAE, \\~~pure~NAE \\\} \\各~cell~200~インスタンス
+}
+\end{quote}
+
+合計は
+
+\begin{quote}
+\small
+3 × 4 × 5 × 200 = 12,000
+\end{quote}
+
+インスタンスである。
+
+primary endpoint は feasibility、すなわち SAT か UNSAT かである。これは重要である。本稿は solver cost を扱わない。解が存在するかという問いと、ソルバーがそれを見つけるかという問いは別である。本稿の対象は前者、すなわち構造消耗量 $L$ が有限インスタンスの feasibility を予測するかである。
+
+比較は leave-one-mixture-out cross-validation で行う。主なモデルは次である。
+
+\begin{quote}
+{\small\ttfamily\noindent
+raw\_count \\raw\_density \\raw\_plus\_n \\L\_only \\L\_plus\_n \\first\_moment~=~n~log~2~-~L \\cnf\_count\_plus\_n
+}
+\end{quote}
+
+primary comparison は
+
+\begin{quote}
+\small
+L\_plus\_n < raw\_plus\_n
+\end{quote}
+
+である。
+
+また、\texttt{first\_moment\ \textless{}\ raw\_plus\_n} を theory-pure support とし、\texttt{cnf\_count\_plus\_n} を encoding guardrail とする。これは、$L$ の勝利が単に CNF encoding size の勝利ではないかを確認するためである。
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{結果}\label{ux7d50ux679c}
+
+結果は次の通りである。
+
+{\def\LTcaptype{table} % do not increment counter
+\begin{longtable}[]{@{}lrrr@{}}
+\toprule\noalign{}
+model & log loss & Brier & accuracy@0.5 \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{L\_plus\_n} & 0.0970 & 0.0299 & 0.9631 \\
+\texttt{cnf\_count\_plus\_n} & 0.1010 & 0.0304 & 0.9631 \\
+\texttt{first\_moment} & 0.1489 & 0.0482 & 0.9457 \\
+\texttt{L\_only} & 0.4731 & 0.1601 & 0.7626 \\
+\texttt{raw\_density} & 0.7447 & 0.2524 & 0.6279 \\
+\texttt{raw\_plus\_n} & 0.7525 & 0.2539 & 0.6159 \\
+\texttt{raw\_count} & 0.7708 & 0.2798 & 0.5139 \\
+\end{longtable}
+}
+
+primary predictor \texttt{L\_plus\_n} は \texttt{raw\_plus\_n} を大きく上回った。
+
+\begin{quote}
+\small
+0.0970 < 0.7525
+\end{quote}
+
+相対改善は
+
+\begin{quote}
+\small
+1 - 0.0970 / 0.7525 ≈ 0.871
+\end{quote}
+
+であり、約 87.1\% である。
+
+さらに、自由係数を持たない theory-pure predictor
+
+\begin{quote}
+\small
+n log 2 - L
+\end{quote}
+
+も \texttt{raw\_plus\_n} を明確に上回った。
+
+\begin{quote}
+\small
+0.1489 < 0.7525
+\end{quote}
+
+これは、$L$ が単に訓練された特徴量として便利だっただけではなく、第一モーメント法に由来する理論座標としても raw baseline より強いことを示す。
+
+encoding guardrail では、\texttt{L\_plus\_n} は \texttt{cnf\_count\_plus\_n} にもわずかに勝った。
+
+\begin{quote}
+\small
+0.0970 <= 0.1010
+\end{quote}
+
+この差は小さい。しかし SAT/NAE の二型混合では、これは自然である。3-SAT は CNF で 1 clause、3-NAE-SAT は 2 clauses として表せる。一方、drift ratio は約 2.15 であり、CNF clause count の比 2.00 と近い。したがって、この設定では $L$ と CNF encoding size がかなり近くなる。
+
+重要なのは、それでも $L$ が raw count と raw density を大きく上回ったことである。
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{何が立証されたか}\label{ux4f55ux304cux7acbux8a3cux3055ux308cux305fux304b}
+
+本稿の結果は、次の狭い主張を支持する。
+
+\begin{quote}
+$L$ は、制約や負荷の個数ではなく、維持可能な状態空間をどれだけ削ったかを表す構造座標である。
+\end{quote}
+
+3-SAT と 3-NAE-SAT は raw count では同じ 1 制約である。しかし、解空間を削る割合は異なる。Mixed-CSP ではこの差を用いて、raw count と $L$ を分離した。その結果、$L$ は finite feasibility を out-of-sample に予測する上で、raw count baseline を大きく上回った。
+
+したがって、少なくとも Bernoulli-CSP 型の仕様固定レイヤーにおいて、$L$ は単なる名前替えではない。状態空間の削減量という実質を持つ。
+
+この意味で、本稿は $L$ 側の finite-CSP support anchor である。ここでいう anchor とは、次の四つが同時に満たされているという意味であり、任意の type-aware baseline に対する勝利や、現実ドメインでの一般予測力を意味しない。
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  $L$ の係数は outcome を見てから選ばれていない。3-SAT と 3-NAE-SAT の制約仕様から、\texttt{log(8/7)} と \texttt{log(4/3)} として事前に決まる。
+\item
+  単一 family の縮退を避けるため、raw count が同一視する SAT/NAE 混合比をあえて動かしている。
+\item
+  theory-pure predictor \texttt{n\ log\ 2\ -\ L} も、自由に訓練された \texttt{L\_plus\_n} とは別に raw baseline を明確に上回る。
+\item
+  frozen package は著者環境外でも 3/3 clean rerun され、同じ qualitative support decision が回復されている。
+\end{enumerate}
+
+ただし、この support anchor は「$L$ の理論固定係数が、あらゆる type-aware count baseline より常に優れる」という主張ではない。より強い guardrail としては、\texttt{(m\_SAT,\ m\_NAE,\ n)} に自由係数を与えた type-aware baseline との leave-one-mixture-out 比較が残る。この比較で $L$ が外挿上の優位を示せば、理論固定係数としての $L$ の主張はさらに強くなる。仮に同等であっても、本稿の primary claim、すなわち「type-blind raw count ではなく、制約ごとの削減量を数える必要がある」という主張は残る。
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{LLM に対して伝わる意味}\label{llm-ux306bux5bfeux3057ux3066ux4f1dux308fux308bux610fux5473}
+
+LLM は、複雑な理論をしばしば「それは既存量の言い換えではないか」と疑う。$L$ についても同じ疑いが自然に出る。
+
+Mixed-CSP はこの疑いに対して、非常に短い答えを与える。
+
+\begin{quote}
+{\small\ttfamily\noindent
+同じ個数の制約でも、解空間を削る量が違えば、結果は違う。 \\L~はその違いを数える。
+}
+\end{quote}
+
+英語で言えば、
+
+\begin{quote}
+\small
+Degradation is not the number of constraints; it is the amount of viable state-space each constraint removes.
+\end{quote}
+
+日本語では、
+
+\begin{quote}
+{\small\ttfamily\noindent
+劣化とは制約の個数ではなく、 \\維持可能な状態空間がどれだけ削られたかである。
+}
+\end{quote}
+
+この一文が、本稿の中心である。
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{何を主張しないか}\label{ux4f55ux3092ux4e3bux5f35ux3057ux306aux3044ux304b}
+
+本稿は、構造持続理論全体を証明するものではない。
+
+特に、次のことは主張しない。
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  $M$ 側、すなわち有効修復資源や \(M_{\mathrm{proj}}\) の独立した予測力が実証された、とは主張しない。
+\item
+  \texttt{L/M} 二軸分離全体が経験的に閉じた、とは主張しない。
+\item
+  任意の現実システムに同じ $L$ がそのまま適用できる、とは主張しない。
+\item
+  任意の CSP family で同じ定数係数が成立する、とは主張しない。
+\item
+  solver runtime を $L$ だけで予測できる、とは主張しない。
+\item
+  universal law が完成した、とは主張しない。
+\end{enumerate}
+
+本稿の claim boundary はもっと狭い。
+
+\begin{quote}
+{\small\ttfamily\noindent
+仕様固定された有限~CSP~において、 \\構造消耗量~L~は~type-blind~raw~count~よりも強い予測座標として働く。 \\free-coefficient~type-aware~baseline~との比較は未実施である。
+}
+\end{quote}
+
+この限定が重要である。主張を小さくすることで、証拠との対応が強くなる。
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{限界}\label{ux9650ux754c}
+
+第一に、Mixed-CSP の主結果は SAT/NAE の二型混合に限定される。より広い CSP family への拡張には、Cardinality-SAT、exact-one-SAT、q-coloring などの追加検査が必要である。
+
+第二に、encoding guardrail の差は小さい。これは SAT/NAE において drift ratio と CNF clause ratio が近いためである。exact-one-3-SAT では drift ratio と encoding ratio がより大きく分離するため、次の stress test として価値が高い。
+
+第三に、\texttt{(m\_SAT,\ m\_NAE,\ n)} に自由係数を与える type-aware count baseline は、次に入れるべき重要な guardrail である。$L$ はこの自由係数モデルの特殊な理論固定比であるため、この比較は「type-aware count 一般」ではなく「理論固定の削減量 $L$」がどこまで外挿力を持つかを検査する。この guardrail は \texttt{outputs/l\_type\_aware\_baseline\_guardrail\_design\_ja.md} として pre-run design に切り出した。
+
+第四に、本稿は feasibility を扱う。solver cost や探索困難性は別の問題である。解が存在することと、それを限られた計算予算で発見できることは同じではない。
+
+第五に、finite-size effect が残る。\texttt{first\_moment} は raw baseline を大きく上回るが、\texttt{L\_plus\_n} には負ける。これは、理論的第一モーメント座標だけでは有限サイズ補正を完全に吸収できないことを示す。
+
+第六に、これは synthetic finite testbed である。現実ドメインへの外挿には、各ドメインで状態空間、削減率、観測証拠、claim boundary を別途定義する必要がある。
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{再現性}\label{ux518dux73feux6027}
+
+Mixed-CSP package は、事前登録済み primary run として実行され、12,000 インスタンスが正常に完走した。timeout は 0、malformed encoding は 0 であった。
+
+また、外部再実行層では、3 名の外部実行者により 3/3 clean success が得られている。これは、少なくとも frozen package が著者環境外でも実行可能であり、qualitative support decision が回復されたことを示す。
+
+ただし、これは理論全体の独立検証ではない。Mixed-CSP という仕様固定有限系の empirical package について、外部再実行可能性が示された、という限定された再現性証拠である。
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{結論}\label{ux7d50ux8ad6}
+
+本稿は、構造持続理論における \texttt{L\_mass} の狭い正当性を、Mixed-SAT/NAE-SAT によって検証した。
+
+単一 SAT では $L$ は制約数の定数倍に縮退する。したがって、$L$ が raw count より強いかを問うことはできない。Mixed-CSP はこの縮退を破る。3-SAT と 3-NAE-SAT は raw count では同じ 1 制約だが、解空間を削る drift が異なる。$L$ はこの差を加法的に累積する。
+
+事前登録済み 12,000 インスタンス実験において、\texttt{L\_plus\_n} は type-blind raw count baseline を大きく上回り、theory-pure predictor \texttt{n\ log\ 2\ -\ L} も raw baseline を明確に上回った。この結果は、$L$ が単なる type-blind 制約数ではなく、制約の質を含む構造消耗座標として機能することを支持する。ただし、free-coefficient type-aware baseline との比較は未実施であり、理論固定係数としての $L$ が type-aware count 一般に対して優位であることは、まだ主張しない。
+
+本稿の結論は控えめである。
+
+\begin{quote}
+{\small\ttfamily\noindent
+L~は立ちつつある。 \\M~はまだ未決である。 \\L/M~分離全体ではなく、まず~L~側の正当性が検証された。
+}
+\end{quote}
+
+この限定された結論だけでも、構造持続理論にとって重要である。なぜなら、崩壊や劣化を単なる type-blind な量ではなく、維持可能な状態空間の削減として読むための、最初の finite-CSP support anchor を与えるからである。
+\end{document}
