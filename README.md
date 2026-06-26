@@ -1,319 +1,223 @@
-# Structural Persistence Theory (v3)
+# 構造持続理論 / Structural Persistence Theory
 
-This repository hosts the v3 public working structure for Structural Persistence
-Theory.
+このリポジトリは、構造持続理論の論文草稿、プレプリント、PDF、
+実験記録、補論、外部再実行パッケージを置く作業リポジトリです。
 
-構造は、資源が残っていても保てなくなりうる。その構造として存在し続けられる
-状態領域が失われるからである。
+理論の Lean 形式化と現在の公開価値説明の正本は、次のリポジトリです。
 
-The current public entry point is `v3/`. Older `v1/` and `v2/` materials remain
-in the repository as archive and build history, but it is no longer the primary
-reading path.
+- [persistence-lean](https://github.com/karesansui-u/persistence-lean)
 
-## Start Here
+この README は、Lean 側 README の本質説明に合わせて、paper 側の入口を整理します。
 
-Read in this order:
+## 一番短い説明
 
-1. [`v3/01_theory/00_map.md`](v3/01_theory/00_map.md)
-2. [`v3/01_theory/01_overview.md`](v3/01_theory/01_overview.md)
-3. [`v3/01_theory/02_accounting_framework.md`](v3/01_theory/02_accounting_framework.md)
-4. [`v3/CLAIMS.md`](v3/CLAIMS.md)
-5. [`v3/03_domains/registry.tsv`](v3/03_domains/registry.tsv)
-6. [`v3/05_evidence/README.md`](v3/05_evidence/README.md)
+構造持続理論は、まず一つの問いから始まります。
 
-English entry path:
+> 「持続する」「停止する」「崩壊する」を計算可能な問題として立てるには、
+> 何を必ず明示しなければならないのか？
 
-- [`v3/01_theory/en/02_core_en.md`](v3/01_theory/en/02_core_en.md)
-- [`v3/01_theory/en/03_epistemic_control_one_page.md`](v3/01_theory/en/03_epistemic_control_one_page.md)
-- [`v3/01_theory/en/04_information_qualification_control_note.md`](v3/01_theory/en/04_information_qualification_control_note.md)
-- [`v3/01_theory/en/10_paper1_minimal_form_en.md`](v3/01_theory/en/10_paper1_minimal_form_en.md)
-- [`v3/01_theory/en/11_paper2_balance_principle_en.md`](v3/01_theory/en/11_paper2_balance_principle_en.md)
+答えは、維持対象 `F`、それを成立させる必要構造 / 実現構造 `K`、
+存続可能領域 `V_K`、損失または修復込み負担 `L/B`、有効支援 `M`、
+境界、時間範囲、そして読取りを許す根拠・変換器・証明書です。
 
-Current exported PDFs:
+構造持続理論は、持続・停止・崩壊・回復・介入を、比喩や単一スコアではなく、
+計算可能な境界問題として立てるための型付き境界理論です。
 
-- [`v3/07_exports/pdf/02_core.pdf`](v3/07_exports/pdf/02_core.pdf)
-- [`v3/07_exports/pdf/20_public_first_draft.pdf`](v3/07_exports/pdf/20_public_first_draft.pdf)
-- [`v3/07_exports/pdf/22_public_second_draft.pdf`](v3/07_exports/pdf/22_public_second_draft.pdf)
-- [`v3/07_exports/pdf/02_core_en.pdf`](v3/07_exports/pdf/02_core_en.pdf)
-- [`v3/07_exports/pdf/10_paper1_minimal_form_en.pdf`](v3/07_exports/pdf/10_paper1_minimal_form_en.pdf)
-- [`v3/07_exports/pdf/11_paper2_balance_principle_en.pdf`](v3/07_exports/pdf/11_paper2_balance_principle_en.pdf)
-- [`v3/07_exports/pdf/Core_構造持続の最小核と収支原理.pdf`](v3/07_exports/pdf/Core_構造持続の最小核と収支原理.pdf)
+## 本質
 
-The PDF build pipeline still writes into `v2/pdf用/` for
-compatibility. `v3/07_exports/pdf/` is the public export surface.
-
-## Core Claim
-
-Structural Persistence Theory separates two failure routes that are often
-collapsed into one:
-
-- resource-side exhaustion, represented by the effective maintenance reserve
-  \(M\);
-- structure-side shrinkage, represented by the log-ratio structural depletion
-  coordinate \(L\), and by the net depletion coordinate \(B\) when recovery is
-  explicit.
-
-The reader-facing kernels are
-
-\[
-S = M e^{-L},
-\qquad
-S_n = M_n e^{-B_n},
-\qquad
-B_n = \sum_{t<n}(d_t-r_t).
-\]
-
-The novelty is not that resources matter, nor that an exponential expression can
-be written down. The contribution is to formulate structural failure as loss of
-the state region in which a system can continue as the specified structure, and
-to separate that shrinkage from the resource reserve that supports maintenance.
-
-## Observability Layers
-
-v3 uses layers rather than the old internal Route labels.
-
-| Layer | Role |
-|---|---|
-| Specification-fixed structural layer | \(V\), \(m\), \(L/B\), and boundaries can be fixed from the specification. This is the law-side candidate layer. |
-| Conditional structural-embedding layer | Existing theories such as Foster-Lyapunov or queueing are conditionally mapped into the same variables. This is a bridge layer. |
-| Structurally inferred layer | The true \(V,m,L/B\) are not directly observed. Frozen observational or estimated indicators are tested out of sample. This is an engineering and diagnostic layer, not a universal-law claim. |
-
-## Current Evidence Status
-
-The strongest empirical footing is currently in the specification-fixed
-structural layer.
-
-- Mixed-CSP: 3/3 outside reruns, each with 12,000 primary rows, 0 checked core
-  mismatches, and reproduced support flags.
-- q-coloring, internal package name Exp43c: 3/3 outside reruns, each with 4,000
-  primary rows, 0 checked core mismatches, TIMEOUT = 0, MALFORMED = 0, and the
-  same qualitative support decision.
-
-This is not a proof of a universal law. It is package-scoped replication support
-for the first law-side empirical anchors.
-
-Lean formalization is maintained in a dedicated repository:
-**[persistence-lean](https://github.com/karesansui-u/persistence-lean)** —
-433 `Persistence/*.lean` modules, sorry/admit/axiom = 0.
-
-The historical copy in this repo has been moved to [`lean_archive/`](lean_archive/)
-(namespace `Survival`). It is no longer maintained. Use persistence-lean for
-the canonical, up-to-date formalization (namespace `Persistence`).
-
-The 433 modules fall into three tiers of mathematical depth
-(see [persistence-lean README](https://github.com/karesansui-u/persistence-lean#honest-assessment)
-for the full honest assessment):
-
-- **Tier A — Core-routed bridges (~20)**: invoke the telescoping kernel to
-  derive domain-specific conclusions that do not follow from single-step
-  properties (e.g. `ForgettingCurveBridge`, `DunbarBridge`, `RSABridge`)
-- **Tier B — Structural core + necessity (~40)**: representation/impossibility
-  theorems, structural second law (converse, minimal axioms, free repair
-  impossibility, complete scope closure), resource dynamics, identity /
-  asymptotic identity / phase transition, interaction defect,
-  forward collapse-time prediction (`n* <= (-log theta) / rate`),
-  Mathlib-backed connections (Category instance, Galois connection,
-  KL embedding, Cesaro ergodic extension)
-- **Tier C — Vocabulary mappings (~160)**: map domain terminology into the
-  SP coordinate system. These are **naming conventions, not theorems**.
-  They carry no independent mathematical weight.
-
-The remaining ~190 modules are internal infrastructure (definitions,
-API lemmas, SAT/CSP chain, stochastic layer, epistemic-control protocol).
-
-The theorem-to-paper map is
-[`PAPER_MAPPING.md`](https://github.com/karesansui-u/persistence-lean/blob/main/PAPER_MAPPING.md).
-
-The LLM-facing abstract bridge is documented in
-[`v3/03_domains/02_structurally_inferred/llm_epistemic_control_bridge.md`](v3/03_domains/02_structurally_inferred/llm_epistemic_control_bridge.md).
-It connects contradiction / repair / memory-filter / dependency-rewrite
-control layers to the finite net-action kernel under explicit assumptions; it
-does not claim to prove LLM semantics or performance.
-The baseline comparison layer is
-[`https://github.com/karesansui-u/persistence-lean/blob/main/Persistence/EpistemicControlComparison.lean`](https://github.com/karesansui-u/persistence-lean/blob/main/Persistence/EpistemicControlComparison.lean);
-it proves that, at a fixed finite horizon, a controlled epistemic layer with
-the same initial coherent mass and no larger cumulative net action preserves
-at least the baseline coherent mass.
-The evaluation contract layer is
-[`https://github.com/karesansui-u/persistence-lean/blob/main/Persistence/EpistemicControlEvaluationContract.lean`](https://github.com/karesansui-u/persistence-lean/blob/main/Persistence/EpistemicControlEvaluationContract.lean);
-it shows how per-step contradiction-loss and repair-gain metrics can witness
-the no-worse cumulative net-action assumption used by that comparison theorem.
-The benchmark protocol layer is
-[`https://github.com/karesansui-u/persistence-lean/blob/main/Persistence/EpistemicBenchmarkProtocol.lean`](https://github.com/karesansui-u/persistence-lean/blob/main/Persistence/EpistemicBenchmarkProtocol.lean);
-it fixes the task-surface, readout, same-horizon, same-initial-mass,
-metric-dominance, and readout-alignment obligations needed before a benchmark
-can invoke the evaluation contract.
-The result-certificate layer is
-[`https://github.com/karesansui-u/persistence-lean/blob/main/Persistence/EpistemicBenchmarkResultCertificate.lean`](https://github.com/karesansui-u/persistence-lean/blob/main/Persistence/EpistemicBenchmarkResultCertificate.lean);
-it states which external result-certificate witnesses are sufficient to induce
-a valid benchmark protocol and invoke the same finite comparison theorem.
-The evidence-packet bridge is
-[`https://github.com/karesansui-u/persistence-lean/blob/main/Persistence/EvidencePacketBridge.lean`](https://github.com/karesansui-u/persistence-lean/blob/main/Persistence/EvidencePacketBridge.lean);
-it records the provenance, eligibility, witness, dependency-closure, and repair
-guardrails expected at the implementation boundary without proving any concrete
-workflow correct.
-The finite LLM-side toy instantiation is
-[`https://github.com/karesansui-u/persistence-lean/blob/main/Persistence/LLMEpistemicControlToy.lean`](https://github.com/karesansui-u/persistence-lean/blob/main/Persistence/LLMEpistemicControlToy.lean);
-it connects reasoning, memory eligibility, and continual-update dependency
-repair to the same bridge interfaces without proving real model semantics.
-The LLM memory use-condition toy is
-[`https://github.com/karesansui-u/persistence-lean/blob/main/Persistence/LLMMemoryUseConditionToy.lean`](https://github.com/karesansui-u/persistence-lean/blob/main/Persistence/LLMMemoryUseConditionToy.lean);
-it makes permission, scope, deletion state, stability, and action eligibility
-explicit before a memory item may be used as a current premise.
-The dependency closure budget toy is
-[`https://github.com/karesansui-u/persistence-lean/blob/main/Persistence/DependencyClosureBudgetToy.lean`](https://github.com/karesansui-u/persistence-lean/blob/main/Persistence/DependencyClosureBudgetToy.lean);
-it turns dependency-localization inclusions into finite invalidation, closure,
-surface, and repair-touched cardinality bounds.
-The LLM memory / reasoning strengthening toy is
-[`https://github.com/karesansui-u/persistence-lean/blob/main/Persistence/LLMMemoryReasoningStrengtheningToy.lean`](https://github.com/karesansui-u/persistence-lean/blob/main/Persistence/LLMMemoryReasoningStrengtheningToy.lean);
-it adds lifecycle memory guards, provenance trust ordering, minimal witness
-guards, and composed repair-kernel wrappers.
-The stack-level Lean entry point is
-[`https://github.com/karesansui-u/persistence-lean/blob/main/Persistence/EpistemicControlStack.lean`](https://github.com/karesansui-u/persistence-lean/blob/main/Persistence/EpistemicControlStack.lean);
-it collects the main bridge, evidence, LLM, memory, and software toy theorems
-under stack-level names.
-The public one-page summary is
-[`v3/01_theory/en/03_epistemic_control_one_page.md`](v3/01_theory/en/03_epistemic_control_one_page.md).
-The reader-facing core-paper section is
-[`v3/01_theory/en/02_core_en.md`](v3/01_theory/en/02_core_en.md), Section 10.1.
-The overview diagram for this layered structure is
-[`v3/01_theory/figures/figure3_epistemic_control_stack_en.svg`](v3/01_theory/figures/figure3_epistemic_control_stack_en.svg).
-The result-certificate chain diagram is
-[`v3/01_theory/figures/figure4_epistemic_result_certificate_chain_en.svg`](v3/01_theory/figures/figure4_epistemic_result_certificate_chain_en.svg).
-The toy software-contract instantiation is
-[`https://github.com/karesansui-u/persistence-lean/blob/main/Persistence/SoftwareContractToyRepository.lean`](https://github.com/karesansui-u/persistence-lean/blob/main/Persistence/SoftwareContractToyRepository.lean).
-The toy evidence-packet instantiation connecting that surface to the packet
-bridge is
-[`https://github.com/karesansui-u/persistence-lean/blob/main/Persistence/SoftwareEvidencePacketToy.lean`](https://github.com/karesansui-u/persistence-lean/blob/main/Persistence/SoftwareEvidencePacketToy.lean).
-The software evidence net-action bridge is
-[`https://github.com/karesansui-u/persistence-lean/blob/main/Persistence/SoftwareEvidenceNetActionBridge.lean`](https://github.com/karesansui-u/persistence-lean/blob/main/Persistence/SoftwareEvidenceNetActionBridge.lean);
-it packages eligible evidence, dependency closure, repair coverage, and a valid
-benchmark protocol as sufficient obligations for invoking the same finite
-comparison theorem.
-
-### Validating A New Epistemic-Control Experiment
-
-To connect a new experiment to the Lean comparison theorem, first freeze a
-manifest such as
-[`v3/05_evidence/llm_epistemic_control_benchmark_manifest.md`](v3/05_evidence/llm_epistemic_control_benchmark_manifest.md).
-The manifest must fix the task surface, baseline, controlled system, horizon,
-per-step loss / repair metrics, dominance rule, readout alignment, and
-decision rule before outcome-bearing execution. A run becomes theorem-adjacent
-only by supplying the corresponding protocol witnesses; it is not theorem-side
-evidence by default.
-
-The first toy protocol packet has a deterministic scorer:
-
-```bash
-python3 analysis/epistemic_control_frozen_toy_v0/run_eval.py \
-  --result-id llm_epistemic_control_frozen_toy_v0_smoke \
-  --tasks v3/05_evidence/llm_epistemic_control_frozen_toy_v0/tasks.jsonl \
-  --out v3/05_evidence/llm_epistemic_control_frozen_toy_v0/smoke_result_summary.json \
-  --summary-md v3/05_evidence/llm_epistemic_control_frozen_toy_v0/smoke_result_summary.md
-```
-
-This checks protocol shape and toy metric dominance; it does not validate a
-real model or workflow.
-
-The first named toy result artifact is:
-
-- [`v3/05_evidence/llm_epistemic_control_frozen_toy_v0/llm_epistemic_control_frozen_toy_v0_result_001.json`](v3/05_evidence/llm_epistemic_control_frozen_toy_v0/llm_epistemic_control_frozen_toy_v0_result_001.json)
-- [`v3/05_evidence/llm_epistemic_control_frozen_toy_v0/llm_epistemic_control_frozen_toy_v0_result_001.md`](v3/05_evidence/llm_epistemic_control_frozen_toy_v0/llm_epistemic_control_frozen_toy_v0_result_001.md)
-
-It exercises the deterministic toy certificate loop once; it is still not
-validation evidence for a real model or workflow.
-
-The next real-eval planning layer is
-[`v3/05_evidence/llm_epistemic_control_real_eval_candidate_mapping.md`](v3/05_evidence/llm_epistemic_control_real_eval_candidate_mapping.md).
-It maps existing implementation-side logs to candidate future protocol
-witnesses for premise update, memory qualification, benchmark-audit, and
-software evidence packaging. It is planning material, not support evidence.
-
-The current Information Qualification Control (IQC) benchmark summary is
-[`v3/05_evidence/iqc_failure_suite_final_result_ja.md`](v3/05_evidence/iqc_failure_suite_final_result_ja.md).
-It records the latest implementation-side M1--M4 failure-suite table after the
-benchmark injection path was aligned with the no-store policy: Information
-Qualification Control is single-best on speechAct and permission failures,
-co-best on versionState, and neutral on source attribution. The implementation
-package is published in
-`karesansui-u/delta-zero` PR #2 at commit `8d0b3b2`, with 220 passed and
-2 warnings reported there. This is empirical benchmark evidence, not Lean
-theorem-side evidence.
-
-The first frozen real-eval candidate surface is
-[`v3/05_evidence/llm_epistemic_premise_update_v0/`](v3/05_evidence/llm_epistemic_premise_update_v0/).
-It fixes 12 premise-update / dependency-staleness tasks and a predeclared
-loss / repair readout, but contains no model outputs or support decision.
-The corresponding scorer / result schema live at
-[`analysis/epistemic_control_premise_update_v0/`](analysis/epistemic_control_premise_update_v0/);
-they score externally supplied baseline / controlled outputs and do not call a
-model.
-The output collection rule is fixed in
-[`v3/05_evidence/llm_epistemic_premise_update_v0/output_collection_protocol_v0.md`](v3/05_evidence/llm_epistemic_premise_update_v0/output_collection_protocol_v0.md).
-The first run condition is fixed in
-[`v3/05_evidence/llm_epistemic_premise_update_v0/run_manifest_result_001.md`](v3/05_evidence/llm_epistemic_premise_update_v0/run_manifest_result_001.md).
-The first completed output-bearing run is
-[`v3/05_evidence/llm_epistemic_premise_update_v0/llm_epistemic_premise_update_v0_result_001.md`](v3/05_evidence/llm_epistemic_premise_update_v0/llm_epistemic_premise_update_v0_result_001.md);
-its protocol-local decision is `silence`, not support.
-
-The successor v1 planning layer is
-[`v3/05_evidence/llm_epistemic_premise_update_v1/`](v3/05_evidence/llm_epistemic_premise_update_v1/).
-It leaves v0 unchanged and freezes a slot-state readout package with scorer
-preflight coverage, explicit output statuses, and first-class mixed /
-ambiguous outcomes. Its scorer lives at
-[`analysis/epistemic_control_premise_update_v1/`](analysis/epistemic_control_premise_update_v1/).
-V1 is not support evidence before a future outcome-bearing result has
-`decision = support_clean`, `protocol_shape_valid = true`, and
-`promotable = true`.
-
-### Reproducible Toy Protocol Bundle
-
-Local bundle candidate for OSF fixation:
-
-- bundle: `llm_epistemic_control_frozen_toy_v0_bundle.zip`
-- local path: `/private/tmp/llm_epistemic_control_frozen_toy_v0_bundle.zip`
-- SHA256: `2ebaf5dbf6a72e96a309d9a5c9e0ea2ed4c85270dfde9b1a3fd5f9397ac11d7c`
-
-The bundle contains the frozen task surface, benchmark manifest, deterministic
-runner, result schema, smoke result summary, named toy result artifact, and
-`EpistemicBenchmarkResultCertificate.lean`. The recipe is documented in
-[`analysis/epistemic_control_frozen_toy_v0/repro_bundle_manifest.md`](analysis/epistemic_control_frozen_toy_v0/repro_bundle_manifest.md).
-
-The current evidence map is [`analysis/current_evidence_map.md`](analysis/current_evidence_map.md).
-
-## Repository Layout
+数値だけなら、いくらでも計算できます。たとえば `M` と `L` を置けば、
 
 ```text
-v3/          public reading path, domain registry, evidence ledgers, templates
-v2/          archived preprint bundle and PDF build pipeline
-v1/          older archived material
-lean/        Lean 4 formalization
-analysis/    experiment packages, evidence maps, design notes
-data/        local data summaries and derived materials
+S = M exp(-L)
 ```
 
-## Adding A Domain
+は計算できます。
 
-New domains should not edit the main theory prose. Add them through the v3
-registry and evidence ledgers:
+しかし、その値がどの維持対象について、どの必要構造の、どの損失・負担と
+有効支援から出た境界読取りなのかを明示しなければ、それは候補計算に
+とどまります。
 
-1. Create a domain profile from [`v3/06_templates/domain_profile_template.md`](v3/06_templates/domain_profile_template.md).
-2. Add a row to [`v3/03_domains/registry.tsv`](v3/03_domains/registry.tsv).
-3. If there is a frozen test, add a manifest from [`v3/06_templates/frozen_test_manifest_template.md`](v3/06_templates/frozen_test_manifest_template.md).
-4. Record support, no-support, silence, field demonstration, or bounded
-   benchmark in [`v3/05_evidence/`](v3/05_evidence/).
-5. Update [`v3/CLAIMS.md`](v3/CLAIMS.md) only if the claim taxonomy itself
-   changes.
+構造持続理論の本質は、停止や崩壊を最初から「資源不足」や「弱さ」へ
+押し込めることではありません。まず、持続・停止・崩壊を計算可能な問題に
+するための必要文法を立てます。
 
-Support does not transfer across domains. Cross-domain transfer creates a
-candidate mapping; it becomes support only after frozen validation in the target
-domain.
+- 何を維持対象としているのか
+- どの必要構造 / 実現構造がそれを成立させているのか
+- その構造はどの存続可能領域にいるのか
+- どの損失・負担が境界を押しているのか
+- どの支援が本当に有効支援として効いているのか
+- どの境界で、維持・停止・崩壊・回復を読むのか
+- どの時間範囲、観測、変換器、証明書でその読取りを許すのか
 
-## OSF
+この文法を通すことで初めて、資源側、構造側、接続側、負担側、証明書側の
+どこで停止・崩壊したのかを分けて読めます。つまり、崩壊診断、予測、
+回復可能性、介入設計を同じ境界座標で扱えます。
 
-The current public OSF entry point is:
+この順序が重要です。構造持続理論は、最初から「資源側と構造側の二分法」を
+主張しているのではありません。先にあるのは、維持対象をもつ構造について
+持続・停止・崩壊を計算可能な問題として立てるための必要文法です。
+資源側、構造側、接続側、負担側、証明書側への分解は、その文法を通した後に
+見えてくる診断座標です。
 
-- [Structural Persistence Theory (v3)](https://osf.io/mdh7b/)
+## 何ができるようになるのか
 
-The OSF root storage is intentionally minimal: the current v3 package plus one
-legacy archive folder.
+構造持続理論の価値は、「壊れそう」「弱い」「資源が足りない」という曖昧な
+説明を、境界計算の形へ変換するところにあります。
+
+たとえば同じ停止でも、原因はまったく違います。
+
+- 名目資源 `R` はあるが、有効支援 `M` に変換されていない
+- 有効支援 `M` はあるが、必要構造 `K` が存続可能領域 `V_K` を外れている
+- 構造は残っているが、損失・修復込み負担 `L/B` が境界を押しすぎている
+- 観測や変換器が壊れていて、読取りが対象機能へ届いていない
+- 根拠や証明書が足りず、その計算を正式な境界読取りとして使えない
+
+この区別があると、介入の方向も変わります。資源を増やすべきなのか、
+資源を有効支援へ変換する経路を直すべきなのか、構造側の制約を下げるべきなのか、
+フォールバックを足すべきなのか、読取り根拠を強くするべきなのかを分けられます。
+
+つまり、構造持続理論は「持続・崩壊を説明する言葉」を増やすだけではありません。
+持続・停止・崩壊を、診断・予測・回復・介入設計の対象になる境界問題へ変換します。
+
+## 予測との関係
+
+構造持続理論は、世界を `S = M exp(-L)` だけで予測する理論ではありません。
+しかし、予測力がない理論でもありません。
+
+役割は、各分野で何を測れば、持続・停止・崩壊・回復の再現可能な帰結を
+読めるのかを決めることです。
+
+維持対象、必要構造、損失・負担、有効支援、境界、時間範囲、観測、変換器、
+証明書が正しく与えられていれば、同じ型の境界条件から同じ型の帰結を読めます。
+たとえば、維持できる、崩壊する、回復不足になる、フォールバックが必要になる、
+どの介入でどの座標が動く、という帰結です。
+
+したがって、この理論は各分野の予測モデルを置き換えません。各分野の観測や
+モデルを、再現可能な境界帰結を出す形に整える理論です。
+
+## 分野横断性
+
+この理論は、物理、生物、ソフトウェア、運用、制御、組織、LLM が
+同じ固有法則で動くと主張しません。本家機構は分野ごとに違うままでよい。
+
+統一するのは、持つ・止まる・壊れる・戻る・介入が効く、という読取り形式です。
+
+同じ形式で問えます。
+
+- 何が維持されるべきか
+- 何がそれを成立させているか
+- 何が境界を押しているか
+- 何が有効支援として効いているか
+- いつ境界を越えるか
+- どの介入がどの座標を動かすか
+
+このため、異なる分野の現象を同じにするのではなく、違いを保ったまま
+持続・停止・崩壊の読取りを比較できます。
+
+## G1 必然性定理
+
+Lean 正本側では、G1 は定理本体として閉じた公開入口まで到達しています。
+
+G1 の読みは次です。
+
+> 維持対象をもつ構造について、持続・停止・崩壊を厳密に計算し、
+> 維持対象、境界読取り、証明書状態を保存する別表現を許すなら、
+> 維持対象、必要構造、存続可能領域、損失・負担、有効支援、境界、
+> 変換器、証明書に相当する役割が再出現する。
+
+したがって G1 は、「この座標で見ると便利である」というだけの提案では
+ありません。明示された保存条件と同値条件のもとで、この種の境界文法が
+避けられないことを示す必然性定理として読むものです。
+
+これは、世界の全現象を自動で説明する定理ではありません。各分野の観測、
+写像、測定妥当性、経験的予測は別の層に残ります。G1 が固定するのは、
+持続・停止・崩壊を厳密な境界計算として扱うときの必要文法です。
+
+## このリポジトリの役割
+
+このリポジトリは、Lean 正本ではありません。役割は次です。
+
+- 理論を論文形式で説明する
+- 日本語プレプリントと PDF を管理する
+- 仕様固定層、構造推定層、外部再実行、有限評価などの証拠層を残す
+- LLM 推論劣化、継続学習忘却、M 側評価などの応用・検証記録を残す
+- 古い v1/v2/v3 の履歴と実験導線を保存する
+
+理論の現在地、Lean 定理名、G1/G2/G3/G4 の閉鎖状態は、
+`persistence-lean` 側を優先してください。
+
+## 現在の正面入口
+
+まず読むなら、現在は v4 preprint を入口にしてください。
+
+1. [v4/preprints/ja/構造持続理論.md](v4/preprints/ja/構造持続理論.md)
+2. [v4/preprints/ja/pdf/PREPRINT_THEORY_ja_whitepaper.pdf](v4/preprints/ja/pdf/PREPRINT_THEORY_ja_whitepaper.pdf)
+3. [v4/preprints/ja/PREPRINT_LEAN_ARTIFACT_ja.md](v4/preprints/ja/PREPRINT_LEAN_ARTIFACT_ja.md)
+4. [v4/preprints/ja/M_補論.md](v4/preprints/ja/M_補論.md)
+5. [v4/preprints/ja/L_補論.md](v4/preprints/ja/L_補論.md)
+
+v3 は実験・証拠・旧導線を含む重要な履歴ですが、現在の理論説明の正面入口
+ではありません。
+
+## Lean 正本との関係
+
+2026年6月26日時点の安全な読みは次です。
+
+- G1: 必然性定理 / 無代替性の定理本体は閉じた公開入口まで到達
+- G2: 容量読取りは閉じた公開入口まで到達
+- G3: 具体イベント指数読取りは閉じた公開入口まで到達
+- G4: 方策本体読取りは閉じた公開入口まで到達
+- 運用計算可能性: 有限の生データから G2/G3/G4 読取り束への
+  最終公開入口まで到達
+
+ただし、各分野固有定理の再証明、経験的予測の自動保証、測定妥当性の証明、
+根拠なし外部転用は、この閉じた中核の外側です。
+
+## この理論が主張しないこと
+
+構造持続理論は、次を主張しません。
+
+- `S = M exp(-L)` だけで世界を予測できる
+- すべての分野が同じ固有法則で動く
+- 現実の測定妥当性が Lean だけで保証される
+- ある分野の介入効果が別分野へ自動転用される
+- 熱力学、制御理論、情報理論、信頼性理論などを置き換える
+
+主張するのは、維持対象をもつ構造について、持続・停止・崩壊・回復・介入を
+計算可能な境界問題として立てるための必要文法と、その文法からどの読取りが
+帰結するかです。
+
+## 実験・証拠層
+
+このリポジトリには、仕様固定層、構造推定層、外部再実行、有限評価、
+LLM 推論劣化、継続学習忘却、M 側評価などの記録があります。
+
+これらは理論核そのものではなく、各分野でこの境界座標がどの程度
+観測・診断・予測・介入設計に使えるかを調べる証拠層です。
+
+主な履歴導線:
+
+- [v3/03_domains/registry.tsv](v3/03_domains/registry.tsv)
+- [v3/05_evidence/README.md](v3/05_evidence/README.md)
+- [v3/05_evidence/evidence_status_dashboard.md](v3/05_evidence/evidence_status_dashboard.md)
+
+## PDF 生成
+
+日本語 preprint PDF は次で生成します。
+
+```bash
+cd v4/preprints/ja
+python3 build_whitepaper_preprints.py
+```
+
+出力先:
+
+```text
+v4/preprints/ja/pdf/
+```
+
+## 履歴について
+
+古い `v1/`、`v2/`、`v3/`、`analysis/`、handoff 類には、当時の語彙、
+古い Lean 状態、実験用語が残っています。これらは履歴として価値がありますが、
+現在の理論説明としては、v4 preprint と `persistence-lean` README を優先してください。
