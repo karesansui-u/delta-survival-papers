@@ -33,6 +33,8 @@ Support と呼べるのは、写像・特徴量・baseline・metric・split・�
 
 この核は、写像が事前固定された構造維持問題に対する代数的制約である。現実ドメインでは、どの \(V\)、どの \(m\)、どの \(d_t\)、どの \(r_t\) が自然かを発見する作業が別に必要になる。
 
+ここで \(M\) は raw resource stock ではなく、claim を支える資格づけ済み support projection として読む。したがって \(S=Me^{-L}\) や \(S=Me^{-B}\) は survival prediction ではなく、その support projection に構造損失または回復込み負担を反映した accounting potential である。
+
 この別作業を、写像発見と呼ぶ。写像発見は理論の外ではない。むしろ、理論を経験科学として動かすための必要な入口である。ただし、写像発見そのものは support ではない。
 
 

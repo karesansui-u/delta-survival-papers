@@ -6,11 +6,15 @@
 
 まず読むなら次です。
 
-1. [`構造持続理論.md`](構造持続理論.md)
-2. [`pdf/PREPRINT_THEORY_ja_whitepaper.pdf`](pdf/PREPRINT_THEORY_ja_whitepaper.pdf)
-3. [`PREPRINT_LEAN_ARTIFACT_ja.md`](PREPRINT_LEAN_ARTIFACT_ja.md)
-4. [`M_補論.md`](M_補論.md)
-5. [`L_補論.md`](L_補論.md)
+1. [`PREPRINT_THEORY_SHORT_ja.md`](PREPRINT_THEORY_SHORT_ja.md)
+2. [`pdf/PREPRINT_THEORY_SHORT_ja_whitepaper.pdf`](pdf/PREPRINT_THEORY_SHORT_ja_whitepaper.pdf)
+3. [`ZENODO_METADATA_THEORY_SHORT_ja.md`](ZENODO_METADATA_THEORY_SHORT_ja.md)
+4. [`投稿用集中版_設計.md`](投稿用集中版_設計.md)
+5. [`構造持続理論.md`](構造持続理論.md)
+6. [`pdf/PREPRINT_THEORY_ja_whitepaper.pdf`](pdf/PREPRINT_THEORY_ja_whitepaper.pdf)
+7. [`PREPRINT_LEAN_ARTIFACT_ja.md`](PREPRINT_LEAN_ARTIFACT_ja.md)
+8. [`M_補論.md`](M_補論.md)
+9. [`L_補論.md`](L_補論.md)
 
 ## 理論編の中心
 
@@ -29,9 +33,17 @@ G1 の必然性定理は、この文法が単なる便利な記法ではなく�
 ## 各文書
 
 - `構造持続理論.md`
-  - 理論編。持続・停止・崩壊を計算可能な境界問題として立てるための
+  - 理論編の詳細版。持続・停止・崩壊を計算可能な境界問題として立てるための
     必要文法、G1 必然性定理、G2/G3/G4、運用計算可能性、
     非主張境界を説明します。
+- `PREPRINT_THEORY_SHORT_ja.md`
+  - Zenodo / 初見読者向け短縮版。Lean 側 README と同じ本質順序で、
+    必要文法、G1 必然性定理、予測、分野横断性、非主張境界を短く説明します。
+- `ZENODO_METADATA_THEORY_SHORT_ja.md`
+  - Zenodo アップロード時に使うタイトル、説明文、キーワード、関連識別子のメモです。
+- `投稿用集中版_設計.md`
+  - arXiv / ワークショップ / 外部評価向けに、広い橋渡し群ではなく、
+    G1 必然性定理、必要文法、少数の強い適用例へ絞るための発表方針です。
 - `PREPRINT_LEAN_ARTIFACT_ja.md`
   - Lean アーティファクト編。Lean が何を保証し、何を保証しないかを
     説明します。

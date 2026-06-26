@@ -11,7 +11,11 @@
 
 ## 一番短い説明
 
-構造持続理論は、まず一つの問いから始まります。
+構造持続理論は、維持したい性質・機能・状態をもつ構造について、
+維持・停止・崩壊・回復・介入を計算可能な境界問題として扱う、
+Lean 形式化された境界理論です。
+
+それは一つの問いから始まります。
 
 > 「持続する」「停止する」「崩壊する」を計算可能な問題として立てるには、
 > 何を必ず明示しなければならないのか？
@@ -116,7 +120,7 @@ S = M exp(-L)
 
 ## G1 必然性定理
 
-Lean 正本側では、G1 は定理本体として閉じた公開入口まで到達しています。
+Lean 形式化リポジトリでは、G1 は定理本体として閉じた公開入口まで到達しています。
 
 G1 の読みは次です。
 
@@ -135,7 +139,7 @@ G1 の読みは次です。
 
 ## このリポジトリの役割
 
-このリポジトリは、Lean 正本ではありません。役割は次です。
+このリポジトリは、Lean 形式化リポジトリではありません。役割は次です。
 
 - 理論を論文形式で説明する
 - 日本語プレプリントと PDF を管理する
@@ -150,16 +154,23 @@ G1 の読みは次です。
 
 まず読むなら、現在は v4 preprint を入口にしてください。
 
-1. [v4/preprints/ja/構造持続理論.md](v4/preprints/ja/構造持続理論.md)
-2. [v4/preprints/ja/pdf/PREPRINT_THEORY_ja_whitepaper.pdf](v4/preprints/ja/pdf/PREPRINT_THEORY_ja_whitepaper.pdf)
-3. [v4/preprints/ja/PREPRINT_LEAN_ARTIFACT_ja.md](v4/preprints/ja/PREPRINT_LEAN_ARTIFACT_ja.md)
-4. [v4/preprints/ja/M_補論.md](v4/preprints/ja/M_補論.md)
-5. [v4/preprints/ja/L_補論.md](v4/preprints/ja/L_補論.md)
+1. [v4/preprints/ja/PREPRINT_THEORY_SHORT_ja.md](v4/preprints/ja/PREPRINT_THEORY_SHORT_ja.md)
+2. [v4/preprints/ja/pdf/PREPRINT_THEORY_SHORT_ja_whitepaper.pdf](v4/preprints/ja/pdf/PREPRINT_THEORY_SHORT_ja_whitepaper.pdf)
+3. [v4/preprints/ja/投稿用集中版_設計.md](v4/preprints/ja/投稿用集中版_設計.md)
+4. [v4/preprints/ja/構造持続理論.md](v4/preprints/ja/構造持続理論.md)
+5. [v4/preprints/ja/pdf/PREPRINT_THEORY_ja_whitepaper.pdf](v4/preprints/ja/pdf/PREPRINT_THEORY_ja_whitepaper.pdf)
+6. [v4/preprints/ja/PREPRINT_LEAN_ARTIFACT_ja.md](v4/preprints/ja/PREPRINT_LEAN_ARTIFACT_ja.md)
+7. [v4/preprints/ja/M_補論.md](v4/preprints/ja/M_補論.md)
+8. [v4/preprints/ja/L_補論.md](v4/preprints/ja/L_補論.md)
+
+外部評価や投稿では、広い橋渡し群を最初に見せるのではなく、
+G1 必然性定理、持続・停止・崩壊計算の必要文法、少数の強い適用例に
+集中してください。
 
 v3 は実験・証拠・旧導線を含む重要な履歴ですが、現在の理論説明の正面入口
 ではありません。
 
-## Lean 正本との関係
+## Lean 形式化リポジトリとの関係
 
 2026年6月26日時点の安全な読みは次です。
 

@@ -16,6 +16,14 @@ SOURCE_PREAMBLE = Path(
 
 DOCS = [
     {
+        "src": PREPRINT_DIR / "PREPRINT_THEORY_SHORT_ja.md",
+        "stem": "PREPRINT_THEORY_SHORT_ja_whitepaper",
+        "title": "構造持続理論 短縮版",
+        "subtitle": "持続・停止・崩壊を計算可能な境界問題として立てるための必要文法",
+        "date": "2026年6月26日",
+        "drop_prefix_headings": 2,
+    },
+    {
         "src": PREPRINT_DIR / "構造持続理論.md",
         "stem": "PREPRINT_THEORY_ja_whitepaper",
         "title": "構造持続理論",

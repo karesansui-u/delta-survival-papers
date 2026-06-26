@@ -82,6 +82,8 @@ re-proves positive recurrence or geometric ergodicity".
 | s-t reliability | A12 v0b kappa=2 | supported | finite synthetic s-t cut-spectrum reliability; kappa=2-only surface |
 | s-t reliability | A12 v0c kappa=3 | supported | finite synthetic s-t cut-spectrum reliability; kappa=3-only surface |
 | coding channel | A06/A19 primary v0 | supported | finite BEC sparse parity-check surface; low-order dependency pressure improves natural coding baseline |
+| M finite benchmark | QSA | finite support signal; outside computational rerun | finite synthetic qualified-support assignment surface; not external real-domain validation |
+| M finite benchmark | SRE-H1 | finite support signal; outside computational rerun with packaging note | finite synthetic matched qualified-M surface; not external SRE validation |
 
 
 4. Outside Reruns
@@ -91,6 +93,8 @@ re-proves positive recurrence or geometric ergodicity".
 |---|---|---|---|
 | Mixed-CSP primary | outside_rerun_success | 3/3 outside reruns reproduced the qualitative support decision | one frozen finite-CSP package, not whole-program replication |
 | Exp43c q-coloring | outside_rerun_success | 3/3 outside reruns reproduced the qualitative support decision | one frozen q-coloring package, not arbitrary graph/CSP support |
+| QSA | outside_rerun_success | 1 outside Windows/Python rerun reproduced the finite-benchmark primary/fresh decisions | computational rerun only; not external real-domain validation |
+| SRE-H1 | outside_rerun_success_with_packaging_note | 1 outside Windows/Python rerun reproduced the finite-benchmark primary/fresh decisions | computational rerun only; packaging note recorded; not external SRE validation |
 
 
 5. No-Support And Invalid-Run Records

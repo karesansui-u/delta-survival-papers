@@ -14,6 +14,10 @@ Evidence is separated from theory claims.
   strengthening rerun discipline around supported non-CSP specification-fixed
   packages.
 - `frozen_packages.tsv`: frozen tests or packages that define a support decision.
+- `m_side_finite_benchmark_support_summary.md`: summary of QSA and SRE-H1
+  finite M-side benchmark records imported from the companion Lean-preprint
+  repository. These are computationally rerunnable finite support signals, not
+  external real-domain validation.
 - `outside_reruns.tsv`: independent or outside reruns.
 - `no_support.tsv`: failed frozen tests, weak-axis failures, and silence records.
 - `field_demonstrations.tsv`: operational field evidence such as maintainer
@@ -107,6 +111,18 @@ do not prove the whole theory and do not declare a universal law. They show that
 two frozen specification-fixed packages can be rerun outside the author's
 environment while preserving the support decision for the structural coordinate
 against raw baselines.
+
+Current M-side finite computational reruns:
+
+- QSA: frozen finite qualified-support assignment benchmark, 1 outside
+  Windows/Python rerun reproduced the primary/fresh finite-benchmark decisions.
+- SRE-H1: frozen finite matched qualified-M benchmark, 1 outside Windows/Python
+  rerun reproduced the primary/fresh finite-benchmark decisions, with a packaging
+  note about manual `data/` directory creation before the local script fix.
+
+These M-side records are finite benchmark support signals and computational
+rerun records. They are not external real-domain validation, not external SRE
+support, and not empirical parity with the L-side outside-rerun anchors.
 
 Do not delete failed attempts. They are part of the research program.
 

@@ -1,10 +1,10 @@
-補論_構造持続におけるM（有効維持余力）の操作的定式化
-構造持続における M（有効維持余力）の操作的定式化
-— 構造持続の収支原理のための operational resource mapping —
+補論_構造持続におけるM（資格づけ済みsupport）の操作的定式化
+構造持続における M（資格づけ済み support）の操作的定式化
+— 構造持続の収支原理のための operational support mapping —
 
 要旨
 
-本補論は、構造持続の最小形式 $S = M e^{-L}$ のうち、支える側の項 $M$ を有効維持余力として整理する。ここで重要なのは、$M$ の存在そのものが新しいということではない。構造が維持できない原因を資源不足や余力不足として見る考え方は、従来から自然に用いられてきた。本理論の新規性は、支える側の $M$ だけでは説明できなかった維持可能領域の縮小を、$L$ や $B$ として分離した点にある。本補論の役割は、その既知のリソース側を、主理論の座標と矛盾しない形で記録する操作的整理である。
+本補論は、構造持続の最小形式 $S = M e^{-L}$ のうち、支える側の項 $M$ を、claim を支える資格づけ済み support projection として整理する。ここで重要なのは、$M$ を raw resource stock や単なる有効量と同一視しないことである。構造が維持できない原因を資源不足や余力不足として見る考え方は従来から自然に用いられてきたが、本補論では、それを target、horizon、assumptions、path、certificate、required support、typed gate を持つ support claim として記録する。本補論の役割は、支える側の量を主理論の座標と矛盾しない形で license / non-license できる操作的整理である。
 
 具体的には、内部の維持能力成分を $M^{\mathrm{int}} = (M_{\mathrm{buffer}}^{\mathrm{int}}, M_{\mathrm{recovery}}^{\mathrm{int}}, M_{\mathrm{reconfiguration}}^{\mathrm{int}})$、外部供給 channel を $M^{\mathrm{external}} = (M_{\mathrm{ext}\to\mathrm{buffer}}, M_{\mathrm{ext}\to\mathrm{recovery}}, M_{\mathrm{ext}\to\mathrm{reconfiguration}})$ と分け、raw resource $R$ から維持能力成分への写像 $\gamma_i$、内部能力と外部供給を合わせる集約 $\widetilde M_j = A_j(M^{\mathrm{int}}_j, M_{\mathrm{ext}\to j})$、複数の effective component を結合する $\Phi$ を通じて、系の構造持続ポテンシャルを
 \[
@@ -12,11 +12,17 @@
 \]
 と書き直す。
 
-本補論の役割は、普遍法則そのものを主張することではなく、構造消耗量と回復量の収支を現実ドメインへ写すときの $M$ 側の操作化を与えることである。ここでの $M$ は、その時点で、対象となる構造条件の維持に実際に使える有効量である。成分分解は、この有効量を応用上読みやすくするための補助的な診断道具であり、必須の理論核ではない。
+本補論の役割は、普遍法則そのものを主張することではなく、構造消耗量と回復量の収支を現実ドメインへ写すときに、$M$ 側の support projection をどう操作化するかを与えることである。ここでの $M$ は、その時点の raw resource や裸の余力量ではなく、対象となる claim を指定された文脈で支えてよい資格づけ済み support の readout である。成分分解は、この support projection を応用上読みやすくするための補助的な診断道具であり、必須の理論核ではない。
 
 本補論は新しい普遍法則の証明ではない。また、経験的 pilot を完了した論文でもない。本補論の位置づけは、構造持続の収支原理の回復量・資源入力を実ドメインで測るための support-side operational mapping である。
 
-現在の主理論の読みにおいて、Paper 1 / Paper 2 / Core Paper が必要とする \(M\) は、有効維持余力を表すスカラーで十分である。以下の成分分解は、\(M\) の普遍的な内訳や予測力を主張するものではなく、必要な場合に使う任意の診断語彙である。したがって、\(M_{\mathrm{buffer}},M_{\mathrm{recovery}},M_{\mathrm{reconfiguration}}\) の経験的支持は、本理論の中核である \(L/B\) の対数比座標とは分けて読む。
+現在の主理論の読みにおいて、\(M\) は raw resource stock ではなく、claim を支える資格づけ済み support の projection である。スカラー \(M\) はこの support projection の低粒度 readout として使えるが、support claim を license するには、target、horizon、assumptions、path、certificate、required support、typed gate を明示する必要がある。以下の成分分解は、\(M\) の普遍的な内訳や予測力を主張するものではなく、必要な場合に使う任意の診断語彙である。したがって、\(M_{\mathrm{buffer}},M_{\mathrm{recovery}},M_{\mathrm{reconfiguration}}\) の経験的支持は、本理論の中核である \(L/B\) の対数比座標、および M 側の required-normalized log-shortfall とは分けて読む。
+
+現在の入口の三文は次である。
+
+> L は構造側の損失を読む。
+> M は claim を支える資格づけ済み support を読む。
+> S は、その support projection に構造損失を反映した accounting potential である。
 
 
 1. はじめに
@@ -31,18 +37,18 @@
 
 本補論は新しい普遍法則の証明ではない。本補論は、支える側の操作的座標系である。構造持続の最小形式と条件つき導出補論が与えた structural consumption \(L\)、および LLM companion I/II で経験的に観察された構造消耗と支援の相互作用を前提として、構造消耗を回復する資源・修復入力を実ドメインでどう記録するかを問う。
 
-Paper 1 の最小形式 $S = M e^{-L}$ には、従来から理解されてきたリソース側が残る。それが有効維持余力 M である。M は「L とは別側で、構造がどれだけ持ちこたえられるか」を担う支え側の量として導入されたが、既存分冊ではその操作的な測り方はほとんど議論されていない。補論「構造持続写像の標準手順」は運用展開
+Paper 1 の最小形式 $S = M e^{-L}$ には、構造損失を受けた後の support projection 側が残る。それが現在の読みでの M である。M は「L とは別側で、claim を支える資格づけ済み support」を読む項として導入されるが、既存分冊ではその操作的な測り方はほとんど議論されていない。補論「構造持続写像の標準手順」は運用展開
 \[
   S = N_{\mathrm{eff}}^{(0)} \times (\mu / \mu_c) \times e^{-L}
 \]
-を与え、M を初期有効選択肢多様性 $N_{\mathrm{eff}}^{(0)}$ と有効余力 $\mu$ の積として解体しているが、この展開のうち、何が「耐える」作用で、何が「戻す」作用で、何が「作り変える」作用で、何が「外から支える」作用かは、区別されないままである。
+を与え、M の一つの操作的 projection を初期有効選択肢多様性 $N_{\mathrm{eff}}^{(0)}$ と余力 readout $\mu$ の積として展開しているが、この展開のうち、何が「耐える」作用で、何が「戻す」作用で、何が「作り変える」作用で、何が「外から支える」作用かは、区別されないままである。
 
 1.1 スカラー M の限界
 
 現行のスカラー M だけでは、次のような観察を十分に記録できない。
 
 - 資源が潤沢にあるにもかかわらず、機能が維持できない。
-- raw resource R は同じでも、その時点で対象となる構造条件に投入できる有効量が異なる。
+- raw resource R は同じでも、その時点で対象 claim に対して license される qualified support が異なる。
 - 崩壊の仕方が系ごとに質的に異なる (即時、徐々、相転移)。
 - 余力が、耐える、戻す、作り変える、外から支える、などの異なる維持機能として現れる。
 
@@ -53,10 +59,10 @@ Paper 1 の最小形式 $S = M e^{-L}$ には、従来から理解されてき�
 本補論の問いは、一文に要約される。
 
 \begin{quote}
-raw resource \(R\) のうち、どれだけが対象となる構造条件を維持するための有効量 \(M\) として、その時点で使えるのか。
+どの support bundle が、対象となる claim を、指定された target / horizon / assumptions / path / certificate のもとで支える資格を持つのか。
 \end{quote}
 
-この問いに答えるには、M を raw resource と同一視せず、「構造が持ちこたえるために実際に使える有効量」として読む必要がある。成分分解はそのための一つの操作的手段であり、本補論はその最小の定式化を与えることを目的とする。
+この問いに答えるには、M を raw resource と同一視せず、「その claim に使ってよい資格づけ済み support projection」として読む必要がある。R は M の主役ではなく、M を raw resource へ collapse しないための境界項である。成分分解はそのための一つの操作的手段であり、本補論はその最小の定式化を与えることを目的とする。
 
 1.3 立場と範囲
 
@@ -87,20 +93,20 @@ raw resource \(R\) のうち、どれだけが対象となる構造条件を維�
 
 2.1 F / Sigma / R / M の 4 層
 
-構造を維持できるかどうかは、単に raw resource がどれだけあるかの問題ではない。何を守ろうとしているのか、どの構造を通して守るのか、その資源がその時点でどれだけ有効維持余力に変換されているのかによって決まる。本補論では、この区別を次の 4 層で明示する。
+構造を維持できるかどうかは、単に raw resource がどれだけあるかの問題ではない。何を守ろうとしているのか、どの構造を通して守るのか、その支えがその時点でどれだけ claim-scoped qualified support として license されるのかによって決まる。本補論では、この区別を次の 4 層で明示する。
 
 - $F$: 守りたい機能 (target function)
 - $\Sigma$: その機能を担う構造
 - $R$: 資源素材 (raw resource stock)
-- $M$: 有効維持余力 (effective maintenance amount / capacity)
+- $M$: claim を支える資格づけ済み support projection / effective support bundle
 
-ここで $F$ と $\Sigma$ は、Paper 1 の $V^{(0)}$ および測度 $m$ の具体化に対応する。どの構造の持続を問題にしているかを決めるのが $F$ と $\Sigma$ である。$R$ は、系が素材として持っている stock である。予算、人員、時間、エネルギー、容量、冗長要素などが該当する。$M$ は、その $R$ のうち「$F$ を守るために、その時点で実際に使える有効量」である。
+ここで $F$ と $\Sigma$ は、Paper 1 の $V^{(0)}$ および測度 $m$ の具体化に対応する。どの構造の持続を問題にしているかを決めるのが $F$ と $\Sigma$ である。$R$ は、系が素材として持っている stock である。予算、人員、時間、エネルギー、容量、冗長要素などが該当する。$M$ は、その $R$ の一部を単純に数えた量ではなく、特定の claim に対して、指定された時間窓・前提・到達経路・証明書・必須 gate のもとで使ってよい support projection である。
 
-重要なのは、$R$ と $M$ を混同しないことである。現金はあるが承認権限が詰まっている、病床はあるが看護師がいない、キャッシュはあるが設定ミスで効かない、という状況はすべて「$R$ はあるが $M$ は小さい」と書ける。本補論の維持能力成分の分解が意味を持つのは、この区別が最初から明示されているからである。
+重要なのは、$R$ と $M$ を混同しないことである。現金はあるが承認権限が詰まっている、病床はあるが看護師がいない、キャッシュはあるが設定ミスで効かない、という状況はすべて「$R$ はあるが、その claim を license する M support は小さい、または成立しない」と書ける。本補論の維持能力成分の分解が意味を持つのは、この区別が最初から明示されているからである。
 
 2.2 維持能力成分と供給 channel の定義
 
-M の最小意味は、対象となる構造条件の維持に使える有効量である。応用上、この有効量をどの機能として使えるかを区別したい場合には、内部の維持能力成分と外部供給 channel に分けて扱う。集約関数 $\Phi$ が直接受け取る同列の座標は $M_{\mathrm{buffer}}, M_{\mathrm{recovery}}, M_{\mathrm{reconfiguration}}$ の三つである。外部供給は第四の維持能力成分ではなく、外部から他成分を供給する channel / externalization profile として扱う。以下では、記号を短くするため $\mathrm{external}$ を $\mathrm{ext}$ と略記する。
+M の最小意味は、対象 claim を指定文脈で支えてよい qualified support projection である。応用上、この support projection がどの支え役割を license するかを区別したい場合には、内部の維持能力成分と外部供給 channel に分けて扱う。集約関数 $\Phi$ が直接受け取る同列の座標は $M_{\mathrm{buffer}}, M_{\mathrm{recovery}}, M_{\mathrm{reconfiguration}}$ の三つである。外部供給は第四の維持能力成分ではなく、外部から他成分を供給する channel / externalization profile として扱う。以下では、記号を短くするため $\mathrm{external}$ を $\mathrm{ext}$ と略記する。
 
 \begin{definition}[維持能力成分と外部供給 channel]
 \[
@@ -121,7 +127,7 @@ M の最小意味は、対象となる構造条件の維持に使える有効量
 | $M_{\mathrm{ext}\to\mathrm{recovery}}$ | externally supplied recovery | 外部 channel が recovery / repair を供給する量 |
 | $M_{\mathrm{ext}\to\mathrm{reconfiguration}}$ | externally supplied reconfiguration capacity | 外部 channel が reconfiguration を供給する量 |
 
-ここで強調すべきなのは、$\mathrm{buffer},\mathrm{recovery},\mathrm{reconfiguration}$ は「何を供給するか」を表す維持能力成分であり、$\mathrm{external}$ は「誰が供給するか」を表す channel であるという点である。予算や人員や時間そのものは source であって、$M_{\mathrm{buffer}}$ などの成分ではない。予算が増えたからといって、それが自動的に buffer capacity や recovery capacity に変換されるわけではない。どの成分に、どれだけ、どのように変換されるかを操作的に記述するのが、次節で導入する写像 $\gamma_i$ の役割である。
+ここで強調すべきなのは、$\mathrm{buffer},\mathrm{recovery},\mathrm{reconfiguration}$ は「何を供給するか」を表す維持能力成分であり、$\mathrm{external}$ は「誰が供給するか」を表す channel であるという点である。予算や人員や時間そのものは source であって、$M_{\mathrm{buffer}}$ などの成分ではない。予算が増えたからといって、それが自動的に buffer capacity や recovery capacity として license されるわけではない。どの成分が、どれだけ、どの条件で qualified support readout になるかを操作的に記述するのが、次節で導入する写像 $\gamma_i$ の役割である。
 
 以降では、内部能力と外部供給を合わせた effective component profile を
 \[
@@ -142,11 +148,11 @@ $M_{\mathrm{reconfiguration}}$ は、target function $F$ を保つ範囲の再�
 
 この制限は、Paper 1 §2 が「基体そのものの消滅ではなく、ある構造としての持続の失敗」を扱うと述べた立場と一貫する。$F$ 自体の遷移は、本補論の枠組みではなく、構造持続の集合値力学的表現 (別補論) の $R_t$ 作用のうち対象となる構造条件自体を書き換える部分として、将来の拡張対象となる。
 
-2.4 Raw resource から維持能力成分への写像 $\gamma_i$
+2.4 source / context から qualified support component readout への写像 $\gamma_i$
 
-$R$ から各 $M_i$ への変換を、写像 $\gamma_i$ で与える。
+source / context から各 qualified support component readout への写像を、$\gamma_i$ で与える。
 
-\begin{definition}[維持能力成分への変換写像]
+\begin{definition}[qualified support component readout への写像]
 \[
   M_j^{\mathrm{int}} = \gamma_j^{\mathrm{int}}(R, \Sigma, F),
   \quad
@@ -172,11 +178,11 @@ $\gamma_i$ を導入することで、本補論は次の観察を理論内で書
 \]
 すなわち、「資源は潤沢にあるが、機能維持能力にはなっていない」という事態が、$M_i$ の小ささとして定量的に書ける。この形は、§1.1 で挙げた「資源があるのに機能しない」という観察に対する形式的な位置づけを与える。
 
-2.5 有効維持余力と集約関数 $\Phi$
+2.5 support projection と集約関数 $\Phi$
 
-系の有効維持余力 $M_{\mathrm{eff}}$ を、維持能力成分ベクトルの集約量として定める。
+系の低粒度 support projection $M_{\mathrm{eff}}$ を、維持能力成分ベクトルの集約量として定める。
 
-\begin{definition}[有効維持余力]
+\begin{definition}[support projection]
 \[
   M_{\mathrm{eff}} = \Phi(\widetilde M_{\mathrm{buffer}}, \widetilde M_{\mathrm{recovery}}, \widetilde M_{\mathrm{reconfiguration}}).
 \]
@@ -296,7 +302,7 @@ Lean では、維持能力成分を
 
 3. LLM companion I / II の成分対応
 
-§2 では、有効維持余力を、内部の維持能力成分
+§2 では、M 側の support projection を、内部の維持能力成分
 \[
   M^{\mathrm{int}}=(M_{\mathrm{buffer}}^{\mathrm{int}},M_{\mathrm{recovery}}^{\mathrm{int}},M_{\mathrm{reconfiguration}}^{\mathrm{int}})
 \]
@@ -452,7 +458,7 @@ LLM companion II §7.5 は、持続知能に少なくとも三つの役割が必
 
 この対応により、LLM companion II の結論は本補論の任意 M 成分診断に接続する。条件 (i) 内部に長期的な矛盾解消代謝機構を持たず、条件 (ii) 推論呼び出しの境界を越えて信念を持ち越す機構が弱い系では、単なる capacity 増強ではなく、$M_{\mathrm{recovery}}$ に相当する回復余力が重要になる可能性が高い。
 
-LLM companion I では、これは in-context scope marker または外部代謝として現れた。LLM companion II では、F-v2c の依存 DAG controller として現れた。どちらも、raw resource を増やすのではなく、衝突をどう整理し直すかを変えている。この点で、LLM companion I / II は本補論の基本的読み——raw resource が同じでも、それが対象となる構造条件の維持に使える有効量 \(M\) へどう変換されるかが異なりうる——への準備的根拠を与える。
+LLM companion I では、これは in-context scope marker または外部代謝として現れた。LLM companion II では、F-v2c の依存 DAG controller として現れた。どちらも、raw resource を増やすのではなく、衝突をどう整理し直すかを変えている。この点で、LLM companion I / II は本補論の基本的読み——raw resource が同じでも、対象 claim に対してどの qualified support が license されるかは異なりうる——への準備的根拠を与える。
 
 3.6 非主張
 
@@ -530,11 +536,11 @@ Software の $\Sigma$ は、ソースコードの文字列だけではない。$
   \text{prompt design / operational protocol / runbook} \in \Sigma.
 \]
 
-これにより、$\gamma_i(R,\Sigma,F)$ は context / protocol の違いを自然に受け取れる。たとえば、同じ SRE team time という $R$ があっても、rollback procedure が $\Sigma$ に存在しなければ $M_{\mathrm{recovery}}$ へ変換されにくい。
+これにより、$\gamma_i(R,\Sigma,F)$ は context / protocol の違いを自然に受け取れる。たとえば、同じ SRE team time という $R$ があっても、rollback procedure が $\Sigma$ に存在しなければ recovery support として license されにくい。
 
 4.4 Raw resource $R$
 
-Software / SaaS の $R$ は raw stock であり、それ自体はまだ有効維持余力ではない。
+Software / SaaS の $R$ は raw stock であり、それ自体はまだ claim を支える資格づけ済み support ではない。
 
 例として次がある。
 
@@ -616,11 +622,11 @@ Software では、$M_{\mathrm{reconfiguration}}$ に architecture change, modula
 一方、機能そのものを捨てる、SLA を下げる、対応しない顧客を切り捨てる、別プロダクトへ転換する、という変更は $F$ の変更であり、本補論の $M_{\mathrm{reconfiguration}}$ ではない。
 
 
-5. 維持余力 profile の診断的読み
+5. qualified support profile の診断的読み
 
-本補論の中心は、collapse profile の完全予測でも、修正方針の自動選択でもない。中心にあるのは、$M$ を有効維持余力の profile として分解し、総資源量や scalar $M$ だけでは見えない支え方の差を記述することである。
+本補論の中心は、collapse profile の完全予測でも、修正方針の自動選択でもない。中心にあるのは、$M$ を qualified support profile として分解し、総資源量や scalar support projection だけでは見えない支え方の差を記述することである。
 
-同じ $\hat L$、同じ raw resource $R$、同じ scalar $M_{\mathrm{total}}$ を持つ二つの software system でも、維持能力成分の構成が違えば、どの種類の余力が厚く、どの種類の余力が薄いかは異なりうる。本補論では、この差を「支え方の profile」として記録する。
+同じ $\hat L$、同じ raw resource $R$、同じ scalar support projection $M_{\mathrm{total}}$ を持つ二つの software system でも、維持能力成分、typed gate、compatibility、path の構成が違えば、どの種類の support が厚く、どの種類の support が薄いかは異なりうる。本補論では、この差を「支え方の profile」として記録する。
 
 5.1 Component readout examples
 
@@ -635,7 +641,7 @@ Software では、$M_{\mathrm{reconfiguration}}$ に architecture change, modula
 | $M_{\mathrm{ext}\to\mathrm{recovery}}$ | vendor escalation, external SRE, managed rollback support, upstream maintainer response |
 | $M_{\mathrm{ext}\to\mathrm{reconfiguration}}$ | consultant-led migration, upstream redesign, external refactoring support |
 
-この分類は、用語の名前ではなく、その readout がどの有効余力を表すかによって決まる。たとえば「vendor support」は、それが rollback を代行するなら $M_{\mathrm{ext}\to\mathrm{recovery}}$、容量を提供するなら $M_{\mathrm{ext}\to\mathrm{buffer}}$ の readout である。
+この分類は、用語の名前ではなく、その readout がどの qualified support role を表すかによって決まる。たとえば「vendor support」は、それが rollback を代行するなら $M_{\mathrm{ext}\to\mathrm{recovery}}$、容量を提供するなら $M_{\mathrm{ext}\to\mathrm{buffer}}$ の readout である。
 
 5.2 M-component diagnostic reading
 
@@ -645,7 +651,7 @@ Software では、$M_{\mathrm{reconfiguration}}$ に architecture change, modula
 Comparable $\hat L$, comparable raw $R$, and comparable scalar $M_{\mathrm{total}}$ のもとで、維持能力成分 profile は held-out outcome または診断に対して scalar baseline にない情報を持つ。
 \end{quote}
 
-この検査標的は、「M 成分診断が自動的に修正方針を返す」という主張ではない。言えるのは、raw resource や scalar \(M\) だけでは見えない有効余力の偏りが、診断や予測に追加情報を持つかどうかである。
+この検査標的は、「M 成分診断が自動的に修正方針を返す」という主張ではない。言えるのは、raw resource や scalar \(M\) だけでは見えない qualified support profile の偏りが、診断や予測に追加情報を持つかどうかである。
 
 例:
 
@@ -801,7 +807,7 @@ Component predictors
 | $M_{\mathrm{ext}\to\mathrm{recovery}}$ | vendor incident response, external SRE support, upstream maintainer response |
 | $M_{\mathrm{ext}\to\mathrm{reconfiguration}}$ | external migration support, consultant-led redesign, upstream architectural support |
 
-各 signal は、raw resource ではなく effective amount として operationalize する必要がある。たとえば「SRE がいる」は raw $R$ であり、「対象サービスで restore drill が実施済みで手順が有効」は $M_{\mathrm{recovery}}^{\mathrm{int}}$ signal である。
+各 signal は、raw resource ではなく qualified support readout として operationalize する必要がある。たとえば「SRE がいる」は raw $R$ であり、「対象サービスで restore drill が実施済みで手順が有効」は $M_{\mathrm{recovery}}^{\mathrm{int}}$ signal である。
 
 6.4 Model families
 
@@ -904,11 +910,11 @@ $A_j$ についても、reasonable candidate は preregistration で固定され
 
 | support level | criterion |
 |---|---|
-| optional M-component diagnostic support | component-aware predictor improves held-out risk prediction or diagnosis over raw / scalar baselines |
-| robustness support | optional M-component diagnostic support is robust across $\rho_i$, $\Phi$, and $A_j$ candidate families |
-| no-support | scalar baselines match or beat component-aware models, or results depend on post-hoc normalization / aggregation choices |
+| M-side qualified-support diagnostic | component / gate / support-bundle readout improves held-out risk prediction or diagnosis over raw, scalar, or support-projection baselines |
+| M-side robustness support | the qualified-support diagnostic is robust across $\rho_i$, $\Phi$, $A_j$, gate, compatibility, and shuffled-M guard candidate families |
+| no-support | scalar/support baselines match or beat qualified-support models, or results depend on post-hoc normalization / aggregation choices |
 
-この分類により、「M 成分の読み出しが baseline にない情報を持った」ことだけを、主理論核とは別の任意診断として扱う。
+この分類により、「M 側の component / gate / support-bundle readout が baseline にない情報を持った」ことだけを、主理論核とは別の限定診断として扱う。
 
 ここで reasonable とは、§6.6 の $\rho_i$、§6.7 の $\Phi$、§6.8 の $A_j$ で preregister された候補 family に属するものを指す。
 
@@ -927,7 +933,7 @@ $A_j$ についても、reasonable candidate は preregistration で固定され
 - $\Phi$ candidate families。
 - $A_j$ candidate families。
 - primary metric。
-- optional M-component diagnostic support threshold。
+- M-side qualified-support diagnostic threshold。
 - minimum unit count per fold。
 - detectable effect size / power target for the primary endpoint。
 - handling of missing operational data。
@@ -947,7 +953,7 @@ $A_j$ についても、reasonable candidate は preregistration で固定され
 
 7. 限界と次段階
 
-本補論の貢献は、支える側の項 $M$ を有効維持余力として読み直し、raw resource と同一視せず、必要に応じて維持能力成分と外部供給 channel に分け、設計・診断・比較可能な profile として扱うことである。
+本補論の貢献は、支える側の項 $M$ を claim-scoped qualified support projection として読み直し、raw resource と同一視せず、必要に応じて維持能力成分、外部供給 channel、typed gate、required support を分け、設計・診断・比較可能な profile として扱うことである。
 
 ただし、本補論はこの段階で empirical pilot を完了したとは主張しない。本補論が与えるのは、次の三点である。
 
@@ -1068,8 +1074,8 @@ Software contract-coherence diagnostics は、本補論の main validation で�
 
 8. 結論
 
-本補論は、構造持続の最小形式 $S = M e^{-L}$ の右辺のうち、従来から理解されてきた支える側の項 $M$ を有効維持余力として整理した。M の最小意味は、対象となる構造条件を維持するためにその時点で実際に使える有効量である。必要な場合には、内部の維持能力成分を $M_{\mathrm{buffer}}^{\mathrm{int}}, M_{\mathrm{recovery}}^{\mathrm{int}}, M_{\mathrm{reconfiguration}}^{\mathrm{int}}$ に分け、外部供給 channel を $M_{\mathrm{ext}\to\mathrm{buffer}}, M_{\mathrm{ext}\to\mathrm{recovery}}, M_{\mathrm{ext}\to\mathrm{reconfiguration}}$ として、それぞれの実効能力を $\widetilde M_j = A_j(M_j^{\mathrm{int}}, M_{\mathrm{ext}\to j})$ に集約できる。そのうえで、$\Phi$ による effective maintenance amount $M_{\mathrm{eff}} = \Phi(\widetilde M_{\mathrm{buffer}}, \widetilde M_{\mathrm{recovery}}, \widetilde M_{\mathrm{reconfiguration}})$ を通じて、構造持続ポテンシャルを書き直せる。
+本補論は、構造持続の最小形式 $S = M e^{-L}$ の右辺のうち、支える側の項 $M$ を claim-scoped qualified support projection として整理した。M の最小意味は、対象となる claim を指定された target / horizon / assumptions / path / certificate / typed gate のもとで支えてよい support readout である。必要な場合には、内部の維持能力成分を $M_{\mathrm{buffer}}^{\mathrm{int}}, M_{\mathrm{recovery}}^{\mathrm{int}}, M_{\mathrm{reconfiguration}}^{\mathrm{int}}$ に分け、外部供給 channel を $M_{\mathrm{ext}\to\mathrm{buffer}}, M_{\mathrm{ext}\to\mathrm{recovery}}, M_{\mathrm{ext}\to\mathrm{reconfiguration}}$ として、それぞれの support-side readout を $\widetilde M_j = A_j(M_j^{\mathrm{int}}, M_{\mathrm{ext}\to j})$ に集約できる。そのうえで、$\Phi$ による低粒度の support projection $M_{\mathrm{eff}} = \Phi(\widetilde M_{\mathrm{buffer}}, \widetilde M_{\mathrm{recovery}}, \widetilde M_{\mathrm{reconfiguration}})$ を通じて、構造持続ポテンシャルを書き直せる。
 
-本補論の固有の検査標的は、raw resource \(R\) が対象となる構造条件の維持に使える有効量 \(M\) になっているか、その操作的 readout が scalar baseline にない情報を持つかを調べることである。成分分解はそのための補助的な profile である。本補論はこの検査標的を software / SaaS を最初の推定レイヤーとして具体化し、$\rho_i$, $\Phi$, $A_j$ の候補族に対する頑健性検査を含む、事前固定可能な経験的検証プロトコルを定式化した。実際の preregistration と pilot 実行は、本補論の外、別の empirical program として進める。
+本補論の固有の検査標的は、qualified support readout が raw / scalar / support-projection baselines にない情報を持つか、また required support や typed gate を固定したときに support-layer claim license をどこまで許せるかを調べることである。成分分解はそのための補助的な profile であり、R は M を raw resource へ collapse しないための境界項である。本補論はこの検査標的を software / SaaS を最初の推定レイヤーとして具体化し、$\rho_i$, $\Phi$, $A_j$ の候補族に対する頑健性検査を含む、事前固定可能な経験的検証プロトコルを定式化した。実際の preregistration と pilot 実行は、本補論の外、別の empirical program として進める。
 
 本補論は新しい普遍法則の証明ではなく、また empirical pilot 完了論文でもない。本補論の位置づけは、構造持続の収支原理の回復量・資源入力を実ドメインで測るための support-side operational mapping である。構造持続の最小形式と条件つき導出補論が構造消耗側の対数比の構造消耗を特徴づけ、LLM companion I と II が構造消耗と支援の相互作用を経験的に観察したのに対し、本補論は support 側の操作的座標系を提供する。そこから自然に出てくる次段階は、準備された protocol を operational data に適用する経験的 pilot であり、それは本補論の外、別の empirical program として進める。

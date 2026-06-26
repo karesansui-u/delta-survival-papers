@@ -1,9 +1,9 @@
-Software / SaaS Optional M-Component Diagnostic
-===============================================
+Software / SaaS Qualified Support Diagnostic
+==============================================
 
 domain_id: software_saas_m_profile
 
-domain_name: Software / SaaS optional M-component diagnostic
+domain_name: Software / SaaS qualified-support diagnostic candidate
 
 classification: inference
 
@@ -28,13 +28,13 @@ status: candidate
 - \(r_t\): rollback, repair workflow, runbook execution, replay, or verified remediation.
 - \(L\): accumulated structural-risk indicator.
 - \(B\): net structural-risk indicator after recovery / repair signals.
-- \(M\)-side readout: scalar effective maintenance surplus \(M\), optionally decomposed into \(M_{\mathrm{buffer}}\), \(M_{\mathrm{recovery}}\), \(M_{\mathrm{reconfiguration}}\), plus external supply channels as diagnostic readouts.
+- \(M\)-side readout: claim-scoped qualified support projection, optionally decomposed into buffer, recovery, reconfiguration, and external-support readouts when their gates, horizon, path, and certificates are observable without leakage.
 
 
-3. Optional M-Component Candidate Signals
------------------------------------------
+3. Qualified Support Candidate Signals
+--------------------------------------
 
-| Component | Candidate software / SaaS indicators |
+| Support readout | Candidate software / SaaS indicators |
 |---|---|
 | \(M_{\mathrm{buffer}}\) | redundancy, spare capacity, error budget, deployment margin, blast-radius containment |
 | \(M_{\mathrm{recovery}}\) | rollback success, MTTR, runbook coverage, restore drill recency, replay capability |
@@ -47,7 +47,7 @@ status: candidate
 
 - simple baseline: activity count, deployment count, incident count, age, team size, or traffic volume.
 - domain baseline: standard software-delivery / incident-risk model.
-- domain baseline + SP: domain baseline plus frozen L/B coordinates and, optionally, scalar \(M\) or M-component readouts.
+- domain baseline + SP: domain baseline plus frozen L/B coordinates and, optionally, qualified-support readouts.
 - wide baseline, if any: domain-specific operational model with all pre-approved covariates.
 
 
@@ -55,7 +55,7 @@ status: candidate
 --------------------
 
 - current status: candidate / silence until an operational log with intervention records and outcome windows is frozen.
-- M-component diagnostic manifest: use `../../06_templates/m_profile_validation_manifest_template.md`.
+- qualified-support diagnostic manifest: use `../../06_templates/m_profile_validation_manifest_template.md` until a QSA-style support-gate manifest replaces it.
 - evidence record: not yet supported.
 
 
@@ -64,7 +64,7 @@ status: candidate
 
 This domain may support:
 
-- optional M-component diagnostic support if component readouts improve held-out risk prediction or diagnosis over a domain baseline;
+- qualified-support diagnostic support if support-gate / path / horizon readouts improve held-out risk prediction or diagnosis over a domain baseline;
 
 This domain does not support:
 

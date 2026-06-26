@@ -20,18 +20,23 @@ The strongest common empirical target is usually incremental support, not SP-onl
 M-Side Readouts
 ---------------
 
-For \(M\)-side work, use the following stricter reading. \(M\) is the familiar
-support-side effective maintenance surplus: usable resource, slack, or capacity
-for the pre-fixed maintenance problem. The core theory treats \(M\) as a scalar
-resource-side term. Component profiles are optional diagnostic readouts, not a
-law-side coordinate and not a built-in theory of which intervention to choose.
+For \(M\)-side work, use the following stricter reading. \(M\) is not raw
+stock and not merely a convenient feature. \(M\) licenses qualified support for a
+claim: a target- and horizon-scoped support projection whose assumptions, paths,
+certificates, required support, compatibility, and mandatory typed gates are
+fixed before it is used. Scalar \(M\) remains a low-resolution projection, and
+component profiles remain optional diagnostics, but neither may be read as a
+built-in intervention theory or as empirical support before frozen validation.
 
 | Level | Meaning |
 |---|---|
-| scalar-M readout | scalar \(M\) or \(M=0\) boundary is pre-fixed and improves held-out persistence readout over a domain baseline |
-| optional M-component diagnostic | a pre-frozen component readout improves held-out prediction, diagnosis, or persistence readout over a domain baseline |
-| robustness diagnostic | optional component diagnostic is robust across pre-frozen \(\rho_i\), \(A_j\), and \(\Phi\) families |
-| M-component replication | optional component diagnostic reproduces in a separate project, organization, archive, or outside run |
+| M projection readout | a scalar support projection or \(M=0\) boundary is pre-fixed and improves held-out persistence/readout over a domain baseline |
+| qualified-support diagnostic | a pre-frozen support bundle, component profile, gate, or compatibility readout improves held-out prediction, diagnosis, or persistence readout over a domain baseline |
+| support-threshold / claim-license readout | required support, feasible plan, typed gate, and bridge certificate are fixed; the result licenses or non-licenses only the support layer of the claim |
+| log-shortfall readout | a dimensionless ratio such as \(M_{available}/M_{required}\) is pre-fixed and its log shortfall improves or explains the held-out readout; raw \(\log M\) is not allowed |
+| robustness diagnostic | the M-side readout is robust across pre-frozen \(\rho_i\), \(A_j\), \(\Phi\), gate, compatibility, and shuffled-M guard families |
+| M-side replication | the M-side readout reproduces in a separate project, organization, archive, future surface, or outside run |
 
-This prevents an \(M\)-component readout from being misread as a built-in theory
-of which intervention to choose.
+This prevents an \(M\)-side readout from being misread as raw resource amount,
+a built-in theory of which intervention to choose, or a survival / recovery
+claim without a separate bridge certificate.

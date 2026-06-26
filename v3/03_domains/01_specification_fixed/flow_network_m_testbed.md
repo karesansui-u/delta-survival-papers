@@ -7,26 +7,31 @@ domain_name: Structural maintenance flow-network testbed
 
 classification: specification_fixed
 
-status: design
+status: no_support_legacy_component_allocation
 
 
 1. Purpose
 ----------
 
-This testbed is the first clean validation target for the resource term \(M\).
-Its role is not to model software, batteries, or organizations directly. Its role
-is to build a controlled functional structure where:
+This testbed is a legacy component-allocation validation target for the
+resource side. It predates the current claim-scoped qualified-support reading of
+\(M\). Its role is not to model software, batteries, or organizations directly.
+Its role is to build a controlled functional structure where:
 
 - the maintained function \(F\) is explicit;
 - collapse is mechanically defined;
 - damage and repair are observable;
 - raw energy can be allocated into different M-components.
 
-The central question is:
+The central legacy question is:
 
 > Under the same damage process and the same total energy budget, does the
-> \(M\)-component allocation predict persistence better than a total-resource
+> component-allocation readout predict persistence better than a total-resource
 > baseline?
+
+This is not the same as the current QSA / support-plan question, where \(M\)
+is a claim-scoped qualified support bundle with gates, compatibility, required
+support, and claim-license boundaries.
 
 
 2. Structural Object
@@ -65,8 +70,8 @@ The primary functional readouts are:
 - recovery time after damage.
 
 
-3. M-Component Interpretation
------------------------------
+3. Legacy Component-Allocation Interpretation
+----------------------------------------------
 
 The same raw energy budget
 \[
@@ -120,7 +125,7 @@ coordinate is
 ------------------
 
 The primary design uses several pre-fixed damage families so that no single
-M-component is always optimal.
+component allocation is always optimal.
 
 | Damage family | Description | Expected useful component |
 |---|---|---|
@@ -147,7 +152,7 @@ For a fixed total energy \(E\), compare at least the following policies:
 | balanced | equal or near-equal split |
 | total-energy baseline | uses only \(E\), not the split |
 
-These anchors are not enough for optional M-component diagnostic support. The frozen primary should use
+These anchors are not enough for legacy component-allocation diagnostic support. The frozen primary should use
 an allocation grid over
 \[
   E_{\mathrm{buffer}}+E_{\mathrm{recovery}}+E_{\mathrm{reconfiguration}}=E
@@ -170,22 +175,22 @@ The main baseline is a total-resource model:
 - graph size and density;
 - damage intensity.
 
-The optional M-component model adds:
+The legacy component-allocation model adds:
 
 - \(E_{\mathrm{buffer}}/E\);
 - \(E_{\mathrm{recovery}}/E\);
 - \(E_{\mathrm{reconfiguration}}/E\);
-- pre-fixed interaction terms between damage family and M-component, if frozen.
+- pre-fixed interaction terms between damage family and component allocation, if frozen.
 
 A stronger calibration-best-allocation baseline should also be included. It
 learns, from calibration data only, which allocation region tends to work for
-observable graph and damage summaries. Optional M-component diagnostic support requires beating this
+observable graph and damage summaries. Legacy component-allocation diagnostic support requires beating this
 baseline, not only the total-resource scalar baseline.
 
 The central comparison is:
 
 \[
-  \text{total-resource baseline} + \text{M-component readout}
+  \text{total-resource baseline} + \text{component-allocation readout}
   >
   \text{total-resource baseline}.
 \]
@@ -204,9 +209,9 @@ Primary metrics:
 - minimum-margin prediction error;
 - regret relative to the best observed allocation, reported as a diagnostic.
 
-Optional M-component diagnostic support:
+Legacy component-allocation diagnostic support:
 
-- M-component readout improves held-out prediction of collapse time or maintained-flow
+- component-allocation readout improves held-out prediction of collapse time or maintained-flow
   ratio over the total-resource baseline.
 
 Robustness support:
@@ -228,7 +233,7 @@ Suggested split:
 - primary: run on held-out graph seeds and damage seeds;
 - outside rerun: provide a seed-locked package for independent execution.
 
-No optional M-component diagnostic support is allowed if the \(Q\), damage intensity, or allocation
+No legacy component-allocation diagnostic support is allowed if the \(Q\), damage intensity, or allocation
 grid is chosen after observing primary outcomes.
 
 
@@ -237,24 +242,25 @@ grid is chosen after observing primary outcomes.
 
 This testbed does not claim:
 
-- that software, SaaS, batteries, or organizations have the same M-component readout;
-- that a total-resource failure in this testbed refutes the M formalism;
+- that software, SaaS, batteries, or organizations have the same component-allocation readout;
+- that a total-resource failure in this testbed refutes the current claim-scoped qualified-support M formalism;
 - that a successful testbed result proves a universal resource law;
 - that \(M_{\mathrm{buffer}}, M_{\mathrm{recovery}}, M_{\mathrm{reconfiguration}}\)
   are directly observable physical quantities in real domains;
 
 The result, if positive, would show something narrower and more useful:
 
-> M-component allocation is not empty bookkeeping. In a controlled functional
+> component allocation is not empty bookkeeping. In a controlled functional
 > structure, the same total energy can have different persistence value depending
 > on whether it is allocated to buffer, recovery, or reconfiguration.
 
 Current status (2026-04-29): the guarded primary final candidate produced
-no optional M-component diagnostic support under its strongest frozen baseline. The component-readout model
-improved over the total-resource baseline on one diagnostic surface, but it did
-not beat the calibration-best-allocation baseline. This is recorded as
-controlled mechanistic no-support, not as a refutation of \(M\) as the familiar
-effective-resource side.
+no legacy component-allocation diagnostic support under its strongest frozen baseline.
+The component-readout model improved over the total-resource baseline on one
+diagnostic surface, but it did not beat the calibration-best-allocation
+baseline. This is recorded as controlled mechanistic no-support for this legacy
+component-allocation readout, not as a refutation of the current claim-scoped
+qualified-support reading of \(M\).
 
 
 11. Implementation Roadmap
@@ -281,7 +287,7 @@ Phase 1: calibration.
 
 Phase 2: frozen primary.
 
-- compare total-resource baseline against optional M-component model;
+- compare total-resource baseline against legacy component-allocation model;
 - record support / no-support in `05_evidence/`.
 
 Phase 3: outside rerun.
