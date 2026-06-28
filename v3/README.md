@@ -89,6 +89,13 @@ See `05_evidence/outside_reruns.tsv`,
 `05_evidence/frozen_packages.tsv`, and
 `../analysis/g7_route_a_true_outside_replication_summary.md`.
 
+For the bounded Shannon-style operational-alignment reading across finite CSP,
+SAT discovery cost, finite BEC recovery, and s-t reliability, see
+`02_foundations/28_shannon_style_operational_alignment.md`.
+For the safer universal-theorem scope split between grammatical necessity,
+specification-fixed class theorems, and non-claimed free transfer, see
+`02_foundations/29_universal_theorem_scope.md`.
+
 
 4. Extension Rule
 -----------------
